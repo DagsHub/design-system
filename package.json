@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@next/font": "13.0.7",
@@ -23,5 +25,16 @@
   "engines": {
     "node": ">=16.16.0",
     "npm": ">=8.11.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.0-beta.12",
+    "@storybook/addon-interactions": "^7.0.0-beta.12",
+    "@storybook/addon-links": "^7.0.0-beta.12",
+    "@storybook/blocks": "^7.0.0-beta.12",
+    "@storybook/nextjs": "^7.0.0-beta.12",
+    "@storybook/react": "^7.0.0-beta.12",
+    "@storybook/testing-library": "^0.0.13",
+    "eslint-plugin-storybook": "^0.6.8",
+    "storybook": "^7.0.0-beta.12"
   }
 }
