@@ -53,7 +53,7 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Storybook
-        run: ${{ steps.detect-package-manager.outputs.runner }} run build-storybook
+        run: ${{ steps.detect-package-manager.outputs.manager }} run build-storybook
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
