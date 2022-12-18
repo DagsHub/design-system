@@ -1,0 +1,49 @@
+.dagshub.navbar_link:hover {
+    background: #23414D;
+}
+
+.dagshub.navbar_link {
+    position: relative;
+    cursor: pointer;
+    display: inline-flex;
+    padding: 4px 8px;
+    border-radius: 12px;
+    color: #FFFFFF;
+    background: #192E36;
+    text-decoration: none;
+}
+
+.dagshub.navbar {
+    /*navbar container*/
+    position: sticky;
+    position: -webkit-sticky;
+    /*top: 0;*/
+    z-index: 101;
+
+    /*navbar*/
+    box-shadow: 0 1px 3px rgb(0 0 0 / 10%), 0 1px 2px -1px rgb(0 0 0 / 10%);
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 24px;
+    gap: 24px;
+    position: static;
+    width: 100%;
+    height: 44px;
+    left: 0;
+    top: 0;
+    background: #192E36;
+    color: #FFFFFF;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
