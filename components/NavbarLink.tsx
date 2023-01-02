@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ReactNode } from "react";
 
-import '../styles/dagshub.css';
+// import '../styles/dagshub.css';
 
 export interface NavbarLinkProps {
     href: string,
