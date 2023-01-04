@@ -1,6 +1,8 @@
 import Head from "next/head"
 import Modal from "../components/organization-components/Modal"
 import RepoCard from "../components/organization-components/RepoCard"
+import TeamsTable from "../components/organization-components/TeamsTable"
+import PeopleTable from "../components/organization-components/PeopleTable"
 
 let props1 = {
   isMirror:false,
@@ -75,6 +77,25 @@ let props3 = {
   repoTeams: []          
 }
 
+let modalProps1={
+  isOrg:true,
+  isAdmin:true,
+  isTeam:false,
+  name:"ORG1"
+}
+let modalProps2={
+  isOrg:true,
+  isAdmin:false,
+  isTeam:false,
+  name:"ORG2"
+}
+let modalProps3={
+  isOrg:false,
+  isAdmin:false,
+  isTeam:true,
+  name:"TEAM1"
+}
+
 export default function Home({}) {
   return (
     <div>
@@ -83,10 +104,12 @@ export default function Home({}) {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
       </Head>
       <h1>hello you</h1>
-      {/* <Modal/> */}
+      <Modal {...modalProps1}/>
       <RepoCard {...props1}/>
       <RepoCard {...props2}/>
       <RepoCard {...props3}/>
+      <TeamsTable/>
+      <PeopleTable/>
     </div>
   )
 }

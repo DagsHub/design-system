@@ -11,7 +11,6 @@ export default meta;
 
 const Template: StoryFn<typeof RepoCard> = (args) => <RepoCard {...args} />;
 
-
 export const Primary = Template.bind({});
 Primary.args = {
     isMirror:false,

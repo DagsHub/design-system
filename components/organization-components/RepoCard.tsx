@@ -1,15 +1,39 @@
 import '../../styles/repo.scss'
-
+import '../../styles/root.scss'
 import React from "react";
-import { ClassAttributes, AnchorHTMLAttributes, JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, HTMLAttributes } from "react";
 
-export default function RepoCard(props: {
-    repoTeams: any;
-    topics: any; isMirror: any; IsGithubIntegrated: any; numStars: any; githubStarCount: any; isFork: any; updatedDaysAgo: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; isStaring: any; repoName: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; isPrivate: any; hasDescription: any; repoDescription: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; numForks: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; numOpenPulls: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; numOpenIssues: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined 
-}) {
-    
-    const stars= props.isMirror && props.IsGithubIntegrated ? props.numStars + props.githubStarCount : props.numStars
+export interface Topic{
+    id:number
+    name: string; 
+    categoryId: { showExplore: boolean; colorClassName: string; };     
+}
 
+export interface Team{ 
+    id:number;
+    name:string;
+}
+
+export interface RepoCardProps {
+    repoTeams: Team[];
+    topics: Topic[]; 
+    isMirror: boolean; 
+    IsGithubIntegrated?: boolean; //should appear only if mirrored
+    numStars: number; 
+    githubStarCount?: number; //should appear only if mirrored
+    isFork: boolean; 
+    updatedDaysAgo: number;
+    isStaring: boolean; 
+    repoName: string
+    isPrivate: boolean; 
+    hasDescription: boolean; 
+    repoDescription?: string; //should appear only if has description is true
+    numForks?: number; 
+    numOpenPulls: number; //should appear only if mirrored
+    numOpenIssues: number; 
+}
+
+export default function RepoCard(props: RepoCardProps) {    
+    const stars= props.githubStarCount? props.numStars + props.githubStarCount : props.numStars
     return (
         <>
             <div className="desktop-repo card">
@@ -42,7 +66,6 @@ export default function RepoCard(props: {
                             </a>
                         </div>
                     </div>
-
                     <div className="repo-tags">
                         <div className="repo-name">
                             <a className="title1 cut-text" href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}">
@@ -52,7 +75,7 @@ export default function RepoCard(props: {
                                 {props.isPrivate ? "private" : "public"}
                             </div>
                         </div>                        
-                        {props.topics?.map((topic: { categoryId: { showExplore: any; colorClassName: string; }; name: string | number | boolean | ReactFragment | ReactPortal | ReactElement<any, string | JSXElementConstructor<any>> | null | undefined; }) => 
+                        {props.topics?.map((topic:Topic) => 
                             topic.categoryId.showExplore ? 
                             <a className={"tag repo-new-topic category-" + topic.categoryId.colorClassName} 
                                 rel="nofollow">
@@ -62,7 +85,6 @@ export default function RepoCard(props: {
                             : <></>        
                         )}
                     </div>
-
                     <div className="repo-main">
                         <div className="repo-desc-block">
                             <p className="repo-description">
@@ -74,29 +96,29 @@ export default function RepoCard(props: {
                             <div className="repo-info-text">
                                 <div className="stats">
                                     <a className="stat-block" href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}/forks">
-                                    <img className="fork-icon" src="./assets/fork-icon.svg"/>
-                                    <p>
-                                        {props.numForks}
-                                    </p>
+                                        <img className="fork-icon" src="./assets/fork-icon.svg"/>
+                                        <p>
+                                            {props.numForks}
+                                        </p>
                                     </a>
                                     {!props.isMirror ? 
                                         <a className="stat-block" href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}/pulls">
-                                        <img className="pull-request-icon" src="./assets/pull-requests-icon.svg"/>
-                                        <p>
-                                            {props.numOpenPulls}
-                                        </p>
+                                            <img className="pull-request-icon" src="./assets/pull-requests-icon.svg"/>
+                                            <p>
+                                                {props.numOpenPulls}
+                                            </p>
                                         </a>
                                     : <></>}
                                     <a className="stat-block" href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}/issues">
-                                    <img className="issue-icon" src="./assets/issue.svg"/>
-                                    <p>
-                                        {props.numOpenIssues}
-                                    </p>
+                                        <img className="issue-icon" src="./assets/issue.svg"/>
+                                        <p>
+                                            {props.numOpenIssues}
+                                        </p>
                                     </a>
                                 </div>
                                 <div className="belongs-to">
                                     {props.repoTeams&&props.repoTeams.length?"Belongs to: ":<></>}
-                                    {props.repoTeams?.map((team:{id:number, name:string}, index:any) => 
+                                    {props.repoTeams?.map((team:{name:string}, index:any) => 
                                         <span>
                                             <span>{(index ? ', ': '' )}</span>
                                             <a  className="repo-team" href="">{team.name}</a> 
@@ -113,8 +135,5 @@ export default function RepoCard(props: {
 }
 
 //should fix hrefs
-//handle case when there are too many topics
-//handle case when there are too many teams- should be numbers instead of dots 
-//is it possible that no teams connected to repo? if yes, how should it looks like in the card
-
-//add props to modal component
+//handle case when there are too many topics - should have "+3" for example
+//handle case when there are too many teams- should have "+3" for example, instead of dots 

@@ -1,8 +1,8 @@
 .card{
     width: 100%;
     height: auto;
-    background: #F8FAFC;
-    border: 1px solid #E2E8F0;
+    background: var(--secondary-state-50);
+    border: 1px solid var(--secondary-state-200);
     border-radius: 12px;
     padding: 16px;
     margin: 8px;
@@ -10,7 +10,7 @@
     font-style: normal;
 
     &:hover{
-        background: #F1F5F9;
+        background: var(--secondary-state-100);
     }
 }
 
@@ -56,7 +56,7 @@ a{
             font-weight: 500;
             font-size: 12px;
             line-height: 125%;
-            color: #475569;
+            color: var(--secondary-state-600);
             align-items: flex-start;
             top: 4.5px;
             position: relative;
@@ -75,7 +75,7 @@ a{
             font-weight: 500;
             font-size: 12px;
             line-height: 125%;
-            color: #475569;
+            color: var(--secondary-state-600);
             position: relative;
             top: 3px;
             right: 3px;
@@ -87,7 +87,7 @@ a{
                 font-weight: 600;
                 font-size: 12px;
                 line-height: 125%;
-                color: #94A3B8;
+                color: var(--secondary-state-400);
                 position: relative;
                 top: 1.5px;
             }
@@ -117,7 +117,7 @@ a{
     .repo-tags{
         font-weight: 500;
         font-size: 21px;
-        color: #172D32;
+        color: var(--color-text-default);
         height: 53px;
         width: 100%;
         display: flex;
@@ -132,7 +132,7 @@ a{
             display: inline-block;
             flex-shrink: 0;
             max-width: 498px;
-            color: #172D32;
+            color: var(--color-text-default);
             font-family: 'Inter';
             font-style: normal;
             font-weight: 500;
@@ -143,9 +143,9 @@ a{
         .public-private{
             display: inline-block;
             background: transparent;
-            border: 1px solid #E2E8F0;
+            border: 1px solid var(--secondary-state-200);
             width:52px;
-            color: #475569;
+            color: var(--secondary-state-600);
             height: 21px!important;
         }
 
@@ -163,92 +163,92 @@ a{
         }
 
         .category-task{
-            background: #DCFCE7;
-            color: #15803D;
+            background: var(--green-100);
+            color: var(--green-700);
 
             &:hover{
-                background: #BBF7D0;
-                color: #15803D;
+                background: var(--green-200);
+                color: var(--green-700);
             }
 
             &:focus{
-                background: #15803D;
-                color: #DCFCE7;
+                background: var(--green-700);
+                color: var(--green-100);
             }
         }
 
         .category-integration {
-            background: #FEF9C3;
-            color: #A16207;
+            background: var(--yellow-100);
+            color: var(--yellow-700);
 
             &:hover{
-                background: #FEF08A;
-                color: #A16207;
+                background: var(--yellow-200);
+                color: var(--yellow-700);
             }
 
             &:focus{
-                background: #A16207;
-                color: #FEFCE8;
+                background: var(--yellow-700);
+                color: var(--yellow-50);
             }
         }
 
         .category-type {
-            background: #FCE7F3;
-            color: #BE185D;
+            background: var(--pink-100);
+            color: var(--pink-700);
 
             &:hover{
-                background: #FBCFE8;
-                color: #BE185D;
+                background: var(--pink-200);
+                color: var(--pink-700);
             }
 
             &:focus{
-                background: #BE123C;
-                color: #FDF2F8;
+                background: var(--rose-700);
+                color: var(--pink-50);
             }
         }
 
         .category-data_domain {
-            background: #FEF2F2;
-            color: #DC2626;
+            background: var(--red-50);
+            color: var(--red-600);
 
             &:hover{
-                background: #FECACA;
-                color: #DC2626;
+                background: var(--red-200);
+                color: var(--red-600);
             }
 
             &:focus{
-                background: #DC2626;
-                color: #FFFFFF;
+                background: var(--red-600);
+                color: var(--background);
             }
         }
 
         .category-framework {
-            background: #CFFAFE;
-            color: #0E7490;
+            background: var(--cyan-100);
+            color: var(--cyan-700);
 
             &:hover{
-                background: #A5F3FC;
-                color: #0E7490;
+                background: var(--cyan-200);
+                color: var(--cyan-700);
             }
 
             &:focus{
-                background: #0E7490;
-                color: #ECFEFF;
+                background: var(--cyan-700);
+                color: var(--cyan-50);
             }
         }
 
         .category-general {
-            background: #F1F5F9;
-            color: #64748B;
+            background: var(--secondary-state-100);
+            color: var(--secondary-state-500);
 
             &:hover{
-                background: #E2E8F0;
-                color: #64748B;
+                background: var(--secondary-state-200);
+                color: var(--secondary-state-500);
             }
 
             &focus{
-                background: #64748B;
-                color: #F8FAFC;
+                background: var(--secondary-state-500);
+                color: var(--secondary-state-50);
             }
         }
     }
@@ -282,7 +282,7 @@ a{
     height: 39px;
     font-size: 14px;
     line-height: 20px;
-    color: #172D32;
+    color: var(--color-text-default);
 }
 
 .fork-icon{
@@ -317,7 +317,7 @@ a{
     >p{
         font-weight: 500;
         font-size: 12px;
-        color: #475569;
+        color: var(--secondary-state-600);
     }
 }
 
@@ -331,7 +331,7 @@ a{
 .belongs-to{
     font-weight: 500;
     font-size: 12px;
-    color: #475569;
+    color: var(--secondary-state-600);
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -341,6 +341,6 @@ a{
 .repo-team{
     font-weight: 500;
     font-size: 12px;
-    color: #475569; 
+    color: var(--secondary-state-600); 
     text-decoration: underline;
 }

@@ -8,6 +8,29 @@ const meta: Meta<typeof Modal> = {
 };
 
 export default meta;
-type Story = StoryFn<typeof Modal>;
 
-export const Primary: Story = () => <Modal/>;
+const Template: StoryFn<typeof Modal> = (args) => <Modal {...args} />;
+
+
+export const Primary = Template.bind({});
+Primary.args = {
+    isOrg:true,
+    isAdmin:true,
+    isTeam:false,
+    name:"ORG1"
+}
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+    isOrg:true,
+    isAdmin:false,
+    isTeam:false,
+    name:"ORG2"
+}
+export const Tertiary = Template.bind({});
+Tertiary.args = {
+    isOrg:false,
+    isAdmin:false,
+    isTeam:true,
+    name:"TEAM1"
+}
