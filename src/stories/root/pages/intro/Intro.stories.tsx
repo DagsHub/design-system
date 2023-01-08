@@ -5,7 +5,6 @@ import '../styles/page.scss';
 
 const Introduction = () => (
   <div>
-    <h1>Introduction</h1>
     <p>Welcome to dagshub design system library.</p>
     <section>
       <h2>Install</h2>
@@ -20,8 +19,9 @@ const Introduction = () => (
 );
 
 export default {
-  title: 'Intro',
+  title: 'Introduction',
   component: Introduction
 } as Meta<typeof Introduction>;
+
 
 export const Intro = Introduction;

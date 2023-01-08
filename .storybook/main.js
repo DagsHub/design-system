@@ -1,10 +1,10 @@
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
-    '@storybook/addon-docs', 
     '@storybook/addon-links', 
     '@storybook/addon-essentials', 
     '@storybook/addon-interactions', 
+    '@storybook/addon-docs', 
     '@storybook/preset-scss'
   ],
   framework: {
@@ -13,6 +13,9 @@ module.exports = {
   },
   docs: {
     autodocs: true
+  },
+  features: {
+    storyStoreV7: true,
   },
   core: {
     builder: "webpack5",
