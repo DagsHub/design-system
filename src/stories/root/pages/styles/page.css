@@ -1,0 +1,22 @@
+section {
+  margin-bottom: 30px;
+}
+h1 {
+  margin-bottom: 0;
+}
+h2 {
+  margin-bottom: 0;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #ccc;
+}
+pre {
+  background-color: #eee;
+  border-radius: 30;
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+pre code {
+  display: block;
+  font-size: 15px;
+}
