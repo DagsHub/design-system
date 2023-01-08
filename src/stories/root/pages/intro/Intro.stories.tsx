@@ -1,7 +1,7 @@
 import React from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
-import '../styles/page.css';
+import '../styles/page.scss';
 
 const Introduction = () => (
   <div>
@@ -22,6 +22,6 @@ const Introduction = () => (
 export default {
   title: 'Intro',
   component: Introduction
-} as ComponentMeta<typeof Introduction>;
+} as Meta<typeof Introduction>;
 
 export const Intro = Introduction;

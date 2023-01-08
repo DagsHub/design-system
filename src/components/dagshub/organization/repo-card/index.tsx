@@ -1,7 +1,7 @@
 import React from 'react';
 
-import '../../../styles/root.css';
-import './repo.css';
+import '../../../styles/root.scss';
+import './repo.scss';
 
 export interface Topic {
   id: number;

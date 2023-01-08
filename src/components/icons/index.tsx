@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './icons.css';
+import './icons.scss';
 
 export interface IconProp {
   fill?: string;

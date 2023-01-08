@@ -1,7 +1,7 @@
 import React from 'react';
 
-import '../../../styles/root.css';
-import '../shared-styles/table.css';
+import '../../../styles/root.scss';
+import '../shared-styles/table.scss';
 
 export default function PeopleTable() {
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { Icon } from '../../icons';
 
-import './checkbox.css';
+import './checkbox.scss';
 
 export interface CheckboxProps {
   label?: string;

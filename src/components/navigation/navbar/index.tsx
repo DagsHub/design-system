@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../styles/dagshub.css';
+import '../../styles/dagshub.scss';
 
 export interface NavbarProps {}
 

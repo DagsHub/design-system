@@ -2,7 +2,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 import Navbar from '../../../components/navigation/navbar';
 
 const meta: Meta<typeof Navbar> = {
-  title: 'DagsHub/Navbar',
+  title: 'Navigation/Navbar',
   component: Navbar,
   tags: ['docsPage']
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import './button.css';
+import './button.scss';
 
 export enum ButtonVariant {
   Primary = 'primary',

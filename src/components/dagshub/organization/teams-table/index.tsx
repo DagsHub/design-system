@@ -1,8 +1,8 @@
 import React from 'react';
 import { Icon } from '../../../icons';
 
-import '../../../styles/root.css';
-import '../shared-styles/table.css';
+import '../../../styles/root.scss';
+import '../shared-styles/table.scss';
 
 export default function TeamsTable() {
   return (

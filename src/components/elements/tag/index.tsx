@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import './tag.css';
+import './tag.scss';
 
 export enum TagCategory {
   General = 'general',

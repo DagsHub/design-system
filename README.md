@@ -1,5 +1,7 @@
-# React Component Library
+# Dagshub UI - design system
 
-License
-----
-MIT
+```js
+npm i @dagshub/ui --save
+// or
+yarn add @dagshub/ui
+```

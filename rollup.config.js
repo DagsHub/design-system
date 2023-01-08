@@ -1,4 +1,5 @@
 const dts = require("rollup-plugin-dts").default;
+const scss = require("rollup-plugin-scss");
 const terser = require('@rollup/plugin-terser');
 const postcss = require("rollup-plugin-postcss");
 const commonjs = require("@rollup/plugin-commonjs");
@@ -26,6 +27,7 @@ module.exports = [
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
+      scss({ sourceMap: true }),
       postcss(),
       terser(),
     ],
