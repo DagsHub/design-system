@@ -1,5 +1,4 @@
 .dagshub-btn {
-  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 600;
   border: 0;
   border-radius: 12px;
@@ -7,17 +6,14 @@
   display: inline-block;
   line-height: 1;
   transition: all 0.5s;
-
   &:disabled {
     color: #ffffff;
     background-color: #64748b;
     cursor: not-allowed;
-
     &:hover {
       color: #ffffff;
       background-color: #64748b;
     }
-
     &:focus {
       color: #ffffff;
       background-color: #64748b;
@@ -27,7 +23,6 @@
   &.primary {
     color: white;
     background-color: #5467de;
-
     &:hover {
       background-color: #4453b2;
     }
@@ -36,7 +31,6 @@
   &.secondary {
     color: #172d32;
     background-color: #e2e8f0;
-
     &:hover {
       background-color: #cbd5e1;
     }
@@ -45,12 +39,10 @@
   &.error {
     color: #dc2626;
     background-color: #f8fafc;
-
     &:hover {
       color: #ffffff;
       background-color: #dc2626;
     }
-
     &:focus {
       color: #ffffff;
       background-color: #dc2626;
@@ -58,26 +50,29 @@
   }
 }
 
-.dagshub-btn.ghost {
-  color: #172d32;
-  background-color: transparent;
-}
-.dagshub-btn.ghost:hover {
-  color: #172d32;
-  background-color: #f1f5f9;
-}
-.dagshub-btn.ghost:focus {
-  color: #ffffff;
-  background-color: #64748b;
-}
-
-.dagshub-btn.normal {
-  padding: 10px 12px;
-}
-.dagshub-btn.slim {
-  padding: 6px 12px;
+.dagshub-btn {
+  &.ghost {
+    color: #172d32;
+    background-color: transparent;
+    &:hover {
+      color: #172d32;
+      background-color: #f1f5f9;
+    }
+    &:focus {
+      color: #ffffff;
+      background-color: #64748b;
+    }
+  }
 }
 
-.dagshub-btn.fullWidth {
-  width: 100%;
+.dagshub-btn {
+  &.normal {
+    padding: 10px 12px;
+  }
+  &.slim {
+    padding: 6px 12px;
+  }
+  &.fullWidth {
+    width: 100%;
+  }
 }
