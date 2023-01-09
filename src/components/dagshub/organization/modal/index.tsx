@@ -3,6 +3,13 @@ import React from 'react';
 import '../../../styles/root.css';
 import './modal.css';
 
+export interface ModalProps{
+  isOrg: boolean,
+  isAdmin: boolean,
+  isTeam: boolean,
+  name: string
+}
+
 export default function Modal(props: any) {
   return (
     <div className="modal__add-member-modal add-member-modal add-member-modal_border">

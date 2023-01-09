@@ -1,16 +1,15 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import Modal from '../../../components/dagshub/organization/modal';
+import Modal, {ModalProps} from '../../../components/dagshub/organization/modal';
 
 const meta: Meta<typeof Modal> = {
   title: 'DagsHub/Org/Modal',
-  component: Modal,
-  tags: ['docsPage']
+  component: Modal
 };
 
 export default meta;
 
-const Template: StoryFn<typeof Modal> = (args) => <Modal {...args} />;
+const Template: StoryFn<ModalProps> = args => <Modal {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

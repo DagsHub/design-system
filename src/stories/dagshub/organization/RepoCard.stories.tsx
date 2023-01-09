@@ -4,8 +4,7 @@ import RepoCard from '../../../components/dagshub/organization/repo-card';
 
 const meta: Meta<typeof RepoCard> = {
   title: 'DagsHub/Org/RepoCard',
-  component: RepoCard,
-  tags: ['docsPage']
+  component: RepoCard
 };
 
 export default meta;
