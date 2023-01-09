@@ -35,12 +35,7 @@ export const Tag = ({
   className = '',
   onClick = () => {}
 }: TagProps & React.LabelHTMLAttributes<HTMLLabelElement>) => {
-  const classes = classNames(
-    [`dagshub-tag`, `dagshub-tag--${category}`, `dagshub-tag--${size}`, className],
-    {
-      selected
-    }
-  );
+  const classes = classNames([`dagshub-tag`, category, size, className], { selected });
 
   return (
     <label className={classes} onClick={onClick}>

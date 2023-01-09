@@ -11,7 +11,7 @@
   line-height: 1;
   transition: all 0.5s;
   margin-right: 8px;
-  &--general {
+  &.general {
     color: #64748b;
     background-color: #f1f5f9;
     &:hover {
@@ -22,7 +22,7 @@
       background-color: #64748b;
     }
   }
-  &--task {
+  &.task {
     color: #15803d;
     background-color: #dcfce7;
     &:hover {
@@ -33,7 +33,7 @@
       background-color: #15803d;
     }
   }
-  &--data-domain {
+  &.data-domain {
     color: #dc2626;
     background-color: #fef2f2;
     &:hover {
@@ -44,7 +44,7 @@
       background-color: #dc2626;
     }
   }
-  &--framework {
+  &.framework {
     color: #0e7490;
     background-color: #cffafe;
     &:hover {
@@ -55,7 +55,7 @@
       background-color: #0e7490;
     }
   }
-  &--integration {
+  &.integration {
     color: #a16207;
     background-color: #fef9c3;
     &:hover {
@@ -66,7 +66,7 @@
       background-color: #a16207;
     }
   }
-  &--type {
+  &.type {
     color: #be185d;
     background-color: #fce7f3;
     &:hover {
@@ -77,13 +77,13 @@
       background-color: #be123c;
     }
   }
-  &--sm {
+  &.sm {
     padding: 4px 8px;
   }
-  &--md {
+  &.md {
     padding: 7px 10px;
   }
-  &--lg {
+  &.lg {
     padding: 9px 12px;
   }
 }
