@@ -13,12 +13,13 @@
   ],
   "types": "dist/index.d.ts",
   "scripts": {
-    "rollup": "rollup -c",
-    "build": "rm -rf dist/ && prettier --write src/ && npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc",
-    "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
+    "build": "rollup -c",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "deploy-storybook": "npm run build",
+    "fmt": "prettier --write src/",
+    "prepublishOnly": "npm run build",
+    "publish": "npm publish --access=public --scope=@dagshub/ui"
   },
   "author": "Dagshub",
   "license": "MIT",

@@ -23,5 +23,4 @@ export default {
   component: Introduction
 } as Meta<typeof Introduction>;
 
-
 export const Intro = Introduction;
