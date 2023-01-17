@@ -1,16 +1,10 @@
 import React from 'react';
-<<<<<<< HEAD
-import '../../../styles/root.css';
-import '../shared-styles/table.css';
+import '../../../styles/root.scss';
+import '../shared-styles/table.scss';
 import UserInfo from "../user-info";
 import GenericTable, {Row} from "../generic-table";
 import {Icon} from "../../../icons";
 import {Dropdown} from "../../../elements/dropdown";
-=======
-
-import '../../../styles/root.scss';
-import '../shared-styles/table.scss';
->>>>>>> 4c6ab72e4da462af2feb394503129db572a3c322
 
 export interface PeopleTableProps{
   users:User[];

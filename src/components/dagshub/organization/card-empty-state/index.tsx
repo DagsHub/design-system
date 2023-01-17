@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../styles/root.css';
+import '../../../styles/root.scss';
 import "./card-empty-state.css"
 
 export interface CardEmptyStateProps{

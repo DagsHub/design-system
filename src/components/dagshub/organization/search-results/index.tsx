@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../styles/root.css';
+import '../../../styles/root.scss';
 import './search-results.css';
 import UserInfo from "../user-info";
 import {Icon} from "../../../icons";
