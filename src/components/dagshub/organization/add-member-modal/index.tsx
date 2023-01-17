@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../styles/root.css';
+import '../../../styles/root.scss';
 import GenericModal from "../generic-modal";
 import {Icon} from "../../../icons";
 import {Button, ButtonVariant} from "../../../elements";

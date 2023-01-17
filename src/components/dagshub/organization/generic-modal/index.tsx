@@ -1,7 +1,7 @@
 import React from 'react';
 
-import '../../../styles/root.css';
-import './modal.css';
+import '../../../styles/root.scss';
+import './modal.scss';
 import {Icon} from "../../../icons";
 
 export interface ModalProps{

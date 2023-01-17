@@ -1,11 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-<<<<<<< HEAD
 import './button.css';
-=======
-
 import './button.scss';
->>>>>>> 4c6ab72e4da462af2feb394503129db572a3c322
 
 export enum ButtonVariant {
   Primary = 'primary',
