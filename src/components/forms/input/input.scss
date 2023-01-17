@@ -1,0 +1,55 @@
+.dagshub-input {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter';
+  font-style: normal;
+  gap: 8px;
+  height: 96px;
+
+}
+
+.dagshub-input input {
+  border: 1px solid #cbd5e1;
+  padding: 12px 16px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+.dagshub-input label {
+  color: #172d32;
+  font-weight: 600;
+  font-size: 14px;
+  height: 20px;
+}
+
+.dagshub-input.errored input {
+  border-color: #ef4444;
+}
+
+.dagshub-input.errored .helper-text {
+  color: #ef4444;
+}
+
+.dagshub-input.disabled input {
+  background-color: #f8fafc;
+  cursor: not-allowed;
+}
+
+.dagshub-input .helper-text {
+  color: #64748b;
+  font-weight: 500;
+  font-size: 12px;
+  height: 16px;
+  margin: 0px;
+}
+
+.dagshub-input input:hover {
+  background-color: #f1f5f9;
+}
+
+.dagshub-input input:focus {
+  box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+}

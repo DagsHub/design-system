@@ -1,0 +1,114 @@
+.dagshub-btn {
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+  transition: all 0.5s;
+
+}
+
+.dagshub-btn:disabled {
+  color: #ffffff;
+  background-color: #64748b;
+  cursor: not-allowed;
+}
+.dagshub-btn:disabled:hover {
+  color: #ffffff;
+  background-color: #64748b;
+}
+.dagshub-btn:disabled:focus {
+  color: #ffffff;
+  background-color: #64748b;
+}
+
+.dagshub-btn.primary {
+  color: white;
+  background-color: #5467de;
+}
+.dagshub-btn.primary:hover {
+  background-color: #4453b2;
+}
+.dagshub-btn.primary:focus {
+  background: #5467DE;
+  box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+}
+
+.dagshub-btn.secondary {
+  color: #172d32;
+  background-color: #e2e8f0;
+}
+.dagshub-btn.secondary:hover {
+  background-color: #cbd5e1;
+}
+.dagshub-btn.secondary:focus {
+  background: #CBD5E1;
+  border: 2px solid #C4B5FD;
+}
+
+.dagshub-btn.error {
+  box-sizing: border-box;
+  color: #dc2626;
+  background-color: #f8fafc;
+  border: 2px solid #E2E8F0;
+}
+.dagshub-btn.error:hover {
+  color: #ffffff;
+  background-color: #dc2626;
+  border-color: transparent;
+}
+.dagshub-btn.error:focus {
+  color: #ffffff;
+  background-color: #dc2626;
+  border: 2px solid #E2E8F0;
+  box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+}
+
+.dagshub-btn.ghost {
+  color: #172d32;
+  background-color: transparent;
+}
+.dagshub-btn.ghost:hover {
+  /*color: #172d32;*/
+  /*background-color: #f1f5f9;*/
+  background: #CBD5E1;
+}
+.dagshub-btn.ghost:focus {
+  /*color: #ffffff;*/
+  /*background-color: #64748b;*/
+  background: #CBD5E1;
+  border: 2px solid #CBD5E1;
+  box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+}
+
+.dagshub-btn.normal {
+  padding: 10px 12px;
+  height:36px;
+}
+
+.dagshub-btn.slim {
+  padding: 6px 12px;
+  height:32px;
+}
+
+.dagshub-btn.normal .button__content{
+  gap: 10.67px;
+}
+
+.dagshub-btn.slim .button__content{
+  gap: 10.4px;
+}
+
+.dagshub-btn.fullWidth {
+  width: 100%;
+}
+
+.button__content{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}

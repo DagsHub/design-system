@@ -1,0 +1,46 @@
+.dagshub-textarea {
+  display: flex;
+  flex-direction: column;
+}
+
+.dagshub-textarea textarea {
+  border: 1px solid #cbd5e1;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  outline: 0;
+  height: 94px;
+  transition: all 0.5s;
+}
+
+.dagshub-textarea label {
+  color: #172d32;
+  margin-bottom: 5px;
+}
+
+.dagshub-textarea.errored textarea {
+  border-color: #ef4444;
+}
+
+.dagshub-textarea.errored .helper-text {
+  color: #ef4444;
+}
+
+.dagshub-textarea.disabled textarea {
+  background-color: #f8fafc;
+  cursor: not-allowed;
+}
+
+.dagshub-textarea .helper-text {
+  color: #64748b;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.dagshub-textarea textarea:hover {
+  background-color: #f8fafc;
+}
+
+.dagshub-textarea textarea:focus {
+  box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+}

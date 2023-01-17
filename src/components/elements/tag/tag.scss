@@ -1,0 +1,89 @@
+.dagshub-tag {
+  font-weight: 600;
+  border: 0;
+  font-size: 12px;
+  padding: 4px 8px;
+  gap: 8px;
+  border-radius: 32px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+  transition: all 0.5s;
+  margin-right: 8px;
+  &.general {
+    color: #64748b;
+    background-color: #f1f5f9;
+    &:hover {
+      background-color: #e2e8f0;
+    }
+    &.selected {
+      color: #f8fafc;
+      background-color: #64748b;
+    }
+  }
+  &.task {
+    color: #15803d;
+    background-color: #dcfce7;
+    &:hover {
+      background-color: #bbf7d0;
+    }
+    &.selected {
+      color: #dcfce7;
+      background-color: #15803d;
+    }
+  }
+  &.data-domain {
+    color: #dc2626;
+    background-color: #fef2f2;
+    &:hover {
+      background-color: #fecaca;
+    }
+    &.selected {
+      color: #ffffff;
+      background-color: #dc2626;
+    }
+  }
+  &.framework {
+    color: #0e7490;
+    background-color: #cffafe;
+    &:hover {
+      background-color: #a5f3fc;
+    }
+    &.selected {
+      color: #ecfeff;
+      background-color: #0e7490;
+    }
+  }
+  &.integration {
+    color: #a16207;
+    background-color: #fef9c3;
+    &:hover {
+      background-color: #fef08a;
+    }
+    &.selected {
+      color: #fefce8;
+      background-color: #a16207;
+    }
+  }
+  &.type {
+    color: #be185d;
+    background-color: #fce7f3;
+    &:hover {
+      background-color: #fbcfe8;
+    }
+    &.selected {
+      color: #fdf2f8;
+      background-color: #be123c;
+    }
+  }
+  &.sm {
+    padding: 4px 8px;
+  }
+  &.md {
+    padding: 7px 10px;
+  }
+  &.lg {
+    padding: 9px 12px;
+  }
+}

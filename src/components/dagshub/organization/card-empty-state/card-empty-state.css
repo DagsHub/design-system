@@ -1,0 +1,28 @@
+.card-empty-state{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+    height: auto;
+    box-sizing: border-box;
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20px;
+    background: #FFFFFF;
+    border: 2px dashed #E2E8F0;
+    border-radius: 12px;
+}
+
+.text{
+    font-weight: 500;
+    color: #64748B;
+    text-align: center;
+}
+
+.button{
+    font-weight: 600;
+    color: #FFFFFF;
+}

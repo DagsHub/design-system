@@ -1,20 +1,23 @@
-const path = require('path');
 module.exports = {
-  "stories": [
-    "../stories/**/*.mdx",
-    "../stories/**/*.stories.@(js|jsx|ts|tsx)"
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: [
+    '@storybook/addon-links', 
+    '@storybook/addon-essentials', 
+    '@storybook/addon-interactions', 
+    '@storybook/addon-docs', 
+    '@storybook/preset-scss'
   ],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions"
-  ],
-  "framework": {
-    "name": "@storybook/nextjs",
-    "options": {}
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {}
   },
-  "docs": {
-    "docsPage": true
+  docs: {
+    autodocs: true
   },
-  staticDirs: ['../public'],
-}
+  features: {
+    storyStoreV7: true,
+  },
+  core: {
+    builder: "webpack5",
+  },
+};
