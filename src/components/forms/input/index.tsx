@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import './input.css';
+import './input.scss';
 
 export interface InputProps {
   type?: 'text' | 'password';

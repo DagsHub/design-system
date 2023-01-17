@@ -1,11 +1,17 @@
 import React, {useState} from 'react';
 import { Icon } from '../../../icons';
+<<<<<<< HEAD
 import '../../../styles/root.css';
 import '../shared-styles/table.css';
 import GenericTable, {Row} from "../generic-table";
 import UserInfo from "../user-info";
 import {UserPermissionForTeam} from "../people-table";
 import {Button, ButtonStretch, ButtonVariant} from "../../../elements";
+=======
+
+import '../../../styles/root.scss';
+import '../shared-styles/table.scss';
+>>>>>>> 4c6ab72e4da462af2feb394503129db572a3c322
 
 export interface TeamTableProps {
   users:User[];

@@ -15,8 +15,9 @@ pre {
   width: fit-content;
   padding: 4px 8px;
   border-radius: 4px;
-}
-pre code {
-  display: block;
-  font-size: 15px;
+
+  code {
+    display: block;
+    font-size: 15px;
+  }
 }

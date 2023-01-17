@@ -1,7 +1,13 @@
 import React from 'react';
+<<<<<<< HEAD
 import '../../../styles/root.css';
 import './repo.css';
 import {Icon} from "../../../icons";
+=======
+
+import '../../../styles/root.scss';
+import './repo.scss';
+>>>>>>> 4c6ab72e4da462af2feb394503129db572a3c322
 
 export interface Topic {
   id: number;

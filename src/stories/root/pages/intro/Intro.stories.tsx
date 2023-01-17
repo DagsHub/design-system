@@ -1,11 +1,10 @@
 import React from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
-import '../styles/page.css';
+import '../styles/page.scss';
 
 const Introduction = () => (
   <div>
-    <h1>Introduction</h1>
     <p>Welcome to dagshub design system library.</p>
     <section>
       <h2>Install</h2>
@@ -20,8 +19,8 @@ const Introduction = () => (
 );
 
 export default {
-  title: 'Intro',
+  title: 'Introduction',
   component: Introduction
-} as ComponentMeta<typeof Introduction>;
+} as Meta<typeof Introduction>;
 
 export const Intro = Introduction;

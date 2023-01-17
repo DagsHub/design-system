@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import './textarea.css';
+import './textarea.scss';
 
 export interface TextAreaProps {
   label?: string;
