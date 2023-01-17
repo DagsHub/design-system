@@ -1,6 +1,6 @@
 import './user-info.css';
 import '../../../styles/root.css';
-import React, {ReactComponentElement, ReactElement} from 'react';
+import React from 'react';
 
 export interface UserInfoProps{
     imageSource: string,
@@ -16,7 +16,7 @@ export default function UserInfo(props:UserInfoProps) {
             </span>
             <span className="name-info">
                 <span className="full-name">{props.fullName}</span>
-                <span className="user-name">{props.userName}</span>
+                <span className="user-name">{"@"+props.userName}</span>
             </span>
         </div>
     )

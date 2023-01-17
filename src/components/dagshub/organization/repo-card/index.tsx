@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../../styles/root.css';
 import './repo.css';
+import {Icon} from "../../../icons";
 
 export interface Topic {
   id: number;
@@ -43,11 +44,11 @@ export default function RepoCard(props: RepoCardProps) {
         <div className="repo-card-content">
           <div className="repo-header">
             <div className="repo-info">
-              <img className="repo-icon" src="./assets/repo-icon.svg" />
+              <Icon width={10.67} height={14} fill="#475569" icon="outline-repository-github"/>
               <span className="repo-type">
                 {props.isFork ? 'Forked repo' : props.isMirror ? 'Mirrored repo' : 'Repo'}
               </span>
-              <img className="repo-pipe" src="./assets/pipe.svg" />
+              <Icon width={1} height={12} fill="#E2E8F0" icon="pipe"/>
               <span className="days-ago">Updated {props.updatedDaysAgo} days ago</span>
             </div>
             {/* check if its ok  */}
@@ -61,9 +62,9 @@ export default function RepoCard(props: RepoCardProps) {
               >
                 <i className={!props.isStaring ? 'star' : 'start-outline'}></i>
                 {props.isStaring ? (
-                  <img className="star" src="./assets/solid-star.svg"></img>
+                  <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star"/>
                 ) : (
-                  <img className="star" src="./assets/star-outline.svg"></img>
+                  <Icon width={18} height={17.21} fill="#94A3B8" icon="outline-star"/>
                 )}
               </a>
             </div>
@@ -99,14 +100,14 @@ export default function RepoCard(props: RepoCardProps) {
               </p>
             </div>
             <div className="repo-information">
-              <img className="divider-icon" src="./assets/divider.svg" />
+              <Icon width={564} height={1} fill="#E2E8F0" icon="divider"/>
               <div className="repo-info-text">
                 <div className="stats">
                   <a
                     className="stat-block"
                     href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}/forks"
                   >
-                    <img className="fork-icon" src="./assets/fork-icon.svg" />
+                    <Icon width={10.29} height={12} fill="#475569" icon="outline-fork"/>
                     <p>{props.numForks}</p>
                   </a>
                   {!props.isMirror ? (
@@ -114,7 +115,7 @@ export default function RepoCard(props: RepoCardProps) {
                       className="stat-block"
                       href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}/pulls"
                     >
-                      <img className="pull-request-icon" src="./assets/pull-requests-icon.svg" />
+                      <Icon width={15} height={14.5} fill="#475569" icon="outline-pull-request-github"/>
                       <p>{props.numOpenPulls}</p>
                     </a>
                   ) : (
@@ -124,7 +125,7 @@ export default function RepoCard(props: RepoCardProps) {
                     className="stat-block"
                     href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}/issues"
                   >
-                    <img className="issue-icon" src="./assets/issue.svg" />
+                    <Icon width={14.67} height={14.67} fill="#475569" icon="outline-issue"/>
                     <p>{props.numOpenIssues}</p>
                   </a>
                 </div>

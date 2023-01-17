@@ -1,16 +1,27 @@
-.add-member-modal {
+.modal {
   width: 639px;
   height: auto;
   background: var(--background);
   border-radius: 6px;
+  position: fixed;
 }
 
-.add-member-modal_border {
+p{
+  margin: 0px!important;
+}
+
+.modal_border {
   border: 1px var(--color-text-default) solid;
 }
 
-.modal__add-member-modal {
-  position: fixed;
+.input-block{
+  position: relative;
+}
+
+.input-block svg{
+  position: absolute;
+  top: 15.67px;
+  right: 17.67px;
 }
 
 .modal-content {
@@ -20,6 +31,7 @@
   padding: 20px;
   font-family: 'Inter';
   font-style: normal;
+  gap: 16px;
 }
 
 .modal-content__title {
@@ -47,7 +59,8 @@
   border: 2px solid var(--secondary-state-300);
   border-radius: 12px;
   box-sizing: border-box;
-  padding: 16px;
+  padding-right: 49px;
+  padding-left: 16px;
 }
 .search-input:focus-visible {
   outline: none !important;
@@ -70,7 +83,7 @@
   color: var(--secondary-state-500);
 }
 
-.add-member-modal__x-button {
+.modal__x-button {
   display: flex;
   width: 36px;
   height: 36px;
@@ -83,17 +96,17 @@
   top: 8px;
   z-index: 99;
 }
-.add-member-modal__x-button:hover,
-.add-member-modal__x-button:focus {
+.modal__x-button:hover,
+.modal__x-button:focus {
   background-color: var(--secondary-state-50);
   cursor: pointer;
 }
-.add-member-modal__x-button img {
+.modal__x-button img {
   display: flex;
   width: 12px;
   height: 12px;
 }
-.add-member-modal__x-button:hover img {
+.modal__x-button:hover img {
   filter: invert(1);
 }
 
@@ -137,5 +150,47 @@
   font-size: 14px;
   line-height: 20px;
   color: var(--modal-or);
-  margin: 4px;
 }
+
+.modal__buttons{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.add-member-modal__buttons-section{
+  display: flex;
+  flex-direction: column;
+  /*margin-top: 20px;*/
+  gap: 4px;
+  align-items: center;
+}
+
+.no-teams, .remove-text{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+
+.create-team{
+  color:#5467DE;
+}
+
+.dropdown{
+  width: 100%;
+}
+
+.remove-member-modal__buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.username{
+  font-weight: 700;
+}
+
+

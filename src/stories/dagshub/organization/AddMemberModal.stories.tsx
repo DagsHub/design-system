@@ -1,22 +1,23 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import Modal, {ModalProps} from '../../../components/dagshub/organization/modal';
+import AddMemberModal, {AddMemberModalProps} from '../../../components/dagshub/organization/add-member-modal';
 
-const meta: Meta<typeof Modal> = {
-  title: 'DagsHub/Org/Modal',
-  component: Modal
+const meta: Meta<typeof AddMemberModal> = {
+  title: 'DagsHub/Org/AddMemberModal',
+  component: AddMemberModal
 };
 
 export default meta;
 
-const Template: StoryFn<ModalProps> = args => <Modal {...args} />;
+const Template: StoryFn<AddMemberModalProps> = args => <AddMemberModal {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
   isOrg: true,
   isAdmin: true,
   isTeam: false,
-  name: 'ORG1'
+  name: 'ORG1',
+  teams:["team1", "team2"]
 };
 
 export const Secondary = Template.bind({});

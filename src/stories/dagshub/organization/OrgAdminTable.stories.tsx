@@ -1,20 +1,20 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import SearchResultList, {SearchResultListProps} from '../../../components/dagshub/organization/search-results';
+import {OrgAdminTableProps} from '../../../components/dagshub/organization/org-admin-table';
+import OrgAdminTable from "../../../components/dagshub/organization/org-admin-table";
 
-const meta: Meta<typeof SearchResultList> = {
-  title: 'DagsHub/Org/SearchResultList',
-  component: SearchResultList
+const meta: Meta<typeof OrgAdminTable> = {
+  title: 'DagsHub/Org/OrgAdminTable',
+  component: OrgAdminTable
 };
 
 export default meta;
 
-const Template: StoryFn<SearchResultListProps> = args => <SearchResultList {...args} />;
+const Template: StoryFn<OrgAdminTableProps> = args => <OrgAdminTable {...args} />;
 const imageLink="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH3HZUQ9Uz5qcOaIwRjQi0jdfJVVUIR-hO9Q&usqp=CAU"
-
 export const Primary = Template.bind({});
 Primary.args = {
-  users:[
+  admins:[
     {
       userImage: imageLink,
       fullName: "Itay Malka",
@@ -32,4 +32,3 @@ Primary.args = {
     }
   ]
 };
-

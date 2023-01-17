@@ -17,6 +17,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 .remove-from-team-button {
     width: auto;
@@ -24,7 +26,6 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    position: relative;
     padding-left: 14px;
     padding-right: 12px;
     border-radius: 12px;
@@ -33,7 +34,6 @@
     font-size: 14px;
     line-height: 20px;
     color: var(--color-text-default);
-    right: 16px;
 }
 .remove-from-team-button:hover {
     background: var(--secondary-state-300);
@@ -58,11 +58,4 @@
     font-size: 14px;
     line-height: 20px;
     color: var(--color-text-default);
-}
-.user-info {
-    width: 220px;
-    padding-left: 16px;
-    box-sizing: border-box;
-    display: flex;
-    gap: 8px;
 }

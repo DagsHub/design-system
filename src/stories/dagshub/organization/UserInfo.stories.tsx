@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import UserInfo from '../../../components/dagshub/organization/user-info';
+import UserInfo, {UserInfoProps} from '../../../components/dagshub/organization/user-info';
 
 const meta: Meta<typeof UserInfo> = {
   title: 'DagsHub/Org/UserInfo',
@@ -9,11 +9,13 @@ const meta: Meta<typeof UserInfo> = {
 
 export default meta;
 
-const Template: StoryFn<typeof UserInfo> = (args) => <UserInfo{...args} />;
+const Template: StoryFn<UserInfoProps> = args => <UserInfo {...args} />;
+
+const imageLink="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH3HZUQ9Uz5qcOaIwRjQi0jdfJVVUIR-hO9Q&usqp=CAU"
 
 export const Primary = Template.bind({});
 Primary.args = {
-  imageSource:"../../assets/nir.png",
-  fullName:"Kirill Bolashev",
-  userName:"@KBolashev"
+  imageSource:imageLink,
+  fullName:"Nir Barazida",
+  userName:"KBolashev"
 };

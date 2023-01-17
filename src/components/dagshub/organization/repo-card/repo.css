@@ -54,6 +54,7 @@ a {
   justify-content: space-between;
   gap: 4px;
   height: 36px;
+  align-items: flex-start;
 }
 .desktop-repo .repo-header .repo-info {
   width: 100%;
@@ -65,8 +66,10 @@ a {
   line-height: 125%;
   color: var(--secondary-state-600);
   align-items: flex-start;
-  top: 4.5px;
+  align-items: center;
   position: relative;
+  top: 4.5px;
+  left:4.5px;
 }
 .desktop-repo .repo-header .repo-info .repo-icon {
   width: 10.67px;

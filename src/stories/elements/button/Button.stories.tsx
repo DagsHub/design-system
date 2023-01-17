@@ -4,7 +4,7 @@ import { styled } from '@storybook/theming';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { enum2arr } from '../../../utils';
-import { Button, ButtonVariant, ButtonStrech } from '../../../components/elements/button';
+import { Button, ButtonVariant, ButtonStretch } from '../../../components/elements/button';
 
 export default {
   title: 'Elements/Button',
@@ -22,12 +22,12 @@ export const Presentation = () => {
     <div>
       {enum2arr(ButtonVariant).map((variant) => (
         <div key={variant}>
-          {enum2arr(ButtonStrech).map((strech) => (
+          {enum2arr(ButtonStretch).map((stretch) => (
             <ButtonStory
-              key={`${variant}-${strech}`}
+              key={`${variant}-${stretch}`}
               variant={variant}
-              strech={strech}
-              label={`${startCase(variant)} / ${startCase(strech)}`}
+              stretch={stretch}
+              label={`${startCase(variant)} / ${startCase(stretch)}`}
             />
           ))}
           <br /> <br />
@@ -43,7 +43,7 @@ export const Presentation = () => {
 
 export const Interactive = Template.bind({});
 Interactive.args = {
-  variant: 'primary',
-  strech: 'normal',
+  variant: ButtonVariant.Primary,
+  stretch: ButtonStretch.Normal,
   label: 'Change me!'
 };

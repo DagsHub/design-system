@@ -13,6 +13,7 @@ export interface InputProps {
   disabled?: boolean;
   className?: string;
   maxWidth?: string;
+  width?:number;
   inputMaxWidth?: string;
   onChange?: () => void;
 }
@@ -27,6 +28,7 @@ export const Input = ({
   disabled = false,
   className = '',
   maxWidth = 'initial',
+  width,
   inputMaxWidth = 'initial',
   onChange = () => {},
   ...props
@@ -44,7 +46,7 @@ export const Input = ({
         disabled={disabled}
         onChange={onChange}
         placeholder={placeholder}
-        style={{ maxWidth: inputMaxWidth }}
+        style={{ maxWidth: inputMaxWidth, width: width}}
         {...props}
       />
       {helperText && <p className="helper-text">{helperText}</p>}

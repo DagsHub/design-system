@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import RepoCard from '../../../components/dagshub/organization/repo-card';
+import RepoCard, {RepoCardProps} from '../../../components/dagshub/organization/repo-card';
 
 const meta: Meta<typeof RepoCard> = {
   title: 'DagsHub/Org/RepoCard',
@@ -9,7 +9,7 @@ const meta: Meta<typeof RepoCard> = {
 
 export default meta;
 
-const Template: StoryFn<typeof RepoCard> = (args) => <RepoCard {...args} />;
+const Template: StoryFn<RepoCardProps> = args => <RepoCard {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -32,29 +32,13 @@ Primary.args = {
     { id: 1, name: 'general', categoryId: { colorClassName: 'general', showExplore: false } },
     { id: 2, name: 'type', categoryId: { colorClassName: 'type', showExplore: true } },
     { id: 3, name: 'task', categoryId: { colorClassName: 'task', showExplore: true } },
-    {
-      id: 4,
-      name: 'data domain',
-      categoryId: { colorClassName: 'data_domain', showExplore: true }
-    },
-    {
-      id: 5,
-      name: 'integration',
-      categoryId: { colorClassName: 'integration', showExplore: true }
-    },
+    { id: 4, name: 'data domain', categoryId: { colorClassName: 'data_domain', showExplore: true } },
+    { id: 5, name: 'integration', categoryId: { colorClassName: 'integration', showExplore: true } },
     { id: 6, name: 'framework', categoryId: { colorClassName: 'framework', showExplore: true } },
     { id: 7, name: 'type', categoryId: { colorClassName: 'type', showExplore: true } },
     { id: 8, name: 'task', categoryId: { colorClassName: 'task', showExplore: true } },
-    {
-      id: 9,
-      name: 'data domain',
-      categoryId: { colorClassName: 'data_domain', showExplore: true }
-    },
-    {
-      id: 10,
-      name: 'integration',
-      categoryId: { colorClassName: 'integration', showExplore: true }
-    },
+    { id: 9, name: 'data domain',categoryId: { colorClassName: 'data_domain', showExplore: true } },
+    { id: 10, name: 'integration', categoryId: { colorClassName: 'integration', showExplore: true } },
     { id: 11, name: 'framework', categoryId: { colorClassName: 'framework', showExplore: true } }
   ],
   repoTeams: [
@@ -92,11 +76,7 @@ Secondary.args = {
     { id: 1, name: 'general', categoryId: { colorClassName: 'general', showExplore: false } },
     { id: 2, name: 'type', categoryId: { colorClassName: 'type', showExplore: true } },
     { id: 3, name: 'task', categoryId: { colorClassName: 'task', showExplore: true } },
-    {
-      id: 4,
-      name: 'data domain',
-      categoryId: { colorClassName: 'data_domain', showExplore: true }
-    },
+    { id: 4, name: 'data domain', categoryId: { colorClassName: 'data_domain', showExplore: true } },
     { id: 5, name: 'integration', categoryId: { colorClassName: 'integration', showExplore: true } }
   ],
   repoTeams: [
@@ -126,11 +106,7 @@ Tertiary.args = {
   numOpenIssues: 3,
   topics: [
     { id: 1, name: 'general', categoryId: { colorClassName: 'general', showExplore: false } },
-    {
-      id: 4,
-      name: 'data domain',
-      categoryId: { colorClassName: 'data_domain', showExplore: true }
-    },
+    { id: 4, name: 'data domain', categoryId: { colorClassName: 'data_domain', showExplore: true } },
     { id: 5, name: 'integration', categoryId: { colorClassName: 'integration', showExplore: true } }
   ],
   repoTeams: []

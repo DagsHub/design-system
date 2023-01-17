@@ -1,31 +1,35 @@
-import React, {FunctionComponent} from 'react';
+import React from 'react';
 import '../../../styles/root.css';
 import './search-results.css';
+import UserInfo from "../user-info";
+import {Icon} from "../../../icons";
+import GenericTable, {Row} from "../generic-table";
+import {Button, ButtonStretch, ButtonVariant} from "../../../elements";
 
 export interface SearchResultListProps{
-    rows: Row[];
+    users:User[];
 }
 
-export interface Row{
-    rowElements: FunctionComponent<any>[];
-    elementsData: any[];
+export interface User{
+    userImage: string,
+    fullName: string,
+    username: string
 }
 
 export default function SearchResultList(props:SearchResultListProps) {
-
-    return (
-        <div className="search-result-list">
-            {props.rows?.map((row: Row) =>
-                <div className="row">
-                    {row.rowElements?.map((rowElement, elementIndex) =>
-                        React.createElement(rowElement, row.elementsData[elementIndex])
-                    )}
-                </div>
-            )}
-        </div>
-    )
+    let rows: Row[]=[];
+    for (let user of props.users) {
+        let row :Row={
+            rowClasses:"row",
+            columns: [
+                <UserInfo imageSource={user.userImage} fullName={user.fullName} userName={user.username}/>,
+                <Button variant={ButtonVariant.Secondary} stretch={ButtonStretch.Slim}
+                    iconRight={<Icon width={12} height={12} fill="#172D32" icon="outline-plus"/>}
+                    label={"Add member"}
+                />
+            ]
+        }
+        rows.push(row);
+    }
+    return <GenericTable classnames={"search-result-list"} rows={rows}/>
 }
-
-//connect images
-//add headers
-//add styles
