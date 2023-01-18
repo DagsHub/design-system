@@ -20,3 +20,4 @@ export default function RemoveMemberModal(props:RemoveMemberModalProps){
     ]
     return <GenericModal title={"Remove member"} elements={elements}/>
 }
+
