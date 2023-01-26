@@ -13,6 +13,7 @@ const Template: StoryFn<RemoveMemberModalProps> = args => <RemoveMemberModal {..
 
 export const Primary = Template.bind({});
 Primary.args = {
-    username:"dean"
+    username:"dean",
+    org:"Dagshub"
 };
 

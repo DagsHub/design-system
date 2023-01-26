@@ -13,10 +13,16 @@
     &:hover {
       color: #ffffff;
       background-color: #64748b;
+      svg{
+        fill:#ffffff
+      }
     }
     &:focus {
       color: #ffffff;
       background-color: #64748b;
+      svg{
+        fill:#ffffff
+      }
     }
   }
 
@@ -42,10 +48,16 @@
     &:hover {
       color: #ffffff;
       background-color: #dc2626;
+      svg path{
+        fill:#ffffff
+      }
     }
     &:focus {
       color: #ffffff;
       background-color: #dc2626;
+      svg{
+        fill:#ffffff
+      }
     }
   }
 }
@@ -57,10 +69,16 @@
     &:hover {
       color: #172d32;
       background-color: #f1f5f9;
+      svg{
+        fill:#172d32
+      }
     }
     &:focus {
       color: #ffffff;
       background-color: #64748b;
+      svg{
+        fill:#ffffff
+      }
     }
   }
 }

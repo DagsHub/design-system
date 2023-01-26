@@ -1,0 +1,69 @@
+.settings-table {
+  width: 968px;
+  font-family: 'Inter';
+  font-style: normal;
+  .elements{
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 16px;
+    background: #F8FAFC;
+  }
+}
+
+.settings-table__header {
+  height: 44px;
+  background: var(--secondary-state-100);
+  border: 1px solid var(--secondary-state-200);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom: 0.5px solid var(--secondary-state-200);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--color-text-default);
+}
+
+.webhook-text , .delete-organization-text{
+  margin: 0px!important;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+
+.webhook-page{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.delete-organization-page{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.delete-organization-button{
+  &:hover{
+    color: white;
+  }
+}
+
+.general-page{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: flex-end;
+}
+
+

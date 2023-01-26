@@ -1,0 +1,25 @@
+.user-image-list{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  width: 100%;
+  height: auto;
+  .profile-img-left{
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    border: 2px solid #E2E8F0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -9px;
+    background: #F1F5F9;
+    span{
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+    }
+
+  }
+}

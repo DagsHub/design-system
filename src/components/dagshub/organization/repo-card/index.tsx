@@ -3,7 +3,7 @@ import '../../../styles/root.scss';
 import './repo.scss';
 import {Icon} from "../../../icons";
 import '../../../styles/root.scss';
-import './repo.scss';
+import './repo-mini.scss';
 
 export interface Topic {
   id: number;
@@ -20,6 +20,7 @@ export interface Team {
 }
 
 export interface RepoCardProps {
+  isMini:boolean;
   repoTeams: Team[];
   topics: Topic[];
   isMirror: boolean;
@@ -44,34 +45,36 @@ export default function RepoCard(props: RepoCardProps) {
     <>
       <div className="desktop-repo card">
         <div className="repo-card-content">
-          <div className="repo-header">
-            <div className="repo-info">
-              <Icon width={10.67} height={14} fill="#475569" icon="outline-repository-github"/>
-              <span className="repo-type">
+          {!props.isMini?
+            <div className="repo-header">
+              <div className="repo-info">
+                <Icon width={10.67} height={14} fill="#475569" icon="outline-repository-github"/>
+                <span className="repo-type">
                 {props.isFork ? 'Forked repo' : props.isMirror ? 'Mirrored repo' : 'Repo'}
               </span>
-              <Icon width={1} height={12} fill="#E2E8F0" icon="pipe"/>
-              <span className="days-ago">Updated {props.updatedDaysAgo} days ago</span>
-            </div>
-            {/* check if its ok  */}
-            <div className="star-section">
-              <a className="star-number" href="{{.Repo.Link}}/stars">
-                {stars}
-              </a>
-              <a
-                className="star-action"
-                href="{{.Repo.HTMLURL}}/action/{{if $isStaring}}un{{end}}star?redirect_to={{.General.Link}}{{QueryParam .General.QueryParameters}}"
-              >
-                <i className={!props.isStaring ? 'star' : 'start-outline'}></i>
-                {props.isStaring ? (
-                  <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star"/>
-                ) : (
-                  <Icon width={18} height={17.21} fill="#94A3B8" icon="outline-star"/>
-                )}
-              </a>
-            </div>
-          </div>
-          <div className="repo-tags">
+                <Icon width={1} height={12} fill="#E2E8F0" icon="pipe"/>
+                <span className="days-ago">Updated {props.updatedDaysAgo} days ago</span>
+              </div>
+              <div className="star-section">
+                <a className="star-number" href="{{.Repo.Link}}/stars">
+                  {stars}
+                </a>
+                <a
+                    className="star-action"
+                    href="{{.Repo.HTMLURL}}/action/{{if $isStaring}}un{{end}}star?redirect_to={{.General.Link}}{{QueryParam .General.QueryParameters}}"
+                >
+                  <i className={!props.isStaring ? 'star' : 'start-outline'}></i>
+                  {props.isStaring ? (
+                      <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star"/>
+                  ) : (
+                      <Icon width={18} height={17.21} fill="#94A3B8" icon="outline-star"/>
+                  )}
+                </a>
+              </div>
+            </div>:<></>
+          }
+          <div className={"repo-tags"}>
+            {props.isMini?<Icon width={13.66} height={18.99} fill="#475569" icon="outline-repository-github"/>:<></>}
             <div className="repo-name">
               <a
                 className="title1 cut-text"
@@ -102,7 +105,7 @@ export default function RepoCard(props: RepoCardProps) {
               </p>
             </div>
             <div className="repo-information">
-              <Icon width={564} height={1} fill="#E2E8F0" icon="divider"/>
+              {!props.isMini? <Icon width={564} height={1} fill="#E2E8F0" icon="divider"/>:<></>}
               <div className="repo-info-text">
                 <div className="stats">
                   <a
@@ -130,7 +133,26 @@ export default function RepoCard(props: RepoCardProps) {
                     <Icon width={14.67} height={14.67} fill="#475569" icon="outline-issue"/>
                     <p>{props.numOpenIssues}</p>
                   </a>
+                  {props.isMini?
+                      <div className="star-section">
+                        <a
+                            className="star-action"
+                            href="{{.Repo.HTMLURL}}/action/{{if $isStaring}}un{{end}}star?redirect_to={{.General.Link}}{{QueryParam .General.QueryParameters}}"
+                        >
+                          <i className={!props.isStaring ? 'star' : 'start-outline'}></i>
+                          {props.isStaring ? (
+                              <Icon width={12} height={11.47} fill="#475569" icon="solid-star"/>
+                          ) : (
+                              <Icon width={12} height={11.47} fill="#475569" icon="outline-star"/>
+                          )}
+                        </a>
+                        <a className="star-number" href="{{.Repo.Link}}/stars">
+                          {stars}
+                        </a>
+                      </div>:<></>
+                  }
                 </div>
+                {!props.isMini?
                 <div className="belongs-to">
                   {props.repoTeams && props.repoTeams.length ? 'Belongs to: ' : <></>}
                   {props.repoTeams?.map((team: { name: string }, index: any) => (
@@ -141,7 +163,7 @@ export default function RepoCard(props: RepoCardProps) {
                       </a>
                     </span>
                   ))}
-                </div>
+                </div>:<></>}
               </div>
             </div>
           </div>

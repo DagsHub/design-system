@@ -70,7 +70,7 @@ export default function TeamTable(props:TeamTableProps) {
             <UserInfo imageSource={user.userImage} fullName={user.fullName} userName={user.username}/>,
               <Button variant={ButtonVariant.Secondary}
                       iconRight={<Icon width={12} height={13.33} fill="#111827" icon="outline-trash"/>}
-                      label={"Remove from team"} width={175}
+                      label={"Remove from team"} width={179}
               />
           ],
           style: userIndex>6?{display:style}:{}

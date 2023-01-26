@@ -13,6 +13,7 @@ const Template: StoryFn<RepoCardProps> = args => <RepoCard {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
+  isMini:true,
   isMirror: false,
   IsGithubIntegrated: false,
   numStars: 5,
@@ -57,6 +58,7 @@ Primary.args = {
 
 export const Secondary = Template.bind({});
 Secondary.args = {
+  isMini:true,
   isMirror: true,
   IsGithubIntegrated: true,
   numStars: 5,
@@ -89,6 +91,7 @@ Secondary.args = {
 
 export const Tertiary = Template.bind({});
 Tertiary.args = {
+  isMini:true,
   isMirror: false,
   IsGithubIntegrated: false,
   numStars: 0,

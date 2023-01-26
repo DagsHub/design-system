@@ -11,13 +11,13 @@ export interface UserInfoProps{
 export default function UserInfo(props:UserInfoProps) {
     return (
         <div className="user-info">
-            <span className="user-image">
+            <div className="user-image">
                 <img src={props.imageSource}></img>
-            </span>
-            <span className="name-info">
+            </div>
+            <div className="name-info">
                 <span className="full-name">{props.fullName}</span>
                 <span className="user-name">{"@"+props.userName}</span>
-            </span>
+            </div>
         </div>
     )
 }
