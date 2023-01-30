@@ -10,7 +10,7 @@ export interface SearchResultListProps{
     users:User[];
 }
 
-export interface User{
+ interface User{
     userImage: string,
     fullName: string,
     username: string

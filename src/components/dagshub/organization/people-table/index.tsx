@@ -10,7 +10,7 @@ export interface PeopleTableProps{
   users:User[];
 }
 
-export interface User{
+interface User{
   userImage: string,
   fullName: string,
   username: string,
@@ -28,7 +28,7 @@ export interface UserTeam{
   userPermissionForTeam: UserPermissionForTeam; //make enum, admin access, write access, read access
 }
 
-export enum UserPermissionForTeam {
+enum UserPermissionForTeam {
   AdminAccess = 'Admin access',
   WriteAccess = 'Write access',
   ReadAccess =  'Read access'

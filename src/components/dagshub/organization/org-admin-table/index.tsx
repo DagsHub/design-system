@@ -6,11 +6,11 @@ import GenericTable, {Row} from "../generic-table";
 import {Icon} from "../../../icons";
 import {Button, ButtonStretch, ButtonVariant} from "../../../elements";
 
-export interface OrgAdminTableProps{
+interface OrgAdminTableProps{
   admins:User[];
 }
 
-export interface User{
+interface User{
   userImage: string,
   fullName: string,
   username: string
