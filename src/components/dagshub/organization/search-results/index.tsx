@@ -3,20 +3,20 @@ import '../../../styles/root.scss';
 import './search-results.css';
 import UserInfo from "../user-info";
 import {Icon} from "../../../icons";
-import GenericTable, {Row} from "../generic-table";
+import {Row, GenericTable} from "../generic-table";
 import {Button, ButtonStretch, ButtonVariant} from "../../../elements";
 
 export interface SearchResultListProps{
     users:User[];
 }
 
-export interface User{
+ interface User{
     userImage: string,
     fullName: string,
     username: string
 }
 
-export default function SearchResultList(props:SearchResultListProps) {
+export function SearchResultList(props:SearchResultListProps) {
     let rows: Row[]=[];
     for (let user of props.users) {
         let row :Row={

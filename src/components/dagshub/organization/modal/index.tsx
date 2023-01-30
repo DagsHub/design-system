@@ -3,7 +3,7 @@ import React from 'react';
 import '../../../styles/root.scss';
 import './modal.scss';
 
-export default function Modal(props: any) {
+export function Modal(props: any) {
   return (
     <div className="modal__add-member-modal add-member-modal add-member-modal_border">
       <div className="add-member-modal__x-button">

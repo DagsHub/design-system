@@ -8,7 +8,7 @@ export interface UserInfoProps{
     userName: string
 }
 
-export default function UserInfo(props:UserInfoProps) {
+export function UserInfo(props:UserInfoProps) {
     return (
         <div className="user-info">
             <div className="user-image">

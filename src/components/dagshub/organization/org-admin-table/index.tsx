@@ -2,15 +2,15 @@ import React from 'react';
 import '../../../styles/root.scss';
 import '../shared-styles/table.scss';
 import UserInfo from "../user-info";
-import GenericTable, {Row} from "../generic-table";
-import {Icon} from "../../../icons";
-import {Button, ButtonStretch, ButtonVariant} from "../../../elements";
+import { Row, GenericTable } from "../generic-table";
+import { Icon } from "../../../icons";
+import { Button, ButtonStretch, ButtonVariant } from "../../../elements";
 
-export interface OrgAdminTableProps{
+interface OrgAdminTableProps{
   admins:User[];
 }
 
-export interface User{
+interface User{
   userImage: string,
   fullName: string,
   username: string
@@ -28,7 +28,7 @@ export enum UserPermissionForTeam {
 //add te hover design for the private-public
 //add (you) annotation to relevant user
 
-export default function OrgAdminTable(props:OrgAdminTableProps){
+export function OrgAdminTable(props:OrgAdminTableProps){
   let header:Row;
   header={
     columns: [

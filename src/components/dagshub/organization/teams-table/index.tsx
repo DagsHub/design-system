@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import { Icon } from '../../../icons';
 import '../../../styles/root.scss';
 import '../shared-styles/table.scss';
-import GenericTable, {Row} from "../generic-table";
+import {Row, GenericTable} from "../generic-table";
 import UserInfo from "../user-info";
-import {UserPermissionForTeam} from "../people-table";
-import {Button, ButtonStretch, ButtonVariant} from "../../../elements";
+import { UserPermissionForTeam } from '../org-admin-table';
+  import {Button, ButtonStretch, ButtonVariant} from "../../../elements";
 import '../../../styles/root.scss';
 import '../shared-styles/table.scss';
 
@@ -20,7 +20,7 @@ export interface User{
   username: string
 }
 
-export interface Team {
+interface Team {
   name:string;
   description:string;
   teamPermission:UserPermissionForTeam;
@@ -35,7 +35,7 @@ export interface Repo{
 //change its css to BEM
 //add (you) annotation to relevant user
 
-export default function TeamTable(props:TeamTableProps) {
+export function TeamTable(props:TeamTableProps) {
     const [style, setStyle] = useState("none");
     const [isActive, setActive] =useState(false)
 

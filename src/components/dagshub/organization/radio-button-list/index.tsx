@@ -6,7 +6,7 @@ export interface RadioButtonListProps{
     items: JSX.Element[]
 }
 
-export default function RadioButtonList(props:RadioButtonListProps) {
+export function RadioButtonList(props:RadioButtonListProps) {
     return (
         <div className="list">
             {props.title?<p className="title">{props.title}</p>:<></>}

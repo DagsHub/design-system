@@ -15,7 +15,7 @@ export interface AddMemberModalProps{
     teams?: string[] ;
 }
 
-export default function AddMemberModal(props:AddMemberModalProps){
+export function AddMemberModal(props:AddMemberModalProps){
     const generateModalTitle=(isOrg: boolean, isAdmin: boolean, isTeam: boolean, name: string)=> {
         let title = "";
         title += "Add new ";
