@@ -1,0 +1,15 @@
+.cards-block{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  max-height: 496px;
+  overflow: scroll;
+  gap: 16px;
+}
+
+.close-button{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
