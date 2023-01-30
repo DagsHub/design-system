@@ -1,16 +1,16 @@
 import React from 'react';
 import '../../../styles/root.scss';
-import GenericModal from "../generic-modal";
+import { GenericModal } from "../generic-modal";
 import {Icon} from "../../../icons";
 import {Button, ButtonVariant} from "../../../elements";
 import {Input} from "../../../forms";
-import RadioButtonList from "../radio-button-list";
+import { RadioButtonList } from "../radio-button-list";
 import {RadioButtonItem} from "../../../forms/radio-button-item";
 
 export interface TeamSettingsModalProps{
 }
 
-export default function TeamSettingsModal(props:TeamSettingsModalProps){
+export function TeamSettingsModal(props:TeamSettingsModalProps){
     let elements:JSX.Element[];
     elements=[
         <Input label={"Team name"} helperText={"Changing the team name will break past @mentions."} width={599}/>,

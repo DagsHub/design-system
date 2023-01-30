@@ -38,7 +38,7 @@ export interface RepoCardProps {
   numOpenIssues: number;
 }
 
-export default function RepoCard(props: RepoCardProps) {
+export function RepoCard(props: RepoCardProps) {
   const stars = props.githubStarCount ? props.numStars + props.githubStarCount : props.numStars;
   return (
     <>

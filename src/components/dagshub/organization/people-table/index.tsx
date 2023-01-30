@@ -40,7 +40,7 @@ enum UserPermissionForTeam {
 //add te hover design for the private-public
 //add (you) annotation to relevant user
 
-export default function PeopleTable(props:PeopleTableProps){
+export function PeopleTable(props:PeopleTableProps){
   let header:Row;
   header={
     columns: [

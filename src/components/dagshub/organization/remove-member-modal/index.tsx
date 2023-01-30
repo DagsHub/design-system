@@ -1,13 +1,13 @@
 import React from 'react';
 import '../../../styles/root.scss';
-import GenericModal from "../generic-modal";
+import { GenericModal } from "../generic-modal";
 import {Button, ButtonVariant} from "../../../elements";
 
 export interface RemoveMemberModalProps{
     username: string;
 }
 
-export default function RemoveMemberModal(props:RemoveMemberModalProps){
+export function RemoveMemberModal(props:RemoveMemberModalProps){
     let elements:JSX.Element[];
     elements=[
         <div className="remove-text">

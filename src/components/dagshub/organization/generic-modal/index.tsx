@@ -14,7 +14,7 @@ export interface ModalProps{
 //when clicking on the input there should be written "Typing..."
 //pass class name to icon
 
-export default function GenericModal(props: ModalProps) {
+export function GenericModal(props: ModalProps) {
   return (
     <div className="modal modal_border">
       <div className="modal__x-button">

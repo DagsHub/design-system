@@ -16,7 +16,7 @@ export interface Row{
     onClick?:MouseEventHandler<HTMLDivElement>
 }
 
-export default function GenericTable(props:TableProps) {
+export function GenericTable(props:TableProps) {
     const generateClassName=(footer:Boolean, rowIndex:number, rowsLength:number, row:Row )=>{
         let classname="";
         classname+=!footer&&rowIndex===rowsLength-1 ?"footer ":"";

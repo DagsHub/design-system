@@ -9,7 +9,7 @@ export interface CardEmptyStateProps{
     height?:number
 }
 
-export default function CardEmptyState(props:CardEmptyStateProps){
+export function CardEmptyState(props:CardEmptyStateProps){
     return (
         <div className="card-empty-state" style={{width:props.width, whiteSpace: "pre-line", height:props.height}}>
             {props.text?<div className="text">
