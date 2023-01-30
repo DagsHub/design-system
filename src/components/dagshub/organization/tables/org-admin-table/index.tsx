@@ -33,7 +33,7 @@ export function OrgAdminTable(props:OrgAdminTableProps){
   let header:Row;
   header={
     columns: [
-      <div className={"header-style left"}>Organization admins</div>,
+      <div className={"org-admin-table__header"}>Organization admins</div>,
       <Button variant={ButtonVariant.Ghost} stretch={ButtonStretch.Slim} iconLeft={<Icon width={10.67} height={10.67} fill="#172D32" icon="solid-plus"/>} label={"Add another org admin"}/>
     ]
   }
@@ -43,7 +43,7 @@ export function OrgAdminTable(props:OrgAdminTableProps){
       columns: [
         <UserInfo imageSource={user.userImage} fullName={user.fullName} userName={user.username}/>,
         <div className="admin-access-column">
-          <span className={"admin-access"}>
+          <span className={"admin-access-column__access-type"}>
             {UserPermissionForTeam.AdminAccess}
             <Icon width={13.33} height={13.33} fill="#172D32" icon="outline-information-circle"/>
           </span>

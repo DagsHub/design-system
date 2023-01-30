@@ -1,25 +1,32 @@
-.header-style {
+.people-table__header {
   font-weight: 600;
   font-size: 12px;
   line-height: 20px;
   letter-spacing: 0.01em;
   text-transform: uppercase;
   color: var(--color-text-default);
+  display: flex;
+  width: 100%;
 }
 
-.left {
-  width: 204px;
+.people-table__header--left {
+  display: flex;
+  min-width: 203px;
+  max-width: 203px;
   box-sizing: border-box;
 }
 
-.right {
-  width: 230px;
+.people-table__header--right {
+  display: flex;
+  min-width: 230px;
+  max-width: 230px;
   padding: 16px;
   box-sizing: border-box;
 }
 
-.center {
-  width: 750px;
+.people-table__header--center {
+  display: flex;
+  max-width: 750px;
   padding: 16px;
   box-sizing: border-box;
 }
@@ -32,19 +39,22 @@
   color: var(--color-text-default);
   padding: 16px;
   box-sizing: border-box;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
 
-.team-name, .hidden-teams{
+.teams-list__team-name, .teams-list__hidden-teams{
   text-decoration-line: underline;
   cursor: pointer;
 }
 
-.team-permission{
+.teams-list__team-permission{
   text-transform: lowercase;
 }
 
-.membership-column {
-  width: 230px;
+.people-table__membership-column {
+  min-width: 230px;
+  max-width: 230px;
   padding-left: 16px;
   padding-right: 5.33px;
   box-sizing: border-box;

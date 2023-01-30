@@ -14,8 +14,8 @@ export function ProfileImageList(props:ProfileImageListProps) {
             {props.imgList?.map((img,index) =>
                 index<props.maxImages ? <ProfileImage imageSource={img} /> : null
             )}
-            {props.imgList.length>props.maxImages ? <div className="profile-img-left">
-                <span>+{props.imgList.length-props.maxImages} </span>
+            {props.imgList.length>props.maxImages ? <div className="user-image-list__img-left">
+                <span className="user-image-list__leftover_num">+{props.imgList.length-props.maxImages} </span>
             </div> :null}
         </div>
     )

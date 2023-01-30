@@ -45,10 +45,10 @@ export function PeopleTable(props:PeopleTableProps){
   let header:Row;
   header={
     columns: [
-      <div className={"header-style left"}>Username</div>,
-      <div className={"header-style center"}>Teams they belong to</div>,
-      <div className={"header-style right"}>Membership visibility</div>
-    ]
+      <div className={"people-table__header people-table__header--left"}>Username</div>,
+      <div className={"people-table__header people-table__header--center"}>Teams they belong to</div>,
+      <div className={"people-table__header people-table__header--right"}>Membership visibility</div>
+    ],
   }
   let rows: Row[]=[];
   for (let user of props.users) {
@@ -60,13 +60,13 @@ export function PeopleTable(props:PeopleTableProps){
               index<=1?
               <span>
                 {index?", ":""}
-                <span className="team-name">{team.teamName}</span>
-                <span className="team-permission">{" ("+team.userPermissionForTeam+") "}</span>
+                <span className="teams-list__team-name">{team.teamName}</span>
+                <span className="teams-list__team-permission">{" ("+team.userPermissionForTeam+") "}</span>
               </span>:<></>
           )}
-          {user.userTeams.length>2? <span className="hidden-teams">+{user.userTeams.length-2}</span>:<></>}
+          {user.userTeams.length>2? <span className="teams-list__hidden-teams">+{user.userTeams.length-2}</span>:<></>}
         </span>,
-        <div className="membership-column">
+        <div className="people-table__membership-column">
           <Dropdown width={146} label={user.membershipVisibility}/>
           <Icon width={12} height={13.33} fill="#172D32" icon="outline-trash"/>
         </div>

@@ -11,8 +11,8 @@ export interface VerticalMenuProps{
 export function VerticalMenu(props:VerticalMenuProps) {
     return (
         <div className="vertical-menu">
-            {props.title?<p className={"menu-title"}>{props.title}</p>:null}
-            <div className={"tabs"}>
+            {props.title?<p className={"vertical-menu__title"}>{props.title}</p>:null}
+            <div className={"vertical-menu__tabs"}>
                 {props.tabs?.map((tab)=>
                     <VerticalMenuTab text={tab.text}/>
                 )}

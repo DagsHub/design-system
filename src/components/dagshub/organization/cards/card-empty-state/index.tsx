@@ -13,8 +13,8 @@ export interface CardEmptyStateProps{
 
 export function CardEmptyState(props:CardEmptyStateProps){
     return (
-        <div className="card-empty-state" style={{width:props.width, whiteSpace: "pre-line", height:props.height}}>
-            {props.text?<div className="text">
+        <div className="card-empty-state" style={{maxWidth:props.width, whiteSpace: "pre-line", height:props.height}}>
+            {props.text?<div className="card-empty-state__text">
                 {props.text}
             </div>:<></>}
             {props.buttonText? <Button variant={ButtonVariant.Primary} stretch={ButtonStretch.Slim}

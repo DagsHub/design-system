@@ -17,7 +17,7 @@ export function SettingsTab(props:SettingsTabProps) {
                     {props.title}
                 </div>
                 :<></>}
-            <div className="elements">
+            <div className="settings-table__elements">
                 {props.elements?.map((element) =>
                     element
                 )}

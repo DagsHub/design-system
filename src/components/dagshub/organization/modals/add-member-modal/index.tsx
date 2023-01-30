@@ -37,12 +37,12 @@ export function AddMemberModal(props:AddMemberModalProps){
     let title=generateModalTitle(props.isOrg, props.isAdmin, props.isTeam, props.name);
     let elements:JSX.Element[];
     elements=[
-        <p className="modal-content__instructions">
+        <p className="add-member-modal__instructions">
           Search by username or name or enter email address to invite someone outside {props.name}
         </p>,
         <div className="input-block">
           <Icon width={16.67} height={16.67} fill="#172D32" icon="outline-search"/>
-          <input className="search-input" type="text" placeholder="Enter username or email"></input>
+          <input className="input-block__search-input" type="text" placeholder="Enter username or email"></input>
         </div>,
         props.isOrg==true?
         <>
@@ -55,11 +55,11 @@ export function AddMemberModal(props:AddMemberModalProps){
                                      icon= {<Icon icon="outline-lock-closed" fill={"#94A3B8"} width={12} height={13.33}/>}/>]
             }/>
             {props.teams&&props.teams.length>0?
-                <div className="dropdown">
+                <div className="add-member-modal__dropdown">
                     <Dropdown label={"Choose team"} width={130}/>
                 </div>
-                : <div className="no-teams">You haven’t created any teams yet. To leverage different permission levels for different projectsc
-                <a className="create-team">
+                : <div className="add-member-modal__no-teams-text">You haven’t created any teams yet. To leverage different permission levels for different projectsc
+                <a className="add-member-modal__create-team-text">
                     {" "}create your first team{" "}
                     <Icon width={9.33} height={8} fill="#5467DE" icon="outline-arrow-sm-right"/>
                 </a>
@@ -68,7 +68,7 @@ export function AddMemberModal(props:AddMemberModalProps){
         </>:<></>,
         <div className="add-member-modal__buttons-section">
             <Button label={generateButtonText(props.isOrg, props.isAdmin, props.isTeam)} width={599}/>
-            <p className="modal-content__or">or</p>
+            <p className="add-member-modal__buttons-seperator">or</p>
             <Button variant={ButtonVariant.Secondary} label={"Copy invitation link"} width={599} iconRight={<Icon icon="outline-copy" width={15} height={15} fill={"#000000"}/>}/>
         </div>
     ]

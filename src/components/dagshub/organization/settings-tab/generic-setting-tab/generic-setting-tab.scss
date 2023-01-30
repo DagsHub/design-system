@@ -1,8 +1,10 @@
 .settings-table {
-  width: 968px;
+  display: flex;
+  flex-direction: column;
+  max-width: 968px;
   font-family: 'Inter';
   font-style: normal;
-  .elements{
+  .settings-table__elements{
     width: 100%;
     min-height: 50px;
     display: flex;
@@ -10,6 +12,10 @@
     box-sizing: border-box;
     padding: 16px;
     background: #F8FAFC;
+    border: 1px solid var(--secondary-state-200);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top: 0.5px solid var(--secondary-state-200);
   }
 }
 
@@ -64,6 +70,7 @@
   flex-direction: column;
   gap: 24px;
   justify-content: flex-end;
+  width: 100%;
 }
 
 .content{
@@ -74,16 +81,9 @@
 
 .user-image-upload{
   display: flex;
-  width: 34%;
+  min-width: 290px;
   flex-direction: column;
   gap: 10px;
-}
-
-.elements{
-  border: 1px solid var(--secondary-state-200);
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-  border-top: 0.5px solid var(--secondary-state-200);
 }
 
 .buttons{

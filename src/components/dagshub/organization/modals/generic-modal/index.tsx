@@ -15,7 +15,7 @@ export interface ModalProps{
 
 export function GenericModal(props: ModalProps) {
   return (
-    <div className="modal modal_border">
+    <div className="modal modal--border">
       <div className="modal__x-button">
         <Icon width={10} height={10} fill="#94A3B8" icon="outline-x"/>
       </div>

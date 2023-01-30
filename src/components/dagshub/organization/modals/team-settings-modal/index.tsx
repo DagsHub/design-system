@@ -27,9 +27,9 @@ export function TeamSettingsModal(props:TeamSettingsModalProps){
             description="This team will be able to push/pull to its repositories, as well as add other collaborators to them."
             icon= {<Icon icon="outline-lock-closed" fill={"#94A3B8"} width={12} height={13.33}/>}/>]
             } title={"Team permissions"}/>,
-        <div className="modal__buttons">
-            <Button variant={ButtonVariant.Error} label={"Delete team"} width={106}/>
-            <Button variant={ButtonVariant.Primary} label={"Save changes"} width={95}/>
+        <div className="team-settings-modal__buttons">
+            <Button variant={ButtonVariant.Error} label={"Delete team"} width={110}/>
+            <Button variant={ButtonVariant.Primary} label={"Save changes"} width={119}/>
         </div>
     ]
     return <GenericModal title={"Team settings"} elements={elements}/>
