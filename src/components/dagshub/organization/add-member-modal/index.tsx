@@ -1,9 +1,9 @@
 import React from 'react';
 import '../../../styles/root.scss';
-import GenericModal from "../generic-modal";
+import { GenericModal } from "../generic-modal";
 import {Icon} from "../../../icons";
 import {Button, ButtonVariant} from "../../../elements";
-import RadioButtonList from "../radio-button-list";
+import { RadioButtonList } from "../radio-button-list";
 import {RadioButtonItem} from "../../../forms/radio-button-item";
 import {Dropdown} from "../../../elements/dropdown";
 

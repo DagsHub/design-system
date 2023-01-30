@@ -1,6 +1,4 @@
 import * as React from 'react';
-import {RadioButtonItem, RadioButtonItemProps} from "../../../forms/radio-button-item";
-
 export interface RadioButtonListProps{
     title?:string
     items: JSX.Element[]

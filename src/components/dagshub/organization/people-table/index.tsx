@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../../styles/root.scss';
 import '../shared-styles/table.scss';
-import UserInfo from "../user-info";
-import GenericTable, {Row} from "../generic-table";
+import { UserInfo } from "../user-info";
+import {GenericTable, Row} from "../generic-table";
 import {Icon} from "../../../icons";
 import {Dropdown} from "../../../elements/dropdown";
 

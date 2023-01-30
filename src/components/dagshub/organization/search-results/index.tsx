@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../../styles/root.scss';
 import './search-results.css';
-import UserInfo from "../user-info";
+import { UserInfo } from "../user-info";
 import {Icon} from "../../../icons";
 import {Row, GenericTable} from "../generic-table";
 import {Button, ButtonStretch, ButtonVariant} from "../../../elements";
