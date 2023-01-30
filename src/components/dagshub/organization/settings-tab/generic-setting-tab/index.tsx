@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../../styles/root.scss';
-import './settings-tab.scss';
+import '../../../../styles/root.scss';
+import './generic-setting-tab.scss';
 
 export interface SettingsTabProps{
     classnames?:string

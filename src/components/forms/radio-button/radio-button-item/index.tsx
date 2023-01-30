@@ -1,6 +1,6 @@
 import React, {MouseEventHandler} from 'react';
 import classNames from 'classnames';
-import './radio-button.css';
+import './radio-button-item.scss';
 
 export interface RadioButtonItemProps {
   label?: string;

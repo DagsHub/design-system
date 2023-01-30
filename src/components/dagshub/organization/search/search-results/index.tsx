@@ -1,20 +1,15 @@
 import React from 'react';
 import '../../../../styles/root.scss';
 import './search-results.scss';
-import {UserInfo} from "../../profiles/user-info";
+import {UserInfo, UserInfoProps} from "../../profiles/user-info";
 import {Icon} from "../../../../icons";
 import {Row, GenericTable} from "../../tables/generic-table";
 import {Button, ButtonStretch, ButtonVariant} from "../../../../elements";
 
 export interface SearchResultListProps{
-    users:User[];
+    users:UserInfoProps[];
 }
 
- interface User{
-    userImage: string,
-    fullName: string,
-    username: string
-}
 
 export function SearchResultList(props:SearchResultListProps) {
     let rows: Row[]=[];
@@ -22,9 +17,9 @@ export function SearchResultList(props:SearchResultListProps) {
         let row :Row={
             rowClasses:"row",
             columns: [
-                <UserInfo imageSource={user.userImage} fullName={user.fullName} userName={user.username}/>,
-                <Button variant={ButtonVariant.Secondary} stretch={ButtonStretch.Slim}
-                    iconRight={<Icon width={12} height={12} fill="#172D32" icon="outline-plus"/>}
+                <UserInfo imageSource={user.imageSource} fullName={user.fullName} userName={user.userName}/>,
+                <Button width={136} variant={ButtonVariant.Secondary} stretch={ButtonStretch.Slim}
+                    iconLeft={<Icon width={12} height={12} fill="#172D32" icon="outline-plus"/>}
                     label={"Add member"}
                 />
             ]

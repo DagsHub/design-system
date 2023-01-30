@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import {SettingsTab, SettingsTabProps} from "../../../../components/dagshub/organization/settings-tab";
+import {SettingsTab, SettingsTabProps} from "../../../../components/dagshub/organization/settings-tab/generic-setting-tab";
 import {Button, ButtonVariant} from "../../../../components/elements/button/index"
 import {Icon} from "../../../../components/icons/index"
 import {Input} from "../../../../components/forms/input/index"

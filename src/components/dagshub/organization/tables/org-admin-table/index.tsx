@@ -5,6 +5,7 @@ import {UserInfo} from "../../../organization/profiles/user-info";
 import { Row, GenericTable } from "../generic-table";
 import { Icon } from "../../../../icons";
 import { Button, ButtonStretch, ButtonVariant } from "../../../../elements";
+import "./org-admin-table.scss"
 
 export interface OrgAdminTableProps{
   admins:User[];

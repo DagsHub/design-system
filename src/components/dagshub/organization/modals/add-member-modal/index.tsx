@@ -6,6 +6,7 @@ import {Button, ButtonVariant} from "../../../../elements/button";
 import {RadioButtonList} from "../../../../forms/radio-button/radio-button-list";
 import {RadioButtonItem} from "../../../../forms/radio-button/radio-button-item";
 import {Dropdown} from "../../../../elements/dropdown";
+import "./add-member-modal.scss"
 
 export interface AddMemberModalProps{
     isOrg: boolean;

@@ -16,19 +16,31 @@ export const Primary = Template.bind({});
 Primary.args = {
   users:[
     {
-      userImage: imageLink,
+      imageSource: imageLink,
       fullName: "Itay Malka",
-      username: "ItayMalka"
+      userName: "ItayMalka"
     },
     {
-      userImage: imageLink,
+      imageSource: imageLink,
       fullName: "Tal Malka",
-      username: "TalMalka"
+      userName: "TalMalka"
     },
     {
-      userImage: imageLink,
+      imageSource: imageLink,
       fullName: "Shahar Malka",
-      username: "ShaharMalka"
+      userName: "ShaharMalka"
+    },
+    {
+      imageSource: imageLink,
+      userName: "ItayMalka"
+    },
+    {
+      imageSource: imageLink,
+      userName: "TalMalka"
+    },
+    {
+      imageSource: imageLink,
+      userName: "ShaharMalka"
     }
   ]
 };

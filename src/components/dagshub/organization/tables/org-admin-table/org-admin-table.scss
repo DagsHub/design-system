@@ -1,0 +1,35 @@
+.admin-access-column {
+  width: 199px;
+  padding-left: 16px;
+  padding-right: 5.33px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-access{
+  display: flex;
+  flex-direction: row;
+  gap: 5.33px;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-default);
+}
+
+.header-style {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--color-text-default);
+}
+
+.left {
+  width: 204px;
+  box-sizing: border-box;
+}

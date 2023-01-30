@@ -2,6 +2,7 @@ import React from 'react';
 import '../../../../styles/root.scss';
 import { GenericModal } from "../generic-modal";
 import {Button, ButtonVariant} from "../../../../elements";
+import "./remove-member-modal.scss"
 
 export interface RemoveMemberModalProps{
     username: string;

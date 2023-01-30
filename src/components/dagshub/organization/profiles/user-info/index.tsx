@@ -4,7 +4,7 @@ import React from 'react';
 
 export interface UserInfoProps{
     imageSource: string,
-    fullName:string,
+    fullName?:string,
     userName: string
 }
 
@@ -15,7 +15,7 @@ export function UserInfo(props:UserInfoProps) {
                 <img src={props.imageSource}></img>
             </div>
             <div className="name-info">
-                <span className="full-name">{props.fullName}</span>
+                {props.fullName?<span className="full-name">{props.fullName}</span>:null}
                 <span className="user-name">{"@"+props.userName}</span>
             </div>
         </div>

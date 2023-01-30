@@ -1,12 +1,14 @@
 import React from 'react';
 import '../../../../styles/root.scss';
 import "./card-empty-state.scss"
+import {Button, ButtonStretch, ButtonVariant} from "../../../../elements";
+import {Icon} from "../../../../icons";
 
 export interface CardEmptyStateProps{
     text?:string;
-    button?: JSX.Element;
     width:number;
-    height?:number
+    height?:number;
+    buttonText?:string;
 }
 
 export function CardEmptyState(props:CardEmptyStateProps){
@@ -15,9 +17,10 @@ export function CardEmptyState(props:CardEmptyStateProps){
             {props.text?<div className="text">
                 {props.text}
             </div>:<></>}
-            {props.button? <div className="button">
-                {props.button}
-            </div>:<></>}
+            {props.buttonText? <Button variant={ButtonVariant.Primary} stretch={ButtonStretch.Slim}
+                                   iconLeft={<Icon width={10.67} height={10.67} fill="#FFFFFF" icon="solid-plus"/>}
+                                   label={props.buttonText}
+                            />:null}
         </div>
     );
 }

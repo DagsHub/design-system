@@ -6,6 +6,7 @@ import {Button, ButtonVariant} from "../../../../elements";
 import {Input} from "../../../../forms";
 import { RadioButtonList } from "../../../../forms/radio-button/radio-button-list";
 import {RadioButtonItem} from "../../../../forms/radio-button/radio-button-item";
+import "./team-settings-modal.scss"
 
 export interface TeamSettingsModalProps{
 }

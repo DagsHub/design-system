@@ -7,6 +7,7 @@ import { UserPermissionForTeam } from '../org-admin-table';
   import {Button, ButtonStretch, ButtonVariant} from "../../../../elements";
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
+import "./teams-table.scss"
 
 export interface TeamTableProps {
   users:User[];

@@ -1,0 +1,78 @@
+.modal-content__instructions {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-default);
+  margin: 0px;
+  margin-bottom: 8px;
+}
+
+.input-block{
+  position: relative;
+}
+
+.input-block svg{
+  position: absolute;
+  top: 15.67px;
+  right: 17.67px;
+}
+
+.search-input {
+  width: 603px;
+  height: 48px;
+  background: var(--secondary-state-50);
+  border: 2px solid var(--secondary-state-300);
+  border-radius: 12px;
+  box-sizing: border-box;
+  padding-right: 49px;
+  padding-left: 16px;
+}
+.search-input:focus-visible {
+  outline: none !important;
+}
+.search-input:hover {
+  background: var(--secondary-state-100);
+  border: 2px solid var(--secondary-state-300);
+}
+.search-input:focus {
+  background: var(--secondary-state-50);
+  border: 2px solid var(--secondary-state-300);
+  box-shadow: 0px 0px 0px 3px var(--box-shadow);
+}
+.search-input:hover::placeholder,
+.search-input:focus::placeholder {
+  color: var(--color-text-default);
+}
+
+::placeholder {
+  color: var(--secondary-state-500);
+}
+
+.dropdown{
+  width: 100%;
+}
+
+.no-teams{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+
+.create-team{
+  color:#5467DE;
+}
+
+.add-member-modal__buttons-section{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.modal-content__or {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--modal-or);
+}

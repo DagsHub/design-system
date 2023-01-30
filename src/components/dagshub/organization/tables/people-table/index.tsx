@@ -5,6 +5,7 @@ import {UserInfo} from "../../profiles/user-info";
 import {GenericTable, Row} from "../generic-table";
 import {Icon} from "../../../../icons";
 import {Dropdown} from "../../../../elements/dropdown";
+import "./people-table.scss"
 
 export interface PeopleTableProps{
   users:User[];
