@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import UserInfo, {UserInfoProps} from '../../../components/dagshub/organization/user-info';
+import { UserInfo, UserInfoProps } from '../../../components';
 
 const meta: Meta<typeof UserInfo> = {
   title: 'DagsHub/Org/UserInfo',

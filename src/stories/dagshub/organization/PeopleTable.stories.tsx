@@ -1,10 +1,11 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import PeopleTable, {
+import { 
+  UserPermissionForTeam,
   MembershipVisibility,
   PeopleTableProps,
-  UserPermissionForTeam
-} from '../../../components/dagshub/organization/people-table';
+  PeopleTable
+} from '../../../components';
 
 const meta: Meta<typeof PeopleTable> = {
   title: 'DagsHub/Org/PeopleTable',

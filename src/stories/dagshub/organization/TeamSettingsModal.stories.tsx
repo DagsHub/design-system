@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import TeamSettingsModal, {TeamSettingsModalProps} from '../../../components/dagshub/organization/team-settings-modal';
+import {TeamSettingsModal, TeamSettingsModalProps} from '../../../components';
 
 const meta: Meta<typeof TeamSettingsModal> = {
     title: 'DagsHub/Org/TeamSettingsModal',

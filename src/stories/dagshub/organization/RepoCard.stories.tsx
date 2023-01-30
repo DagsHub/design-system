@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import RepoCard, {RepoCardProps} from '../../../components/dagshub/organization/repo-card';
+import {RepoCard, RepoCardProps} from '../../../components';
 
 const meta: Meta<typeof RepoCard> = {
   title: 'DagsHub/Org/RepoCard',

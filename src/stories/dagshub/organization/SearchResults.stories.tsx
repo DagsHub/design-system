@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import SearchResultList, {SearchResultListProps} from '../../../components/dagshub/organization/search-results';
+import {SearchResultList, SearchResultListProps} from '../../../components';
 
 const meta: Meta<typeof SearchResultList> = {
   title: 'DagsHub/Org/SearchResultList',

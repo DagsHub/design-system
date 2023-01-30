@@ -1,9 +1,7 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 
-import { RadioButtonItem } from '../../../components/forms/radio-button-item';
-import RadioButtonList from "../../../components/dagshub/organization/radio-button-list";
-import {Icon} from "../../../components";
+import { RadioButtonList, RadioButtonItem, Icon } from "../../../components";
 
 export default {
   title: 'DagsHub/Org/RadioButtonList',

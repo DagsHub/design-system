@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import RemoveMemberModal, {RemoveMemberModalProps} from '../../../components/dagshub/organization/remove-member-modal';
+import {RemoveMemberModal, RemoveMemberModalProps} from '../../../components';
 
 const meta: Meta<typeof RemoveMemberModal> = {
     title: 'DagsHub/Org/RemoveMemberModal',

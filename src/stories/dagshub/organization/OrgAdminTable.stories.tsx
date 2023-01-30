@@ -1,7 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import {OrgAdminTableProps} from '../../../components/dagshub/organization/org-admin-table';
-import OrgAdminTable from "../../../components/dagshub/organization/org-admin-table";
+import { OrgAdminTableProps, OrgAdminTable } from '../../../components';
 
 const meta: Meta<typeof OrgAdminTable> = {
   title: 'DagsHub/Org/OrgAdminTable',
