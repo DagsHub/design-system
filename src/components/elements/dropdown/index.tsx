@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import {Icon} from "../../icons";
-import "./dropdown.css";
+import "./dropdown.scss";
 
 export interface DropdownProps {
     width:number;

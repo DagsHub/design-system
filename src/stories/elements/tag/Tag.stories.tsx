@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import startCase from 'lodash/startCase';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-
+import { Meta, StoryFn } from '@storybook/react';
 import { enum2arr } from '../../../utils';
-import { Tag, TagCategory, TagSize } from '../../../components/elements/tag';
+import { Tag, TagCategory, TagSize , TagProps} from '../../../components/elements/tag';
 
-export default {
+const meta: Meta<TagProps> = {
   title: 'Elements/Tag',
   component: Tag
-} as ComponentMeta<typeof Tag>;
+};
 
-const Template: ComponentStory<typeof Tag> = (args) => <Tag {...args} />;
+export default meta;
+
+const Template: StoryFn<TagProps> = (args) => <Tag {...args} />;
 
 export const Presentation = () => {
   const [selected, setSelected] = useState<boolean>(false);

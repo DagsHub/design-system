@@ -1,0 +1,98 @@
+.modal {
+  width: 639px;
+  height: auto;
+  background: var(--background);
+  border-radius: 6px;
+  position: fixed;
+}
+
+p{
+  margin: 0px!important;
+}
+
+.modal_border {
+  border: 1px var(--color-text-default) solid;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Inter';
+  font-style: normal;
+  gap: 16px;
+}
+
+.modal-content__title {
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 28px;
+  color: var(--color-text-default);
+  margin: 0px;
+  margin-bottom: 16px;
+}
+
+.modal__x-button {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  background-color: transparent;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  z-index: 99;
+}
+.modal__x-button:hover,
+.modal__x-button:focus {
+  background-color: var(--secondary-state-50);
+  cursor: pointer;
+}
+.modal__x-button img {
+  display: flex;
+  width: 12px;
+  height: 12px;
+}
+.modal__x-button:hover img {
+  filter: invert(1);
+}
+
+.desktop-default-button {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  width: 599px;
+  height: 36px;
+  border: 0px;
+  border-radius: 12px;
+}
+.desktop-default-button:focus-visible {
+  outline: none !important;
+}
+.desktop-default-button.desktop-default-button_primary {
+  color: var(--background);
+  background: var(--primary-purple-600);
+}
+.desktop-default-button.desktop-default-button_primary:hover,
+.desktop-default-button.desktop-default-button_primary:focus {
+  background: var(--primary-purple-700);
+}
+.desktop-default-button.desktop-default-button_secondary {
+  color: var(--color-text-default);
+  background: var(--secondary-state-200);
+}
+.desktop-default-button.desktop-default-button_secondary:hover {
+  background: var(--secondary-state-300);
+}
+.desktop-default-button.desktop-default-button_secondary:focus {
+  border: 2px solid var(--primary-purple-300);
+}
+
+.modal-content__desktop-default-button-primary {
+  margin-top: 36px;
+}
+
+

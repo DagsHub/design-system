@@ -1,0 +1,22 @@
+.vertical-menu{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  .menu-title{
+    width: 224px;
+    height: 24px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+  }
+  .tabs{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+}

@@ -1,14 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryFn  } from '@storybook/react';
+import {TextArea, TextAreaProps} from '../../../components/forms/textarea';
 
-import { TextArea } from '../../../components/forms/textarea';
-
-export default {
+const meta: Meta<TextAreaProps> = {
   title: 'Forms/TextArea',
   component: TextArea
-} as ComponentMeta<typeof TextArea>;
+};
 
-const Template: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} />;
+export default meta;
+
+const Template: StoryFn<TextAreaProps> = (args) => <TextArea {...args} />;
 
 export const WithLabel = Template.bind({});
 WithLabel.args = {

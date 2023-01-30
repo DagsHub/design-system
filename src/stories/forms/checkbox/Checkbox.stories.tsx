@@ -1,14 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
+import { Checkbox, CheckboxProps } from '../../../components/forms/checkbox';
 
-import { Checkbox } from '../../../components/forms/checkbox';
-
-export default {
+const meta: Meta<CheckboxProps> = {
   title: 'Forms/Checkbox',
   component: Checkbox
-} as ComponentMeta<typeof Checkbox>;
+};
 
-const Template: ComponentStory<typeof Checkbox> = (args) => <Checkbox {...args} />;
+export default meta;
+
+const Template: StoryFn<CheckboxProps> = (args) => <Checkbox {...args} />;
 
 export const Presentation = () => {
   return (

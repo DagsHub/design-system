@@ -4,7 +4,7 @@ import '../../styles/dagshub.scss';
 
 export interface NavbarProps {}
 
-export default function Navbar({}: NavbarProps) {
+export function Navbar({}: NavbarProps) {
   return (
     <nav className="dagshub navbar">
       <a href="/issues">Issues</a>

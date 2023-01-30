@@ -1,15 +1,16 @@
 import React from 'react';
-import {ComponentStory, ComponentMeta} from '@storybook/react';
-
-import { RadioButtonItem } from '../../../components/forms/radio-button-item';
+import {Meta, StoryFn } from '@storybook/react';
+import {RadioButtonItem, RadioButtonItemProps} from '../../../components/forms/radio-button/radio-button-item';
 import {Icon} from "../../../components";
 
-export default {
+const meta: Meta<RadioButtonItemProps> = {
   title: 'Forms/RadioButtonItem',
   component:RadioButtonItem
-} as ComponentMeta<typeof RadioButtonItem>;
+};
 
-const Template: ComponentStory<typeof RadioButtonItem> = (args) => <RadioButtonItem {...args} />;
+export default meta;
+
+const Template: StoryFn<RadioButtonItemProps> = (args) => <RadioButtonItem {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

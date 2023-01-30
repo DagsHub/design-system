@@ -1,0 +1,1 @@
+import "./webhook-tab.scss"

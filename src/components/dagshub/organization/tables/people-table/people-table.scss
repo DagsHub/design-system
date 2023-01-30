@@ -1,0 +1,54 @@
+.header-style {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--color-text-default);
+}
+
+.left {
+  width: 204px;
+  box-sizing: border-box;
+}
+
+.right {
+  width: 230px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.center {
+  width: 750px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.teams-list {
+  width: 750px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-default);
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.team-name, .hidden-teams{
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+
+.team-permission{
+  text-transform: lowercase;
+}
+
+.membership-column {
+  width: 230px;
+  padding-left: 16px;
+  padding-right: 5.33px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

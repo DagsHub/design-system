@@ -1,51 +1,68 @@
 .dagshub-btn {
-  font-weight: 600;
   border: 0;
   border-radius: 12px;
   cursor: pointer;
   display: inline-block;
   line-height: 1;
   transition: all 0.5s;
+  box-sizing: border-box;
+
   &:disabled {
     color: #ffffff;
     background-color: #64748b;
     cursor: not-allowed;
     &:hover {
-      color: #ffffff;
       background-color: #64748b;
     }
     &:focus {
-      color: #ffffff;
       background-color: #64748b;
     }
   }
 
   &.primary {
-    color: white;
+    color: #ffffff;
     background-color: #5467de;
     &:hover {
-      background-color: #4453b2;
+      background-color: #4453B2;
+    }
+    &:focus {
+      background: #5467DE;
+      box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
     }
   }
 
   &.secondary {
-    color: #172d32;
+    color: #172D32;
     background-color: #e2e8f0;
     &:hover {
       background-color: #cbd5e1;
+    }
+    &:focus {
+      background: #CBD5E1;
+      border: 2px solid #C4B5FD;
     }
   }
 
   &.error {
     color: #dc2626;
     background-color: #f8fafc;
+    border: 2px solid #E2E8F0;
     &:hover {
       color: #ffffff;
       background-color: #dc2626;
+      border:0px;
+      svg path{
+        fill:#ffffff
+      }
     }
     &:focus {
       color: #ffffff;
       background-color: #dc2626;
+      border: 2px solid #E2E8F0;
+      box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+      svg path{
+        fill:#ffffff
+      }
     }
   }
 }
@@ -55,24 +72,43 @@
     color: #172d32;
     background-color: transparent;
     &:hover {
-      color: #172d32;
-      background-color: #f1f5f9;
+      background-color: #F1F5F9;
+      svg{
+        fill:#172d32
+      }
     }
     &:focus {
-      color: #ffffff;
-      background-color: #64748b;
+      background: #F1F5F9;
+      box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
     }
   }
 }
 
 .dagshub-btn {
   &.normal {
-    padding: 10px 12px;
+    padding-right: 12px;
+    padding-left: 12px;
+    height: 36px;
   }
   &.slim {
-    padding: 6px 12px;
+    padding-right: 14.44px;
+    padding-left: 14.44px;
+    height: 32px;
   }
   &.fullWidth {
     width: 100%;
   }
+}
+
+.button__content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  gap: 10px;
+
 }

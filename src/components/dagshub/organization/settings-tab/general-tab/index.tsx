@@ -1,0 +1,1 @@
+import "./general-tab.scss"
