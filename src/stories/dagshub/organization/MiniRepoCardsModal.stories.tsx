@@ -103,5 +103,89 @@ Primary.args = {
            { id: 4, name: 'data domain', categoryId: { colorClassName: 'data_domain', showExplore: true } },
            { id: 5, name: 'integration', categoryId: { colorClassName: 'integration', showExplore: true } }
        ],
-       repoTeams: []}]
+       repoTeams: []},{isMini:true,
+        isMirror: true,
+        IsGithubIntegrated: true,
+        numStars: 5,
+        githubStarCount: 3,
+        isFork: false,
+        updatedDaysAgo: 6,
+        isStaring: false,
+        repoName: 'Mirrored Repository',
+        isPrivate: false,
+        hasDescription: true,
+        repoDescription:
+            'RPPP – Reddit Post Popularity Predictor\n A project with two goals: 1. Given a Reddit post, predict how popular it’s going to be (what it’s score will be) 2. Showcasing a remote working file system with DV…',
+        numForks: 0,
+        numOpenPulls: 2,
+        numOpenIssues: 3,
+        topics: [
+            { id: 1, name: 'general', categoryId: { colorClassName: 'general', showExplore: false } },
+            { id: 2, name: 'type', categoryId: { colorClassName: 'type', showExplore: true } },
+            { id: 3, name: 'task', categoryId: { colorClassName: 'task', showExplore: true } },
+            { id: 4, name: 'data domain', categoryId: { colorClassName: 'data_domain', showExplore: true } },
+            { id: 5, name: 'integration', categoryId: { colorClassName: 'integration', showExplore: true } }
+        ],
+        repoTeams: [
+            { id: 1, name: 'team1' },
+            { id: 2, name: 'team2' },
+            { id: 3, name: 'team3' },
+            { id: 4, name: 'team4' }
+        ]},{isMini:true,
+        isMirror: true,
+        IsGithubIntegrated: true,
+        numStars: 5,
+        githubStarCount: 3,
+        isFork: false,
+        updatedDaysAgo: 6,
+        isStaring: false,
+        repoName: 'Mirrored Repository',
+        isPrivate: false,
+        hasDescription: true,
+        repoDescription:
+            'RPPP – Reddit Post Popularity Predictor\n A project with two goals: 1. Given a Reddit post, predict how popular it’s going to be (what it’s score will be) 2. Showcasing a remote working file system with DV…',
+        numForks: 0,
+        numOpenPulls: 2,
+        numOpenIssues: 3,
+        topics: [
+            { id: 1, name: 'general', categoryId: { colorClassName: 'general', showExplore: false } },
+            { id: 2, name: 'type', categoryId: { colorClassName: 'type', showExplore: true } },
+            { id: 3, name: 'task', categoryId: { colorClassName: 'task', showExplore: true } },
+            { id: 4, name: 'data domain', categoryId: { colorClassName: 'data_domain', showExplore: true } },
+            { id: 5, name: 'integration', categoryId: { colorClassName: 'integration', showExplore: true } }
+        ],
+        repoTeams: [
+            { id: 1, name: 'team1' },
+            { id: 2, name: 'team2' },
+            { id: 3, name: 'team3' },
+            { id: 4, name: 'team4' }
+        ]},{isMini:true,
+        isMirror: true,
+        IsGithubIntegrated: true,
+        numStars: 5,
+        githubStarCount: 3,
+        isFork: false,
+        updatedDaysAgo: 6,
+        isStaring: false,
+        repoName: 'Mirrored Repository',
+        isPrivate: false,
+        hasDescription: true,
+        repoDescription:
+            'RPPP – Reddit Post Popularity Predictor\n A project with two goals: 1. Given a Reddit post, predict how popular it’s going to be (what it’s score will be) 2. Showcasing a remote working file system with DV…',
+        numForks: 0,
+        numOpenPulls: 2,
+        numOpenIssues: 3,
+        topics: [
+            { id: 1, name: 'general', categoryId: { colorClassName: 'general', showExplore: false } },
+            { id: 2, name: 'type', categoryId: { colorClassName: 'type', showExplore: true } },
+            { id: 3, name: 'task', categoryId: { colorClassName: 'task', showExplore: true } },
+            { id: 4, name: 'data domain', categoryId: { colorClassName: 'data_domain', showExplore: true } },
+            { id: 5, name: 'integration', categoryId: { colorClassName: 'integration', showExplore: true } }
+        ],
+        repoTeams: [
+            { id: 1, name: 'team1' },
+            { id: 2, name: 'team2' },
+            { id: 3, name: 'team3' },
+            { id: 4, name: 'team4' }
+        ]}]
 };

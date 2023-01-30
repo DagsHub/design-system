@@ -36,17 +36,32 @@ DeleteOrganization.args = {
     ]
 };
 
+const imageLink="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH3HZUQ9Uz5qcOaIwRjQi0jdfJVVUIR-hO9Q&usqp=CAU"
+
+
 export const General = Template.bind({});
 General.args = {
     title:"General",
     elements:[
-        <div className="general-page">
-            <Input width={622} label={"Organization name"} helperText={"Required"} placeholder={"Input"}/>
-            <Input width={622} label={"Organization full name"} placeholder={"Input"}/>
-            <Input width={622} label={"Description"} placeholder={"Input"}/>
-            <Input width={622} label={"Website"} placeholder={"Input"}/>
-            <Input width={622} label={"Location"} placeholder={"Input"}/>
-            <Button className="delete-organization-button" label={"Update settings"} width={166}/>
+        <div className={"content"}>
+            <div className={"user-image-upload"}>
+                <div className={"image"}>
+                    <img src={imageLink}></img>
+                </div>
+                <div className={"buttons"}>
+                    <Button variant={ButtonVariant.Secondary} className="upload-image-button" label={"Upload image"} width={149}
+                    iconLeft={<Icon icon={"outline-upload"} width={18} height={18} fill={"#111827"}/>}/>
+                    <Button variant={ButtonVariant.Error} className="remove-button" label={"Remove"} width={131}/>
+                </div>
+            </div>
+            <div className="general-page">
+                <Input width={622} label={"Organization name"} helperText={"Required"} placeholder={"Input"}/>
+                <Input width={622} label={"Organization full name"} placeholder={"Input"}/>
+                <Input width={622} label={"Description"} placeholder={"Input"}/>
+                <Input width={622} label={"Website"} placeholder={"Input"}/>
+                <Input width={622} label={"Location"} placeholder={"Input"}/>
+                <Button className="delete-organization-button" label={"Update settings"} width={166}/>
+            </div>
         </div>
     ]
 };

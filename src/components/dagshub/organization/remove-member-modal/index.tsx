@@ -15,7 +15,7 @@ export default function RemoveMemberModal(props:RemoveMemberModalProps){
             Are you sure you want to remove <span className="username">@{props.username}</span> from {props.org}?
         </div>,
         <div className="remove-member-modal__buttons">
-            <Button variant={ButtonVariant.Error} label={"Remove member"} width={106}/>
+            <Button variant={ButtonVariant.Error} label={"Remove member"} width={143}/>
             <Button variant={ButtonVariant.Primary} label={"Cancel"} width={95}/>
         </div>
     ]
