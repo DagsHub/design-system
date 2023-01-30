@@ -1,10 +1,10 @@
 import React from 'react';
-import '../../../styles/root.scss';
-import '../shared-styles/table.scss';
-import UserInfo from "../user-info";
-import GenericTable, {Row} from "../generic-table";
-import {Icon} from "../../../icons";
-import {Dropdown} from "../../../elements/dropdown";
+import '../../../../styles/root.scss';
+import "../generic-table/table.scss"
+import {UserInfo} from "../../profiles/user-info";
+import {GenericTable, Row} from "../generic-table";
+import {Icon} from "../../../../icons";
+import {Dropdown} from "../../../../elements/dropdown";
 
 export interface PeopleTableProps{
   users:User[];
@@ -28,7 +28,7 @@ export interface UserTeam{
   userPermissionForTeam: UserPermissionForTeam; //make enum, admin access, write access, read access
 }
 
-enum UserPermissionForTeam {
+export enum UserPermissionForTeam {
   AdminAccess = 'Admin access',
   WriteAccess = 'Write access',
   ReadAccess =  'Read access'

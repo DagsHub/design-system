@@ -1,5 +1,5 @@
 import './vertical-menu-tab.scss';
-import '../../../styles/root.scss';
+import '../../../../styles/root.scss';
 import React from 'react';
 
 export interface VerticalMenuTabProps{

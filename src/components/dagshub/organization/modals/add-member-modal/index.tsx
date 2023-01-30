@@ -1,11 +1,11 @@
 import React from 'react';
-import '../../../styles/root.scss';
+import '../../../../styles/root.scss';
 import {GenericModal} from "../generic-modal";
-import {Icon} from "../../../icons";
-import {Button, ButtonVariant} from "../../../elements";
-import RadioButtonList from "../radio-button-list";
-import {RadioButtonItem} from "../../../forms/radio-button-item";
-import {Dropdown} from "../../../elements/dropdown";
+import {Icon} from "../../../../icons";
+import {Button, ButtonVariant} from "../../../../elements/button";
+import {RadioButtonList} from "../../../../forms/radio-button/radio-button-list";
+import {RadioButtonItem} from "../../../../forms/radio-button/radio-button-item";
+import {Dropdown} from "../../../../elements/dropdown";
 
 export interface AddMemberModalProps{
     isOrg: boolean;

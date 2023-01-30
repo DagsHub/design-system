@@ -1,6 +1,5 @@
 import React from 'react';
-
-import '../../../styles/root.scss';
+import '../../../../styles/root.scss';
 import './modal.scss';
 import {Icon} from ".././../../../icons/index";
 

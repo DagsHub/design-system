@@ -1,21 +1,22 @@
 import React from 'react';
 import startCase from 'lodash/startCase';
 import { styled } from '@storybook/theming';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-
+import { Meta, StoryFn  } from '@storybook/react';
 import { enum2arr } from '../../../utils';
-import { Button, ButtonVariant, ButtonStretch } from '../../../components/elements/button';
+import { Button, ButtonVariant, ButtonStretch , ButtonProps} from '../../../components/elements/button';
 
-export default {
+const meta: Meta<ButtonProps> = {
   title: 'Elements/Button',
   component: Button
-} as ComponentMeta<typeof Button>;
+};
+
+export default meta;
 
 const ButtonStory = styled(Button)`
   margin-right: 10px;
 `;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
 
 export const Presentation = () => {
   return (

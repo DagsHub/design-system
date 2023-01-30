@@ -1,5 +1,5 @@
-import './user-info.css';
-import '../../../styles/root.scss';
+import './user-info.scss';
+import '../../../../styles/root.scss';
 import React from 'react';
 
 export interface UserInfoProps{

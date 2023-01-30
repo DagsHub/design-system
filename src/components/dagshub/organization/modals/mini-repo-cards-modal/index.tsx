@@ -1,8 +1,8 @@
 import React from 'react';
-import '../../../styles/root.scss';
+import '../../../../styles/root.scss';
 import {GenericModal} from "../generic-modal/index";
-import RepoCard, {RepoCardProps} from "../repo-card"
-import {Button, ButtonVariant} from "../../../elements";
+import {RepoCard, RepoCardProps} from "../../cards/repo-card"
+import {Button, ButtonVariant} from "../../../../elements";
 import "./mini-repo-cards-modal.scss";
 
 export interface MiniRepoCardsModalProps{

@@ -1,6 +1,6 @@
-import '../../../styles/root.scss';
+import '../../../../styles/root.scss';
 import React from 'react';
-import ProfileImage from "../profile-image"
+import {ProfileImage} from "../profile-image"
 import "./profile-image-list.scss";
 
 export interface ProfileImageListProps{
@@ -8,7 +8,7 @@ export interface ProfileImageListProps{
     maxImages:number
 }
 
-export default function ProfileImageList(props:ProfileImageListProps) {
+export function ProfileImageList(props:ProfileImageListProps) {
     return (
         <div className="user-image-list">
             {props.imgList?.map((img,index) =>

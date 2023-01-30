@@ -1,8 +1,8 @@
 import React from 'react';
-import '../../../styles/root.scss';
+import '../../../../styles/root.scss';
 import './repo.scss';
-import {Icon} from "../../../icons";
-import '../../../styles/root.scss';
+import {Icon} from "../../../../icons";
+import '../../../../styles/root.scss';
 import './repo-mini.scss';
 
 export interface Topic {

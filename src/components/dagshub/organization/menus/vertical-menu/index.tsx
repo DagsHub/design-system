@@ -1,7 +1,7 @@
 import './vertical-menu.scss';
-import '../../../styles/root.scss';
+import '../../../../styles/root.scss';
 import React from 'react';
-import VerticalMenuTab, {VerticalMenuTabProps} from "../vertical-menu-tab/index"
+import {VerticalMenuTab, VerticalMenuTabProps} from "../vertical-menu-tab"
 
 export interface VerticalMenuProps{
     title?: string;

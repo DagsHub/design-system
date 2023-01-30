@@ -1,6 +1,6 @@
 import React, {MouseEventHandler} from 'react';
-import '../../../styles/root.scss';
-import '../shared-styles/table.scss';
+import '../../../../styles/root.scss';
+import './table.scss';
 
 export interface TableProps{
     classnames?:string

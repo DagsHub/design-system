@@ -1,5 +1,5 @@
 // import React from 'react';
-// import '../../../styles/root.scss';
+// import '../../../../styles/root.scss';
 // import GenericModal from "../generic-modal";
 // import {Icon} from "../../../icons";
 // import {Button, ButtonVariant} from "../../../elements";
@@ -12,7 +12,7 @@
 //     orgName:string;
 // }
 //
-// export default function CreateNewTeamModal(props:CreateNewTeamModalProps){
+// export function CreateNewTeamModal(props:CreateNewTeamModalProps){
 //     let elements:JSX.Element[];
 //     elements=[
 //         <Input label={"Team name"} helperText={"Changing the team name will break past @mentions."} width={599}/>,

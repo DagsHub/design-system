@@ -1,14 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryFn  } from '@storybook/react';
+import { Input, InputProps } from '../../../components/forms/input';
 
-import { Input } from '../../../components/forms/input';
-
-export default {
+const meta: Meta<InputProps> = {
   title: 'Forms/Input',
   component: Input
-} as ComponentMeta<typeof Input>;
+};
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+export default meta;
+
+const Template: StoryFn<typeof Input> = (args) => <Input {...args} />;
 
 export const WithLabel = Template.bind({});
 WithLabel.args = {
