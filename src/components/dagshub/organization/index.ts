@@ -1,7 +1,10 @@
 export * from '../organization/cards/repo-card';
 export * from '../organization/cards/card-empty-state';
+export * from '../organization/header';
 export * from '../organization/menus/vertical-menu';
 export * from '../organization/menus/vertical-menu-tab';
+export * from '../organization/menus/horizontal-menu';
+export * from '../organization/menus/horizontal-menu-tab';
 export * from '../organization/modals/generic-modal';
 export * from '../organization/modals/add-member-modal';
 // export * from '../organization/modals/create-new-team-modal';
@@ -21,5 +24,6 @@ export * from '../organization/tables/generic-table';
 export * from '../organization/tables/people-table';
 export * from '../organization/tables/teams-table';
 export * from '../organization/tables/org-admin-table';
+
 
 

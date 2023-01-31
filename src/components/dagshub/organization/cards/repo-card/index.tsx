@@ -3,7 +3,8 @@ import '../../../../styles/root.scss';
 import './repo.scss';
 import {Icon} from "../../../../icons";
 import '../../../../styles/root.scss';
-import './repo-mini.scss';
+// import './repo-mini.scss';
+import "./repo.scss"
 
 export interface Topic {
   id: number;
