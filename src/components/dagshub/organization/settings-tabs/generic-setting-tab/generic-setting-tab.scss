@@ -1,10 +1,10 @@
-.settings-table {
+.generic-settings-tab {
   display: flex;
   flex-direction: column;
   max-width: 968px;
   font-family: 'Inter';
   font-style: normal;
-  .settings-table__elements{
+  .generic-settings-tab__elements{
     width: 100%;
     min-height: 50px;
     display: flex;
@@ -19,7 +19,7 @@
   }
 }
 
-.settings-table__header {
+.generic-settings-tab__header {
   height: 44px;
   background: var(--secondary-state-100);
   border: 1px solid var(--secondary-state-200);
@@ -37,69 +37,6 @@
   letter-spacing: 0.01em;
   text-transform: uppercase;
   color: var(--color-text-default);
-}
-
-.webhook-text , .delete-organization-text{
-  margin: 0px!important;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  color: #000000;
-}
-
-.webhook-page{
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.delete-organization-page{
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.delete-organization-button{
-  &:hover{
-    color: white;
-  }
-}
-
-.general-page{
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  justify-content: flex-end;
-  width: 100%;
-}
-
-.content{
-  display: flex;
-  width: 100%;
-  gap: 24px;
-}
-
-.user-image-upload{
-  display: flex;
-  min-width: 290px;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.buttons{
-  display: flex;
-  justify-content: space-between;
-}
-
-.image{
-  width: 100%;
-  height: 290px;
-
-  >img{
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-  }
 }
 
 

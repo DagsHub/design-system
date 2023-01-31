@@ -2,22 +2,22 @@ import React from 'react';
 import '../../../../styles/root.scss';
 import './generic-setting-tab.scss';
 
-export interface SettingsTabProps{
+export interface GenericSettingsTabProps{
     classnames?:string
     title: string;
     elements: JSX.Element[];
 }
 
 
-export function SettingsTab(props:SettingsTabProps) {
+export function GenericSettingsTab(props:GenericSettingsTabProps) {
     return (
-        <div className={props.classnames? props.classnames :"settings-table"}>
+        <div className={props.classnames? props.classnames :"generic-settings-tab"}>
             {props.title?
-                <div className="settings-table__header">
+                <div className="generic-settings-tab__header">
                     {props.title}
                 </div>
                 :<></>}
-            <div className="settings-table__elements">
+            <div className="generic-settings-tab__elements">
                 {props.elements?.map((element) =>
                     element
                 )}
