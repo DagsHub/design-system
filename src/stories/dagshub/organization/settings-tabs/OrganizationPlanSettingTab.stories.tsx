@@ -13,4 +13,8 @@ const Template: StoryFn<OrganizationPlanSettingsTabProps> = args => <Organizatio
 
 export const Primary = Template.bind({});
 Primary.args = {
+    seatsInPlan:3,
+    organizationPlan: "Team",
+    seatsInUse:2,
+    renewDateString: "Nov 20, 2023"
 };

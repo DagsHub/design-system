@@ -10,6 +10,7 @@ export interface GeneralSettingsTabProps{
     orgImageSrc:string;
 }
 
+//should i have also a default image
 
 export function GeneralSettingsTab(props:GeneralSettingsTabProps) {
     let elements:JSX.Element[]=[];
