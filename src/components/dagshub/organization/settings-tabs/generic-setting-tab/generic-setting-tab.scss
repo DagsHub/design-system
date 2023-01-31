@@ -1,0 +1,42 @@
+.generic-settings-tab {
+  display: flex;
+  flex-direction: column;
+  max-width: 968px;
+  font-family: 'Inter';
+  font-style: normal;
+  .generic-settings-tab__elements{
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 16px;
+    background: #F8FAFC;
+    border: 1px solid var(--secondary-state-200);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top: 0.5px solid var(--secondary-state-200);
+  }
+}
+
+.generic-settings-tab__header {
+  height: 44px;
+  background: var(--secondary-state-100);
+  border: 1px solid var(--secondary-state-200);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom: 0.5px solid var(--secondary-state-200);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--color-text-default);
+}
+
+

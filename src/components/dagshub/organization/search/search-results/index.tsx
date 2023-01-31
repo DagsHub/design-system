@@ -15,10 +15,10 @@ export function SearchResultList(props:SearchResultListProps) {
     let rows: Row[]=[];
     for (let user of props.users) {
         let row :Row={
-            rowClasses:"row",
+            rowClasses:"search-result-list__row",
             columns: [
                 <UserInfo imageSource={user.imageSource} fullName={user.fullName} userName={user.userName}/>,
-                <Button width={136} variant={ButtonVariant.Secondary} stretch={ButtonStretch.Slim}
+                <Button width={142} variant={ButtonVariant.Secondary} stretch={ButtonStretch.Slim}
                     iconLeft={<Icon width={12} height={12} fill="#172D32" icon="outline-plus"/>}
                     label={"Add member"}
                 />

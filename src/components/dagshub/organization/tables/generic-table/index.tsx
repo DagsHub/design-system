@@ -29,9 +29,7 @@ export function GenericTable(props:TableProps) {
             {props.header?
                 <div className="table__header">
                     {props.header?.columns?.map((column) =>
-                        <div className="row__column" >
-                            {column}
-                        </div>
+                        column
                     )}
                 </div>
             :<></>}

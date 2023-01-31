@@ -47,16 +47,16 @@ export function TeamTable(props:TeamTableProps) {
     let header:Row;
     header={
       columns: [
-        <span className="left-side">
-          <span className="header__team-name">{props.team.name}</span>
-          <span className="header__team-description">{props.team.description}</span>
+        <span className="teams-table-left-side-header">
+          <span className="teams-table-left-side-header__team-name">{props.team.name}</span>
+          <span className="teams-table-left-side-header__team-description">{props.team.description}</span>
         </span>,
-        <span className="right-side">
+        <span className="teams-table-right-side-header">
             <Button variant={ButtonVariant.Ghost} stretch={ButtonStretch.Slim}
                     iconLeft={<Icon width={10.67} height={10.67} fill="#172D32" icon="solid-plus"/>}
                     label={"Add new team member"}
             />
-          <span className="dots-vertical-icon">
+          <span className="teams-table-right-side-header__dots-vertical-icon">
             <Icon width={3} height={13.5} fill="#64748B" icon="outline-dots-vertical"/>
           </span>
         </span>
@@ -91,10 +91,10 @@ export function TeamTable(props:TeamTableProps) {
     let footer:Row;
     footer={
       columns: [
-        <span className="footer-left-section">
-          <span className="permission">
+        <span className="teams-table-footer-left-section">
+          <span className="teams-table-footer-left-section__permission-text">
             Team has
-            <span className="permission-label">
+            <span className="teams-table-footer-left-section__permission-label">
               {props.team.teamPermission}
               <Icon width={10} height={6} fill="#172D32" icon="solid-cheveron-down"/>
             </span>
@@ -102,14 +102,14 @@ export function TeamTable(props:TeamTableProps) {
           </span>
           <span className="team-repos">
             {props.team.teamRepos?.map((repo: Repo) =>
-              <span className="repo">
+              <span className="team-repos__repo">
                 <Icon width={16} height={21} fill="#172D32" icon="outline-repository-github"/>
                 {repo.name}
               </span>
             )}
           </span>
         </span>,
-        <span className="all-team-projects">
+        <span className="teams-table-footer-right-section">
           See all teams projects
           <Icon width={9.33} height={8} fill="#5467DE" icon="outline-arrow-sm-right"/>
         </span>

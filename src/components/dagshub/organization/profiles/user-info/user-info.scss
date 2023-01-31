@@ -1,14 +1,24 @@
-.user-image {
-    position: relative;
-    top: 3px;
-}
-.user-image > img {
-    width: 36px;
-    height: 36px;
-    border-radius: 18px;
+.user-info {
+    min-width: 203px;
+    max-width: 203px;
+    box-sizing: border-box;
+    display: flex;
+    gap: 8px;
+    font-family: 'Inter';
+    font-style: normal;
 }
 
-.name-info {
+.user-info__user-image {
+    position: relative;
+    top: 3px;
+    > img {
+        width: 36px;
+        height: 36px;
+        border-radius: 18px;
+    }
+}
+
+.user-info__name-info {
     display: flex;
     flex-direction: column;
     font-weight: 500;
@@ -18,11 +28,4 @@
     justify-content: center;
 }
 
-.user-info {
-    width: 203px;
-    box-sizing: border-box;
-    display: flex;
-    gap: 8px;
-    font-family: 'Inter';
-    font-style: normal;
-}
+

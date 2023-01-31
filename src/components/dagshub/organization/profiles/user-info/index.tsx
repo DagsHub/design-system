@@ -11,12 +11,12 @@ export interface UserInfoProps{
 export function UserInfo(props:UserInfoProps) {
     return (
         <div className="user-info">
-            <div className="user-image">
+            <div className="user-info__user-image">
                 <img src={props.imageSource}></img>
             </div>
-            <div className="name-info">
-                {props.fullName?<span className="full-name">{props.fullName}</span>:null}
-                <span className="user-name">{"@"+props.userName}</span>
+            <div className="user-info__name-info">
+                {props.fullName?<span >{props.fullName}</span>:null}
+                <span>{"@"+props.userName}</span>
             </div>
         </div>
     )

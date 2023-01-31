@@ -20,18 +20,18 @@ export const RadioButtonItem = ({
   width,
   ...props
 }: RadioButtonItemProps) => {
-  const classes = classNames([`radio-button__item`, className]);
+  const classes = classNames([`radio-button-item`, className]);
 
   return (
       <div className={classes} style={{width:width}}>
         <div>
-          <label className="container">{label}
+          <label className="radio-button-item__container">{label}
             <input type="radio" name="radio"/>
-            <span className="checkmark"></span>
+            <span className="radio-button-item__checkmark"></span>
             {icon?icon:<></>}
           </label>
         </div>
-        <div className="description">{description}</div>
+        <div className="radio-button-item__description">{description}</div>
       </div>
   );
 };

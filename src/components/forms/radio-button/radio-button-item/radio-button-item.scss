@@ -1,4 +1,4 @@
-.radio-button__item{
+.radio-button-item{
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   display: flex;
   display: flex;
@@ -10,7 +10,7 @@
 
 }
 
-.container {
+.radio-button-item__container {
   position: relative;
   padding-left: 24px;
   cursor: pointer;
@@ -21,15 +21,23 @@
   font-weight: 700;
   font-size: 14px;
   gap: 10px;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &:hover input ~ .radio-button-item__checkmark {
+    box-shadow: 0px 0px 0px 2px #C4B5FD;
+  }
+
+  input:checked ~ .radio-button-item__checkmark {
+    border: 4.9px solid #5467DE;
+  }
 }
 
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.checkmark {
+.radio-button-item__checkmark {
   position: absolute;
   left: 0;
   height: 16px;
@@ -39,11 +47,5 @@
   box-sizing: border-box;
 }
 
-.container:hover input ~ .checkmark {
-  box-shadow: 0px 0px 0px 2px #C4B5FD;
-}
 
-.container input:checked ~ .checkmark {
-  border: 4.9px solid #5467DE;
-}
 

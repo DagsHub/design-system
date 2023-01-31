@@ -12,8 +12,8 @@ export interface RemoveMemberModalProps{
 export function RemoveMemberModal(props:RemoveMemberModalProps){
     let elements:JSX.Element[];
     elements=[
-        <div className="remove-text">
-            Are you sure you want to remove <span className="username">@{props.username}</span> from {props.org}?
+        <div className="remove-member-modal__text">
+            Are you sure you want to remove <span className="remove-member-modal__text-username">@{props.username}</span> from {props.org}?
         </div>,
         <div className="remove-member-modal__buttons">
             <Button variant={ButtonVariant.Error} label={"Remove member"} width={143}/>

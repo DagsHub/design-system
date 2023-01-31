@@ -13,7 +13,7 @@ export interface MiniRepoCardsModalProps{
 export function MiniRepoCardsModal(props:MiniRepoCardsModalProps){
     let elements:JSX.Element[]=[];
     elements.push(
-        <div className={"cards-block"}>
+        <div className={"mini-repo-cards-modal__cards-block"}>
             {props.repos?.map((repo)=>(
                 <RepoCard isMini={repo.isMini}
                                         isMirror= {repo.isMirror}
@@ -35,7 +35,7 @@ export function MiniRepoCardsModal(props:MiniRepoCardsModalProps){
             )}
         </div>
     )
-    elements.push(<div className={"close-button"}>
+    elements.push(<div className={"mini-repo-cards-modal__close-button"}>
                         <Button variant={ButtonVariant.Secondary} label={"Close"} width={63}/>
                 </div>
     )

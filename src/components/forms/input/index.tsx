@@ -27,7 +27,6 @@ export const Input = ({
   errored = false,
   disabled = false,
   className = '',
-  maxWidth = 'initial',
   width,
   inputMaxWidth = 'initial',
   onChange = () => {},
@@ -36,7 +35,7 @@ export const Input = ({
   const classes = classNames([`dagshub-input`, className], { errored, disabled });
 
   return (
-    <div className={classes} style={{ maxWidth }}>
+    <div className={classes} style={{ maxWidth: width, width: '100%'}}>
       {label && <label>{label}</label>}
       <input
         type={type}
@@ -46,7 +45,7 @@ export const Input = ({
         disabled={disabled}
         onChange={onChange}
         placeholder={placeholder}
-        style={{ maxWidth: inputMaxWidth, width: width}}
+        style={{ maxWidth: width, width: '100%'}}
         {...props}
       />
       {helperText && <p className="helper-text">{helperText}</p>}

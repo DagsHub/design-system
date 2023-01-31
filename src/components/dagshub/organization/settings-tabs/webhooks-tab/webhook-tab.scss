@@ -1,0 +1,13 @@
+.webhook-setting-tab{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.webhook-setting-tab__text{
+  margin: 0px!important;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
