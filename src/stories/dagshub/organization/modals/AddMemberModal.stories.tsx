@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import AddMemberModal, {AddMemberModalProps} from '../../../components/dagshub/organization/add-member-modal';
+import {AddMemberModal, AddMemberModalProps} from '../../../../components/dagshub/organization/modals/add-member-modal';
 
 const meta: Meta<AddMemberModalProps> = {
   title: 'DagsHub/Org/Modals/AddMemberModal',

@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import CardEmptyState, {CardEmptyStateProps} from "../../../components/dagshub/organization/card-empty-state";
-import {Button, ButtonStretch, ButtonVariant, Icon} from "../../../components";
+import {CardEmptyState, CardEmptyStateProps} from "../../../../components/dagshub/organization/cards/card-empty-state";
+import {Button, ButtonStretch, ButtonVariant, Icon} from "../../../../components";
 
 const meta: Meta<CardEmptyStateProps> = {
     title: 'DagsHub/Org/Cards/CardEmptyState',
