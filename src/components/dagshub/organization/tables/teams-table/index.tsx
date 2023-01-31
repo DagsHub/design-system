@@ -3,7 +3,7 @@ import { Icon } from '../../../../icons';
 import '../../../../styles/root.scss';
 import {Row, GenericTable} from "../generic-table";
 import {UserInfo} from "../../profiles/user-info";
-import { UserPermissionForTeam } from '../org-admin-table';
+import {UserPermissionForTeam} from "../shared-classes";
   import {Button, ButtonStretch, ButtonVariant} from "../../../../elements";
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';

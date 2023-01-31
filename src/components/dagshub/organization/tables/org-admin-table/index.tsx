@@ -6,6 +6,7 @@ import { Row, GenericTable } from "../generic-table";
 import { Icon } from "../../../../icons";
 import { Button, ButtonStretch, ButtonVariant } from "../../../../elements";
 import "./org-admin-table.scss"
+import {UserPermissionForTeam} from "../shared-classes";
 
 export interface OrgAdminTableProps{
   admins:User[];
@@ -15,12 +16,6 @@ interface User{
   userImage: string,
   fullName: string,
   username: string
-}
-
-export enum UserPermissionForTeam {
-  AdminAccess = 'Admin access',
-  WriteAccess = 'Write access',
-  ReadAccess =  'Read access'
 }
 
 //add functionality, tooltip
