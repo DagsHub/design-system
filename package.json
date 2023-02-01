@@ -1,9 +1,6 @@
 {
   "name": "@dagshub/ui",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dagshub/design-system.git"
-  },
+  "repository": "https://github.com/dagshub/design-system.git",
   "version": "0.0.1",
   "description": "A component library for consuming dagshub user interfaces.",
   "main": "dist/cjs/index.js",
@@ -47,6 +44,7 @@
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
+    "auto": "^10.37.6",
     "babel-loader": "^8.3.0",
     "copy-to-clipboard": "^3.3.3",
     "cross-env": "^7.0.3",
