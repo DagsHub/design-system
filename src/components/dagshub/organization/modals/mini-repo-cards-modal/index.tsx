@@ -25,7 +25,6 @@ export function MiniRepoCardsModal(props:MiniRepoCardsModalProps){
                                         isStaring= {repo.isStaring}
                                         repoName= {repo.repoName}
                                         isPrivate= {repo.isPrivate}
-                                        hasDescription= {repo.hasDescription}
                                         repoDescription= {repo.repoDescription}
                                         numForks= {repo.numForks}
                                         numOpenPulls= {repo.numOpenPulls}
