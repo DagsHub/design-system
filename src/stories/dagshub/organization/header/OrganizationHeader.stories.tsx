@@ -20,3 +20,9 @@ Primary.args = {
     orgSite:"https://DagsHub.com",
     orgPlan:"teams plan"
 };
+export const Primary2 = Template.bind({});
+Primary2.args = {
+    orgImageSource: imageLink,
+    orgName:"Dagshub",
+    orgPlan:"teams plan"
+};
