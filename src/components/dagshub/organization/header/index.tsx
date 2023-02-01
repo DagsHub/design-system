@@ -6,7 +6,7 @@ import {Icon} from "../../../icons";
 export interface HeaderProps{
     orgImageSource: string;
     orgName:string;
-    orgSite:string;
+    orgSite?:string;
     orgPlan:string;
 }
 
@@ -21,10 +21,10 @@ export function Header(props:HeaderProps) {
                     <span className={"org-upper-info__name"}>{props.orgName}</span>
                     <span className={"org-upper-info__plan"}>{props.orgPlan}</span>
                 </div>
-                <div className={"org-info__org-site"}>
+                {props.orgSite&&<div className={"org-info__org-site"}>
                     <Icon icon={"outline-link"} width={18} height={18} fill={"#64748B"}/>
                     <a href={props.orgSite}>{props.orgSite}</a>
-                </div>
+                </div>}
             </div>
         </div>
     )

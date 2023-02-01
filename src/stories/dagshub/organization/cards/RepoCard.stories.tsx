@@ -23,7 +23,6 @@ Primary.args = {
   isStaring: true,
   repoName: 'Regular Repository',
   isPrivate: true,
-  hasDescription: true,
   repoDescription:
     'RPPP – Reddit Post Popularity Predictor\n A project with two goals: 1. Given a Reddit post, predict how popular it’s going to be (what it’s score will be) 2. Showcasing a remote working file system with DV…',
   numForks: 0,
@@ -68,7 +67,6 @@ Secondary.args = {
   isStaring: false,
   repoName: 'Mirrored Repository',
   isPrivate: false,
-  hasDescription: true,
   repoDescription:
     'RPPP – Reddit Post Popularity Predictor\n A project with two goals: 1. Given a Reddit post, predict how popular it’s going to be (what it’s score will be) 2. Showcasing a remote working file system with DV…',
   numForks: 0,
@@ -101,7 +99,6 @@ Tertiary.args = {
   isStaring: false,
   repoName: 'Forked Repository',
   isPrivate: false,
-  hasDescription: false,
   repoDescription:
     'RPPP – Reddit Post Popularity Predictor\n A project with two goals: 1. Given a Reddit post, predict how popular it’s going to be (what it’s score will be) 2. Showcasing a remote working file system with DV…',
   numForks: 3,

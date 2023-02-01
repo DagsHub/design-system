@@ -22,22 +22,23 @@ export interface Team {
 
 export interface RepoCardProps {
   isMini:boolean;
-  repoTeams: Team[];
+  repoTeams?: Team[]; //missing
   topics: Topic[];
   isMirror: boolean;
-  IsGithubIntegrated?: boolean; //should appear only if mirrored
+  IsGithubIntegrated?: boolean;
   numStars: number;
-  githubStarCount?: number; //should appear only if mirrored
+  githubStarCount?: number;
   isFork: boolean;
   updatedDaysAgo: number;
-  isStaring: boolean;
+  isStaring?: boolean; //missing
   repoName: string;
   isPrivate: boolean;
-  hasDescription: boolean;
-  repoDescription?: string; //should appear only if has description is true
+  repoDescription?: string;
   numForks?: number;
-  numOpenPulls: number; //should appear only if mirrored
+  numOpenPulls: number;
   numOpenIssues: number;
+
+  //link
 }
 
 export function RepoCard(props: RepoCardProps) {
@@ -102,7 +103,7 @@ export function RepoCard(props: RepoCardProps) {
           <div className="repo-main">
             <div className="repo-desc-block">
               <p className="repo-description">
-                {props.hasDescription ? props.repoDescription : 'No description'}
+                {props.repoDescription ? props.repoDescription : 'No description'}
               </p>
             </div>
             <div className="repo-information">
