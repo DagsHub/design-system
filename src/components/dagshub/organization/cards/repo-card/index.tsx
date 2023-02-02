@@ -29,7 +29,6 @@ export interface RepoCardProps {
   numStars: number;
   githubStarCount?: number;
   isFork: boolean;
-  updatedDaysAgo: number;
   isStaring?: boolean; //missing
   name: string;
   isPrivate: boolean;
@@ -37,9 +36,12 @@ export interface RepoCardProps {
   numForks?: number;
   numOpenPulls: number;
   numOpenIssues: number;
-
+  updatedAt: string;
   //link
 }
+
+const getUpdatedDaysAgo = (date: string): number => 
+    Math.round((Date.now() - new Date(date).getTime()) / 1000/60/60/24);
 
 export function RepoCard(props: RepoCardProps) {
   const stars = props.githubStarCount ? props.numStars + props.githubStarCount : props.numStars;
@@ -56,7 +58,7 @@ export function RepoCard(props: RepoCardProps) {
               </span>
                 <Icon width={1} height={12} fill="#E2E8F0" icon="pipe"/>
                 <span className="days-ago">
-                  Updated {props.updatedDaysAgo} days ago
+                  Updated {getUpdatedDaysAgo(props.updatedAt)} days ago
                 </span>
               </div>
               <div className="star-section">
