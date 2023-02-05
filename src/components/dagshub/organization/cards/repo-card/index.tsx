@@ -94,8 +94,8 @@ export function RepoCard(props: RepoCardProps) {
                 <a
                   className={'tag repo-new-topic category-' + topic.categoryColorClass}
                   rel="nofollow"
-                >
                   href={topic.categoryHref}
+                >
                   {topic.name}
                 </a>
               )
