@@ -20,7 +20,7 @@ export function Header(props:HeaderProps) {
             <div className="org-info">
                 <div className={"org-upper-info"}>
                     <span className={"org-upper-info__name"}>{props.orgName}</span>
-                    <span className={"org-upper-info__plan"}>{props.orgPlan}</span>
+                    <span className={"org-upper-info__plan"}>{props.orgPlan} plan</span>
                 </div>
                 {props.orgSite&&<div className={"org-info__org-site"}>
                     <Icon icon={"outline-link"} width={18} height={18} fill={"#64748B"}/>

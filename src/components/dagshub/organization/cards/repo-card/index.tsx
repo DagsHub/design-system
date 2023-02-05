@@ -9,10 +9,9 @@ import "./repo.scss"
 export interface Topic {
   id: number;
   name: string;
-  categoryId: {
-    showExplore: boolean;
-    colorClassName: string;
-  };
+  categoryShowExplore: boolean;
+  categoryColorClass: string;
+  categoryHref:string;
 }
 
 export interface Team {
@@ -40,7 +39,7 @@ export interface RepoCardProps {
   //link
 }
 
-const getUpdatedDaysAgo = (date: string): number => 
+const getUpdatedDaysAgo = (date: string): number =>
     Math.round((Date.now() - new Date(date).getTime()) / 1000/60/60/24);
 
 export function RepoCard(props: RepoCardProps) {
@@ -91,16 +90,14 @@ export function RepoCard(props: RepoCardProps) {
               <div className="tag public-private">{props.isPrivate ? 'private' : 'public'}</div>
             </div>
             {props.topics?.map((topic: Topic) =>
-              topic.categoryId.showExplore ? (
+              topic.categoryShowExplore&& (
                 <a
-                  className={'tag repo-new-topic category-' + topic.categoryId.colorClassName}
+                  className={'tag repo-new-topic category-' + topic.categoryColorClass}
                   rel="nofollow"
                 >
-                  {/* href="{{if $.PageIsExplore}}{{$.Link}}{{else}}/explore/repos{{end}}?topics={{if $isSelected}}{{RemoveItemFromList (print $category ":" $topic.Topic.Name) $.General.TopicsSelected}}{{else}}{{if $.General.TopicsSelected}}{{$.General.TopicsSelected}},{{end}}{{$category}}:{{$topic.Topic.Name}}{{end}}"> */}
+                  href={topic.categoryHref}
                   {topic.name}
                 </a>
-              ) : (
-                <></>
               )
             )}
           </div>

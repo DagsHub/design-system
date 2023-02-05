@@ -42,7 +42,7 @@ export function OrganizationPlanSettingsTab(props:OrganizationPlanSettingsTabPro
                 </p>
                 <p className="questions-text">
                     Questions?
-                    <a href={""} className="questions-text__mail">
+                    <a target="_blank" href="mailto:sales@dagshub.com" className="questions-text__mail">
                         Contact us at sales@dagshub.com
                         <Icon icon="outline-arrow-sm-right" fill={"#5467DE"} width={9.33} height={8}/>
                     </a>

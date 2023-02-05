@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../../../styles/root.scss';
-import {GenericModal} from "../generic-modal/index";
+import {GenericModal} from "../generic-modal";
 import {RepoCard, RepoCardProps} from "../../cards/repo-card"
 import {Button, ButtonVariant} from "../../../../elements";
 import "./mini-repo-cards-modal.scss";
@@ -21,16 +21,16 @@ export function MiniRepoCardsModal(props:MiniRepoCardsModalProps){
                                         numStars= {repo.numStars}
                                         githubStarCount= {repo.githubStarCount}
                                         isFork= {repo.isFork}
-                                        updatedDaysAgo= {repo.updatedDaysAgo}
+                                        updatedAt={repo.updatedAt}
                                         isStaring= {repo.isStaring}
-                                        repoName= {repo.repoName}
+                                        name={repo.name}
                                         isPrivate= {repo.isPrivate}
-                                        repoDescription= {repo.repoDescription}
+                                        description= {repo.description}
                                         numForks= {repo.numForks}
                                         numOpenPulls= {repo.numOpenPulls}
                                         numOpenIssues= {repo.numOpenIssues}
                                         topics={repo.topics}
-                                        repoTeams= {repo.repoTeams}/>)
+                                        teams={repo.teams}/>)
             )}
         </div>
     )
