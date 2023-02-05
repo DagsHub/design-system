@@ -1,6 +1,9 @@
 {
   "name": "@dagshub/ui",
-  "repository": "https://github.com/dagshub/design-system.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dagshub/design-system.git"
+  },
   "version": "0.0.1",
   "description": "A component library for consuming dagshub user interfaces.",
   "main": "dist/cjs/index.js",
@@ -16,9 +19,12 @@
     "deploy-storybook": "npm run build",
     "fmt": "prettier --write src/",
     "prepublishOnly": "npm run build",
-    "publish": "npm publish --access=public --scope=@dagshub/ui"
+    "publish": "npm publish --access=public --scope=@dagshub/ui",
+    "chromatic": "npx chromatic --project-token=\"$CHROMATIC_PROJECT_TOKEN\""
   },
-  "author": "Dagshub",
+  "author": {
+    "name": "Dagshub"
+  },
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.20.7",
@@ -46,6 +52,7 @@
     "@types/react-dom": "^18.0.10",
     "auto": "^10.37.6",
     "babel-loader": "^8.3.0",
+    "chromatic": "^6.15.0",
     "copy-to-clipboard": "^3.3.3",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.3",
@@ -73,5 +80,11 @@
     "@storybook/cli": "^7.0.0-beta.20",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/dagshub/design-system/issues"
+  },
+  "readme": "ERROR: No README data found!",
+  "homepage": "https://github.com/dagshub/design-system#readme",
+  "_id": "@dagshub/ui@0.0.1"
 }
