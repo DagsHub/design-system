@@ -9,7 +9,7 @@
     gap: 24px;
     align-items: center;
     a{
-        text-decoration: none;
+        text-decoration: none!important;
     }
 }
 
@@ -33,6 +33,7 @@
     .org-upper-info__name{
         font-weight: 600;
         font-size: 24px;
+        color: #172D32;
     }
 
     .org-upper-info__plan{
