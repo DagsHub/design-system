@@ -8,6 +8,7 @@ export interface HeaderProps{
     orgName:string;
     orgSite?:string;
     orgPlan:string;
+    orgLink:string;
 }
 
 export function Header(props:HeaderProps) {
@@ -19,7 +20,7 @@ export function Header(props:HeaderProps) {
             </div>
             <div className="org-info">
                 <div className={"org-upper-info"}>
-                    <span className={"org-upper-info__name"}>{props.orgName}</span>
+                    <a href={props.orgLink} className={"org-upper-info__name"}>{props.orgName}</a>
                     <span className={"org-upper-info__plan"}>{props.orgPlan} plan</span>
                 </div>
                 {props.orgSite&&<div className={"org-info__org-site"}>

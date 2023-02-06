@@ -59,3 +59,17 @@
     }
   }
 }
+
+.checked{
+  background: transparent;
+  color:#5467DE;
+  border-bottom: 3px solid #5467DE;
+  border-radius: 0px;
+
+  svg path{
+    fill:#5467DE;
+  }
+  .horizontal-menu-tab__counter{
+    background: #EEF0FC;
+  }
+}
