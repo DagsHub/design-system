@@ -18,7 +18,7 @@ export interface HorizontalMenuTabProps{
 export function HorizontalMenuTab({
     text,
     icon = null, 
-    count = 0,
+    count,
     href = '/',
     checked = false,
     Wrapper = ({ children }) => <>{children}</>,
