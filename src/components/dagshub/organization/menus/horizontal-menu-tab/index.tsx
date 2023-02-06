@@ -1,23 +1,33 @@
+
+import React from 'react';
+import classNames from "classnames";
+import {IconProps} from "../../../../icons";
+
 import './horizontal-menu-tab.scss';
 import '../../../../styles/root.scss';
-import React from 'react';
-import {IconProps} from "../../../../icons";
-import classNames from "classnames";
 
 export interface HorizontalMenuTabProps{
     text: string;
-    icon?: React.ReactElement<IconProps>;
+    icon?: React.ReactElement<IconProps> | null;
     count?: number;
-    href?:string;
-    checked?:boolean;
+    href?: string;
+    checked?: boolean;
+    Wrapper?: (args: { children: React.ReactNode }) => JSX.Element;
 }
 
-export function HorizontalMenuTab(props:HorizontalMenuTabProps) {
-    return (
-        <a href={props.href?props.href:undefined}  className={classNames("horizontal-menu-tab",props.checked?"tab_checked":"")}>
-            {props.icon && <div>{props.icon}</div>}
-            {props.text}
-            {props.count && <div className={"horizontal-menu-tab__counter"}>{props.count}</div>}
+export function HorizontalMenuTab({
+    text,
+    icon = null, 
+    count = 0,
+    href = '/',
+    checked = false,
+    Wrapper = ({ children }) => <>{children}</>,
+}: HorizontalMenuTabProps) {
+    return React.createElement(Wrapper, null, (
+        <a href={href} className={classNames("horizontal-menu-tab", { tab_checked: checked })}>
+            {icon && <div>{icon}</div>}
+            {text}
+            {count && <div className="horizontal-menu-tab__counter">{count}</div>}
         </a>
-    )
+    ));
 }

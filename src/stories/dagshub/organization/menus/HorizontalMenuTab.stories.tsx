@@ -33,13 +33,19 @@ Primary3.args = {
 
 export const Primary4 = Template.bind({});
 Primary4.args = {
-    text:"People",
-    icon:<Icon icon={"outline-users"} width={20} height={20}/>,
-    count:10
+    text: "People",
+    icon: <Icon icon="outline-users" width={20} height={20} />,
+    count: 10,
 };
 
 export const Primary5 = Template.bind({});
 Primary5.args = {
     text:"Settings",
-    icon:<Icon icon={"outline-cog"} width={22} height={22}/>
+    icon:<Icon icon="outline-cog" width={22} height={22} />
+};
+export const Primary6 = Template.bind({});
+Primary6.args = {
+    text: "With Wrapper",
+    icon: <Icon icon={"outline-cog"} width={22} height={22} />,
+    Wrapper: ({ children }) => <div style={{ background: 'red' }}>{children}</div>,
 };
