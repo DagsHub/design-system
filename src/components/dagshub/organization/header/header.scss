@@ -8,6 +8,9 @@
     flex-direction: row;
     gap: 24px;
     align-items: center;
+    a{
+        text-decoration: none;
+    }
 }
 
 .organization-header__org-image >img{

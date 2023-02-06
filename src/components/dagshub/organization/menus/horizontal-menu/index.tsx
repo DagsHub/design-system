@@ -11,7 +11,7 @@ export function HorizontalMenu(props:HorizontalMenuProps) {
     return (
         <div className={"horizontal-menu"}>
             {props.tabs?.map((tab)=>
-                <HorizontalMenuTab text={tab.text} count={tab.count} icon={tab.icon}/>
+                <HorizontalMenuTab text={tab.text} count={tab.count} icon={tab.icon} href={tab.href} checked={tab.checked}/>
             )}
         </div>
     )

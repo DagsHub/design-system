@@ -14,7 +14,7 @@ export interface HorizontalMenuTabProps{
 
 export function HorizontalMenuTab(props:HorizontalMenuTabProps) {
     return (
-        <a href={props.href?props.href:undefined} type="button" className={classNames("horizontal-menu-tab ",props.checked?"checked":"")}>
+        <a href={props.href?props.href:undefined}  className={classNames("horizontal-menu-tab ",props.checked?"checked":"")}>
             {props.icon && <div>{props.icon}</div>}
             {props.text}
             {props.count && <div className={"horizontal-menu-tab__counter"}>{props.count}</div>}
