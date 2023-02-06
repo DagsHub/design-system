@@ -1,4 +1,4 @@
-.card-empty-state{
+.card-empty-state {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,11 +14,11 @@
     background: #FFFFFF;
     border: 2px dashed #E2E8F0;
     border-radius: 12px;
-}
+    white-space: pre-line;
 
-.card-empty-state__text{
-    font-weight: 500;
-    color: #64748B;
-    text-align: center;
+    &__text {
+        font-weight: 500;
+        color: #64748B;
+        text-align: center;
+    }
 }
-

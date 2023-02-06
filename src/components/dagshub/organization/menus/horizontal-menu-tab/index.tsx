@@ -25,9 +25,13 @@ export function HorizontalMenuTab({
 }: HorizontalMenuTabProps) {
     return React.createElement(Wrapper, null, (
         <a href={href} className={classNames("horizontal-menu-tab", { tab_checked: checked })}>
-            {icon && <div>{icon}</div>}
+            {icon && (
+                <div>{icon}</div>
+            )}
             {text}
-            {count && <div className="horizontal-menu-tab__counter">{count}</div>}
+            {count && (
+                <div className="horizontal-menu-tab__counter">{count}</div>
+            )}
         </a>
     ));
 }
