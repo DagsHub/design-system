@@ -18,7 +18,7 @@ export interface TeamTableProps {
 }
 
 export interface Member{
-    username:string;
+    userName:string;
     fullName:string;
     homeLink:string;
     relAvatarLink:string;
