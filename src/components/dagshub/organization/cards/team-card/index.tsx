@@ -25,7 +25,7 @@ export function TeamCard({
                     <a className={"view-all"} href={teamLink}>View all</a>
                 </div>
             </div>
-            {teamDescription&&<div className="team-card__team-description">{teamDescription}</div>}
+            <div className="team-card__team-description">{teamDescription?teamDescription:""}</div>
 
         </div>
     );
