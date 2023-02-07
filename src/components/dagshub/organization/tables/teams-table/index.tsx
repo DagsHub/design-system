@@ -16,6 +16,9 @@ export interface TeamTableProps {
   teamDescription?:string;
   teamPermission?:UserPermissionForTeam;
   teamRepos?:Repo[];
+  handleClickOnCollapse:void;
+  style:string;
+  isActive:Boolean;
 }
 
 export interface Repo{
@@ -27,14 +30,6 @@ export interface Repo{
 //add (you) annotation to relevant user
 
 export function TeamTable(props:TeamTableProps) {
-    const [style, setStyle] = useState("none");
-    const [isActive, setActive] =useState(false)
-
-    const handleClick = () => {
-        setActive(current=>!current)
-        setStyle(style => style==="none"? style = "flex": style="none")
-    };
-
     let header:Row;
     header={
       columns: [
@@ -64,18 +59,18 @@ export function TeamTable(props:TeamTableProps) {
                       label={"Remove from team"} width={175}
               />
           ],
-          style: userIndex>6?{display:style}:{}
+          style: userIndex>6?{display:props.style}:{}
         }
         rows.push(row);
     });
 
     let row :Row={
       columns: [
-        <span>{isActive?"Collapse":"See all team members"}</span>,
-        <Icon width={8} height={4.8} fill="#172D32" icon={isActive? "solid-cheveron-up":"solid-cheveron-down"}/>
+        <span>{props.isActive?"Collapse":"See all team members"}</span>,
+        <Icon width={8} height={4.8} fill="#172D32" icon={props.isActive? "solid-cheveron-up":"solid-cheveron-down"}/>
       ],
       rowClasses: "table__collapse",
-      onClick: handleClick
+      onClick: props.handleClickOnCollapse
     }
     rows.push(row);
 
