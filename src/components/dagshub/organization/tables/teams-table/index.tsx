@@ -39,7 +39,7 @@ export function TeamTable(props:TeamTableProps) {
           <span className="teams-table-left-side-header__team-description">{props.teamDescription}</span>
         </span>,
         <span className="teams-table-right-side-header">
-            <Button variant={ButtonVariant.Ghost} stretch={ButtonStretch.Slim}
+            <Button variant={ButtonVariant.Ghost} stretch={ButtonStretch.Slim} width={209}
                     iconLeft={<Icon width={10.67} height={10.67} fill="#172D32" icon="solid-plus"/>}
                     label={"Add new team member"}
             />
