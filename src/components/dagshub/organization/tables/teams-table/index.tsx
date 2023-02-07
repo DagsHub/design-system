@@ -16,7 +16,8 @@ export interface TeamTableProps {
   teamDescription?:string;
   teamPermission?:UserPermissionForTeam;
   teamRepos?:Repo[];
-  handleClickOnCollapse:void;
+  handleClickOnCollapse: (index: number)=>void;
+  index:number;
   style:string;
   isActive:Boolean;
 }
@@ -70,7 +71,7 @@ export function TeamTable(props:TeamTableProps) {
         <Icon width={8} height={4.8} fill="#172D32" icon={props.isActive? "solid-cheveron-up":"solid-cheveron-down"}/>
       ],
       rowClasses: "table__collapse",
-      onClick: props.handleClickOnCollapse
+      onClick: ()=>props.handleClickOnCollapse(props.index)
     }
     rows.push(row);
 
