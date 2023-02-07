@@ -10,9 +10,9 @@ import '../generic-table/table.scss';
 import "./teams-table.scss"
 
 export interface TeamTableProps {
-  members:Member[];
+  members?:Member[];
   teamName:string;
-  teamDescription:string;
+  teamDescription?:string;
   teamPermission?:UserPermissionForTeam;
   teamRepos?:Repo[];
 }
@@ -62,10 +62,10 @@ export function TeamTable(props:TeamTableProps) {
     }
 
     let rows: Row[]=[];
-    props.members.forEach((member, userIndex)=> {
+    props.members?.forEach((member, userIndex)=> {
         let row :Row={
           columns: [
-            <UserInfo imageSource={member.relAvatarLink} fullName={member.fullName} userName={member.username}/>,
+            <UserInfo imageSource={member.relAvatarLink} fullName={member.fullName} userName={member.userName}/>,
               <Button variant={ButtonVariant.Secondary}
                       iconRight={<Icon width={12} height={13.33} fill="#111827" icon="outline-trash"/>}
                       label={"Remove from team"} width={175}
