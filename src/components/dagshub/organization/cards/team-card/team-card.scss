@@ -1,0 +1,62 @@
+.team-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 16px;
+  padding-left: 16px;
+  gap: 4px;
+  width: 596px;
+  height: 72px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  font-family: "Inter";
+  font-style: normal;
+  color: #172D32;
+  box-sizing: border-box;
+}
+
+.team-card-header{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.team-card-header__team-name{
+
+}
+
+.team-card-header__right-side{
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration-line: underline;
+  .view-all{
+    flex-shrink: 0;
+    color: #172D32;
+  }
+}
+
+.team-card__team-description{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  height: 20px;
+  margin: 0px!important;
+  white-space: nowrap;
+}

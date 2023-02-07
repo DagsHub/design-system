@@ -1,5 +1,6 @@
 export * from '../organization/cards/repo-card';
 export * from '../organization/cards/card-empty-state';
+export * from '../organization/cards/team-card';
 export * from '../organization/header';
 export * from '../organization/menus/vertical-menu';
 export * from '../organization/menus/vertical-menu-tab';
