@@ -2,18 +2,13 @@ import React from 'react';
 import '../../../../styles/root.scss';
 import "./team-card.scss"
 import {ProfileImageList} from "../../profiles/profile-image-list";
+import {Member} from "../../tables/shared-classes";
 
 export interface TeamCardProps {
     teamName:string;
     teamDescription?:string;
     teamMembers:Member[];
     teamLink:string;
-}
-
-export interface Member{
-    username:string;
-    homeLink:string;
-    relAvatarLink:string;
 }
 
 export function TeamCard({

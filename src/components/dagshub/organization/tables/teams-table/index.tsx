@@ -4,7 +4,8 @@ import '../../../../styles/root.scss';
 import {Row, GenericTable} from "../generic-table";
 import {UserInfo} from "../../profiles/user-info";
 import {UserPermissionForTeam} from "../shared-classes";
-  import {Button, ButtonStretch, ButtonVariant} from "../../../../elements";
+import {Button, ButtonStretch, ButtonVariant} from "../../../../elements";
+import {Member} from "../shared-classes";
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import "./teams-table.scss"
@@ -16,14 +17,6 @@ export interface TeamTableProps {
   teamPermission?:UserPermissionForTeam;
   teamRepos?:Repo[];
 }
-
-export interface Member{
-    userName:string;
-    fullName:string;
-    homeLink:string;
-    relAvatarLink:string;
-}
-
 
 export interface Repo{
   name:string;

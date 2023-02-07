@@ -4,3 +4,11 @@ export enum UserPermissionForTeam {
     WriteAccess = 'Write access',
     ReadAccess =  'Read access'
 }
+
+export interface Member{
+    userName:string;
+    fullName:string;
+    homeLink:string;
+    relAvatarLink:string;
+}
+
