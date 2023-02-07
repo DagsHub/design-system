@@ -29,7 +29,7 @@ export function HorizontalMenuTab({
                 <div>{icon}</div>
             )}
             {text}
-            {(count!=undefined&&count>0) &&(
+            {(!!count&&count>0) &&(
                 <div className="horizontal-menu-tab__counter">{count}</div>
             )}
         </a>
