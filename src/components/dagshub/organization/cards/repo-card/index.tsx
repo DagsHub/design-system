@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from "../../../../icons";
-;
+
 import '../../../../styles/root.scss';
 import "./repo.scss";
 
