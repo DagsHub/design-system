@@ -17,6 +17,14 @@ export const primary = Template.bind({});
 primary.args = {
     teamName: "Devops",
     teamDescription: "This is a team description text This is a team description text This is a team description text This is a team description text",
-    teamMembersImages: [imageLink,imageLink,imageLink,imageLink,imageLink,imageLink,imageLink,imageLink],
+    teamMembers: [
+        {name:"user1", homeLink:imageLink, relAvatarLink:imageLink},
+        {name:"user2", homeLink:imageLink, relAvatarLink:imageLink},
+        {name:"user3", homeLink:imageLink, relAvatarLink:imageLink},
+        {name:"user4", homeLink:imageLink, relAvatarLink:imageLink},
+        {name:"user5", homeLink:imageLink, relAvatarLink:imageLink},
+        {name:"user6", homeLink:imageLink, relAvatarLink:imageLink},
+        {name:"user7", homeLink:imageLink, relAvatarLink:imageLink}
+    ],
     teamLink:imageLink
 };
