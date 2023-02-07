@@ -171,7 +171,7 @@ export function RepoCard({
                 </div>
                 {!isMini && (
                   <div className="belongs-to">
-                    {teams?.length && 'Belongs to: '}
+                    {teams?.length>0? 'Belongs to: ':""}
                     {teams?.map((team: { name: string }, index: number) => (
                       <span>
                         <span>{index ? ', ' : ''}</span>

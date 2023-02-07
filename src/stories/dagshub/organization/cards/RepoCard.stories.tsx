@@ -19,29 +19,29 @@ Primary.args = {
   numStars: 5,
   githubStarCount: 0,
   isFork: false,
-  updatedDaysAgo: 8,
+  updatedAt: "8",
   isStaring: true,
-  repoName: 'Regular Repository',
+  name: 'Regular Repository',
   isPrivate: true,
-  repoDescription:
+  description:
     'RPPP – Reddit Post Popularity Predictor\n A project with two goals: 1. Given a Reddit post, predict how popular it’s going to be (what it’s score will be) 2. Showcasing a remote working file system with DV…',
   numForks: 0,
   numOpenPulls: 2,
   numOpenIssues: 3,
   topics: [
-    { id: 1, name: 'general', categoryId: { colorClassName: 'general', showExplore: false } },
-    { id: 2, name: 'type', categoryId: { colorClassName: 'type', showExplore: true } },
-    { id: 3, name: 'task', categoryId: { colorClassName: 'task', showExplore: true } },
-    { id: 4, name: 'data domain', categoryId: { colorClassName: 'data_domain', showExplore: true } },
-    { id: 5, name: 'integration', categoryId: { colorClassName: 'integration', showExplore: true } },
-    { id: 6, name: 'framework', categoryId: { colorClassName: 'framework', showExplore: true } },
-    { id: 7, name: 'type', categoryId: { colorClassName: 'type', showExplore: true } },
-    { id: 8, name: 'task', categoryId: { colorClassName: 'task', showExplore: true } },
-    { id: 9, name: 'data domain',categoryId: { colorClassName: 'data_domain', showExplore: true } },
-    { id: 10, name: 'integration', categoryId: { colorClassName: 'integration', showExplore: true } },
-    { id: 11, name: 'framework', categoryId: { colorClassName: 'framework', showExplore: true } }
+    { id: 1, name: 'general', categoryColorClass: 'general', categoryShowExplore: false, categoryHref:""},
+    { id: 2, name: 'type', categoryColorClass: 'type', categoryShowExplore: true, categoryHref:""},
+    { id: 3, name: 'task', categoryColorClass: 'task', categoryShowExplore: true, categoryHref:""},
+    { id: 4, name: 'data domain', categoryColorClass: 'data_domain', categoryShowExplore: true, categoryHref:""},
+    { id: 5, name: 'integration', categoryColorClass: 'integration', categoryShowExplore: true, categoryHref:""},
+    { id: 6, name: 'framework', categoryColorClass: 'framework', categoryShowExplore: true, categoryHref:""},
+    { id: 7, name: 'type', categoryColorClass: 'type', categoryShowExplore: true, categoryHref:""},
+    { id: 8, name: 'task', categoryColorClass: 'task', categoryShowExplore: true, categoryHref:""},
+    { id: 9, name: 'data domain',categoryColorClass: 'data_domain', categoryShowExplore: true, categoryHref:""},
+    { id: 10, name: 'integration', categoryColorClass: 'integration', categoryShowExplore: true, categoryHref:""},
+    { id: 11, name: 'framework', categoryColorClass: 'framework', categoryShowExplore: true, categoryHref:""}
   ],
-  repoTeams: [
+  teams: [
     { id: 1, name: 'team1' },
     { id: 2, name: 'team2' },
     { id: 3, name: 'team3' },
@@ -63,23 +63,23 @@ Secondary.args = {
   numStars: 5,
   githubStarCount: 3,
   isFork: false,
-  updatedDaysAgo: 6,
+  updatedAt: "6",
   isStaring: false,
-  repoName: 'Mirrored Repository',
+  name: 'Mirrored Repository',
   isPrivate: false,
-  repoDescription:
+  description:
     'RPPP – Reddit Post Popularity Predictor\n A project with two goals: 1. Given a Reddit post, predict how popular it’s going to be (what it’s score will be) 2. Showcasing a remote working file system with DV…',
   numForks: 0,
   numOpenPulls: 2,
   numOpenIssues: 3,
   topics: [
-    { id: 1, name: 'general', categoryId: { colorClassName: 'general', showExplore: false } },
-    { id: 2, name: 'type', categoryId: { colorClassName: 'type', showExplore: true } },
-    { id: 3, name: 'task', categoryId: { colorClassName: 'task', showExplore: true } },
-    { id: 4, name: 'data domain', categoryId: { colorClassName: 'data_domain', showExplore: true } },
-    { id: 5, name: 'integration', categoryId: { colorClassName: 'integration', showExplore: true } }
+    { id: 1, name: 'general', categoryColorClass: 'general', categoryShowExplore: false, categoryHref:""},
+    { id: 2, name: 'type', categoryColorClass: 'type', categoryShowExplore: true, categoryHref:""},
+    { id: 3, name: 'task', categoryColorClass: 'task', categoryShowExplore: true, categoryHref:""},
+    { id: 4, name: 'data domain', categoryColorClass: 'data_domain', categoryShowExplore: true, categoryHref:""},
+    { id: 5, name: 'integration', categoryColorClass: 'integration', categoryShowExplore: true, categoryHref:""}
   ],
-  repoTeams: [
+  teams: [
     { id: 1, name: 'team1' },
     { id: 2, name: 'team2' },
     { id: 3, name: 'team3' },
@@ -95,19 +95,19 @@ Tertiary.args = {
   numStars: 0,
   githubStarCount: 0,
   isFork: true,
-  updatedDaysAgo: 6,
+  updatedAt: "6",
   isStaring: false,
-  repoName: 'Forked Repository',
+  name: 'Forked Repository',
   isPrivate: false,
-  repoDescription:
+  description:
     'RPPP – Reddit Post Popularity Predictor\n A project with two goals: 1. Given a Reddit post, predict how popular it’s going to be (what it’s score will be) 2. Showcasing a remote working file system with DV…',
   numForks: 3,
   numOpenPulls: 2,
   numOpenIssues: 3,
   topics: [
-    { id: 1, name: 'general', categoryId: { colorClassName: 'general', showExplore: false } },
-    { id: 4, name: 'data domain', categoryId: { colorClassName: 'data_domain', showExplore: true } },
-    { id: 5, name: 'integration', categoryId: { colorClassName: 'integration', showExplore: true } }
+    { id: 1, name: 'general', categoryColorClass: "general", categoryShowExplore: false, categoryHref:""},
+    { id: 4, name: 'data domain', categoryColorClass: 'data_domain', categoryShowExplore: true, categoryHref:"" },
+    { id: 5, name: 'integration', categoryColorClass: 'integration', categoryShowExplore: true, categoryHref:"" }
   ],
-  repoTeams: []
+  teams: []
 };
