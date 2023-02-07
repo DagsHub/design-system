@@ -42,7 +42,7 @@ export const Button = ({
   const classes = classNames([`dagshub-btn`, variant, stretch, className], { fullWidth });
 
   return (
-    <button type="button" style={{width:width}} aria-label={label} className={classes} disabled={disabled} {...props}>
+    <button type="button" style={{width:width? width:"auto"}} aria-label={label} className={classes} disabled={disabled} {...props}>
       <div className="button__content">
         {iconLeft?iconLeft:<></>}
         {label}

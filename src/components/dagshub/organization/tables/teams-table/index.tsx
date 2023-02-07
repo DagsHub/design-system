@@ -10,22 +10,20 @@ import '../generic-table/table.scss';
 import "./teams-table.scss"
 
 export interface TeamTableProps {
-  users:User[];
-  team:Team;
+  members:Member[];
+  teamName:string;
+  teamDescription:string;
+  teamPermission?:UserPermissionForTeam;
+  teamRepos?:Repo[];
 }
 
-export interface User{
-  userImage: string,
-  fullName: string,
-  username: string
+export interface Member{
+    username:string;
+    fullName:string;
+    homeLink:string;
+    relAvatarLink:string;
 }
 
-interface Team {
-  name:string;
-  description:string;
-  teamPermission:UserPermissionForTeam;
-  teamRepos:Repo[];
-}
 
 export interface Repo{
   name:string;
@@ -48,8 +46,8 @@ export function TeamTable(props:TeamTableProps) {
     header={
       columns: [
         <span className="teams-table-left-side-header">
-          <span className="teams-table-left-side-header__team-name">{props.team.name}</span>
-          <span className="teams-table-left-side-header__team-description">{props.team.description}</span>
+          <span className="teams-table-left-side-header__team-name">{props.teamName}</span>
+          <span className="teams-table-left-side-header__team-description">{props.teamDescription}</span>
         </span>,
         <span className="teams-table-right-side-header">
             <Button variant={ButtonVariant.Ghost} stretch={ButtonStretch.Slim}
@@ -64,10 +62,10 @@ export function TeamTable(props:TeamTableProps) {
     }
 
     let rows: Row[]=[];
-    props.users.forEach((user, userIndex)=> {
+    props.members.forEach((member, userIndex)=> {
         let row :Row={
           columns: [
-            <UserInfo imageSource={user.userImage} fullName={user.fullName} userName={user.username}/>,
+            <UserInfo imageSource={member.relAvatarLink} fullName={member.fullName} userName={member.username}/>,
               <Button variant={ButtonVariant.Secondary}
                       iconRight={<Icon width={12} height={13.33} fill="#111827" icon="outline-trash"/>}
                       label={"Remove from team"} width={175}
@@ -95,13 +93,13 @@ export function TeamTable(props:TeamTableProps) {
           <span className="teams-table-footer-left-section__permission-text">
             Team has
             <span className="teams-table-footer-left-section__permission-label">
-              {props.team.teamPermission}
+              {props.teamPermission}
               <Icon width={10} height={6} fill="#172D32" icon="solid-cheveron-down"/>
             </span>
             to following repositories:
           </span>
           <span className="team-repos">
-            {props.team.teamRepos?.map((repo: Repo) =>
+            {props.teamRepos?.map((repo: Repo) =>
               <span className="team-repos__repo">
                 <Icon width={16} height={21} fill="#172D32" icon="outline-repository-github"/>
                 {repo.name}
