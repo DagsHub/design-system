@@ -124,7 +124,9 @@ export function RepoCard({
               </p>
             </div>
             <div className="repo-information">
-              {!isMini && <Icon width={564} height={1} fill="#E2E8F0" icon="divider"/>:<></>}
+              {!isMini && (
+                <Icon width={564} height={1} fill="#E2E8F0" icon="divider" />
+              )}
               <div className="repo-info-text">
                 <div className="stats">
                   <a
