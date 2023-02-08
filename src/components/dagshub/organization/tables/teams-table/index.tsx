@@ -57,7 +57,7 @@ export function TeamTable(props:TeamTableProps) {
             <UserInfo imageSource={member.relAvatarLink} fullName={member.fullName} userName={member.userName}/>,
               <Button variant={ButtonVariant.Secondary}
                       iconRight={<Icon width={12} height={13.33} fill="#111827" icon="outline-trash"/>}
-                      label={"Remove from team"} width={175}
+                      label={"Remove from team"} width={177}
               />
           ],
           style: userIndex>6?{display:props.style}:{}
