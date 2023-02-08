@@ -14,7 +14,7 @@ export interface TeamTableProps {
   members?: Member[];
   teamName: string;
   teamDescription?: string;
-  teamPermission?: UserPermissionForTeam;
+  teamPermission: UserPermissionForTeam;
   teamRepos?: Repo[];
   handleClickOnCollapse: (index: number) => void;
   index: number;
@@ -35,7 +35,7 @@ export function TeamTable(props: TeamTableProps) {
   header = {
     columns: [
       <span className="teams-table-left-side-header">
-        <span className="teams-table-left-side-header__team-name">{props.teamName}</span>
+        <span className="teams-table-left-side-header__team-name">{props.teamName} TEAM</span>
         <span className="teams-table-left-side-header__team-description">
           {props.teamDescription}
         </span>

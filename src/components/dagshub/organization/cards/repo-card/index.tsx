@@ -20,11 +20,11 @@ export interface Team {
 export interface RepoCardProps {
   isMini?: boolean;
   teams?: Team[];
-  topics?: Topic[];
+  topics: Topic[];
   isMirror: boolean;
-  IsGithubIntegrated?: boolean;
+  IsGithubIntegrated: boolean;
   numStars: number;
-  githubStarCount?: number;
+  githubStarCount: number;
   isFork: boolean;
   isStaring?: boolean;
   name: string;
@@ -34,6 +34,12 @@ export interface RepoCardProps {
   numOpenPulls: number;
   numOpenIssues: number;
   updatedAt: string;
+  repoNameHref: string;
+  starActionLink: string;
+  starNumberLink: string;
+  forksHref: string;
+  issuesHref: string;
+  pullsHref: string;
 }
 
 const getUpdatedDaysAgo = (date: string): number =>
@@ -55,9 +61,15 @@ export function RepoCard({
   numForks,
   numOpenPulls,
   numOpenIssues,
-  updatedAt
+  updatedAt,
+   repoNameHref,
+   starActionLink,
+   starNumberLink,
+   forksHref,
+   issuesHref,
+   pullsHref
 }: RepoCardProps) {
-  const stars = githubStarCount ? numStars + githubStarCount : numStars;
+  const stars = IsGithubIntegrated? githubStarCount + numStars : numStars;
   return (
     <>
       <div className="desktop-repo card">
@@ -73,12 +85,12 @@ export function RepoCard({
                 <span className="days-ago">Updated {getUpdatedDaysAgo(updatedAt)} days ago</span>
               </div>
               <div className="star-section">
-                <a className="star-number" href="{{.Repo.Link}}/stars">
+                <a className="star-number" href={starNumberLink}>
                   {stars}
                 </a>
                 <a
                   className="star-action"
-                  href="{{.Repo.HTMLURL}}/action/{{if $isStaring}}un{{end}}star?redirect_to={{.General.Link}}{{QueryParam .General.QueryParameters}}"
+                  href={starActionLink}
                 >
                   <i className={!isStaring ? 'star' : 'star-outline'} />
                   {isStaring ? (
@@ -97,7 +109,7 @@ export function RepoCard({
             <div className="repo-name">
               <a
                 className="title1 cut-text"
-                href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}"
+                href={repoNameHref}
               >
                 {name}
               </a>
@@ -126,7 +138,7 @@ export function RepoCard({
                 <div className="stats">
                   <a
                     className="stat-block"
-                    href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}/forks"
+                    href={forksHref}
                   >
                     <Icon width={10.29} height={12} fill="#475569" icon="outline-fork" />
                     <p>{numForks}</p>
@@ -134,7 +146,7 @@ export function RepoCard({
                   {!isMirror && (
                     <a
                       className="stat-block"
-                      href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}/pulls"
+                      href={pullsHref}
                     >
                       <Icon
                         width={15}
@@ -147,7 +159,7 @@ export function RepoCard({
                   )}
                   <a
                     className="stat-block"
-                    href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}/issues"
+                    href={issuesHref}
                   >
                     <Icon width={14.67} height={14.67} fill="#475569" icon="outline-issue" />
                     <p>{numOpenIssues}</p>
@@ -156,7 +168,7 @@ export function RepoCard({
                     <div className="star-section">
                       <a
                         className="star-action"
-                        href="{{.Repo.HTMLURL}}/action/{{if $isStaring}}un{{end}}star?redirect_to={{.General.Link}}{{QueryParam .General.QueryParameters}}"
+                        href={starActionLink}
                       >
                         <i className={!isStaring ? 'star' : 'start-outline'}></i>
                         {isStaring ? (
@@ -165,7 +177,7 @@ export function RepoCard({
                           <Icon width={12} height={11.47} fill="#475569" icon="outline-star" />
                         )}
                       </a>
-                      <a className="star-number" href="{{.Repo.Link}}/stars">
+                      <a className="star-number" href={starNumberLink}>
                         {stars}
                       </a>
                     </div>
