@@ -1,6 +1,11 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import { PeopleTable, MembershipVisibility, PeopleTableProps, UserPermissionForTeam} from '../../../../components/dagshub/organization/tables/people-table';
+import {
+  PeopleTable,
+  MembershipVisibility,
+  PeopleTableProps,
+  UserPermissionForTeam
+} from '../../../../components/dagshub/organization/tables/people-table';
 
 const meta: Meta<PeopleTableProps> = {
   title: 'DagsHub/Org/Tables/PeopleTable',
@@ -9,18 +14,19 @@ const meta: Meta<PeopleTableProps> = {
 
 export default meta;
 
-const Template: StoryFn<PeopleTableProps> = args => <PeopleTable {...args} />;
-const imageLink="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH3HZUQ9Uz5qcOaIwRjQi0jdfJVVUIR-hO9Q&usqp=CAU"
+const Template: StoryFn<PeopleTableProps> = (args) => <PeopleTable {...args} />;
+const imageLink =
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH3HZUQ9Uz5qcOaIwRjQi0jdfJVVUIR-hO9Q&usqp=CAU';
 export const Primary = Template.bind({});
 Primary.args = {
-  users:[
+  users: [
     {
       userImage: imageLink,
-      fullName: "Itay Malka",
-      username: "ItayMalka",
+      fullName: 'Itay Malka',
+      username: 'ItayMalka',
       userTeams: [
         {
-          teamName: "Devops Team",
+          teamName: 'Devops Team',
           userPermissionForTeam: UserPermissionForTeam.AdminAccess
         }
       ],
@@ -28,15 +34,15 @@ Primary.args = {
     },
     {
       userImage: imageLink,
-      fullName: "Tal Malka",
-      username: "TalMalka",
+      fullName: 'Tal Malka',
+      username: 'TalMalka',
       userTeams: [
         {
-          teamName: "Devops Team",
+          teamName: 'Devops Team',
           userPermissionForTeam: UserPermissionForTeam.WriteAccess
         },
         {
-          teamName: "R&D Team",
+          teamName: 'R&D Team',
           userPermissionForTeam: UserPermissionForTeam.ReadAccess
         }
       ],
@@ -44,19 +50,19 @@ Primary.args = {
     },
     {
       userImage: imageLink,
-      fullName: "Shahar Malka",
-      username: "ShaharMalka",
+      fullName: 'Shahar Malka',
+      username: 'ShaharMalka',
       userTeams: [
         {
-          teamName: "Devops Team",
+          teamName: 'Devops Team',
           userPermissionForTeam: UserPermissionForTeam.AdminAccess
         },
         {
-          teamName: "R&D Team",
+          teamName: 'R&D Team',
           userPermissionForTeam: UserPermissionForTeam.WriteAccess
         },
         {
-          teamName: "Product Team",
+          teamName: 'Product Team',
           userPermissionForTeam: UserPermissionForTeam.ReadAccess
         }
       ],

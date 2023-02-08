@@ -7,11 +7,11 @@
   margin-bottom: 8px;
 }
 
-.input-block{
+.input-block {
   position: relative;
 }
 
-.input-block svg{
+.input-block svg {
   position: absolute;
   top: 15.67px;
   right: 17.67px;
@@ -48,22 +48,22 @@
   color: var(--secondary-state-500);
 }
 
-.add-member-modal__dropdown{
+.add-member-modal__dropdown {
   width: 100%;
 }
 
-.add-member-modal__no-teams-text{
+.add-member-modal__no-teams-text {
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   color: #000000;
 }
 
-.add-member-modal__create-team-text{
-  color:#5467DE;
+.add-member-modal__create-team-text {
+  color: #5467de;
 }
 
-.add-member-modal__buttons-section{
+.add-member-modal__buttons-section {
   display: flex;
   flex-direction: column;
   gap: 4px;

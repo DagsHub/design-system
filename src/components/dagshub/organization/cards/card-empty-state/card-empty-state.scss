@@ -1,25 +1,25 @@
 .card-empty-state {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 16px;
-    gap: 16px;
-    height: auto;
-    box-sizing: border-box;
-    font-family: 'Inter';
-    font-style: normal;
-    font-size: 14px;
-    line-height: 20px;
-    background: #FFFFFF;
-    border: 2px dashed #E2E8F0;
-    border-radius: 12px;
-    white-space: pre-line;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  height: auto;
+  box-sizing: border-box;
+  font-family: 'Inter';
+  font-style: normal;
+  font-size: 14px;
+  line-height: 20px;
+  background: #ffffff;
+  border: 2px dashed #e2e8f0;
+  border-radius: 12px;
+  white-space: pre-line;
+  width: 100%;
 
-    &__text {
-        font-weight: 500;
-        color: #64748B;
-        text-align: center;
-    }
+  &__text {
+    font-weight: 500;
+    color: #64748b;
+    text-align: center;
+  }
 }

@@ -1,17 +1,17 @@
-.dagshub-dropdown{
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-    color: var(--color-text-default);
-    height: 32px;
-    padding-left: 8px;
-    padding-right: 9px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--secondary-state-50);
-    border: 1px solid var(--secondary-state-300);
-    border-radius: 12px;
-    cursor: pointer;
+.dagshub-dropdown {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-default);
+  height: 32px;
+  padding-left: 8px;
+  padding-right: 9px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--secondary-state-50);
+  border: 1px solid var(--secondary-state-300);
+  border-radius: 12px;
+  cursor: pointer;
 }

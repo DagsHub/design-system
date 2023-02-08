@@ -1,7 +1,7 @@
-.horizontal-menu-tab{
+.horizontal-menu-tab {
   display: flex;
   width: auto;
-  height:40px;
+  height: 40px;
   padding-left: 16px;
   padding-right: 16px;
   font-family: 'Inter';
@@ -17,12 +17,12 @@
   background: transparent;
   box-sizing: border-box;
   border: 0px;
-  svg path{
-    fill:#94A3B8;
+  svg path {
+    fill: #94a3b8;
   }
 
-  .horizontal-menu-tab__counter{
-    background: #F1F5F9;
+  .horizontal-menu-tab__counter {
+    background: #f1f5f9;
     //border-radius: 12px;
     width: 25px;
     height: 24px;
@@ -32,44 +32,43 @@
     border-radius: 12px;
   }
 
-  &:hover{
-    color:#172D32;
-    background: #F1F5F9;
+  &:hover {
+    color: #172d32;
+    background: #f1f5f9;
     border-radius: 8px;
-    svg path{
-      fill:#172D32;
+    svg path {
+      fill: #172d32;
     }
-    .horizontal-menu-tab__counter{
-      background: #E2E8F0;
+    .horizontal-menu-tab__counter {
+      background: #e2e8f0;
     }
-
   }
 
-  &:focus{
+  &:focus {
     background: transparent;
-    color:#5467DE;
-    border-bottom: 3px solid #5467DE;
+    color: #5467de;
+    border-bottom: 3px solid #5467de;
     border-radius: 0px;
 
-    svg path{
-      fill:#5467DE;
+    svg path {
+      fill: #5467de;
     }
-    .horizontal-menu-tab__counter{
-      background: #EEF0FC;
+    .horizontal-menu-tab__counter {
+      background: #eef0fc;
     }
   }
 }
 
-.tab_checked{
+.tab_checked {
   background: transparent;
-  color:#5467DE;
-  border-bottom: 3px solid #5467DE;
+  color: #5467de;
+  border-bottom: 3px solid #5467de;
   border-radius: 0px;
 
-  svg path{
-    fill:#5467DE;
+  svg path {
+    fill: #5467de;
   }
-  .horizontal-menu-tab__counter{
-    background: #EEF0FC;
+  .horizontal-menu-tab__counter {
+    background: #eef0fc;
   }
 }

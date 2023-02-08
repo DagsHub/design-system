@@ -1,4 +1,4 @@
-.vertical-menu-tab{
+.vertical-menu-tab {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -15,20 +15,19 @@
   line-height: 20px;
 
   color: #475569;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 8px;
   cursor: pointer;
   border: 0px;
 
-  &:focus{
-    color: #4453B3;
-    background: #EEF0FC;
-    border-left: 4px solid #5467DE;
+  &:focus {
+    color: #4453b3;
+    background: #eef0fc;
+    border-left: 4px solid #5467de;
     border-radius: 0px 8px 8px 0px;
     padding-left: 14px;
   }
-  &:hover{
-    background: #F1F5F9;
+  &:hover {
+    background: #f1f5f9;
   }
-
 }

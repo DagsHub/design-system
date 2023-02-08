@@ -1,8 +1,8 @@
-.vertical-menu{
+.vertical-menu {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  .vertical-menu__title{
+  .vertical-menu__title {
     width: 224px;
     height: 24px;
     font-family: 'Inter';
@@ -12,7 +12,7 @@
     line-height: 24px;
     color: #000000;
   }
-  .vertical-menu__tabs{
+  .vertical-menu__tabs {
     width: 100%;
     height: auto;
     display: flex;

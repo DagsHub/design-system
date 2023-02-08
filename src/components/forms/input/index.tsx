@@ -13,7 +13,7 @@ export interface InputProps {
   disabled?: boolean;
   className?: string;
   maxWidth?: string;
-  width?:number;
+  width?: number;
   inputMaxWidth?: string;
   onChange?: () => void;
 }
@@ -35,7 +35,7 @@ export const Input = ({
   const classes = classNames([`dagshub-input`, className], { errored, disabled });
 
   return (
-    <div className={classes} style={{ maxWidth: width, width: '100%'}}>
+    <div className={classes} style={{ maxWidth: width, width: '100%' }}>
       {label && <label>{label}</label>}
       <input
         type={type}
@@ -45,7 +45,7 @@ export const Input = ({
         disabled={disabled}
         onChange={onChange}
         placeholder={placeholder}
-        style={{ maxWidth: width, width: '100%'}}
+        style={{ maxWidth: width, width: '100%' }}
         {...props}
       />
       {helperText && <p className="helper-text">{helperText}</p>}

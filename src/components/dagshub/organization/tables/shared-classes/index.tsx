@@ -1,14 +1,12 @@
-
 export enum UserPermissionForTeam {
-    AdminAccess = 'Admin access',
-    WriteAccess = 'Write access',
-    ReadAccess =  'Read access'
+  AdminAccess = 'Admin access',
+  WriteAccess = 'Write access',
+  ReadAccess = 'Read access'
 }
 
-export interface Member{
-    userName:string;
-    fullName:string;
-    homeLink:string;
-    relAvatarLink:string;
+export interface Member {
+  userName: string;
+  fullName: string;
+  homeLink: string;
+  relAvatarLink: string;
 }
-

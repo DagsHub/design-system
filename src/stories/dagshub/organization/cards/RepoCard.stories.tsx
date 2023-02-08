@@ -1,6 +1,9 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import {RepoCard, RepoCardProps} from '../../../../components/dagshub/organization/cards/repo-card';
+import {
+  RepoCard,
+  RepoCardProps
+} from '../../../../components/dagshub/organization/cards/repo-card';
 
 const meta: Meta<RepoCardProps> = {
   title: 'DagsHub/Org/Cards/RepoCard',
@@ -9,17 +12,17 @@ const meta: Meta<RepoCardProps> = {
 
 export default meta;
 
-const Template: StoryFn<RepoCardProps> = args => <RepoCard {...args} />;
+const Template: StoryFn<RepoCardProps> = (args) => <RepoCard {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  isMini:false,
+  isMini: false,
   isMirror: false,
   IsGithubIntegrated: false,
   numStars: 5,
   githubStarCount: 0,
   isFork: false,
-  updatedAt: "8",
+  updatedAt: '8',
   isStaring: true,
   name: 'Regular Repository',
   isPrivate: true,
@@ -29,17 +32,83 @@ Primary.args = {
   numOpenPulls: 2,
   numOpenIssues: 3,
   topics: [
-    { id: 1, name: 'general', categoryColorClass: 'general', categoryShowExplore: false, categoryHref:""},
-    { id: 2, name: 'type', categoryColorClass: 'type', categoryShowExplore: true, categoryHref:""},
-    { id: 3, name: 'task', categoryColorClass: 'task', categoryShowExplore: true, categoryHref:""},
-    { id: 4, name: 'data domain', categoryColorClass: 'data_domain', categoryShowExplore: true, categoryHref:""},
-    { id: 5, name: 'integration', categoryColorClass: 'integration', categoryShowExplore: true, categoryHref:""},
-    { id: 6, name: 'framework', categoryColorClass: 'framework', categoryShowExplore: true, categoryHref:""},
-    { id: 7, name: 'type', categoryColorClass: 'type', categoryShowExplore: true, categoryHref:""},
-    { id: 8, name: 'task', categoryColorClass: 'task', categoryShowExplore: true, categoryHref:""},
-    { id: 9, name: 'data domain',categoryColorClass: 'data_domain', categoryShowExplore: true, categoryHref:""},
-    { id: 10, name: 'integration', categoryColorClass: 'integration', categoryShowExplore: true, categoryHref:""},
-    { id: 11, name: 'framework', categoryColorClass: 'framework', categoryShowExplore: true, categoryHref:""}
+    {
+      id: 1,
+      name: 'general',
+      categoryColorClass: 'general',
+      categoryShowExplore: false,
+      categoryHref: ''
+    },
+    {
+      id: 2,
+      name: 'type',
+      categoryColorClass: 'type',
+      categoryShowExplore: true,
+      categoryHref: ''
+    },
+    {
+      id: 3,
+      name: 'task',
+      categoryColorClass: 'task',
+      categoryShowExplore: true,
+      categoryHref: ''
+    },
+    {
+      id: 4,
+      name: 'data domain',
+      categoryColorClass: 'data_domain',
+      categoryShowExplore: true,
+      categoryHref: ''
+    },
+    {
+      id: 5,
+      name: 'integration',
+      categoryColorClass: 'integration',
+      categoryShowExplore: true,
+      categoryHref: ''
+    },
+    {
+      id: 6,
+      name: 'framework',
+      categoryColorClass: 'framework',
+      categoryShowExplore: true,
+      categoryHref: ''
+    },
+    {
+      id: 7,
+      name: 'type',
+      categoryColorClass: 'type',
+      categoryShowExplore: true,
+      categoryHref: ''
+    },
+    {
+      id: 8,
+      name: 'task',
+      categoryColorClass: 'task',
+      categoryShowExplore: true,
+      categoryHref: ''
+    },
+    {
+      id: 9,
+      name: 'data domain',
+      categoryColorClass: 'data_domain',
+      categoryShowExplore: true,
+      categoryHref: ''
+    },
+    {
+      id: 10,
+      name: 'integration',
+      categoryColorClass: 'integration',
+      categoryShowExplore: true,
+      categoryHref: ''
+    },
+    {
+      id: 11,
+      name: 'framework',
+      categoryColorClass: 'framework',
+      categoryShowExplore: true,
+      categoryHref: ''
+    }
   ],
   teams: [
     { id: 1, name: 'team1' },
@@ -57,13 +126,13 @@ Primary.args = {
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  isMini:false,
+  isMini: false,
   isMirror: true,
   IsGithubIntegrated: true,
   numStars: 5,
   githubStarCount: 3,
   isFork: false,
-  updatedAt: "6",
+  updatedAt: '6',
   isStaring: false,
   name: 'Mirrored Repository',
   isPrivate: false,
@@ -73,11 +142,41 @@ Secondary.args = {
   numOpenPulls: 2,
   numOpenIssues: 3,
   topics: [
-    { id: 1, name: 'general', categoryColorClass: 'general', categoryShowExplore: false, categoryHref:""},
-    { id: 2, name: 'type', categoryColorClass: 'type', categoryShowExplore: true, categoryHref:""},
-    { id: 3, name: 'task', categoryColorClass: 'task', categoryShowExplore: true, categoryHref:""},
-    { id: 4, name: 'data domain', categoryColorClass: 'data_domain', categoryShowExplore: true, categoryHref:""},
-    { id: 5, name: 'integration', categoryColorClass: 'integration', categoryShowExplore: true, categoryHref:""}
+    {
+      id: 1,
+      name: 'general',
+      categoryColorClass: 'general',
+      categoryShowExplore: false,
+      categoryHref: ''
+    },
+    {
+      id: 2,
+      name: 'type',
+      categoryColorClass: 'type',
+      categoryShowExplore: true,
+      categoryHref: ''
+    },
+    {
+      id: 3,
+      name: 'task',
+      categoryColorClass: 'task',
+      categoryShowExplore: true,
+      categoryHref: ''
+    },
+    {
+      id: 4,
+      name: 'data domain',
+      categoryColorClass: 'data_domain',
+      categoryShowExplore: true,
+      categoryHref: ''
+    },
+    {
+      id: 5,
+      name: 'integration',
+      categoryColorClass: 'integration',
+      categoryShowExplore: true,
+      categoryHref: ''
+    }
   ],
   teams: [
     { id: 1, name: 'team1' },
@@ -89,13 +188,13 @@ Secondary.args = {
 
 export const Tertiary = Template.bind({});
 Tertiary.args = {
-  isMini:false,
+  isMini: false,
   isMirror: false,
   IsGithubIntegrated: false,
   numStars: 0,
   githubStarCount: 0,
   isFork: true,
-  updatedAt: "6",
+  updatedAt: '6',
   isStaring: false,
   name: 'Forked Repository',
   isPrivate: false,
@@ -105,9 +204,27 @@ Tertiary.args = {
   numOpenPulls: 2,
   numOpenIssues: 3,
   topics: [
-    { id: 1, name: 'general', categoryColorClass: "general", categoryShowExplore: false, categoryHref:""},
-    { id: 4, name: 'data domain', categoryColorClass: 'data_domain', categoryShowExplore: true, categoryHref:"" },
-    { id: 5, name: 'integration', categoryColorClass: 'integration', categoryShowExplore: true, categoryHref:"" }
+    {
+      id: 1,
+      name: 'general',
+      categoryColorClass: 'general',
+      categoryShowExplore: false,
+      categoryHref: ''
+    },
+    {
+      id: 4,
+      name: 'data domain',
+      categoryColorClass: 'data_domain',
+      categoryShowExplore: true,
+      categoryHref: ''
+    },
+    {
+      id: 5,
+      name: 'integration',
+      categoryColorClass: 'integration',
+      categoryShowExplore: true,
+      categoryHref: ''
+    }
   ],
   teams: []
 };

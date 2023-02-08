@@ -1,15 +1,15 @@
 import React from 'react';
-import { Icon } from "../../../../icons";
+import { Icon } from '../../../../icons';
 
 import '../../../../styles/root.scss';
-import "./repo.scss";
+import './repo.scss';
 
 export interface Topic {
   id: number;
   name: string;
   categoryShowExplore: boolean;
   categoryColorClass: string;
-  categoryHref:string;
+  categoryHref: string;
 }
 
 export interface Team {
@@ -37,7 +37,7 @@ export interface RepoCardProps {
 }
 
 const getUpdatedDaysAgo = (date: string): number =>
-    Math.round((Date.now() - new Date(date).getTime()) / 1000/60/60/24);
+  Math.round((Date.now() - new Date(date).getTime()) / 1000 / 60 / 60 / 24);
 
 export function RepoCard({
   isMini = false,
@@ -57,7 +57,7 @@ export function RepoCard({
   numOpenIssues,
   updatedAt
 }: RepoCardProps) {
-  const stars = githubStarCount ? (numStars + githubStarCount) : numStars;
+  const stars = githubStarCount ? numStars + githubStarCount : numStars;
   return (
     <>
       <div className="desktop-repo card">
@@ -67,32 +67,30 @@ export function RepoCard({
               <div className="repo-info">
                 <Icon width={10.67} height={14} fill="#475569" icon="outline-repository-github" />
                 <span className="repo-type">
-                {isFork ? 'Forked repo' : (isMirror ? 'Mirrored repo' : 'Repo')}
-              </span>
-                <Icon width={1} height={12} fill="#E2E8F0" icon="pipe"/>
-                <span className="days-ago">
-                  Updated {getUpdatedDaysAgo(updatedAt)} days ago
+                  {isFork ? 'Forked repo' : isMirror ? 'Mirrored repo' : 'Repo'}
                 </span>
+                <Icon width={1} height={12} fill="#E2E8F0" icon="pipe" />
+                <span className="days-ago">Updated {getUpdatedDaysAgo(updatedAt)} days ago</span>
               </div>
               <div className="star-section">
                 <a className="star-number" href="{{.Repo.Link}}/stars">
                   {stars}
                 </a>
                 <a
-                    className="star-action"
-                    href="{{.Repo.HTMLURL}}/action/{{if $isStaring}}un{{end}}star?redirect_to={{.General.Link}}{{QueryParam .General.QueryParameters}}"
+                  className="star-action"
+                  href="{{.Repo.HTMLURL}}/action/{{if $isStaring}}un{{end}}star?redirect_to={{.General.Link}}{{QueryParam .General.QueryParameters}}"
                 >
                   <i className={!isStaring ? 'star' : 'star-outline'} />
                   {isStaring ? (
-                      <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star" />
+                    <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star" />
                   ) : (
-                      <Icon width={18} height={17.21} fill="#94A3B8" icon="outline-star" />
+                    <Icon width={18} height={17.21} fill="#94A3B8" icon="outline-star" />
                   )}
                 </a>
               </div>
             </div>
           )}
-          <div className={"repo-tags"}>
+          <div className={'repo-tags'}>
             {isMini && (
               <Icon width={13.66} height={18.99} fill="#475569" icon="outline-repository-github" />
             )}
@@ -105,33 +103,32 @@ export function RepoCard({
               </a>
               <div className="tag public-private">{isPrivate ? 'private' : 'public'}</div>
             </div>
-            {topics?.map((topic: Topic) =>
-              topic.categoryShowExplore&& (
-                <a
-                  className={'tag repo-new-topic category-' + topic.categoryColorClass}
-                  rel="nofollow"
-                  href={topic.categoryHref}
-                >
-                  {topic.name}
-                </a>
-              )
+            {topics?.map(
+              (topic: Topic) =>
+                topic.categoryShowExplore && (
+                  <a
+                    className={'tag repo-new-topic category-' + topic.categoryColorClass}
+                    rel="nofollow"
+                    href={topic.categoryHref}
+                  >
+                    {topic.name}
+                  </a>
+                )
             )}
           </div>
           <div className="repo-main">
             <div className="repo-desc-block">
-              <p className="repo-description">
-                {description ? description : 'No description'}
-              </p>
+              <p className="repo-description">{description ? description : 'No description'}</p>
             </div>
             <div className="repo-information">
-              {!isMini && <Icon width={564} height={1} fill="#E2E8F0" icon="divider"/>}
+              {!isMini && <Icon width={564} height={1} fill="#E2E8F0" icon="divider" />}
               <div className="repo-info-text">
                 <div className="stats">
                   <a
                     className="stat-block"
                     href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}/forks"
                   >
-                    <Icon width={10.29} height={12} fill="#475569" icon="outline-fork"/>
+                    <Icon width={10.29} height={12} fill="#475569" icon="outline-fork" />
                     <p>{numForks}</p>
                   </a>
                   {!isMirror && (
@@ -139,7 +136,12 @@ export function RepoCard({
                       className="stat-block"
                       href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}/pulls"
                     >
-                      <Icon width={15} height={14.5} fill="#475569" icon="outline-pull-request-github" />
+                      <Icon
+                        width={15}
+                        height={14.5}
+                        fill="#475569"
+                        icon="outline-pull-request-github"
+                      />
                       <p>{numOpenPulls}</p>
                     </a>
                   )}
@@ -147,20 +149,20 @@ export function RepoCard({
                     className="stat-block"
                     href="{{AppSubURL}}/{{if .Repo.Owner}}{{.Repo.Owner.Name}}{{else if .General.Org}}{{.General.Org.Name}}{{else}}{{.General.Owner.Name}}{{end}}/{{.Repo.Name}}/issues"
                   >
-                    <Icon width={14.67} height={14.67} fill="#475569" icon="outline-issue"/>
+                    <Icon width={14.67} height={14.67} fill="#475569" icon="outline-issue" />
                     <p>{numOpenIssues}</p>
                   </a>
                   {isMini && (
                     <div className="star-section">
                       <a
-                          className="star-action"
-                          href="{{.Repo.HTMLURL}}/action/{{if $isStaring}}un{{end}}star?redirect_to={{.General.Link}}{{QueryParam .General.QueryParameters}}"
+                        className="star-action"
+                        href="{{.Repo.HTMLURL}}/action/{{if $isStaring}}un{{end}}star?redirect_to={{.General.Link}}{{QueryParam .General.QueryParameters}}"
                       >
                         <i className={!isStaring ? 'star' : 'start-outline'}></i>
                         {isStaring ? (
-                            <Icon width={12} height={11.47} fill="#475569" icon="solid-star"/>
+                          <Icon width={12} height={11.47} fill="#475569" icon="solid-star" />
                         ) : (
-                            <Icon width={12} height={11.47} fill="#475569" icon="outline-star"/>
+                          <Icon width={12} height={11.47} fill="#475569" icon="outline-star" />
                         )}
                       </a>
                       <a className="star-number" href="{{.Repo.Link}}/stars">
@@ -171,7 +173,7 @@ export function RepoCard({
                 </div>
                 {!isMini && (
                   <div className="belongs-to">
-                    {teams?.length>0? 'Belongs to: ':""}
+                    {teams?.length > 0 ? 'Belongs to: ' : ''}
                     {teams?.map((team: { name: string }, index: number) => (
                       <span>
                         <span>{index ? ', ' : ''}</span>

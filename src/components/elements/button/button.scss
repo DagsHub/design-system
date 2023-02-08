@@ -23,45 +23,45 @@
     color: #ffffff;
     background-color: #5467de;
     &:hover {
-      background-color: #4453B2;
+      background-color: #4453b2;
     }
     &:focus {
-      background: #5467DE;
+      background: #5467de;
       box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
     }
   }
 
   &.secondary {
-    color: #172D32;
+    color: #172d32;
     background-color: #e2e8f0;
     &:hover {
       background-color: #cbd5e1;
     }
     &:focus {
-      background: #CBD5E1;
-      border: 2px solid #C4B5FD;
+      background: #cbd5e1;
+      border: 2px solid #c4b5fd;
     }
   }
 
   &.error {
     color: #dc2626;
     background-color: #f8fafc;
-    border: 2px solid #E2E8F0;
+    border: 2px solid #e2e8f0;
     &:hover {
       color: #ffffff;
       background-color: #dc2626;
-      border:0px;
-      svg path{
-        fill:#ffffff
+      border: 0px;
+      svg path {
+        fill: #ffffff;
       }
     }
     &:focus {
       color: #ffffff;
       background-color: #dc2626;
-      border: 2px solid #E2E8F0;
+      border: 2px solid #e2e8f0;
       box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
-      svg path{
-        fill:#ffffff
+      svg path {
+        fill: #ffffff;
       }
     }
   }
@@ -72,13 +72,13 @@
     color: #172d32;
     background-color: transparent;
     &:hover {
-      background-color: #F1F5F9;
-      svg{
-        fill:#172d32
+      background-color: #f1f5f9;
+      svg {
+        fill: #172d32;
       }
     }
     &:focus {
-      background: #F1F5F9;
+      background: #f1f5f9;
       box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
     }
   }
@@ -100,7 +100,7 @@
   }
 }
 
-.button__content{
+.button__content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -110,5 +110,4 @@
   font-size: 14px;
   line-height: 20px;
   gap: 10px;
-
 }

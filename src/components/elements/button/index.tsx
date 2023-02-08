@@ -22,9 +22,9 @@ export interface ButtonProps {
   disabled?: boolean;
   className?: string;
   onClick?: () => void;
-  iconLeft?:JSX.Element;
-  iconRight?:JSX.Element;
-  width?:number;
+  iconLeft?: JSX.Element;
+  iconRight?: JSX.Element;
+  width?: number;
 }
 
 export const Button = ({
@@ -42,11 +42,18 @@ export const Button = ({
   const classes = classNames([`dagshub-btn`, variant, stretch, className], { fullWidth });
 
   return (
-    <button type="button" style={{width:width? width:"auto"}} aria-label={label} className={classes} disabled={disabled} {...props}>
+    <button
+      type="button"
+      style={{ width: width ? width : 'auto' }}
+      aria-label={label}
+      className={classes}
+      disabled={disabled}
+      {...props}
+    >
       <div className="button__content">
-        {iconLeft?iconLeft:<></>}
+        {iconLeft ? iconLeft : <></>}
         {label}
-        {iconRight?iconRight:<></>}
+        {iconRight ? iconRight : <></>}
       </div>
     </button>
   );

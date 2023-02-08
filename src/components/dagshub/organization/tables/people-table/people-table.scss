@@ -7,28 +7,28 @@
   color: var(--color-text-default);
   display: flex;
   width: 100%;
-}
 
-.people-table__header--left {
-  display: flex;
-  min-width: 203px;
-  max-width: 203px;
-  box-sizing: border-box;
-}
+  &--left {
+    display: flex;
+    min-width: 203px;
+    max-width: 203px;
+    box-sizing: border-box;
+  }
 
-.people-table__header--right {
-  display: flex;
-  min-width: 230px;
-  max-width: 230px;
-  padding: 16px;
-  box-sizing: border-box;
-}
+  &--right {
+    display: flex;
+    min-width: 230px;
+    max-width: 230px;
+    padding: 16px;
+    box-sizing: border-box;
+  }
 
-.people-table__header--center {
-  display: flex;
-  max-width: 750px;
-  padding: 16px;
-  box-sizing: border-box;
+  &--center {
+    display: flex;
+    max-width: 750px;
+    padding: 16px;
+    box-sizing: border-box;
+  }
 }
 
 .teams-list {
@@ -43,12 +43,13 @@
   overflow: hidden;
 }
 
-.teams-list__team-name, .teams-list__hidden-teams{
+.teams-list__team-name,
+.teams-list__hidden-teams {
   text-decoration-line: underline;
   cursor: pointer;
 }
 
-.teams-list__team-permission{
+.teams-list__team-permission {
   text-transform: lowercase;
 }
 

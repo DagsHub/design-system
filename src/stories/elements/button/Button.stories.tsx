@@ -1,9 +1,14 @@
 import React from 'react';
 import startCase from 'lodash/startCase';
 import { styled } from '@storybook/theming';
-import { Meta, StoryFn  } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { enum2arr } from '../../../utils';
-import { Button, ButtonVariant, ButtonStretch , ButtonProps} from '../../../components/elements/button';
+import {
+  Button,
+  ButtonVariant,
+  ButtonStretch,
+  ButtonProps
+} from '../../../components/elements/button';
 
 const meta: Meta<ButtonProps> = {
   title: 'Elements/Button',

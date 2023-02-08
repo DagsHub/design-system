@@ -19,8 +19,6 @@
     "build-storybook": "storybook build",
     "deploy-storybook": "npm run build",
     "fmt": "prettier --write src/",
-    "prepublishOnly": "npm run build",
-    "publish": "npm publish --access=public --scope=@dagshub/ui",
     "chromatic": "npx chromatic --project-token=\"$CHROMATIC_PROJECT_TOKEN\""
   },
   "author": {
