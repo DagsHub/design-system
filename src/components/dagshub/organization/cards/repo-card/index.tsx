@@ -13,8 +13,8 @@ export interface Topic {
 }
 
 export interface Team {
-  id: number;
-  name: string;
+  teamName: string;
+  teamLink: string;
 }
 
 export interface RepoCardProps {
@@ -186,11 +186,11 @@ export function RepoCard({
                 {!isMini && (
                   <div className="belongs-to">
                     {teams?.length > 0 ? 'Belongs to: ' : ''}
-                    {teams?.map((team: { name: string }, index: number) => (
+                    {teams?.map((team, index: number) => (
                       <span>
                         <span>{index ? ', ' : ''}</span>
-                        <a className="repo-team" href="">
-                          {team.name}
+                        <a className="repo-team" href={team.teamLink}>
+                          {team.teamName}
                         </a>
                       </span>
                     ))}

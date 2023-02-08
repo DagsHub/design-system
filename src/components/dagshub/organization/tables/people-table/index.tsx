@@ -60,7 +60,7 @@ export function PeopleTable(props: PeopleTableProps) {
             <span>
               {index ? ', ' : ''}
               <a href={team.teamLink} className="teams-list__team-name">{team.teamName}</a>
-              <span className="teams-list__team-permission">({team.userPermissionForTeam})</span>
+              <span className="teams-list__team-permission">{" "}({team.userPermissionForTeam})</span>
             </span>
           ))}
           {user.userTeams.length > 2 && (

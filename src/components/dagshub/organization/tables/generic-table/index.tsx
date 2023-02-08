@@ -19,7 +19,7 @@ export interface Row {
 export function GenericTable(props: TableProps) {
   const generateClassName = (footer: Boolean, rowIndex: number, rowsLength: number, row: Row) => {
     let classname = '';
-    classname += !footer && rowIndex === rowsLength - 1 ? 'footer ' : '';
+    classname += !footer && rowIndex === rowsLength - 1 ? 'table__row--footer ' : '';
     classname += row.rowClasses ? row.rowClasses : 'table__row';
     return classname;
   };
@@ -39,7 +39,7 @@ export function GenericTable(props: TableProps) {
         </div>
       ))}
       {props.footer && (
-        <div className="table__footer">
+        <div className="table__footer table__row--footer">
           {props.footer?.columns?.map((column) => (
             <div className="row__column">{column}</div>
           ))}

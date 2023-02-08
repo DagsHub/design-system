@@ -49,6 +49,7 @@
 .teams-table-footer-left-section__permission-text {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .teams-table-footer-left-section__permission-label {
@@ -71,6 +72,11 @@
   align-items: center;
   flex-direction: row;
   gap: 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+  flex-wrap: wrap;
+  height: 22px;
 }
 
 .team-repos__repo {
@@ -78,6 +84,10 @@
   align-items: center;
   gap: 8px;
   color: var(--secondary-state-600);
+  flex-shrink: 0;
+  &:hover{
+    color: var(--secondary-state-600);
+  }
 }
 
 .teams-table-footer-right-section {
@@ -89,4 +99,5 @@
   align-items: center;
   gap: 5.33px;
   cursor: pointer;
+  flex-shrink: 0;
 }

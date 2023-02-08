@@ -48,7 +48,10 @@
   text-decoration-line: underline;
   cursor: pointer;
   color: var(--color-text-default);
-
+  &:hover{
+    color: var(--color-text-default);
+    text-decoration-line: underline;
+  }
 }
 
 .teams-list__team-permission {

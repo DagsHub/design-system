@@ -15,7 +15,7 @@ export interface TeamTableProps {
   teamName: string;
   teamDescription?: string;
   teamPermission: UserPermissionForTeam;
-  teamRepos?: Repo[];
+  teamRepos: Repo[];
   handleClickOnCollapse: (index: number) => void;
   index: number;
   style: string;
