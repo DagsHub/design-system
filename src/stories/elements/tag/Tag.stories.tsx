@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import startCase from 'lodash/startCase';
 import { Meta, StoryFn } from '@storybook/react';
 import { enum2arr } from '../../../utils';
-import { Tag, TagCategory, TagSize , TagProps} from '../../../components/elements/tag';
+import { Tag, TagCategory, TagSize, TagProps } from '../../../components/elements/tag';
 
 const meta: Meta<TagProps> = {
   title: 'Elements/Tag',

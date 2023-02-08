@@ -1,35 +1,32 @@
-.organization-plan-setting-tab{
+.organization-plan-setting-tab {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
-  color: #172D32;
+  color: #172d32;
 
-  p{
-    margin: 0px!important;
+  p {
+    margin: 0px !important;
   }
-
 }
 
-.setting-section{
+.setting-section {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid #E2E8F0;
+  border-bottom: 1px solid #e2e8f0;
   height: 44px;
   align-items: center;
-
-
 }
 
-.seats-in-use{
+.seats-in-use {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 8px;
-  .seats-in-use__seats-in-plan{
-    border: 1px solid #CBD5E1;
+  .seats-in-use__seats-in-plan {
+    border: 1px solid #cbd5e1;
     border-radius: 12px;
     width: 50px;
     height: 32px;
@@ -40,27 +37,25 @@
   }
 }
 
-
-.tab-texts{
+.tab-texts {
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
-.current-plan-subscription__update-text, .questions-text__mail{
+.current-plan-subscription__update-text,
+.questions-text__mail {
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: #5467DE;
+  color: #5467de;
   font-weight: 600;
   gap: 5.33px;
   text-decoration: none;
 }
 
-.questions-text{
+.questions-text {
   display: flex;
   flex-direction: row;
   gap: 8px;
 }
-
-

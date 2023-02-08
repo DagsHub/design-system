@@ -1,6 +1,6 @@
 import React from 'react';
-import { Meta, StoryFn  } from '@storybook/react';
-import {TextArea, TextAreaProps} from '../../../components/forms/textarea';
+import { Meta, StoryFn } from '@storybook/react';
+import { TextArea, TextAreaProps } from '../../../components/forms/textarea';
 
 const meta: Meta<TextAreaProps> = {
   title: 'Forms/TextArea',

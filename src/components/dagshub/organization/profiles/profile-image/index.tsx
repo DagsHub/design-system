@@ -2,14 +2,14 @@ import './profile-image.scss';
 import '../../../../styles/root.scss';
 import React from 'react';
 
-export interface ProfileImageProps{
-    imageSource: string
+export interface ProfileImageProps {
+  imageSource: string;
 }
 
-export function ProfileImage(props:ProfileImageProps) {
-    return (
-        <div className="user-profile">
-            <img src={props.imageSource}></img>
-        </div>
-    )
+export function ProfileImage(props: ProfileImageProps) {
+  return (
+    <div className="user-profile">
+      <img src={props.imageSource}></img>
+    </div>
+  );
 }

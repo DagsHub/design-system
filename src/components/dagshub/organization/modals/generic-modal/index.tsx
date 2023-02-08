@@ -1,10 +1,10 @@
 import React from 'react';
 import '../../../../styles/root.scss';
 import './generic-modal.scss';
-import {Icon} from ".././../../../icons/index";
+import { Icon } from '.././../../../icons/index';
 
-export interface ModalProps{
-  title:string;
+export interface ModalProps {
+  title: string;
   elements: JSX.Element[];
 }
 
@@ -17,18 +17,12 @@ export function GenericModal(props: ModalProps) {
   return (
     <div className="modal modal--border">
       <div className="modal__x-button">
-        <Icon width={10} height={10} fill="#94A3B8" icon="outline-x"/>
+        <Icon width={10} height={10} fill="#94A3B8" icon="outline-x" />
       </div>
       <div className="modal-content">
-        <p className="modal-content__title">
-          {props.title}
-        </p>
-          {props.elements?.map((element, elementIndex) =>
-              element
-          )}
+        <p className="modal-content__title">{props.title}</p>
+        {props.elements?.map((element, elementIndex) => element)}
       </div>
     </div>
   );
 }
-
-

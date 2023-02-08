@@ -1,20 +1,20 @@
-.user-image-list{
+.user-image-list {
   display: flex;
   flex-direction: row;
   align-content: center;
   width: 100%;
   height: auto;
-  .user-image-list__img-left{
+  .user-image-list__img-left {
     width: 32px;
     height: 32px;
     border-radius: 32px;
-    border: 2px solid #E2E8F0;
+    border: 2px solid #e2e8f0;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: -9px;
-    background: #F1F5F9;
-    .user-image-list__leftover_num{
+    background: #f1f5f9;
+    .user-image-list__leftover_num {
       font-family: 'Inter';
       font-style: normal;
       font-weight: 500;

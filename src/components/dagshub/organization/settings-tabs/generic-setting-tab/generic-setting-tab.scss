@@ -4,14 +4,14 @@
   max-width: 968px;
   font-family: 'Inter';
   font-style: normal;
-  .generic-settings-tab__elements{
+  .generic-settings-tab__elements {
     width: 100%;
     min-height: 50px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     padding: 16px;
-    background: #F8FAFC;
+    background: #f8fafc;
     border: 1px solid var(--secondary-state-200);
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
@@ -38,5 +38,3 @@
   text-transform: uppercase;
   color: var(--color-text-default);
 }
-
-

@@ -1,42 +1,36 @@
-.general-setting-tab{
+.general-setting-tab {
   display: flex;
   width: 100%;
   gap: 24px;
 }
 
-.org-image-upload{
+.org-image-upload {
   display: flex;
   min-width: 290px;
   flex-direction: column;
   gap: 10px;
 
-  .org-image-upload__image{
+  .org-image-upload__image {
     width: 100%;
     height: 290px;
 
-    >img{
+    > img {
       width: 100%;
       height: 100%;
       border-radius: 12px;
     }
   }
 
-  .org-image-upload__buttons{
+  .org-image-upload__buttons {
     display: flex;
     justify-content: space-between;
   }
 }
 
-.general-setting-tab__form{
+.general-setting-tab__form {
   display: flex;
   flex-direction: column;
   gap: 24px;
   justify-content: flex-end;
   width: 100%;
 }
-
-
-
-
-
-

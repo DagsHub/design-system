@@ -1,4 +1,4 @@
-import React, {MouseEventHandler} from 'react';
+import React, { MouseEventHandler } from 'react';
 import classNames from 'classnames';
 import './radio-button-item.scss';
 
@@ -8,14 +8,14 @@ export interface RadioButtonItemProps {
   onClick?: MouseEventHandler<HTMLInputElement>;
   description: string;
   icon?: JSX.Element;
-  width?:number;
+  width?: number;
 }
 
 export const RadioButtonItem = ({
   label = '',
   className = '',
   onClick,
-  description='',
+  description = '',
   icon,
   width,
   ...props
@@ -23,15 +23,16 @@ export const RadioButtonItem = ({
   const classes = classNames([`radio-button-item`, className]);
 
   return (
-      <div className={classes} style={{width:width}}>
-        <div>
-          <label className="radio-button-item__container">{label}
-            <input type="radio" name="radio"/>
-            <span className="radio-button-item__checkmark"></span>
-            {icon?icon:<></>}
-          </label>
-        </div>
-        <div className="radio-button-item__description">{description}</div>
+    <div className={classes} style={{ width: width }}>
+      <div>
+        <label className="radio-button-item__container">
+          {label}
+          <input type="radio" name="radio" />
+          <span className="radio-button-item__checkmark"></span>
+          {icon ? icon : <></>}
+        </label>
       </div>
+      <div className="radio-button-item__description">{description}</div>
+    </div>
   );
 };
