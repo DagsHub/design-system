@@ -32,7 +32,12 @@ export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
           numOpenIssues={repo.numOpenIssues}
           topics={repo.topics}
           teams={repo.teams}
-        />
+          forksHref={repo.forksHref}
+          issuesHref={repo.issuesHref}
+          pullsHref={repo.pullsHref}
+          repoNameHref={repo.repoNameHref}
+          starActionLink={repo.starActionLink}
+          starNumberLink={repo.starNumberLink}/>
       ))}
     </div>
   );

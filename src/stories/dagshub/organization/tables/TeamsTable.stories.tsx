@@ -19,47 +19,38 @@ Primary.args = {
   users: [
     {
       userImage: imageLink,
-      fullName: 'Itay Malka',
       username: 'ItayMalka'
     },
     {
       userImage: imageLink,
-      fullName: 'Tal Malka',
       username: 'TalMalka'
     },
     {
       userImage: imageLink,
-      fullName: 'Shahar Malka',
       username: 'ShaharMalka'
     },
     {
       userImage: imageLink,
-      fullName: 'Itay Malka',
       username: 'ItayMalka'
     },
     {
       userImage: imageLink,
-      fullName: 'Tal Malka',
       username: 'TalMalka'
     },
     {
       userImage: imageLink,
-      fullName: 'Shahar Malka',
       username: 'ShaharMalka'
     },
     {
       userImage: imageLink,
-      fullName: 'Itay Malka',
       username: 'ItayMalka'
     },
     {
       userImage: imageLink,
-      fullName: 'Tal Malka',
       username: 'TalMalka'
     },
     {
       userImage: imageLink,
-      fullName: 'Shahar Malka',
       username: 'ShaharMalka'
     }
   ],

@@ -61,7 +61,6 @@ export function TeamTable(props: TeamTableProps) {
       columns: [
         <UserInfo
           imageSource={member.relAvatarLink}
-          fullName={member.fullName}
           userName={member.userName}
         />,
         <Button

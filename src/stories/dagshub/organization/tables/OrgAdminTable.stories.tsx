@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 import {
   OrgAdminTable,
   OrgAdminTableProps
-} from '../../../../components/dagshub/organization/tables/org-admin-table';
+} from '../../../../components';
 
 const meta: Meta<OrgAdminTableProps> = {
   title: 'DagsHub/Org/Tables/OrgAdminTable',
@@ -20,17 +20,14 @@ Primary.args = {
   admins: [
     {
       userImage: imageLink,
-      fullName: 'Itay Malka',
       username: 'ItayMalka'
     },
     {
       userImage: imageLink,
-      fullName: 'Tal Malka',
       username: 'TalMalka'
     },
     {
       userImage: imageLink,
-      fullName: 'Shahar Malka',
       username: 'ShaharMalka'
     }
   ]

@@ -6,7 +6,6 @@ export enum UserPermissionForTeam {
 
 export interface Member {
   userName: string;
-  fullName: string;
   homeLink: string;
   relAvatarLink: string;
 }

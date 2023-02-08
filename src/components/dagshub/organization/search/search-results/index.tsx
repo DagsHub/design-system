@@ -18,7 +18,6 @@ export function SearchResultList(props: SearchResultListProps) {
       columns: [
         <UserInfo
           imageSource={user.imageSource}
-          fullName={user.fullName}
           userName={user.userName}
         />,
         <Button

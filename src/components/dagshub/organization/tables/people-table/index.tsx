@@ -13,7 +13,6 @@ export interface PeopleTableProps {
 
 interface User {
   userImage: string;
-  fullName: string;
   username: string;
   userTeams: UserTeam[];
   membershipVisibility: MembershipVisibility;
@@ -27,6 +26,7 @@ export enum MembershipVisibility {
 export interface UserTeam {
   teamName: string;
   userPermissionForTeam: UserPermissionForTeam; //make enum, admin access, write access, read access
+  teamLink:string;
 }
 
 export enum UserPermissionForTeam {
@@ -54,12 +54,12 @@ export function PeopleTable(props: PeopleTableProps) {
   for (let user of props.users) {
     let row: Row = {
       columns: [
-        <UserInfo imageSource={user.userImage} fullName={user.fullName} userName={user.username} />,
+        <UserInfo imageSource={user.userImage} userName={user.username} />,
         <span className="teams-list">
           {(user?.userTeams ?? []).slice(0, 2).map((team, index) => (
             <span>
               {index ? ', ' : ''}
-              <span className="teams-list__team-name">{team.teamName}</span>
+              <a href={team.teamLink} className="teams-list__team-name">{team.teamName}</a>
               <span className="teams-list__team-permission">({team.userPermissionForTeam})</span>
             </span>
           ))}

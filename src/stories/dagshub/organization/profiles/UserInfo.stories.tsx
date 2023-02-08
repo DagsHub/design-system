@@ -20,6 +20,5 @@ const imageLink =
 export const Primary = Template.bind({});
 Primary.args = {
   imageSource: imageLink,
-  fullName: 'Nir Barazida',
   userName: 'KBolashev'
 };

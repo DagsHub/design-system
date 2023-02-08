@@ -21,17 +21,14 @@ Primary.args = {
   users: [
     {
       imageSource: imageLink,
-      fullName: 'Itay Malka',
       userName: 'ItayMalka'
     },
     {
       imageSource: imageLink,
-      fullName: 'Tal Malka',
       userName: 'TalMalka'
     },
     {
       imageSource: imageLink,
-      fullName: 'Shahar Malka',
       userName: 'ShaharMalka'
     },
     {

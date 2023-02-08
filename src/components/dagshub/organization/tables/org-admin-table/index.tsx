@@ -14,7 +14,6 @@ export interface OrgAdminTableProps {
 
 interface User {
   userImage: string;
-  fullName: string;
   username: string;
 }
 
@@ -41,7 +40,7 @@ export function OrgAdminTable(props: OrgAdminTableProps) {
   for (let user of props.admins) {
     let row: Row = {
       columns: [
-        <UserInfo imageSource={user.userImage} fullName={user.fullName} userName={user.username} />,
+        <UserInfo imageSource={user.userImage} userName={user.username} />,
         <div className="admin-access-column">
           <span className={'admin-access-column__access-type'}>
             {UserPermissionForTeam.AdminAccess}
