@@ -24,6 +24,7 @@ export interface TeamTableProps {
 
 export interface Repo {
   name: string;
+  link:string;
 }
 
 //add functionality, tooltip
@@ -104,10 +105,10 @@ export function TeamTable(props: TeamTableProps) {
         </span>
         <span className="team-repos">
           {props.teamRepos?.map((repo: Repo) => (
-            <span className="team-repos__repo">
+            <a href={repo.link} className="team-repos__repo">
               <Icon width={16} height={21} fill="#172D32" icon="outline-repository-github" />
               {repo.name}
-            </span>
+            </a>
           ))}
         </span>
       </span>,
