@@ -45,13 +45,9 @@ export function PeopleTable(props: PeopleTableProps) {
   let header: Row;
   header = {
     columns: [
-      <div className={'people-table__header people-table__header--left'}>Username</div>,
-      <div className={'people-table__header people-table__header--center'}>
-        Teams they belong to
-      </div>,
-      <div className={'people-table__header people-table__header--right'}>
-        Membership visibility
-      </div>
+      <div className="people-table__header people-table__header--left">Username</div>,
+      <div className="people-table__header people-table__header--center">Teams they belong to</div>,
+      <div className="people-table__header people-table__header--right">Membership visibility</div>
     ]
   };
   let rows: Row[] = [];
@@ -60,23 +56,15 @@ export function PeopleTable(props: PeopleTableProps) {
       columns: [
         <UserInfo imageSource={user.userImage} fullName={user.fullName} userName={user.username} />,
         <span className="teams-list">
-          {user.userTeams?.map((team, index) =>
-            index <= 1 ? (
-              <span>
-                {index ? ', ' : ''}
-                <span className="teams-list__team-name">{team.teamName}</span>
-                <span className="teams-list__team-permission">
-                  {' (' + team.userPermissionForTeam + ') '}
-                </span>
-              </span>
-            ) : (
-              <></>
-            )
-          )}
-          {user.userTeams.length > 2 ? (
+          {(user?.userTeams ?? []).slice(0, 2).map((team, index) => (
+            <span>
+              {index ? ', ' : ''}
+              <span className="teams-list__team-name">{team.teamName}</span>
+              <span className="teams-list__team-permission">({team.userPermissionForTeam})</span>
+            </span>
+          ))}
+          {user.userTeams.length > 2 && (
             <span className="teams-list__hidden-teams">+{user.userTeams.length - 2}</span>
-          ) : (
-            <></>
           )}
         </span>,
         <div className="people-table__membership-column">

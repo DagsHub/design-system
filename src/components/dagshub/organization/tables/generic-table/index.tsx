@@ -26,33 +26,24 @@ export function GenericTable(props: TableProps) {
 
   return (
     <div className={props.classnames ? props.classnames : 'table'}>
-      {props.header ? (
+      {props.header && (
         <div className="table__header">{props.header?.columns?.map((column) => column)}</div>
-      ) : (
-        <></>
       )}
       {props.rows?.map((row: Row, rowIndex) => (
         <div
           onClick={row.onClick}
           style={row.style}
-          className={generateClassName(
-            props.footer ? true : false,
-            rowIndex,
-            props.rows.length,
-            row
-          )}
+          className={generateClassName(!!props.footer, rowIndex, props.rows.length, row)}
         >
           {row.columns?.map((column, columnIndex) => column)}
         </div>
       ))}
-      {props.footer ? (
+      {props.footer && (
         <div className="table__footer">
           {props.footer?.columns?.map((column) => (
             <div className="row__column">{column}</div>
           ))}
         </div>
-      ) : (
-        <></>
       )}
     </div>
   );
