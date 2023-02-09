@@ -6,6 +6,8 @@ import { Icon } from '.././../../../icons/index';
 export interface ModalProps {
   title: string;
   elements: JSX.Element[];
+  display:boolean;
+  onClick:()=>void;
 }
 
 //add closing function and background color when open
@@ -15,14 +17,17 @@ export interface ModalProps {
 
 export function GenericModal(props: ModalProps) {
   return (
-    <div className="modal modal--border">
-      <div className="modal__x-button">
-        <Icon width={10} height={10} fill="#94A3B8" icon="outline-x" />
-      </div>
-      <div className="modal-content">
-        <p className="modal-content__title">{props.title}</p>
-        {props.elements?.map((element, elementIndex) => element)}
-      </div>
-    </div>
+      <>
+          <div className="modal" style={{display:props.display?"block":"none"}}>
+              <button className="modal__x-button" onClick={props.onClick}>
+                  <Icon width={10} height={10} fill="#94A3B8" icon="outline-x" />
+              </button>
+              <div className="modal-content">
+                  <p className="modal-content__title">{props.title}</p>
+                  {props.elements?.map((element, elementIndex) => element)}
+              </div>
+          </div>
+          <div className={"overlay"} style={{display:props.display?"block":"none"}}></div>
+      </>
   );
 }

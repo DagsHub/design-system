@@ -8,7 +8,10 @@ import { RadioButtonList } from '../../../../forms/radio-button/radio-button-lis
 import { RadioButtonItem } from '../../../../forms/radio-button/radio-button-item';
 import './team-settings-modal.scss';
 
-export interface TeamSettingsModalProps {}
+export interface TeamSettingsModalProps {
+    display:boolean;
+    onClick:()=>void;
+}
 
 export function TeamSettingsModal(props: TeamSettingsModalProps) {
   let elements: JSX.Element[];
@@ -44,5 +47,5 @@ export function TeamSettingsModal(props: TeamSettingsModalProps) {
       <Button variant={ButtonVariant.Primary} label={'Save changes'} width={119} />
     </div>
   ];
-  return <GenericModal title={'Team settings'} elements={elements} />;
+  return <GenericModal title={'Team settings'} elements={elements} display={props.display} onClick={props.onClick} />;
 }

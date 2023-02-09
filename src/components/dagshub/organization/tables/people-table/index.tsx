@@ -56,6 +56,7 @@ export function PeopleTable(props: PeopleTableProps) {
       columns: [
         <UserInfo imageSource={user.userImage} userName={user.username} />,
         <span className="teams-list">
+          {(user?.userTeams ?? []).length===0?<span>Member doesn’t belong to any team</span> : null}
           {(user?.userTeams ?? []).slice(0, 2).map((team, index) => (
             <span>
               {index ? ', ' : ''}

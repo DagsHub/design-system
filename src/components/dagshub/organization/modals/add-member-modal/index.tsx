@@ -14,6 +14,8 @@ export interface AddMemberModalProps {
   isTeam: boolean;
   name: string;
   teams?: string[];
+  display:boolean;
+  onClick:()=>void;
 }
 
 export function AddMemberModal(props: AddMemberModalProps) {
@@ -96,7 +98,7 @@ export function AddMemberModal(props: AddMemberModalProps) {
       />
     </div>
   ];
-  return <GenericModal title={title} elements={elements} />;
+  return <GenericModal title={title} elements={elements}  display={props.display} onClick={props.onClick}/>;
 }
 
 //if organization, add radio buttons
