@@ -8,7 +8,9 @@ import {Input} from "../../../../forms";
 export interface CombinedSearchProps {
     onInputChange:(e: { target: { value: React.SetStateAction<string>; }; })=>void;
     inputText:string;
-    resultUsers: UserInfoProps[]
+    resultUsers: UserInfoProps[];
+    onInputClick:()=>void;
+    placeholder:string;
 }
 
 export function CombinedSearch(props: CombinedSearchProps) {
@@ -18,7 +20,9 @@ export function CombinedSearch(props: CombinedSearchProps) {
                 type="text"
                 value={props.inputText}
                 onChange={props.onInputChange}
+                onClick={props.onInputClick}
                 width={599}
+                placeholder={props.placeholder}
             />
             {props.resultUsers.length && <SearchResultList users={props.resultUsers} />}
         </div>

@@ -43,5 +43,6 @@ Primary.args = {
         }
     ],
     inputText:"",
-    onInputChange:()=>{}
+    onInputChange:()=>{},
+
 };

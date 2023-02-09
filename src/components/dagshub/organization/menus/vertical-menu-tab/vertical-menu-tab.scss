@@ -16,9 +16,11 @@
 
   color: #475569;
   background: #ffffff;
-  border-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
   cursor: pointer;
   border: 0px;
+  text-decoration: none;
 
   &:focus {
     color: #4453b3;
@@ -30,4 +32,12 @@
   &:hover {
     background: #f1f5f9;
   }
+}
+
+.tab_checked {
+  color: #4453b3;
+  background: #eef0fc;
+  border-left: 4px solid #5467de;
+  border-radius: 0px 8px 8px 0px;
+  padding-left: 14px;
 }
