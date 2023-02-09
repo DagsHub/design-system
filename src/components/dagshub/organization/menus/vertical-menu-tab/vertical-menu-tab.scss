@@ -31,10 +31,11 @@
   }
   &:hover {
     background: #f1f5f9;
+    color: #475569;
   }
 }
 
-.tab_checked {
+.tab_checked_vertical {
   color: #4453b3;
   background: #eef0fc;
   border-left: 4px solid #5467de;

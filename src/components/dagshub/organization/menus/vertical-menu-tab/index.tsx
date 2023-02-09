@@ -20,7 +20,7 @@ export function VerticalMenuTab({
   return React.createElement(
       Wrapper,
       null,
-      <a href={href} className={classNames('vertical-menu-tab', { tab_checked: checked })}>
+      <a href={href} className={classNames('vertical-menu-tab', { tab_checked_vertical: checked })}>
         {text}
       </a>
   );
