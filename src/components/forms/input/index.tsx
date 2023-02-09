@@ -12,10 +12,9 @@ export interface InputProps {
   errored?: boolean;
   disabled?: boolean;
   className?: string;
-  maxWidth?: string;
   width?: number;
   inputMaxWidth?: string;
-  onChange?: () => void;
+  onChange?: (arg0?: any) => void;
 }
 
 export const Input = ({

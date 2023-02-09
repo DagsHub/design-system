@@ -16,6 +16,7 @@ export * from '../organization/profiles/profile-image';
 export * from '../organization/profiles/profile-image-list';
 export * from '../organization/profiles/user-info';
 export * from '../organization/search/search-results';
+export * from '../organization/search/combined-search';
 export * from '../organization/settings-tabs/delete-organization-tab';
 export * from '../organization/settings-tabs/general-tab';
 export * from '../organization/settings-tabs/generic-setting-tab';
