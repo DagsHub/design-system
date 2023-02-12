@@ -30,7 +30,7 @@ export const Input = ({
   width,
   inputMaxWidth = 'initial',
   onChange = () => {},
-  onClick=()=>{},
+  onClick = () => {},
   ...props
 }: InputProps) => {
   const classes = classNames([`dagshub-input`, className], { errored, disabled });

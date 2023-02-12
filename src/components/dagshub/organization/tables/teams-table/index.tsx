@@ -24,7 +24,7 @@ export interface TeamTableProps {
 
 export interface Repo {
   name: string;
-  link:string;
+  link: string;
 }
 
 //add functionality, tooltip
@@ -32,7 +32,7 @@ export interface Repo {
 //add (you) annotation to relevant user
 
 export function TeamTable(props: TeamTableProps) {
-  const MAX_ROWS=7;
+  const MAX_ROWS = 7;
   let header: Row;
   header = {
     columns: [
@@ -58,12 +58,10 @@ export function TeamTable(props: TeamTableProps) {
   };
 
   let rows: Row[] = [];
-  if(props.members===undefined||props.members?.length===0){
+  if (props.members === undefined || props.members?.length === 0) {
     let row: Row = {
-      columns: [
-        <span>This team doesn't have any members yet</span>
-      ],
-      style: { width: "100%" }
+      columns: [<span>This team doesn't have any members yet</span>],
+      style: { width: '100%' }
     };
     rows.push(row);
   }
@@ -71,10 +69,7 @@ export function TeamTable(props: TeamTableProps) {
   props.members?.forEach((member, userIndex) => {
     let row: Row = {
       columns: [
-        <UserInfo
-          imageSource={member.relAvatarLink}
-          userName={member.userName}
-        />,
+        <UserInfo imageSource={member.relAvatarLink} userName={member.userName} />,
         <Button
           variant={ButtonVariant.Secondary}
           iconRight={<Icon width={12} height={13.33} fill="#111827" icon="outline-trash" />}
@@ -87,15 +82,15 @@ export function TeamTable(props: TeamTableProps) {
     rows.push(row);
   });
 
-  if((props.members ?? []).length>MAX_ROWS){
+  if ((props.members ?? []).length > MAX_ROWS) {
     let row: Row = {
       columns: [
         <span>{props.isActive ? 'Collapse' : 'See all team members'}</span>,
         <Icon
-            width={8}
-            height={4.8}
-            fill="#172D32"
-            icon={props.isActive ? 'solid-cheveron-up' : 'solid-cheveron-down'}
+          width={8}
+          height={4.8}
+          fill="#172D32"
+          icon={props.isActive ? 'solid-cheveron-up' : 'solid-cheveron-down'}
         />
       ],
       rowClasses: 'table__collapse',
@@ -105,7 +100,7 @@ export function TeamTable(props: TeamTableProps) {
   }
 
   let footer: Row;
-  if((props.teamRepos ?? []).length!=0){
+  if ((props.teamRepos ?? []).length != 0) {
     footer = {
       columns: [
         <span className="teams-table-footer-left-section">
@@ -133,10 +128,10 @@ export function TeamTable(props: TeamTableProps) {
         </span>
       ]
     };
-  }else{
-    footer={
-      columns:[<span>This team doesn't have repositories yet</span>]
-    }
+  } else {
+    footer = {
+      columns: [<span>This team doesn't have repositories yet</span>]
+    };
   }
   return <GenericTable header={header} rows={rows} footer={footer} />;
 }

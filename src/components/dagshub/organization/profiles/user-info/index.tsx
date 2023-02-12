@@ -5,7 +5,7 @@ import React from 'react';
 export interface UserInfoProps {
   imageSource: string;
   userName: string;
-  fullname?:string;
+  fullname?: string;
 }
 
 export function UserInfo(props: UserInfoProps) {

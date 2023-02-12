@@ -7,8 +7,8 @@ import './remove-member-modal.scss';
 export interface RemoveMemberModalProps {
   username: string;
   org: string;
-  display:boolean;
-  onClick:()=>void;
+  display: boolean;
+  onClick: () => void;
 }
 
 export function RemoveMemberModal(props: RemoveMemberModalProps) {
@@ -24,5 +24,12 @@ export function RemoveMemberModal(props: RemoveMemberModalProps) {
       <Button variant={ButtonVariant.Primary} label={'Cancel'} width={95} />
     </div>
   ];
-  return <GenericModal title={'Remove member'} elements={elements} display={props.display} onClick={props.onClick}/>;
+  return (
+    <GenericModal
+      title={'Remove member'}
+      elements={elements}
+      display={props.display}
+      onClick={props.onClick}
+    />
+  );
 }

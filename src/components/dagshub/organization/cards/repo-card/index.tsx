@@ -62,14 +62,14 @@ export function RepoCard({
   numOpenPulls,
   numOpenIssues,
   updatedAt,
-   repoNameHref,
-   starActionLink,
-   starNumberLink,
-   forksHref,
-   issuesHref,
-   pullsHref
+  repoNameHref,
+  starActionLink,
+  starNumberLink,
+  forksHref,
+  issuesHref,
+  pullsHref
 }: RepoCardProps) {
-  const stars = IsGithubIntegrated? githubStarCount + numStars : numStars;
+  const stars = IsGithubIntegrated ? githubStarCount + numStars : numStars;
   return (
     <>
       <div className="desktop-repo card">
@@ -88,10 +88,7 @@ export function RepoCard({
                 <a className="star-number" href={starNumberLink}>
                   {stars}
                 </a>
-                <a
-                  className="star-action"
-                  href={starActionLink}
-                >
+                <a className="star-action" href={starActionLink}>
                   <i className={!isStaring ? 'star' : 'star-outline'} />
                   {isStaring ? (
                     <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star" />
@@ -107,10 +104,7 @@ export function RepoCard({
               <Icon width={13.66} height={18.99} fill="#475569" icon="outline-repository-github" />
             )}
             <div className="repo-name">
-              <a
-                className="title1 cut-text"
-                href={repoNameHref}
-              >
+              <a className="title1 cut-text" href={repoNameHref}>
                 {name}
               </a>
               <div className="tag public-private">{isPrivate ? 'private' : 'public'}</div>
@@ -136,18 +130,12 @@ export function RepoCard({
               {!isMini && <Icon width={564} height={1} fill="#E2E8F0" icon="divider" />}
               <div className="repo-info-text">
                 <div className="stats">
-                  <a
-                    className="stat-block"
-                    href={forksHref}
-                  >
+                  <a className="stat-block" href={forksHref}>
                     <Icon width={10.29} height={12} fill="#475569" icon="outline-fork" />
                     <p>{numForks}</p>
                   </a>
                   {!isMirror && (
-                    <a
-                      className="stat-block"
-                      href={pullsHref}
-                    >
+                    <a className="stat-block" href={pullsHref}>
                       <Icon
                         width={15}
                         height={14.5}
@@ -157,19 +145,13 @@ export function RepoCard({
                       <p>{numOpenPulls}</p>
                     </a>
                   )}
-                  <a
-                    className="stat-block"
-                    href={issuesHref}
-                  >
+                  <a className="stat-block" href={issuesHref}>
                     <Icon width={14.67} height={14.67} fill="#475569" icon="outline-issue" />
                     <p>{numOpenIssues}</p>
                   </a>
                   {isMini && (
                     <div className="star-section">
-                      <a
-                        className="star-action"
-                        href={starActionLink}
-                      >
+                      <a className="star-action" href={starActionLink}>
                         <i className={!isStaring ? 'star' : 'start-outline'}></i>
                         {isStaring ? (
                           <Icon width={12} height={11.47} fill="#475569" icon="solid-star" />

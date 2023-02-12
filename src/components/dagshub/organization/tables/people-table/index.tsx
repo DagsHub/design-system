@@ -26,7 +26,7 @@ export enum MembershipVisibility {
 export interface UserTeam {
   teamName: string;
   userPermissionForTeam: UserPermissionForTeam; //make enum, admin access, write access, read access
-  teamLink:string;
+  teamLink: string;
 }
 
 export enum UserPermissionForTeam {
@@ -56,12 +56,16 @@ export function PeopleTable(props: PeopleTableProps) {
       columns: [
         <UserInfo imageSource={user.userImage} userName={user.username} />,
         <span className="teams-list">
-          {(user?.userTeams ?? []).length===0?<span>Member doesn’t belong to any team</span> : null}
+          {(user?.userTeams ?? []).length === 0 ? (
+            <span>Member doesn’t belong to any team</span>
+          ) : null}
           {(user?.userTeams ?? []).slice(0, 2).map((team, index) => (
             <span>
               {index ? ', ' : ''}
-              <a href={team.teamLink} className="teams-list__team-name">{team.teamName}</a>
-              <span className="teams-list__team-permission">{" "}({team.userPermissionForTeam})</span>
+              <a href={team.teamLink} className="teams-list__team-name">
+                {team.teamName}
+              </a>
+              <span className="teams-list__team-permission"> ({team.userPermissionForTeam})</span>
             </span>
           ))}
           {user.userTeams.length > 2 && (

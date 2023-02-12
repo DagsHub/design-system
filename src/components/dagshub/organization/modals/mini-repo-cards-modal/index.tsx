@@ -8,8 +8,8 @@ import './mini-repo-cards-modal.scss';
 export interface MiniRepoCardsModalProps {
   teamName: string;
   repos: RepoCardProps[];
-  display:boolean;
-  onClick:()=>void;
+  display: boolean;
+  onClick: () => void;
 }
 
 export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
@@ -39,7 +39,8 @@ export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
           pullsHref={repo.pullsHref}
           repoNameHref={repo.repoNameHref}
           starActionLink={repo.starActionLink}
-          starNumberLink={repo.starNumberLink}/>
+          starNumberLink={repo.starNumberLink}
+        />
       ))}
     </div>
   );
@@ -51,7 +52,9 @@ export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
   return (
     <GenericModal
       title={props.teamName.charAt(0).toUpperCase() + props.teamName.slice(1) + "'s repos"}
-      elements={elements} display={props.display} onClick={props.onClick}
+      elements={elements}
+      display={props.display}
+      onClick={props.onClick}
     />
   );
 }

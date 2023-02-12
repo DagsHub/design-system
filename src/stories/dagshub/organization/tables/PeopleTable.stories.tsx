@@ -25,7 +25,7 @@ Primary.args = {
       username: 'ItayMalka',
       userTeams: [
         {
-          teamLink:"",
+          teamLink: '',
           teamName: 'Devops Team',
           userPermissionForTeam: UserPermissionForTeam.AdminAccess
         }
@@ -37,12 +37,12 @@ Primary.args = {
       username: 'TalMalka',
       userTeams: [
         {
-          teamLink:"",
+          teamLink: '',
           teamName: 'Devops Team',
           userPermissionForTeam: UserPermissionForTeam.WriteAccess
         },
         {
-          teamLink:"",
+          teamLink: '',
           teamName: 'R&D Team',
           userPermissionForTeam: UserPermissionForTeam.ReadAccess
         }
@@ -54,17 +54,17 @@ Primary.args = {
       username: 'ShaharMalka',
       userTeams: [
         {
-          teamLink:"",
+          teamLink: '',
           teamName: 'Devops Team',
           userPermissionForTeam: UserPermissionForTeam.AdminAccess
         },
         {
-          teamLink:"",
+          teamLink: '',
           teamName: 'R&D Team',
           userPermissionForTeam: UserPermissionForTeam.WriteAccess
         },
         {
-          teamLink:"",
+          teamLink: '',
           teamName: 'Product Team',
           userPermissionForTeam: UserPermissionForTeam.ReadAccess
         }

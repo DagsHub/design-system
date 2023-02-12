@@ -16,10 +16,7 @@ export function SearchResultList(props: SearchResultListProps) {
     let row: Row = {
       rowClasses: 'search-result-list__row',
       columns: [
-        <UserInfo
-          imageSource={user.imageSource}
-          userName={user.userName}
-        />,
+        <UserInfo imageSource={user.imageSource} userName={user.userName} />,
         <Button
           width={142}
           variant={ButtonVariant.Secondary}
