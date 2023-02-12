@@ -35,7 +35,7 @@ export function GenericTable(props: TableProps) {
           style={row.style}
           className={generateClassName(!!props.footer, rowIndex, props.rows.length, row)}
         >
-          {row.columns?.map((column, columnIndex) => column)}
+          {row.columns?.map((column) => column)}
         </div>
       ))}
       {props.footer && (

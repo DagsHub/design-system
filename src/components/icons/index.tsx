@@ -6,11 +6,13 @@ export interface IconProp {
   fill?: string;
   width?: number;
   height?: number;
+  onClick?: (args?: any) => void;
 }
 
 export const icons = {
-  checkmark: ({ fill, width, height }: IconProp) => (
+  checkmark: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       fill="none"
@@ -26,8 +28,9 @@ export const icons = {
       />
     </svg>
   ),
-  pencil: ({ fill, width, height }: IconProp) => (
+  pencil: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 21"
@@ -42,8 +45,9 @@ export const icons = {
       />
     </svg>
   ),
-  home: ({ fill, width, height }: IconProp) => (
+  home: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -59,8 +63,9 @@ export const icons = {
       />
     </svg>
   ),
-  mail: ({ fill, width, height }: IconProp) => (
+  mail: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 16"
@@ -75,8 +80,9 @@ export const icons = {
       />
     </svg>
   ),
-  bell: ({ fill, width, height }: IconProp) => (
+  bell: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 18 20"
@@ -91,8 +97,9 @@ export const icons = {
       />
     </svg>
   ),
-  briefcase: ({ fill, width, height }: IconProp) => (
+  briefcase: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -108,8 +115,9 @@ export const icons = {
       />
     </svg>
   ),
-  'shield-check': ({ fill, width, height }: IconProp) => (
+  'shield-check': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 21"
@@ -125,8 +133,9 @@ export const icons = {
       />
     </svg>
   ),
-  'shield-exclamation': ({ fill, width, height }: IconProp) => (
+  'shield-exclamation': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 21"
@@ -143,8 +152,9 @@ export const icons = {
       />
     </svg>
   ),
-  cog: ({ fill, width, height }: IconProp) => (
+  cog: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -159,8 +169,9 @@ export const icons = {
       />
     </svg>
   ),
-  translate: ({ fill, width, height }: IconProp) => (
+  translate: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -176,8 +187,9 @@ export const icons = {
       />
     </svg>
   ),
-  cash: ({ fill, width, height }: IconProp) => (
+  cash: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 16"
@@ -193,8 +205,9 @@ export const icons = {
       />
     </svg>
   ),
-  'location-marker': ({ fill, width, height }: IconProp) => (
+  'location-marker': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 18 21"
@@ -209,8 +222,9 @@ export const icons = {
       />
     </svg>
   ),
-  user: ({ fill, width, height }: IconProp) => (
+  user: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 16 20"
@@ -233,8 +247,9 @@ export const icons = {
       />
     </svg>
   ),
-  users: ({ fill, width, height }: IconProp) => (
+  users: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -249,8 +264,9 @@ export const icons = {
       />
     </svg>
   ),
-  group: ({ fill, width, height }: IconProp) => (
+  group: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 22 18"
@@ -265,8 +281,9 @@ export const icons = {
       />
     </svg>
   ),
-  building: ({ fill, width, height }: IconProp) => (
+  building: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -281,8 +298,9 @@ export const icons = {
       />
     </svg>
   ),
-  scale: ({ fill, width, height }: IconProp) => (
+  scale: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 21 20"
@@ -297,8 +315,9 @@ export const icons = {
       />
     </svg>
   ),
-  edit: ({ fill, width, height }: IconProp) => (
+  edit: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 19 19"
@@ -313,8 +332,9 @@ export const icons = {
       />
     </svg>
   ),
-  eye: ({ fill, width, height }: IconProp) => (
+  eye: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 22 16"
@@ -329,8 +349,9 @@ export const icons = {
       />
     </svg>
   ),
-  bookmark: ({ fill, width, height }: IconProp) => (
+  bookmark: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 16 20"
@@ -345,8 +366,9 @@ export const icons = {
       />
     </svg>
   ),
-  'color-swatch': ({ fill, width, height }: IconProp) => (
+  'color-swatch': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -362,8 +384,9 @@ export const icons = {
       />
     </svg>
   ),
-  inbox: ({ fill, width, height }: IconProp) => (
+  inbox: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 18 18"
@@ -379,8 +402,9 @@ export const icons = {
       />
     </svg>
   ),
-  'inbox-in': ({ fill, width, height }: IconProp) => (
+  'inbox-in': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 18 19"
@@ -396,8 +420,9 @@ export const icons = {
       />
     </svg>
   ),
-  archive: ({ fill, width, height }: IconProp) => (
+  archive: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 18"
@@ -413,8 +438,9 @@ export const icons = {
       />
     </svg>
   ),
-  clock: ({ fill, width, height }: IconProp) => (
+  clock: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -430,8 +456,9 @@ export const icons = {
       />
     </svg>
   ),
-  photo: ({ fill, width, height }: IconProp) => (
+  photo: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 18 18"
@@ -447,8 +474,9 @@ export const icons = {
       />
     </svg>
   ),
-  tag: ({ fill, width, height }: IconProp) => (
+  tag: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -461,8 +489,9 @@ export const icons = {
       />
     </svg>
   ),
-  phone: ({ fill, width, height }: IconProp) => (
+  phone: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -478,8 +507,9 @@ export const icons = {
       />
     </svg>
   ),
-  'phone-outgoing': ({ fill, width, height }: IconProp) => (
+  'phone-outgoing': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -495,8 +525,9 @@ export const icons = {
       />
     </svg>
   ),
-  'phone-incoming': ({ fill, width, height }: IconProp) => (
+  'phone-incoming': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -512,8 +543,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-cheveron-down': ({ fill, width, height }: IconProp) => (
+  'outline-cheveron-down': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 16 9"
@@ -528,8 +560,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-cheveron-up': ({ fill, width, height }: IconProp) => (
+  'outline-cheveron-up': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 16 9"
@@ -544,8 +577,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-trash': ({ fill, width, height }: IconProp) => (
+  'outline-trash': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 18 20"
@@ -560,8 +594,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-information-circle': ({ fill, width, height }: IconProp) => (
+  'outline-information-circle': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -577,8 +612,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-plus': ({ fill, width, height }: IconProp) => (
+  'outline-plus': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 18 18"
@@ -593,8 +629,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-x': ({ fill, width, height }: IconProp) => (
+  'outline-x': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 14 14"
@@ -609,8 +646,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-dots-vertical': ({ fill, width, height }: IconProp) => (
+  'outline-dots-vertical': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 4 18"
@@ -625,8 +663,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-arrow-sm-right': ({ fill, width, height }: IconProp) => (
+  'outline-arrow-sm-right': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 -1 14 12"
@@ -641,8 +680,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-repository-github': ({ fill, width, height }: IconProp) => (
+  'outline-repository-github': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 16 21"
@@ -657,8 +697,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-star': ({ fill, width, height }: IconProp) => (
+  'outline-star': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 22 21"
@@ -672,8 +713,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-issue': ({ fill, width, height }: IconProp) => (
+  'outline-issue': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -688,8 +730,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-pull-request-github': ({ fill, width, height }: IconProp) => (
+  'outline-pull-request-github': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -704,8 +747,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-search': ({ fill, width, height }: IconProp) => (
+  'outline-search': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -720,8 +764,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-lock-closed': ({ fill, width, height }: IconProp) => (
+  'outline-lock-closed': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -736,8 +781,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-copy': ({ fill, width, height }: IconProp) => (
+  'outline-copy': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -752,8 +798,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-check': ({ fill, width, height }: IconProp) => (
+  'outline-check': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 16 12"
@@ -768,8 +815,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-exclamation-circle': ({ fill, width, height }: IconProp) => (
+  'outline-exclamation-circle': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -785,8 +833,9 @@ export const icons = {
       />
     </svg>
   ),
-  'solid-cheveron-down': ({ fill, width, height }: IconProp) => (
+  'solid-cheveron-down': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 10 6"
@@ -801,8 +850,9 @@ export const icons = {
       />
     </svg>
   ),
-  'solid-cheveron-up': ({ fill, width, height }: IconProp) => (
+  'solid-cheveron-up': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 10 6"
@@ -817,8 +867,9 @@ export const icons = {
       />
     </svg>
   ),
-  'solid-trash': ({ fill, width, height }: IconProp) => (
+  'solid-trash': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 14 16"
@@ -833,8 +884,9 @@ export const icons = {
       />
     </svg>
   ),
-  'solid-information-circle': ({ fill, width, height }: IconProp) => (
+  'solid-information-circle': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 16 16"
@@ -849,8 +901,9 @@ export const icons = {
       />
     </svg>
   ),
-  'solid-plus': ({ fill, width, height }: IconProp) => (
+  'solid-plus': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 14 14"
@@ -865,8 +918,9 @@ export const icons = {
       />
     </svg>
   ),
-  'solid-x': ({ fill, width, height }: IconProp) => (
+  'solid-x': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 12 12"
@@ -881,8 +935,9 @@ export const icons = {
       />
     </svg>
   ),
-  'solid-dots-vertical': ({ fill, width, height }: IconProp) => (
+  'solid-dots-vertical': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 4 16"
@@ -903,8 +958,9 @@ export const icons = {
       />
     </svg>
   ),
-  'solid-arrow-sm-right': ({ fill, width, height }: IconProp) => (
+  'solid-arrow-sm-right': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 12 10"
@@ -919,8 +975,9 @@ export const icons = {
       />
     </svg>
   ),
-  'solid-star': ({ fill, width, height }: IconProp) => (
+  'solid-star': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 15 15"
@@ -933,8 +990,9 @@ export const icons = {
       />
     </svg>
   ),
-  'solid-search': ({ fill, width, height }: IconProp) => (
+  'solid-search': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 16 16"
@@ -949,8 +1007,9 @@ export const icons = {
       />
     </svg>
   ),
-  'solid-lock-closed': ({ fill, width, height }: IconProp) => (
+  'solid-lock-closed': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 14 16"
@@ -965,8 +1024,9 @@ export const icons = {
       />
     </svg>
   ),
-  'solid-check': ({ fill, width, height }: IconProp) => (
+  'solid-check': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 14 10"
@@ -981,8 +1041,9 @@ export const icons = {
       />
     </svg>
   ),
-  'solid-exclamation-circle': ({ fill, width, height }: IconProp) => (
+  'solid-exclamation-circle': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 16 16"
@@ -997,8 +1058,9 @@ export const icons = {
       />
     </svg>
   ),
-  divider: ({ fill, width, height }: IconProp) => (
+  divider: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 564 1"
@@ -1008,8 +1070,9 @@ export const icons = {
       <rect width={width} height={height} fill={fill} />
     </svg>
   ),
-  'outline-fork': ({ fill, width, height }: IconProp) => (
+  'outline-fork': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 16 18"
@@ -1024,8 +1087,9 @@ export const icons = {
       />
     </svg>
   ),
-  pipe: ({ fill, width, height }: IconProp) => (
+  pipe: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 1 12"
@@ -1035,8 +1099,9 @@ export const icons = {
       <rect width={width} height={height} fill={fill} />
     </svg>
   ),
-  circle: ({ fill, width, height }: IconProp) => (
+  circle: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 8 8"
@@ -1046,8 +1111,9 @@ export const icons = {
       <circle cx="4" cy="4" r="4" fill={fill} />
     </svg>
   ),
-  'outline-upload': ({ fill, width, height }: IconProp) => (
+  'outline-upload': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -1062,8 +1128,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-notebook': ({ fill, width, height }: IconProp) => (
+  'outline-notebook': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 17"
@@ -1078,8 +1145,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-user-group': ({ fill, width, height }: IconProp) => (
+  'outline-user-group': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -1094,8 +1162,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-users': ({ fill, width, height }: IconProp) => (
+  'outline-users': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -1110,8 +1179,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-cog': ({ fill, width, height }: IconProp) => (
+  'outline-cog': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 24 24"
@@ -1126,8 +1196,9 @@ export const icons = {
       />
     </svg>
   ),
-  'outline-link': ({ fill, width, height }: IconProp) => (
+  'outline-link': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
+      onClick={onClick}
       width={width}
       height={height}
       viewBox="0 0 20 20"
@@ -1151,7 +1222,8 @@ export interface IconProps {
   fill?: string;
   width?: number;
   height?: number;
+  onClick?: (args?: any) => void;
 }
 
-export const Icon = ({ icon, fill = 'white', width = 10, height = 10, ...props }: IconProps) =>
-  React.createElement(icons[icon], { fill, width, height, ...props });
+export const Icon = ({ icon, fill = 'white', width = 10, height = 10, onClick, ...props }: IconProps) =>
+  React.createElement(icons[icon], { fill, width, height, onClick, ...props });

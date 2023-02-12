@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Icon } from '../../../../icons';
-import '../../../../styles/root.scss';
-import { Row, GenericTable } from '../generic-table';
 import { UserInfo } from '../../profiles/user-info';
-import { UserPermissionForTeam } from '../shared-classes';
+import { Row, GenericTable } from '../generic-table';
+import { UserPermissionForTeam, Member } from '../shared-classes';
 import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
-import { Member } from '../shared-classes';
+
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import './teams-table.scss';
@@ -20,6 +19,8 @@ export interface TeamTableProps {
   index: number;
   style: string;
   isActive: Boolean;
+  removeFromTeam: (args?: any) => void;
+  addNewTeamMember: (args?: any) => void;
 }
 
 export interface Repo {
@@ -31,24 +32,40 @@ export interface Repo {
 //change its css to BEM
 //add (you) annotation to relevant user
 
-export function TeamTable(props: TeamTableProps) {
-  const MAX_ROWS = 7;
+const MAX_ROWS = 7;
+
+export function TeamTable({
+  teamName,
+  teamDescription,
+  members,
+  style,
+  isActive,
+  handleClickOnCollapse,
+  index,
+  teamRepos,
+  teamPermission,
+  removeFromTeam,
+  addNewTeamMember,
+}: TeamTableProps) {
   let header: Row;
   header = {
     columns: [
       <span className="teams-table-left-side-header">
-        <span className="teams-table-left-side-header__team-name">{props.teamName} TEAM</span>
+        <span className="teams-table-left-side-header__team-name">
+          {teamName} TEAM
+        </span>
         <span className="teams-table-left-side-header__team-description">
-          {props.teamDescription}
+          {teamDescription}
         </span>
       </span>,
       <span className="teams-table-right-side-header">
         <Button
-          variant={ButtonVariant.Ghost}
-          stretch={ButtonStretch.Slim}
           width={210}
+          onClick={addNewTeamMember}
+          label='Add new team member'
+          stretch={ButtonStretch.Slim}
+          variant={ButtonVariant.Ghost}
           iconLeft={<Icon width={10.67} height={10.67} fill="#172D32" icon="solid-plus" />}
-          label={'Add new team member'}
         />
         <span className="teams-table-right-side-header__dots-vertical-icon">
           <Icon width={3} height={13.5} fill="#64748B" icon="outline-dots-vertical" />
@@ -58,7 +75,7 @@ export function TeamTable(props: TeamTableProps) {
   };
 
   let rows: Row[] = [];
-  if (props.members === undefined || props.members?.length === 0) {
+  if (!members?.length) {
     let row: Row = {
       columns: [<span>This team doesn't have any members yet</span>],
       style: { width: '100%' }
@@ -66,54 +83,58 @@ export function TeamTable(props: TeamTableProps) {
     rows.push(row);
   }
 
-  props.members?.forEach((member, userIndex) => {
+  members?.forEach((member, userIndex) => {
     let row: Row = {
       columns: [
-        <UserInfo imageSource={member.relAvatarLink} userName={member.userName} />,
+        <UserInfo 
+          imageSource={member.relAvatarLink} 
+          userName={member.userName}
+        />,
         <Button
+          width={177}
+          label='Remove from team'
+          onClick={removeFromTeam}
           variant={ButtonVariant.Secondary}
           iconRight={<Icon width={12} height={13.33} fill="#111827" icon="outline-trash" />}
-          label={'Remove from team'}
-          width={177}
         />
       ],
-      style: userIndex >= MAX_ROWS ? { display: props.style } : {}
+      style: userIndex >= MAX_ROWS ? { display: style } : {},
     };
     rows.push(row);
   });
 
-  if ((props.members ?? []).length > MAX_ROWS) {
+  if ((members ?? []).length > MAX_ROWS) {
     let row: Row = {
       columns: [
-        <span>{props.isActive ? 'Collapse' : 'See all team members'}</span>,
+        <span>{isActive ? 'Collapse' : 'See all team members'}</span>,
         <Icon
           width={8}
           height={4.8}
           fill="#172D32"
-          icon={props.isActive ? 'solid-cheveron-up' : 'solid-cheveron-down'}
+          icon={isActive ? 'solid-cheveron-up' : 'solid-cheveron-down'}
         />
       ],
       rowClasses: 'table__collapse',
-      onClick: () => props.handleClickOnCollapse(props.index)
+      onClick: () => handleClickOnCollapse(index),
     };
     rows.push(row);
   }
 
   let footer: Row;
-  if ((props.teamRepos ?? []).length != 0) {
+  if ((teamRepos ?? []).length != 0) {
     footer = {
       columns: [
         <span className="teams-table-footer-left-section">
           <span className="teams-table-footer-left-section__permission-text">
             Team has
             <span className="teams-table-footer-left-section__permission-label">
-              {props.teamPermission}
+              {teamPermission}
               <Icon width={10} height={6} fill="#172D32" icon="solid-cheveron-down" />
             </span>
             to following repositories:
           </span>
           <span className="team-repos">
-            {props.teamRepos?.map((repo: Repo) => (
+            {teamRepos?.map((repo: Repo) => (
               <a href={repo.link} className="team-repos__repo">
                 <Icon width={16} height={21} fill="#172D32" icon="outline-repository-github" />
                 {repo.name}

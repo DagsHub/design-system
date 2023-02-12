@@ -1,20 +1,32 @@
-import * as React from 'react';
-import {
-  RadioButtonItem,
-  RadioButtonItemProps
-} from '../../../forms/radio-button/radio-button-item';
+import React from 'react';
+import classNames from 'classnames';
+import { RadioButtonItem, RadioButtonItemProps } from '../radio-button-item';
+
 import './radio-button-list.scss';
 
 export interface RadioButtonListProps {
   title?: string;
-  items: JSX.Element[];
+  className?: string;
+  style?: React.CSSProperties;
+  onChecked?: (args: any) => void;
+  items: RadioButtonItemProps[];
 }
 
-export function RadioButtonList(props: RadioButtonListProps) {
+export function RadioButtonList({
+  title = '',
+  className = '',
+  style = {},
+  onChecked = () => {},
+  items,
+}: RadioButtonListProps) {
   return (
-    <div className="radio-button-list">
-      {props.title ? <p className="radio-button-list__title">{props.title}</p> : <></>}
-      {props.items?.map((item, columnIndex) => item)}
+    <div className={classNames('radio-button-list', className)} style={style}>
+      {title && (
+        <p className="radio-button-list__title">{title}</p>
+      )}
+      {items?.map((item: RadioButtonItemProps) => (
+        <RadioButtonItem key={item.id} onChecked={onChecked} {...item} />
+      ))}
     </div>
   );
 }

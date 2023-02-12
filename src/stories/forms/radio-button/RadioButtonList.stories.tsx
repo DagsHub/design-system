@@ -19,16 +19,19 @@ Primary.args = {
   title: 'Team permissions',
   items: [
     <RadioButtonItem
+      id={1}
       label="Read access"
       description="This team will be able to view and clone its repositories"
       icon={<Icon icon="outline-lock-closed" fill={'#94A3B8'} width={12} height={13.33} />}
     />,
     <RadioButtonItem
+      id={2}
       label="Write access"
       description="This team will be able to read its repositories, as well as push to them."
       icon={<Icon icon="outline-lock-closed" fill={'#94A3B8'} width={12} height={13.33} />}
     />,
     <RadioButtonItem
+      id={2}
       label="Admin access"
       description="This team will be able to push/pull to its repositories, as well as add other collaborators to them."
       icon={<Icon icon="outline-lock-closed" fill={'#94A3B8'} width={12} height={13.33} />}

@@ -54,18 +54,20 @@ export function AddMemberModal(props: AddMemberModalProps) {
       <>
         <RadioButtonList
           items={[
-            <RadioButtonItem
-              width={599}
-              label="Member access to organization"
-              description="Description text"
-              icon={<Icon icon="outline-lock-closed" fill={'#94A3B8'} width={12} height={13.33} />}
-            />,
-            <RadioButtonItem
-              width={599}
-              label="Admin access to organization"
-              description="Admins have full access to all repositories and have admin rights to the organization"
-              icon={<Icon icon="outline-lock-closed" fill={'#94A3B8'} width={12} height={13.33} />}
-            />
+            {
+              id: 1,
+              width: 599,
+              label: 'Member access to organization',
+              description: 'Description text',
+              icon: <Icon icon="outline-lock-closed" fill={'#94A3B8'} width={12} height={13.33} />,
+            },
+            {
+              id: 2,
+              width: 599,
+              label: 'Admin access to organization',
+              description: 'Admins have full access to all repositories and have admin rights to the organization',
+              icon: <Icon icon="outline-lock-closed" fill={'#94A3B8'} width={12} height={13.33} />,
+            },
           ]}
         />
         {props.teams && props.teams.length > 0 ? (

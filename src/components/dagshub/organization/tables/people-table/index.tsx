@@ -1,14 +1,19 @@
 import React from 'react';
-import '../../../../styles/root.scss';
-import '../generic-table/table.scss';
+import lowerCase from 'lodash/lowerCase';
+import { Icon } from '../../../../icons';
 import { UserInfo } from '../../profiles/user-info';
 import { GenericTable, Row } from '../generic-table';
-import { Icon } from '../../../../icons';
 import { Dropdown } from '../../../../elements/dropdown';
+import { RadioButtonItemProps } from '../../../../forms';
+
+import '../../../../styles/root.scss';
+import '../generic-table/table.scss';
 import './people-table.scss';
 
 export interface PeopleTableProps {
   users: User[];
+  membershipVisibilityCollapsed?: Record<string, boolean>;
+  changeMembershipVisibilityCollapsed?: (args: any) => void;
 }
 
 interface User {
@@ -16,6 +21,8 @@ interface User {
   username: string;
   userTeams: UserTeam[];
   membershipVisibility: MembershipVisibility;
+  removeMember?: (args?: any) => void;
+  changeMembershipVisibility?: (args?: any) => void;
 }
 
 export enum MembershipVisibility {
@@ -41,44 +48,58 @@ export enum UserPermissionForTeam {
 //add te hover design for the private-public
 //add (you) annotation to relevant user
 
-export function PeopleTable(props: PeopleTableProps) {
-  let header: Row;
-  header = {
+const header: Row = {
+  columns: [
+    <div className="people-table__header people-table__header--left">Username</div>,
+    <div className="people-table__header people-table__header--center">Teams they belong to</div>,
+    <div className="people-table__header people-table__header--right">Membership visibility</div>
+  ]
+};
+
+const membershipVisibilityOptions: RadioButtonItemProps[] = [
+  { id: 'public', label: 'Public' },
+  { id: 'private', label: 'Private' },
+];
+
+export function PeopleTable({
+  users,
+  membershipVisibilityCollapsed = {},
+  changeMembershipVisibilityCollapsed = () => {},
+}: PeopleTableProps) {
+  const rows: Row[] = users.map(user => ({
     columns: [
-      <div className="people-table__header people-table__header--left">Username</div>,
-      <div className="people-table__header people-table__header--center">Teams they belong to</div>,
-      <div className="people-table__header people-table__header--right">Membership visibility</div>
-    ]
-  };
-  let rows: Row[] = [];
-  for (let user of props.users) {
-    let row: Row = {
-      columns: [
-        <UserInfo imageSource={user.userImage} userName={user.username} />,
-        <span className="teams-list">
-          {(user?.userTeams ?? []).length === 0 ? (
-            <span>Member doesn’t belong to any team</span>
-          ) : null}
-          {(user?.userTeams ?? []).slice(0, 2).map((team, index) => (
-            <span>
-              {index ? ', ' : ''}
-              <a href={team.teamLink} className="teams-list__team-name">
-                {team.teamName}
-              </a>
-              <span className="teams-list__team-permission"> ({team.userPermissionForTeam})</span>
-            </span>
-          ))}
-          {user.userTeams.length > 2 && (
-            <span className="teams-list__hidden-teams">+{user.userTeams.length - 2}</span>
-          )}
-        </span>,
-        <div className="people-table__membership-column">
-          <Dropdown width={146} label={user.membershipVisibility} />
-          <Icon width={12} height={13.33} fill="#172D32" icon="outline-trash" />
-        </div>
-      ]
-    };
-    rows.push(row);
-  }
+      <UserInfo imageSource={user.userImage} userName={user.username} />,
+      <span className="teams-list">
+        {(user?.userTeams ?? []).length === 0 && (
+          <span>Member doesn’t belong to any team</span>
+        )}
+        {(user?.userTeams ?? []).slice(0, 2).map((team, index) => (
+          <span key={team.teamName + index}>
+            {!!index && ', '}
+            <a href={team.teamLink} className="teams-list__team-name">{team.teamName}</a>
+            <span className="teams-list__team-permission">({team.userPermissionForTeam})</span>
+          </span>
+        ))}
+        {user.userTeams.length > 2 && (
+          <span className="teams-list__hidden-teams">+{user.userTeams.length - 2}</span>
+        )}
+      </span>,
+      <div className="people-table__membership-column">
+        <Dropdown 
+          width={145} 
+          label={user.membershipVisibility}
+          onItemChecked={user.changeMembershipVisibility}
+          isCollapsed={membershipVisibilityCollapsed[user.username]}
+          toggleCollapse={() => changeMembershipVisibilityCollapsed(user.username)}
+          options={membershipVisibilityOptions.map(opt => ({ 
+            ...opt, 
+            checked: lowerCase(user.membershipVisibility) === opt.id,
+          }))}
+        />
+        <Icon width={12} height={13.33} fill="#172D32" icon="outline-trash" onClick={user.removeMember} />
+      </div>,
+    ],
+  }));
+  
   return <GenericTable header={header} rows={rows} />;
 }
