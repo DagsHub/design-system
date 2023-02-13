@@ -1,11 +1,11 @@
 import React from 'react';
-import '../../../../styles/root.scss';
-import { GenericModal } from '../generic-modal';
 import { Icon } from '../../../../icons';
-import { Button, ButtonVariant } from '../../../../elements';
 import { Input } from '../../../../forms';
+import { GenericModal } from '../generic-modal';
+import { Button, ButtonVariant } from '../../../../elements';
 import { RadioButtonList } from '../../../../forms/radio-button/radio-button-list';
-import { RadioButtonItem } from '../../../../forms/radio-button/radio-button-item';
+
+import '../../../../styles/root.scss';
 import './team-settings-modal.scss';
 
 export interface TeamSettingsModalProps {
@@ -17,11 +17,15 @@ export function TeamSettingsModal(props: TeamSettingsModalProps) {
   let elements: JSX.Element[];
   elements = [
     <Input
-      label={'Team name'}
-      helperText={'Changing the team name will break past @mentions.'}
-      width={599}
+      label='Team name'
+      helperText='Changing the team name will break past @mentions.'
+      rootMaxWidth={599}
     />,
-    <Input label={'Description'} helperText={'What is this team all about?'} width={599} />,
+    <Input 
+      label='Description' 
+      helperText='What is this team all about?' 
+      rootMaxWidth={599}
+    />,
     <RadioButtonList
       title="Team permissions"
       items={[

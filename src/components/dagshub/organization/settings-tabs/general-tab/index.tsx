@@ -32,15 +32,15 @@ export function GeneralSettingsTab(props: GeneralSettingsTabProps) {
       </div>
       <div className="general-setting-tab__form">
         <Input
-          width={622}
+          rootMaxWidth={622}
           label={'Organization name'}
           helperText={'Required'}
           placeholder={'Input'}
         />
-        <Input width={622} label={'Organization full name'} placeholder={'Input'} />
-        <Input width={622} label={'Description'} placeholder={'Input'} />
-        <Input width={622} label={'Website'} placeholder={'Input'} />
-        <Input width={622} label={'Location'} placeholder={'Input'} />
+        <Input rootMaxWidth={622} label={'Organization full name'} placeholder={'Input'} />
+        <Input rootMaxWidth={622} label={'Description'} placeholder={'Input'} />
+        <Input rootMaxWidth={622} label={'Website'} placeholder={'Input'} />
+        <Input rootMaxWidth={622} label={'Location'} placeholder={'Input'} />
         <Button label={'Update settings'} width={166} />
       </div>
     </div>

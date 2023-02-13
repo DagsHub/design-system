@@ -1,10 +1,10 @@
 import React from 'react';
+import { Input } from '../../../../forms';
+import { SearchResultList } from '../search-results';
+import { UserInfoProps } from '../../profiles/user-info';
+
 import '../../../../styles/root.scss';
 import './combined-search.scss';
-import { UserInfoProps } from '../../profiles/user-info';
-import { SearchResultList } from '../search-results';
-import { Input } from '../../../../forms';
-
 export interface CombinedSearchProps {
   onInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
   inputText: string;
@@ -21,7 +21,7 @@ export function CombinedSearch(props: CombinedSearchProps) {
         value={props.inputText}
         onChange={props.onInputChange}
         onClick={props.onInputClick}
-        width={599}
+        rootMaxWidth={599}
         placeholder={props.placeholder}
       />
       {props.resultUsers.length && <SearchResultList users={props.resultUsers} />}
