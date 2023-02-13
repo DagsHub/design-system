@@ -17,13 +17,11 @@ export function RadioButtonList({
   className = '',
   style = {},
   onChecked = () => {},
-  items,
+  items
 }: RadioButtonListProps) {
   return (
     <div className={classNames('radio-button-list', className)} style={style}>
-      {title && (
-        <p className="radio-button-list__title">{title}</p>
-      )}
+      {title && <p className="radio-button-list__title">{title}</p>}
       {items?.map((item: RadioButtonItemProps) => (
         <RadioButtonItem key={item.id} onChecked={onChecked} {...item} />
       ))}

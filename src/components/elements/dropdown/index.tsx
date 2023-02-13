@@ -31,19 +31,19 @@ export const Dropdown = ({
   ...props
 }: DropdownProps & React.ButtonHTMLAttributes<HTMLDivElement>) => {
   return (
-    <div className='dagshub-dropdown' style={{ width }} {...props}>
-      <div className='dagshub-dropdown__box' onClick={toggleCollapse}>
+    <div className="dagshub-dropdown" style={{ width }} {...props}>
+      <div className="dagshub-dropdown__box" onClick={toggleCollapse}>
         {label}
-        <Icon 
-          width={10} 
-          height={6} 
-          fill="#172D32" 
+        <Icon
+          width={10}
+          height={6}
+          fill="#172D32"
           icon={`solid-cheveron-${isCollapsed ? 'down' : 'up'}`}
         />
       </div>
       {!isCollapsed && (
         <RadioButtonList
-          className='dagshub-dropdown__options'
+          className="dagshub-dropdown__options"
           items={options}
           onChecked={onItemChecked}
         />

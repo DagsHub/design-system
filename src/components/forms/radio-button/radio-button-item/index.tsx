@@ -6,7 +6,7 @@ export interface RadioButtonItemProps {
   id: number | string;
   label?: string;
   className?: string;
-  onChecked?: (arg: number| string) => void;
+  onChecked?: (arg: number | string) => void;
   description?: string;
   icon?: JSX.Element;
   checked?: boolean;
@@ -21,7 +21,7 @@ export const RadioButtonItem = ({
   description = '',
   checked = false,
   icon,
-  width,
+  width
 }: RadioButtonItemProps) => {
   const classes = classNames([`radio-button-item`, className]);
 

@@ -45,24 +45,20 @@ export function TeamTable({
   teamRepos,
   teamPermission,
   removeFromTeam,
-  addNewTeamMember,
+  addNewTeamMember
 }: TeamTableProps) {
   let header: Row;
   header = {
     columns: [
       <span className="teams-table-left-side-header">
-        <span className="teams-table-left-side-header__team-name">
-          {teamName} TEAM
-        </span>
-        <span className="teams-table-left-side-header__team-description">
-          {teamDescription}
-        </span>
+        <span className="teams-table-left-side-header__team-name">{teamName} TEAM</span>
+        <span className="teams-table-left-side-header__team-description">{teamDescription}</span>
       </span>,
       <span className="teams-table-right-side-header">
         <Button
           width={210}
           onClick={addNewTeamMember}
-          label='Add new team member'
+          label="Add new team member"
           stretch={ButtonStretch.Slim}
           variant={ButtonVariant.Ghost}
           iconLeft={<Icon width={10.67} height={10.67} fill="#172D32" icon="solid-plus" />}
@@ -86,19 +82,16 @@ export function TeamTable({
   members?.forEach((member, userIndex) => {
     let row: Row = {
       columns: [
-        <UserInfo 
-          imageSource={member.relAvatarLink} 
-          userName={member.userName}
-        />,
+        <UserInfo imageSource={member.relAvatarLink} userName={member.userName} />,
         <Button
           width={177}
-          label='Remove from team'
+          label="Remove from team"
           onClick={removeFromTeam}
           variant={ButtonVariant.Secondary}
           iconRight={<Icon width={12} height={13.33} fill="#111827" icon="outline-trash" />}
         />
       ],
-      style: userIndex >= MAX_ROWS ? { display: style } : {},
+      style: userIndex >= MAX_ROWS ? { display: style } : {}
     };
     rows.push(row);
   });
@@ -115,7 +108,7 @@ export function TeamTable({
         />
       ],
       rowClasses: 'table__collapse',
-      onClick: () => handleClickOnCollapse(index),
+      onClick: () => handleClickOnCollapse(index)
     };
     rows.push(row);
   }

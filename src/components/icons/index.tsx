@@ -1225,5 +1225,11 @@ export interface IconProps {
   onClick?: (args?: any) => void;
 }
 
-export const Icon = ({ icon, fill = 'white', width = 10, height = 10, onClick, ...props }: IconProps) =>
-  React.createElement(icons[icon], { fill, width, height, onClick, ...props });
+export const Icon = ({
+  icon,
+  fill = 'white',
+  width = 10,
+  height = 10,
+  onClick,
+  ...props
+}: IconProps) => React.createElement(icons[icon], { fill, width, height, onClick, ...props });

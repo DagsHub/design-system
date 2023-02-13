@@ -12,9 +12,9 @@ export interface InputProps {
   errored?: boolean;
   disabled?: boolean;
   className?: string;
-  width?: number;
-  inputMaxWidth?: string;
-  onChange?: (arg0?: any) => void;
+  rootMaxWidth?: number | string;
+  inputMaxWidth?: number | string;
+  onChange?: (arg?: any) => void;
   onClick?: () => void;
 }
 
@@ -27,16 +27,15 @@ export const Input = ({
   errored = false,
   disabled = false,
   className = '',
-  width,
+  rootMaxWidth = 'initial',
   inputMaxWidth = 'initial',
   onChange = () => {},
-  onClick = () => {},
-  ...props
+  onClick = () => {}
 }: InputProps) => {
   const classes = classNames([`dagshub-input`, className], { errored, disabled });
 
   return (
-    <div className={classes} style={{ maxWidth: width, width: '100%' }}>
+    <div className={classes} style={{ maxWidth: rootMaxWidth }}>
       {label && <label>{label}</label>}
       <input
         type={type}
@@ -47,8 +46,7 @@ export const Input = ({
         onChange={onChange}
         onClick={onClick}
         placeholder={placeholder}
-        style={{ maxWidth: width, width: '100%' }}
-        {...props}
+        style={{ maxWidth: inputMaxWidth, width: '100%' }}
       />
       {helperText && <p className="helper-text">{helperText}</p>}
     </div>

@@ -58,25 +58,25 @@ const header: Row = {
 
 const membershipVisibilityOptions: RadioButtonItemProps[] = [
   { id: 'public', label: 'Public' },
-  { id: 'private', label: 'Private' },
+  { id: 'private', label: 'Private' }
 ];
 
 export function PeopleTable({
   users,
   membershipVisibilityCollapsed = {},
-  changeMembershipVisibilityCollapsed = () => {},
+  changeMembershipVisibilityCollapsed = () => {}
 }: PeopleTableProps) {
-  const rows: Row[] = users.map(user => ({
+  const rows: Row[] = users.map((user) => ({
     columns: [
       <UserInfo imageSource={user.userImage} userName={user.username} />,
       <span className="teams-list">
-        {(user?.userTeams ?? []).length === 0 && (
-          <span>Member doesn’t belong to any team</span>
-        )}
+        {(user?.userTeams ?? []).length === 0 && <span>Member doesn’t belong to any team</span>}
         {(user?.userTeams ?? []).slice(0, 2).map((team, index) => (
           <span key={team.teamName + index}>
             {!!index && ', '}
-            <a href={team.teamLink} className="teams-list__team-name">{team.teamName}</a>
+            <a href={team.teamLink} className="teams-list__team-name">
+              {team.teamName}
+            </a>
             <span className="teams-list__team-permission">({team.userPermissionForTeam})</span>
           </span>
         ))}
@@ -85,21 +85,27 @@ export function PeopleTable({
         )}
       </span>,
       <div className="people-table__membership-column">
-        <Dropdown 
-          width={145} 
+        <Dropdown
+          width={145}
           label={user.membershipVisibility}
           onItemChecked={user.changeMembershipVisibility}
           isCollapsed={membershipVisibilityCollapsed[user.username]}
           toggleCollapse={() => changeMembershipVisibilityCollapsed(user.username)}
-          options={membershipVisibilityOptions.map(opt => ({ 
-            ...opt, 
-            checked: lowerCase(user.membershipVisibility) === opt.id,
+          options={membershipVisibilityOptions.map((opt) => ({
+            ...opt,
+            checked: lowerCase(user.membershipVisibility) === opt.id
           }))}
         />
-        <Icon width={12} height={13.33} fill="#172D32" icon="outline-trash" onClick={user.removeMember} />
-      </div>,
-    ],
+        <Icon
+          width={12}
+          height={13.33}
+          fill="#172D32"
+          icon="outline-trash"
+          onClick={user.removeMember}
+        />
+      </div>
+    ]
   }));
-  
+
   return <GenericTable header={header} rows={rows} />;
 }

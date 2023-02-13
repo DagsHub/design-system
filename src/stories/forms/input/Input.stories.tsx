@@ -15,26 +15,26 @@ export const WithLabel = Template.bind({});
 WithLabel.args = {
   value: 'I am a text input',
   label: 'I am a label',
-  maxWidth: '260px'
+  rootMaxWidth: '260px'
 };
 
 export const WithHelperText = Template.bind({});
 WithHelperText.args = {
   helperText: 'This is a handy helper text.',
   placeholder: 'I am a placholder',
-  maxWidth: '260px'
+  rootMaxWidth: '260px'
 };
 
 export const WithError = Template.bind({});
 WithError.args = {
   helperText: 'This is a handy helper text.',
   placeholder: 'I am a placholder',
-  maxWidth: '260px',
+  rootMaxWidth: '260px',
   errored: true
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  maxWidth: '260px',
+  rootMaxWidth: '260px',
   disabled: true
 };
