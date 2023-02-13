@@ -21,9 +21,7 @@
   }
 
   .dagshub-dropdown__options {
-    background-color: var(--secondary-state-100);
     border-radius: 6px;
-    padding: 12px;
     gap: 16px;
     z-index: 1;
     position: absolute;
@@ -31,5 +29,27 @@
     box-sizing: border-box;
     width: 100%;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+
+    &-radio {
+      padding: 12px;
+      background-color: var(--secondary-state-100);
+    }
+
+    &-opt {
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 12px;
+      transition: background-color 0.4s;
+      background-color: var(--secondary-state-100);
+
+      &:hover:not(.checked) {
+        background-color: var(--secondary-state-200);
+      }
+    }
+
+    .checked {
+      background-color: var(--secondary-state-200);
+    }
   }
 }
