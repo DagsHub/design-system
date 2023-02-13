@@ -83,10 +83,7 @@ export function PeopleTable({ users }: PeopleTableProps) {
           width={145}
           label={user.membershipVisibility}
           onItemChecked={user.changeMembershipVisibility}
-          options={membershipVisibilityOptions.map((opt) => ({
-            ...opt,
-            checked: lowerCase(user.membershipVisibility) === opt.id
-          }))}
+          options={membershipVisibilityOptions}
         />
         <Icon
           width={12}
