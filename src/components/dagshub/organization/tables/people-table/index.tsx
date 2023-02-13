@@ -12,8 +12,6 @@ import './people-table.scss';
 
 export interface PeopleTableProps {
   users: User[];
-  membershipVisibilityCollapsed?: Record<string, boolean>;
-  changeMembershipVisibilityCollapsed?: (args: any) => void;
 }
 
 interface User {
@@ -61,11 +59,7 @@ const membershipVisibilityOptions: RadioButtonItemProps[] = [
   { id: 'private', label: 'Private' }
 ];
 
-export function PeopleTable({
-  users,
-  membershipVisibilityCollapsed = {},
-  changeMembershipVisibilityCollapsed = () => {}
-}: PeopleTableProps) {
+export function PeopleTable({ users }: PeopleTableProps) {
   const rows: Row[] = users.map((user) => ({
     columns: [
       <UserInfo imageSource={user.userImage} userName={user.username} />,
@@ -89,8 +83,6 @@ export function PeopleTable({
           width={145}
           label={user.membershipVisibility}
           onItemChecked={user.changeMembershipVisibility}
-          isCollapsed={membershipVisibilityCollapsed[user.username]}
-          toggleCollapse={() => changeMembershipVisibilityCollapsed(user.username)}
           options={membershipVisibilityOptions.map((opt) => ({
             ...opt,
             checked: lowerCase(user.membershipVisibility) === opt.id

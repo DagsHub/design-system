@@ -1,5 +1,4 @@
-import React from 'react';
-import classNames from 'classnames';
+import React, { useState } from 'react';
 import { Icon } from '../../icons';
 import { RadioButtonItemProps, RadioButtonList } from '../../forms';
 
@@ -16,7 +15,6 @@ export interface DropdownProps {
   width: number;
   label: string;
   isCollapsed?: boolean;
-  toggleCollapse?: () => void;
   options?: RadioButtonItemProps[];
   onItemChecked?: (id: number | string) => void;
 }
@@ -25,14 +23,13 @@ export const Dropdown = ({
   width,
   label,
   options = [],
-  isCollapsed = true,
-  toggleCollapse = () => {},
   onItemChecked = () => {},
   ...props
 }: DropdownProps & React.ButtonHTMLAttributes<HTMLDivElement>) => {
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
   return (
     <div className="dagshub-dropdown" style={{ width }} {...props}>
-      <div className="dagshub-dropdown__box" onClick={toggleCollapse}>
+      <div className="dagshub-dropdown__box" onClick={() => setIsCollapsed(!isCollapsed)}>
         {label}
         <Icon
           width={10}
