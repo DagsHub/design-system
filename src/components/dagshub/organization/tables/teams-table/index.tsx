@@ -8,24 +8,23 @@ import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import './teams-table.scss';
+import {MiniRepoCardsModal} from "../../modals/mini-repo-cards-modal";
+import {RepoCardProps} from "../../cards/repo-card";
 
 export interface TeamTableProps {
   members?: Member[];
   teamName: string;
   teamDescription?: string;
   teamPermission: UserPermissionForTeam;
-  teamRepos: Repo[];
+  teamRepos: RepoCardProps[];
   handleClickOnCollapse: (index: number) => void;
   index: number;
   style: string;
   isActive: Boolean;
   removeFromTeam: (args?: any) => void;
   addNewTeamMember: (args?: any) => void;
-}
-
-export interface Repo {
-  name: string;
-  link: string;
+  toggleMiniRepoCardsModal:(args?: any)=>void;
+  displayMiniRepoCardModal:boolean;
 }
 
 //add functionality, tooltip
@@ -45,7 +44,9 @@ export function TeamTable({
   teamRepos,
   teamPermission,
   removeFromTeam,
-  addNewTeamMember
+  addNewTeamMember,
+  toggleMiniRepoCardsModal,
+  displayMiniRepoCardModal,
 }: TeamTableProps) {
   let header: Row;
   header = {
@@ -127,7 +128,7 @@ export function TeamTable({
             to following repositories:
           </span>
           <span className="team-repos">
-            {teamRepos?.map((repo: Repo) => (
+            {teamRepos?.map((repo) => (
               <a href={repo.link} className="team-repos__repo">
                 <Icon width={16} height={21} fill="#172D32" icon="outline-repository-github" />
                 {repo.name}
@@ -136,10 +137,12 @@ export function TeamTable({
           </span>
         </span>,
 
-        <span className="teams-table-footer-right-section">
+        <span className="teams-table-footer-right-section" onClick={()=>toggleMiniRepoCardsModal(index)}>
           See all teams projects
           <Icon width={9.33} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
-        </span>
+        </span>,
+
+        <MiniRepoCardsModal teamName={teamName} repos={teamRepos} display={displayMiniRepoCardModal} onClick={()=>toggleMiniRepoCardsModal(index)}  />
       ]
     };
   } else {

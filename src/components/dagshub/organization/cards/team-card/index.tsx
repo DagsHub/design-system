@@ -3,12 +3,14 @@ import '../../../../styles/root.scss';
 import './team-card.scss';
 import { ProfileImageList } from '../../profiles/profile-image-list';
 import { Member } from '../../tables/shared-classes';
+import {UserPermissionForTeam} from "../../tables/people-table";
 
 export interface TeamCardProps {
   teamName: string;
   teamDescription?: string;
   teamMembers: Member[];
   teamLink: string;
+  userPermissionForTeam?: UserPermissionForTeam;
 }
 
 export function TeamCard({ teamName, teamDescription, teamMembers, teamLink }: TeamCardProps) {

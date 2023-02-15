@@ -5,11 +5,12 @@ import { UserInfoProps } from '../../profiles/user-info';
 
 import '../../../../styles/root.scss';
 import './combined-search.scss';
+import {Icon} from "../../../../icons";
 export interface CombinedSearchProps {
   onInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
   inputText: string;
   resultUsers: UserInfoProps[];
-  onInputClick: () => void;
+  onInputClick?: () => void;
   placeholder: string;
 }
 
@@ -23,8 +24,9 @@ export function CombinedSearch(props: CombinedSearchProps) {
         onClick={props.onInputClick}
         rootMaxWidth={599}
         placeholder={props.placeholder}
+        searchIcon={true}
       />
-      {props.resultUsers.length && <SearchResultList users={props.resultUsers} />}
+      {!!props.resultUsers.length && <SearchResultList users={props.resultUsers} />}
     </div>
   );
 }

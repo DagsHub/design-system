@@ -5,6 +5,15 @@
   font-style: normal;
   gap: 8px;
   height: auto;
+  width: 100%;
+  position: relative;
+
+  .search-icon >svg {
+    position: absolute;
+    top: 21.67px;
+    right: 17.67px;
+    z-index: 1;
+  }
 
   input {
     border: 1px solid #cbd5e1;
@@ -14,6 +23,11 @@
     background-color: #f8fafc;
     outline: 0;
     box-sizing: border-box;
+  }
+
+  search{
+    padding-right: 49px;
+    padding-left: 16px;
   }
 
   label {

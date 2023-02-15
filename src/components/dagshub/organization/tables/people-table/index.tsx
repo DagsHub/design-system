@@ -5,10 +5,12 @@ import { UserInfo } from '../../profiles/user-info';
 import { GenericTable, Row } from '../generic-table';
 import { Dropdown } from '../../../../elements/dropdown';
 import { RadioButtonItemProps } from '../../../../forms';
+import {TeamsModal} from "../../modals/teams-modal";
 
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import './people-table.scss';
+import {TeamCardProps} from "../../cards/team-card";
 
 export interface PeopleTableProps {
   users: User[];
@@ -17,21 +19,18 @@ export interface PeopleTableProps {
 interface User {
   userImage: string;
   username: string;
-  userTeams: UserTeam[];
+  userTeams: TeamCardProps[];
   membershipVisibility: MembershipVisibility;
   removeMember?: (args?: any) => void;
   changeMembershipVisibility?: (args?: any) => void;
+  toggleTeamsModal:(args?: any)=>void;
+  displayTeamsModal:boolean;
+  userIndex:number;
 }
 
 export enum MembershipVisibility {
   Public = 'public',
   Private = 'private'
-}
-
-export interface UserTeam {
-  teamName: string;
-  userPermissionForTeam: UserPermissionForTeam; //make enum, admin access, write access, read access
-  teamLink: string;
 }
 
 export enum UserPermissionForTeam {
@@ -75,7 +74,8 @@ export function PeopleTable({ users }: PeopleTableProps) {
           </span>
         ))}
         {user.userTeams.length > 2 && (
-          <span className="teams-list__hidden-teams">+{user.userTeams.length - 2}</span>
+          <><span className="teams-list__hidden-teams" onClick={()=>user.toggleTeamsModal(user.userIndex)}>+{user.userTeams.length - 2}</span>
+          <TeamsModal display={user.displayTeamsModal} onClick={()=>user.toggleTeamsModal(user.userIndex)} teams={user.userTeams} userName={user.username}/></>
         )}
       </span>,
       <div className="people-table__membership-column">

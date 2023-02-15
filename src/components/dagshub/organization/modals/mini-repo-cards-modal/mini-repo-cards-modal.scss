@@ -5,6 +5,9 @@
   max-height: 496px;
   overflow: scroll;
   gap: 16px;
+  width: 100%;
+  overflow-x: hidden;
+
 }
 
 .mini-repo-cards-modal__close-button {

@@ -1,6 +1,7 @@
 export * from '../organization/cards/repo-card';
 export * from '../organization/cards/card-empty-state';
 export * from '../organization/cards/team-card';
+export * from '../organization/cards/mini-repo-card';
 export * from '../organization/header';
 export * from '../organization/menus/vertical-menu';
 export * from '../organization/menus/vertical-menu-tab';
@@ -8,6 +9,7 @@ export * from '../organization/menus/horizontal-menu';
 export * from '../organization/menus/horizontal-menu-tab';
 export * from '../organization/modals/generic-modal';
 export * from '../organization/modals/add-member-modal';
+export * from '../organization/modals/teams-modal';
 // export * from '../organization/modals/create-new-team-modal';
 export * from '../organization/modals/remove-member-modal';
 export * from '../organization/modals/mini-repo-cards-modal';

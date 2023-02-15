@@ -7,15 +7,21 @@ import { RadioButtonList } from '../../../../forms/radio-button/radio-button-lis
 import { RadioButtonItem } from '../../../../forms/radio-button/radio-button-item';
 import { Dropdown } from '../../../../elements/dropdown';
 import './add-member-modal.scss';
+import {CombinedSearch} from "../../search/combined-search";
+import {UserInfoProps} from "../../profiles/user-info";
 
 export interface AddMemberModalProps {
   isOrg: boolean;
   isAdmin: boolean;
   isTeam: boolean;
   name: string;
-  teams?: string[];
+  teams?: {id:string;name:string;}[];
   display: boolean;
   onClick: () => void;
+  onInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
+  inputText: string;
+  resultUsers: UserInfoProps[];
+  placeholder: string;
 }
 
 export function AddMemberModal(props: AddMemberModalProps) {
@@ -43,12 +49,8 @@ export function AddMemberModal(props: AddMemberModalProps) {
       Search by username or name or enter email address to invite someone outside {props.name}
     </p>,
     <div className="input-block">
-      <Icon width={16.67} height={16.67} fill="#172D32" icon="outline-search" />
-      <input
-        className="input-block__search-input"
-        type="text"
-        placeholder="Enter username or email"
-      ></input>
+      <CombinedSearch onInputChange={props.onInputChange} inputText={props.inputText} resultUsers={props.resultUsers}
+                      placeholder={props.placeholder}/>
     </div>,
     props.isOrg == true ? (
       <>
@@ -73,7 +75,11 @@ export function AddMemberModal(props: AddMemberModalProps) {
         />
         {props.teams && props.teams.length > 0 ? (
           <div className="add-member-modal__dropdown">
-            <Dropdown label={'Choose team'} width={130} />
+            <Dropdown
+                width={130}
+                label={'Choose team'}
+                options={props.teams.map((team)=>({id:team.id, label:team.name}))}
+            />
           </div>
         ) : (
           <div className="add-member-modal__no-teams-text">

@@ -4,6 +4,7 @@ import { GenericModal } from '../generic-modal';
 import { RepoCard, RepoCardProps } from '../../cards/repo-card';
 import { Button, ButtonVariant } from '../../../../elements';
 import './mini-repo-cards-modal.scss';
+import {MiniRepoCard} from "../../cards/mini-repo-card";
 
 export interface MiniRepoCardsModalProps {
   teamName: string;
@@ -17,8 +18,8 @@ export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
   elements.push(
     <div className={'mini-repo-cards-modal__cards-block'}>
       {props.repos?.map((repo) => (
-        <RepoCard
-          isMini={repo.isMini}
+        <MiniRepoCard
+          isMini={true}
           isMirror={repo.isMirror}
           IsGithubIntegrated={repo.IsGithubIntegrated}
           numStars={repo.numStars}
@@ -46,7 +47,7 @@ export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
   );
   elements.push(
     <div className={'mini-repo-cards-modal__close-button'}>
-      <Button variant={ButtonVariant.Secondary} label={'Close'} width={63} />
+      <Button variant={ButtonVariant.Secondary} label={'Close'} width={63} onClick={props.onClick} />
     </div>
   );
   return (

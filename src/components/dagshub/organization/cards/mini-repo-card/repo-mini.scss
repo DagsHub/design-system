@@ -1,0 +1,287 @@
+.mini-card {
+  width: 100%;
+  height: auto;
+  background: var(--secondary-state-50);
+  border: 1px solid var(--secondary-state-200);
+  border-radius: 12px;
+  padding: 16px;
+  font-family: 'Inter';
+  font-style: normal;
+}
+.mini-card:hover {
+  background: var(--secondary-state-100);
+}
+
+.mini-repo-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.mini-desktop-repo {
+  display: flex;
+  max-width: 596px;
+  height: 112px;
+  padding: 0px;
+}
+.mini-desktop-repo .mini-repo-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0px;
+  gap: 18px;
+  height: 48px;
+}
+
+.mini-star-section {
+  display: flex;
+  justify-content: flex-end;
+  gap: 7px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 125%;
+  color: var(--secondary-state-600);
+  gap: 4px;
+}
+
+.mini-star-number {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 125%;
+  color: #475569;
+  position: relative;
+  top: 0.5px;
+}
+
+.mini-star-action {
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  top: 2px;
+}
+
+.mini-star-action img {
+  width: 18px;
+  height: 18px;
+}
+
+.mini-desktop-repo .mini-repo-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: auto;
+  height: 28px;
+  gap: 12px;
+  align-items: center;
+}
+
+.mini-desktop-repo .mini-repo-tags {
+  font-weight: 500;
+  font-size: 21px;
+  color: var(--color-text-default);
+  height: 32px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  line-height: initial;
+  align-items: center;
+  padding-bottom: 7px;
+  row-gap: 5px;
+  overflow: hidden;
+  padding-bottom: 12px;
+}
+.mini-desktop-repo .mini-repo-tags .mini-title1 {
+  display: inline-block;
+  flex-shrink: 0;
+  max-width: 498px;
+  color: var(--color-text-default);
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 28px;
+}
+.mini-desktop-repo .mini-repo-tags .mini-public-private {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--secondary-state-200);
+  width: 52px;
+  color: var(--secondary-state-600);
+  height: 21px !important;
+}
+.mini-desktop-repo .mini-repo-tags .mini-tag {
+  padding: 0px 8px;
+  height: 23px;
+  border-radius: 32px;
+  display: flex;
+  font-size: 12px;
+  align-items: center;
+  font-weight: 600;
+  font-size: 12px;
+  flex-shrink: 0;
+  width: max-content;
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-task {
+  background: var(--green-100);
+  color: var(--green-700);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-task:hover {
+  background: var(--green-200);
+  color: var(--green-700);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-task:focus {
+  background: var(--green-700);
+  color: var(--green-100);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-integration {
+  background: var(--yellow-100);
+  color: var(--yellow-700);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-integration:hover {
+  background: var(--yellow-200);
+  color: var(--yellow-700);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-integration:focus {
+  background: var(--yellow-700);
+  color: var(--yellow-50);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-type {
+  background: var(--pink-100);
+  color: var(--pink-700);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-type:hover {
+  background: var(--pink-200);
+  color: var(--pink-700);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-type:focus {
+  background: var(--rose-700);
+  color: var(--pink-50);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-data_domain {
+  background: var(--red-50);
+  color: var(--red-600);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-data_domain:hover {
+  background: var(--red-200);
+  color: var(--red-600);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-data_domain:focus {
+  background: var(--red-600);
+  color: var(--background);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-framework {
+  background: var(--cyan-100);
+  color: var(--cyan-700);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-framework:hover {
+  background: var(--cyan-200);
+  color: var(--cyan-700);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-framework:focus {
+  background: var(--cyan-700);
+  color: var(--cyan-50);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-general {
+  background: var(--secondary-state-100);
+  color: var(--secondary-state-500);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-general:hover {
+  background: var(--secondary-state-200);
+  color: var(--secondary-state-500);
+}
+.mini-desktop-repo .mini-repo-tags .mini-category-general:focus {
+  background: var(--secondary-state-500);
+  color: var(--secondary-state-50);
+}
+
+.mini-cut-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  height: initial;
+}
+
+.mini-repo-description {
+  overflow: hidden;
+  display: inline-block;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-weight: 500;
+  margin: 0px;
+  height: 18px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-default);
+}
+
+.mini-fork-icon {
+  width: 10.29px;
+  height: 12px;
+}
+
+.mini-pull-request-icon {
+  width: 12px;
+  height: 12.67px;
+}
+
+.mini-issue-icon {
+  width: 16.33px;
+  height: 16.33px;
+}
+
+.mini-stats {
+  gap: 18px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.mini-stat-block {
+  width: 28px;
+  height: 16px;
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  align-items: center;
+}
+.mini-stat-block > p {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--secondary-state-600);
+}
+
+.mini-repo-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8.5px;
+}
+
+.mini-belongs-to {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--secondary-state-600);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.mini-repo-team {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--secondary-state-600);
+  text-decoration: underline;
+}

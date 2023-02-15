@@ -2,9 +2,9 @@ import React from 'react';
 import { Icon } from '../../../../icons';
 
 import '../../../../styles/root.scss';
-import './repo.scss';
+import './repo-mini.scss';
 
-export interface Topic {
+interface Topic {
   id: number;
   name: string;
   categoryShowExplore: boolean;
@@ -12,13 +12,12 @@ export interface Topic {
   categoryHref: string;
 }
 
-export interface Team {
+interface Team {
   teamName: string;
   teamLink: string;
 }
 
-export interface RepoCardProps {
-  link?: any;
+export interface MiniRepoCardProps {
   isMini?: boolean;
   teams?: Team[];
   topics: Topic[];
@@ -46,8 +45,8 @@ export interface RepoCardProps {
 const getUpdatedDaysAgo = (date: string): number =>
   Math.round((Date.now() - new Date(date).getTime()) / 1000 / 60 / 60 / 24);
 
-export function RepoCard({
-  isMini = false,
+export function MiniRepoCard({
+  isMini = true,
   teams = [],
   topics = [],
   isMirror,
@@ -69,28 +68,28 @@ export function RepoCard({
   forksHref,
   issuesHref,
   pullsHref
-}: RepoCardProps) {
+}: MiniRepoCardProps) {
   const stars = IsGithubIntegrated ? githubStarCount + numStars : numStars;
   return (
     <>
-      <div className="desktop-repo card">
-        <div className="repo-card-content">
+      <div className="mini-desktop-repo mini-card">
+        <div className="mini-repo-card-content">
           {!isMini && (
-            <div className="repo-header">
-              <div className="repo-info">
+            <div className="mini-repo-header">
+              <div className="mini-repo-info">
                 <Icon width={10.67} height={14} fill="#475569" icon="outline-repository-github" />
-                <span className="repo-type">
+                <span className="mini-repo-type">
                   {isFork ? 'Forked repo' : isMirror ? 'Mirrored repo' : 'Repo'}
                 </span>
                 <Icon width={1} height={12} fill="#E2E8F0" icon="pipe" />
-                <span className="days-ago">Updated {getUpdatedDaysAgo(updatedAt)} days ago</span>
+                <span className="mini-days-ago">Updated {getUpdatedDaysAgo(updatedAt)} days ago</span>
               </div>
-              <div className="star-section">
-                <a className="star-number" href={starNumberLink}>
+              <div className="mini-star-section">
+                <a className="mini-star-number" href={starNumberLink}>
                   {stars}
                 </a>
-                <a className="star-action" href={starActionLink}>
-                  <i className={!isStaring ? 'star' : 'star-outline'} />
+                <a className="mini-star-action" href={starActionLink}>
+                  <i className={!isStaring ? 'mini-star' : 'mini-star-outline'} />
                   {isStaring ? (
                     <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star" />
                   ) : (
@@ -100,21 +99,21 @@ export function RepoCard({
               </div>
             </div>
           )}
-          <div className={'repo-tags'}>
+          <div className={'mini-repo-tags'}>
             {isMini && (
               <Icon width={13.66} height={18.99} fill="#475569" icon="outline-repository-github" />
             )}
-            <div className="repo-name">
-              <a className="title1 cut-text" href={repoNameHref}>
+            <div className="mini-repo-name">
+              <a className="mini-title1 mini-cut-text" href={repoNameHref}>
                 {name}
               </a>
-              <div className="tag public-private">{isPrivate ? 'private' : 'public'}</div>
+              <div className="mini-tag mini-public-private">{isPrivate ? 'private' : 'public'}</div>
             </div>
             {topics?.map(
               (topic: Topic) =>
                 topic.categoryShowExplore && (
                   <a
-                    className={'tag repo-new-topic category-' + topic.categoryColorClass}
+                    className={'mini-tag mini-repo-new-topic mini-category-' + topic.categoryColorClass}
                     rel="nofollow"
                     href={topic.categoryHref}
                   >
@@ -123,20 +122,20 @@ export function RepoCard({
                 )
             )}
           </div>
-          <div className="repo-main">
-            <div className="repo-desc-block">
-              <p className="repo-description">{description ? description : 'No description'}</p>
+          <div className="mini-repo-main">
+            <div className="mini-repo-desc-block">
+              <p className="mini-repo-description">{description ? description : 'No description'}</p>
             </div>
-            <div className="repo-information">
+            <div className="mini-repo-information">
               {!isMini && <Icon width={564} height={1} fill="#E2E8F0" icon="divider" />}
-              <div className="repo-info-text">
-                <div className="stats">
-                  <a className="stat-block" href={forksHref}>
+              <div className="mini-repo-info-text">
+                <div className="mini-stats">
+                  <a className="mini-stat-block" href={forksHref}>
                     <Icon width={10.29} height={12} fill="#475569" icon="outline-fork" />
                     <p>{numForks}</p>
                   </a>
                   {!isMirror && (
-                    <a className="stat-block" href={pullsHref}>
+                    <a className="mini-stat-block" href={pullsHref}>
                       <Icon
                         width={15}
                         height={14.5}
@@ -146,33 +145,33 @@ export function RepoCard({
                       <p>{numOpenPulls}</p>
                     </a>
                   )}
-                  <a className="stat-block" href={issuesHref}>
+                  <a className="mini-stat-block" href={issuesHref}>
                     <Icon width={14.67} height={14.67} fill="#475569" icon="outline-issue" />
                     <p>{numOpenIssues}</p>
                   </a>
                   {isMini && (
-                    <div className="star-section">
-                      <a className="star-action" href={starActionLink}>
-                        <i className={!isStaring ? 'star' : 'start-outline'}></i>
+                    <div className="mini-star-section">
+                      <a className="mini-star-action" href={starActionLink}>
+                        <i className={!isStaring ? 'mini-star' : 'mini-start-outline'}></i>
                         {isStaring ? (
                           <Icon width={12} height={11.47} fill="#475569" icon="solid-star" />
                         ) : (
                           <Icon width={12} height={11.47} fill="#475569" icon="outline-star" />
                         )}
                       </a>
-                      <a className="star-number" href={starNumberLink}>
+                      <a className="mini-star-number" href={starNumberLink}>
                         {stars}
                       </a>
                     </div>
                   )}
                 </div>
                 {!isMini && (
-                  <div className="belongs-to">
+                  <div className="mini-belongs-to">
                     {teams?.length > 0 ? 'Belongs to: ' : ''}
                     {teams?.map((team, index: number) => (
                       <span>
                         <span>{index ? ', ' : ''}</span>
-                        <a className="repo-team" href={team.teamLink}>
+                        <a className="mini-repo-team" href={team.teamLink}>
                           {team.teamName}
                         </a>
                       </span>
