@@ -28,8 +28,8 @@ export function RemoveMemberModal(props: RemoveMemberModalProps) {
     <GenericModal
       title={'Remove member'}
       elements={elements}
-      display={props.display}
-      onClick={props.onClick}
+      isVisible={props.display}
+      onClose={props.onClick}
     />
   );
 }

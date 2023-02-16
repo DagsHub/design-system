@@ -8,8 +8,8 @@ import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import './teams-table.scss';
-import {MiniRepoCardsModal} from "../../modals/mini-repo-cards-modal";
-import {RepoCardProps} from "../../cards/repo-card";
+import { MiniRepoCardsModal } from '../../modals/mini-repo-cards-modal';
+import { RepoCardProps } from '../../cards/repo-card';
 
 export interface TeamTableProps {
   members?: Member[];
@@ -23,8 +23,8 @@ export interface TeamTableProps {
   isActive: Boolean;
   removeFromTeam: (args?: any) => void;
   addNewTeamMember: (args?: any) => void;
-  toggleMiniRepoCardsModal:(args?: any)=>void;
-  displayMiniRepoCardModal:boolean;
+  toggleMiniRepoCardsModal: (args?: any) => void;
+  displayMiniRepoCardModal: boolean;
 }
 
 //add functionality, tooltip
@@ -46,7 +46,7 @@ export function TeamTable({
   removeFromTeam,
   addNewTeamMember,
   toggleMiniRepoCardsModal,
-  displayMiniRepoCardModal,
+  displayMiniRepoCardModal
 }: TeamTableProps) {
   let header: Row;
   header = {
@@ -137,12 +137,20 @@ export function TeamTable({
           </span>
         </span>,
 
-        <span className="teams-table-footer-right-section" onClick={()=>toggleMiniRepoCardsModal(index)}>
+        <span
+          className="teams-table-footer-right-section"
+          onClick={() => toggleMiniRepoCardsModal(index)}
+        >
           See all teams projects
           <Icon width={9.33} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
         </span>,
 
-        <MiniRepoCardsModal teamName={teamName} repos={teamRepos} display={displayMiniRepoCardModal} onClick={()=>toggleMiniRepoCardsModal(index)}  />
+        <MiniRepoCardsModal
+          teamName={teamName}
+          repos={teamRepos}
+          display={displayMiniRepoCardModal}
+          onClick={() => toggleMiniRepoCardsModal(index)}
+        />
       ]
     };
   } else {

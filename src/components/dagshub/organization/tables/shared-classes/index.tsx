@@ -8,5 +8,5 @@ export interface Member {
   userName: string;
   homeLink: string;
   relAvatarLink: string;
-  removeLink?:string;
+  removeLink?: string;
 }

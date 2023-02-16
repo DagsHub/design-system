@@ -1,28 +1,31 @@
 import React from 'react';
-import '../../../../styles/root.scss';
-import './search-results.scss';
-import { UserInfo, UserInfoProps } from '../../profiles/user-info';
 import { Icon } from '../../../../icons';
 import { Row, GenericTable } from '../../tables/generic-table';
+import { UserInfo, UserInfoProps } from '../../profiles/user-info';
 import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
+
+import '../../../../styles/root.scss';
+import './search-results.scss';
 
 export interface SearchResultListProps {
   users: UserInfoProps[];
+  onAdd?: (username: string) => void;
 }
 
-export function SearchResultList(props: SearchResultListProps) {
+export function SearchResultList({ users, onAdd = () => {} }: SearchResultListProps) {
   let rows: Row[] = [];
-  for (let user of props.users) {
+  for (let user of users) {
     let row: Row = {
       rowClasses: 'search-result-list__row',
       columns: [
         <UserInfo imageSource={user.imageSource} userName={user.userName} />,
         <Button
           width={142}
-          variant={ButtonVariant.Secondary}
+          label="Add member"
           stretch={ButtonStretch.Slim}
+          variant={ButtonVariant.Secondary}
+          onClick={() => onAdd(user.userName)}
           iconLeft={<Icon width={12} height={12} fill="#172D32" icon="outline-plus" />}
-          label={'Add member'}
         />
       ]
     };

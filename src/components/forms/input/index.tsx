@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import './input.scss';
-import {Icon} from "../../icons";
+import { Icon } from '../../icons';
 
 export interface InputProps {
   type?: 'text' | 'password';
@@ -33,14 +33,16 @@ export const Input = ({
   inputMaxWidth = 'initial',
   onChange = () => {},
   onClick = () => {},
-  searchIcon=false
+  searchIcon = false
 }: InputProps) => {
   const classes = classNames([`dagshub-input`, className], { errored, disabled });
 
   return (
     <div className={classes} style={{ maxWidth: rootMaxWidth }}>
       {label && <label>{label}</label>}
-      <div className={"search-icon"}>{searchIcon&&<Icon width={16.67} height={16.67} fill={"#172D32"} icon="outline-search" />}</div>
+      <div className={'search-icon'}>
+        {searchIcon && <Icon width={16.67} height={16.67} fill={'#172D32'} icon="outline-search" />}
+      </div>
       <input
         type={type}
         value={value}

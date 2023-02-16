@@ -5,28 +5,38 @@ import { UserInfoProps } from '../../profiles/user-info';
 
 import '../../../../styles/root.scss';
 import './combined-search.scss';
-import {Icon} from "../../../../icons";
+
 export interface CombinedSearchProps {
   onInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
   inputText: string;
+  placeholder: string;
   resultUsers: UserInfoProps[];
   onInputClick?: () => void;
-  placeholder: string;
+  onAdd?: (args: any) => void;
+  onRemove?: (args: any) => void;
 }
 
-export function CombinedSearch(props: CombinedSearchProps) {
+export function CombinedSearch({
+  onInputChange,
+  inputText,
+  placeholder,
+  resultUsers,
+  onInputClick = () => {},
+  onAdd = () => {},
+  onRemove = () => {}
+}: CombinedSearchProps) {
   return (
-    <div className={'combined-search'}>
+    <div className="combined-search">
       <Input
         type="text"
-        value={props.inputText}
-        onChange={props.onInputChange}
-        onClick={props.onInputClick}
-        rootMaxWidth={599}
-        placeholder={props.placeholder}
-        searchIcon={true}
+        value={inputText}
+        onChange={onInputChange}
+        onClick={onInputClick}
+        rootMaxWidth={600}
+        placeholder={placeholder}
+        searchIcon
       />
-      {!!props.resultUsers.length && <SearchResultList users={props.resultUsers} />}
+      {!!resultUsers.length && <SearchResultList users={resultUsers} onAdd={onAdd} />}
     </div>
   );
 }

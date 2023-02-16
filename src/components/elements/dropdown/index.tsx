@@ -18,6 +18,7 @@ export interface DropdownProps {
   label: string;
   isCollapsed?: boolean;
   options?: RadioButtonItemProps[];
+  initialChecked?: number | string;
   onItemChecked?: (id: number | string) => void;
 }
 
@@ -26,19 +27,23 @@ export const Dropdown = ({
   width,
   label,
   options = [],
+  initialChecked = '',
   onItemChecked = () => {},
   ...props
 }: DropdownProps & React.ButtonHTMLAttributes<HTMLDivElement>) => {
-  const [checked, setChecked] = useState<number | string>('');
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
+  const [checked, setChecked] = useState<number | string>(initialChecked);
 
-  const _options = options.map(opt => ({ ...opt, checked: opt.id === checked }));
-  const checkedOptLabel = _options.find(opt => opt.checked)?.label;
+  const _options = options.map((opt) => ({ ...opt, checked: opt.id === checked }));
+  const checkedOptLabel = _options.find((opt) => opt.checked)?.label;
 
-  useEffect(function onChecked() {
-    onItemChecked(checked);
-    setIsCollapsed(true);
-  }, [checked]);
+  useEffect(
+    function onChecked() {
+      onItemChecked(checked);
+      setIsCollapsed(true);
+    },
+    [checked]
+  );
 
   return (
     <div className="dagshub-dropdown" style={{ width }} {...props}>
@@ -54,22 +59,34 @@ export const Dropdown = ({
       {kind === 'radio' && !isCollapsed && (
         <RadioButtonList
           items={_options}
-          onChecked={setChecked}
+          onChecked={(id: number | string) => {
+            if (id === checked) {
+              setIsCollapsed(true);
+            } else {
+              setChecked(id);
+            }
+          }}
           className="dagshub-dropdown__options dagshub-dropdown__options-radio"
         />
-      )}  
+      )}
       {kind === 'basic' && !isCollapsed && (
-         <div className='dagshub-dropdown__options'>
+        <div className="dagshub-dropdown__options">
           {_options?.map((opt: RadioButtonItemProps) => (
-            <div 
-              key={opt.id} 
-              onClick={() => setChecked(opt.id)} 
+            <div
+              key={opt.id}
+              onClick={() => {
+                if (opt.id === checked) {
+                  setIsCollapsed(true);
+                } else {
+                  setChecked(opt.id);
+                }
+              }}
               className={classNames('dagshub-dropdown__options-opt', { checked: opt.checked })}
             >
               {opt.label}
             </div>
-         ))}
-       </div>
+          ))}
+        </div>
       )}
     </div>
   );

@@ -1,31 +1,44 @@
-import React from 'react';
-import '../../../../styles/root.scss';
-import { GenericModal } from '../generic-modal';
+import React, { useState } from 'react';
 import { Icon } from '../../../../icons';
+import { GenericModal } from '../generic-modal';
+import { UserInfoProps } from '../../profiles/user-info';
+import { Dropdown } from '../../../../elements/dropdown';
+import { CombinedSearch } from '../../search/combined-search';
 import { Button, ButtonVariant } from '../../../../elements/button';
 import { RadioButtonList } from '../../../../forms/radio-button/radio-button-list';
-import { RadioButtonItem } from '../../../../forms/radio-button/radio-button-item';
-import { Dropdown } from '../../../../elements/dropdown';
+
+import '../../../../styles/root.scss';
 import './add-member-modal.scss';
-import {CombinedSearch} from "../../search/combined-search";
-import {UserInfoProps} from "../../profiles/user-info";
 
 export interface AddMemberModalProps {
   isOrg: boolean;
   isAdmin: boolean;
   isTeam: boolean;
   name: string;
-  teams?: {id:string;name:string;}[];
+  teams?: { id: string; name: string }[];
   display: boolean;
-  onClick: () => void;
+  onClose: () => void;
   onInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
   inputText: string;
   resultUsers: UserInfoProps[];
   placeholder: string;
+  addMember: (args?: any) => void;
 }
 
 export function AddMemberModal(props: AddMemberModalProps) {
-  const generateModalTitle = (isOrg: boolean, isAdmin: boolean, isTeam: boolean, name: string) => {
+  const [team, setTeam] = useState<number | string>('');
+  const [access, setAccess] = useState<string>('member-access');
+  const [addedMembers, setAddedMembers] = useState<string[]>([]);
+
+  function onAddMember(username: string) {
+    setAddedMembers([...addedMembers, username]);
+  }
+
+  function onRemoveMember(username: string) {
+    setAddedMembers(addedMembers.filter((u) => u !== username));
+  }
+
+  const generateModalTitle = () => {
     let title = '';
     title += 'Add new ';
     title += props.isOrg && props.isAdmin ? 'organization admin' : 'member';
@@ -34,7 +47,7 @@ export function AddMemberModal(props: AddMemberModalProps) {
     return title;
   };
 
-  const generateButtonText = (isOrg: boolean, isAdmin: boolean, isTeam: boolean) => {
+  const generateButtonText = () => {
     let text = '';
     text += 'Add new ';
     text += props.isTeam ? 'team ' : 'organization ';
@@ -42,43 +55,54 @@ export function AddMemberModal(props: AddMemberModalProps) {
     return text;
   };
 
-  let title = generateModalTitle(props.isOrg, props.isAdmin, props.isTeam, props.name);
-  let elements: JSX.Element[];
-  elements = [
+  let title = generateModalTitle();
+
+  const elements: JSX.Element[] = [
     <p className="add-member-modal__instructions">
       Search by username or name or enter email address to invite someone outside {props.name}
     </p>,
     <div className="input-block">
-      <CombinedSearch onInputChange={props.onInputChange} inputText={props.inputText} resultUsers={props.resultUsers}
-                      placeholder={props.placeholder}/>
+      <CombinedSearch
+        onInputChange={props.onInputChange}
+        inputText={props.inputText}
+        placeholder={props.placeholder}
+        onAdd={onAddMember}
+        onRemove={onRemoveMember}
+        resultUsers={props.resultUsers.filter(
+          (u: UserInfoProps) => !addedMembers.includes(u.userName)
+        )}
+      />
     </div>,
-    props.isOrg == true ? (
+    props.isOrg ? (
       <>
         <RadioButtonList
+          initialChecked={access}
+          onChecked={setAccess}
           items={[
             {
-              id: 1,
-              width: 599,
+              id: 'member-access',
+              width: 600,
               label: 'Member access to organization',
               description: 'Description text',
-              icon: <Icon icon="outline-lock-closed" fill={'#94A3B8'} width={12} height={13.33} />
+              icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
             },
             {
-              id: 2,
-              width: 599,
+              id: 'admin-access',
+              width: 600,
               label: 'Admin access to organization',
               description:
                 'Admins have full access to all repositories and have admin rights to the organization',
-              icon: <Icon icon="outline-lock-closed" fill={'#94A3B8'} width={12} height={13.33} />
+              icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
             }
           ]}
         />
-        {props.teams && props.teams.length > 0 ? (
+        {props.teams?.length ? (
           <div className="add-member-modal__dropdown">
             <Dropdown
-                width={130}
-                label={'Choose team'}
-                options={props.teams.map((team)=>({id:team.id, label:team.name}))}
+              width={130}
+              label="Choose team"
+              onItemChecked={setTeam}
+              options={props.teams.map((team) => ({ id: team.id, label: team.name }))}
             />
           </div>
         ) : (
@@ -97,22 +121,33 @@ export function AddMemberModal(props: AddMemberModalProps) {
       <></>
     ),
     <div className="add-member-modal__buttons-section">
-      <Button label={generateButtonText(props.isOrg, props.isAdmin, props.isTeam)} width={599} />
+      <Button
+        label={generateButtonText()}
+        width={600}
+        onClick={() =>
+          props.addMember({
+            team,
+            access,
+            users: addedMembers
+          })
+        }
+      />
       <p className="add-member-modal__buttons-seperator">or</p>
       <Button
+        width={600}
+        label="Copy invitation link"
         variant={ButtonVariant.Secondary}
-        label={'Copy invitation link'}
-        width={599}
-        iconRight={<Icon icon="outline-copy" width={15} height={15} fill={'#000000'} />}
+        iconRight={<Icon icon="outline-copy" width={15} height={15} fill="#000000" />}
       />
     </div>
   ];
+
   return (
     <GenericModal
       title={title}
       elements={elements}
-      display={props.display}
-      onClick={props.onClick}
+      isVisible={props.display}
+      onClose={props.onClose}
     />
   );
 }

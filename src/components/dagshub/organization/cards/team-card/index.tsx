@@ -3,7 +3,7 @@ import '../../../../styles/root.scss';
 import './team-card.scss';
 import { ProfileImageList } from '../../profiles/profile-image-list';
 import { Member } from '../../tables/shared-classes';
-import {UserPermissionForTeam} from "../../tables/people-table";
+import { UserPermissionForTeam } from '../../tables/people-table';
 
 export interface TeamCardProps {
   teamName: string;

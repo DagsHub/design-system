@@ -16,7 +16,7 @@ export function DeleteOrganizationSettingsTab(props: DeleteOrganizationSettingsT
       <p className="delete-organization-setting-tab__text">
         The organization will be permanently removed, and this CANNOT be undone!
       </p>
-      <Input rootMaxWidth={260} label='Password' helperText='Required' placeholder='Input' />
+      <Input rootMaxWidth={260} label="Password" helperText="Required" placeholder="Input" />
       <Button
         className="delete-organization-setting-tab__button"
         variant={ButtonVariant.Error}

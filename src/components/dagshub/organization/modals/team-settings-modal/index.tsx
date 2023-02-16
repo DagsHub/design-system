@@ -17,15 +17,11 @@ export function TeamSettingsModal(props: TeamSettingsModalProps) {
   let elements: JSX.Element[];
   elements = [
     <Input
-      label='Team name'
-      helperText='Changing the team name will break past @mentions.'
+      label="Team name"
+      helperText="Changing the team name will break past @mentions."
       rootMaxWidth={599}
     />,
-    <Input 
-      label='Description' 
-      helperText='What is this team all about?' 
-      rootMaxWidth={599}
-    />,
+    <Input label="Description" helperText="What is this team all about?" rootMaxWidth={599} />,
     <RadioButtonList
       title="Team permissions"
       items={[
@@ -57,10 +53,10 @@ export function TeamSettingsModal(props: TeamSettingsModalProps) {
   ];
   return (
     <GenericModal
-      title={'Team settings'}
+      title="Team settings"
       elements={elements}
-      display={props.display}
-      onClick={props.onClick}
+      isVisible={props.display}
+      onClose={props.onClick}
     />
   );
 }

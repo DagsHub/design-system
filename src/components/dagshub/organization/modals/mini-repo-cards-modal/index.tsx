@@ -4,7 +4,7 @@ import { GenericModal } from '../generic-modal';
 import { RepoCard, RepoCardProps } from '../../cards/repo-card';
 import { Button, ButtonVariant } from '../../../../elements';
 import './mini-repo-cards-modal.scss';
-import {MiniRepoCard} from "../../cards/mini-repo-card";
+import { MiniRepoCard } from '../../cards/mini-repo-card';
 
 export interface MiniRepoCardsModalProps {
   teamName: string;
@@ -47,15 +47,20 @@ export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
   );
   elements.push(
     <div className={'mini-repo-cards-modal__close-button'}>
-      <Button variant={ButtonVariant.Secondary} label={'Close'} width={63} onClick={props.onClick} />
+      <Button
+        variant={ButtonVariant.Secondary}
+        label={'Close'}
+        width={63}
+        onClick={props.onClick}
+      />
     </div>
   );
   return (
     <GenericModal
       title={props.teamName.charAt(0).toUpperCase() + props.teamName.slice(1) + "'s repos"}
       elements={elements}
-      display={props.display}
-      onClick={props.onClick}
+      isVisible={props.display}
+      onClose={props.onClick}
     />
   );
 }

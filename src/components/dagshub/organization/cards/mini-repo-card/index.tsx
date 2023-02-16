@@ -82,7 +82,9 @@ export function MiniRepoCard({
                   {isFork ? 'Forked repo' : isMirror ? 'Mirrored repo' : 'Repo'}
                 </span>
                 <Icon width={1} height={12} fill="#E2E8F0" icon="pipe" />
-                <span className="mini-days-ago">Updated {getUpdatedDaysAgo(updatedAt)} days ago</span>
+                <span className="mini-days-ago">
+                  Updated {getUpdatedDaysAgo(updatedAt)} days ago
+                </span>
               </div>
               <div className="mini-star-section">
                 <a className="mini-star-number" href={starNumberLink}>
@@ -113,7 +115,9 @@ export function MiniRepoCard({
               (topic: Topic) =>
                 topic.categoryShowExplore && (
                   <a
-                    className={'mini-tag mini-repo-new-topic mini-category-' + topic.categoryColorClass}
+                    className={
+                      'mini-tag mini-repo-new-topic mini-category-' + topic.categoryColorClass
+                    }
                     rel="nofollow"
                     href={topic.categoryHref}
                   >
@@ -124,7 +128,9 @@ export function MiniRepoCard({
           </div>
           <div className="mini-repo-main">
             <div className="mini-repo-desc-block">
-              <p className="mini-repo-description">{description ? description : 'No description'}</p>
+              <p className="mini-repo-description">
+                {description ? description : 'No description'}
+              </p>
             </div>
             <div className="mini-repo-information">
               {!isMini && <Icon width={564} height={1} fill="#E2E8F0" icon="divider" />}
