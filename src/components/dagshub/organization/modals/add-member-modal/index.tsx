@@ -16,16 +16,29 @@ export interface AddMemberModalProps {
   isTeam: boolean;
   name: string;
   teams?: { id: string; name: string }[];
-  display: boolean;
-  onClose: () => void;
+  display?: boolean;
+  onClose?: () => void;
   onInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
   inputText: string;
-  resultUsers: UserInfoProps[];
-  placeholder: string;
+  resultUsers?: UserInfoProps[];
+  placeholder?: string;
   addMember: (args?: any) => void;
 }
 
-export function AddMemberModal(props: AddMemberModalProps) {
+export function AddMemberModal({
+  isOrg,
+  isAdmin,
+  isTeam,
+  name,
+  teams = [],
+  display = false,
+  onClose = () => {},
+  onInputChange,
+  inputText,
+  resultUsers = [],
+  placeholder = '',
+  addMember
+}: AddMemberModalProps) {
   const [team, setTeam] = useState<number | string>('');
   const [access, setAccess] = useState<string>('member-access');
   const [addedMembers, setAddedMembers] = useState<string[]>([]);
@@ -38,42 +51,29 @@ export function AddMemberModal(props: AddMemberModalProps) {
     setAddedMembers(addedMembers.filter((u) => u !== username));
   }
 
-  const generateModalTitle = () => {
-    let title = '';
-    title += 'Add new ';
-    title += props.isOrg && props.isAdmin ? 'organization admin' : 'member';
-    title += ' to ' + props.name + ' ';
-    title += props.isTeam ? ' team' : '';
-    return title;
-  };
-
   const generateButtonText = () => {
     let text = '';
     text += 'Add new ';
-    text += props.isTeam ? 'team ' : 'organization ';
-    text += props.isOrg && props.isAdmin ? 'admin' : 'member';
+    text += isTeam ? 'team ' : 'organization ';
+    text += isOrg && isAdmin ? 'admin' : 'member';
     return text;
   };
 
-  let title = generateModalTitle();
-
   const elements: JSX.Element[] = [
     <p className="add-member-modal__instructions">
-      Search by username or name or enter email address to invite someone outside {props.name}
+      Search by username or name or enter email address to invite someone outside {name}
     </p>,
     <div className="input-block">
       <CombinedSearch
-        onInputChange={props.onInputChange}
-        inputText={props.inputText}
-        placeholder={props.placeholder}
         onAdd={onAddMember}
+        inputText={inputText}
+        placeholder={placeholder}
         onRemove={onRemoveMember}
-        resultUsers={props.resultUsers.filter(
-          (u: UserInfoProps) => !addedMembers.includes(u.userName)
-        )}
+        onInputChange={onInputChange}
+        resultUsers={resultUsers.filter((u: UserInfoProps) => !addedMembers.includes(u.userName))}
       />
     </div>,
-    props.isOrg ? (
+    isOrg ? (
       <>
         <RadioButtonList
           initialChecked={access}
@@ -96,13 +96,13 @@ export function AddMemberModal(props: AddMemberModalProps) {
             }
           ]}
         />
-        {props.teams?.length ? (
+        {teams?.length ? (
           <div className="add-member-modal__dropdown">
             <Dropdown
               width={130}
               label="Choose team"
               onItemChecked={setTeam}
-              options={props.teams.map((team) => ({ id: team.id, label: team.name }))}
+              options={teams.map((team: any) => ({ id: team.id, label: team.name }))}
             />
           </div>
         ) : (
@@ -125,7 +125,7 @@ export function AddMemberModal(props: AddMemberModalProps) {
         label={generateButtonText()}
         width={600}
         onClick={() =>
-          props.addMember({
+          addMember({
             team,
             access,
             users: addedMembers
@@ -144,10 +144,12 @@ export function AddMemberModal(props: AddMemberModalProps) {
 
   return (
     <GenericModal
-      title={title}
+      title={`Add new ${isOrg && isAdmin ? 'organization admin' : 'member'} to ${name}${
+        isTeam ? ' team' : ''
+      }`}
       elements={elements}
-      isVisible={props.display}
-      onClose={props.onClose}
+      isVisible={display}
+      onClose={onClose}
     />
   );
 }
