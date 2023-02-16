@@ -51,14 +51,6 @@ export function AddMemberModal({
     setAddedMembers(addedMembers.filter((u) => u !== username));
   }
 
-  const generateButtonText = () => {
-    let text = '';
-    text += 'Add new ';
-    text += isTeam ? 'team ' : 'organization ';
-    text += isOrg && isAdmin ? 'admin' : 'member';
-    return text;
-  };
-
   const elements: JSX.Element[] = [
     <p className="add-member-modal__instructions">
       Search by username or name or enter email address to invite someone outside {name}
@@ -122,7 +114,9 @@ export function AddMemberModal({
     ),
     <div className="add-member-modal__buttons-section">
       <Button
-        label={generateButtonText()}
+        label={`Add new ${isTeam ? 'team' : 'organization'} ${
+          isOrg && isAdmin ? 'admin' : 'member'
+        }`}
         width={600}
         onClick={() =>
           addMember({
