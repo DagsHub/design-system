@@ -51,6 +51,13 @@ export function AddMemberModal({
     setAddedMembers(addedMembers.filter((u) => u !== username));
   }
 
+  function onCloseModal() {
+    setTeam('');
+    setAccess('member-access');
+    setAddedMembers([]);
+    onClose();
+  }
+
   const elements: JSX.Element[] = [
     <p className="add-member-modal__instructions">
       Search by username or name or enter email address to invite someone outside {name}
@@ -143,7 +150,7 @@ export function AddMemberModal({
       }`}
       elements={elements}
       isVisible={display}
-      onClose={onClose}
+      onClose={onCloseModal}
     />
   );
 }
