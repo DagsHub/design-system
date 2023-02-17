@@ -2,26 +2,27 @@ import React from 'react';
 import { Icon } from '../../../../icons';
 import { UserInfo } from '../../profiles/user-info';
 import { Row, GenericTable } from '../generic-table';
+import { RepoCardProps } from '../../cards/repo-card';
 import { UserPermissionForTeam, Member } from '../shared-classes';
+import { MiniRepoCardsModal } from '../../modals/mini-repo-cards-modal';
 import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
 
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import './teams-table.scss';
-import { MiniRepoCardsModal } from '../../modals/mini-repo-cards-modal';
-import { RepoCardProps } from '../../cards/repo-card';
 
 export interface TeamTableProps {
-  members?: Member[];
+  teamId: number | string;
   teamName: string;
   teamDescription?: string;
   teamPermission: UserPermissionForTeam;
+  members?: Member[];
   teamRepos: RepoCardProps[];
-  handleClickOnCollapse: (index: number) => void;
+  handleCollapse: (teamId: number | string) => void;
   index: number;
   style: string;
   isActive: Boolean;
-  removeFromTeam: (args?: any) => void;
+  removeFromTeam: (removeLink?: string) => void;
   addNewTeamMember: (args?: any) => void;
   toggleMiniRepoCardsModal: (args?: any) => void;
   displayMiniRepoCardModal: boolean;
@@ -34,13 +35,13 @@ export interface TeamTableProps {
 const MAX_ROWS = 7;
 
 export function TeamTable({
+  teamId,
   teamName,
   teamDescription,
   members,
   style,
   isActive,
-  handleClickOnCollapse,
-  index,
+  handleCollapse,
   teamRepos,
   teamPermission,
   removeFromTeam,
@@ -62,10 +63,10 @@ export function TeamTable({
           label="Add new team member"
           stretch={ButtonStretch.Slim}
           variant={ButtonVariant.Ghost}
-          iconLeft={<Icon width={10.67} height={10.67} fill="#172D32" icon="solid-plus" />}
+          iconLeft={<Icon width={10} height={10} fill="#172D32" icon="solid-plus" />}
         />
         <span className="teams-table-right-side-header__dots-vertical-icon">
-          <Icon width={3} height={13.5} fill="#64748B" icon="outline-dots-vertical" />
+          <Icon width={3} height={13} fill="#64748B" icon="outline-dots-vertical" />
         </span>
       </span>
     ]
@@ -85,11 +86,16 @@ export function TeamTable({
       columns: [
         <UserInfo imageSource={member.relAvatarLink} userName={member.userName} />,
         <Button
-          width={177}
-          label="Remove from team"
-          onClick={removeFromTeam}
+          width={180}
           variant={ButtonVariant.Secondary}
-          iconRight={<Icon width={12} height={13.33} fill="#111827" icon="outline-trash" />}
+          label={`${member?.leaveLink ? 'Leave the' : 'Remove from'} team`}
+          disabled={teamPermission !== UserPermissionForTeam.AdminAccess}
+          iconRight={<Icon width={12} height={13} fill="#111827" icon="outline-trash" />}
+          onClick={
+            teamPermission !== UserPermissionForTeam.AdminAccess
+              ? () => {}
+              : () => removeFromTeam(member?.leaveLink ?? member?.removeLink)
+          }
         />
       ],
       style: userIndex >= MAX_ROWS ? { display: style } : {}
@@ -103,13 +109,13 @@ export function TeamTable({
         <span>{isActive ? 'Collapse' : 'See all team members'}</span>,
         <Icon
           width={8}
-          height={4.8}
+          height={5}
           fill="#172D32"
           icon={isActive ? 'solid-cheveron-up' : 'solid-cheveron-down'}
         />
       ],
       rowClasses: 'table__collapse',
-      onClick: () => handleClickOnCollapse(index)
+      onClick: () => handleCollapse(teamId)
     };
     rows.push(row);
   }
@@ -139,17 +145,17 @@ export function TeamTable({
 
         <span
           className="teams-table-footer-right-section"
-          onClick={() => toggleMiniRepoCardsModal(index)}
+          onClick={() => toggleMiniRepoCardsModal(teamId)}
         >
           See all teams projects
-          <Icon width={9.33} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
+          <Icon width={9} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
         </span>,
 
         <MiniRepoCardsModal
           teamName={teamName}
           repos={teamRepos}
           display={displayMiniRepoCardModal}
-          onClick={() => toggleMiniRepoCardsModal(index)}
+          onClick={() => toggleMiniRepoCardsModal(teamId)}
         />
       ]
     };

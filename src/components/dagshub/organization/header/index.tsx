@@ -12,7 +12,6 @@ export interface HeaderProps {
 }
 
 export function Header(props: HeaderProps) {
-  console.log('orgSite', props.orgSite);
   return (
     <div className="organization-header">
       <div className="organization-header__org-image">

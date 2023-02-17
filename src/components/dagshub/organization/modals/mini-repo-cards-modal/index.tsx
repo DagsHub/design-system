@@ -1,10 +1,11 @@
 import React from 'react';
-import '../../../../styles/root.scss';
 import { GenericModal } from '../generic-modal';
-import { RepoCard, RepoCardProps } from '../../cards/repo-card';
-import { Button, ButtonVariant } from '../../../../elements';
-import './mini-repo-cards-modal.scss';
+import { RepoCardProps } from '../../cards/repo-card';
 import { MiniRepoCard } from '../../cards/mini-repo-card';
+import { Button, ButtonVariant } from '../../../../elements';
+
+import '../../../../styles/root.scss';
+import './mini-repo-cards-modal.scss';
 
 export interface MiniRepoCardsModalProps {
   teamName: string;
@@ -19,7 +20,7 @@ export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
     <div className={'mini-repo-cards-modal__cards-block'}>
       {props.repos?.map((repo) => (
         <MiniRepoCard
-          isMini={true}
+          isMini
           isMirror={repo.isMirror}
           IsGithubIntegrated={repo.IsGithubIntegrated}
           numStars={repo.numStars}
