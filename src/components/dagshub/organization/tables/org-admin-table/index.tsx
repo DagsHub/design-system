@@ -1,12 +1,13 @@
 import React from 'react';
+import { Icon } from '../../../../icons';
+import { Row, GenericTable } from '../generic-table';
+import { UserPermissionForTeam } from '../shared-classes';
+import { UserInfo } from '../../../organization/profiles/user-info';
+import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
+
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
-import { UserInfo } from '../../../organization/profiles/user-info';
-import { Row, GenericTable } from '../generic-table';
-import { Icon } from '../../../../icons';
-import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
 import './org-admin-table.scss';
-import { UserPermissionForTeam } from '../shared-classes';
 
 export interface OrgAdminTableProps {
   admins: User[];

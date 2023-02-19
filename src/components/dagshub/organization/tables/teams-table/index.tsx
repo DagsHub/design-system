@@ -19,7 +19,6 @@ export interface TeamTableProps {
   members?: Member[];
   teamRepos: RepoCardProps[];
   handleCollapse: (teamId: number | string) => void;
-  index: number;
   style: string;
   isActive: Boolean;
   removeFromTeam: (removeLink?: string) => void;
