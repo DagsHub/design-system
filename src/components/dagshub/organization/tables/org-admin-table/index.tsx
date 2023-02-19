@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from '../../../../icons';
 import { Row, GenericTable } from '../generic-table';
-import { UserPermissionForTeam } from '../shared-classes';
+import { UserPermissionForTeam } from '../../../../../types';
 import { UserInfo } from '../../../organization/profiles/user-info';
 import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
 

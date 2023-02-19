@@ -1,6 +1,7 @@
 import React from 'react';
 import { ProfileImageList } from '../../profiles/profile-image-list';
-import { Member, UserPermissionForTeam } from '../../tables/shared-classes';
+import { Member } from '../../tables/shared-classes';
+import { UserPermissionForTeam } from '../../../../../types';
 
 import '../../../../styles/root.scss';
 import './team-card.scss';

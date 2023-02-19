@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import { UserPermissionForTeam } from '../../../../components/dagshub/organization/tables/shared-classes';
+import { UserPermissionForTeam } from '../../../../types';
 import {
   PeopleTable,
   MembershipVisibility,

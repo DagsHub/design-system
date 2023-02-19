@@ -32,12 +32,6 @@ export enum MembershipVisibility {
   Private = 'private'
 }
 
-export enum UserPermissionForTeam {
-  AdminAccess = 'Admin access',
-  WriteAccess = 'Write access',
-  ReadAccess = 'Read access'
-}
-
 //add functionality, tooltip
 //add links?
 //change its css to BEM
