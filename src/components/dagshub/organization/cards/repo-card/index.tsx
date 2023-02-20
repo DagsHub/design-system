@@ -41,6 +41,7 @@ export interface RepoCardProps {
   forksHref: string;
   issuesHref: string;
   pullsHref: string;
+  onStarActionClick: (args?: any) => void; ///event
 }
 
 const getUpdatedDaysAgo = (date: string): number =>
@@ -68,7 +69,8 @@ export function RepoCard({
   starNumberLink,
   forksHref,
   issuesHref,
-  pullsHref
+  pullsHref,
+  onStarActionClick
 }: RepoCardProps) {
   const stars = IsGithubIntegrated ? githubStarCount + numStars : numStars;
   return (
@@ -89,7 +91,14 @@ export function RepoCard({
                 <a className="star-number" href={starNumberLink}>
                   {stars}
                 </a>
-                <a className="star-action" href={starActionLink}>
+                <a
+                  className="star-action"
+                  href={starActionLink}
+                  onClick={(event: any) => {
+                    event.preventDefault();
+                    onStarActionClick(starActionLink);
+                  }}
+                >
                   <i className={!isStaring ? 'star' : 'star-outline'} />
                   {isStaring ? (
                     <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star" />
