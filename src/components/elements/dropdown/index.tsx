@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Icon } from '../../icons';
-import { RadioButtonItemProps, RadioButtonList } from '../../forms';
+import {Checkbox, RadioButtonItemProps, RadioButtonList} from '../../forms';
 
 import '../../styles/root.scss';
 import './dropdown.scss';
@@ -13,7 +13,7 @@ export interface DropdownOption {
 }
 
 export interface DropdownProps {
-  kind?: 'basic' | 'radio';
+  kind?: 'basic' | 'radio' | 'checkbox';
   width: number;
   label: string;
   isCollapsed?: boolean;
@@ -60,6 +60,24 @@ export const Dropdown = ({
           icon={`solid-cheveron-${isCollapsed ? 'down' : 'up'}`}
         />
       </div>
+      {kind === 'checkbox' && !isCollapsed && (
+          <div className="dagshub-dropdown__options">
+            {_options?.map((opt: RadioButtonItemProps) => (
+                <Checkbox
+                    label={opt.label}
+                    onChange={() => {
+                      if (opt.id === checked) {
+                        setIsCollapsed(true);
+                      } else {
+                        setChecked(opt.id);
+                      }
+                    }}
+                    className={classNames('dagshub-dropdown__options-checkbox', { checked: opt.checked })}
+                    style={{width:optionWidth?optionWidth:"100%"}}
+                />
+            ))}
+          </div>
+      )}
       {kind === 'radio' && !isCollapsed && (
         <RadioButtonList
           title={title?title:undefined}

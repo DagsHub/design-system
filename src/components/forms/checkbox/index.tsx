@@ -10,6 +10,7 @@ export interface CheckboxProps {
   disabled?: boolean;
   className?: string;
   onChange?: () => void;
+  style?: React.CSSProperties;
 }
 
 export const Checkbox = ({
@@ -18,12 +19,13 @@ export const Checkbox = ({
   disabled = false,
   className = '',
   onChange = () => {},
+  style,
   ...props
 }: CheckboxProps) => {
   const classes = classNames([`dagshub-checkbox`, className], { checked, disabled });
 
   return (
-    <div className={classes}>
+    <div className={classes} style={style}>
       <label>
         <Icon icon="checkmark" />
         <input
