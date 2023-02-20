@@ -47,8 +47,8 @@ const header: Row = {
 };
 
 const membershipVisibilityOptions: RadioButtonItemProps[] = [
-  { id: 'public', label: 'Public' },
-  { id: 'private', label: 'Private' }
+  { id: 'public', label: 'Public', description:'User\'s membership is visible to everyone and is displayed on their public profile' },
+  { id: 'private', label: 'Private', description:'User\'s membership is only visible to other members of this organization' }
 ];
 
 export function PeopleTable({ users }: PeopleTableProps) {
@@ -86,6 +86,9 @@ export function PeopleTable({ users }: PeopleTableProps) {
       <div className="people-table__membership-column">
         <Dropdown
           width={145}
+          kind={'radio'}
+          optionWidth={557}
+          title={"Membership visibility"}
           label={user.membershipVisibility}
           options={membershipVisibilityOptions}
           onItemChecked={user.changeMembershipVisibility}

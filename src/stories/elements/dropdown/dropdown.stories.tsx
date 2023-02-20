@@ -13,12 +13,12 @@ const Template: StoryFn<DropdownProps> = (args) => <Dropdown {...args} />;
 
 export const OpenedBasic = Template.bind({});
 OpenedBasic.args = {
-  width: 350,
-  label: 'Country',
+  width: 145,
+  optionWidth:557,
+  label: 'Public',
   options: [
-    { id: 1, label: 'Israel', description: 'State of Israel - Middle East - Asia', checked: true },
-    { id: 2, label: 'Britain', description: 'Great British Empire - Europe' },
-    { id: 3, label: 'Colombia', description: 'La Tierra de Oro - South America' }
+    { id: 1, label: 'Public', description: 'User\'s membership is visible to everyone and is displayed on their public profile', checked: true },
+    { id: 2, label: 'Private', description: 'User\'s membership is only visible to other members of this organization' }
   ]
 };
 

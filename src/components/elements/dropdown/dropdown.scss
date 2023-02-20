@@ -29,10 +29,14 @@
     box-sizing: border-box;
     width: 100%;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+    background-color: #23414D;
+
 
     &-radio {
       padding: 12px;
-      background-color: var(--secondary-state-100);
+      >div, label, p {
+        color: white !important;
+      }
     }
 
     &-opt {

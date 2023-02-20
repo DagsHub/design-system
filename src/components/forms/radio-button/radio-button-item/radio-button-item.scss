@@ -33,6 +33,7 @@
 
   input:checked ~ .radio-button-item__checkmark {
     border: 4.9px solid #5467de;
+    background: white;
   }
 }
 
@@ -44,4 +45,5 @@
   border-radius: 12px;
   border: 2px solid #94a3b8;
   box-sizing: border-box;
+
 }

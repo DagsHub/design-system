@@ -21,21 +21,13 @@ export function RadioButtonList({
   onChecked = () => {},
   items
 }: RadioButtonListProps) {
-  const [checked, setChecked] = useState<number | string>(initialChecked);
-  const _items = items.map((item) => ({ ...item, checked: item.id === checked }));
-
-  useEffect(
-    function onCheckedItem() {
-      onChecked(checked);
-    },
-    [checked]
-  );
+  const _items = items.map((item) => ({ ...item, checked: item.id === initialChecked }));
 
   return (
     <div className={classNames('radio-button-list', className)} style={style}>
       {title && <p className="radio-button-list__title">{title}</p>}
       {_items?.map((item: RadioButtonItemProps) => (
-        <RadioButtonItem key={item.id} onChecked={setChecked} {...item} />
+        <RadioButtonItem key={item.id} checked={item.checked} onChecked={onChecked} {...item} />
       ))}
     </div>
   );

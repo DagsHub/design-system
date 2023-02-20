@@ -20,6 +20,8 @@ export interface DropdownProps {
   options?: RadioButtonItemProps[];
   initialChecked?: number | string;
   onItemChecked?: (id: number | string) => void;
+  title?:string;
+  optionWidth?:number;
 }
 
 export const Dropdown = ({
@@ -29,6 +31,8 @@ export const Dropdown = ({
   options = [],
   initialChecked = '',
   onItemChecked = () => {},
+  title,
+  optionWidth,
   ...props
 }: DropdownProps & React.ButtonHTMLAttributes<HTMLDivElement>) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
@@ -58,6 +62,7 @@ export const Dropdown = ({
       </div>
       {kind === 'radio' && !isCollapsed && (
         <RadioButtonList
+          title={title?title:undefined}
           items={_options}
           onChecked={(id: number | string) => {
             if (id === checked) {
@@ -66,7 +71,9 @@ export const Dropdown = ({
               setChecked(id);
             }
           }}
+          initialChecked={checked}
           className="dagshub-dropdown__options dagshub-dropdown__options-radio"
+          style={{width:optionWidth?optionWidth:"100%"}}
         />
       )}
       {kind === 'basic' && !isCollapsed && (
@@ -82,6 +89,7 @@ export const Dropdown = ({
                 }
               }}
               className={classNames('dagshub-dropdown__options-opt', { checked: opt.checked })}
+              style={{width:optionWidth?optionWidth:"100%"}}
             >
               {opt.label}
             </div>
