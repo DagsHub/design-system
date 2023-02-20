@@ -1,9 +1,10 @@
 import React from 'react';
-import '../../../../styles/root.scss';
-import './team-card.scss';
 import { ProfileImageList } from '../../profiles/profile-image-list';
 import { Member } from '../../tables/shared-classes';
-import { UserPermissionForTeam } from '../../tables/people-table';
+import { UserPermissionForTeam } from '../../../../../types';
+
+import '../../../../styles/root.scss';
+import './team-card.scss';
 
 export interface TeamCardProps {
   teamName: string;

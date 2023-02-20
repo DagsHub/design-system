@@ -3,7 +3,8 @@ import { Icon } from '../../../../icons';
 import { UserInfo } from '../../profiles/user-info';
 import { Row, GenericTable } from '../generic-table';
 import { RepoCardProps } from '../../cards/repo-card';
-import { UserPermissionForTeam, Member } from '../shared-classes';
+import { Member } from '../shared-classes';
+import { UserPermissionForTeam } from '../../../../../types';
 import { MiniRepoCardsModal } from '../../modals/mini-repo-cards-modal';
 import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
 
@@ -19,7 +20,6 @@ export interface TeamTableProps {
   members?: Member[];
   teamRepos: RepoCardProps[];
   handleCollapse: (teamId: number | string) => void;
-  index: number;
   style: string;
   isActive: Boolean;
   removeFromTeam: (removeLink?: string) => void;

@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
+import { UserPermissionForTeam } from '../../../../types';
 import {
   PeopleTable,
   MembershipVisibility,
-  PeopleTableProps,
-  UserPermissionForTeam
+  PeopleTableProps
 } from '../../../../components/dagshub/organization/tables/people-table';
 
 const meta: Meta<PeopleTableProps> = {
