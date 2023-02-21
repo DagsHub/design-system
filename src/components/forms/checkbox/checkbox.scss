@@ -14,6 +14,10 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  svg path {
+    fill: transparent;
+  }
 }
 
 .dagshub-checkbox:not(.disabled):hover label {
@@ -32,6 +36,11 @@
   margin-right: 5px;
   transition: all 0.5s;
   cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .disabled label {

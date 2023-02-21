@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classNames from 'classnames';
 import { Icon } from '../../icons';
 
@@ -23,16 +23,18 @@ export const Checkbox = ({
   ...props
 }: CheckboxProps) => {
   const classes = classNames([`dagshub-checkbox`, className], { checked, disabled });
+  const [isChecked, setIsChecked] = useState<boolean>(checked);
+
 
   return (
     <div className={classes} style={style}>
       <label>
-        <Icon icon="checkmark" />
+        <Icon icon="checkmark" fill={"white"}/>
         <input
           type="checkbox"
           aria-label={label}
           className={classes}
-          checked={checked}
+          checked={isChecked}
           disabled={disabled}
           onChange={onChange}
           {...props}

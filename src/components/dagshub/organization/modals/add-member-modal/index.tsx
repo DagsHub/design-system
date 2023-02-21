@@ -98,16 +98,18 @@ export function AddMemberModal({
         {teams?.length ? (
           <div className="add-member-modal__dropdown">
             <Dropdown
+              kind={'checkbox'}
               width={130}
-              label="Choose team"
+              label="Select teams"
               onItemChecked={setTeam}
+              maxHeight={125}
               options={teams.map((team: any) => ({ id: team.id, label: team.name }))}
             />
           </div>
         ) : (
           <div className="add-member-modal__no-teams-text">
             You haven’t created any teams yet. To leverage different permission levels for different
-            projectsc
+            projects
             <a className="add-member-modal__create-team-text">
               {' '}
               create your first team{' '}

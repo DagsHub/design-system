@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Icon } from '../../../../icons';
 import { UserInfo } from '../../profiles/user-info';
 import { Row, GenericTable } from '../generic-table';
@@ -6,11 +6,12 @@ import { RepoCardProps } from '../../cards/repo-card';
 import { Member } from '../shared-classes';
 import { UserPermissionForTeam } from '../../../../../types';
 import { MiniRepoCardsModal } from '../../modals/mini-repo-cards-modal';
-import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
+import {Button, ButtonStretch, ButtonVariant, Dropdown} from '../../../../elements';
 
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import './teams-table.scss';
+import {RadioButtonItemProps} from "../../../../forms";
 
 export interface TeamTableProps {
   teamId: number | string;
@@ -33,7 +34,6 @@ export interface TeamTableProps {
 //add (you) annotation to relevant user
 
 const MAX_ROWS = 7;
-
 export function TeamTable({
   teamId,
   teamName,
@@ -120,6 +120,21 @@ export function TeamTable({
     rows.push(row);
   }
 
+  const teamPermissionsOptions: RadioButtonItemProps[] = [
+    { id: 'Admin access', label: 'Admin access', description:'members can:\n' +
+          'read from\n' +
+          'push to\n' +
+          'add collaborators to the team\'s repositories' },
+    { id: 'Write access', label: 'Write access', description:'members can:\n' +
+          'read from\n' +
+          'push to the team\'s repositories' },
+    { id: 'Read access', label: 'Read access', description:'members can:\n' +
+          'view\n' +
+          'clone the team\'s repositories' }
+  ];
+  const [teamPerm, setTeamPerm] = useState<string>(teamPermission);
+  const _options = teamPermissionsOptions.map((opt) => ({ ...opt, checked: opt.id === teamPerm }));
+
   let footer: Row;
   if ((teamRepos ?? []).length != 0) {
     footer = {
@@ -127,10 +142,16 @@ export function TeamTable({
         <span className="teams-table-footer-left-section">
           <span className="teams-table-footer-left-section__permission-text">
             Team has
-            <span className="teams-table-footer-left-section__permission-label">
-              {teamPermission}
-              <Icon width={10} height={6} fill="#172D32" icon="solid-cheveron-down" />
-            </span>
+            <Dropdown
+                width={127}
+                kind={'radio'}
+                optionWidth={342}
+                title={"Team’s Access permissions"}
+                label={teamPerm}
+                options={_options}
+                onItemChecked={setTeamPerm}
+                initialChecked={teamPermission}
+            />
             to following repositories:
           </span>
           <span className="team-repos">

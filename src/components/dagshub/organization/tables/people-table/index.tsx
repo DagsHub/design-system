@@ -87,11 +87,12 @@ export function PeopleTable({ users }: PeopleTableProps) {
         <Dropdown
           width={145}
           kind={'radio'}
-          optionWidth={557}
+          optionWidth={281}
           title={"Membership visibility"}
           label={user.membershipVisibility}
           options={membershipVisibilityOptions}
           onItemChecked={user.changeMembershipVisibility}
+          alignOptionsToTheRight={true}
           initialChecked={
             membershipVisibilityOptions.find((mv) => mv.label === user.membershipVisibility)?.id ??
             ''
