@@ -6,9 +6,9 @@ import './remove-member-modal.scss';
 
 export interface RemoveMemberModalProps {
   username: string;
-  org: string;
-  display: boolean;
-  onClick: () => void;
+  orgOrTeamName: string;
+  onClose: () => void;
+  onRemove:()=>void;
 }
 
 export function RemoveMemberModal(props: RemoveMemberModalProps) {
@@ -16,20 +16,19 @@ export function RemoveMemberModal(props: RemoveMemberModalProps) {
   elements = [
     <div className="remove-member-modal__text">
       Are you sure you want to remove{' '}
-      <span className="remove-member-modal__text-username">@{props.username}</span> from {props.org}
+      <span className="remove-member-modal__text-username">@{props.username}</span> from {props.orgOrTeamName}
       ?
     </div>,
     <div className="remove-member-modal__buttons">
-      <Button variant={ButtonVariant.Error} label={'Remove member'} width={143} />
-      <Button variant={ButtonVariant.Primary} label={'Cancel'} width={95} />
+      <Button variant={ButtonVariant.Error} label={'Remove member'} width={143} onClick={props.onRemove}/>
+      <Button variant={ButtonVariant.Primary} label={'Cancel'} width={95} onClick={props.onClose} />
     </div>
   ];
   return (
     <GenericModal
       title={'Remove member'}
       elements={elements}
-      isVisible={props.display}
-      onClose={props.onClick}
+      onClose={props.onClose}
     />
   );
 }

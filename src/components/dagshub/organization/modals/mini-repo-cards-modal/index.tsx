@@ -10,7 +10,6 @@ import './mini-repo-cards-modal.scss';
 export interface MiniRepoCardsModalProps {
   teamName: string;
   repos: RepoCardProps[];
-  display: boolean;
   onClick: () => void;
 }
 
@@ -60,7 +59,6 @@ export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
     <GenericModal
       title={props.teamName.charAt(0).toUpperCase() + props.teamName.slice(1) + "'s repos"}
       elements={elements}
-      isVisible={props.display}
       onClose={props.onClick}
     />
   );

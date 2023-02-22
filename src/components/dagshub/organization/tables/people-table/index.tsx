@@ -10,12 +10,16 @@ import { RadioButtonItemProps } from '../../../../forms';
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import './people-table.scss';
+import {UserPermissionForTeam} from "../../../../../types";
 
 export interface PeopleTableProps {
   users: User[];
+  loggedUserId:number;
+  loggedUserIsOwner:number;
 }
 
 interface User {
+  id:number;
   userImage: string;
   username: string;
   userTeams: TeamCardProps[];
@@ -51,8 +55,8 @@ const membershipVisibilityOptions: RadioButtonItemProps[] = [
   { id: 'private', label: 'Private', description:'User\'s membership is only visible to other members of this organization' }
 ];
 
-export function PeopleTable({ users }: PeopleTableProps) {
-  const rows: Row[] = (users || [])?.map((user) => ({
+export function PeopleTable(props:PeopleTableProps) {
+  const rows: Row[] = (props.users || [])?.map((user) => ({
     columns: [
       <UserInfo imageSource={user.userImage} userName={user.username} />,
       <span className="teams-list">
@@ -74,12 +78,11 @@ export function PeopleTable({ users }: PeopleTableProps) {
             >
               +{user.userTeams.length - 2}
             </span>
-            <TeamsModal
-              display={user.displayTeamsModal}
+            {user.displayTeamsModal&&<TeamsModal
               onClick={() => user.toggleTeamsModal(user.userIndex)}
               teams={user.userTeams}
               userName={user.username}
-            />
+            />}
           </>
         )}
       </span>,
@@ -98,13 +101,15 @@ export function PeopleTable({ users }: PeopleTableProps) {
             ''
           }
         />
-        <Icon
-          width={12}
-          height={13.33}
-          fill="#172D32"
-          icon="outline-trash"
-          onClick={user.removeMember}
-        />
+        <button disabled={props.loggedUserId!=user.id&&!props.loggedUserIsOwner} onClick={user.removeMember}>
+          <Icon
+            width={12}
+            height={13.33}
+            fill="#172D32"
+            icon="outline-trash"
+          />
+        </button>
+
       </div>
     ]
   }));

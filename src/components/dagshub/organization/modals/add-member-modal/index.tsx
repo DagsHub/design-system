@@ -16,7 +16,6 @@ export interface AddMemberModalProps {
   isTeam: boolean;
   name: string;
   teams?: { id: string; name: string }[];
-  display?: boolean;
   onClose?: () => void;
   onInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
   inputText: string;
@@ -31,7 +30,6 @@ export function AddMemberModal({
   isTeam,
   name,
   teams = [],
-  display = false,
   onClose = () => {},
   onInputChange,
   inputText,
@@ -151,7 +149,6 @@ export function AddMemberModal({
         isTeam ? ' team' : ''
       }`}
       elements={elements}
-      isVisible={display}
       onClose={onCloseModal}
     />
   );

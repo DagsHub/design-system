@@ -6,7 +6,6 @@ import { Icon } from '.././../../../icons/index';
 export interface ModalProps {
   title: string;
   elements: JSX.Element[];
-  isVisible: boolean;
   onClose: () => void;
 }
 
@@ -15,11 +14,10 @@ export interface ModalProps {
 //when clicking on the input there should be written "Typing..."
 //pass class name to icon
 
-export function GenericModal({ title, elements, isVisible, onClose }: ModalProps) {
-  const display = isVisible ? 'block' : 'none';
+export function GenericModal({ title, elements, onClose }: ModalProps) {
   return (
     <>
-      <div className="modal" style={{ display }}>
+      <div className="modal">
         <button className="modal__x-button" onClick={onClose}>
           <Icon width={10} height={10} fill="#94A3B8" icon="outline-x" />
         </button>
@@ -28,7 +26,7 @@ export function GenericModal({ title, elements, isVisible, onClose }: ModalProps
           {elements}
         </div>
       </div>
-      <div className={'overlay'} style={{ display }}></div>
+      <div className={'overlay'}></div>
     </>
   );
 }

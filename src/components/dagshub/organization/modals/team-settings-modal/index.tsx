@@ -9,8 +9,9 @@ import '../../../../styles/root.scss';
 import './team-settings-modal.scss';
 
 export interface TeamSettingsModalProps {
-  display: boolean;
   onClick: () => void;
+  teamName:string;
+  teamDescription?:string;
 }
 
 export function TeamSettingsModal(props: TeamSettingsModalProps) {
@@ -20,8 +21,9 @@ export function TeamSettingsModal(props: TeamSettingsModalProps) {
       label="Team name"
       helperText="Changing the team name will break past @mentions."
       rootMaxWidth={599}
+      value={props.teamName}
     />,
-    <Input label="Description" helperText="What is this team all about?" rootMaxWidth={599} />,
+    <Input label="Description" helperText="What is this team all about?" rootMaxWidth={599} value={props.teamDescription}/>,
     <RadioButtonList
       title="Team permissions"
       items={[
@@ -55,7 +57,6 @@ export function TeamSettingsModal(props: TeamSettingsModalProps) {
     <GenericModal
       title="Team settings"
       elements={elements}
-      isVisible={props.display}
       onClose={props.onClick}
     />
   );

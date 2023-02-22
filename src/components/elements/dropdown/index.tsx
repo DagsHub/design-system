@@ -24,6 +24,7 @@ export interface DropdownProps {
   optionWidth?:number;
   alignOptionsToTheRight?:boolean;
   maxHeight?:number;
+  dropdownBoxColor?:string;
 }
 
 export const Dropdown = ({
@@ -37,6 +38,7 @@ export const Dropdown = ({
   optionWidth,
   alignOptionsToTheRight,
   maxHeight,
+  dropdownBoxColor="#f8fafc",
   ...props
 }: DropdownProps & React.ButtonHTMLAttributes<HTMLDivElement>) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
@@ -67,7 +69,7 @@ export const Dropdown = ({
 
   return (
     <div className="dagshub-dropdown" style={{ width }} {...props}>
-      <div className="dagshub-dropdown__box" onClick={() => setIsCollapsed(!isCollapsed)}>
+      <div className="dagshub-dropdown__box" style={{background:dropdownBoxColor}} onClick={() => setIsCollapsed(!isCollapsed)}>
         {kind!='checkbox'&&checkedOptLabel || label}
         <Icon
           width={10}

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {SetStateAction, useEffect, useState} from 'react';
 import { Icon } from '../../../../icons';
 import { UserInfo } from '../../profiles/user-info';
 import { Row, GenericTable } from '../generic-table';
@@ -12,6 +12,9 @@ import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import './teams-table.scss';
 import {RadioButtonItemProps} from "../../../../forms";
+import {AddMemberModal} from "../../modals/add-member-modal";
+import {TeamSettingsModal} from "../../modals/team-settings-modal";
+import {RemoveMemberModal} from "../../modals/remove-member-modal";
 
 export interface TeamTableProps {
   teamId: number | string;
@@ -25,8 +28,8 @@ export interface TeamTableProps {
   isActive: Boolean;
   removeFromTeam: (removeLink?: string) => void;
   addNewTeamMember: (args?: any) => void;
-  toggleMiniRepoCardsModal: (args?: any) => void;
-  displayMiniRepoCardModal: boolean;
+  loggedUserId:number;
+  loggedUserIsOwner:number;
 }
 
 //add functionality, tooltip
@@ -46,10 +49,37 @@ export function TeamTable({
   teamPermission,
   removeFromTeam,
   addNewTeamMember,
-  toggleMiniRepoCardsModal,
-  displayMiniRepoCardModal
+  loggedUserId,
+  loggedUserIsOwner,
 }: TeamTableProps) {
   let header: Row;
+  const [displayAddNewTeamMemberModal, setDisplayAddNewTeamMemberModal]= useState<boolean>(false)
+  const [users, setUsers] = useState<any[]>([]);
+  const [inputText, setInputText] = useState<string>('');
+
+  const onInputChange = (e: { target: { value: SetStateAction<string> } }) => {
+    setInputText(e.target.value);
+  };
+
+  useEffect(() => {
+    const onInputTextChange = async () => {
+      const rsp = await fetch(`/api/v1/users/search?q=${inputText}`)
+          .then((r) => r.json())
+          .catch(console.error);
+
+      setUsers(
+          rsp.data.map((user: any) => ({
+            userName: user.username,
+            imageSource: user.avatar_url
+          }))
+      );
+    };
+
+    onInputTextChange();
+  }, [inputText]);
+
+  const [displayTeamSettingsModal, setDisplayTeamSettingsModal]= useState<boolean>(false)
+
   header = {
     columns: [
       <span className="teams-table-left-side-header">
@@ -59,18 +89,42 @@ export function TeamTable({
       <span className="teams-table-right-side-header">
         <Button
           width={210}
-          onClick={addNewTeamMember}
+          onClick={()=>{setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal)}}
           label="Add new team member"
           stretch={ButtonStretch.Slim}
           variant={ButtonVariant.Ghost}
           iconLeft={<Icon width={10} height={10} fill="#172D32" icon="solid-plus" />}
         />
-        <span className="teams-table-right-side-header__dots-vertical-icon">
+        <>{displayAddNewTeamMemberModal&&<AddMemberModal
+            isOrg={false}
+            isAdmin={false}
+            isTeam={true}
+            resultUsers={users}
+            inputText={inputText}
+            name={teamName}
+            onInputChange={onInputChange}
+            placeholder="Enter username or email"
+            onClose={() => setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal)}
+            addMember={({ access, team, users }) => {
+              addNewTeamMember();
+              setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal);
+            }}
+        />}</>
+        <span className="teams-table-right-side-header__dots-vertical-icon"
+              onClick={()=>{setDisplayTeamSettingsModal(!displayTeamSettingsModal)}}
+        >
           <Icon width={3} height={13} fill="#64748B" icon="outline-dots-vertical" />
         </span>
+        <>{displayTeamSettingsModal&&<TeamSettingsModal
+            teamName={teamName}
+            teamDescription={teamDescription}
+            onClick={() => setDisplayTeamSettingsModal(!displayTeamSettingsModal)}
+        />}</>
       </span>
     ]
   };
+
+  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal]= useState<boolean>(false)
 
   let rows: Row[] = [];
   if (!members?.length) {
@@ -89,14 +143,22 @@ export function TeamTable({
           width={180}
           variant={ButtonVariant.Secondary}
           label={`${member?.leaveLink ? 'Leave the' : 'Remove from'} team`}
-          disabled={teamPermission !== UserPermissionForTeam.AdminAccess}
+          disabled={loggedUserId!=member.id&&!loggedUserIsOwner}
           iconRight={<Icon width={12} height={13} fill="#111827" icon="outline-trash" />}
-          onClick={
-            teamPermission !== UserPermissionForTeam.AdminAccess
-              ? () => {}
-              : () => removeFromTeam(member?.leaveLink ?? member?.removeLink)
-          }
-        />
+          onClick={()=>setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal)}
+        />,
+        <>{displayRemoveMemberFromTeamModal&&
+            <RemoveMemberModal username={member.userName} orgOrTeamName={teamName}
+             onRemove={teamPermission !== UserPermissionForTeam.AdminAccess? () => {
+               setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal)
+              }
+              : () => {
+               removeFromTeam(member?.leaveLink ?? member?.removeLink);
+               setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal);
+              }
+            }
+            onClose={()=>setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal)}
+            /> }</>
       ],
       style: userIndex >= MAX_ROWS ? { display: style } : {}
     };
@@ -135,6 +197,9 @@ export function TeamTable({
   const [teamPerm, setTeamPerm] = useState<string>(teamPermission);
   const _options = teamPermissionsOptions.map((opt) => ({ ...opt, checked: opt.id === teamPerm }));
 
+  const [displayMiniCardModal, setDisplayMiniCardModal]= useState<boolean>(false)
+
+
   let footer: Row;
   if ((teamRepos ?? []).length != 0) {
     footer = {
@@ -151,6 +216,7 @@ export function TeamTable({
                 options={_options}
                 onItemChecked={setTeamPerm}
                 initialChecked={teamPermission}
+                dropdownBoxColor={"transparent"}
             />
             to following repositories:
           </span>
@@ -166,18 +232,17 @@ export function TeamTable({
 
         <span
           className="teams-table-footer-right-section"
-          onClick={() => toggleMiniRepoCardsModal(teamId)}
+          onClick={() => setDisplayMiniCardModal(!displayMiniCardModal)}
         >
           See all teams projects
           <Icon width={9} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
         </span>,
 
-        <MiniRepoCardsModal
+        <>{displayMiniCardModal&&<MiniRepoCardsModal
           teamName={teamName}
           repos={teamRepos}
-          display={displayMiniRepoCardModal}
-          onClick={() => toggleMiniRepoCardsModal(teamId)}
-        />
+          onClick={() => setDisplayMiniCardModal(!displayMiniCardModal)}
+        />}</>
       ]
     };
   } else {

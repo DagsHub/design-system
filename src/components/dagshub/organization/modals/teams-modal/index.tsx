@@ -9,11 +9,10 @@ import './teams-modal.scss';
 export interface TeamsModalProps {
   userName: string;
   teams: TeamCardProps[];
-  display: boolean;
   onClick: () => void;
 }
 
-export function TeamsModal({ userName, teams, display, onClick }: TeamsModalProps) {
+export function TeamsModal({ userName, teams, onClick }: TeamsModalProps) {
   let elements: JSX.Element[] = [];
   elements.push(
     <div className="teams-modal__cards-block">
@@ -22,10 +21,11 @@ export function TeamsModal({ userName, teams, display, onClick }: TeamsModalProp
           teamName={team.teamName}
           teamLink={team.teamLink}
           teamDescription={team.teamDescription}
-          teamMembers={team.teamMembers.map((team: any) => ({
-            userName: team.username,
-            homeLink: team.homeLink,
-            relAvatarLink: team.userImage
+          teamMembers={team.teamMembers.map((member: any) => ({
+            id:member.id,
+            userName: member.username,
+            homeLink: member.homeLink,
+            relAvatarLink: member.userImage
           }))}
         />
       ))}
@@ -40,7 +40,6 @@ export function TeamsModal({ userName, teams, display, onClick }: TeamsModalProp
     <GenericModal
       title={userName.charAt(0).toUpperCase() + userName.slice(1) + "'s teams"}
       elements={elements}
-      isVisible={display}
       onClose={onClick}
     />
   );
