@@ -29,7 +29,7 @@ export interface TeamTableProps {
   removeFromTeam: (removeLink?: string) => void;
   addNewTeamMember: (args?: any) => void;
   loggedUserId:number;
-  loggedUserIsOwner:number;
+  loggedUserIsOwner:boolean;
 }
 
 //add functionality, tooltip
@@ -87,15 +87,15 @@ export function TeamTable({
         <span className="teams-table-left-side-header__team-description">{teamDescription}</span>
       </span>,
       <span className="teams-table-right-side-header">
-        <Button
+        {loggedUserIsOwner&&<Button
           width={210}
           onClick={()=>{setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal)}}
           label="Add new team member"
           stretch={ButtonStretch.Slim}
           variant={ButtonVariant.Ghost}
           iconLeft={<Icon width={10} height={10} fill="#172D32" icon="solid-plus" />}
-        />
-        <>{displayAddNewTeamMemberModal&&<AddMemberModal
+        />}
+        {loggedUserIsOwner&&<>{displayAddNewTeamMemberModal&&<AddMemberModal
             isOrg={false}
             isAdmin={false}
             isTeam={true}
@@ -109,17 +109,17 @@ export function TeamTable({
               addNewTeamMember();
               setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal);
             }}
-        />}</>
-        <span className="teams-table-right-side-header__dots-vertical-icon"
+        />}</>}
+        {loggedUserIsOwner&&<span className="teams-table-right-side-header__dots-vertical-icon"
               onClick={()=>{setDisplayTeamSettingsModal(!displayTeamSettingsModal)}}
         >
           <Icon width={3} height={13} fill="#64748B" icon="outline-dots-vertical" />
-        </span>
-        <>{displayTeamSettingsModal&&<TeamSettingsModal
+        </span>}
+        {loggedUserIsOwner&&<>{displayTeamSettingsModal&&<TeamSettingsModal
             teamName={teamName}
             teamDescription={teamDescription}
             onClick={() => setDisplayTeamSettingsModal(!displayTeamSettingsModal)}
-        />}</>
+        />}</>}
       </span>
     ]
   };
@@ -139,24 +139,20 @@ export function TeamTable({
     let row: Row = {
       columns: [
         <UserInfo imageSource={member.relAvatarLink} userName={member.userName} />,
-        <Button
+        <>{(loggedUserId===member.id||loggedUserIsOwner)&&<Button
           width={180}
           variant={ButtonVariant.Secondary}
           label={`${member?.leaveLink ? 'Leave the' : 'Remove from'} team`}
           disabled={loggedUserId!=member.id&&!loggedUserIsOwner}
           iconRight={<Icon width={12} height={13} fill="#111827" icon="outline-trash" />}
           onClick={()=>setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal)}
-        />,
+        />}</>,
         <>{displayRemoveMemberFromTeamModal&&
-            <RemoveMemberModal username={member.userName} orgOrTeamName={teamName}
-             onRemove={teamPermission !== UserPermissionForTeam.AdminAccess? () => {
-               setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal)
-              }
-              : () => {
+            <RemoveMemberModal removeYourself={member?.leaveLink?true:false} username={member.userName} orgOrTeamName={teamName}
+             onRemove={() => {
                removeFromTeam(member?.leaveLink ?? member?.removeLink);
                setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal);
-              }
-            }
+            }}
             onClose={()=>setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal)}
             /> }</>
       ],
@@ -217,6 +213,7 @@ export function TeamTable({
                 onItemChecked={setTeamPerm}
                 initialChecked={teamPermission}
                 dropdownBoxColor={"transparent"}
+                disabled={!loggedUserIsOwner}
             />
             to following repositories:
           </span>

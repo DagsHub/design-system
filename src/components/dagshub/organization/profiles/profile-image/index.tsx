@@ -4,12 +4,13 @@ import React from 'react';
 
 export interface ProfileImageProps {
   imageSource: string;
+  homeLink:string;
 }
 
 export function ProfileImage(props: ProfileImageProps) {
   return (
-    <div className="user-profile">
+    <a className="user-profile" href={props.homeLink}>
       <img src={props.imageSource}></img>
-    </div>
+    </a>
   );
 }

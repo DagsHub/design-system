@@ -11,11 +11,15 @@ import './org-admin-table.scss';
 
 export interface OrgAdminTableProps {
   admins: User[];
+  loggedUserId:number;
+  loggedUserIsOwner:boolean;
 }
 
 interface User {
+  id:number;
   userImage: string;
   username: string;
+  removeMember?: (args?: any) => void;
 }
 
 //add functionality, tooltip
@@ -47,7 +51,13 @@ export function OrgAdminTable(props: OrgAdminTableProps) {
             {UserPermissionForTeam.AdminAccess}
             <Icon width={13.33} height={13.33} fill="#172D32" icon="outline-information-circle" />
           </span>
-          <Icon width={12} height={13.33} fill="#172D32" icon="outline-trash" />
+          {(props.loggedUserId===user.id||props.loggedUserIsOwner)&&<Icon
+              width={12}
+              height={13.33}
+              fill="#172D32"
+              icon="outline-trash"
+              onClick={user.removeMember}
+          />}
         </div>
       ]
     };

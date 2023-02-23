@@ -15,13 +15,12 @@ export interface TeamCardProps {
 }
 
 export function TeamCard({ teamName, teamDescription, teamMembers, teamLink }: TeamCardProps) {
-  const images: string[] = teamMembers.map((member) => member.relAvatarLink);
   return (
     <div className="team-card">
       <div className={'team-card-header'}>
         <div className="team-card-header__team-name">{teamName} Team</div>
         <div className={'team-card-header__right-side'}>
-          <ProfileImageList imgList={images} maxImages={6} />
+          <ProfileImageList userList={teamMembers} maxImages={6} />
           <a className={'view-all'} href={teamLink}>
             View all
           </a>

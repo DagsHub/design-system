@@ -78,3 +78,9 @@
     }
   }
 }
+
+.trashIcon{
+  &:disabled{
+    cursor: not-allowed;
+  }
+}

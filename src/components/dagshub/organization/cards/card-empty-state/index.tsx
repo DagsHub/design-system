@@ -9,6 +9,7 @@ export interface CardEmptyStateProps {
   width: number;
   height?: number;
   buttonText?: string;
+  buttonAction?:()=>void;
 }
 
 export function CardEmptyState({ text, width, height, buttonText }: CardEmptyStateProps) {
