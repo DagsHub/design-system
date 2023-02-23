@@ -22,7 +22,7 @@ export function TeamsModal({ userName, teams, onClick }: TeamsModalProps) {
           teamLink={team.teamLink}
           teamDescription={team.teamDescription}
           teamMembers={team.teamMembers.map((member: any) => ({
-            id:member.id,
+            id: member.id,
             userName: member.username,
             homeLink: member.homeLink,
             relAvatarLink: member.userImage

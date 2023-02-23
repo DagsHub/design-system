@@ -26,7 +26,7 @@ export const RadioButtonItem = ({
   const classes = classNames([`radio-button-item`, className]);
 
   return (
-    <div className={classes} style={{ width }} >
+    <div className={classes} style={{ width }}>
       <div>
         <label className="radio-button-item__container">
           {label}

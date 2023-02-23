@@ -2,7 +2,7 @@ import '../../../../styles/root.scss';
 import React from 'react';
 import { ProfileImage } from '../profile-image';
 import './profile-image-list.scss';
-import {Member} from '../../tables/shared-classes'
+import { Member } from '../../tables/shared-classes';
 
 export interface ProfileImageListProps {
   userList: Member[];
@@ -12,8 +12,10 @@ export interface ProfileImageListProps {
 export function ProfileImageList(props: ProfileImageListProps) {
   return (
     <div className="user-image-list">
-      {props.userList?.map((member,index) =>
-        index < props.maxImages ? <ProfileImage imageSource={member.relAvatarLink} homeLink={member.homeLink} /> : null
+      {props.userList?.map((member, index) =>
+        index < props.maxImages ? (
+          <ProfileImage imageSource={member.relAvatarLink} homeLink={member.homeLink} />
+        ) : null
       )}
       {props.userList.length > props.maxImages ? (
         <div className="user-image-list__img-left">

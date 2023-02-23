@@ -10,8 +10,8 @@ import './team-settings-modal.scss';
 
 export interface TeamSettingsModalProps {
   onClick: () => void;
-  teamName:string;
-  teamDescription?:string;
+  teamName: string;
+  teamDescription?: string;
 }
 
 export function TeamSettingsModal(props: TeamSettingsModalProps) {
@@ -23,7 +23,12 @@ export function TeamSettingsModal(props: TeamSettingsModalProps) {
       rootMaxWidth={599}
       value={props.teamName}
     />,
-    <Input label="Description" helperText="What is this team all about?" rootMaxWidth={599} value={props.teamDescription}/>,
+    <Input
+      label="Description"
+      helperText="What is this team all about?"
+      rootMaxWidth={599}
+      value={props.teamDescription}
+    />,
     <RadioButtonList
       title="Team permissions"
       items={[
@@ -53,11 +58,5 @@ export function TeamSettingsModal(props: TeamSettingsModalProps) {
       <Button variant={ButtonVariant.Primary} label={'Save changes'} width={119} />
     </div>
   ];
-  return (
-    <GenericModal
-      title="Team settings"
-      elements={elements}
-      onClose={props.onClick}
-    />
-  );
+  return <GenericModal title="Team settings" elements={elements} onClose={props.onClick} />;
 }
