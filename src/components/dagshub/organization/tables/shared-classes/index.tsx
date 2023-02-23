@@ -1,5 +1,5 @@
 export interface Member {
-  id:number;
+  id: number;
   userName: string;
   homeLink: string;
   relAvatarLink: string;

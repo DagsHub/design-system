@@ -13,19 +13,19 @@ import {AddMemberModal} from "../../modals/add-member-modal";
 
 export interface OrgAdminTableProps {
   admins: User[];
-  loggedUserId:number;
-  loggedUserIsOwner:boolean;
-  orgName:string;
+  loggedUserId: number;
+  loggedUserIsOwner: boolean;
+  orgName: string;
 }
 
 interface User {
-  id:number;
+  id: number;
   userImage: string;
   username: string;
   leaveLink?: string;
   removeLink?: string;
   removeMember?: (args?: any) => void;
-  homeLink?:string;
+  homeLink?: string;
 }
 
 //add functionality, tooltip
@@ -87,44 +87,57 @@ export function OrgAdminTable(props: OrgAdminTableProps) {
   };
 
   const createInitialMapState = (arr: any[], initialValue: boolean | string) =>
-      arr.reduce((acc: any, user: any) => ({ ...acc, [user.id]: initialValue }), {});
-  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<Record<number | string, boolean>>(
-      createInitialMapState(props.admins, false)
-  );
+    arr.reduce((acc: any, user: any) => ({ ...acc, [user.id]: initialValue }), {});
+  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<
+    Record<number | string, boolean>
+  >(createInitialMapState(props.admins, false));
   const handleClick = (userId: number | string) => {
-    setDisplayRemoveMemberFromTeamModal({ ...displayRemoveMemberFromTeamModal, [userId]: !displayRemoveMemberFromTeamModal[userId] });
+    setDisplayRemoveMemberFromTeamModal({
+      ...displayRemoveMemberFromTeamModal,
+      [userId]: !displayRemoveMemberFromTeamModal[userId]
+    });
   };
 
   let rows: Row[] = [];
   for (let user of props.admins) {
     let row: Row = {
       columns: [
-        <UserInfo imageSource={user.userImage} userName={user.username} homeLink={user.homeLink} isLoggedUser={!!user.leaveLink}/>,
+        <UserInfo
+          imageSource={user.userImage}
+          userName={user.username}
+          homeLink={user.homeLink}
+          isLoggedUser={!!user.leaveLink}
+        />,
         <div className="admin-access-column">
           <span className={'admin-access-column__access-type'}>
             {UserPermissionForTeam.AdminAccess}
             <Icon width={13.33} height={13.33} fill="#172D32" icon="outline-information-circle" />
           </span>
-          {(props.loggedUserId === user.id || props.loggedUserIsOwner) && <><Icon
-              width={12}
-              height={13.33}
-              fill="#172D32"
-              icon="outline-trash"
-              onClick={() => {
-                handleClick(user.id)
-              }}
-          />
-            {displayRemoveMemberFromTeamModal[user.id]&&<RemoveMemberModal
-                removeYourself={!!user.leaveLink} username={user.username}
-                orgOrTeamName={props.orgName}
-                onClose={()=>handleClick(user.id)}
-                onRemove={()=>{
-                  user.removeMember;
+          {(props.loggedUserId === user.id || props.loggedUserIsOwner) && (
+            <>
+              <Icon
+                width={12}
+                height={13.33}
+                fill="#172D32"
+                icon="outline-trash"
+                onClick={() => {
                   handleClick(user.id);
                 }}
-            />}
-          </>
-          }
+              />
+              {displayRemoveMemberFromTeamModal[user.id] && (
+                <RemoveMemberModal
+                  removeYourself={!!user.leaveLink}
+                  username={user.username}
+                  orgOrTeamName={props.orgName}
+                  onClose={() => handleClick(user.id)}
+                  onRemove={() => {
+                    user.removeMember;
+                    handleClick(user.id);
+                  }}
+                />
+              )}
+            </>
+          )}
         </div>
       ]
     };

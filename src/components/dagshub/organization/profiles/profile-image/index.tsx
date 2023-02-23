@@ -4,7 +4,7 @@ import React from 'react';
 
 export interface ProfileImageProps {
   imageSource: string;
-  homeLink:string;
+  homeLink: string;
 }
 
 export function ProfileImage(props: ProfileImageProps) {

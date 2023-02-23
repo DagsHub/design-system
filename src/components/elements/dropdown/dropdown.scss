@@ -27,21 +27,23 @@
     box-sizing: border-box;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
     border-radius: 6px;
-    overflow-y:scroll;
+    overflow-y: scroll;
 
-    &.right{
+    &.right {
       right: 0px;
     }
 
     &-radio {
       padding: 12px;
-      background-color: #23414D;
-      >div, label, p {
+      background-color: #23414d;
+      > div,
+      label,
+      p {
         color: white !important;
       }
     }
 
-    &-checkbox{
+    &-checkbox {
       font-weight: 500;
       cursor: pointer;
       font-size: 14px;
@@ -66,7 +68,6 @@
       &:hover:not(.checked) {
         border: 1px solid var(--secondary-state-300);
       }
-
     }
   }
 }

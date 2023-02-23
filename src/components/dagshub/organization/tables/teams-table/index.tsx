@@ -1,4 +1,4 @@
-import React, {SetStateAction, useEffect, useState} from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import { Icon } from '../../../../icons';
 import { UserInfo } from '../../profiles/user-info';
 import { Row, GenericTable } from '../generic-table';
@@ -6,15 +6,15 @@ import { RepoCardProps } from '../../cards/repo-card';
 import { Member } from '../shared-classes';
 import { UserPermissionForTeam } from '../../../../../types';
 import { MiniRepoCardsModal } from '../../modals/mini-repo-cards-modal';
-import {Button, ButtonStretch, ButtonVariant, Dropdown} from '../../../../elements';
+import { Button, ButtonStretch, ButtonVariant, Dropdown } from '../../../../elements';
 
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import './teams-table.scss';
-import {RadioButtonItemProps} from "../../../../forms";
-import {AddMemberModal} from "../../modals/add-member-modal";
-import {TeamSettingsModal} from "../../modals/team-settings-modal";
-import {RemoveMemberModal} from "../../modals/remove-member-modal";
+import { RadioButtonItemProps } from '../../../../forms';
+import { AddMemberModal } from '../../modals/add-member-modal';
+import { TeamSettingsModal } from '../../modals/team-settings-modal';
+import { RemoveMemberModal } from '../../modals/remove-member-modal';
 
 export interface TeamTableProps {
   teamId: number | string;
@@ -55,7 +55,7 @@ export function TeamTable({
   isLogged,
 }: TeamTableProps) {
   let header: Row;
-  const [displayAddNewTeamMemberModal, setDisplayAddNewTeamMemberModal]= useState<boolean>(false)
+  const [displayAddNewTeamMemberModal, setDisplayAddNewTeamMemberModal] = useState<boolean>(false);
   const [users, setUsers] = useState<any[]>([]);
   const [inputText, setInputText] = useState<string>('');
 
@@ -66,21 +66,21 @@ export function TeamTable({
   useEffect(() => {
     const onInputTextChange = async () => {
       const rsp = await fetch(`/api/v1/users/search?q=${inputText}`)
-          .then((r) => r.json())
-          .catch(console.error);
+        .then((r) => r.json())
+        .catch(console.error);
 
       setUsers(
-          rsp.data.map((user: any) => ({
-            userName: user.username,
-            imageSource: user.avatar_url
-          }))
+        rsp.data.map((user: any) => ({
+          userName: user.username,
+          imageSource: user.avatar_url
+        }))
       );
     };
 
     onInputTextChange();
   }, [inputText]);
 
-  const [displayTeamSettingsModal, setDisplayTeamSettingsModal]= useState<boolean>(false)
+  const [displayTeamSettingsModal, setDisplayTeamSettingsModal] = useState<boolean>(false);
 
   header = {
     columns: [
@@ -127,12 +127,15 @@ export function TeamTable({
   };
 
   const createInitialMapState = (arr: any[], initialValue: boolean | string) =>
-      arr.reduce((acc: any, user:any) => ({ ...acc, [user.id]: initialValue }), {});
-  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<Record<number | string, boolean>>(
-      createInitialMapState(members, false)
-  );
+    arr.reduce((acc: any, user: any) => ({ ...acc, [user.id]: initialValue }), {});
+  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<
+    Record<number | string, boolean>
+  >(createInitialMapState(members, false));
   const handleClick = (userId: number | string) => {
-    setDisplayRemoveMemberFromTeamModal({ ...displayRemoveMemberFromTeamModal, [userId]: !displayRemoveMemberFromTeamModal[userId] });
+    setDisplayRemoveMemberFromTeamModal({
+      ...displayRemoveMemberFromTeamModal,
+      [userId]: !displayRemoveMemberFromTeamModal[userId]
+    });
   };
 
   let rows: Row[] = [];
@@ -147,23 +150,38 @@ export function TeamTable({
   members?.forEach((member, userIndex) => {
     let row: Row = {
       columns: [
-        <UserInfo imageSource={member.relAvatarLink} userName={member.userName} homeLink={member.homeLink} isLoggedUser={!!member.leaveLink}/>,
-        <>{(loggedUserId===member.id||loggedUserIsOwner)&&<Button
-          width={180}
-          variant={ButtonVariant.Secondary}
-          label={`${member?.leaveLink ? 'Leave the' : 'Remove from'} team`}
-          disabled={loggedUserId!=member.id&&!loggedUserIsOwner}
-          iconRight={<Icon width={12} height={13} fill="#111827" icon="outline-trash" />}
-          onClick={()=>handleClick(member.id)}
-        />}</>,
-        <>{displayRemoveMemberFromTeamModal[member.id]&&
-            <RemoveMemberModal removeYourself={!!member?.leaveLink} username={member.userName} orgOrTeamName={teamName}
-             onRemove={() => {
-               removeFromTeam(member?.leaveLink ?? member?.removeLink);
-               handleClick(member.id);
-            }}
-            onClose={()=>handleClick(member.id)}
-            /> }</>
+        <UserInfo
+          imageSource={member.relAvatarLink}
+          userName={member.userName}
+          homeLink={member.homeLink}
+          isLoggedUser={!!member.leaveLink}
+        />,
+        <>
+          {(loggedUserId === member.id || loggedUserIsOwner) && (
+            <Button
+              width={180}
+              variant={ButtonVariant.Secondary}
+              label={`${member?.leaveLink ? 'Leave the' : 'Remove from'} team`}
+              disabled={loggedUserId != member.id && !loggedUserIsOwner}
+              iconRight={<Icon width={12} height={13} fill="#111827" icon="outline-trash" />}
+              onClick={() => handleClick(member.id)}
+            />
+          )}
+        </>,
+        <>
+          {displayRemoveMemberFromTeamModal[member.id] && (
+            <RemoveMemberModal
+              removeYourself={!!member?.leaveLink}
+              username={member.userName}
+              orgOrTeamName={teamName}
+              onRemove={() => {
+                removeFromTeam(member?.leaveLink ?? member?.removeLink);
+                handleClick(member.id);
+              }}
+              onClose={() => handleClick(member.id)}
+            />
+          )}
+        </>
       ],
       style: userIndex >= MAX_ROWS ? { display: style } : {}
     };
@@ -188,22 +206,30 @@ export function TeamTable({
   }
 
   const teamPermissionsOptions: RadioButtonItemProps[] = [
-    { id: 'Admin access', label: 'Admin access', description:'members can:\n' +
-          'read from\n' +
-          'push to\n' +
-          'add collaborators to the team\'s repositories' },
-    { id: 'Write access', label: 'Write access', description:'members can:\n' +
-          'read from\n' +
-          'push to the team\'s repositories' },
-    { id: 'Read access', label: 'Read access', description:'members can:\n' +
-          'view\n' +
-          'clone the team\'s repositories' }
+    {
+      id: 'Admin access',
+      label: 'Admin access',
+      description:
+        'members can:\n' +
+        'read from\n' +
+        'push to\n' +
+        "add collaborators to the team's repositories"
+    },
+    {
+      id: 'Write access',
+      label: 'Write access',
+      description: 'members can:\n' + 'read from\n' + "push to the team's repositories"
+    },
+    {
+      id: 'Read access',
+      label: 'Read access',
+      description: 'members can:\n' + 'view\n' + "clone the team's repositories"
+    }
   ];
   const [teamPerm, setTeamPerm] = useState<string>(teamPermission);
   const _options = teamPermissionsOptions.map((opt) => ({ ...opt, checked: opt.id === teamPerm }));
 
-  const [displayMiniCardModal, setDisplayMiniCardModal]= useState<boolean>(false)
-
+  const [displayMiniCardModal, setDisplayMiniCardModal] = useState<boolean>(false);
 
   let footer: Row;
   if ((teamRepos ?? []).length != 0) {
@@ -213,16 +239,16 @@ export function TeamTable({
           <span className="teams-table-footer-left-section__permission-text">
             Team has
             <Dropdown
-                width={127}
-                kind={'radio'}
-                optionWidth={342}
-                title={"Team’s Access permissions"}
-                label={teamPerm}
-                options={_options}
-                onItemChecked={setTeamPerm}
-                initialChecked={teamPermission}
-                dropdownBoxColor={"transparent"}
-                disabled={!loggedUserIsOwner}
+              width={127}
+              kind={'radio'}
+              optionWidth={342}
+              title={'Team’s Access permissions'}
+              label={teamPerm}
+              options={_options}
+              onItemChecked={setTeamPerm}
+              initialChecked={teamPermission}
+              dropdownBoxColor={'transparent'}
+              disabled={!loggedUserIsOwner}
             />
             to following repositories:
           </span>

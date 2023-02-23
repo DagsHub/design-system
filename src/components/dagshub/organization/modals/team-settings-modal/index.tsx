@@ -25,7 +25,12 @@ export function TeamSettingsModal(props: TeamSettingsModalProps) {
       rootMaxWidth={599}
       value={props.teamName}
     />,
-    <Input label="Description" helperText="What is this team all about?" rootMaxWidth={599} value={props.teamDescription}/>,
+    <Input
+      label="Description"
+      helperText="What is this team all about?"
+      rootMaxWidth={599}
+      value={props.teamDescription}
+    />,
     <RadioButtonList
       initialChecked={access}
       onChecked={setAccess}

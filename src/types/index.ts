@@ -1,5 +1,5 @@
 export enum UserPermissionForTeam {
-    AdminAccess = 'Admin access',
-    WriteAccess = 'Write access',
-    ReadAccess = 'Read access'
-  }
+  AdminAccess = 'Admin access',
+  WriteAccess = 'Write access',
+  ReadAccess = 'Read access'
+}

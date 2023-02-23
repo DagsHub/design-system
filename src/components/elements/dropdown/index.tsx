@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Icon } from '../../icons';
-import {Checkbox, RadioButtonItemProps, RadioButtonList} from '../../forms';
+import { Checkbox, RadioButtonItemProps, RadioButtonList } from '../../forms';
 
 import '../../styles/root.scss';
 import './dropdown.scss';
@@ -20,12 +20,12 @@ export interface DropdownProps {
   options?: RadioButtonItemProps[];
   initialChecked?: number | string;
   onItemChecked?: (id: any) => void;
-  title?:string;
-  optionWidth?:number;
-  alignOptionsToTheRight?:boolean;
-  maxHeight?:number;
-  dropdownBoxColor?:string;
-  disabled?:boolean;
+  title?: string;
+  optionWidth?: number;
+  alignOptionsToTheRight?: boolean;
+  maxHeight?: number;
+  dropdownBoxColor?: string;
+  disabled?: boolean;
 }
 
 export const Dropdown = ({
@@ -39,8 +39,8 @@ export const Dropdown = ({
   optionWidth,
   alignOptionsToTheRight,
   maxHeight,
-  dropdownBoxColor="#f8fafc",
-  disabled=false,
+  dropdownBoxColor = '#f8fafc',
+  disabled = false,
   ...props
 }: DropdownProps & React.ButtonHTMLAttributes<HTMLDivElement>) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
@@ -49,30 +49,38 @@ export const Dropdown = ({
   const _options = options.map((opt) => ({ ...opt, checked: opt.id === checked }));
   const checkedOptLabel = _options.find((opt) => opt.checked)?.label;
 
-  const [checkboxOptions, setOptions]=useState<any>(_options)
+  const [checkboxOptions, setOptions] = useState<any>(_options);
 
-  const onCheckboxClick=(optionId:string|number)=>{
-    const nextOptions = checkboxOptions.map((option:RadioButtonItemProps) => {
+  const onCheckboxClick = (optionId: string | number) => {
+    const nextOptions = checkboxOptions.map((option: RadioButtonItemProps) => {
       if (option.id === optionId) {
-        return {...option, checked:!option.checked};
+        return { ...option, checked: !option.checked };
       }
       return option;
     });
-    setOptions(nextOptions)
-  }
+    setOptions(nextOptions);
+  };
 
   useEffect(
     function onChecked() {
       onItemChecked(checked);
-      kind!='checkbox'&&setIsCollapsed(true);
+      kind != 'checkbox' && setIsCollapsed(true);
     },
     [checked]
   );
 
   return (
-    <div className="dagshub-dropdown" style={{ width , pointerEvents:disabled?"none":"all"}} {...props}>
-      <div className="dagshub-dropdown__box" style={{background:dropdownBoxColor}} onClick={() => setIsCollapsed(!isCollapsed)}>
-        {kind!='checkbox'&&checkedOptLabel || label}
+    <div
+      className="dagshub-dropdown"
+      style={{ width, pointerEvents: disabled ? 'none' : 'all' }}
+      {...props}
+    >
+      <div
+        className="dagshub-dropdown__box"
+        style={{ background: dropdownBoxColor }}
+        onClick={() => setIsCollapsed(!isCollapsed)}
+      >
+        {(kind != 'checkbox' && checkedOptLabel) || label}
         <Icon
           width={10}
           height={6}
@@ -81,22 +89,25 @@ export const Dropdown = ({
         />
       </div>
       {kind === 'checkbox' && !isCollapsed && (
-          <div className={classNames("dagshub-dropdown__options",{ right: alignOptionsToTheRight})} style={{maxHeight:maxHeight}}>
-            {checkboxOptions?.map((opt: RadioButtonItemProps) => (
-                <Checkbox
-                    label={opt.label}
-                    onChange={() => {
-                      onCheckboxClick(opt.id)
-                    }}
-                    className={classNames('dagshub-dropdown__options-checkbox', { checked: opt.checked })}
-                    style={{width:optionWidth?optionWidth:"100%"}}
-                />
-            ))}
-          </div>
+        <div
+          className={classNames('dagshub-dropdown__options', { right: alignOptionsToTheRight })}
+          style={{ maxHeight: maxHeight }}
+        >
+          {checkboxOptions?.map((opt: RadioButtonItemProps) => (
+            <Checkbox
+              label={opt.label}
+              onChange={() => {
+                onCheckboxClick(opt.id);
+              }}
+              className={classNames('dagshub-dropdown__options-checkbox', { checked: opt.checked })}
+              style={{ width: optionWidth ? optionWidth : '100%' }}
+            />
+          ))}
+        </div>
       )}
       {kind === 'radio' && !isCollapsed && (
         <RadioButtonList
-          title={title?title:undefined}
+          title={title ? title : undefined}
           items={_options}
           onChecked={(id: number | string) => {
             if (id === checked) {
@@ -106,12 +117,17 @@ export const Dropdown = ({
             }
           }}
           initialChecked={checked}
-          className={classNames("dagshub-dropdown__options dagshub-dropdown__options-radio", { right: alignOptionsToTheRight})}
-          style={{width:optionWidth?optionWidth:"100%" ,maxHeight:maxHeight}}
+          className={classNames('dagshub-dropdown__options dagshub-dropdown__options-radio', {
+            right: alignOptionsToTheRight
+          })}
+          style={{ width: optionWidth ? optionWidth : '100%', maxHeight: maxHeight }}
         />
       )}
       {kind === 'basic' && !isCollapsed && (
-        <div className={classNames("dagshub-dropdown__options",{ right: alignOptionsToTheRight})} style={{maxHeight:maxHeight}}>
+        <div
+          className={classNames('dagshub-dropdown__options', { right: alignOptionsToTheRight })}
+          style={{ maxHeight: maxHeight }}
+        >
           {_options?.map((opt: RadioButtonItemProps) => (
             <div
               key={opt.id}
@@ -123,7 +139,7 @@ export const Dropdown = ({
                 }
               }}
               className={classNames('dagshub-dropdown__options-opt', { checked: opt.checked })}
-              style={{width:optionWidth?optionWidth:"100%"}}
+              style={{ width: optionWidth ? optionWidth : '100%' }}
             >
               {opt.label}
             </div>
