@@ -21,7 +21,7 @@ export interface TeamTableProps {
   teamName: string;
   teamDescription?: string;
   teamPermission: UserPermissionForTeam;
-  members?: Member[];
+  members: Member[];
   teamRepos: RepoCardProps[];
   handleCollapse: (teamId: number | string) => void;
   style: string;
@@ -124,7 +124,14 @@ export function TeamTable({
     ]
   };
 
-  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal]= useState<boolean>(false)
+  const createInitialMapState = (arr: any[], initialValue: boolean | string) =>
+      arr.reduce((acc: any, user:any) => ({ ...acc, [user.id]: initialValue }), {});
+  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<Record<number | string, boolean>>(
+      createInitialMapState(members, false)
+  );
+  const handleClick = (userId: number | string) => {
+    setDisplayRemoveMemberFromTeamModal({ ...displayRemoveMemberFromTeamModal, [userId]: !displayRemoveMemberFromTeamModal[userId] });
+  };
 
   let rows: Row[] = [];
   if (!members?.length) {
@@ -138,22 +145,22 @@ export function TeamTable({
   members?.forEach((member, userIndex) => {
     let row: Row = {
       columns: [
-        <UserInfo imageSource={member.relAvatarLink} userName={member.userName} />,
+        <UserInfo imageSource={member.relAvatarLink} userName={member.userName} homeLink={member.homeLink} isLoggedUser={!!member.leaveLink}/>,
         <>{(loggedUserId===member.id||loggedUserIsOwner)&&<Button
           width={180}
           variant={ButtonVariant.Secondary}
           label={`${member?.leaveLink ? 'Leave the' : 'Remove from'} team`}
           disabled={loggedUserId!=member.id&&!loggedUserIsOwner}
           iconRight={<Icon width={12} height={13} fill="#111827" icon="outline-trash" />}
-          onClick={()=>setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal)}
+          onClick={()=>handleClick(member.id)}
         />}</>,
-        <>{displayRemoveMemberFromTeamModal&&
-            <RemoveMemberModal removeYourself={member?.leaveLink?true:false} username={member.userName} orgOrTeamName={teamName}
+        <>{displayRemoveMemberFromTeamModal[member.id]&&
+            <RemoveMemberModal removeYourself={!!member?.leaveLink} username={member.userName} orgOrTeamName={teamName}
              onRemove={() => {
                removeFromTeam(member?.leaveLink ?? member?.removeLink);
-               setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal);
+               handleClick(member.id);
             }}
-            onClose={()=>setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal)}
+            onClose={()=>handleClick(member.id)}
             /> }</>
       ],
       style: userIndex >= MAX_ROWS ? { display: style } : {}

@@ -33,6 +33,7 @@ interface User {
   toggleTeamsModal: (args?: any) => void;
   displayTeamsModal: boolean;
   userIndex: number;
+  homeLink:string;
 }
 
 export enum MembershipVisibility {
@@ -58,13 +59,21 @@ const membershipVisibilityOptions: RadioButtonItemProps[] = [
   { id: 'public', label: 'Public', description:'User\'s membership is visible to everyone and is displayed on their public profile' },
   { id: 'private', label: 'Private', description:'User\'s membership is only visible to other members of this organization' }
 ];
-
-const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal]= useState<boolean>(false)
-
 export function PeopleTable(props:PeopleTableProps) {
+  console.log(props.users)
+
+  const createInitialMapState = (arr: any[], initialValue: boolean | string) =>
+      arr.reduce((acc: any, user: any) => ({ ...acc, [user.id]: initialValue }), {});
+  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<Record<number | string, boolean>>(
+      createInitialMapState(props.users, false)
+  );
+  const handleClick = (userId: number | string) => {
+    setDisplayRemoveMemberFromTeamModal({ ...displayRemoveMemberFromTeamModal, [userId]: !displayRemoveMemberFromTeamModal[userId] });
+  };
+
   const rows: Row[] = (props.users || [])?.map((user) => ({
     columns: [
-      <UserInfo imageSource={user.userImage} userName={user.username} />,
+      <UserInfo imageSource={user.userImage} userName={user.username} homeLink={user.homeLink} isLoggedUser={!!user.leaveLink}/>,
       <span className="teams-list">
         {(user?.userTeams ?? []).length === 0 && <span>Member doesn’t belong to any team</span>}
         {(user?.userTeams ?? []).slice(0, 2)?.map((team, index) => (
@@ -113,15 +122,16 @@ export function PeopleTable(props:PeopleTableProps) {
             fill="#172D32"
             icon="outline-trash"
             onClick={() => {
-              setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal)
+              handleClick(user.id)
             }}
         />
-        {displayRemoveMemberFromTeamModal&&<RemoveMemberModal removeYourself={user.leaveLink?true:false} username={user.username}
+        {displayRemoveMemberFromTeamModal[user.id]&&<RemoveMemberModal
+            removeYourself={!!user.leaveLink} username={user.username}
           orgOrTeamName={props.orgName}
-          onClose={()=>setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal)}
+          onClose={()=>handleClick(user.id)}
           onRemove={()=>{
           user.removeMember;
-          setDisplayRemoveMemberFromTeamModal(!displayRemoveMemberFromTeamModal)
+            handleClick(user.id);
           }}
         />}
         </>

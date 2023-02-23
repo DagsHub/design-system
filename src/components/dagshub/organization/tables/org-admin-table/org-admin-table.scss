@@ -17,6 +17,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  svg {
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.5s;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
 }
 
 .admin-access-column__access-type {
