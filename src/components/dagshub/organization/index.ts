@@ -10,7 +10,7 @@ export * from '../organization/menus/horizontal-menu-tab';
 export * from '../organization/modals/generic-modal';
 export * from '../organization/modals/add-member-modal';
 export * from '../organization/modals/teams-modal';
-// export * from '../organization/modals/create-new-team-modal';
+export * from '../organization/modals/create-team-modal';
 export * from '../organization/modals/remove-member-modal';
 export * from '../organization/modals/mini-repo-cards-modal';
 export * from '../organization/modals/team-settings-modal';

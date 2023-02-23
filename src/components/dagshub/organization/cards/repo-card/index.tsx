@@ -42,6 +42,7 @@ export interface RepoCardProps {
   issuesHref: string;
   pullsHref: string;
   onStarActionClick: (args?: any) => void; ///event
+  isLogged:boolean;
 }
 
 const getUpdatedDaysAgo = (date: string): number =>
@@ -70,7 +71,8 @@ export function RepoCard({
   forksHref,
   issuesHref,
   pullsHref,
-  onStarActionClick
+  onStarActionClick,
+ isLogged
 }: RepoCardProps) {
   const stars = IsGithubIntegrated ? githubStarCount + numStars : numStars;
   return (
@@ -87,7 +89,7 @@ export function RepoCard({
                 <Icon width={1} height={12} fill="#E2E8F0" icon="pipe" />
                 <span className="days-ago">Updated {getUpdatedDaysAgo(updatedAt)} days ago</span>
               </div>
-              <div className="star-section">
+              {isLogged&&<div className="star-section">
                 <a className="star-number" href={starNumberLink}>
                   {stars}
                 </a>
@@ -106,7 +108,7 @@ export function RepoCard({
                     <Icon width={18} height={17.21} fill="#94A3B8" icon="outline-star" />
                   )}
                 </a>
-              </div>
+              </div>}
             </div>
           )}
           <div className={'repo-tags'}>
@@ -159,21 +161,6 @@ export function RepoCard({
                     <Icon width={14.67} height={14.67} fill="#475569" icon="outline-issue" />
                     <p>{numOpenIssues}</p>
                   </a>
-                  {isMini && (
-                    <div className="star-section">
-                      <a className="star-action" href={starActionLink}>
-                        <i className={!isStaring ? 'star' : 'start-outline'}></i>
-                        {isStaring ? (
-                          <Icon width={12} height={11.47} fill="#475569" icon="solid-star" />
-                        ) : (
-                          <Icon width={12} height={11.47} fill="#475569" icon="outline-star" />
-                        )}
-                      </a>
-                      <a className="star-number" href={starNumberLink}>
-                        {stars}
-                      </a>
-                    </div>
-                  )}
                 </div>
                 {!isMini && (
                   <div className="belongs-to">

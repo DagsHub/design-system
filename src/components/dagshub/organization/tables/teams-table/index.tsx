@@ -30,6 +30,7 @@ export interface TeamTableProps {
   addNewTeamMember: (args?: any) => void;
   loggedUserId:number;
   loggedUserIsOwner:boolean;
+  isLogged:boolean;
 }
 
 //add functionality, tooltip
@@ -51,6 +52,7 @@ export function TeamTable({
   addNewTeamMember,
   loggedUserId,
   loggedUserIsOwner,
+  isLogged,
 }: TeamTableProps) {
   let header: Row;
   const [displayAddNewTeamMemberModal, setDisplayAddNewTeamMemberModal]= useState<boolean>(false)
@@ -118,7 +120,7 @@ export function TeamTable({
         {loggedUserIsOwner&&<>{displayTeamSettingsModal&&<TeamSettingsModal
             teamName={teamName}
             teamDescription={teamDescription}
-            onClick={() => setDisplayTeamSettingsModal(!displayTeamSettingsModal)}
+            onClose={() => setDisplayTeamSettingsModal(!displayTeamSettingsModal)}
         />}</>}
       </span>
     ]
@@ -245,6 +247,7 @@ export function TeamTable({
         <>{displayMiniCardModal&&<MiniRepoCardsModal
           teamName={teamName}
           repos={teamRepos}
+          isLogged={isLogged}
           onClick={() => setDisplayMiniCardModal(!displayMiniCardModal)}
         />}</>
       ]

@@ -11,6 +11,7 @@ export interface MiniRepoCardsModalProps {
   teamName: string;
   repos: RepoCardProps[];
   onClick: () => void;
+  isLogged:boolean;
 }
 
 export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
@@ -19,7 +20,7 @@ export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
     <div className={'mini-repo-cards-modal__cards-block'}>
       {props.repos?.map((repo) => (
         <MiniRepoCard
-          isMini
+          isMini={true}
           isMirror={repo.isMirror}
           IsGithubIntegrated={repo.IsGithubIntegrated}
           numStars={repo.numStars}
@@ -41,6 +42,7 @@ export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
           repoNameHref={repo.repoNameHref}
           starActionLink={repo.starActionLink}
           starNumberLink={repo.starNumberLink}
+          isLogged={props.isLogged}
         />
       ))}
     </div>

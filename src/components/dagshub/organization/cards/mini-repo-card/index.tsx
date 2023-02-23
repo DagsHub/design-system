@@ -40,6 +40,7 @@ export interface MiniRepoCardProps {
   forksHref: string;
   issuesHref: string;
   pullsHref: string;
+  isLogged:boolean;
 }
 
 const getUpdatedDaysAgo = (date: string): number =>
@@ -67,7 +68,8 @@ export function MiniRepoCard({
   starNumberLink,
   forksHref,
   issuesHref,
-  pullsHref
+  pullsHref,
+  isLogged,
 }: MiniRepoCardProps) {
   const stars = IsGithubIntegrated ? githubStarCount + numStars : numStars;
   return (
@@ -155,7 +157,7 @@ export function MiniRepoCard({
                     <Icon width={14.67} height={14.67} fill="#475569" icon="outline-issue" />
                     <p>{numOpenIssues}</p>
                   </a>
-                  {isMini && (
+                  {isMini && isLogged &&(
                     <div className="mini-star-section">
                       <a className="mini-star-action" href={starActionLink}>
                         <i className={!isStaring ? 'mini-star' : 'mini-start-outline'}></i>

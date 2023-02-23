@@ -7,25 +7,51 @@ import { RadioButtonList } from '../../../../forms/radio-button/radio-button-lis
 
 import '../../../../styles/root.scss';
 import './team-settings-modal.scss';
+import {CombinedSearch} from "../../search/combined-search";
+import {UserInfoProps} from "../../profiles/user-info";
 
-export interface TeamSettingsModalProps {
+export interface CreateTeamModalProps {
   onClose: () => void;
-  teamName:string;
-  teamDescription?:string;
+  memberInputText: string;
+  onMemberInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
+  nameInputChange: string;
+  onNameInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
+  resultUsers?: UserInfoProps[];
+  createTeam: (args?: any) => void;
+  orgName:string;
 }
 
-export function TeamSettingsModal(props: TeamSettingsModalProps) {
+export function CreateNewTeamModal(props: CreateTeamModalProps) {
+  const [addedMembers, setAddedMembers] = useState<string[]>([]);
+  function onAddMember(username: string) {
+    setAddedMembers([...addedMembers, username]);
+  }
+  function onRemoveMember(username: string) {
+    setAddedMembers(addedMembers.filter((u) => u !== username));
+  }
   const [access, setAccess] = useState<string>('member-access');
 
   let elements: JSX.Element[];
   elements = [
     <Input
-      label="Team name"
-      helperText="Changing the team name will break past @mentions."
+      label="1. Name your team"
       rootMaxWidth={599}
-      value={props.teamName}
+      onChange={props.onNameInputChange}
+      value={props.nameInputChange}
     />,
-    <Input label="Description" helperText="What is this team all about?" rootMaxWidth={599} value={props.teamDescription}/>,
+    <p className="create-new-team-modal__instructions">
+      2. Add people by searching their username or enter email address to invite someone outside DagsHub
+    </p>,
+    <div className="input-block">
+      <CombinedSearch
+          onAdd={onAddMember}
+          inputText={props.memberInputText}
+          placeholder={"Enter username or email"}
+          onRemove={onRemoveMember}
+          onInputChange={props.onMemberInputChange}
+          resultUsers={(props.resultUsers??[]).filter((u: UserInfoProps) => !addedMembers.includes(u.userName))}
+      />
+    </div>,
     <RadioButtonList
       initialChecked={access}
       onChecked={setAccess}
@@ -53,13 +79,14 @@ export function TeamSettingsModal(props: TeamSettingsModalProps) {
       ]}
     />,
     <div className="team-settings-modal__buttons">
-      <Button variant={ButtonVariant.Error} label={'Delete team'} width={110} />
-      <Button variant={ButtonVariant.Primary} label={'Save changes'} width={119} />
+      <Button variant={ButtonVariant.Primary} label={'Create new team'} width={599} onClick={() =>
+          props.createTeam()
+      }/>
     </div>
   ];
   return (
     <GenericModal
-      title="Team settings"
+      title={`Create new team in ${props.orgName}`}
       elements={elements}
       onClose={props.onClose}
     />
