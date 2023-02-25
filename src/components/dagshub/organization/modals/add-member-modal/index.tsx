@@ -80,7 +80,8 @@ export function AddMemberModal({
               id: 'member-access',
               width: 600,
               label: 'Member access to organization',
-              description: 'Members have no special access by default. Grant them repository access once they are added.',
+              description:
+                'Members have no special access by default. Grant them repository access once they are added.',
               icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
             },
             {
@@ -104,7 +105,7 @@ export function AddMemberModal({
               options={teams.map((team: any) => ({ id: team.id, label: team.name }))}
             />
           </div>
-        ) : !isAdmin?(
+        ) : !isAdmin ? (
           <div className="add-member-modal__no-teams-text">
             You haven’t created any teams yet. To leverage different permission levels for different
             projects
@@ -114,7 +115,7 @@ export function AddMemberModal({
               <Icon width={9.33} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
             </a>
           </div>
-        ):null}
+        ) : null}
       </>
     ) : (
       <></>

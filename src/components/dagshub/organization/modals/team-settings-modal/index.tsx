@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Icon } from '../../../../icons';
 import { Input } from '../../../../forms';
 import { GenericModal } from '../generic-modal';
@@ -10,8 +10,8 @@ import './team-settings-modal.scss';
 
 export interface TeamSettingsModalProps {
   onClose: () => void;
-  teamName:string;
-  teamDescription?:string;
+  teamName: string;
+  teamDescription?: string;
 }
 
 export function TeamSettingsModal(props: TeamSettingsModalProps) {
@@ -62,11 +62,5 @@ export function TeamSettingsModal(props: TeamSettingsModalProps) {
       <Button variant={ButtonVariant.Primary} label={'Save changes'} width={119} />
     </div>
   ];
-  return (
-    <GenericModal
-      title="Team settings"
-      elements={elements}
-      onClose={props.onClose}
-    />
-  );
+  return <GenericModal title="Team settings" elements={elements} onClose={props.onClose} />;
 }

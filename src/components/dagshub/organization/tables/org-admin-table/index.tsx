@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from '../../../../icons';
 import { Row, GenericTable } from '../generic-table';
 import { UserPermissionForTeam } from '../../../../../types';
@@ -8,8 +8,8 @@ import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import './org-admin-table.scss';
-import {RemoveMemberModal} from "../../modals/remove-member-modal";
-import {AddMemberModal} from "../../modals/add-member-modal";
+import { RemoveMemberModal } from '../../modals/remove-member-modal';
+import { AddMemberModal } from '../../modals/add-member-modal';
 
 export interface OrgAdminTableProps {
   admins: User[];
@@ -45,14 +45,14 @@ export function OrgAdminTable(props: OrgAdminTableProps) {
   useEffect(() => {
     const onInputTextChange = async () => {
       const rsp = await fetch(`/api/v1/users/search?q=${inputText}`)
-          .then((r) => r.json())
-          .catch(console.error);
+        .then((r) => r.json())
+        .catch(console.error);
 
       setUsers(
-          rsp.data.map((user: any) => ({
-            userName: user.username,
-            imageSource: user.avatar_url
-          }))
+        rsp.data.map((user: any) => ({
+          userName: user.username,
+          imageSource: user.avatar_url
+        }))
       );
     };
 
@@ -69,20 +69,24 @@ export function OrgAdminTable(props: OrgAdminTableProps) {
         label={'Add another org admin'}
         onClick={() => setDisplayModal(true)}
       />,
-      <>{displayModal&&<AddMemberModal
-          isOrg={true}
-          isAdmin={true}
-          isTeam={false}
-          resultUsers={users}
-          inputText={inputText}
-          name={props.orgName}
-          onInputChange={onInputChange}
-          placeholder="Enter username or email"
-          onClose={() => setDisplayModal(false)}
-          addMember={({ access, team, users }) => {
-            setDisplayModal(false);
-          }}
-      />}</>
+      <>
+        {displayModal && (
+          <AddMemberModal
+            isOrg={true}
+            isAdmin={true}
+            isTeam={false}
+            resultUsers={users}
+            inputText={inputText}
+            name={props.orgName}
+            onInputChange={onInputChange}
+            placeholder="Enter username or email"
+            onClose={() => setDisplayModal(false)}
+            addMember={({ access, team, users }) => {
+              setDisplayModal(false);
+            }}
+          />
+        )}
+      </>
     ]
   };
 

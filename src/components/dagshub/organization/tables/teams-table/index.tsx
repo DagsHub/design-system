@@ -28,9 +28,9 @@ export interface TeamTableProps {
   isActive: Boolean;
   removeFromTeam: (removeLink?: string) => void;
   addNewTeamMember: (args?: any) => void;
-  loggedUserId:number;
-  loggedUserIsOwner:boolean;
-  isLogged:boolean;
+  loggedUserId: number;
+  loggedUserIsOwner: boolean;
+  isLogged: boolean;
 }
 
 //add functionality, tooltip
@@ -52,7 +52,7 @@ export function TeamTable({
   addNewTeamMember,
   loggedUserId,
   loggedUserIsOwner,
-  isLogged,
+  isLogged
 }: TeamTableProps) {
   let header: Row;
   const [displayAddNewTeamMemberModal, setDisplayAddNewTeamMemberModal] = useState<boolean>(false);
@@ -89,39 +89,60 @@ export function TeamTable({
         <span className="teams-table-left-side-header__team-description">{teamDescription}</span>
       </span>,
       <span className="teams-table-right-side-header">
-        {loggedUserIsOwner&&<Button
-          width={210}
-          onClick={()=>{setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal)}}
-          label="Add new team member"
-          stretch={ButtonStretch.Slim}
-          variant={ButtonVariant.Ghost}
-          iconLeft={<Icon width={10} height={10} fill="#172D32" icon="solid-plus" />}
-        />}
-        {loggedUserIsOwner&&<>{displayAddNewTeamMemberModal&&<AddMemberModal
-            isOrg={false}
-            isAdmin={false}
-            isTeam={true}
-            resultUsers={users}
-            inputText={inputText}
-            name={teamName}
-            onInputChange={onInputChange}
-            placeholder="Enter username or email"
-            onClose={() => setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal)}
-            addMember={({ access, team, users }) => {
-              addNewTeamMember();
+        {loggedUserIsOwner && (
+          <Button
+            width={210}
+            onClick={() => {
               setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal);
             }}
-        />}</>}
-        {loggedUserIsOwner&&<span className="teams-table-right-side-header__dots-vertical-icon"
-              onClick={()=>{setDisplayTeamSettingsModal(!displayTeamSettingsModal)}}
-        >
-          <Icon width={3} height={13} fill="#64748B" icon="outline-dots-vertical" />
-        </span>}
-        {loggedUserIsOwner&&<>{displayTeamSettingsModal&&<TeamSettingsModal
-            teamName={teamName}
-            teamDescription={teamDescription}
-            onClose={() => setDisplayTeamSettingsModal(!displayTeamSettingsModal)}
-        />}</>}
+            label="Add new team member"
+            stretch={ButtonStretch.Slim}
+            variant={ButtonVariant.Ghost}
+            iconLeft={<Icon width={10} height={10} fill="#172D32" icon="solid-plus" />}
+          />
+        )}
+        {loggedUserIsOwner && (
+          <>
+            {displayAddNewTeamMemberModal && (
+              <AddMemberModal
+                isOrg={false}
+                isAdmin={false}
+                isTeam={true}
+                resultUsers={users}
+                inputText={inputText}
+                name={teamName}
+                onInputChange={onInputChange}
+                placeholder="Enter username or email"
+                onClose={() => setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal)}
+                addMember={({ access, team, users }) => {
+                  addNewTeamMember();
+                  setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal);
+                }}
+              />
+            )}
+          </>
+        )}
+        {loggedUserIsOwner && (
+          <span
+            className="teams-table-right-side-header__dots-vertical-icon"
+            onClick={() => {
+              setDisplayTeamSettingsModal(!displayTeamSettingsModal);
+            }}
+          >
+            <Icon width={3} height={13} fill="#64748B" icon="outline-dots-vertical" />
+          </span>
+        )}
+        {loggedUserIsOwner && (
+          <>
+            {displayTeamSettingsModal && (
+              <TeamSettingsModal
+                teamName={teamName}
+                teamDescription={teamDescription}
+                onClose={() => setDisplayTeamSettingsModal(!displayTeamSettingsModal)}
+              />
+            )}
+          </>
+        )}
       </span>
     ]
   };
@@ -270,12 +291,16 @@ export function TeamTable({
           <Icon width={9} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
         </span>,
 
-        <>{displayMiniCardModal&&<MiniRepoCardsModal
-          teamName={teamName}
-          repos={teamRepos}
-          isLogged={isLogged}
-          onClick={() => setDisplayMiniCardModal(!displayMiniCardModal)}
-        />}</>
+        <>
+          {displayMiniCardModal && (
+            <MiniRepoCardsModal
+              teamName={teamName}
+              repos={teamRepos}
+              isLogged={isLogged}
+              onClick={() => setDisplayMiniCardModal(!displayMiniCardModal)}
+            />
+          )}
+        </>
       ]
     };
   } else {

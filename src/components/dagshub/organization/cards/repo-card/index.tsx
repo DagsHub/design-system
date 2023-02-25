@@ -42,7 +42,7 @@ export interface RepoCardProps {
   issuesHref: string;
   pullsHref: string;
   onStarActionClick: (args?: any) => void; ///event
-  isLogged:boolean;
+  isLogged: boolean;
 }
 
 const getUpdatedDaysAgo = (date: string): number =>
@@ -72,7 +72,7 @@ export function RepoCard({
   issuesHref,
   pullsHref,
   onStarActionClick,
- isLogged
+  isLogged
 }: RepoCardProps) {
   const stars = IsGithubIntegrated ? githubStarCount + numStars : numStars;
   return (
@@ -89,26 +89,28 @@ export function RepoCard({
                 <Icon width={1} height={12} fill="#E2E8F0" icon="pipe" />
                 <span className="days-ago">Updated {getUpdatedDaysAgo(updatedAt)} days ago</span>
               </div>
-              {isLogged&&<div className="star-section">
-                <a className="star-number" href={starNumberLink}>
-                  {stars}
-                </a>
-                <a
-                  className="star-action"
-                  href={starActionLink}
-                  onClick={(event: any) => {
-                    event.preventDefault();
-                    onStarActionClick(starActionLink);
-                  }}
-                >
-                  <i className={!isStaring ? 'star' : 'star-outline'} />
-                  {isStaring ? (
-                    <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star" />
-                  ) : (
-                    <Icon width={18} height={17.21} fill="#94A3B8" icon="outline-star" />
-                  )}
-                </a>
-              </div>}
+              {isLogged && (
+                <div className="star-section">
+                  <a className="star-number" href={starNumberLink}>
+                    {stars}
+                  </a>
+                  <a
+                    className="star-action"
+                    href={starActionLink}
+                    onClick={(event: any) => {
+                      event.preventDefault();
+                      onStarActionClick(starActionLink);
+                    }}
+                  >
+                    <i className={!isStaring ? 'star' : 'star-outline'} />
+                    {isStaring ? (
+                      <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star" />
+                    ) : (
+                      <Icon width={18} height={17.21} fill="#94A3B8" icon="outline-star" />
+                    )}
+                  </a>
+                </div>
+              )}
             </div>
           )}
           <div className={'repo-tags'}>
