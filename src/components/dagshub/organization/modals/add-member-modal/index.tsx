@@ -15,7 +15,7 @@ export interface AddMemberModalProps {
   isAdmin: boolean;
   isTeam: boolean;
   name: string;
-  teams?: { id: string; name: string }[];
+  teams?: { id: number|string; name: string }[];
   onClose?: () => void;
   onInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
   inputText: string;

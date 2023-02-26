@@ -17,5 +17,17 @@ const Template: StoryFn<RemoveMemberModalProps> = (args) => <RemoveMemberModal {
 export const Primary = Template.bind({});
 Primary.args = {
   username: 'dean',
-  org: 'Dagshub'
+  orgOrTeamName: 'orgname',
+  onClose: () => {},
+  onRemove: () => {},
+  removeYourself: true
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  username: 'guy',
+  orgOrTeamName: 'orgname',
+  onClose: () => {},
+  onRemove: () => {},
+  removeYourself: false
 };

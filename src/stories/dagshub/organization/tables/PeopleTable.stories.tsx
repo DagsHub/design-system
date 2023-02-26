@@ -6,6 +6,8 @@ import {
   MembershipVisibility,
   PeopleTableProps
 } from '../../../../components/dagshub/organization/tables/people-table';
+import {Member} from "../../../../components/dagshub/organization/tables/shared-classes";
+import {TeamCardProps} from "../../../../components";
 
 const meta: Meta<PeopleTableProps> = {
   title: 'DagsHub/Org/Tables/PeopleTable',
@@ -19,53 +21,104 @@ const imageLink =
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH3HZUQ9Uz5qcOaIwRjQi0jdfJVVUIR-hO9Q&usqp=CAU';
 export const Primary = Template.bind({});
 Primary.args = {
+  loggedUserId: 1,
+  loggedUserIsOwner: true,
+  orgName: 'Dagshub',
   users: [
     {
+      id: 1,
       userImage: imageLink,
+      toggleTeamsModal: ()=>{},
+      displayTeamsModal: false,
+      userIndex: 1,
+      homeLink: '',
       username: 'ItayMalka',
       userTeams: [
         {
+          teamName: "Devops team",
+          teamDescription: "this is the devops team description",
+          teamMembers: [],
           teamLink: '',
-          teamName: 'Devops Team',
           userPermissionForTeam: UserPermissionForTeam.AdminAccess
+        },
+        {
+          teamName: "R&D team",
+          teamDescription: "this is the R&D team description",
+          teamMembers: [],
+          teamLink: '',
+          userPermissionForTeam: UserPermissionForTeam.WriteAccess
+        },
+        {
+          teamName: "Product team",
+          teamDescription: "this is the product team description",
+          teamMembers: [],
+          teamLink: '',
+          userPermissionForTeam: UserPermissionForTeam.ReadAccess
         }
       ],
       membershipVisibility: MembershipVisibility.Private
     },
     {
+      id: 2,
       userImage: imageLink,
+      toggleTeamsModal: ()=>{},
+      displayTeamsModal: false,
+      userIndex: 2,
+      homeLink: '',
       username: 'TalMalka',
       userTeams: [
         {
+          teamName: "Devops team",
+          teamDescription: "this is the devops team description",
+          teamMembers: [],
           teamLink: '',
-          teamName: 'Devops Team',
-          userPermissionForTeam: UserPermissionForTeam.WriteAccess
-        },
-        {
-          teamLink: '',
-          teamName: 'R&D Team',
-          userPermissionForTeam: UserPermissionForTeam.ReadAccess
-        }
-      ],
-      membershipVisibility: MembershipVisibility.Public
-    },
-    {
-      userImage: imageLink,
-      username: 'ShaharMalka',
-      userTeams: [
-        {
-          teamLink: '',
-          teamName: 'Devops Team',
           userPermissionForTeam: UserPermissionForTeam.AdminAccess
         },
         {
+          teamName: "R&D team",
+          teamDescription: "this is the R&D team description",
+          teamMembers: [],
           teamLink: '',
-          teamName: 'R&D Team',
           userPermissionForTeam: UserPermissionForTeam.WriteAccess
         },
         {
+          teamName: "Marketing team",
+          teamDescription: "this is the marketing team description",
+          teamMembers: [],
           teamLink: '',
-          teamName: 'Product Team',
+          userPermissionForTeam: UserPermissionForTeam.ReadAccess
+        }
+      ],
+      membershipVisibility: MembershipVisibility.Private
+    },
+    {
+      id: 3,
+      userImage: imageLink,
+      toggleTeamsModal: ()=>{},
+      displayTeamsModal: false,
+      userIndex: 3,
+      homeLink: '',
+      username: 'ShaharMalka',
+      userTeams: [
+        {
+          teamName: "IT team",
+          teamDescription: "this is the devops team description",
+          teamMembers: [],
+          teamLink: '',
+          userPermissionForTeam: UserPermissionForTeam.AdminAccess
+        },
+        {
+          teamName: "R&D team",
+          teamDescription: "this is the R&D team description",
+          teamMembers: [],
+          teamLink: '',
+          userPermissionForTeam: UserPermissionForTeam.WriteAccess
+        },
+        {
+          teamName: "Product team",
+          teamDescription: "this is the product team description",
+          teamMembers: [],
+          teamLink: '',
           userPermissionForTeam: UserPermissionForTeam.ReadAccess
         }
       ],

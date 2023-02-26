@@ -19,7 +19,7 @@ interface Team {
 
 export interface MiniRepoCardProps {
   isMini?: boolean;
-  teams?: Team[];
+  teams: Team[];
   topics: Topic[];
   isMirror: boolean;
   IsGithubIntegrated: boolean;
@@ -40,6 +40,7 @@ export interface MiniRepoCardProps {
   forksHref: string;
   issuesHref: string;
   pullsHref: string;
+  onStarActionClick: (args?: any) => void;
   isLogged: boolean;
 }
 
@@ -47,29 +48,30 @@ const getUpdatedDaysAgo = (date: string): number =>
   Math.round((Date.now() - new Date(date).getTime()) / 1000 / 60 / 60 / 24);
 
 export function MiniRepoCard({
-  isMini = true,
-  teams = [],
-  topics = [],
-  isMirror,
-  IsGithubIntegrated = false,
-  numStars,
-  githubStarCount,
-  isFork,
-  isStaring = false,
-  name,
-  isPrivate,
-  description = '',
-  numForks,
-  numOpenPulls,
-  numOpenIssues,
-  updatedAt,
-  repoNameHref,
-  starActionLink,
-  starNumberLink,
-  forksHref,
-  issuesHref,
-  pullsHref,
-  isLogged
+   isMini = true,
+   teams = [],
+   topics = [],
+   isMirror,
+   IsGithubIntegrated = false,
+   numStars,
+   githubStarCount,
+   isFork,
+   isStaring = false,
+   name,
+   isPrivate,
+   description = '',
+   numForks,
+   numOpenPulls,
+   numOpenIssues,
+   updatedAt,
+   repoNameHref,
+   starActionLink,
+   starNumberLink,
+   forksHref,
+   issuesHref,
+   pullsHref,
+   onStarActionClick,
+   isLogged
 }: MiniRepoCardProps) {
   const stars = IsGithubIntegrated ? githubStarCount + numStars : numStars;
   return (
@@ -92,7 +94,10 @@ export function MiniRepoCard({
                 <a className="mini-star-number" href={starNumberLink}>
                   {stars}
                 </a>
-                <a className="mini-star-action" href={starActionLink}>
+                <a className="mini-star-action" href={starActionLink}  onClick={(event: any) => {
+                  event.preventDefault();
+                  onStarActionClick(starActionLink);
+                }}>
                   <i className={!isStaring ? 'mini-star' : 'mini-star-outline'} />
                   {isStaring ? (
                     <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star" />
@@ -159,7 +164,10 @@ export function MiniRepoCard({
                   </a>
                   {isMini && isLogged && (
                     <div className="mini-star-section">
-                      <a className="mini-star-action" href={starActionLink}>
+                      <a className="mini-star-action" href={starActionLink}  onClick={(event: any) => {
+                        event.preventDefault();
+                        onStarActionClick(starActionLink);
+                      }}>
                         <i className={!isStaring ? 'mini-star' : 'mini-start-outline'}></i>
                         {isStaring ? (
                           <Icon width={12} height={11.47} fill="#475569" icon="solid-star" />

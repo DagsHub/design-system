@@ -15,4 +15,10 @@ export default meta;
 const Template: StoryFn<TeamSettingsModalProps> = (args) => <TeamSettingsModal {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  onClose: () => {},
+  teamName: 'Devops',
+  teamDescription: "this is description",
+  onDeleteTeam:(args?: any)=>{},
+  onEditTeam:(args?: any)=>{}
+};

@@ -12,6 +12,7 @@ export interface MiniRepoCardsModalProps {
   repos: RepoCardProps[];
   onClick: () => void;
   isLogged: boolean;
+  onStarActionClick:(args?: any) => void;
 }
 
 export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
@@ -43,6 +44,7 @@ export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
           starActionLink={repo.starActionLink}
           starNumberLink={repo.starNumberLink}
           isLogged={props.isLogged}
+          onStarActionClick={props.onStarActionClick}
         />
       ))}
     </div>

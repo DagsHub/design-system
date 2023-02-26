@@ -18,9 +18,8 @@ export interface Team {
 }
 
 export interface RepoCardProps {
-  link?: any;
   isMini?: boolean;
-  teams?: Team[];
+  teams: Team[];
   topics: Topic[];
   isMirror: boolean;
   IsGithubIntegrated: boolean;
@@ -41,7 +40,7 @@ export interface RepoCardProps {
   forksHref: string;
   issuesHref: string;
   pullsHref: string;
-  onStarActionClick: (args?: any) => void; ///event
+  onStarActionClick: (args?: any) => void;
   isLogged: boolean;
 }
 

@@ -20,7 +20,7 @@ Primary.args = {
   isAdmin: true,
   isTeam: false,
   name: 'ORG1',
-  teams: ['team1', 'team2']
+  teams: [{id:1, name:'team1'}, {id:2, name:'team2'}]
 };
 
 export const Secondary = Template.bind({});

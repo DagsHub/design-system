@@ -14,18 +14,24 @@ const imageLink =
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH3HZUQ9Uz5qcOaIwRjQi0jdfJVVUIR-hO9Q&usqp=CAU';
 export const Primary = Template.bind({});
 Primary.args = {
+  loggedUserId: 1,
+  loggedUserIsOwner: true,
+  orgName: "Dagshub",
   admins: [
     {
+      id: 1,
       userImage: imageLink,
-      username: 'ItayMalka'
+      username: 'tal'
     },
     {
+      id: 2,
       userImage: imageLink,
-      username: 'TalMalka'
+      username: 'shahar'
     },
     {
+      id: 3,
       userImage: imageLink,
-      username: 'ShaharMalka'
+      username: 'itay'
     }
   ]
 };

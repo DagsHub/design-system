@@ -31,6 +31,7 @@ export interface TeamTableProps {
   loggedUserId: number;
   loggedUserIsOwner: boolean;
   isLogged: boolean;
+  onStarActionClick:(args?: any) => void;
 }
 
 //add functionality, tooltip
@@ -52,7 +53,8 @@ export function TeamTable({
   addNewTeamMember,
   loggedUserId,
   loggedUserIsOwner,
-  isLogged
+  isLogged,
+  onStarActionClick
 }: TeamTableProps) {
   let header: Row;
   const [displayAddNewTeamMemberModal, setDisplayAddNewTeamMemberModal] = useState<boolean>(false);
@@ -277,7 +279,7 @@ export function TeamTable({
           </span>
           <span className="team-repos">
             {teamRepos?.map((repo) => (
-              <a href={repo.link} className="team-repos__repo">
+              <a href={repo.repoNameHref} className="team-repos__repo">
                 <Icon width={16} height={21} fill="#172D32" icon="outline-repository-github" />
                 {repo.name}
               </a>
@@ -300,7 +302,7 @@ export function TeamTable({
               repos={teamRepos}
               isLogged={isLogged}
               onClick={() => setDisplayMiniCardModal(!displayMiniCardModal)}
-            />
+             onStarActionClick={onStarActionClick}/>
           )}
         </>
       ]

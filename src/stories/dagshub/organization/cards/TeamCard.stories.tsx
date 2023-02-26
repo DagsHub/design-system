@@ -20,13 +20,13 @@ primary.args = {
   teamDescription:
     'This is a team description text This is a team description text This is a team description text This is a team description text',
   teamMembers: [
-    { name: 'user1', homeLink: imageLink, relAvatarLink: imageLink },
-    { name: 'user2', homeLink: imageLink, relAvatarLink: imageLink },
-    { name: 'user3', homeLink: imageLink, relAvatarLink: imageLink },
-    { name: 'user4', homeLink: imageLink, relAvatarLink: imageLink },
-    { name: 'user5', homeLink: imageLink, relAvatarLink: imageLink },
-    { name: 'user6', homeLink: imageLink, relAvatarLink: imageLink },
-    { name: 'user7', homeLink: imageLink, relAvatarLink: imageLink }
+    { id:1, userName: 'user1', homeLink: imageLink, relAvatarLink: imageLink },
+    { id:2, userName: 'user2', homeLink: imageLink, relAvatarLink: imageLink },
+    { id:3, userName: 'user3', homeLink: imageLink, relAvatarLink: imageLink },
+    { id:4, userName: 'user4', homeLink: imageLink, relAvatarLink: imageLink },
+    { id:5, userName: 'user5', homeLink: imageLink, relAvatarLink: imageLink },
+    { id:6, userName: 'user6', homeLink: imageLink, relAvatarLink: imageLink },
+    { id:7, userName: 'user7', homeLink: imageLink, relAvatarLink: imageLink }
   ],
   teamLink: imageLink
 };
