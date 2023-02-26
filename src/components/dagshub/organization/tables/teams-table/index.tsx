@@ -138,7 +138,9 @@ export function TeamTable({
               <TeamSettingsModal
                 teamName={teamName}
                 teamDescription={teamDescription}
-                onClose={() => setDisplayTeamSettingsModal(!displayTeamSettingsModal)}
+                onClose={() => setDisplayTeamSettingsModal(false)}
+                onEditTeam={()=>setDisplayTeamSettingsModal(false)}
+                onDeleteTeam={()=>setDisplayTeamSettingsModal(false)}
               />
             )}
           </>

@@ -133,6 +133,7 @@ export function PeopleTable(props: PeopleTableProps) {
             membershipVisibilityOptions.find((mv) => mv.label === user.membershipVisibility)?.id ??
             ''
           }
+          disabled={(props.loggedUserId != user.id && !props.loggedUserIsOwner)}
         />
         {(props.loggedUserId === user.id || props.loggedUserIsOwner) && (
           <>

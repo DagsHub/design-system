@@ -72,12 +72,12 @@ export const Dropdown = ({
   return (
     <div
       className="dagshub-dropdown"
-      style={{ width, pointerEvents: disabled ? 'none' : 'all', whiteSpace: 'pre-wrap' }}
+      style={{ width, cursor: disabled ? 'not-allowed' : 'pointer', whiteSpace: 'pre-wrap' }}
       {...props}
     >
       <div
         className="dagshub-dropdown__box"
-        style={{ background: dropdownBoxColor }}
+        style={{ background: dropdownBoxColor , pointerEvents: disabled ? 'none' : 'all'}}
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
         {(kind != 'checkbox' && checkedOptLabel) || label}
