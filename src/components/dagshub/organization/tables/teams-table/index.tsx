@@ -31,7 +31,7 @@ export interface TeamTableProps {
   loggedUserId: number;
   loggedUserIsOwner: boolean;
   isLogged: boolean;
-  onStarActionClick:(args?: any) => void;
+  onStarActionClick:(args?: any)=>() => Promise<void>;
 }
 
 //add functionality, tooltip
