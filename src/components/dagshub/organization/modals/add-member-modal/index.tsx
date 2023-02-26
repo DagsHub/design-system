@@ -22,6 +22,7 @@ export interface AddMemberModalProps {
   resultUsers?: UserInfoProps[];
   placeholder?: string;
   addMember: (args?: any) => void;
+  copyInvitationAction:(args?: any) => void;
 }
 
 export function AddMemberModal({
@@ -35,11 +36,13 @@ export function AddMemberModal({
   inputText,
   resultUsers = [],
   placeholder = '',
-  addMember
+  addMember,
+ copyInvitationAction
 }: AddMemberModalProps) {
   const [team, setTeam] = useState<number | string>('');
   const [access, setAccess] = useState<string>('member-access');
   const [addedMembers, setAddedMembers] = useState<string[]>([]);
+  const [copyInvitation, setCopyInvitation] = useState<boolean>(false);
 
   function onAddMember(username: string) {
     setAddedMembers([...addedMembers, username]);
@@ -137,9 +140,10 @@ export function AddMemberModal({
       <p className="add-member-modal__buttons-seperator">or</p>
       <Button
         width={600}
-        label="Copy invitation link"
+        label={copyInvitation?"The link was copied to your clipboard":"Copy invitation link"}
         variant={ButtonVariant.Secondary}
-        iconRight={<Icon icon="outline-copy" width={15} height={15} fill="#000000" />}
+        iconRight={copyInvitation?<Icon icon={"outline-check"} width={10.67} height={8} fill="#000000" />:<Icon icon={"outline-copy"} width={15} height={15} fill="#000000" />}
+        onClick={()=>{setCopyInvitation(!copyInvitation); copyInvitationAction();}}
       />
     </div>
   ];

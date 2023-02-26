@@ -32,6 +32,7 @@ export interface TeamTableProps {
   loggedUserIsOwner: boolean;
   isLogged: boolean;
   onStarActionClick:(args?: any)=>() => Promise<void>;
+  copyInvitationAction:(args?: any)=>void;
 }
 
 //add functionality, tooltip
@@ -54,7 +55,8 @@ export function TeamTable({
   loggedUserId,
   loggedUserIsOwner,
   isLogged,
-  onStarActionClick
+  onStarActionClick,
+  copyInvitationAction
 }: TeamTableProps) {
   let header: Row;
   const [displayAddNewTeamMemberModal, setDisplayAddNewTeamMemberModal] = useState<boolean>(false);
@@ -120,6 +122,7 @@ export function TeamTable({
                   addNewTeamMember();
                   setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal);
                 }}
+                copyInvitationAction={copyInvitationAction}
               />
             )}
           </>

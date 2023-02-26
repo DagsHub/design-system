@@ -16,6 +16,7 @@ export interface OrgAdminTableProps {
   loggedUserId: number;
   loggedUserIsOwner: boolean;
   orgName: string;
+  copyInvitationAction:(args?:any)=>void;
 }
 
 interface User {
@@ -84,6 +85,7 @@ export function OrgAdminTable(props: OrgAdminTableProps) {
             addMember={({ access, team, users }) => {
               setDisplayModal(false);
             }}
+            copyInvitationAction={props.copyInvitationAction}
           />
         )}
       </>
