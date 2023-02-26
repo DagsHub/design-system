@@ -72,7 +72,7 @@ export const Dropdown = ({
   return (
     <div
       className="dagshub-dropdown"
-      style={{ width, pointerEvents: disabled ? 'none' : 'all' }}
+      style={{ width, pointerEvents: disabled ? 'none' : 'all', whiteSpace: 'pre-wrap' }}
       {...props}
     >
       <div

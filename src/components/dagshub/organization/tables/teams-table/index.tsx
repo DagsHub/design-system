@@ -232,19 +232,19 @@ export function TeamTable({
       label: 'Admin access',
       description:
         'members can:\n' +
-        'read from\n' +
-        'push to\n' +
-        "add collaborators to the team's repositories"
+        '• read from\n' +
+        '• push to\n' +
+        "• add collaborators to the team's repositories"
     },
     {
       id: 'Write access',
       label: 'Write access',
-      description: 'members can:\n' + 'read from\n' + "push to the team's repositories"
+      description: 'members can:\n' + '• read from\n' + "• push to the team's repositories"
     },
     {
       id: 'Read access',
       label: 'Read access',
-      description: 'members can:\n' + 'view\n' + "clone the team's repositories"
+      description: 'members can:\n' + '• view\n' + "• clone the team's repositories"
     }
   ];
   const [teamPerm, setTeamPerm] = useState<string>(teamPermission);
