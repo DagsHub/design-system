@@ -25,7 +25,7 @@ interface User {
   username: string;
   leaveLink?: string;
   removeLink?: string;
-  removeMember?: (args?: any) => void;
+  removeMember: (args?: any) => void;
   homeLink?: string;
 }
 
@@ -137,7 +137,7 @@ export function OrgAdminTable(props: OrgAdminTableProps) {
                   orgOrTeamName={props.orgName}
                   onClose={() => handleClick(user.id)}
                   onRemove={() => {
-                    user.removeMember;
+                    user.removeMember();
                     handleClick(user.id);
                   }}
                 />

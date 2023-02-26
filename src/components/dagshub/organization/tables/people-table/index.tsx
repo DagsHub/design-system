@@ -28,7 +28,7 @@ interface User {
   membershipVisibility: MembershipVisibility;
   leaveLink?: string;
   removeLink?: string;
-  removeMember?: (args?: any) => void;
+  removeMember: (args?: any) => void;
   changeMembershipVisibility?: (args?: any) => void;
   toggleTeamsModal: (args?: any) => void;
   displayTeamsModal: boolean;
@@ -153,7 +153,7 @@ export function PeopleTable(props: PeopleTableProps) {
                 orgOrTeamName={props.orgName}
                 onClose={() => handleClick(user.id)}
                 onRemove={() => {
-                  user.removeMember;
+                  user.removeMember();
                   handleClick(user.id);
                 }}
               />
