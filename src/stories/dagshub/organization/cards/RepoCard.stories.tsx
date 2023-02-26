@@ -111,16 +111,16 @@ Primary.args = {
     }
   ],
   teams: [
-    { teamName: 'team1' , teamLink:''},
-    { teamName: 'team2' , teamLink:''},
-    { teamName: 'team3' , teamLink:''},
-    { teamName: 'team4' , teamLink:''},
-    { teamName: 'team5' , teamLink:''},
-    { teamName: 'team6' , teamLink:''},
-    { teamName: 'team7' , teamLink:''},
-    { teamName: 'team8' , teamLink:''},
-    { teamName: 'team9' , teamLink:''},
-    { teamName: 'team10' , teamLink:''}
+    { teamName: 'team1', teamLink: '' },
+    { teamName: 'team2', teamLink: '' },
+    { teamName: 'team3', teamLink: '' },
+    { teamName: 'team4', teamLink: '' },
+    { teamName: 'team5', teamLink: '' },
+    { teamName: 'team6', teamLink: '' },
+    { teamName: 'team7', teamLink: '' },
+    { teamName: 'team8', teamLink: '' },
+    { teamName: 'team9', teamLink: '' },
+    { teamName: 'team10', teamLink: '' }
   ]
 };
 
@@ -179,10 +179,10 @@ Secondary.args = {
     }
   ],
   teams: [
-    { teamName: 'team1' , teamLink:''},
-    { teamName: 'team2' , teamLink:''},
-    { teamName: 'team3' , teamLink:''},
-    { teamName: 'team4' , teamLink:''}
+    { teamName: 'team1', teamLink: '' },
+    { teamName: 'team2', teamLink: '' },
+    { teamName: 'team3', teamLink: '' },
+    { teamName: 'team4', teamLink: '' }
   ]
 };
 

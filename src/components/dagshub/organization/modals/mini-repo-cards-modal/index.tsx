@@ -12,7 +12,7 @@ export interface MiniRepoCardsModalProps {
   repos: RepoCardProps[];
   onClick: () => void;
   isLogged: boolean;
-  onStarActionClick:(args?: any) =>()=> Promise<void>;
+  onStarActionClick: (args?: any) => () => Promise<void>;
 }
 
 export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {

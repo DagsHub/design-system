@@ -17,18 +17,18 @@ export const Primary1 = Template.bind({});
 Primary1.args = {
   title: 'DagsHub settings',
   tabs: [
-    { text: 'General' , href:'', checked:true},
-    { text: 'Plan' , href:'', checked:true},
-    { text: 'Webhooks' , href:'', checked:true},
-    { text: 'Delete organization' , href:'', checked:true}
+    { text: 'General', href: '', checked: true },
+    { text: 'Plan', href: '', checked: true },
+    { text: 'Webhooks', href: '', checked: true },
+    { text: 'Delete organization', href: '', checked: true }
   ]
 };
 export const Primary2 = Template.bind({});
 Primary2.args = {
   tabs: [
-    { text: 'General', href:'', checked:true },
-    { text: 'Plan' , href:'', checked:true},
-    { text: 'Webhooks' , href:'', checked:true},
-    { text: 'Delete organization' , href:'', checked:true}
+    { text: 'General', href: '', checked: true },
+    { text: 'Plan', href: '', checked: true },
+    { text: 'Webhooks', href: '', checked: true },
+    { text: 'Delete organization', href: '', checked: true }
   ]
 };

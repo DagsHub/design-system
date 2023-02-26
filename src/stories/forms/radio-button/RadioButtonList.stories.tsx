@@ -23,7 +23,7 @@ Primary.args = {
       width: 600,
       label: 'Member access to organization',
       description:
-          'Members have no special access by default. Grant them repository access once they are added.',
+        'Members have no special access by default. Grant them repository access once they are added.',
       icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
     },
     {
@@ -31,7 +31,7 @@ Primary.args = {
       width: 600,
       label: 'Admin access to organization',
       description:
-          'Admins have full access to all repositories and have admin rights to the organization',
+        'Admins have full access to all repositories and have admin rights to the organization',
       icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
     }
   ]

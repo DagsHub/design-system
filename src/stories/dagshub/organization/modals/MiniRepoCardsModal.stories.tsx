@@ -25,7 +25,7 @@ Primary.args = {
       numStars: 5,
       githubStarCount: 0,
       isFork: false,
-      updatedAt: "6",
+      updatedAt: '6',
       isStaring: true,
       name: 'Regular Repository',
       isPrivate: true,
@@ -35,30 +35,90 @@ Primary.args = {
       numOpenPulls: 2,
       numOpenIssues: 3,
       topics: [
-        { id: 1, name: 'general', categoryShowExplore: false ,categoryColorClass: 'general',  categoryHref:''},
-        { id: 1, name: 'task', categoryShowExplore: false ,categoryColorClass: 'task',  categoryHref:''},
-        { id: 1, name: 'type', categoryShowExplore: false ,categoryColorClass: 'type',  categoryHref:''},
-        { id: 1, name: 'integration', categoryShowExplore: false ,categoryColorClass: 'integration',  categoryHref:''},
-        { id: 1, name: 'data domain', categoryShowExplore: false ,categoryColorClass: 'data_domain',  categoryHref:''},
-        { id: 1, name: 'general', categoryShowExplore: false ,categoryColorClass: 'general',  categoryHref:''},
-        { id: 1, name: 'task', categoryShowExplore: false ,categoryColorClass: 'task',  categoryHref:''},
-        { id: 1, name: 'type', categoryShowExplore: false ,categoryColorClass: 'type',  categoryHref:''},
-        { id: 1, name: 'integration', categoryShowExplore: false ,categoryColorClass: 'integration',  categoryHref:''},
-        { id: 1, name: 'data domain', categoryShowExplore: false ,categoryColorClass: 'data_domain',  categoryHref:''}
+        {
+          id: 1,
+          name: 'general',
+          categoryShowExplore: false,
+          categoryColorClass: 'general',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'task',
+          categoryShowExplore: false,
+          categoryColorClass: 'task',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'type',
+          categoryShowExplore: false,
+          categoryColorClass: 'type',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'integration',
+          categoryShowExplore: false,
+          categoryColorClass: 'integration',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'data domain',
+          categoryShowExplore: false,
+          categoryColorClass: 'data_domain',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'general',
+          categoryShowExplore: false,
+          categoryColorClass: 'general',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'task',
+          categoryShowExplore: false,
+          categoryColorClass: 'task',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'type',
+          categoryShowExplore: false,
+          categoryColorClass: 'type',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'integration',
+          categoryShowExplore: false,
+          categoryColorClass: 'integration',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'data domain',
+          categoryShowExplore: false,
+          categoryColorClass: 'data_domain',
+          categoryHref: ''
+        }
       ],
       teams: [
         { teamName: 'team1', teamLink: '' },
         { teamName: 'team2', teamLink: '' },
         { teamName: 'team3', teamLink: '' }
       ],
-      repoNameHref:'',
-      starActionLink:'',
-      starNumberLink:'',
-      isLogged:true,
+      repoNameHref: '',
+      starActionLink: '',
+      starNumberLink: '',
+      isLogged: true,
       forksHref: '',
       issuesHref: '',
       pullsHref: '',
-      onStarActionClick:()=>{}
+      onStarActionClick: () => {}
     },
     {
       isMini: true,
@@ -67,7 +127,7 @@ Primary.args = {
       numStars: 5,
       githubStarCount: 3,
       isFork: false,
-      updatedAt: "6",
+      updatedAt: '6',
       isStaring: false,
       name: 'Mirrored Repository',
       isPrivate: false,
@@ -77,25 +137,55 @@ Primary.args = {
       numOpenPulls: 2,
       numOpenIssues: 3,
       topics: [
-        { id: 1, name: 'general', categoryShowExplore: false ,categoryColorClass: 'general',  categoryHref:''},
-        { id: 1, name: 'task', categoryShowExplore: false ,categoryColorClass: 'task',  categoryHref:''},
-        { id: 1, name: 'type', categoryShowExplore: false ,categoryColorClass: 'type',  categoryHref:''},
-        { id: 1, name: 'integration', categoryShowExplore: false ,categoryColorClass: 'integration',  categoryHref:''},
-        { id: 1, name: 'data domain', categoryShowExplore: false ,categoryColorClass: 'data_domain',  categoryHref:''}
+        {
+          id: 1,
+          name: 'general',
+          categoryShowExplore: false,
+          categoryColorClass: 'general',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'task',
+          categoryShowExplore: false,
+          categoryColorClass: 'task',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'type',
+          categoryShowExplore: false,
+          categoryColorClass: 'type',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'integration',
+          categoryShowExplore: false,
+          categoryColorClass: 'integration',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'data domain',
+          categoryShowExplore: false,
+          categoryColorClass: 'data_domain',
+          categoryHref: ''
+        }
       ],
       teams: [
         { teamName: 'team1', teamLink: '' },
         { teamName: 'team2', teamLink: '' },
         { teamName: 'team3', teamLink: '' }
       ],
-      repoNameHref:'',
-      starActionLink:'',
-      starNumberLink:'',
-      isLogged:true,
+      repoNameHref: '',
+      starActionLink: '',
+      starNumberLink: '',
+      isLogged: true,
       forksHref: '',
       issuesHref: '',
       pullsHref: '',
-      onStarActionClick:()=>{}
+      onStarActionClick: () => {}
     },
     {
       isMini: true,
@@ -104,7 +194,7 @@ Primary.args = {
       numStars: 0,
       githubStarCount: 0,
       isFork: true,
-      updatedAt: "6",
+      updatedAt: '6',
       isStaring: false,
       name: 'Forked Repository',
       isPrivate: false,
@@ -114,21 +204,51 @@ Primary.args = {
       numOpenPulls: 2,
       numOpenIssues: 3,
       topics: [
-        { id: 1, name: 'general', categoryShowExplore: false ,categoryColorClass: 'general',  categoryHref:''},
-        { id: 1, name: 'task', categoryShowExplore: false ,categoryColorClass: 'task',  categoryHref:''},
-        { id: 1, name: 'type', categoryShowExplore: false ,categoryColorClass: 'type',  categoryHref:''},
-        { id: 1, name: 'integration', categoryShowExplore: false ,categoryColorClass: 'integration',  categoryHref:''},
-        { id: 1, name: 'data domain', categoryShowExplore: false ,categoryColorClass: 'data_domain',  categoryHref:''}
+        {
+          id: 1,
+          name: 'general',
+          categoryShowExplore: false,
+          categoryColorClass: 'general',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'task',
+          categoryShowExplore: false,
+          categoryColorClass: 'task',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'type',
+          categoryShowExplore: false,
+          categoryColorClass: 'type',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'integration',
+          categoryShowExplore: false,
+          categoryColorClass: 'integration',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'data domain',
+          categoryShowExplore: false,
+          categoryColorClass: 'data_domain',
+          categoryHref: ''
+        }
       ],
       teams: [],
-      repoNameHref:'',
-      starActionLink:'',
-      starNumberLink:'',
-      isLogged:true,
+      repoNameHref: '',
+      starActionLink: '',
+      starNumberLink: '',
+      isLogged: true,
       forksHref: '',
       issuesHref: '',
       pullsHref: '',
-      onStarActionClick:()=>{}
+      onStarActionClick: () => {}
     },
     {
       isMini: true,
@@ -137,7 +257,7 @@ Primary.args = {
       numStars: 5,
       githubStarCount: 3,
       isFork: false,
-      updatedAt: "6",
+      updatedAt: '6',
       isStaring: false,
       name: 'Mirrored Repository',
       isPrivate: false,
@@ -147,25 +267,55 @@ Primary.args = {
       numOpenPulls: 2,
       numOpenIssues: 3,
       topics: [
-        { id: 1, name: 'general', categoryShowExplore: false ,categoryColorClass: 'general',  categoryHref:''},
-        { id: 1, name: 'task', categoryShowExplore: false ,categoryColorClass: 'task',  categoryHref:''},
-        { id: 1, name: 'type', categoryShowExplore: false ,categoryColorClass: 'type',  categoryHref:''},
-        { id: 1, name: 'integration', categoryShowExplore: false ,categoryColorClass: 'integration',  categoryHref:''},
-        { id: 1, name: 'data domain', categoryShowExplore: false ,categoryColorClass: 'data_domain',  categoryHref:''}
+        {
+          id: 1,
+          name: 'general',
+          categoryShowExplore: false,
+          categoryColorClass: 'general',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'task',
+          categoryShowExplore: false,
+          categoryColorClass: 'task',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'type',
+          categoryShowExplore: false,
+          categoryColorClass: 'type',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'integration',
+          categoryShowExplore: false,
+          categoryColorClass: 'integration',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'data domain',
+          categoryShowExplore: false,
+          categoryColorClass: 'data_domain',
+          categoryHref: ''
+        }
       ],
       teams: [
         { teamName: 'team1', teamLink: '' },
         { teamName: 'team2', teamLink: '' },
         { teamName: 'team3', teamLink: '' }
       ],
-      repoNameHref:'',
-      starActionLink:'',
-      starNumberLink:'',
-      isLogged:true,
+      repoNameHref: '',
+      starActionLink: '',
+      starNumberLink: '',
+      isLogged: true,
       forksHref: '',
       issuesHref: '',
       pullsHref: '',
-      onStarActionClick:()=>{}
+      onStarActionClick: () => {}
     },
     {
       isMini: true,
@@ -174,7 +324,7 @@ Primary.args = {
       numStars: 5,
       githubStarCount: 3,
       isFork: false,
-      updatedAt: "6",
+      updatedAt: '6',
       isStaring: false,
       name: 'Mirrored Repository',
       isPrivate: false,
@@ -184,25 +334,55 @@ Primary.args = {
       numOpenPulls: 2,
       numOpenIssues: 3,
       topics: [
-        { id: 1, name: 'general', categoryShowExplore: false ,categoryColorClass: 'general',  categoryHref:''},
-        { id: 1, name: 'task', categoryShowExplore: false ,categoryColorClass: 'task',  categoryHref:''},
-        { id: 1, name: 'type', categoryShowExplore: false ,categoryColorClass: 'type',  categoryHref:''},
-        { id: 1, name: 'integration', categoryShowExplore: false ,categoryColorClass: 'integration',  categoryHref:''},
-        { id: 1, name: 'data domain', categoryShowExplore: false ,categoryColorClass: 'data_domain',  categoryHref:''}
+        {
+          id: 1,
+          name: 'general',
+          categoryShowExplore: false,
+          categoryColorClass: 'general',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'task',
+          categoryShowExplore: false,
+          categoryColorClass: 'task',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'type',
+          categoryShowExplore: false,
+          categoryColorClass: 'type',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'integration',
+          categoryShowExplore: false,
+          categoryColorClass: 'integration',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'data domain',
+          categoryShowExplore: false,
+          categoryColorClass: 'data_domain',
+          categoryHref: ''
+        }
       ],
       teams: [
         { teamName: 'team1', teamLink: '' },
         { teamName: 'team2', teamLink: '' },
         { teamName: 'team3', teamLink: '' }
       ],
-      repoNameHref:'',
-      starActionLink:'',
-      starNumberLink:'',
-      isLogged:true,
+      repoNameHref: '',
+      starActionLink: '',
+      starNumberLink: '',
+      isLogged: true,
       forksHref: '',
       issuesHref: '',
       pullsHref: '',
-      onStarActionClick:()=>{}
+      onStarActionClick: () => {}
     },
     {
       isMini: true,
@@ -211,7 +391,7 @@ Primary.args = {
       numStars: 5,
       githubStarCount: 3,
       isFork: false,
-      updatedAt: "6",
+      updatedAt: '6',
       isStaring: false,
       name: 'Mirrored Repository',
       isPrivate: false,
@@ -221,25 +401,55 @@ Primary.args = {
       numOpenPulls: 2,
       numOpenIssues: 3,
       topics: [
-        { id: 1, name: 'general', categoryShowExplore: false ,categoryColorClass: 'general',  categoryHref:''},
-        { id: 1, name: 'task', categoryShowExplore: false ,categoryColorClass: 'task',  categoryHref:''},
-        { id: 1, name: 'type', categoryShowExplore: false ,categoryColorClass: 'type',  categoryHref:''},
-        { id: 1, name: 'integration', categoryShowExplore: false ,categoryColorClass: 'integration',  categoryHref:''},
-        { id: 1, name: 'data domain', categoryShowExplore: false ,categoryColorClass: 'data_domain',  categoryHref:''}
+        {
+          id: 1,
+          name: 'general',
+          categoryShowExplore: false,
+          categoryColorClass: 'general',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'task',
+          categoryShowExplore: false,
+          categoryColorClass: 'task',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'type',
+          categoryShowExplore: false,
+          categoryColorClass: 'type',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'integration',
+          categoryShowExplore: false,
+          categoryColorClass: 'integration',
+          categoryHref: ''
+        },
+        {
+          id: 1,
+          name: 'data domain',
+          categoryShowExplore: false,
+          categoryColorClass: 'data_domain',
+          categoryHref: ''
+        }
       ],
       teams: [
         { teamName: 'team1', teamLink: '' },
         { teamName: 'team2', teamLink: '' },
         { teamName: 'team3', teamLink: '' }
       ],
-      repoNameHref:'',
-      starActionLink:'',
-      starNumberLink:'',
-      isLogged:true,
+      repoNameHref: '',
+      starActionLink: '',
+      starNumberLink: '',
+      isLogged: true,
       forksHref: '',
       issuesHref: '',
       pullsHref: '',
-      onStarActionClick:()=>{}
+      onStarActionClick: () => {}
     }
   ]
 };

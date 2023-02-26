@@ -77,7 +77,7 @@ export const Dropdown = ({
     >
       <div
         className="dagshub-dropdown__box"
-        style={{ background: dropdownBoxColor , pointerEvents: disabled ? 'none' : 'all'}}
+        style={{ background: dropdownBoxColor, pointerEvents: disabled ? 'none' : 'all' }}
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
         {(kind != 'checkbox' && checkedOptLabel) || label}

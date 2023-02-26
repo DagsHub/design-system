@@ -16,7 +16,7 @@ export interface OrgAdminTableProps {
   loggedUserId: number;
   loggedUserIsOwner: boolean;
   orgName: string;
-  copyInvitationAction:(args?:any)=>void;
+  copyInvitationAction: (args?: any) => void;
 }
 
 interface User {

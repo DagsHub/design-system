@@ -12,8 +12,8 @@ export interface TeamSettingsModalProps {
   onClose: () => void;
   teamName: string;
   teamDescription?: string;
-  onDeleteTeam:(args?: any)=>void;
-  onEditTeam:(args?: any)=>void;
+  onDeleteTeam: (args?: any) => void;
+  onEditTeam: (args?: any) => void;
 }
 
 export function TeamSettingsModal(props: TeamSettingsModalProps) {
@@ -21,13 +21,14 @@ export function TeamSettingsModal(props: TeamSettingsModalProps) {
   const onTeamNameInputChange = (e: { target: { value: React.SetStateAction<string> } }) => {
     setTeamNameInputText(e.target.value);
   };
-  const [teamDescriptionInputText, setTeamDescriptionInputText] = useState<string>(props.teamDescription?props.teamDescription:'');
+  const [teamDescriptionInputText, setTeamDescriptionInputText] = useState<string>(
+    props.teamDescription ? props.teamDescription : ''
+  );
   const onTeamDescriptionInputChange = (e: { target: { value: React.SetStateAction<string> } }) => {
     setTeamDescriptionInputText(e.target.value);
   };
 
   const [displayDeleteTeamButtons, setDisplayDeleteTeamButtons] = useState<boolean>(false);
-
 
   const [access, setAccess] = useState<string>('member-access');
 
@@ -73,20 +74,46 @@ export function TeamSettingsModal(props: TeamSettingsModalProps) {
         }
       ]}
     />,
-    <>{!displayDeleteTeamButtons?
+    <>
+      {!displayDeleteTeamButtons ? (
         <div className="team-settings-modal__buttons">
-          <Button variant={ButtonVariant.Error} label={'Delete team'} width={110} onClick={()=>{setDisplayDeleteTeamButtons(true)}}/>
-          <Button variant={ButtonVariant.Primary} label={'Save changes'} width={119} onClick={props.onEditTeam}/>
-        </div>:
+          <Button
+            variant={ButtonVariant.Error}
+            label={'Delete team'}
+            width={110}
+            onClick={() => {
+              setDisplayDeleteTeamButtons(true);
+            }}
+          />
+          <Button
+            variant={ButtonVariant.Primary}
+            label={'Save changes'}
+            width={119}
+            onClick={props.onEditTeam}
+          />
+        </div>
+      ) : (
         <div className="team-settings-modal__buttons">
-          <div className={"modal-buttons__delete-buttons"}>
-           <Icon icon={"outline-exclamation-circle"} fill={"#DC2626"} width={20} height={20}/>
+          <div className={'modal-buttons__delete-buttons'}>
+            <Icon icon={'outline-exclamation-circle'} fill={'#DC2626'} width={20} height={20} />
             Once deleted, it can’t be undone
           </div>
-          <Button variant={ButtonVariant.Error} label={'I understand, delete this team'} width={230} onClick={props.onDeleteTeam}/>
-          <Button variant={ButtonVariant.Ghost} label={'Cancel'} width={80} onClick={()=>{setDisplayDeleteTeamButtons(false)}}/>
+          <Button
+            variant={ButtonVariant.Error}
+            label={'I understand, delete this team'}
+            width={230}
+            onClick={props.onDeleteTeam}
+          />
+          <Button
+            variant={ButtonVariant.Ghost}
+            label={'Cancel'}
+            width={80}
+            onClick={() => {
+              setDisplayDeleteTeamButtons(false);
+            }}
+          />
         </div>
-      }
+      )}
     </>
   ];
   return <GenericModal title="Team settings" elements={elements} onClose={props.onClose} />;
