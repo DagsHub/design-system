@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import classNames from 'classnames';
+import React, { useEffect, useState, useRef } from 'react';
+
 import { Icon } from '../../icons';
 import { Checkbox, RadioButtonItemProps, RadioButtonList } from '../../forms';
 
 import '../../styles/root.scss';
 import './dropdown.scss';
-import classNames from 'classnames';
 
 export interface DropdownOption {
   id: string;
@@ -43,6 +44,7 @@ export const Dropdown = ({
   disabled = false,
   ...props
 }: DropdownProps & React.ButtonHTMLAttributes<HTMLDivElement>) => {
+  const dropdownRef = useRef(null);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
   const [checked, setChecked] = useState<number | string>(initialChecked);
 
@@ -61,18 +63,34 @@ export const Dropdown = ({
     setOptions(nextOptions);
   };
 
+  function detectOutsideClick(e: MouseEvent): void {
+    if (dropdownRef.current && !(dropdownRef.current as any).contains(e.target)) {
+      setIsCollapsed(true);
+    }
+  }
+
   useEffect(
     function onChecked() {
       onItemChecked(checked);
-      kind != 'checkbox' && setIsCollapsed(true);
+      if (kind != 'checkbox') {
+        setIsCollapsed(true);
+      }
     },
     [checked]
   );
 
+  useEffect(function onDocClick() {
+    document.addEventListener('click', detectOutsideClick);
+    return () => {
+      document.removeEventListener('click', detectOutsideClick);
+    };
+  }, []);
+
   return (
     <div
+      ref={dropdownRef}
       className="dagshub-dropdown"
-      style={{ width, cursor: disabled ? 'not-allowed' : 'pointer', whiteSpace: 'pre-wrap' }}
+      style={{ width, cursor: disabled ? 'not-allowed' : 'pointer' }}
       {...props}
     >
       <div
@@ -139,7 +157,7 @@ export const Dropdown = ({
                 }
               }}
               className={classNames('dagshub-dropdown__options-opt', { checked: opt.checked })}
-              style={{ width: optionWidth ? optionWidth : '100%' }}
+              style={{ width: optionWidth || '100%' }}
             >
               {opt.label}
             </div>
