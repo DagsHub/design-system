@@ -27,19 +27,27 @@ export interface TagProps {
   onClick?: () => void;
 }
 
-export const Tag = ({
-  category = TagCategory.General,
-  size = TagSize.Medium,
-  selected = false,
-  label,
-  className = '',
-  onClick = () => {}
-}: TagProps & React.LabelHTMLAttributes<HTMLLabelElement>) => {
-  const classes = classNames([`dagshub-tag`, category, size, className], { selected });
+export const Tag = React.forwardRef<
+  HTMLLabelElement,
+  TagProps & React.LabelHTMLAttributes<HTMLLabelElement>
+>(
+  (
+    {
+      category = TagCategory.General,
+      size = TagSize.Medium,
+      selected = false,
+      label,
+      className = '',
+      onClick = () => {}
+    },
+    ref
+  ) => {
+    const classes = classNames([`dagshub-tag`, category, size, className], { selected });
 
-  return (
-    <label className={classes} onClick={onClick}>
-      {label}
-    </label>
-  );
-};
+    return (
+      <label ref={ref} className={classes} onClick={onClick}>
+        {label}
+      </label>
+    );
+  }
+);

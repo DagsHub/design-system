@@ -1,4 +1,4 @@
-import React, { startTransition, useState } from 'react';
+import React, { useState } from 'react';
 import { Icon } from '../../../../icons';
 import { UserInfo } from '../../profiles/user-info';
 import { GenericTable, Row } from '../generic-table';
@@ -68,10 +68,9 @@ const membershipVisibilityOptions: RadioButtonItemProps[] = [
   }
 ];
 export function PeopleTable(props: PeopleTableProps) {
-  console.log(props.users);
-
   const createInitialMapState = (arr: any[], initialValue: boolean | string) =>
     arr.reduce((acc: any, user: any) => ({ ...acc, [user.id]: initialValue }), {});
+
   const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<
     Record<number | string, boolean>
   >(createInitialMapState(props.users, false));

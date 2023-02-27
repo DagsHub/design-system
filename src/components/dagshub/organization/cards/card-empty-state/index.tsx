@@ -1,8 +1,9 @@
 import React from 'react';
+import { Icon } from '../../../../icons';
+import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
+
 import '../../../../styles/root.scss';
 import './card-empty-state.scss';
-import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
-import { Icon } from '../../../../icons';
 
 export interface CardEmptyStateProps {
   text?: string;

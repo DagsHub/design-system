@@ -1,5 +1,5 @@
 import React from 'react';
-import Tippy from '@tippyjs/react';
+import Tippy, { TippyProps } from '@tippyjs/react';
 
 import './tooltip.scss';
 
@@ -8,6 +8,10 @@ export interface TooltipProps {
   children?: React.ReactElement<any>;
 }
 
-export const Tooltip = ({ content, children }: TooltipProps) => {
-  return <Tippy content={content}>{children}</Tippy>;
+export const Tooltip = ({ content, children, ...props }: TooltipProps & TippyProps) => {
+  return (
+    <Tippy content={content} {...props}>
+      {children}
+    </Tippy>
+  );
 };
