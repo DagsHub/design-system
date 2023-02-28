@@ -1,0 +1,67 @@
+.people-table__header {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--color-text-default);
+  display: flex;
+  width: 100%;
+}
+
+:root {
+  --num-regular-columns: 4;
+}
+
+.one{
+  max-width:66px;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 12px 19px 12px 0px;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+  gap: 9px;
+}
+
+.two{
+  max-width:416px;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+  white-space: pre-wrap;
+  gap: 9px;
+}
+
+.rest{
+  max-width: calc((1464px - 32px - 72px - 416px)/var(--num-regular-columns));
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  flex-wrap: wrap;
+  text-overflow: ellipsis;
+  gap: 9px;
+}
+
+.row{
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+
+
+

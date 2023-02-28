@@ -5,6 +5,7 @@
   font-size: 14px;
   color: #172d32;
   cursor: pointer;
+  gap: 5px;
 }
 
 .checked label {
@@ -14,14 +15,11 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-
-  svg path {
-    fill: transparent;
-  }
 }
 
 .dagshub-checkbox:not(.disabled):hover label {
   box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+
 }
 
 .disabled {
@@ -33,7 +31,6 @@
   width: 20px;
   border: 2px solid #64748b;
   border-radius: 4px;
-  margin-right: 5px;
   transition: all 0.5s;
   cursor: pointer;
 
