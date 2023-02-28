@@ -1,4 +1,5 @@
 import React, { MouseEventHandler } from 'react';
+
 import '../../../../styles/root.scss';
 import './table.scss';
 

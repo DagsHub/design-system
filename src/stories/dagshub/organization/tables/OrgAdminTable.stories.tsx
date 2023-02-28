@@ -16,7 +16,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   loggedUserId: 1,
   loggedUserIsOwner: true,
-  orgName: "Dagshub",
+  orgName: 'Dagshub',
   admins: [
     {
       id: 1,

@@ -1,0 +1,20 @@
+.dagshub-toast {
+  background-color: var(--dark-mode-dark-800);
+  border-radius: 12px;
+  padding: 12px;
+  gap: 20px;
+  color: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  svg {
+    &:first-child {
+      margin-left: 10px;
+    }
+    &:last-child {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+}

@@ -15,14 +15,14 @@ export interface AddMemberModalProps {
   isAdmin: boolean;
   isTeam: boolean;
   name: string;
-  teams?: { id: number|string; name: string }[];
+  teams?: { id: number | string; name: string }[];
   onClose?: () => void;
   onInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
   inputText: string;
   resultUsers?: UserInfoProps[];
   placeholder?: string;
   addMember: (args?: any) => void;
-  copyInvitationAction:(args?: any) => void;
+  copyInvitationAction: (args?: any) => void;
 }
 
 export function AddMemberModal({
@@ -37,7 +37,7 @@ export function AddMemberModal({
   resultUsers = [],
   placeholder = '',
   addMember,
- copyInvitationAction
+  copyInvitationAction
 }: AddMemberModalProps) {
   const [team, setTeam] = useState<number | string>('');
   const [access, setAccess] = useState<string>('member-access');
@@ -140,10 +140,19 @@ export function AddMemberModal({
       <p className="add-member-modal__buttons-seperator">or</p>
       <Button
         width={600}
-        label={copyInvitation?"The link was copied to your clipboard":"Copy invitation link"}
+        label={copyInvitation ? 'The link was copied to your clipboard' : 'Copy invitation link'}
         variant={ButtonVariant.Secondary}
-        iconRight={copyInvitation?<Icon icon={"outline-check"} width={10.67} height={8} fill="#000000" />:<Icon icon={"outline-copy"} width={15} height={15} fill="#000000" />}
-        onClick={()=>{setCopyInvitation(!copyInvitation); copyInvitationAction();}}
+        iconRight={
+          copyInvitation ? (
+            <Icon icon={'outline-check'} width={10.67} height={8} fill="#000000" />
+          ) : (
+            <Icon icon={'outline-copy'} width={15} height={15} fill="#000000" />
+          )
+        }
+        onClick={() => {
+          setCopyInvitation(!copyInvitation);
+          copyInvitationAction();
+        }}
       />
     </div>
   ];

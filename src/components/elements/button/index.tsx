@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+
 import './button.scss';
 
 export enum ButtonVariant {
@@ -27,34 +28,76 @@ export interface ButtonProps {
   width?: number;
 }
 
-export const Button = ({
-  variant = ButtonVariant.Primary,
-  stretch = ButtonStretch.Normal,
-  fullWidth = false,
-  label,
-  disabled = false,
-  className = '',
-  iconLeft,
-  iconRight,
-  width,
-  ...props
-}: ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
-  const classes = classNames([`dagshub-btn`, variant, stretch, className], { fullWidth });
+export const Button = React.forwardRef<
+  HTMLButtonElement,
+  ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>
+>(
+  (
+    {
+      variant = ButtonVariant.Primary,
+      stretch = ButtonStretch.Normal,
+      fullWidth = false,
+      label,
+      disabled = false,
+      className = '',
+      iconLeft,
+      iconRight,
+      width
+    },
+    ref
+  ) => {
+    const classes = classNames([`dagshub-btn`, variant, stretch, className], { fullWidth });
 
-  return (
-    <button
-      type="button"
-      style={{ width: width ? width : 'auto' }}
-      aria-label={label}
-      className={classes}
-      disabled={disabled}
-      {...props}
-    >
-      <div className="button__content">
-        {iconLeft ? iconLeft : <></>}
-        {label}
-        {iconRight ? iconRight : <></>}
-      </div>
-    </button>
-  );
-};
+    return (
+      <button
+        ref={ref}
+        aria-label={label}
+        className={classes}
+        disabled={disabled}
+        style={{ width: width || 'auto' }}
+      >
+        <div className="button__content">
+          {iconLeft}
+          {label}
+          {iconRight}
+        </div>
+      </button>
+    );
+  }
+);
+
+// export const Button = ({
+//   variant = ButtonVariant.Primary,
+//   stretch = ButtonStretch.Normal,
+//   fullWidth = false,
+//   label,
+//   disabled = false,
+//   className = '',
+//   iconLeft,
+//   iconRight,
+//   width,
+// }: ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement> & { ref: React.Ref<HTMLButtonElement> }) => {
+//   const classes = classNames([`dagshub-btn`, variant, stretch, className], { fullWidth });
+
+//   const Button = React.forwardRef<HTMLButtonElement, ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>>((props, ref) => (
+//     <button ref={ref} {...props}>
+//       <div className="button__content">
+//         {props.iconLeft}
+//         {props.label}
+//         {props.iconRight}
+//       </div>
+//     </button>
+//   ));
+
+//   return (
+//     <Button
+//       label={label}
+//       aria-label={label}
+//       className={classes}
+//       disabled={disabled}
+//       iconLeft={iconLeft || <></>}
+//       iconRight={iconRight || <></>}
+//       style={{ width: width || 'auto' }}
+//     />
+//   );
+// };

@@ -18,7 +18,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   onClose: () => {},
   teamName: 'Devops',
-  teamDescription: "this is description",
-  onDeleteTeam:(args?: any)=>{},
-  onEditTeam:(args?: any)=>{}
+  teamDescription: 'this is description',
+  onDeleteTeam: (args?: any) => {},
+  onEditTeam: (args?: any) => {}
 };

@@ -6,8 +6,8 @@ import {
   MembershipVisibility,
   PeopleTableProps
 } from '../../../../components/dagshub/organization/tables/people-table';
-import {Member} from "../../../../components/dagshub/organization/tables/shared-classes";
-import {TeamCardProps} from "../../../../components";
+import { Member } from '../../../../components/dagshub/organization/tables/shared-classes';
+import { TeamCardProps } from '../../../../components';
 
 const meta: Meta<PeopleTableProps> = {
   title: 'DagsHub/Org/Tables/PeopleTable',
@@ -28,29 +28,29 @@ Primary.args = {
     {
       id: 1,
       userImage: imageLink,
-      toggleTeamsModal: ()=>{},
+      toggleTeamsModal: () => {},
       displayTeamsModal: false,
       userIndex: 1,
       homeLink: '',
       username: 'ItayMalka',
       userTeams: [
         {
-          teamName: "Devops team",
-          teamDescription: "this is the devops team description",
+          teamName: 'Devops team',
+          teamDescription: 'this is the devops team description',
           teamMembers: [],
           teamLink: '',
           userPermissionForTeam: UserPermissionForTeam.AdminAccess
         },
         {
-          teamName: "R&D team",
-          teamDescription: "this is the R&D team description",
+          teamName: 'R&D team',
+          teamDescription: 'this is the R&D team description',
           teamMembers: [],
           teamLink: '',
           userPermissionForTeam: UserPermissionForTeam.WriteAccess
         },
         {
-          teamName: "Product team",
-          teamDescription: "this is the product team description",
+          teamName: 'Product team',
+          teamDescription: 'this is the product team description',
           teamMembers: [],
           teamLink: '',
           userPermissionForTeam: UserPermissionForTeam.ReadAccess
@@ -61,29 +61,29 @@ Primary.args = {
     {
       id: 2,
       userImage: imageLink,
-      toggleTeamsModal: ()=>{},
+      toggleTeamsModal: () => {},
       displayTeamsModal: false,
       userIndex: 2,
       homeLink: '',
       username: 'TalMalka',
       userTeams: [
         {
-          teamName: "Devops team",
-          teamDescription: "this is the devops team description",
+          teamName: 'Devops team',
+          teamDescription: 'this is the devops team description',
           teamMembers: [],
           teamLink: '',
           userPermissionForTeam: UserPermissionForTeam.AdminAccess
         },
         {
-          teamName: "R&D team",
-          teamDescription: "this is the R&D team description",
+          teamName: 'R&D team',
+          teamDescription: 'this is the R&D team description',
           teamMembers: [],
           teamLink: '',
           userPermissionForTeam: UserPermissionForTeam.WriteAccess
         },
         {
-          teamName: "Marketing team",
-          teamDescription: "this is the marketing team description",
+          teamName: 'Marketing team',
+          teamDescription: 'this is the marketing team description',
           teamMembers: [],
           teamLink: '',
           userPermissionForTeam: UserPermissionForTeam.ReadAccess
@@ -94,29 +94,29 @@ Primary.args = {
     {
       id: 3,
       userImage: imageLink,
-      toggleTeamsModal: ()=>{},
+      toggleTeamsModal: () => {},
       displayTeamsModal: false,
       userIndex: 3,
       homeLink: '',
       username: 'ShaharMalka',
       userTeams: [
         {
-          teamName: "IT team",
-          teamDescription: "this is the devops team description",
+          teamName: 'IT team',
+          teamDescription: 'this is the devops team description',
           teamMembers: [],
           teamLink: '',
           userPermissionForTeam: UserPermissionForTeam.AdminAccess
         },
         {
-          teamName: "R&D team",
-          teamDescription: "this is the R&D team description",
+          teamName: 'R&D team',
+          teamDescription: 'this is the R&D team description',
           teamMembers: [],
           teamLink: '',
           userPermissionForTeam: UserPermissionForTeam.WriteAccess
         },
         {
-          teamName: "Product team",
-          teamDescription: "this is the product team description",
+          teamName: 'Product team',
+          teamDescription: 'this is the product team description',
           teamMembers: [],
           teamLink: '',
           userPermissionForTeam: UserPermissionForTeam.ReadAccess

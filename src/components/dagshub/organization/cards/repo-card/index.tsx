@@ -81,7 +81,7 @@ export function RepoCard({
           {!isMini && (
             <div className="repo-header">
               <div className="repo-info">
-                <Icon width={10.67} height={14} fill="#475569" icon="outline-repository-github" />
+                <Icon width={11} height={14} fill="#475569" icon="outline-repository-github" />
                 <span className="repo-type">
                   {isFork ? 'Forked repo' : isMirror ? 'Mirrored repo' : 'Repo'}
                 </span>
@@ -103,9 +103,9 @@ export function RepoCard({
                   >
                     <i className={!isStaring ? 'star' : 'star-outline'} />
                     {isStaring ? (
-                      <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star" />
+                      <Icon width={18} height={17} fill="#94A3B8" icon="solid-star" />
                     ) : (
-                      <Icon width={18} height={17.21} fill="#94A3B8" icon="outline-star" />
+                      <Icon width={18} height={17} fill="#94A3B8" icon="outline-star" />
                     )}
                   </a>
                 </div>
@@ -114,7 +114,7 @@ export function RepoCard({
           )}
           <div className={'repo-tags'}>
             {isMini && (
-              <Icon width={13.66} height={18.99} fill="#475569" icon="outline-repository-github" />
+              <Icon width={14} height={19} fill="#475569" icon="outline-repository-github" />
             )}
             <div className="repo-name">
               <a className="title1 cut-text" href={repoNameHref}>
@@ -159,7 +159,7 @@ export function RepoCard({
                     </a>
                   )}
                   <a className="stat-block" href={issuesHref}>
-                    <Icon width={14.67} height={14.67} fill="#475569" icon="outline-issue" />
+                    <Icon width={15} height={15} fill="#475569" icon="outline-issue" />
                     <p>{numOpenIssues}</p>
                   </a>
                 </div>

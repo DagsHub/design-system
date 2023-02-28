@@ -31,8 +31,8 @@ export interface TeamTableProps {
   loggedUserId: number;
   loggedUserIsOwner: boolean;
   isLogged: boolean;
-  onStarActionClick:(args?: any)=>() => Promise<void>;
-  copyInvitationAction:(args?: any)=>void;
+  onStarActionClick: (args?: any) => () => Promise<void>;
+  copyInvitationAction: (args?: any) => void;
 }
 
 //add functionality, tooltip
@@ -144,8 +144,8 @@ export function TeamTable({
                 teamName={teamName}
                 teamDescription={teamDescription}
                 onClose={() => setDisplayTeamSettingsModal(false)}
-                onEditTeam={()=>setDisplayTeamSettingsModal(false)}
-                onDeleteTeam={()=>setDisplayTeamSettingsModal(false)}
+                onEditTeam={() => setDisplayTeamSettingsModal(false)}
+                onDeleteTeam={() => setDisplayTeamSettingsModal(false)}
               />
             )}
           </>
@@ -305,7 +305,8 @@ export function TeamTable({
               repos={teamRepos}
               isLogged={isLogged}
               onClick={() => setDisplayMiniCardModal(!displayMiniCardModal)}
-             onStarActionClick={onStarActionClick}/>
+              onStarActionClick={onStarActionClick}
+            />
           )}
         </>
       ]
