@@ -22,7 +22,6 @@ export interface ButtonProps {
   label: string;
   disabled?: boolean;
   className?: string;
-  onClick?: () => void;
   iconLeft?: JSX.Element;
   iconRight?: JSX.Element;
   width?: number;
@@ -42,7 +41,8 @@ export const Button = React.forwardRef<
       className = '',
       iconLeft,
       iconRight,
-      width
+      width,
+      ...props
     },
     ref
   ) => {
@@ -54,7 +54,8 @@ export const Button = React.forwardRef<
         aria-label={label}
         className={classes}
         disabled={disabled}
-        style={{ width: width || 'auto' }}
+        {...props}
+        style={{ width: fullWidth ? '100%' : (width || 'auto') }}
       >
         <div className="button__content">
           {iconLeft}

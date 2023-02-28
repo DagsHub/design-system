@@ -41,7 +41,7 @@ export const Presentation = () => {
       ))}
       <div>
         <Button disabled label="Disabled" /> <br /> <br />
-        <Button fullWidth label="Full Width" />
+        <Button fullWidth label="Full Width" onClick={() => alert('Full Width Button')} />
       </div>
     </div>
   );
