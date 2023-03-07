@@ -11,7 +11,7 @@ export interface CombinedSearchProps {
   onInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
   inputText: string;
   placeholder: string;
-  itemsList: UserInfoProps[];
+  itemsList?: UserInfoProps[];
   resultUsers?: UserInfoProps[];
   onInputClick?: () => void;
   onAdd?: (args: any) => void;
@@ -22,7 +22,7 @@ export function CombinedSearch({
   onInputChange,
   inputText,
   placeholder,
-  itemsList,
+  itemsList = [],
   resultUsers = [],
   onInputClick = () => {},
   onAdd = () => {},
