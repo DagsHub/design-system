@@ -97,10 +97,10 @@ export function AddMemberModal({
             }
           ]}
         />
-        {teams?.length ? (
+        {teams?.length && false ? (
           <div className="add-member-modal__dropdown">
             <Dropdown
-              kind={'checkbox'}
+              kind="checkbox"
               width={130}
               label="Select teams"
               onItemChecked={setTeam}
@@ -108,17 +108,19 @@ export function AddMemberModal({
               options={teams.map((team: any) => ({ id: team.id, label: team.name }))}
             />
           </div>
-        ) : !isAdmin ? (
-          <div className="add-member-modal__no-teams-text">
-            You haven’t created any teams yet. To leverage different permission levels for different
-            projects
-            <a className="add-member-modal__create-team-text">
-              {' '}
-              create your first team{' '}
-              <Icon width={9.33} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
-            </a>
-          </div>
-        ) : null}
+        ) : (
+          !isAdmin && (
+            <div className="add-member-modal__no-teams-text">
+              You haven’t created any teams yet. To leverage different permission levels for
+              different projects
+              <a className="add-member-modal__create-team-text">
+                {' '}
+                create your first team{' '}
+                <Icon width={9.33} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
+              </a>
+            </div>
+          )
+        )}
       </>
     ) : (
       <></>
