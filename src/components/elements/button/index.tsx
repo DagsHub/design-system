@@ -54,8 +54,8 @@ export const Button = React.forwardRef<
         aria-label={label}
         className={classes}
         disabled={disabled}
+        style={{ width: fullWidth ? '100%' : width || 'auto' }}
         {...props}
-        style={{ width: fullWidth ? '100%' : (width || 'auto') }}
       >
         <div className="button__content">
           {iconLeft}

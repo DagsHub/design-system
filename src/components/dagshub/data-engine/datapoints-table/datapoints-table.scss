@@ -13,8 +13,8 @@
   --num-regular-columns: 4;
 }
 
-.one{
-  max-width:66px;
+.one {
+  max-width: 66px;
   width: 100%;
   overflow: hidden;
   height: 100%;
@@ -27,8 +27,8 @@
   gap: 9px;
 }
 
-.two{
-  max-width:416px;
+.two {
+  max-width: 416px;
   width: 100%;
   overflow: hidden;
   height: 100%;
@@ -42,8 +42,8 @@
   gap: 9px;
 }
 
-.rest{
-  max-width: calc((1464px - 32px - 72px - 416px)/var(--num-regular-columns));
+.rest {
+  max-width: calc((1464px - 32px - 72px - 416px) / var(--num-regular-columns));
   width: 100%;
   overflow: hidden;
   height: 100%;
@@ -56,12 +56,7 @@
   gap: 9px;
 }
 
-.row{
+.row {
   font-size: 14px;
   font-weight: 500;
 }
-
-
-
-
-

@@ -54,14 +54,14 @@ export function CreateNewTeamModal({
   onClose
 }: CreateTeamModalProps) {
   const [access, setAccess] = useState<string>('member-access');
-  const [addedMembers, setAddedMembers] = useState<string[]>([]);
+  const [addedMembers, setAddedMembers] = useState<UserInfoProps[]>([]);
 
-  function onAddMember(username: string) {
-    setAddedMembers([...addedMembers, username]);
+  function onAddMember(user: UserInfoProps) {
+    setAddedMembers([...addedMembers, user]);
   }
 
   function onRemoveMember(username: string) {
-    setAddedMembers(addedMembers.filter((u) => u !== username));
+    setAddedMembers(addedMembers.filter((u) => u.userName !== username));
   }
 
   let elements: JSX.Element[];
@@ -80,11 +80,12 @@ export function CreateNewTeamModal({
       <CombinedSearch
         onAdd={onAddMember}
         onRemove={onRemoveMember}
+        itemsList={addedMembers}
         inputText={memberInputText}
         onInputChange={onMemberInputChange}
         placeholder="Enter username or email"
         resultUsers={(resultUsers ?? []).filter(
-          (u: UserInfoProps) => !addedMembers.includes(u.userName)
+          (u: UserInfoProps) => !addedMembers.find((m) => m.userName === u.userName)
         )}
       />
     </div>,

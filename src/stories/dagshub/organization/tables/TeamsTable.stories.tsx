@@ -1,8 +1,7 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import { RepoCardProps, TeamTable, TeamTableProps } from '../../../../components';
+import { TeamTable, TeamTableProps } from '../../../../components';
 import { UserPermissionForTeam } from '../../../../types';
-import { Member } from '../../../../components/dagshub/organization/tables/shared-classes';
 
 const meta: Meta<TeamTableProps> = {
   title: 'DagsHub/Org/Tables/TeamsTable',

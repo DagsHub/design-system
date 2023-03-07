@@ -28,7 +28,7 @@ export const Checkbox = ({
   return (
     <div className={classes} style={style}>
       <label>
-        <Icon icon="checkmark" fill={checked?'white':'transparent'} />
+        <Icon icon="checkmark" fill={checked ? 'white' : 'transparent'} />
         <input
           type="checkbox"
           aria-label={label}
