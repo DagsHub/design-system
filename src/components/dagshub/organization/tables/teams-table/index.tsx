@@ -1,20 +1,45 @@
 import React, { SetStateAction, useEffect, useState } from 'react';
 import { Icon } from '../../../../icons';
+import { Member } from '../shared-classes';
 import { UserInfo } from '../../profiles/user-info';
 import { Row, GenericTable } from '../generic-table';
 import { RepoCardProps } from '../../cards/repo-card';
-import { Member } from '../shared-classes';
+import { RadioButtonItemProps } from '../../../../forms';
 import { UserPermissionForTeam } from '../../../../../types';
+import { AddMemberModal } from '../../modals/add-member-modal';
+import { TeamSettingsModal } from '../../modals/team-settings-modal';
+import { RemoveMemberModal } from '../../modals/remove-member-modal';
 import { MiniRepoCardsModal } from '../../modals/mini-repo-cards-modal';
 import { Button, ButtonStretch, ButtonVariant, Dropdown } from '../../../../elements';
 
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import './teams-table.scss';
-import { RadioButtonItemProps } from '../../../../forms';
-import { AddMemberModal } from '../../modals/add-member-modal';
-import { TeamSettingsModal } from '../../modals/team-settings-modal';
-import { RemoveMemberModal } from '../../modals/remove-member-modal';
+
+const createInitialMapState = (arr: any[], initialValue: boolean | string) =>
+  arr.reduce((acc: any, user: any) => ({ ...acc, [user.id]: initialValue }), {});
+
+const teamPermissionsOptions: RadioButtonItemProps[] = [
+  {
+    id: UserPermissionForTeam.AdminAccess,
+    label: UserPermissionForTeam.AdminAccess,
+    description:
+      'members can:\n' +
+      '• read from\n' +
+      '• push to\n' +
+      "• add collaborators to the team's repositories"
+  },
+  {
+    id: UserPermissionForTeam.WriteAccess,
+    label: UserPermissionForTeam.WriteAccess,
+    description: 'members can:\n' + '• read from\n' + "• push to the team's repositories"
+  },
+  {
+    id: UserPermissionForTeam.ReadAccess,
+    label: UserPermissionForTeam.ReadAccess,
+    description: 'members can:\n' + '• view\n' + "• clone the team's repositories"
+  }
+];
 
 export interface TeamTableProps {
   teamId: number | string;
@@ -39,7 +64,8 @@ export interface TeamTableProps {
 //change its css to BEM
 //add (you) annotation to relevant user
 
-const MAX_ROWS = 7;
+const MAX_ROWS: number = 7;
+
 export function TeamTable({
   teamId,
   teamName,
@@ -58,13 +84,28 @@ export function TeamTable({
   onStarActionClick,
   copyInvitationAction
 }: TeamTableProps) {
-  let header: Row;
-  const [displayAddNewTeamMemberModal, setDisplayAddNewTeamMemberModal] = useState<boolean>(false);
   const [users, setUsers] = useState<any[]>([]);
   const [inputText, setInputText] = useState<string>('');
+  const [displayTeamSettingsModal, setDisplayTeamSettingsModal] = useState<boolean>(false);
+  const [displayAddNewTeamMemberModal, setDisplayAddNewTeamMemberModal] = useState<boolean>(false);
 
+  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<
+    Record<number | string, boolean>
+  >(createInitialMapState(members, false));
+
+  const [teamPerm, setTeamPerm] = useState<UserPermissionForTeam>(teamPermission);
+  const _options = teamPermissionsOptions.map((opt) => ({ ...opt, checked: opt.id === teamPerm }));
+
+  const [displayMiniCardModal, setDisplayMiniCardModal] = useState<boolean>(false);
   const onInputChange = (e: { target: { value: SetStateAction<string> } }) => {
     setInputText(e.target.value);
+  };
+
+  const handleClick = (userId: number | string) => {
+    setDisplayRemoveMemberFromTeamModal({
+      ...displayRemoveMemberFromTeamModal,
+      [userId]: !displayRemoveMemberFromTeamModal[userId]
+    });
   };
 
   useEffect(() => {
@@ -84,9 +125,7 @@ export function TeamTable({
     onInputTextChange();
   }, [inputText]);
 
-  const [displayTeamSettingsModal, setDisplayTeamSettingsModal] = useState<boolean>(false);
-
-  header = {
+  const header: Row = {
     columns: [
       <span className="teams-table-left-side-header">
         <span className="teams-table-left-side-header__team-name">{teamName} TEAM</span>
@@ -143,6 +182,7 @@ export function TeamTable({
               <TeamSettingsModal
                 teamName={teamName}
                 teamDescription={teamDescription}
+                userPermissionForTeam={teamPerm}
                 onClose={() => setDisplayTeamSettingsModal(false)}
                 onEditTeam={() => setDisplayTeamSettingsModal(false)}
                 onDeleteTeam={() => setDisplayTeamSettingsModal(false)}
@@ -152,18 +192,6 @@ export function TeamTable({
         )}
       </span>
     ]
-  };
-
-  const createInitialMapState = (arr: any[], initialValue: boolean | string) =>
-    arr.reduce((acc: any, user: any) => ({ ...acc, [user.id]: initialValue }), {});
-  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<
-    Record<number | string, boolean>
-  >(createInitialMapState(members, false));
-  const handleClick = (userId: number | string) => {
-    setDisplayRemoveMemberFromTeamModal({
-      ...displayRemoveMemberFromTeamModal,
-      [userId]: !displayRemoveMemberFromTeamModal[userId]
-    });
   };
 
   let rows: Row[] = [];
@@ -224,7 +252,7 @@ export function TeamTable({
           width={8}
           height={5}
           fill="#172D32"
-          icon={isActive ? 'solid-cheveron-up' : 'solid-cheveron-down'}
+          icon={`solid-cheveron-${isActive ? 'up' : 'down'}`}
         />
       ],
       rowClasses: 'table__collapse',
@@ -232,32 +260,6 @@ export function TeamTable({
     };
     rows.push(row);
   }
-
-  const teamPermissionsOptions: RadioButtonItemProps[] = [
-    {
-      id: 'Admin access',
-      label: 'Admin access',
-      description:
-        'members can:\n' +
-        '• read from\n' +
-        '• push to\n' +
-        "• add collaborators to the team's repositories"
-    },
-    {
-      id: 'Write access',
-      label: 'Write access',
-      description: 'members can:\n' + '• read from\n' + "• push to the team's repositories"
-    },
-    {
-      id: 'Read access',
-      label: 'Read access',
-      description: 'members can:\n' + '• view\n' + "• clone the team's repositories"
-    }
-  ];
-  const [teamPerm, setTeamPerm] = useState<string>(teamPermission);
-  const _options = teamPermissionsOptions.map((opt) => ({ ...opt, checked: opt.id === teamPerm }));
-
-  const [displayMiniCardModal, setDisplayMiniCardModal] = useState<boolean>(false);
 
   let footer: Row;
   if ((teamRepos ?? []).length != 0) {
@@ -304,8 +306,8 @@ export function TeamTable({
               teamName={teamName}
               repos={teamRepos}
               isLogged={isLogged}
-              onClick={() => setDisplayMiniCardModal(!displayMiniCardModal)}
               onStarActionClick={onStarActionClick}
+              onClick={() => setDisplayMiniCardModal(!displayMiniCardModal)}
             />
           )}
         </>
@@ -316,5 +318,6 @@ export function TeamTable({
       columns: [<span>This team doesn't have repositories yet</span>]
     };
   }
+
   return <GenericTable header={header} rows={rows} footer={footer} />;
 }

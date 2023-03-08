@@ -41,15 +41,15 @@ export function AddMemberModal({
 }: AddMemberModalProps) {
   const [team, setTeam] = useState<number | string>('');
   const [access, setAccess] = useState<string>('member-access');
-  const [addedMembers, setAddedMembers] = useState<string[]>([]);
+  const [addedMembers, setAddedMembers] = useState<UserInfoProps[]>([]);
   const [copyInvitation, setCopyInvitation] = useState<boolean>(false);
 
-  function onAddMember(username: string) {
-    setAddedMembers([...addedMembers, username]);
+  function onAddMember(user: UserInfoProps) {
+    setAddedMembers([...addedMembers, user]);
   }
 
   function onRemoveMember(username: string) {
-    setAddedMembers(addedMembers.filter((u) => u !== username));
+    setAddedMembers(addedMembers.filter((u) => u.userName !== username));
   }
 
   function onCloseModal() {
@@ -68,9 +68,12 @@ export function AddMemberModal({
         onAdd={onAddMember}
         inputText={inputText}
         placeholder={placeholder}
+        itemsList={addedMembers}
         onRemove={onRemoveMember}
         onInputChange={onInputChange}
-        resultUsers={resultUsers.filter((u: UserInfoProps) => !addedMembers.includes(u.userName))}
+        resultUsers={(resultUsers ?? []).filter(
+          (u: UserInfoProps) => !addedMembers.find((m) => m.userName === u.userName)
+        )}
       />
     </div>,
     isOrg ? (
