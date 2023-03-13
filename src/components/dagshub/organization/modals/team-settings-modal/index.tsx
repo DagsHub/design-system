@@ -32,15 +32,17 @@ const teamPermissionsOptions = [
 ];
 
 export interface TeamSettingsModalProps {
-  onClose: () => void;
+  teamId: number | string;
   teamName: string;
   teamDescription?: string;
   userPermissionForTeam?: UserPermissionForTeam;
   onDeleteTeam: (args?: any) => void;
   onEditTeam: (args?: any) => void;
+  onClose: () => void;
 }
 
 export function TeamSettingsModal({
+  teamId,
   teamName,
   teamDescription,
   onDeleteTeam,
@@ -97,7 +99,13 @@ export function TeamSettingsModal({
           <Button
             width={120}
             label="Save changes"
-            onClick={onEditTeam}
+            onClick={() =>
+              onEditTeam({
+                name: teamNameInputText,
+                description: teamDescriptionInputText,
+                permission
+              })
+            }
             variant={ButtonVariant.Primary}
           />
         </div>
@@ -109,7 +117,7 @@ export function TeamSettingsModal({
           </div>
           <Button
             width={230}
-            onClick={onDeleteTeam}
+            onClick={() => onDeleteTeam(teamId)}
             variant={ButtonVariant.Error}
             label="I understand, delete this team"
           />

@@ -53,6 +53,8 @@ export interface TeamTableProps {
   isActive: Boolean;
   removeFromTeam: (removeLink?: string) => void;
   addNewTeamMember: (args?: any) => void;
+  onEditTeam: (args: OnEditTeamInput) => void;
+  onDeleteTeam: (args?: any) => void;
   loggedUserId: number;
   loggedUserIsOwner: boolean;
   isLogged: boolean;
@@ -63,6 +65,12 @@ export interface TeamTableProps {
 //add functionality, tooltip
 //change its css to BEM
 //add (you) annotation to relevant user
+
+export interface OnEditTeamInput {
+  name: string;
+  description: string;
+  permission: UserPermissionForTeam;
+}
 
 const MAX_ROWS: number = 7;
 
@@ -78,6 +86,8 @@ export function TeamTable({
   teamPermission,
   removeFromTeam,
   addNewTeamMember,
+  onEditTeam,
+  onDeleteTeam,
   loggedUserId,
   loggedUserIsOwner,
   isLogged,
@@ -97,6 +107,7 @@ export function TeamTable({
   const _options = teamPermissionsOptions.map((opt) => ({ ...opt, checked: opt.id === teamPerm }));
 
   const [displayMiniCardModal, setDisplayMiniCardModal] = useState<boolean>(false);
+
   const onInputChange = (e: { target: { value: SetStateAction<string> } }) => {
     setInputText(e.target.value);
   };
@@ -158,7 +169,7 @@ export function TeamTable({
                 placeholder="Enter username or email"
                 onClose={() => setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal)}
                 addMember={({ access, team, users }) => {
-                  addNewTeamMember();
+                  addNewTeamMember({ access, team, users });
                   setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal);
                 }}
                 copyInvitationAction={copyInvitationAction}
@@ -180,12 +191,19 @@ export function TeamTable({
           <>
             {displayTeamSettingsModal && (
               <TeamSettingsModal
+                teamId={teamId}
                 teamName={teamName}
                 teamDescription={teamDescription}
                 userPermissionForTeam={teamPerm}
                 onClose={() => setDisplayTeamSettingsModal(false)}
-                onEditTeam={() => setDisplayTeamSettingsModal(false)}
-                onDeleteTeam={() => setDisplayTeamSettingsModal(false)}
+                onEditTeam={({ name, description, permission }: OnEditTeamInput) => {
+                  onEditTeam({ name, description, permission });
+                  setDisplayTeamSettingsModal(false);
+                }}
+                onDeleteTeam={(id: number | string) => {
+                  onDeleteTeam(id);
+                  setDisplayTeamSettingsModal(false);
+                }}
               />
             )}
           </>

@@ -38,3 +38,13 @@ Disabled.args = {
   rootMaxWidth: '260px',
   disabled: true
 };
+
+export const ControlledInput = () => {
+  const [value, setValue] = React.useState<string>('change me');
+  return (
+    <Input
+      value={value}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
+    />
+  );
+};

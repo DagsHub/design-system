@@ -1,44 +1,52 @@
-import React, { useState } from 'react';
-import { Icon } from '../../../../icons';
+import _ from 'lodash';
+import isEmail from 'validator/lib/isEmail';
+import React, { ChangeEvent, useState } from 'react';
+
+// import { Icon } from '../../../../icons';
 import { Input } from '../../../../forms';
 import { GenericModal } from '../generic-modal';
 import { UserInfoProps } from '../../profiles/user-info';
 import { Button, ButtonVariant } from '../../../../elements';
-import { UserPermissionForTeam } from '../../../../../types';
+// import { UserPermissionForTeam } from '../../../../../types';
 import { CombinedSearch } from '../../search/combined-search';
-import { RadioButtonList } from '../../../../forms/radio-button/radio-button-list';
+// import { RadioButtonList } from '../../../../forms/radio-button/radio-button-list';
 
 import '../../../../styles/root.scss';
 import './team-settings-modal.scss';
 
-const teamPermissionsItems = [
-  {
-    id: UserPermissionForTeam.ReadAccess,
-    label: UserPermissionForTeam.ReadAccess,
-    description: 'This team will be able to view and clone its repositories',
-    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
-  },
-  {
-    id: UserPermissionForTeam.WriteAccess,
-    label: UserPermissionForTeam.WriteAccess,
-    description: 'This team will be able to read its repositories, as well as push to them.',
-    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
-  },
-  {
-    id: UserPermissionForTeam.AdminAccess,
-    label: UserPermissionForTeam.AdminAccess,
-    description:
-      'This team will be able to push/pull to its repositories, as well as add other collaborators to them.',
-    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
-  }
-];
+// const teamPermissionsItems = [
+//   {
+//     id: UserPermissionForTeam.ReadAccess,
+//     label: UserPermissionForTeam.ReadAccess,
+//     description: 'This team will be able to view and clone its repositories',
+//     icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
+//   },
+//   {
+//     id: UserPermissionForTeam.WriteAccess,
+//     label: UserPermissionForTeam.WriteAccess,
+//     description: 'This team will be able to read its repositories, as well as push to them.',
+//     icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
+//   },
+//   {
+//     id: UserPermissionForTeam.AdminAccess,
+//     label: UserPermissionForTeam.AdminAccess,
+//     description:
+//       'This team will be able to push/pull to its repositories, as well as add other collaborators to them.',
+//     icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
+//   }
+// ];
+
+function getEmailMembers(membersInput: string) {
+  return _(membersInput.split(/,/))
+    .map(_.trim)
+    .filter((val: string) => isEmail(val))
+    .value();
+}
 
 export interface CreateTeamModalProps {
   onClose: () => void;
   memberInputText: string;
-  onMemberInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
-  nameInputChange: string;
-  onNameInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
+  onMemberInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
   resultUsers?: UserInfoProps[];
   createTeam: (args?: any) => void;
   orgName: string;
@@ -48,14 +56,13 @@ export function CreateNewTeamModal({
   orgName,
   memberInputText,
   onMemberInputChange,
-  nameInputChange,
-  onNameInputChange,
   resultUsers,
   createTeam,
   onClose
 }: CreateTeamModalProps) {
+  const [name, setName] = useState<string>('');
   const [addedMembers, setAddedMembers] = useState<UserInfoProps[]>([]);
-  const [permission, setPermission] = useState<string>(UserPermissionForTeam.ReadAccess);
+  // const [permission, setPermission] = useState<string>(UserPermissionForTeam.ReadAccess);
 
   function onAddMember(user: UserInfoProps) {
     setAddedMembers([...addedMembers, user]);
@@ -70,8 +77,10 @@ export function CreateNewTeamModal({
     <Input
       rootMaxWidth={600}
       label="1. Name your team"
-      onChange={onNameInputChange}
-      value={nameInputChange}
+      value={name}
+      onChange={(e: ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
+      }}
     />,
     <p className="create-new-team-modal__instructions">
       2. Add people by searching their username or enter email address to invite someone outside
@@ -90,12 +99,12 @@ export function CreateNewTeamModal({
         )}
       />
     </div>,
-    <RadioButtonList
-      title="Team permissions"
-      initialChecked={permission}
-      onChecked={setPermission}
-      items={teamPermissionsItems}
-    />,
+    // <RadioButtonList
+    //   title="Team permissions"
+    //   initialChecked={permission}
+    //   onChecked={setPermission}
+    //   items={teamPermissionsItems}
+    // />,
     <div className="team-settings-modal__buttons">
       <Button
         variant={ButtonVariant.Primary}
@@ -103,9 +112,9 @@ export function CreateNewTeamModal({
         width={600}
         onClick={() =>
           createTeam({
-            name: nameInputChange,
+            name,
             members: addedMembers,
-            permission
+            invitees: getEmailMembers(memberInputText)
           })
         }
       />

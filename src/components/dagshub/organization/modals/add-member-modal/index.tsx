@@ -78,7 +78,7 @@ export function AddMemberModal({
     </div>,
     isOrg ? (
       <>
-        <RadioButtonList
+        {/* <RadioButtonList
           initialChecked={access}
           onChecked={setAccess}
           items={[
@@ -99,7 +99,7 @@ export function AddMemberModal({
               icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
             }
           ]}
-        />
+        /> */}
         {teams?.length && false ? (
           <div className="add-member-modal__dropdown">
             <Dropdown
