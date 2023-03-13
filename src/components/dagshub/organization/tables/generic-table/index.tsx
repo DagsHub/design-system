@@ -8,8 +8,8 @@ export interface TableProps {
   header?: Row;
   rows: Row[];
   footer?: Row;
-  rowHeight?:number;
-  tableWidth?:number;
+  rowHeight?: number;
+  tableWidth?: number;
 }
 
 export interface Row {
@@ -28,14 +28,17 @@ export function GenericTable(props: TableProps) {
   };
 
   return (
-    <div className={props.classnames ? props.classnames : 'table'} style={{maxWidth:props.tableWidth}}>
+    <div
+      className={props.classnames ? props.classnames : 'table'}
+      style={{ maxWidth: props.tableWidth }}
+    >
       {props.header && (
         <div className="table__header">{props.header?.columns?.map((column) => column)}</div>
       )}
       {props.rows?.map((row: Row, rowIndex) => (
         <div
           onClick={row.onClick}
-          style={{...row.style,height:props.rowHeight }}
+          style={{ ...row.style, height: props.rowHeight }}
           className={generateClassName(!!props.footer, rowIndex, props.rows.length, row)}
         >
           {row.columns?.map((column) => column)}

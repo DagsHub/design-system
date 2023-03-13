@@ -9,7 +9,7 @@ import './search-results.scss';
 
 export interface SearchResultListProps {
   users: UserInfoProps[];
-  onAdd?: (username: string) => void;
+  onAdd?: (user: UserInfoProps) => void;
 }
 
 export function SearchResultList({ users, onAdd = () => {} }: SearchResultListProps) {
@@ -24,7 +24,7 @@ export function SearchResultList({ users, onAdd = () => {} }: SearchResultListPr
           label="Add member"
           stretch={ButtonStretch.Slim}
           variant={ButtonVariant.Secondary}
-          onClick={() => onAdd(user.userName)}
+          onClick={() => onAdd(user)}
           iconLeft={<Icon width={12} height={12} fill="#172D32" icon="outline-plus" />}
         />
       ]

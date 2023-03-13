@@ -54,8 +54,8 @@ export const Button = React.forwardRef<
         aria-label={label}
         className={classes}
         disabled={disabled}
+        style={{ width: fullWidth ? '100%' : width || 'auto' }}
         {...props}
-        style={{ width: fullWidth ? '100%' : (width || 'auto') }}
       >
         <div className="button__content">
           {iconLeft}
@@ -66,39 +66,3 @@ export const Button = React.forwardRef<
     );
   }
 );
-
-// export const Button = ({
-//   variant = ButtonVariant.Primary,
-//   stretch = ButtonStretch.Normal,
-//   fullWidth = false,
-//   label,
-//   disabled = false,
-//   className = '',
-//   iconLeft,
-//   iconRight,
-//   width,
-// }: ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement> & { ref: React.Ref<HTMLButtonElement> }) => {
-//   const classes = classNames([`dagshub-btn`, variant, stretch, className], { fullWidth });
-
-//   const Button = React.forwardRef<HTMLButtonElement, ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>>((props, ref) => (
-//     <button ref={ref} {...props}>
-//       <div className="button__content">
-//         {props.iconLeft}
-//         {props.label}
-//         {props.iconRight}
-//       </div>
-//     </button>
-//   ));
-
-//   return (
-//     <Button
-//       label={label}
-//       aria-label={label}
-//       className={classes}
-//       disabled={disabled}
-//       iconLeft={iconLeft || <></>}
-//       iconRight={iconRight || <></>}
-//       style={{ width: width || 'auto' }}
-//     />
-//   );
-// };

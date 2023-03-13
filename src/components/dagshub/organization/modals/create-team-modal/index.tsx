@@ -3,8 +3,9 @@ import { Icon } from '../../../../icons';
 import { Input } from '../../../../forms';
 import { GenericModal } from '../generic-modal';
 import { UserInfoProps } from '../../profiles/user-info';
-import { CombinedSearch } from '../../search/combined-search';
 import { Button, ButtonVariant } from '../../../../elements';
+import { UserPermissionForTeam } from '../../../../../types';
+import { CombinedSearch } from '../../search/combined-search';
 import { RadioButtonList } from '../../../../forms/radio-button/radio-button-list';
 
 import '../../../../styles/root.scss';
@@ -12,23 +13,23 @@ import './team-settings-modal.scss';
 
 const teamPermissionsItems = [
   {
-    id: 1,
-    label: 'Read access',
+    id: UserPermissionForTeam.ReadAccess,
+    label: UserPermissionForTeam.ReadAccess,
     description: 'This team will be able to view and clone its repositories',
-    icon: <Icon icon="outline-lock-closed" fill={'#94A3B8'} width={12} height={13} />
+    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
   },
   {
-    id: 2,
-    label: 'Write access',
+    id: UserPermissionForTeam.WriteAccess,
+    label: UserPermissionForTeam.WriteAccess,
     description: 'This team will be able to read its repositories, as well as push to them.',
-    icon: <Icon icon="outline-lock-closed" fill={'#94A3B8'} width={12} height={13} />
+    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
   },
   {
-    id: 3,
-    label: 'Admin access',
+    id: UserPermissionForTeam.AdminAccess,
+    label: UserPermissionForTeam.AdminAccess,
     description:
       'This team will be able to push/pull to its repositories, as well as add other collaborators to them.',
-    icon: <Icon icon="outline-lock-closed" fill={'#94A3B8'} width={12} height={13} />
+    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
   }
 ];
 
@@ -53,15 +54,15 @@ export function CreateNewTeamModal({
   createTeam,
   onClose
 }: CreateTeamModalProps) {
-  const [access, setAccess] = useState<string>('member-access');
-  const [addedMembers, setAddedMembers] = useState<string[]>([]);
+  const [addedMembers, setAddedMembers] = useState<UserInfoProps[]>([]);
+  const [permission, setPermission] = useState<string>(UserPermissionForTeam.ReadAccess);
 
-  function onAddMember(username: string) {
-    setAddedMembers([...addedMembers, username]);
+  function onAddMember(user: UserInfoProps) {
+    setAddedMembers([...addedMembers, user]);
   }
 
   function onRemoveMember(username: string) {
-    setAddedMembers(addedMembers.filter((u) => u !== username));
+    setAddedMembers(addedMembers.filter((u) => u.userName !== username));
   }
 
   let elements: JSX.Element[];
@@ -80,18 +81,19 @@ export function CreateNewTeamModal({
       <CombinedSearch
         onAdd={onAddMember}
         onRemove={onRemoveMember}
+        itemsList={addedMembers}
         inputText={memberInputText}
         onInputChange={onMemberInputChange}
         placeholder="Enter username or email"
         resultUsers={(resultUsers ?? []).filter(
-          (u: UserInfoProps) => !addedMembers.includes(u.userName)
+          (u: UserInfoProps) => !addedMembers.find((m) => m.userName === u.userName)
         )}
       />
     </div>,
     <RadioButtonList
-      initialChecked={access}
-      onChecked={setAccess}
       title="Team permissions"
+      initialChecked={permission}
+      onChecked={setPermission}
       items={teamPermissionsItems}
     />,
     <div className="team-settings-modal__buttons">
@@ -103,7 +105,7 @@ export function CreateNewTeamModal({
           createTeam({
             name: nameInputChange,
             members: addedMembers,
-            access
+            permission
           })
         }
       />

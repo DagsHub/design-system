@@ -10,8 +10,9 @@ export interface HorizontalMenuProps {
 export function HorizontalMenu(props: HorizontalMenuProps) {
   return (
     <div className={'horizontal-menu'}>
-      {props.tabs?.map((tab) => (
+      {props.tabs?.map((tab, i) => (
         <HorizontalMenuTab
+          key={`${tab.text}-${i}`}
           text={tab.text}
           count={tab.count}
           icon={tab.icon}
