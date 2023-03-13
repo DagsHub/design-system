@@ -7,6 +7,12 @@
   color: var(--color-text-default);
   display: flex;
   width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.sorting-arrows{
+  display: flex;
+  align-items: center;
 }
 
 :root {
@@ -21,7 +27,7 @@
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  padding: 12px 19px 12px 0px;
+  padding: 12px 19px 12px 3px;
   text-overflow: ellipsis;
   flex-shrink: 0;
   gap: 9px;

@@ -1,0 +1,74 @@
+.dagshub-dropdown {
+  position: relative;
+  white-space: pre-wrap;
+
+  .dagshub-dropdown__box {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-text-default);
+    height: 32px;
+    padding-left: 8px;
+    padding-right: 9px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--secondary-state-300);
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  .dagshub-dropdown__options {
+    border-radius: 6px;
+    gap: 16px;
+    z-index: 1;
+    position: absolute;
+    top: 40px;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    overflow-y: scroll;
+
+    &.right {
+      right: 0px;
+    }
+
+    &-radio {
+      padding: 12px;
+      background-color: var(--dark-mode-dark-800);
+      > div,
+      label,
+      p {
+        color: white !important;
+      }
+    }
+
+    &-checkbox {
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 12px;
+      transition: background-color 0.4s;
+      background-color: white;
+    }
+
+    &-opt {
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 12px;
+      transition: background-color 0.4s;
+      background-color: var(--secondary-state-100);
+      box-sizing: border-box;
+
+      &.checked {
+        background-color: var(--secondary-state-200);
+      }
+
+      &:hover:not(.checked) {
+        border: 1px solid var(--secondary-state-300);
+      }
+    }
+  }
+}
