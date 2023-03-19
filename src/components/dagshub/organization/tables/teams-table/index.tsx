@@ -198,7 +198,6 @@ export function TeamTable({
           <>
             {displayTeamSettingsModal && (
               <TeamSettingsModal
-                teamId={teamId}
                 teamName={teamName}
                 teamDescription={teamDescription}
                 userPermissionForTeam={teamPerm}
@@ -207,8 +206,8 @@ export function TeamTable({
                   onEditTeam({ name, description, permission });
                   setDisplayTeamSettingsModal(false);
                 }}
-                onDeleteTeam={(id: number | string) => {
-                  onDeleteTeam(id);
+                onDeleteTeam={(teamName) => {
+                  onDeleteTeam(teamName);
                   setDisplayTeamSettingsModal(false);
                 }}
               />

@@ -4,35 +4,34 @@ import { Input } from '../../../../forms';
 import { GenericModal } from '../generic-modal';
 import { Button, ButtonVariant } from '../../../../elements';
 import { UserPermissionForTeam } from '../../../../../types';
-import { RadioButtonList } from '../../../../forms/radio-button/radio-button-list';
+// import { RadioButtonList } from '../../../../forms/radio-button/radio-button-list';
 
 import '../../../../styles/root.scss';
 import './team-settings-modal.scss';
 
-const teamPermissionsOptions = [
-  {
-    id: UserPermissionForTeam.ReadAccess,
-    label: UserPermissionForTeam.ReadAccess,
-    description: 'This team will be able to view and clone its repositories',
-    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
-  },
-  {
-    id: UserPermissionForTeam.WriteAccess,
-    label: UserPermissionForTeam.WriteAccess,
-    description: 'This team will be able to read its repositories, as well as push to them.',
-    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
-  },
-  {
-    id: UserPermissionForTeam.AdminAccess,
-    label: UserPermissionForTeam.AdminAccess,
-    description:
-      'This team will be able to push/pull to its repositories, as well as add other collaborators to them.',
-    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
-  }
-];
+// const teamPermissionsOptions = [
+//   {
+//     id: UserPermissionForTeam.ReadAccess,
+//     label: UserPermissionForTeam.ReadAccess,
+//     description: 'This team will be able to view and clone its repositories',
+//     icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
+//   },
+//   {
+//     id: UserPermissionForTeam.WriteAccess,
+//     label: UserPermissionForTeam.WriteAccess,
+//     description: 'This team will be able to read its repositories, as well as push to them.',
+//     icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
+//   },
+//   {
+//     id: UserPermissionForTeam.AdminAccess,
+//     label: UserPermissionForTeam.AdminAccess,
+//     description:
+//       'This team will be able to push/pull to its repositories, as well as add other collaborators to them.',
+//     icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
+//   }
+// ];
 
 export interface TeamSettingsModalProps {
-  teamId: number | string;
   teamName: string;
   teamDescription?: string;
   userPermissionForTeam?: UserPermissionForTeam;
@@ -42,7 +41,6 @@ export interface TeamSettingsModalProps {
 }
 
 export function TeamSettingsModal({
-  teamId,
   teamName,
   teamDescription,
   onDeleteTeam,
@@ -81,12 +79,12 @@ export function TeamSettingsModal({
       value={teamDescriptionInputText}
       onChange={onTeamDescriptionInputChange}
     />,
-    <RadioButtonList
-      initialChecked={permission}
-      onChecked={setPermission}
-      title="Team permissions"
-      items={teamPermissionsOptions}
-    />,
+    // <RadioButtonList
+    //   initialChecked={permission}
+    //   onChecked={setPermission}
+    //   title="Team permissions"
+    //   items={teamPermissionsOptions}
+    // />,
     <>
       {!displayDeleteBtns ? (
         <div className="team-settings-modal__buttons">
@@ -117,8 +115,8 @@ export function TeamSettingsModal({
           </div>
           <Button
             width={230}
-            onClick={() => onDeleteTeam(teamId)}
             variant={ButtonVariant.Error}
+            onClick={() => onDeleteTeam(teamName)}
             label="I understand, delete this team"
           />
           <Button
