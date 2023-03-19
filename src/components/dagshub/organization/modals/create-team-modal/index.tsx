@@ -66,6 +66,7 @@ export function CreateNewTeamModal({
 
   function onAddMember(user: UserInfoProps) {
     setAddedMembers([...addedMembers, user]);
+    onMemberInputChange({ target: { value: '' } } as any);
   }
 
   function onRemoveMember(username: string) {
