@@ -49,6 +49,7 @@
     "@types/node": "^18.14.2",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/validator": "^13.7.14",
     "auto": "^10.37.6",
     "babel-loader": "^8.3.0",
     "chromatic": "^6.15.0",
@@ -78,7 +79,9 @@
     "@storybook/cli": "^7.0.0-beta.20",
     "@tippyjs/react": "^4.2.6",
     "classnames": "^2.3.2",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "react-use": "^17.4.0",
+    "validator": "^13.9.0"
   },
   "bugs": {
     "url": "https://github.com/dagshub/design-system/issues"

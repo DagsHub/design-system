@@ -29,7 +29,6 @@ const users = [
 
 export const Primary = () => {
   const [opened, setOpened] = useState<boolean>(true);
-  const [nameInput, setNameInput] = useState<string>('');
   const [memberInput, setMemberInput] = useState<string>('');
   const [userOptions, setUserOptions] = useState<any[]>([]);
 
@@ -49,8 +48,6 @@ export const Primary = () => {
       orgName="demo org"
       memberInputText={memberInput}
       onMemberInputChange={(e) => setMemberInput(e.target.value)}
-      nameInputChange={nameInput}
-      onNameInputChange={(e) => setNameInput(e.target.value)}
       onClose={() => setOpened(false)}
       resultUsers={userOptions}
       createTeam={console.info}

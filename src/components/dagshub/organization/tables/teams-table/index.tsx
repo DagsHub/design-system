@@ -1,4 +1,6 @@
-import React, { SetStateAction, useEffect, useState } from 'react';
+import { useDebounce } from 'react-use';
+import React, { ChangeEvent, useEffect, useState, useCallback } from 'react';
+
 import { Icon } from '../../../../icons';
 import { Member } from '../shared-classes';
 import { UserInfo } from '../../profiles/user-info';
@@ -52,7 +54,9 @@ export interface TeamTableProps {
   style: string;
   isActive: Boolean;
   removeFromTeam: (removeLink?: string) => void;
-  addNewTeamMember: (args?: any) => void;
+  addNewTeamMembers: (args?: any) => void;
+  onEditTeam: (args: OnEditTeamInput) => void;
+  onDeleteTeam: (args?: any) => void;
   loggedUserId: number;
   loggedUserIsOwner: boolean;
   isLogged: boolean;
@@ -60,9 +64,11 @@ export interface TeamTableProps {
   copyInvitationAction: (args?: any) => void;
 }
 
-//add functionality, tooltip
-//change its css to BEM
-//add (you) annotation to relevant user
+export interface OnEditTeamInput {
+  name: string;
+  description: string;
+  permission: UserPermissionForTeam;
+}
 
 const MAX_ROWS: number = 7;
 
@@ -77,7 +83,9 @@ export function TeamTable({
   teamRepos,
   teamPermission,
   removeFromTeam,
-  addNewTeamMember,
+  addNewTeamMembers,
+  onEditTeam,
+  onDeleteTeam,
   loggedUserId,
   loggedUserIsOwner,
   isLogged,
@@ -86,6 +94,7 @@ export function TeamTable({
 }: TeamTableProps) {
   const [users, setUsers] = useState<any[]>([]);
   const [inputText, setInputText] = useState<string>('');
+  const [debouncedInputText, setDebouncedInputText] = useState<string>('');
   const [displayTeamSettingsModal, setDisplayTeamSettingsModal] = useState<boolean>(false);
   const [displayAddNewTeamMemberModal, setDisplayAddNewTeamMemberModal] = useState<boolean>(false);
 
@@ -97,7 +106,8 @@ export function TeamTable({
   const _options = teamPermissionsOptions.map((opt) => ({ ...opt, checked: opt.id === teamPerm }));
 
   const [displayMiniCardModal, setDisplayMiniCardModal] = useState<boolean>(false);
-  const onInputChange = (e: { target: { value: SetStateAction<string> } }) => {
+
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   };
 
@@ -108,22 +118,30 @@ export function TeamTable({
     });
   };
 
+  useDebounce(
+    () => {
+      setDebouncedInputText(inputText);
+    },
+    650,
+    [inputText]
+  );
+
+  const onSearchUsers: () => any = useCallback(async () => {
+    const rsp = await fetch(`/api/v1/users/search?q=${inputText}`)
+      .then((r) => r.json())
+      .catch(console.error);
+
+    setUsers(
+      rsp.data.map((user: any) => ({
+        userName: user.username,
+        imageSource: user.avatar_url
+      }))
+    );
+  }, [debouncedInputText]);
+
   useEffect(() => {
-    const onInputTextChange = async () => {
-      const rsp = await fetch(`/api/v1/users/search?q=${inputText}`)
-        .then((r) => r.json())
-        .catch(console.error);
-
-      setUsers(
-        rsp.data.map((user: any) => ({
-          userName: user.username,
-          imageSource: user.avatar_url
-        }))
-      );
-    };
-
-    onInputTextChange();
-  }, [inputText]);
+    onSearchUsers();
+  }, [debouncedInputText]);
 
   const header: Row = {
     columns: [
@@ -148,17 +166,17 @@ export function TeamTable({
           <>
             {displayAddNewTeamMemberModal && (
               <AddMemberModal
+                isTeam
                 isOrg={false}
                 isAdmin={false}
-                isTeam={true}
                 resultUsers={users}
                 inputText={inputText}
                 name={teamName}
                 onInputChange={onInputChange}
                 placeholder="Enter username or email"
                 onClose={() => setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal)}
-                addMember={({ access, team, users }) => {
-                  addNewTeamMember();
+                addMembers={({ access, team, members, invitees }) => {
+                  addNewTeamMembers({ access, team, members, invitees });
                   setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal);
                 }}
                 copyInvitationAction={copyInvitationAction}
@@ -184,8 +202,14 @@ export function TeamTable({
                 teamDescription={teamDescription}
                 userPermissionForTeam={teamPerm}
                 onClose={() => setDisplayTeamSettingsModal(false)}
-                onEditTeam={() => setDisplayTeamSettingsModal(false)}
-                onDeleteTeam={() => setDisplayTeamSettingsModal(false)}
+                onEditTeam={({ name, description, permission }: OnEditTeamInput) => {
+                  onEditTeam({ name, description, permission });
+                  setDisplayTeamSettingsModal(false);
+                }}
+                onDeleteTeam={(teamName) => {
+                  onDeleteTeam(teamName);
+                  setDisplayTeamSettingsModal(false);
+                }}
               />
             )}
           </>

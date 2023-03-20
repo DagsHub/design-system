@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { Icon } from '../../../../icons';
 import { Input } from '../../../../forms';
 import { SearchResultList } from '../search-results';
@@ -8,7 +8,7 @@ import '../../../../styles/root.scss';
 import './combined-search.scss';
 
 export interface CombinedSearchProps {
-  onInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
+  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
   inputText: string;
   placeholder: string;
   itemsList?: UserInfoProps[];

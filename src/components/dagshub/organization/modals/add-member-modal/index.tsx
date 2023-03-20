@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import _ from 'lodash';
+import React, { ChangeEvent, useState } from 'react';
+import isEmail from 'validator/lib/isEmail';
+
 import { Icon } from '../../../../icons';
 import { GenericModal } from '../generic-modal';
 import { UserInfoProps } from '../../profiles/user-info';
 import { Dropdown } from '../../../../elements/dropdown';
 import { CombinedSearch } from '../../search/combined-search';
 import { Button, ButtonVariant } from '../../../../elements/button';
-import { RadioButtonList } from '../../../../forms/radio-button/radio-button-list';
+// import { RadioButtonList } from '../../../../forms/radio-button/radio-button-list';
 
 import '../../../../styles/root.scss';
 import './add-member-modal.scss';
+
+function getEmailMembers(membersInput: string) {
+  return _(membersInput.split(/,/))
+    .map(_.trim)
+    .filter((val: string) => isEmail(val))
+    .value();
+}
 
 export interface AddMemberModalProps {
   isOrg: boolean;
@@ -17,11 +27,11 @@ export interface AddMemberModalProps {
   name: string;
   teams?: { id: number | string; name: string }[];
   onClose?: () => void;
-  onInputChange: (e: { target: { value: React.SetStateAction<string> } }) => void;
+  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
   inputText: string;
   resultUsers?: UserInfoProps[];
   placeholder?: string;
-  addMember: (args?: any) => void;
+  addMembers: (args?: any) => void;
   copyInvitationAction: (args?: any) => void;
 }
 
@@ -36,7 +46,7 @@ export function AddMemberModal({
   inputText,
   resultUsers = [],
   placeholder = '',
-  addMember,
+  addMembers,
   copyInvitationAction
 }: AddMemberModalProps) {
   const [team, setTeam] = useState<number | string>('');
@@ -46,17 +56,11 @@ export function AddMemberModal({
 
   function onAddMember(user: UserInfoProps) {
     setAddedMembers([...addedMembers, user]);
+    onInputChange({ target: { value: '' } } as any);
   }
 
   function onRemoveMember(username: string) {
     setAddedMembers(addedMembers.filter((u) => u.userName !== username));
-  }
-
-  function onCloseModal() {
-    setTeam('');
-    setAccess('member-access');
-    setAddedMembers([]);
-    onClose();
   }
 
   const elements: JSX.Element[] = [
@@ -78,7 +82,7 @@ export function AddMemberModal({
     </div>,
     isOrg ? (
       <>
-        <RadioButtonList
+        {/* <RadioButtonList
           initialChecked={access}
           onChecked={setAccess}
           items={[
@@ -99,7 +103,7 @@ export function AddMemberModal({
               icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
             }
           ]}
-        />
+        /> */}
         {teams?.length && false ? (
           <div className="add-member-modal__dropdown">
             <Dropdown
@@ -119,7 +123,7 @@ export function AddMemberModal({
               <a className="add-member-modal__create-team-text">
                 {' '}
                 create your first team{' '}
-                <Icon width={9.33} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
+                <Icon width={9} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
               </a>
             </div>
           )
@@ -135,10 +139,11 @@ export function AddMemberModal({
         }`}
         width={600}
         onClick={() =>
-          addMember({
+          addMembers({
             team,
             access,
-            users: addedMembers
+            members: addedMembers,
+            invitees: getEmailMembers(inputText)
           })
         }
       />
@@ -149,9 +154,9 @@ export function AddMemberModal({
         variant={ButtonVariant.Secondary}
         iconRight={
           copyInvitation ? (
-            <Icon icon={'outline-check'} width={10.67} height={8} fill="#000000" />
+            <Icon icon="outline-check" width={11} height={8} fill="#000000" />
           ) : (
-            <Icon icon={'outline-copy'} width={15} height={15} fill="#000000" />
+            <Icon icon="outline-copy" width={15} height={15} fill="#000000" />
           )
         }
         onClick={() => {
@@ -168,7 +173,7 @@ export function AddMemberModal({
         isTeam ? ' team' : ''
       }`}
       elements={elements}
-      onClose={onCloseModal}
+      onClose={onClose}
     />
   );
 }

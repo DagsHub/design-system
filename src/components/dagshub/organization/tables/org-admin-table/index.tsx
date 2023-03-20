@@ -1,26 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import { useDebounce } from 'react-use';
+import React, { ChangeEvent, useEffect, useState, useCallback } from 'react';
+
 import { Icon } from '../../../../icons';
 import { Row, GenericTable } from '../generic-table';
 import { UserPermissionForTeam } from '../../../../../types';
+import { AddMemberModal } from '../../modals/add-member-modal';
 import { UserInfo } from '../../../organization/profiles/user-info';
+import { RemoveMemberModal } from '../../modals/remove-member-modal';
 import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
 
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import './org-admin-table.scss';
-import { RemoveMemberModal } from '../../modals/remove-member-modal';
-import { AddMemberModal } from '../../modals/add-member-modal';
 
 export interface OrgAdminTableProps {
   admins: User[];
   loggedUserId: number;
   loggedUserIsOwner: boolean;
   orgName: string;
+  addMembers: (args?: any) => void;
   copyInvitationAction: (args?: any) => void;
 }
 
 interface User {
   id: number;
+  orgName: string;
   userImage: string;
   username: string;
   leaveLink?: string;
@@ -29,63 +33,79 @@ interface User {
   homeLink?: string;
 }
 
-//add functionality, tooltip
-//add links?
-//change its css to BEM
-//add te hover design for the private-public
-//add (you) annotation to relevant user
-
-export function OrgAdminTable(props: OrgAdminTableProps) {
+export function OrgAdminTable({
+  orgName,
+  admins,
+  loggedUserId,
+  loggedUserIsOwner,
+  addMembers,
+  copyInvitationAction
+}: OrgAdminTableProps) {
   const [users, setUsers] = useState<any[]>([]);
   const [inputText, setInputText] = useState<string>('');
   const [displayModal, setDisplayModal] = useState<boolean>(false);
-  const onInputChange = (e: { target: { value: React.SetStateAction<string> } }) => {
+  const [debouncedInputText, setDebouncedInputText] = useState<string>('');
+
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   };
 
+  useDebounce(
+    () => {
+      setDebouncedInputText(inputText);
+    },
+    650,
+    [inputText]
+  );
+
+  const onSearchUsers: () => any = useCallback(async () => {
+    const rsp = await fetch(`/api/v1/users/search?q=${inputText}`)
+      .then((r) => r.json())
+      .catch(console.error);
+
+    setUsers(
+      rsp.data.map((user: any) => ({
+        userName: user.username,
+        imageSource: user.avatar_url
+      }))
+    );
+  }, [debouncedInputText]);
+
   useEffect(() => {
-    const onInputTextChange = async () => {
-      const rsp = await fetch(`/api/v1/users/search?q=${inputText}`)
-        .then((r) => r.json())
-        .catch(console.error);
+    onSearchUsers();
+  }, [debouncedInputText]);
 
-      setUsers(
-        rsp.data.map((user: any) => ({
-          userName: user.username,
-          imageSource: user.avatar_url
-        }))
-      );
-    };
-
-    onInputTextChange();
-  }, [inputText]);
   let header: Row;
   header = {
     columns: [
-      <div className={'org-admin-table__header'}>Organization admins</div>,
+      <div className="org-admin-table__header">Organization admins</div>,
       <Button
+        label="Add another org admin"
         variant={ButtonVariant.Ghost}
         stretch={ButtonStretch.Slim}
-        iconLeft={<Icon width={10.67} height={10.67} fill="#172D32" icon="solid-plus" />}
-        label={'Add another org admin'}
+        iconLeft={<Icon width={11} height={11} fill="#172D32" icon="solid-plus" />}
         onClick={() => setDisplayModal(true)}
       />,
       <>
         {displayModal && (
           <AddMemberModal
-            isOrg={true}
-            isAdmin={true}
+            isOrg
+            isAdmin
             isTeam={false}
             resultUsers={users}
             inputText={inputText}
-            name={props.orgName}
+            name={orgName}
             onInputChange={onInputChange}
             placeholder="Enter username or email"
             onClose={() => setDisplayModal(false)}
-            addMember={({ access, team, users }) => {
+            addMembers={() => {
+              addMembers({
+                members: [],
+                invitees: []
+              });
               setDisplayModal(false);
             }}
-            copyInvitationAction={props.copyInvitationAction}
+            copyInvitationAction={copyInvitationAction}
           />
         )}
       </>
@@ -96,7 +116,7 @@ export function OrgAdminTable(props: OrgAdminTableProps) {
     arr.reduce((acc: any, user: any) => ({ ...acc, [user.id]: initialValue }), {});
   const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<
     Record<number | string, boolean>
-  >(createInitialMapState(props.admins, false));
+  >(createInitialMapState(admins, false));
   const handleClick = (userId: number | string) => {
     setDisplayRemoveMemberFromTeamModal({
       ...displayRemoveMemberFromTeamModal,
@@ -105,7 +125,7 @@ export function OrgAdminTable(props: OrgAdminTableProps) {
   };
 
   let rows: Row[] = [];
-  for (let user of props.admins) {
+  for (let user of admins) {
     let row: Row = {
       columns: [
         <UserInfo
@@ -117,13 +137,13 @@ export function OrgAdminTable(props: OrgAdminTableProps) {
         <div className="admin-access-column">
           <span className={'admin-access-column__access-type'}>
             {UserPermissionForTeam.AdminAccess}
-            <Icon width={13.33} height={13.33} fill="#172D32" icon="outline-information-circle" />
+            <Icon width={13} height={13} fill="#172D32" icon="outline-information-circle" />
           </span>
-          {(props.loggedUserId === user.id || props.loggedUserIsOwner) && (
+          {(loggedUserId === user.id || loggedUserIsOwner) && (
             <>
               <Icon
                 width={12}
-                height={13.33}
+                height={13}
                 fill="#172D32"
                 icon="outline-trash"
                 onClick={() => {
@@ -134,7 +154,7 @@ export function OrgAdminTable(props: OrgAdminTableProps) {
                 <RemoveMemberModal
                   removeYourself={!!user.leaveLink}
                   username={user.username}
-                  orgOrTeamName={props.orgName}
+                  orgOrTeamName={orgName}
                   onClose={() => handleClick(user.id)}
                   onRemove={() => {
                     user.removeMember();
