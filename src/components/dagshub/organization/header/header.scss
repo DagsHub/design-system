@@ -1,6 +1,7 @@
 .organization-header {
   display: flex;
-  min-width: 1216px;
+  max-width: 1216px;
+  width: 100%;
   font-family: 'Inter';
   font-style: normal;
   line-height: 24px;
@@ -11,6 +12,8 @@
   a {
     text-decoration: none !important;
   }
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .organization-header__org-image > img {
