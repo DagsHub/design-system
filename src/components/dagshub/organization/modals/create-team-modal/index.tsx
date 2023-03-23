@@ -79,6 +79,7 @@ export function CreateNewTeamModal({
       rootMaxWidth={600}
       label="1. Name your team"
       value={name}
+      placeholder={"ML Team"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
       }}

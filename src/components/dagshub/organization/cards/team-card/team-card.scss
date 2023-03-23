@@ -17,6 +17,10 @@
   box-sizing: border-box;
 }
 
+.team-card:hover {
+  background: var(--secondary-state-100);
+}
+
 .team-card-header {
   display: flex;
   width: 100%;
@@ -29,6 +33,10 @@
 }
 
 .team-card-header__team-name {
+  color: #172d32;
+  &:hover{
+    color: #172d32;
+  }
 }
 
 .team-card-header__right-side {

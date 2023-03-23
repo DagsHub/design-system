@@ -152,6 +152,7 @@ export function TeamTable({
       <span className="teams-table-right-side-header">
         {loggedUserIsOwner && (
           <Button
+            className={"ghost-button"}
             width={210}
             onClick={() => {
               setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal);
@@ -324,7 +325,7 @@ export function TeamTable({
           <Icon width={9} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
         </span>,
 
-        <>
+        <div className={"test"} style={{display: "contents!important"}}>
           {displayMiniCardModal && (
             <MiniRepoCardsModal
               teamName={teamName}
@@ -334,7 +335,7 @@ export function TeamTable({
               onClick={() => setDisplayMiniCardModal(!displayMiniCardModal)}
             />
           )}
-        </>
+        </div>
       ]
     };
   } else {

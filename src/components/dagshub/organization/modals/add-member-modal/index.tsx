@@ -80,58 +80,58 @@ export function AddMemberModal({
         )}
       />
     </div>,
-    isOrg ? (
-      <>
-        {/* <RadioButtonList
-          initialChecked={access}
-          onChecked={setAccess}
-          items={[
-            {
-              id: 'member-access',
-              width: 600,
-              label: 'Member access to organization',
-              description:
-                'Members have no special access by default. Grant them repository access once they are added.',
-              icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
-            },
-            {
-              id: 'admin-access',
-              width: 600,
-              label: 'Admin access to organization',
-              description:
-                'Admins have full access to all repositories and have admin rights to the organization',
-              icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
-            }
-          ]}
-        /> */}
-        {teams?.length && false ? (
-          <div className="add-member-modal__dropdown">
-            <Dropdown
-              kind="checkbox"
-              width={130}
-              label="Select teams"
-              onItemChecked={setTeam}
-              maxHeight={125}
-              options={teams.map((team: any) => ({ id: team.id, label: team.name }))}
-            />
-          </div>
-        ) : (
-          !isAdmin && (
-            <div className="add-member-modal__no-teams-text">
-              You haven’t created any teams yet. To leverage different permission levels for
-              different projects
-              <a className="add-member-modal__create-team-text">
-                {' '}
-                create your first team{' '}
-                <Icon width={9} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
-              </a>
-            </div>
-          )
-        )}
-      </>
-    ) : (
-      <></>
-    ),
+    // isOrg ? (
+    //   <>
+    //     <RadioButtonList
+    //       initialChecked={access}
+    //       onChecked={setAccess}
+    //       items={[
+    //         {
+    //           id: 'member-access',
+    //           width: 600,
+    //           label: 'Member access to organization',
+    //           description:
+    //             'Members have no special access by default. Grant them repository access once they are added.',
+    //           icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
+    //         },
+    //         {
+    //           id: 'admin-access',
+    //           width: 600,
+    //           label: 'Admin access to organization',
+    //           description:
+    //             'Admins have full access to all repositories and have admin rights to the organization',
+    //           icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
+    //         }
+    //       ]}
+    //     />
+    //     {teams?.length && false ? (
+    //       <div className="add-member-modal__dropdown">
+    //         <Dropdown
+    //           kind="checkbox"
+    //           width={130}
+    //           label="Select teams"
+    //           onItemChecked={setTeam}
+    //           maxHeight={125}
+    //           options={teams.map((team: any) => ({ id: team.id, label: team.name }))}
+    //         />
+    //       </div>
+    //     ) : (
+    //       !isAdmin && (
+    //         <div className="add-member-modal__no-teams-text">
+    //           You haven’t created any teams yet. To leverage different permission levels for
+    //           different projects
+    //           <a className="add-member-modal__create-team-text">
+    //             {' '}
+    //             create your first team{' '}
+    //             <Icon width={9} height={8} fill="#5467DE" icon="outline-arrow-sm-right" />
+    //           </a>
+    //         </div>
+    //       )
+    //     )}
+    //   </>
+    // ) : (
+    //   <></>
+    // ),
     <div className="add-member-modal__buttons-section">
       <Button
         label={`Add new ${isTeam ? 'team' : 'organization'} ${

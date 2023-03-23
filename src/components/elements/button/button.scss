@@ -84,6 +84,12 @@
   }
 }
 
+.ghost-button {
+  &:hover {
+    background-color: #f1f5f9;
+  }
+}
+
 .dagshub-btn {
   &.normal {
     padding-right: 12px;

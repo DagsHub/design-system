@@ -24,10 +24,13 @@
   }
 
   &--center {
-    display: flex;
+    display: block;
     max-width: 750px;
     padding: 16px;
     box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }
 
@@ -41,6 +44,8 @@
   box-sizing: border-box;
   flex-wrap: wrap;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .teams-list__team-name,
