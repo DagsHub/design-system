@@ -11,7 +11,7 @@ export interface RadioButtonItemProps {
   icon?: JSX.Element;
   checked?: boolean;
   width?: number;
-  sortDirection?:'desc' | 'asc' | 'none';
+  sortDirection?: 'desc' | 'asc' | 'none';
 }
 
 export const RadioButtonItem = ({
@@ -23,7 +23,7 @@ export const RadioButtonItem = ({
   checked = false,
   icon,
   width,
-  sortDirection='none'
+  sortDirection = 'none'
 }: RadioButtonItemProps) => {
   const classes = classNames([`radio-button-item`, className]);
 

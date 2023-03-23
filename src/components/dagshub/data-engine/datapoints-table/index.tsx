@@ -45,26 +45,26 @@ const header: Row = {
     </div>,
     <div className="people-table__header rest">
       Date created
-      <div className={"sorting-arrows"}>
-        <Icon icon={"solid-selector"} width={20} height={20} fill={"#94A3B8"}/>
+      <div className={'sorting-arrows'}>
+        <Icon icon={'solid-selector'} width={20} height={20} fill={'#94A3B8'} />
       </div>
     </div>,
     <div className="people-table__header rest">
       Size in bytes
-      <div className={"sorting-arrows"}>
-        <Icon icon={"solid-selector"} width={20} height={20} fill={"#94A3B8"}/>
+      <div className={'sorting-arrows'}>
+        <Icon icon={'solid-selector'} width={20} height={20} fill={'#94A3B8'} />
       </div>
     </div>,
     <div className="people-table__header rest">
       Dimensions
-      <div className={"sorting-arrows"}>
-        <Icon icon={"solid-selector"} width={20} height={20} fill={"#94A3B8"}/>
+      <div className={'sorting-arrows'}>
+        <Icon icon={'solid-selector'} width={20} height={20} fill={'#94A3B8'} />
       </div>
     </div>,
     <div className="people-table__header rest">
       Annotations
-      <div className={"sorting-arrows"}>
-        <Icon icon={"solid-selector"} width={20} height={20} fill={"#94A3B8"}/>
+      <div className={'sorting-arrows'}>
+        <Icon icon={'solid-selector'} width={20} height={20} fill={'#94A3B8'} />
       </div>
     </div>
   ]

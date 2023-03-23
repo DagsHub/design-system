@@ -27,7 +27,7 @@ export interface SelectorProps {
   maxHeight?: number;
   dropdownBoxColor?: string;
   disabled?: boolean;
-  sorted?:'desc' | 'asc' | 'none';
+  sorted?: 'desc' | 'asc' | 'none';
 }
 
 export const Selector = ({
@@ -43,33 +43,39 @@ export const Selector = ({
   maxHeight,
   dropdownBoxColor = '#f8fafc',
   disabled = false,
-  sorted='none',
+  sorted = 'none',
   ...props
 }: SelectorProps & React.ButtonHTMLAttributes<HTMLDivElement>) => {
   const dropdownRef = useRef(null);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
   const [checked, setChecked] = useState<number | string>(initialChecked);
-  console.log("sorted", sorted)
+  console.log('sorted', sorted);
   const [sortDirection, setSortDirection] = useState<string>(sorted);
 
   const _options = options.map((opt) => ({ ...opt, checked: opt.id === checked }));
 
   const onClick = (optionId: string | number) => {
     const nextDirection = _options.find(function (option) {
-      return option.id===optionId;
+      return option.id === optionId;
     });
-    console.log(nextDirection?.sortDirection??'none')
-    setSortDirection(nextDirection?.sortDirection??'none');
+    console.log(nextDirection?.sortDirection ?? 'none');
+    setSortDirection(nextDirection?.sortDirection ?? 'none');
   };
 
   useEffect(
-      function onChecked() {
-        console.log("asc",sortDirection==='asc')
-        console.log("desc",sortDirection==='desc')
-        console.log("none",sortDirection==='none')
-          console.log(sortDirection==='desc'?`solid-cheveron-down`:sortDirection==='asc'?`solid-cheveron-up`:"solid-selector")
-      },
-      [sortDirection]
+    function onChecked() {
+      console.log('asc', sortDirection === 'asc');
+      console.log('desc', sortDirection === 'desc');
+      console.log('none', sortDirection === 'none');
+      console.log(
+        sortDirection === 'desc'
+          ? `solid-cheveron-down`
+          : sortDirection === 'asc'
+          ? `solid-cheveron-up`
+          : 'solid-selector'
+      );
+    },
+    [sortDirection]
   );
 
   function detectOutsideClick(e: MouseEvent): void {
@@ -111,7 +117,13 @@ export const Selector = ({
           width={10}
           height={6}
           fill="#172D32"
-          icon={sortDirection==='desc'?`solid-cheveron-down`:sortDirection==='asc'?`solid-cheveron-up`:"solid-selector"}
+          icon={
+            sortDirection === 'desc'
+              ? `solid-cheveron-down`
+              : sortDirection === 'asc'
+              ? `solid-cheveron-up`
+              : 'solid-selector'
+          }
         />
       </div>
       {kind === 'radio' && !isCollapsed && (
@@ -122,7 +134,7 @@ export const Selector = ({
             if (id === checked) {
               setIsCollapsed(true);
             } else {
-              onClick(id)
+              onClick(id);
               setChecked(id);
             }
           }}
@@ -145,7 +157,7 @@ export const Selector = ({
                 if (opt.id === checked) {
                   setIsCollapsed(true);
                 } else {
-                  onClick(opt.id)
+                  onClick(opt.id);
                   setChecked(opt.id);
                 }
               }}
