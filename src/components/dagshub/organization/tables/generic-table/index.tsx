@@ -46,9 +46,7 @@ export function GenericTable(props: TableProps) {
       ))}
       {props.footer && (
         <div className="table__footer table__row--footer">
-          {props.footer?.columns?.map((column) => (
-            column
-          ))}
+          {props.footer?.columns?.map((column) => column)}
         </div>
       )}
     </div>
