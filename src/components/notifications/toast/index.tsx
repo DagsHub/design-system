@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 
 import { Icon } from '../../icons';
 
+import '../../styles/root.scss';
 import './toast.scss';
 
 export interface ToastProps {
