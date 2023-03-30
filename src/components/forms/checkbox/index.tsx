@@ -9,7 +9,7 @@ export interface CheckboxProps {
   checked?: boolean;
   disabled?: boolean;
   className?: string;
-  onChange?: () => void;
+  onChange?: (args?:any) => void;
   style?: React.CSSProperties;
 }
 
