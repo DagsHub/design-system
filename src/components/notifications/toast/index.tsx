@@ -13,6 +13,10 @@ export interface ToastProps {
   children: React.ReactNode | null;
   autoCloseSeconds?: number | null;
   width?: number | string;
+  top?: number | string;
+  bottom?: number | string;
+  left?: number | string;
+  right?: number | string;
   onClose?: () => void;
 }
 
@@ -25,6 +29,10 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       children = null,
       autoCloseSeconds = null,
       width = 'initial',
+      top = 'initial',
+      bottom = 25,
+      left = 'initital',
+      right = 25,
       onClose
     },
     ref
@@ -56,7 +64,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
     }
 
     return (
-      <div ref={ref} className={classes} style={{ width }}>
+      <div ref={ref} className={classes} style={{ width, top, bottom, left, right }}>
         <Icon
           icon={isSuccess ? 'checkmark' : 'solid-exclamation-circle'}
           fill={isSuccess ? 'green' : 'red'}
