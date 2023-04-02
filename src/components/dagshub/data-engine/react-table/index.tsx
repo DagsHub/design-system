@@ -24,6 +24,9 @@ export interface BasicTableProps {
   virtualizationTableHeight:number;
   rowHeight:number;
   rowWidth:number;
+  onScroll:()=>void;
+  listInnerRef:any;
+
 }
 
 export function BasicTable({
@@ -36,6 +39,8 @@ export function BasicTable({
     virtualizationTableHeight,
     rowHeight,
     rowWidth,
+    onScroll,
+    listInnerRef,
 }: BasicTableProps) {
 
   const columns = useMemo<any>(()=> tcolumns, [])
@@ -201,7 +206,7 @@ export function BasicTable({
                   {groupedHeaders?.map((headerGroup)=>(
                       <div key={headerGroup?.id}>
                           <label>
-                              <Checkbox checked={shouldBeChecked(headerGroup)} onChange={()=>changeState(headerGroup)} label={headerGroup.render('Header')}/>
+                              <Checkbox checked={shouldBeChecked(headerGroup)} onChange={()=>changeState(headerGroup)} label={JSON.stringify(headerGroup.render('Header')).replaceAll('"','')}/>
                               {headerGroup?.headers.map((header)=>(
                                   <div key={header?.id}>
                                       <label>
@@ -246,7 +251,7 @@ export function BasicTable({
                 </tr>
             ))}
             </thead>
-            <tbody {...getTableBodyProps()}>
+            <tbody onScroll={onScroll} ref={listInnerRef} {...getTableBodyProps()}>
               {!enableVirtualization?rows.map((row)=>(
                   RenderRow({...row, style:{"height":rowHeight} })
               )):
