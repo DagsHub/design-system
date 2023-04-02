@@ -112,13 +112,14 @@ export function CreateNewTeamModal({
         variant={ButtonVariant.Primary}
         label="Create new team"
         width={600}
-        onClick={() =>
-          createTeam({
+        onClick={async () => {
+          await createTeam({
             name,
             members: addedMembers,
             invitees: getEmailMembers(memberInputText)
-          })
-        }
+          });
+          onClose();
+        }}
       />
     </div>
   ];

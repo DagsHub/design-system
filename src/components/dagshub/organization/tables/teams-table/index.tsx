@@ -118,6 +118,9 @@ export function TeamTable({
     });
   };
 
+  const toggleAddMemberModal = () => setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal);
+  const toggleSettingsModal = () => setDisplayTeamSettingsModal(!displayTeamSettingsModal);
+
   useDebounce(
     () => {
       setDebouncedInputText(inputText);
@@ -154,9 +157,7 @@ export function TeamTable({
           <Button
             className={'ghost-button'}
             width={210}
-            onClick={() => {
-              setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal);
-            }}
+            onClick={toggleAddMemberModal}
             label="Add new team member"
             stretch={ButtonStretch.Slim}
             variant={ButtonVariant.Ghost}
@@ -175,10 +176,10 @@ export function TeamTable({
                 name={teamName}
                 onInputChange={onInputChange}
                 placeholder="Enter username or email"
-                onClose={() => setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal)}
-                addMembers={({ access, team, members, invitees }) => {
-                  addNewTeamMembers({ access, team, members, invitees });
-                  setDisplayAddNewTeamMemberModal(!displayAddNewTeamMemberModal);
+                onClose={toggleAddMemberModal}
+                addMembers={async ({ access, team, members, invitees }) => {
+                  await addNewTeamMembers({ access, team, members, invitees });
+                  toggleAddMemberModal();
                 }}
                 copyInvitationAction={copyInvitationAction}
               />
@@ -188,9 +189,7 @@ export function TeamTable({
         {loggedUserIsOwner && (
           <span
             className="teams-table-right-side-header__dots-vertical-icon"
-            onClick={() => {
-              setDisplayTeamSettingsModal(!displayTeamSettingsModal);
-            }}
+            onClick={toggleSettingsModal}
           >
             <Icon width={3} height={13} fill="#64748B" icon="outline-dots-vertical" />
           </span>
@@ -202,14 +201,14 @@ export function TeamTable({
                 teamName={teamName}
                 teamDescription={teamDescription}
                 userPermissionForTeam={teamPerm}
-                onClose={() => setDisplayTeamSettingsModal(false)}
-                onEditTeam={({ name, description, permission }: OnEditTeamInput) => {
-                  onEditTeam({ name, description, permission });
-                  setDisplayTeamSettingsModal(false);
+                onClose={toggleSettingsModal}
+                onEditTeam={async ({ name, description, permission }: OnEditTeamInput) => {
+                  await onEditTeam({ name, description, permission });
+                  toggleSettingsModal();
                 }}
-                onDeleteTeam={(teamName) => {
-                  onDeleteTeam(teamName);
-                  setDisplayTeamSettingsModal(false);
+                onDeleteTeam={async (teamName) => {
+                  await onDeleteTeam(teamName);
+                  toggleSettingsModal();
                 }}
               />
             )}
