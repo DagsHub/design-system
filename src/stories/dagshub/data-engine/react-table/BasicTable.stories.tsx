@@ -1,6 +1,9 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import {BasicTable, BasicTableProps} from "../../../../components/dagshub/data-engine/react-table";
+import {
+  BasicTable,
+  BasicTableProps
+} from '../../../../components/dagshub/data-engine/react-table';
 
 const meta: Meta<BasicTableProps> = {
   title: 'DagsHub/Data-Engine/Tables/BasicTable',
@@ -35,8 +38,7 @@ const COLUMNS = [
     Header: 'Phone',
     accessor: 'phone'
   }
-]
-
+];
 
 const GROUPED_COLUMNS = [
   {
@@ -45,7 +47,7 @@ const GROUPED_COLUMNS = [
   },
   {
     Header: 'Name',
-    columns:[
+    columns: [
       {
         Header: 'First Name',
         accessor: 'first_name'
@@ -58,7 +60,7 @@ const GROUPED_COLUMNS = [
   },
   {
     Header: 'Additional Info',
-    columns:[
+    columns: [
       {
         Header: 'Date Of Birth',
         accessor: 'date_of_birth'
@@ -72,19 +74,20 @@ const GROUPED_COLUMNS = [
         accessor: 'phone'
       }
     ]
-  },
-]
+  }
+];
 
-const MOCK_DATA=[  {
-  id: 1,
-  first_name: 'Tabbatha',
-  last_name: 'Tapsfield',
-  email: 'ttapsfield0@discuz.net',
-  date_of_birth: '4/10/1978',
-  age: 15,
-  country: 'United States',
-  phone: '7027426744'
-},
+const MOCK_DATA = [
+  {
+    id: 1,
+    first_name: 'Tabbatha',
+    last_name: 'Tapsfield',
+    email: 'ttapsfield0@discuz.net',
+    date_of_birth: '4/10/1978',
+    age: 15,
+    country: 'United States',
+    phone: '7027426744'
+  },
   {
     id: 2,
     first_name: 'Celle',
@@ -274,8 +277,8 @@ const MOCK_DATA=[  {
     age: 44,
     country: 'China',
     phone: '5774709041'
-  }]
-
+  }
+];
 
 export const Primary = Template.bind({});
 Primary.args = {
