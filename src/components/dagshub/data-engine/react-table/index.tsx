@@ -16,14 +16,14 @@ import {Checkbox} from "../../../forms";
 
 export interface BasicTableProps {
   tcolumns: any[];
-  tdata:any[];
+  data:any[];
   enableColumnOrdering?:boolean;
   enableColumnHiding?:boolean;
   enableRowSelection?:boolean;
   enableVirtualization?:boolean;
   virtualizationTableHeight:number;
   rowHeight:number;
-  rowWidth:number;
+  cellWidth:number;
   onScroll:()=>void;
   listInnerRef:any;
 
@@ -31,23 +31,22 @@ export interface BasicTableProps {
 
 export function BasicTable({
     tcolumns,
-    tdata,
+    data,
     enableColumnOrdering=false,
     enableColumnHiding=false,
     enableRowSelection=false,
     enableVirtualization=false,
     virtualizationTableHeight,
     rowHeight,
-    rowWidth,
+    cellWidth,
     onScroll,
     listInnerRef,
 }: BasicTableProps) {
 
   const columns = useMemo<any>(()=> tcolumns, [])
-  const data = useMemo<any>(()=> tdata, [])
   const defaultColumn = React.useMemo(
       () => ({
-          width: rowWidth,
+          width: cellWidth,
           minWidth: 30,
           maxWidth: 400,
       }),
@@ -101,11 +100,6 @@ export function BasicTable({
         })
       }
   )
-
-    console.log(headerGroups)
-    console.log("all columns", allColumns)
-    console.log("state", state)
-
 
     const changeOrder= (sIndex:number, dIndex:number) => {
     const colOrder = visibleColumns.map(o => o.id)
@@ -161,9 +155,6 @@ export function BasicTable({
   );
 
   const initialGroupHeaders:HeaderGroup<object>[] = useMemo<any>(()=> headerGroups, [])
-  console.log("initial group headers",initialGroupHeaders)
-
-
   const set: HeaderGroup<object>[]=[]
   {initialGroupHeaders.map((headerGroup)=>(
             headerGroup.headers.map((column)=>(
@@ -172,13 +163,8 @@ export function BasicTable({
   )))}
 
   const groupedHeaders= set.filter(header=>header.parent===undefined&&header.columns!=null)
-  console.log("Grouped Headers",groupedHeaders)
-
-
   const unGroupedHeaders= [...new Set(allColumns
     .filter(column=>column.parent===undefined))]
-
-  console.log("unGrouped Headers",unGroupedHeaders)
 
     function changeState( headerGroup:HeaderGroup<object>) {
         headerGroup?.headers.map((header)=>(
@@ -251,9 +237,9 @@ export function BasicTable({
                 </tr>
             ))}
             </thead>
-            <tbody onScroll={onScroll} ref={listInnerRef} {...getTableBodyProps()}>
+            <tbody onScroll={onScroll} ref={listInnerRef} style={{ height: virtualizationTableHeight, overflowY: "auto", width:`auto`, maxWidth:`${totalColumnsWidth}px`}}{...getTableBodyProps()}>
               {!enableVirtualization?rows.map((row)=>(
-                  RenderRow({...row, style:{"height":rowHeight} })
+                  RenderRow({...row, style:{"height":rowHeight, "width":'auto'} })
               )):
               <FixedSizeList
                   height={rowHeight*rows.length < virtualizationTableHeight? rowHeight*rows.length:virtualizationTableHeight}
