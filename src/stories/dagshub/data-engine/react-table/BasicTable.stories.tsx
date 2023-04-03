@@ -284,7 +284,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   tcolumns:GROUPED_COLUMNS,
   data:MOCK_DATA,
-  rowWidth:200,
+  cellWidth:200,
   rowHeight:42,
   enableColumnHiding:true,
   enableColumnOrdering:true,

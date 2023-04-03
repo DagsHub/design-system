@@ -71,7 +71,8 @@ export function BasicTable({
     {
       columns,
       data,
-      defaultColumn
+      defaultColumn,
+      autoResetSelectedRows: false,
     },
     useColumnOrder,
     useResizeColumns,
