@@ -52,14 +52,15 @@ export interface CreateTeamModalProps {
 }
 
 export function CreateNewTeamModal({
+  onClose,
   orgName,
   memberInputText,
   onMemberInputChange,
   resultUsers,
   createTeam,
-  onClose
 }: CreateTeamModalProps) {
   const [name, setName] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
   const [addedMembers, setAddedMembers] = useState<UserInfoProps[]>([]);
   const [permission, setPermission] = useState<string>(UserPermissionForTeam.ReadAccess);
 
@@ -83,23 +84,31 @@ export function CreateNewTeamModal({
         setName(e.target.value);
       }}
     />,
-    <p className="create-new-team-modal__instructions">
-      2. Add people by searching their username or enter email address to invite someone outside
-      DagsHub
-    </p>,
-    <div className="input-block">
-      <CombinedSearch
-        onAdd={onAddMember}
-        onRemove={onRemoveMember}
-        itemsList={addedMembers}
-        inputText={memberInputText}
-        onInputChange={onMemberInputChange}
-        placeholder="Enter username or email"
-        resultUsers={(resultUsers ?? []).filter(
-          (u: UserInfoProps) => !addedMembers.find((m) => m.userName === u.userName)
-        )}
-      />
-    </div>,
+    <Input
+        rootMaxWidth={600}
+        label="2. Add description"
+        value={description}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+          setDescription(e.target.value);
+        }}
+    />,
+    // <p className="create-new-team-modal__instructions">
+    //   3. Add people by searching their username or enter email address to invite someone outside
+    //   DagsHub
+    // </p>,
+    // <div className="input-block">
+    //   <CombinedSearch
+    //     onAdd={onAddMember}
+    //     onRemove={onRemoveMember}
+    //     itemsList={addedMembers}
+    //     inputText={memberInputText}
+    //     onInputChange={onMemberInputChange}
+    //     placeholder="Enter username or email"
+    //     resultUsers={(resultUsers ?? []).filter(
+    //       (u: UserInfoProps) => !addedMembers.find((m) => m.userName === u.userName)
+    //     )}
+    //   />
+    // </div>,
     <RadioButtonList
       title="Team permissions"
       initialChecked={permission}
@@ -114,8 +123,10 @@ export function CreateNewTeamModal({
         onClick={async () => {
           await createTeam({
             name,
-            members: addedMembers,
-            invitees: getEmailMembers(memberInputText)
+            description,
+            // members: addedMembers,
+            // invitees: getEmailMembers(memberInputText),
+            permission:permission===UserPermissionForTeam.ReadAccess?'read': permission===UserPermissionForTeam.WriteAccess?'write':'admin'
           });
           onClose();
         }}

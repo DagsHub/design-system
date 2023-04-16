@@ -8,6 +8,7 @@ import { RadioButtonList } from '../../../../forms/radio-button/radio-button-lis
 
 import '../../../../styles/root.scss';
 import './team-settings-modal.scss';
+import {OnEditTeamInput} from "../../tables/teams-table";
 
 const teamPermissionsOptions = [
   {
@@ -36,7 +37,7 @@ export interface TeamSettingsModalProps {
   teamDescription?: string;
   userPermissionForTeam?: UserPermissionForTeam;
   onDeleteTeam: (args?: any) => void;
-  onEditTeam: (args?: any) => void;
+  onEditTeam: (args: OnEditTeamInput) => void
   onClose: () => void;
 }
 
@@ -97,13 +98,14 @@ export function TeamSettingsModal({
           <Button
             width={120}
             label="Save changes"
-            onClick={() =>
-              onEditTeam({
-                name: teamNameInputText,
-                description: teamDescriptionInputText,
-                permission
-              })
-            }
+            onClick={() => {
+              onEditTeam(
+                  {originalName:teamName,
+                    newName:teamNameInputText,
+                    description:teamDescriptionInputText,
+                    permission:permission===UserPermissionForTeam.ReadAccess?'read': permission===UserPermissionForTeam.WriteAccess?'write':'admin'});
+              onClose();
+            }}
             variant={ButtonVariant.Primary}
           />
         </div>

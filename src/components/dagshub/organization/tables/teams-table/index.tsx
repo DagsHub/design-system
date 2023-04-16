@@ -53,7 +53,7 @@ export interface TeamTableProps {
   handleCollapse: (teamId: number | string) => void;
   style: string;
   isActive: Boolean;
-  removeFromTeam: (removeLink?: string) => void;
+  removeFromTeam: (teamName:string ,id: number) => void;
   addNewTeamMembers: (args?: any) => void;
   onEditTeam: (args: OnEditTeamInput) => void;
   onDeleteTeam: (args?: any) => void;
@@ -65,9 +65,10 @@ export interface TeamTableProps {
 }
 
 export interface OnEditTeamInput {
-  name: string;
+  originalName: string;
+  newName:string;
   description: string;
-  permission: UserPermissionForTeam;
+  permission: string;
 }
 
 const MAX_ROWS: number = 7;
@@ -202,8 +203,8 @@ export function TeamTable({
                 teamDescription={teamDescription}
                 userPermissionForTeam={teamPerm}
                 onClose={toggleSettingsModal}
-                onEditTeam={async ({ name, description, permission }: OnEditTeamInput) => {
-                  await onEditTeam({ name, description, permission });
+                onEditTeam={async ({ originalName, newName, description, permission }: OnEditTeamInput) => {
+                  await onEditTeam({ originalName, newName, description, permission });
                   toggleSettingsModal();
                 }}
                 onDeleteTeam={async (teamName) => {
@@ -255,7 +256,7 @@ export function TeamTable({
               username={member.userName}
               orgOrTeamName={teamName}
               onRemove={() => {
-                removeFromTeam(member?.leaveLink ?? member?.removeLink);
+                removeFromTeam(teamName, member.id);
                 handleClick(member.id);
               }}
               onClose={() => handleClick(member.id)}

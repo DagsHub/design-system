@@ -98,11 +98,8 @@ export function OrgAdminTable({
             onInputChange={onInputChange}
             placeholder="Enter username or email"
             onClose={() => setDisplayModal(false)}
-            addMembers={() => {
-              addMembers({
-                members: [],
-                invitees: []
-              });
+            addMembers={async ({ access, team, members, invitees }) => {
+              await addMembers({members, invitees});
               setDisplayModal(false);
             }}
             copyInvitationAction={copyInvitationAction}
