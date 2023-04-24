@@ -49,7 +49,6 @@ export const Selector = ({
   const dropdownRef = useRef(null);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
   const [checked, setChecked] = useState<number | string>(initialChecked);
-  console.log('sorted', sorted);
   const [sortDirection, setSortDirection] = useState<string>(sorted);
 
   const _options = options.map((opt) => ({ ...opt, checked: opt.id === checked }));
@@ -58,25 +57,10 @@ export const Selector = ({
     const nextDirection = _options.find(function (option) {
       return option.id === optionId;
     });
-    console.log(nextDirection?.sortDirection ?? 'none');
     setSortDirection(nextDirection?.sortDirection ?? 'none');
   };
 
-  useEffect(
-    function onChecked() {
-      console.log('asc', sortDirection === 'asc');
-      console.log('desc', sortDirection === 'desc');
-      console.log('none', sortDirection === 'none');
-      console.log(
-        sortDirection === 'desc'
-          ? `solid-cheveron-down`
-          : sortDirection === 'asc'
-          ? `solid-cheveron-up`
-          : 'solid-selector'
-      );
-    },
-    [sortDirection]
-  );
+  useEffect(function onChecked() {}, [sortDirection]);
 
   function detectOutsideClick(e: MouseEvent): void {
     if (dropdownRef.current && !(dropdownRef.current as any).contains(e.target)) {

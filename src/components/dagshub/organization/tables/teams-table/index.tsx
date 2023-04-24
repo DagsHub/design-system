@@ -1,10 +1,10 @@
 import { useDebounce } from 'react-use';
-import React, { ChangeEvent, useEffect, useState, useCallback } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 import { Icon } from '../../../../icons';
 import { Member } from '../shared-classes';
 import { UserInfo } from '../../profiles/user-info';
-import { Row, GenericTable } from '../generic-table';
+import { GenericTable, Row } from '../generic-table';
 import { RepoCardProps } from '../../cards/repo-card';
 import { RadioButtonItemProps } from '../../../../forms';
 import { UserPermissionForTeam } from '../../../../../types';
@@ -53,21 +53,29 @@ export interface TeamTableProps {
   handleCollapse: (teamId: number | string) => void;
   style: string;
   isActive: Boolean;
-  removeFromTeam: (teamName:string ,id: number) => void;
+  removeFromTeam: (teamName: string, id: number) => void;
   addNewTeamMembers: (args?: any) => void;
   onEditTeam: (args: OnEditTeamInput) => void;
+  onChangingTeamPermission: (args: OnChangingTeamPermissionInput) => void;
   onDeleteTeam: (args?: any) => void;
   loggedUserId: number;
   loggedUserIsOwner: boolean;
   isLogged: boolean;
   onStarActionClick: (args?: any) => () => Promise<void>;
   copyInvitationAction: (args?: any) => void;
+  existingTeamNames:string[];
 }
 
 export interface OnEditTeamInput {
   originalName: string;
-  newName:string;
+  newName: string;
   description: string;
+  permission: string;
+}
+
+export interface OnChangingTeamPermissionInput {
+  originalName: string;
+  originalDescription: string;
   permission: string;
 }
 
@@ -85,13 +93,15 @@ export function TeamTable({
   teamPermission,
   removeFromTeam,
   addNewTeamMembers,
+  onChangingTeamPermission,
   onEditTeam,
   onDeleteTeam,
   loggedUserId,
   loggedUserIsOwner,
   isLogged,
   onStarActionClick,
-  copyInvitationAction
+  copyInvitationAction,
+  existingTeamNames
 }: TeamTableProps) {
   const [users, setUsers] = useState<any[]>([]);
   const [inputText, setInputText] = useState<string>('');
@@ -104,7 +114,13 @@ export function TeamTable({
   >(createInitialMapState(members, false));
 
   const [teamPerm, setTeamPerm] = useState<UserPermissionForTeam>(teamPermission);
-  const _options = teamPermissionsOptions.map((opt) => ({ ...opt, checked: opt.id === teamPerm }));
+  let options = teamPermissionsOptions.map((opt) => ({ ...opt, checked: opt.id === teamPerm }));
+  const [_options, setOptions] = useState(options);
+
+  useEffect(() => {
+    setTeamPerm(teamPermission);
+    setOptions(teamPermissionsOptions.map((opt) => ({ ...opt, checked: opt.id === teamPerm })));
+  }, [teamPermission]);
 
   const [displayMiniCardModal, setDisplayMiniCardModal] = useState<boolean>(false);
 
@@ -177,10 +193,14 @@ export function TeamTable({
                 name={teamName}
                 onInputChange={onInputChange}
                 placeholder="Enter username or email"
-                onClose={toggleAddMemberModal}
+                onClose={() => {
+                  toggleAddMemberModal();
+                  setInputText('');
+                }}
                 addMembers={async ({ access, team, members, invitees }) => {
                   await addNewTeamMembers({ access, team, members, invitees });
                   toggleAddMemberModal();
+                  setInputText('');
                 }}
                 copyInvitationAction={copyInvitationAction}
               />
@@ -203,15 +223,27 @@ export function TeamTable({
                 teamDescription={teamDescription}
                 userPermissionForTeam={teamPerm}
                 onClose={toggleSettingsModal}
-                onEditTeam={async ({ originalName, newName, description, permission }: OnEditTeamInput) => {
+                onEditTeam={async ({
+                  originalName,
+                  newName,
+                  description,
+                  permission
+                }: OnEditTeamInput) => {
                   await onEditTeam({ originalName, newName, description, permission });
+                  setTeamPerm(
+                    permission === 'admin'
+                      ? UserPermissionForTeam.AdminAccess
+                      : permission === 'write'
+                      ? UserPermissionForTeam.WriteAccess
+                      : UserPermissionForTeam.ReadAccess
+                  );
                   toggleSettingsModal();
                 }}
                 onDeleteTeam={async (teamName) => {
                   await onDeleteTeam(teamName);
                   toggleSettingsModal();
                 }}
-              />
+               existingTeamNames={existingTeamNames}/>
             )}
           </>
         )}
@@ -300,8 +332,20 @@ export function TeamTable({
               title={'Team’s Access permissions'}
               label={teamPerm}
               options={_options}
-              onItemChecked={setTeamPerm}
-              initialChecked={teamPermission}
+              onItemChecked={(permission) => {
+                onChangingTeamPermission({
+                  originalName: teamName,
+                  originalDescription: teamDescription ?? '',
+                  permission:
+                    permission === 'Write access'
+                      ? 'write'
+                      : permission === 'Admin access'
+                      ? 'admin'
+                      : 'read'
+                });
+                setTeamPerm(permission);
+              }}
+              initialChecked={teamPerm}
               dropdownBoxColor={'transparent'}
               disabled={!loggedUserIsOwner}
             />

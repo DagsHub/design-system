@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from '../../../../icons';
 import { Input } from '../../../../forms';
 import { GenericModal } from '../generic-modal';
@@ -8,7 +8,7 @@ import { RadioButtonList } from '../../../../forms/radio-button/radio-button-lis
 
 import '../../../../styles/root.scss';
 import './team-settings-modal.scss';
-import {OnEditTeamInput} from "../../tables/teams-table";
+import { OnEditTeamInput } from '../../tables/teams-table';
 
 const teamPermissionsOptions = [
   {
@@ -37,8 +37,9 @@ export interface TeamSettingsModalProps {
   teamDescription?: string;
   userPermissionForTeam?: UserPermissionForTeam;
   onDeleteTeam: (args?: any) => void;
-  onEditTeam: (args: OnEditTeamInput) => void
+  onEditTeam: (args: OnEditTeamInput) => void;
   onClose: () => void;
+  existingTeamNames:string[];
 }
 
 export function TeamSettingsModal({
@@ -47,9 +48,23 @@ export function TeamSettingsModal({
   onDeleteTeam,
   onEditTeam,
   onClose,
+  existingTeamNames,
   userPermissionForTeam = UserPermissionForTeam.ReadAccess
 }: TeamSettingsModalProps) {
   const [displayDeleteBtns, setDisplayDeleteBtns] = useState<boolean>(false);
+
+  const [errTeamNameLength, setErrTeamNameLength] = useState<boolean>(false);
+  const [errTeamNameChars, setErrTeamNameChars] = useState<boolean>(false);
+  const [errTeamDescription, setErrTeamDescription] = useState<boolean>(false);
+  const [errTeamNameExist, setErrTeamNameExist] = useState<boolean>(false);
+
+
+  const teamNameWithIllegalCharactersErrText="Team name must be valid alpha or numeric or dash(-_) or dot characters."
+  const teamNameLengthErrText="Team name cannot be empty and must contain at most 30 characters."
+  const teamDescriptionTooLongErrText="Team description must contain at most 255 characters."
+  const teamNameExistErrText="Team name has already been taken."
+
+
   const [teamNameInputText, setTeamNameInputText] = useState<string>(teamName);
   const [permission, setPermission] = useState<UserPermissionForTeam>(userPermissionForTeam);
   const [teamDescriptionInputText, setTeamDescriptionInputText] = useState<string>(
@@ -64,6 +79,27 @@ export function TeamSettingsModal({
     setTeamNameInputText(e.target.value);
   };
 
+  useEffect(
+    function checkTeamNameInput() {
+      const regexChars = /^[a-zA-Z0-9-_.]+$/;
+      const regexLength = /^.{1,30}$/;
+      setErrTeamNameChars(teamNameInputText.search(regexChars) == -1)
+      setErrTeamNameLength(teamNameInputText.search(regexLength) == -1)
+      console.log(existingTeamNames)
+      console.log(teamNameInputText.toLowerCase())
+      setErrTeamNameExist(existingTeamNames.includes(teamNameInputText.toLowerCase()))
+    },
+    [teamNameInputText]
+  );
+
+  useEffect(
+      function checkTeamDescriptionInput() {
+        const regexp = /^.{0,255}$/;
+        setErrTeamDescription(teamDescriptionInputText.search(regexp) == -1)
+      },
+      [teamDescriptionInputText]
+  );
+
   let elements: JSX.Element[];
   elements = [
     <Input
@@ -73,6 +109,12 @@ export function TeamSettingsModal({
       value={teamNameInputText}
       onChange={onTeamNameInputChange}
     />,
+      <>{errTeamNameChars&&<div style={{color:"red"}}>{teamNameWithIllegalCharactersErrText}</div>}
+      </>,
+    <>{errTeamNameLength&&<div style={{color:"red"}}>{teamNameLengthErrText}</div>}
+    </>,
+    <>{errTeamNameExist&&<div style={{color:"red"}}>{teamNameExistErrText}</div>}
+    </>,
     <Input
       label="Description"
       helperText="What is this team all about?"
@@ -80,6 +122,8 @@ export function TeamSettingsModal({
       value={teamDescriptionInputText}
       onChange={onTeamDescriptionInputChange}
     />,
+    <>{errTeamDescription&&<div style={{color:"red"}}>{teamDescriptionTooLongErrText}</div>}
+    </>,
     <RadioButtonList
       initialChecked={permission}
       onChecked={setPermission}
@@ -97,13 +141,20 @@ export function TeamSettingsModal({
           />
           <Button
             width={120}
+            disabled={errTeamDescription||errTeamNameLength||errTeamNameChars||errTeamNameExist}
             label="Save changes"
             onClick={() => {
-              onEditTeam(
-                  {originalName:teamName,
-                    newName:teamNameInputText,
-                    description:teamDescriptionInputText,
-                    permission:permission===UserPermissionForTeam.ReadAccess?'read': permission===UserPermissionForTeam.WriteAccess?'write':'admin'});
+              onEditTeam({
+                originalName: teamName,
+                newName: teamNameInputText,
+                description: teamDescriptionInputText,
+                permission:
+                  permission === UserPermissionForTeam.ReadAccess
+                    ? 'read'
+                    : permission === UserPermissionForTeam.WriteAccess
+                    ? 'write'
+                    : 'admin'
+              });
               onClose();
             }}
             variant={ButtonVariant.Primary}

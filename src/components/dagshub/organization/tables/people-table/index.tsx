@@ -12,6 +12,7 @@ import '../generic-table/table.scss';
 import './people-table.scss';
 import { UserPermissionForTeam } from '../../../../../types';
 import { RemoveMemberModal } from '../../modals/remove-member-modal';
+import { Tooltip } from '../../../../elements/tooltip';
 
 export interface PeopleTableProps {
   users: User[];
@@ -136,15 +137,19 @@ export function PeopleTable(props: PeopleTableProps) {
         />
         {(props.loggedUserId === user.id || props.loggedUserIsOwner) && (
           <>
-            <Icon
-              width={12}
-              height={13.33}
-              fill="#172D32"
-              icon="outline-trash"
-              onClick={() => {
-                handleClick(user.id);
-              }}
-            />
+            <Tooltip content="Remove from organization">
+              <span>
+                <Icon
+                  width={12}
+                  height={13.33}
+                  fill="#172D32"
+                  icon="outline-trash"
+                  onClick={() => {
+                    handleClick(user.id);
+                  }}
+                />
+              </span>
+            </Tooltip>
             {displayRemoveMemberFromTeamModal[user.id] && (
               <RemoveMemberModal
                 removeYourself={!!user.leaveLink}

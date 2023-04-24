@@ -52,7 +52,7 @@ export function AddMemberModal({
   const [team, setTeam] = useState<number | string>('');
   const [access, setAccess] = useState<string>('member-access');
   const [addedMembers, setAddedMembers] = useState<UserInfoProps[]>([]);
-  const [copyInvitation, setCopyInvitation] = useState<boolean>(false);
+  // const [copyInvitation, setCopyInvitation] = useState<boolean>(false);
 
   function onAddMember(user: UserInfoProps) {
     setAddedMembers([...addedMembers, user]);
@@ -147,23 +147,23 @@ export function AddMemberModal({
           })
         }
       />
-      <p className="add-member-modal__buttons-seperator">or</p>
-      <Button
-        width={600}
-        label={copyInvitation ? 'The link was copied to your clipboard' : 'Copy invitation link'}
-        variant={ButtonVariant.Secondary}
-        iconRight={
-          copyInvitation ? (
-            <Icon icon="outline-check" width={11} height={8} fill="#000000" />
-          ) : (
-            <Icon icon="outline-copy" width={15} height={15} fill="#000000" />
-          )
-        }
-        onClick={() => {
-          setCopyInvitation(!copyInvitation);
-          copyInvitationAction();
-        }}
-      />
+      {/*<p className="add-member-modal__buttons-seperator">or</p>*/}
+      {/*<Button*/}
+      {/*  width={600}*/}
+      {/*  label={copyInvitation ? 'The link was copied to your clipboard' : 'Copy invitation link'}*/}
+      {/*  variant={ButtonVariant.Secondary}*/}
+      {/*  iconRight={*/}
+      {/*    copyInvitation ? (*/}
+      {/*      <Icon icon="outline-check" width={11} height={8} fill="#000000" />*/}
+      {/*    ) : (*/}
+      {/*      <Icon icon="outline-copy" width={15} height={15} fill="#000000" />*/}
+      {/*    )*/}
+      {/*  }*/}
+      {/*  onClick={() => {*/}
+      {/*    setCopyInvitation(!copyInvitation);*/}
+      {/*    copyInvitationAction();*/}
+      {/*  }}*/}
+      {/*/>*/}
     </div>
   ];
 

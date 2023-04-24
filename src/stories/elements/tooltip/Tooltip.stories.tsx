@@ -6,6 +6,7 @@ import { Input } from '../../../components/forms/input';
 import { Button } from '../../../components/elements/button';
 import { TextArea } from '../../../components/forms/textarea';
 import { Tooltip, TooltipProps } from '../../../components/elements/tooltip';
+import { Icon } from '../../../components';
 
 const meta: Meta<TooltipProps> = {
   title: 'Elements/Tooltip',
@@ -40,8 +41,18 @@ export const InputTooltip = () => {
 
 export const TextAreaTooltip = () => {
   return (
-    <Tooltip content="I am a tooltip" placement="right-end">
-      <TextArea maxWidth={300} label="I am the input label" value="I also got value" />
-    </Tooltip>
+    <>
+      <Tooltip content="I am a tooltip" placement="right-end">
+        <TextArea maxWidth={300} label="I am the input label" value="I also got value" />
+      </Tooltip>
+      <Tooltip
+        content="Admin access:\nAdmins have full access to all repositories and have admin rights to the organization"
+        placement="bottom-start"
+      >
+        <span>
+          <Icon width={13} height={13} fill="#172D32" icon="outline-information-circle" />
+        </span>
+      </Tooltip>
+    </>
   );
 };

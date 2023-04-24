@@ -47,11 +47,32 @@ export const Dropdown = ({
   const dropdownRef = useRef(null);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
   const [checked, setChecked] = useState<number | string>(initialChecked);
-
-  const _options = options.map((opt) => ({ ...opt, checked: opt.id === checked }));
-  const checkedOptLabel = _options.find((opt) => opt.checked)?.label;
-
+  const [_options, setDropdownOption] = useState<any>(
+    options.map((opt) => ({ ...opt, checked: opt.id === checked }))
+  );
+  const [checkedOptLabel, setOptLabel] = useState(_options.find((opt: any) => opt.checked)?.label);
   const [checkboxOptions, setOptions] = useState<any>(_options);
+
+  useEffect(
+    function setNewCheck() {
+      setChecked(initialChecked);
+    },
+    [initialChecked]
+  );
+
+  useEffect(
+    function setNewOptions() {
+      setDropdownOption(options.map((opt) => ({ ...opt, checked: opt.id === checked })));
+    },
+    [options]
+  );
+
+  useEffect(
+    function setNewOptLabel() {
+      setOptLabel(_options.find((opt: any) => opt.checked)?.label);
+    },
+    [_options]
+  );
 
   const onCheckboxClick = (optionId: string | number) => {
     const nextOptions = checkboxOptions.map((option: RadioButtonItemProps) => {

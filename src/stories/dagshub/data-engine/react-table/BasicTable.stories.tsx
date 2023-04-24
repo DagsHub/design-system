@@ -282,13 +282,13 @@ const MOCK_DATA = [
 
 export const Primary = Template.bind({});
 Primary.args = {
-  tcolumns:GROUPED_COLUMNS,
-  data:MOCK_DATA,
-  cellWidth:200,
-  rowHeight:42,
-  enableColumnHiding:true,
-  enableColumnOrdering:true,
-  enableVirtualization:true,
-  virtualizationTableHeight:250,
-  enableRowSelection:true
+  tcolumns: GROUPED_COLUMNS,
+  data: MOCK_DATA,
+  cellWidth: 200,
+  rowHeight: 42,
+  enableColumnHiding: true,
+  enableColumnOrdering: true,
+  enableVirtualization: true,
+  virtualizationTableHeight: 250,
+  enableRowSelection: true
 };

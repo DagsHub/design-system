@@ -36,30 +36,32 @@ export function CombinedSearch({
         <div className="items-list">
           {itemsList.map((item: UserInfoProps) => (
             <div key={item.userName} className="single-item">
-              <img src={item.imageSource} alt={item.userName} />
-              <a
-                href={item.homeLink ?? `/${item.userName}`}
-                target="_blank"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (item.homeLink) {
-                    window.open(item.homeLink, '_blank')?.focus();
-                  }
-                }}
-              >
-                @{item.userName} {item.isLoggedUser && '(you)'}
-              </a>
-              <Icon
-                icon="solid-x"
-                fill="#172D32"
-                onClick={() => {
-                  setInputFocused(false);
-                  setTimeout(() => {
-                    onRemove(item.userName);
-                    setInputFocused(true);
-                  });
-                }}
-              />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src={item.imageSource} alt={item.userName} />
+                <div
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (item.homeLink) {
+                      window.open(item.homeLink, '_blank')?.focus();
+                    }
+                  }}
+                >
+                  @{item.userName} {item.isLoggedUser && '(you)'}
+                </div>
+              </div>
+              <div style={{ cursor: 'pointer', display: 'flex' }}>
+                <Icon
+                  icon="solid-x"
+                  fill="#172D32"
+                  onClick={() => {
+                    setInputFocused(false);
+                    setTimeout(() => {
+                      onRemove(item.userName);
+                      setInputFocused(true);
+                    });
+                  }}
+                />
+              </div>
             </div>
           ))}
         </div>

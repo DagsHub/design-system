@@ -6,10 +6,11 @@
 }
 .tippy-box {
   position: relative;
-  background-color: #333;
+  background-color: #333 !important;
   color: #fff;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 13px;
+  font-family: 'Inter';
   line-height: 1.4;
   white-space: normal;
   outline: 0;

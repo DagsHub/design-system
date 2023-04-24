@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import isEmail from 'validator/lib/isEmail';
-import React, { ChangeEvent, useState } from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 import { Icon } from '../../../../icons';
-import {Input, RadioButtonList} from '../../../../forms';
+import { Input, RadioButtonList } from '../../../../forms';
 import { GenericModal } from '../generic-modal';
 import { UserInfoProps } from '../../profiles/user-info';
 import { Button, ButtonVariant } from '../../../../elements';
@@ -49,6 +49,7 @@ export interface CreateTeamModalProps {
   resultUsers?: UserInfoProps[];
   createTeam: (args?: any) => void;
   orgName: string;
+  existingTeamNames:string[];
 }
 
 export function CreateNewTeamModal({
@@ -58,11 +59,42 @@ export function CreateNewTeamModal({
   onMemberInputChange,
   resultUsers,
   createTeam,
-}: CreateTeamModalProps) {
+ existingTeamNames
+                                   }: CreateTeamModalProps) {
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [addedMembers, setAddedMembers] = useState<UserInfoProps[]>([]);
   const [permission, setPermission] = useState<string>(UserPermissionForTeam.ReadAccess);
+
+  const [errTeamNameLength, setErrTeamNameLength] = useState<boolean>(false);
+  const [errTeamNameChars, setErrTeamNameChars] = useState<boolean>(false);
+  const [errTeamDescription, setErrTeamDescription] = useState<boolean>(false);
+  const [errTeamNameExist, setErrTeamNameExist] = useState<boolean>(false);
+
+
+  const teamNameWithIllegalCharactersErrText="Team name must be valid alpha or numeric or dash(-_) or dot characters."
+  const teamNameLengthErrText="Team name cannot be empty and must contain at most 30 characters."
+  const teamDescriptionTooLongErrText="Team description must contain at most 255 characters."
+  const teamNameExistErrText="Team name has already been taken."
+
+  useEffect(
+      function checkTeamNameInput() {
+        const regexChars = /^[a-zA-Z0-9-_.]+$/;
+        const regexLength = /^.{1,30}$/;
+        setErrTeamNameChars(name.search(regexChars) == -1)
+        setErrTeamNameLength(name.search(regexLength) == -1)
+        setErrTeamNameExist(existingTeamNames.includes(name.toLowerCase()))
+      },
+      [name]
+  );
+
+  useEffect(
+      function checkTeamDescriptionInput() {
+        const regexp = /^.{0,255}$/;
+        setErrTeamDescription(description.search(regexp) == -1)
+      },
+      [description]
+  );
 
   function onAddMember(user: UserInfoProps) {
     setAddedMembers([...addedMembers, user]);
@@ -84,14 +116,22 @@ export function CreateNewTeamModal({
         setName(e.target.value);
       }}
     />,
+    <>{errTeamNameChars&&<div style={{color:"red", fontSize:"12px"}}>{teamNameWithIllegalCharactersErrText}</div>}
+    </>,
+    <>{errTeamNameLength&&<div style={{color:"red", fontSize:"12px"}}>{teamNameLengthErrText}</div>}
+    </>,
+    <>{errTeamNameExist&&<div style={{color:"red", fontSize:"12px"}}>{teamNameExistErrText}</div>}
+    </>,
     <Input
-        rootMaxWidth={600}
-        label="2. Add description"
-        value={description}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          setDescription(e.target.value);
-        }}
+      rootMaxWidth={600}
+      label="2. Add description"
+      value={description}
+      onChange={(e: ChangeEvent<HTMLInputElement>) => {
+        setDescription(e.target.value);
+      }}
     />,
+    <>{errTeamDescription&&<div style={{color:"red", fontSize:"12px"}}>{teamDescriptionTooLongErrText}</div>}
+    </>,
     // <p className="create-new-team-modal__instructions">
     //   3. Add people by searching their username or enter email address to invite someone outside
     //   DagsHub
@@ -126,7 +166,12 @@ export function CreateNewTeamModal({
             description,
             // members: addedMembers,
             // invitees: getEmailMembers(memberInputText),
-            permission:permission===UserPermissionForTeam.ReadAccess?'read': permission===UserPermissionForTeam.WriteAccess?'write':'admin'
+            permission:
+              permission === UserPermissionForTeam.ReadAccess
+                ? 'read'
+                : permission === UserPermissionForTeam.WriteAccess
+                ? 'write'
+                : 'admin'
           });
           onClose();
         }}

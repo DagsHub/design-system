@@ -12,6 +12,7 @@ import { Button, ButtonStretch, ButtonVariant } from '../../../../elements';
 import '../../../../styles/root.scss';
 import '../generic-table/table.scss';
 import './org-admin-table.scss';
+import { Tooltip } from '../../../../elements/tooltip';
 
 export interface OrgAdminTableProps {
   admins: User[];
@@ -80,6 +81,7 @@ export function OrgAdminTable({
     columns: [
       <div className="org-admin-table__header">Organization admins</div>,
       <Button
+        className={'ghost-button'}
         label="Add another org admin"
         variant={ButtonVariant.Ghost}
         stretch={ButtonStretch.Slim}
@@ -97,10 +99,14 @@ export function OrgAdminTable({
             name={orgName}
             onInputChange={onInputChange}
             placeholder="Enter username or email"
-            onClose={() => setDisplayModal(false)}
-            addMembers={async ({ access, team, members, invitees }) => {
-              await addMembers({members, invitees});
+            onClose={() => {
               setDisplayModal(false);
+              setInputText('');
+            }}
+            addMembers={async ({ access, team, members, invitees }) => {
+              await addMembers({ members, invitees });
+              setDisplayModal(false);
+              setInputText('');
             }}
             copyInvitationAction={copyInvitationAction}
           />
@@ -134,19 +140,30 @@ export function OrgAdminTable({
         <div className="admin-access-column">
           <span className={'admin-access-column__access-type'}>
             {UserPermissionForTeam.AdminAccess}
-            <Icon width={13} height={13} fill="#172D32" icon="outline-information-circle" />
+            <Tooltip content="Admins have full access to all repositories and have admin rights to the organization">
+              <span>
+                <Icon width={13} height={13} fill="#172D32" icon="outline-information-circle" />
+              </span>
+            </Tooltip>
           </span>
           {(loggedUserId === user.id || loggedUserIsOwner) && (
             <>
-              <Icon
-                width={12}
-                height={13}
-                fill="#172D32"
-                icon="outline-trash"
-                onClick={() => {
-                  handleClick(user.id);
-                }}
-              />
+              <Tooltip
+                content="Remove from organization's admins and turn into regular member"
+                placement={'right-end'}
+              >
+                <span>
+                  <Icon
+                    width={12}
+                    height={13}
+                    fill="#172D32"
+                    icon="outline-trash"
+                    onClick={() => {
+                      handleClick(user.id);
+                    }}
+                  />
+                </span>
+              </Tooltip>
               {displayRemoveMemberFromTeamModal[user.id] && (
                 <RemoveMemberModal
                   removeYourself={!!user.leaveLink}

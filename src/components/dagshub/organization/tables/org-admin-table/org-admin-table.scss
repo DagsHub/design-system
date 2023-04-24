@@ -19,9 +19,9 @@
   align-items: center;
 
   svg {
-    cursor: pointer;
     opacity: 1;
     transition: opacity 0.5s;
+    cursor: pointer;
 
     &:hover {
       opacity: 0.9;

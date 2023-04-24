@@ -15,41 +15,39 @@ import { Checkbox } from '../../../forms';
 
 export interface BasicTableProps {
   tcolumns: any[];
-  data:any[];
-  enableColumnOrdering?:boolean;
-  enableColumnHiding?:boolean;
-  enableRowSelection?:boolean;
-  enableVirtualization?:boolean;
-  virtualizationTableHeight:number;
-  rowHeight:number;
-  cellWidth:number;
-  onScroll:()=>void;
-  listInnerRef:any;
-
+  data: any[];
+  enableColumnOrdering?: boolean;
+  enableColumnHiding?: boolean;
+  enableRowSelection?: boolean;
+  enableVirtualization?: boolean;
+  virtualizationTableHeight: number;
+  rowHeight: number;
+  cellWidth: number;
+  onScroll: () => void;
+  listInnerRef: any;
 }
 
 export function BasicTable({
-    tcolumns,
-    data,
-    enableColumnOrdering=false,
-    enableColumnHiding=false,
-    enableRowSelection=false,
-    enableVirtualization=false,
-    virtualizationTableHeight,
-    rowHeight,
-    cellWidth,
-    onScroll,
-    listInnerRef,
+  tcolumns,
+  data,
+  enableColumnOrdering = false,
+  enableColumnHiding = false,
+  enableRowSelection = false,
+  enableVirtualization = false,
+  virtualizationTableHeight,
+  rowHeight,
+  cellWidth,
+  onScroll,
+  listInnerRef
 }: BasicTableProps) {
-
-  const columns = useMemo<any>(()=> tcolumns, [])
+  const columns = useMemo<any>(() => tcolumns, []);
   const defaultColumn = React.useMemo(
-      () => ({
-          width: cellWidth,
-          minWidth: 30,
-          maxWidth: 400,
-      }),
-      []
+    () => ({
+      width: cellWidth,
+      minWidth: 30,
+      maxWidth: 400
+    }),
+    []
   );
 
   const {
@@ -72,7 +70,7 @@ export function BasicTable({
       columns,
       data,
       defaultColumn,
-      autoResetSelectedRows: false,
+      autoResetSelectedRows: false
     },
     useColumnOrder,
     useResizeColumns,
@@ -100,11 +98,11 @@ export function BasicTable({
     }
   );
 
-    const changeOrder= (sIndex:number, dIndex:number) => {
-    const colOrder = visibleColumns.map(o => o.id)
-    const id=colOrder[sIndex];
-    colOrder.splice(sIndex, 1);//remove from index
-    colOrder.splice(dIndex, 0, id);//add to index
+  const changeOrder = (sIndex: number, dIndex: number) => {
+    const colOrder = visibleColumns.map((o) => o.id);
+    const id = colOrder[sIndex];
+    colOrder.splice(sIndex, 1); //remove from index
+    colOrder.splice(dIndex, 0, id); //add to index
     setColumnOrder(colOrder);
   };
 
@@ -147,23 +145,20 @@ export function BasicTable({
     [prepareRow, rows.map((row) => row.isSelected)]
   );
 
-  const initialGroupHeaders:HeaderGroup<object>[] = useMemo<any>(()=> headerGroups, [])
-  const set: HeaderGroup<object>[]=[]
-  {initialGroupHeaders.map((headerGroup)=>(
-            headerGroup.headers.map((column)=>(
-                set.push(column)
-            )
-  )))}
+  const initialGroupHeaders: HeaderGroup<object>[] = useMemo<any>(() => headerGroups, []);
+  const set: HeaderGroup<object>[] = [];
+  {
+    initialGroupHeaders.map((headerGroup) => headerGroup.headers.map((column) => set.push(column)));
+  }
 
-  const groupedHeaders= set.filter(header=>header.parent===undefined&&header.columns!=null)
-  const unGroupedHeaders= [...new Set(allColumns
-    .filter(column=>column.parent===undefined))]
+  const groupedHeaders = set.filter(
+    (header) => header.parent === undefined && header.columns != null
+  );
+  const unGroupedHeaders = [...new Set(allColumns.filter((column) => column.parent === undefined))];
 
-    function changeState( headerGroup:HeaderGroup<object>) {
-        headerGroup?.headers.map((header)=>(
-            toggleHideColumn(header.id)
-        ))
-    }
+  function changeState(headerGroup: HeaderGroup<object>) {
+    headerGroup?.headers.map((header) => toggleHideColumn(header.id));
+  }
 
   function shouldBeChecked(headerGroup: HeaderGroup<object>) {
     let bool: boolean = true;
@@ -214,46 +209,74 @@ export function BasicTable({
         </div>
       )}
 
-          <button onClick={resetResizing}>Reset Resizing</button>
-          <br/>
-          <br/>
-          <table {...getTableProps()}>
-            <thead>
-            {headerGroups.map((headerGroup)=>(
-                <tr className={"header"} {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column)=>(
-                      <th {...column.getHeaderProps()}>
-                        {column.render('Header')}
-                          <div
-                              {...column.getResizerProps()}
-                              className={`resizer ${
-                                  column.isResizing ? 'isResizing' : ''
-                              }`}
-                          />
-                        {enableColumnOrdering&&column.id!="Selection"&&column.headers===undefined&&<div className={"move-columns"}><button disabled={moveLeftShouldBeDisabled(column.id)} onClick={()=>moveLeft(column.id)}>moveLeft</button>
-                        <button disabled={moveRightShouldBeDisabled(column.id)} onClick={()=>moveRight(column.id)}>moveRight</button></div>}
-                      </th>
-                  ))}
-                </tr>
-            ))}
-            </thead>
-            <tbody onScroll={onScroll} ref={listInnerRef} style={{ height: virtualizationTableHeight, overflowY: "auto", width:`auto`, maxWidth:`${totalColumnsWidth}px`}}{...getTableBodyProps()}>
-              {!enableVirtualization?rows.map((row)=>(
-                  RenderRow({...row, style:{"height":rowHeight, "width":'auto'} })
-              )):
-              <FixedSizeList
-                  height={rowHeight*rows.length < virtualizationTableHeight? rowHeight*rows.length:virtualizationTableHeight}
-                  itemCount={rows.length}
-                  itemSize={rowHeight}
-                  width={totalColumnsWidth}//need to add scroller width like in the example
-              >
-                  {RenderRow}
-              </FixedSizeList>}
-            </tbody>
-          </table>
-      </>
+      <button onClick={resetResizing}>Reset Resizing</button>
+      <br />
+      <br />
+      <table {...getTableProps()}>
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr className={'header'} {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <th {...column.getHeaderProps()}>
+                  {column.render('Header')}
+                  <div
+                    {...column.getResizerProps()}
+                    className={`resizer ${column.isResizing ? 'isResizing' : ''}`}
+                  />
+                  {enableColumnOrdering &&
+                    column.id != 'Selection' &&
+                    column.headers === undefined && (
+                      <div className={'move-columns'}>
+                        <button
+                          disabled={moveLeftShouldBeDisabled(column.id)}
+                          onClick={() => moveLeft(column.id)}
+                        >
+                          moveLeft
+                        </button>
+                        <button
+                          disabled={moveRightShouldBeDisabled(column.id)}
+                          onClick={() => moveRight(column.id)}
+                        >
+                          moveRight
+                        </button>
+                      </div>
+                    )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody
+          onScroll={onScroll}
+          ref={listInnerRef}
+          style={{
+            height: virtualizationTableHeight,
+            overflowY: 'auto',
+            width: `auto`,
+            maxWidth: `${totalColumnsWidth}px`
+          }}
+          {...getTableBodyProps()}
+        >
+          {!enableVirtualization ? (
+            rows.map((row) => RenderRow({ ...row, style: { height: rowHeight, width: 'auto' } }))
+          ) : (
+            <FixedSizeList
+              height={
+                rowHeight * rows.length < virtualizationTableHeight
+                  ? rowHeight * rows.length
+                  : virtualizationTableHeight
+              }
+              itemCount={rows.length}
+              itemSize={rowHeight}
+              width={totalColumnsWidth} //need to add scroller width like in the example
+            >
+              {RenderRow}
+            </FixedSizeList>
+          )}
+        </tbody>
+      </table>
+    </>
   );
 }
-
 
 //how can I give each column its own width
