@@ -70,17 +70,19 @@ export function CreateNewTeamModal({
   const [errTeamNameChars, setErrTeamNameChars] = useState<boolean>(false);
   const [errTeamDescription, setErrTeamDescription] = useState<boolean>(false);
   const [errTeamNameExist, setErrTeamNameExist] = useState<boolean>(false);
+  const [errTeamNameRequired, setErrTeamNameRequired] = useState<boolean>(false);
 
 
   const teamNameWithIllegalCharactersErrText="Team name must be valid alpha or numeric or dash(-_) or dot characters."
-  const teamNameLengthErrText="Team name cannot be empty and must contain at most 30 characters."
-  const teamDescriptionTooLongErrText="Team description must contain at most 255 characters."
+  const teamNameLengthErrText="Team name must contain at most 30 characters."
   const teamNameExistErrText="Team name has already been taken."
+  const teamNameRequiredErrText="Team name cannot be empty."
+  const teamDescriptionTooLongErrText="Team description must contain at most 255 characters."
 
   useEffect(
       function checkTeamNameInput() {
-        const regexChars = /^[a-zA-Z0-9-_.]+$/;
-        const regexLength = /^.{1,30}$/;
+        const regexChars = /^$|^[a-zA-Z0-9-_.]+$/;
+        const regexLength = /^.{0,30}$/;
         setErrTeamNameChars(name.search(regexChars) == -1)
         setErrTeamNameLength(name.search(regexLength) == -1)
         setErrTeamNameExist(existingTeamNames.includes(name.toLowerCase()))
@@ -122,6 +124,8 @@ export function CreateNewTeamModal({
     </>,
     <>{errTeamNameExist&&<div style={{color:"red", fontSize:"12px"}}>{teamNameExistErrText}</div>}
     </>,
+      <>{errTeamNameRequired&&<div style={{color:"red", fontSize:"12px"}}>{teamNameRequiredErrText}</div>}
+      </>,
     <Input
       rootMaxWidth={600}
       label="2. Add description"
@@ -157,23 +161,30 @@ export function CreateNewTeamModal({
     />,
     <div className="team-settings-modal__buttons">
       <Button
-        variant={ButtonVariant.Primary}
+          disabled={errTeamDescription||errTeamNameLength||errTeamNameChars||errTeamNameExist}
+          variant={ButtonVariant.Primary}
         label="Create new team"
         width={600}
         onClick={async () => {
-          await createTeam({
-            name,
-            description,
-            // members: addedMembers,
-            // invitees: getEmailMembers(memberInputText),
-            permission:
-              permission === UserPermissionForTeam.ReadAccess
-                ? 'read'
-                : permission === UserPermissionForTeam.WriteAccess
-                ? 'write'
-                : 'admin'
-          });
-          onClose();
+            const regexp = /^(?!\s* $).+/;
+            if(name.search(regexp) == -1) {
+                setErrTeamNameRequired(true)
+            }else{
+                setErrTeamNameRequired(false)
+                await createTeam({
+                    name,
+                    description,
+                    // members: addedMembers,
+                    // invitees: getEmailMembers(memberInputText),
+                    permission:
+                        permission === UserPermissionForTeam.ReadAccess
+                            ? 'read'
+                            : permission === UserPermissionForTeam.WriteAccess
+                                ? 'write'
+                                : 'admin'
+                });
+                onClose();
+            }
         }}
       />
     </div>

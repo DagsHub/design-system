@@ -57,12 +57,16 @@ export function TeamSettingsModal({
   const [errTeamNameChars, setErrTeamNameChars] = useState<boolean>(false);
   const [errTeamDescription, setErrTeamDescription] = useState<boolean>(false);
   const [errTeamNameExist, setErrTeamNameExist] = useState<boolean>(false);
+  const [errTeamNameRequired, setErrTeamNameRequired] = useState<boolean>(false);
+
 
 
   const teamNameWithIllegalCharactersErrText="Team name must be valid alpha or numeric or dash(-_) or dot characters."
   const teamNameLengthErrText="Team name cannot be empty and must contain at most 30 characters."
-  const teamDescriptionTooLongErrText="Team description must contain at most 255 characters."
+  const teamNameRequiredErrText="Team name cannot be empty."
   const teamNameExistErrText="Team name has already been taken."
+  const teamDescriptionTooLongErrText="Team description must contain at most 255 characters."
+
 
 
   const [teamNameInputText, setTeamNameInputText] = useState<string>(teamName);
@@ -81,12 +85,10 @@ export function TeamSettingsModal({
 
   useEffect(
     function checkTeamNameInput() {
-      const regexChars = /^[a-zA-Z0-9-_.]+$/;
-      const regexLength = /^.{1,30}$/;
+      const regexChars = /^$|^[a-zA-Z0-9-_.]+$/;
+      const regexLength = /^.{0,30}$/;
       setErrTeamNameChars(teamNameInputText.search(regexChars) == -1)
       setErrTeamNameLength(teamNameInputText.search(regexLength) == -1)
-      console.log(existingTeamNames)
-      console.log(teamNameInputText.toLowerCase())
       setErrTeamNameExist(existingTeamNames.includes(teamNameInputText.toLowerCase()))
     },
     [teamNameInputText]
@@ -114,6 +116,8 @@ export function TeamSettingsModal({
     <>{errTeamNameLength&&<div style={{color:"red"}}>{teamNameLengthErrText}</div>}
     </>,
     <>{errTeamNameExist&&<div style={{color:"red"}}>{teamNameExistErrText}</div>}
+    </>,
+    <>{errTeamNameRequired&&<div style={{color:"red", fontSize:"12px"}}>{teamNameRequiredErrText}</div>}
     </>,
     <Input
       label="Description"
@@ -144,19 +148,25 @@ export function TeamSettingsModal({
             disabled={errTeamDescription||errTeamNameLength||errTeamNameChars||errTeamNameExist}
             label="Save changes"
             onClick={() => {
-              onEditTeam({
-                originalName: teamName,
-                newName: teamNameInputText,
-                description: teamDescriptionInputText,
-                permission:
-                  permission === UserPermissionForTeam.ReadAccess
-                    ? 'read'
-                    : permission === UserPermissionForTeam.WriteAccess
-                    ? 'write'
-                    : 'admin'
-              });
-              onClose();
-            }}
+              const regexp = /^(?!\s* $).+/;
+              if (teamNameInputText.search(regexp) == -1) {
+                setErrTeamNameRequired(true)
+              } else {
+                onEditTeam({
+                  originalName: teamName,
+                  newName: teamNameInputText,
+                  description: teamDescriptionInputText,
+                  permission:
+                      permission === UserPermissionForTeam.ReadAccess
+                          ? 'read'
+                          : permission === UserPermissionForTeam.WriteAccess
+                              ? 'write'
+                              : 'admin'
+                });
+                onClose();
+              }
+            }
+            }
             variant={ButtonVariant.Primary}
           />
         </div>
