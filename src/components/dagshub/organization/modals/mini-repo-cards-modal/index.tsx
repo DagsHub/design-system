@@ -40,7 +40,7 @@ export function MiniRepoCardsModal(props: MiniRepoCardsModalProps) {
           forksHref={repo.forksHref}
           issuesHref={repo.issuesHref}
           pullsHref={repo.pullsHref}
-          repoNameHref={repo.repoNameHref}
+          link={repo.link}
           starActionLink={repo.starActionLink}
           starNumberLink={repo.starNumberLink}
           isLogged={props.isLogged}

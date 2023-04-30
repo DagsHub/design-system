@@ -3,6 +3,7 @@ import { Icon } from '../../../../icons';
 
 import '../../../../styles/root.scss';
 import './repo.scss';
+import {Tooltip} from "../../../../elements/tooltip";
 
 export interface Topic {
   id: number;
@@ -34,7 +35,7 @@ export interface RepoCardProps {
   numOpenPulls: number;
   numOpenIssues: number;
   updatedAt: string;
-  repoNameHref: string;
+  link: string;
   starActionLink: string;
   starNumberLink: string;
   forksHref: string;
@@ -64,7 +65,7 @@ export function RepoCard({
   numOpenPulls,
   numOpenIssues,
   updatedAt,
-  repoNameHref,
+  link,
   starActionLink,
   starNumberLink,
   forksHref,
@@ -76,6 +77,7 @@ export function RepoCard({
   const stars = IsGithubIntegrated ? githubStarCount + numStars : numStars;
   return (
     <>
+      <a href={link}>
       <div className="desktop-repo card">
         <div className="repo-card-content">
           {!isMini && (
@@ -89,11 +91,12 @@ export function RepoCard({
                 <span className="days-ago">Updated {getUpdatedDaysAgo(updatedAt)} days ago</span>
               </div>
               {isLogged && (
-                <div className="star-section">
+                  <div className="star-section">
                   <a className="star-number" href={starNumberLink}>
                     {stars}
                   </a>
-                  <a
+                    <Tooltip content={isStaring ? 'Starred' : 'Star project'} placement={"left-end"} >
+                    <a
                     className="star-action"
                     href={starActionLink}
                     onClick={(event: any) => {
@@ -108,7 +111,8 @@ export function RepoCard({
                       <Icon width={18} height={17} fill="#94A3B8" icon="outline-star" />
                     )}
                   </a>
-                </div>
+                    </Tooltip>
+                  </div>
               )}
             </div>
           )}
@@ -117,10 +121,10 @@ export function RepoCard({
               <Icon width={14} height={19} fill="#475569" icon="outline-repository-github" />
             )}
             <div className="repo-name">
-              <a className="title1 cut-text" href={repoNameHref}>
+              <a className="title1 cut-text" href={link}>
                 {name}
               </a>
-              <div className="tag public-private">{isPrivate ? 'private' : 'public'}</div>
+              <div className="tag public-private">{isPrivate ? 'Private' : 'Public'}</div>
             </div>
             {topics?.map(
               (topic: Topic) =>
@@ -143,12 +147,15 @@ export function RepoCard({
               {!isMini && <Icon width={564} height={1} fill="#E2E8F0" icon="divider" />}
               <div className="repo-info-text">
                 <div className="stats">
+                  <Tooltip content={"Forks"} placement={"top-start"} >
                   <a className="stat-block" href={forksHref}>
                     <Icon width={10.29} height={12} fill="#475569" icon="outline-fork" />
                     <p>{numForks}</p>
                   </a>
+                  </Tooltip>
                   {!isMirror && (
-                    <a className="stat-block" href={pullsHref}>
+                    <Tooltip content={"Pull requests"} placement={"top-start"} >
+                      <a className="stat-block" href={pullsHref}>
                       <Icon
                         width={15}
                         height={14.5}
@@ -157,11 +164,14 @@ export function RepoCard({
                       />
                       <p>{numOpenPulls}</p>
                     </a>
+                    </Tooltip>
                   )}
+                  <Tooltip content={"Open issues"} placement={"top-start"} >
                   <a className="stat-block" href={issuesHref}>
                     <Icon width={15} height={15} fill="#475569" icon="outline-issue" />
                     <p>{numOpenIssues}</p>
                   </a>
+                  </Tooltip>
                 </div>
                 {!isMini && (
                   <div className="belongs-to">
@@ -181,6 +191,7 @@ export function RepoCard({
           </div>
         </div>
       </div>
+      </a>
     </>
   );
 }

@@ -86,6 +86,10 @@ export function CreateNewTeamModal({
         setErrTeamNameChars(name.search(regexChars) == -1)
         setErrTeamNameLength(name.search(regexLength) == -1)
         setErrTeamNameExist(existingTeamNames.includes(name.toLowerCase()))
+          const regexp = /^(?!\s* $).+/;
+          if(name.search(regexp) != -1) {
+              setErrTeamNameRequired(false)
+          }
       },
       [name]
   );

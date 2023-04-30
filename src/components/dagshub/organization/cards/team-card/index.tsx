@@ -16,6 +16,7 @@ export interface TeamCardProps {
 
 export function TeamCard({ teamName, teamDescription, teamMembers, teamLink }: TeamCardProps) {
   return (
+      <a href={teamLink}>
     <div className="team-card">
       <div className={'team-card-header'}>
         <a href={teamLink} className="team-card-header__team-name">
@@ -30,5 +31,6 @@ export function TeamCard({ teamName, teamDescription, teamMembers, teamLink }: T
       </div>
       <div className="team-card__team-description">{teamDescription ? teamDescription : ''}</div>
     </div>
+      </a>
   );
 }

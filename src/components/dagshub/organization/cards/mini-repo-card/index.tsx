@@ -3,6 +3,7 @@ import { Icon } from '../../../../icons';
 
 import '../../../../styles/root.scss';
 import './repo-mini.scss';
+import {Tooltip} from "../../../../elements/tooltip";
 
 interface Topic {
   id: number;
@@ -34,7 +35,7 @@ export interface MiniRepoCardProps {
   numOpenPulls: number;
   numOpenIssues: number;
   updatedAt: string;
-  repoNameHref: string;
+  link: string;
   starActionLink: string;
   starNumberLink: string;
   forksHref: string;
@@ -64,7 +65,7 @@ export function MiniRepoCard({
   numOpenPulls,
   numOpenIssues,
   updatedAt,
-  repoNameHref,
+  link,
   starActionLink,
   starNumberLink,
   forksHref,
@@ -76,6 +77,7 @@ export function MiniRepoCard({
   const stars = IsGithubIntegrated ? githubStarCount + numStars : numStars;
   return (
     <>
+      <a href={link}>
       <div className="mini-desktop-repo mini-card">
         <div className="mini-repo-card-content">
           {!isMini && (
@@ -117,10 +119,10 @@ export function MiniRepoCard({
               <Icon width={13.66} height={18.99} fill="#475569" icon="outline-repository-github" />
             )}
             <div className="mini-repo-name">
-              <a className="mini-title1 mini-cut-text" href={repoNameHref}>
+              <a className="mini-title1 mini-cut-text" href={link}>
                 {name}
               </a>
-              <div className="mini-tag mini-public-private">{isPrivate ? 'private' : 'public'}</div>
+              <div className="mini-tag mini-public-private">{isPrivate ? 'Private' : 'Public'}</div>
             </div>
             {topics?.map(
               (topic: Topic) =>
@@ -147,12 +149,15 @@ export function MiniRepoCard({
               {!isMini && <Icon width={564} height={1} fill="#E2E8F0" icon="divider" />}
               <div className="mini-repo-info-text">
                 <div className="mini-stats">
+                  <Tooltip content={"Forks"} placement={"top-start"} >
                   <a className="mini-stat-block" href={forksHref}>
                     <Icon width={10.29} height={12} fill="#475569" icon="outline-fork" />
                     <p>{numForks}</p>
                   </a>
+                  </Tooltip>
                   {!isMirror && (
-                    <a className="mini-stat-block" href={pullsHref}>
+                      <Tooltip content={"Pull requests"} placement={"top-start"} >
+                      <a className="mini-stat-block" href={pullsHref}>
                       <Icon
                         width={15}
                         height={14.5}
@@ -161,13 +166,17 @@ export function MiniRepoCard({
                       />
                       <p>{numOpenPulls}</p>
                     </a>
+                      </Tooltip>
                   )}
+                  <Tooltip content={"Open issues"} placement={"top-start"} >
                   <a className="mini-stat-block" href={issuesHref}>
                     <Icon width={14.67} height={14.67} fill="#475569" icon="outline-issue" />
                     <p>{numOpenIssues}</p>
                   </a>
+                  </Tooltip>
                   {isMini && isLogged && (
                     <div className="mini-star-section">
+                      <Tooltip content={isStaring ? 'Starred' : 'Star project'} placement={"top-start"} >
                       <a
                         className="mini-star-action"
                         href={starActionLink}
@@ -183,6 +192,7 @@ export function MiniRepoCard({
                           <Icon width={12} height={11.47} fill="#475569" icon="outline-star" />
                         )}
                       </a>
+                      </Tooltip>
                       <a className="mini-star-number" href={starNumberLink}>
                         {stars}
                       </a>
@@ -207,6 +217,7 @@ export function MiniRepoCard({
           </div>
         </div>
       </div>
+      </a>
     </>
   );
 }

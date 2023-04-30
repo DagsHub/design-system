@@ -53,7 +53,7 @@ export interface TeamTableProps {
   handleCollapse: (teamId: number | string) => void;
   style: string;
   isActive: Boolean;
-  removeFromTeam: (teamName: string, id: number) => void;
+  removeFromTeam: (teamName: string, id: number, name:string) => void;
   addNewTeamMembers: (args?: any) => void;
   onEditTeam: (args: OnEditTeamInput) => void;
   onChangingTeamPermission: (args: OnChangingTeamPermissionInput) => void;
@@ -64,6 +64,7 @@ export interface TeamTableProps {
   onStarActionClick: (args?: any) => () => Promise<void>;
   copyInvitationAction: (args?: any) => void;
   existingTeamNames:string[];
+  addTeamReposLink:string;
 }
 
 export interface OnEditTeamInput {
@@ -101,7 +102,8 @@ export function TeamTable({
   isLogged,
   onStarActionClick,
   copyInvitationAction,
-  existingTeamNames
+  existingTeamNames,
+  addTeamReposLink
 }: TeamTableProps) {
   const [users, setUsers] = useState<any[]>([]);
   const [inputText, setInputText] = useState<string>('');
@@ -166,7 +168,7 @@ export function TeamTable({
   const header: Row = {
     columns: [
       <span className="teams-table-left-side-header">
-        <span className="teams-table-left-side-header__team-name">{teamName} TEAM</span>
+        <span className="teams-table-left-side-header__team-name">{teamName}</span>
         <span className="teams-table-left-side-header__team-description">{teamDescription}</span>
       </span>,
       <span className="teams-table-right-side-header">
@@ -288,7 +290,7 @@ export function TeamTable({
               username={member.userName}
               orgOrTeamName={teamName}
               onRemove={() => {
-                removeFromTeam(teamName, member.id);
+                removeFromTeam(teamName, member.id, member.userName);
                 handleClick(member.id);
               }}
               onClose={() => handleClick(member.id)}
@@ -353,14 +355,15 @@ export function TeamTable({
           </span>
           <span className="team-repos">
             {teamRepos?.map((repo) => (
-              <a href={repo.repoNameHref} className="team-repos__repo">
+              <a href={repo.link} className="team-repos__repo">
                 <Icon width={16} height={21} fill="#172D32" icon="outline-repository-github" />
                 {repo.name}
               </a>
             ))}
           </span>
+           <a style={{textDecoration: "underline", color: "black", display: "flex",
+             flexShrink: 0}} href={addTeamReposLink}>Add more repositories</a>
         </span>,
-
         <span
           className="teams-table-footer-right-section"
           onClick={() => setDisplayMiniCardModal(!displayMiniCardModal)}
@@ -384,7 +387,7 @@ export function TeamTable({
     };
   } else {
     footer = {
-      columns: [<span>This team doesn't have repositories yet</span>]
+      columns: [<span>This team doesn't have repositories yet{" "}<a style={{textDecoration: "underline", color: "black"}} href={addTeamReposLink}>Add team repositories</a></span>]
     };
   }
 

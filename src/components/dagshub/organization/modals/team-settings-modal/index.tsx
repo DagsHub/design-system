@@ -90,6 +90,10 @@ export function TeamSettingsModal({
       setErrTeamNameChars(teamNameInputText.search(regexChars) == -1)
       setErrTeamNameLength(teamNameInputText.search(regexLength) == -1)
       setErrTeamNameExist(existingTeamNames.includes(teamNameInputText.toLowerCase()))
+      const regexp = /^(?!\s* $).+/;
+      if(teamNameInputText.search(regexp) != -1) {
+        setErrTeamNameRequired(false)
+      }
     },
     [teamNameInputText]
   );

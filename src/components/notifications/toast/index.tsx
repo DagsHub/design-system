@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import { Icon } from '../../icons';
 
@@ -31,7 +31,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       width = 'initial',
       top = 'initial',
       bottom = 25,
-      left = 'initital',
+      left = 'initial',
       right = 25,
       onClose
     },
@@ -40,23 +40,25 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
     const autoCloseTimeoutId = useRef<any>(null);
     const isSuccess = type === 'success';
     const classes = classNames([`dagshub-toast`, className]);
+    const [isVisible, setVisible]=useState(visible)
 
     useEffect(
       function onAutoClose() {
         if (autoCloseSeconds && onClose) {
           autoCloseTimeoutId.current = setTimeout(onClose, autoCloseSeconds * 1000);
+          setVisible(false)
         }
       },
       [autoCloseSeconds]
     );
 
     useEffect(
-      function onInvisble() {
-        if (!visible) {
+      function onInvisible() {
+        if (!isVisible) {
           clearTimeout(autoCloseTimeoutId.current);
         }
       },
-      [visible]
+      [isVisible]
     );
 
     if (!visible) {
@@ -70,7 +72,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
           fill={isSuccess ? 'green' : 'red'}
         />
         <div>{children}</div>
-        {onClose && <Icon icon="solid-x" onClick={onClose} fill="#ABADC6" />}
+        <Icon icon="solid-x" onClick={onClose} fill="#ABADC6" />
       </div>
     );
   }
