@@ -21,7 +21,7 @@ export interface PeopleTableProps {
   orgName: string;
 }
 
-interface User {
+export interface User {
   id: number;
   userImage: string;
   username: string;
