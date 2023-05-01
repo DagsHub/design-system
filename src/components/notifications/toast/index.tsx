@@ -24,7 +24,6 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
   (
     {
       type = 'success',
-      visible = false,
       className = '',
       children = null,
       autoCloseSeconds = null,
@@ -40,30 +39,15 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
     const autoCloseTimeoutId = useRef<any>(null);
     const isSuccess = type === 'success';
     const classes = classNames([`dagshub-toast`, className]);
-    const [isVisible, setVisible]=useState(visible)
 
     useEffect(
       function onAutoClose() {
         if (autoCloseSeconds && onClose) {
           autoCloseTimeoutId.current = setTimeout(onClose, autoCloseSeconds * 1000);
-          setVisible(false)
         }
       },
-      [autoCloseSeconds]
+      []
     );
-
-    useEffect(
-      function onInvisible() {
-        if (!isVisible) {
-          clearTimeout(autoCloseTimeoutId.current);
-        }
-      },
-      [isVisible]
-    );
-
-    if (!visible) {
-      return null;
-    }
 
     return (
       <div ref={ref} className={classes} style={{ width, top, bottom, left, right }}>
