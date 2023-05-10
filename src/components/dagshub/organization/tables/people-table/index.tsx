@@ -19,6 +19,10 @@ export interface PeopleTableProps {
   loggedUserId: number;
   loggedUserIsOwner: boolean;
   orgName: string;
+  handleCollapse: (shouldFetch:boolean) => Promise<void>;
+  style: string;
+  isActive: Boolean;
+  numMembers: number;
 }
 
 export interface User {
@@ -42,11 +46,7 @@ export enum MembershipVisibility {
   Private = 'private'
 }
 
-//add functionality, tooltip
-//add links?
-//change its css to BEM
-//add te hover design for the private-public
-//add (you) annotation to relevant user
+const MAX_ROWS: number = 7;
 
 const header: Row = {
   columns: [
@@ -68,6 +68,7 @@ const membershipVisibilityOptions: RadioButtonItemProps[] = [
     description: "User's membership is only visible to other members of this organization"
   }
 ];
+
 export function PeopleTable(props: PeopleTableProps) {
   const createInitialMapState = (arr: any[], initialValue: boolean | string) =>
     arr.reduce((acc: any, user: any) => ({ ...acc, [user.id]: initialValue }), {});
@@ -82,7 +83,7 @@ export function PeopleTable(props: PeopleTableProps) {
     });
   };
 
-  const rows: Row[] = (props.users || [])?.map((user) => ({
+  const rows: Row[] = (props.users || [])?.map((user, userIndex) => ({
     columns: [
       <UserInfo
         imageSource={user.userImage}
@@ -165,8 +166,26 @@ export function PeopleTable(props: PeopleTableProps) {
           </>
         )}
       </div>
-    ]
+    ],
+    style: userIndex >= MAX_ROWS ? { display: props.style } : {}
   }));
+
+  if (props.numMembers > MAX_ROWS) {
+    let row: Row = {
+      columns: [
+        <span>{props.isActive ? 'Collapse' : 'See all team members'}</span>,
+        <Icon
+            width={8}
+            height={5}
+            fill="#172D32"
+            icon={`solid-cheveron-${props.isActive ? 'up' : 'down'}`}
+        />
+      ],
+      rowClasses: 'table__collapse',
+      onClick: () => props.handleCollapse(!props.isActive)
+    };
+    rows.push(row);
+  }
 
   return <GenericTable header={header} rows={rows} />;
 }

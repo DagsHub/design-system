@@ -49,8 +49,9 @@ export interface TeamTableProps {
   teamDescription?: string;
   teamPermission: UserPermissionForTeam;
   members: Member[];
+  numMembers:number;
   teamRepos: RepoCardProps[];
-  handleCollapse: (teamId: number | string) => void;
+  handleCollapse: (teamId: number | string, shouldFetch:boolean) => Promise<void>;
   style: string;
   isActive: Boolean;
   removeFromTeam: (teamName: string, id: number, name:string) => void;
@@ -87,6 +88,7 @@ export function TeamTable({
   teamName,
   teamDescription,
   members,
+  numMembers,
   style,
   isActive,
   handleCollapse,
@@ -303,7 +305,7 @@ export function TeamTable({
     rows.push(row);
   });
 
-  if ((members ?? []).length > MAX_ROWS) {
+  if (numMembers > MAX_ROWS) {
     let row: Row = {
       columns: [
         <span>{isActive ? 'Collapse' : 'See all team members'}</span>,
@@ -315,7 +317,7 @@ export function TeamTable({
         />
       ],
       rowClasses: 'table__collapse',
-      onClick: () => handleCollapse(teamId)
+      onClick: () => handleCollapse(teamId, !isActive)
     };
     rows.push(row);
   }

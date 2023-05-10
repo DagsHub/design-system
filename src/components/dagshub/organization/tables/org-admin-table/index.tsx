@@ -21,6 +21,10 @@ export interface OrgAdminTableProps {
   orgName: string;
   addMembers: (args?: any) => void;
   copyInvitationAction: (args?: any) => void;
+  handleCollapse: (shouldFetch:boolean) => Promise<void>;
+  style: string;
+  isActive: Boolean;
+  numMembers:number;
 }
 
 interface User {
@@ -34,13 +38,19 @@ interface User {
   homeLink?: string;
 }
 
+const MAX_ROWS: number = 7;
+
 export function OrgAdminTable({
   orgName,
   admins,
   loggedUserId,
   loggedUserIsOwner,
   addMembers,
-  copyInvitationAction
+  copyInvitationAction,
+  handleCollapse,
+  style,
+  isActive,
+  numMembers
 }: OrgAdminTableProps) {
   const [users, setUsers] = useState<any[]>([]);
   const [inputText, setInputText] = useState<string>('');
@@ -129,7 +139,7 @@ export function OrgAdminTable({
 
   let rows: Row[] = [];
 
-  for (let user of admins) {
+  admins?.forEach((user, userIndex) => {
     let row: Row = {
       columns: [
         <UserInfo
@@ -180,9 +190,28 @@ export function OrgAdminTable({
             </>
           )}
         </div>
-      ]
+      ],
+      style: userIndex >= MAX_ROWS ? { display: style } : {}
+    };
+    rows.push(row);
+  })
+
+  if (numMembers > MAX_ROWS) {
+    let row: Row = {
+      columns: [
+        <span>{isActive ? 'Collapse' : 'See all team members'}</span>,
+        <Icon
+            width={8}
+            height={5}
+            fill="#172D32"
+            icon={`solid-cheveron-${isActive ? 'up' : 'down'}`}
+        />
+      ],
+      rowClasses: 'table__collapse',
+      onClick: () => handleCollapse(!isActive)
     };
     rows.push(row);
   }
+
   return <GenericTable header={header} rows={rows} />;
 }
