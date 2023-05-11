@@ -251,7 +251,6 @@ export function BasicTable({
           ref={listInnerRef}
           style={{
             height: virtualizationTableHeight,
-            overflowY: 'auto',
             width: `auto`,
             maxWidth: `${totalColumnsWidth}px`
           }}
@@ -269,7 +268,7 @@ export function BasicTable({
               itemCount={rows.length}
               itemSize={rowHeight}
               width={totalColumnsWidth} //need to add scroller width like in the example
-            >
+              style={{overflow:"none"}}            >
               {RenderRow}
             </FixedSizeList>
           )}
