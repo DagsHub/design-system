@@ -6,6 +6,7 @@ import './button.scss';
 export enum ButtonVariant {
   Primary = 'primary',
   Secondary = 'secondary',
+  oOutlineSecondary = 'outline-secondary',
   Error = 'error',
   Ghost = 'ghost'
 }

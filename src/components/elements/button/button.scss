@@ -43,6 +43,21 @@
     }
   }
 
+  &.outline-secondary {
+    border: 2px solid #E2E8F0;
+    border-radius: 12px;
+    color: #172d32;
+    background-color: transparent;
+    &:hover {
+      background: #F1F5F9;
+    }
+    &:focus {
+      background: #F1F5F9;
+      border: 2px solid #E2E8F0;
+      box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+    }
+  }
+
   &.error {
     color: #dc2626;
     background-color: #f8fafc;
