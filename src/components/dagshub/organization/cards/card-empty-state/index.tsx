@@ -12,6 +12,7 @@ export interface CardEmptyStateProps {
   buttonText?: string;
   buttonAction?: () => void;
   buttonLink?: string;
+  backgroundImg?: string;
 }
 
 export function CardEmptyState({
@@ -20,10 +21,12 @@ export function CardEmptyState({
   height,
   buttonText,
   buttonLink,
-  buttonAction
+  buttonAction,
+ backgroundImg
 }: CardEmptyStateProps) {
   return (
     <div className="card-empty-state" style={{ maxWidth: width, height }}>
+      {backgroundImg&&<img src={backgroundImg} width={"100%"} height={"100%"}/>}
       {text && <div className="card-empty-state__text">{text}</div>}
       {buttonText && (
         <a href={buttonLink ?? undefined}>

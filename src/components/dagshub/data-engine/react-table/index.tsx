@@ -20,6 +20,7 @@ export interface BasicTableProps {
   enableColumnHiding?: boolean;
   enableRowSelection?: boolean;
   enableVirtualization?: boolean;
+  enableResizing?: boolean;
   virtualizationTableHeight: number;
   rowHeight: number;
   cellWidth: number;
@@ -33,6 +34,7 @@ export function BasicTable({
   enableColumnOrdering = false,
   enableColumnHiding = false,
   enableRowSelection = false,
+    enableResizing=false,
   enableVirtualization = false,
   virtualizationTableHeight,
   rowHeight,
@@ -44,8 +46,8 @@ export function BasicTable({
   const defaultColumn = React.useMemo(
     () => ({
       width: cellWidth,
-      minWidth: 30,
-      maxWidth: 400
+      maxWidth: cellWidth,
+      height:rowHeight
     }),
     []
   );
@@ -88,8 +90,8 @@ export function BasicTable({
               Cell: ({ row }) => <Checkbox {...row.getToggleRowSelectedProps()} />,
               width: 52,
               minWidth: 30,
-              maxWidth: 400
-            },
+              maxWidth: 400,
+        },
             ...columns
           ];
         }
@@ -205,13 +207,10 @@ export function BasicTable({
               </label>
             </div>
           ))}
-          <br />
         </div>
       )}
 
-      <button onClick={resetResizing}>Reset Resizing</button>
-      <br />
-      <br />
+      {enableResizing&&<button onClick={resetResizing}>Reset Resizing</button>}
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -250,8 +249,8 @@ export function BasicTable({
           onScroll={onScroll}
           ref={listInnerRef}
           style={{
-            height: virtualizationTableHeight,
-            width: `auto`,
+            // height: virtualizationTableHeight,
+            // width: `auto`,
             maxWidth: `${totalColumnsWidth}px`
           }}
           {...getTableBodyProps()}
@@ -268,7 +267,7 @@ export function BasicTable({
               itemCount={rows.length}
               itemSize={rowHeight}
               width={totalColumnsWidth} //need to add scroller width like in the example
-              style={{overflow:"none"}}            >
+              style={{overflow:"none"}}>
               {RenderRow}
             </FixedSizeList>
           )}

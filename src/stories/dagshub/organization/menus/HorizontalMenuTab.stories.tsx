@@ -16,8 +16,11 @@ export default meta;
 const Template: StoryFn<HorizontalMenuTabProps> = (args) => <HorizontalMenuTab {...args} />;
 export const Primary1 = Template.bind({});
 Primary1.args = {
-  text: 'Overview',
-  icon: <Icon icon={'outline-notebook'} width={20} height={16.25} />
+  text: 'Collaborations',
+  icon: <Icon icon="outline-repository-github" width={16} height={20}/>,
+  checked: true,
+  iconRight: <Icon icon={"solid-cheveron-up"} width={10} height={6} fill={"#5467DE"}/>,
+  onClick:()=>{console.log("hi")}
 };
 
 export const Primary2 = Template.bind({});

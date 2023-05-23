@@ -6,7 +6,7 @@ import './button.scss';
 export enum ButtonVariant {
   Primary = 'primary',
   Secondary = 'secondary',
-  oOutlineSecondary = 'outline-secondary',
+  OutlineSecondary = 'outline-secondary',
   Error = 'error',
   Ghost = 'ghost'
 }
@@ -26,6 +26,7 @@ export interface ButtonProps {
   iconLeft?: JSX.Element;
   iconRight?: JSX.Element;
   width?: number;
+  counter?:number;
 }
 
 export const Button = React.forwardRef<
@@ -43,6 +44,7 @@ export const Button = React.forwardRef<
       iconLeft,
       iconRight,
       width,
+        counter,
       ...props
     },
     ref
@@ -62,6 +64,7 @@ export const Button = React.forwardRef<
           {iconLeft}
           {label}
           {iconRight}
+            {!!counter && counter > 0 && <div className="counter">{counter}</div>}
         </div>
       </button>
     );
