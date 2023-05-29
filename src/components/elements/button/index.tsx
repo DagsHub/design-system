@@ -27,6 +27,7 @@ export interface ButtonProps {
   iconRight?: JSX.Element;
   width?: number;
   counter?:number;
+  counterLink?:string;
 }
 
 export const Button = React.forwardRef<
@@ -45,6 +46,7 @@ export const Button = React.forwardRef<
       iconRight,
       width,
         counter,
+        counterLink,
       ...props
     },
     ref
@@ -64,7 +66,8 @@ export const Button = React.forwardRef<
           {iconLeft}
           {label}
           {iconRight}
-            {!!counter && counter > 0 && <div className="counter">{counter}</div>}
+            {(!!counter && counter > 0 && counterLink )?<a href={counterLink} className="counter">{counter}</a>:
+            !!counter && counter > 0 && <div className="counter">{counter}</div>}
         </div>
       </button>
     );

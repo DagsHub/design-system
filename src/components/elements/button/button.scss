@@ -17,6 +17,9 @@
     &:focus {
       background-color: #64748b;
     }
+    .counter{
+      color: #ffffff!important;
+    }
   }
 
   &.primary {
@@ -29,6 +32,9 @@
       background: #5467de;
       box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
     }
+    .counter{
+      color: #ffffff!important;
+    }
   }
 
   &.secondary {
@@ -40,6 +46,9 @@
     &:focus {
       background: #cbd5e1;
       border: 2px solid #c4b5fd;
+    }
+    .counter{
+      color: #172d32!important;
     }
   }
 
@@ -55,6 +64,9 @@
       background: #F1F5F9;
       border: 2px solid #E2E8F0;
       box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+    }
+    .counter{
+      color: #172d32!important;
     }
   }
 
@@ -79,6 +91,10 @@
         fill: #ffffff;
       }
     }
+
+    .counter{
+      color: #dc2626!important;
+    }
   }
 }
 
@@ -100,6 +116,10 @@
     &:focus {
       background: #f1f5f9;
       box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+    }
+
+    .counter{
+      color: #172d32!important;
     }
   }
 }

@@ -19,7 +19,7 @@ export interface HorizontalMenuTabProps {
 export function HorizontalMenuTab({
   text,
   icon = null,
-  iconRight=null,
+  iconRight,
   count,
   href = undefined,
   checked = false,

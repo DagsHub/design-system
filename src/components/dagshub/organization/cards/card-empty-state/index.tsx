@@ -24,9 +24,17 @@ export function CardEmptyState({
   buttonAction,
  backgroundImg
 }: CardEmptyStateProps) {
+
+  const cardStyle = {
+    backgroundImage: backgroundImg?`url(${backgroundImg})`:undefined,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    maxWidth:width,
+    height:height,
+  };
+
   return (
-    <div className="card-empty-state" style={{ maxWidth: width, height }}>
-      {backgroundImg&&<img src={backgroundImg} width={"100%"} height={"100%"}/>}
+    <div className="card-empty-state" style={cardStyle}>
       {text && <div className="card-empty-state__text">{text}</div>}
       {buttonText && (
         <a href={buttonLink ?? undefined}>

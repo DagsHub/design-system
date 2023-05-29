@@ -10,12 +10,6 @@ export interface HorizontalMenuProps {
 }
 
 export function HorizontalMenu(props: HorizontalMenuProps) {
-
-  const options =     [
-    { id: 1, label: 'Israel', description: 'State of Israel - Middle East - Asia' },
-    { id: 2, label: 'Britain', description: 'Great British Empire - Europe', checked: true },
-    { id: 3, label: 'Colombia', description: 'La Tierra de Oro - South America' }
-  ]
   return (
     <div className={'horizontal-menu'} style={{maxWidth:props.full?"100%":"1216px", paddingRight:props.full?"24px":"0px", paddingLeft:props.full?"28px":"0px"}}>
       {props.tabs?.map((tab, i) => (
@@ -26,6 +20,8 @@ export function HorizontalMenu(props: HorizontalMenuProps) {
           icon={tab.icon}
           href={tab.href}
           checked={tab.checked}
+          iconRight={tab.iconRight}
+          onClick={tab.onClick}
         />
       ))}
     </div>
