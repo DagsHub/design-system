@@ -113,9 +113,7 @@ export function TeamTable({
   const [displayTeamSettingsModal, setDisplayTeamSettingsModal] = useState<boolean>(false);
   const [displayAddNewTeamMemberModal, setDisplayAddNewTeamMemberModal] = useState<boolean>(false);
 
-  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<
-    Record<number | string, boolean>
-  >(createInitialMapState(members, false));
+  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<Record<number | string, boolean>>(createInitialMapState(members, false));
 
   const [teamPerm, setTeamPerm] = useState<UserPermissionForTeam>(teamPermission);
   let options = teamPermissionsOptions.map((opt) => ({ ...opt, checked: opt.id === teamPerm }));

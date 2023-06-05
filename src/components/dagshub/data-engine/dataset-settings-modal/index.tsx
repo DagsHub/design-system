@@ -6,90 +6,92 @@ import { ButtonVariant, Button} from "../../../elements";
 import './dataset-settings-modal.scss';
 
 export interface DatasetSettingsModal {
-  datasetName: string;
-  onDeleteDataset: (args?: any) => void;
-  onEditDataset: (args: any) => void;
+  name: string;
+  onDelete: (args?: any) => void;
+  onEdit: (args: any) => void;
   onClose: () => void;
-  existingDatasetsNames:string[];
+  existingNames:string[];
+  isDataset:boolean; //true- dataset; false- datasource
 }
 
 export function DatasetSettingsModal({
-  datasetName,
-  onDeleteDataset,
-  onEditDataset,
+  name,
+  onDelete,
+  onEdit,
   onClose,
-  existingDatasetsNames,
+  existingNames,
+  isDataset
 }: DatasetSettingsModal) {
   const [displayDeleteBtns, setDisplayDeleteBtns] = useState<boolean>(false);
 
-  const [errDatasetNameLength, setErrDatasetNameLength] = useState<boolean>(false);
-  const [errDatasetNameChars, setErrDatasetNameChars] = useState<boolean>(false);
-  const [errDatasetNameExist, setErrDatasetNameExist] = useState<boolean>(false);
-  const [errDatasetNameRequired, setErrDatasetNameRequired] = useState<boolean>(false);
+  const [errNameLength, setErrNameLength] = useState<boolean>(false);
+  const [errNameChars, setErrNameChars] = useState<boolean>(false);
+  const [errNameExist, setErrNameExist] = useState<boolean>(false);
+  const [errNameRequired, setErrNameRequired] = useState<boolean>(false);
 
-  const datasetNameWithIllegalCharactersErrText="Dataset name must be valid alpha or numeric or dash(-_) or dot characters."
-  const datasetNameLengthErrText="Dataset name cannot be empty and must contain at most 30 characters."
-  const datasetNameRequiredErrText="Dataset name cannot be empty."
-  const datasetNameExistErrText="Dataset name has already been taken."
+  const nameWithIllegalCharactersErrText=`${isDataset?"Dataset":"Datasource"} name must be valid alpha or numeric or dash(-_) or dot characters.`;
+  const nameLengthErrText=`${isDataset?"Dataset":"Datasource"} name cannot be empty and must contain at most 30 characters.`;
+  const nameRequiredErrText=`${isDataset?"Dataset":"Datasource"} name cannot be empty.`;
+  const nameExistErrText=`${isDataset?"Dataset":"Datasource"} name has already been taken.`;
 
-  const [datasetNameInputText, setDatasetNameInputText] = useState<string>(datasetName);
+  const [nameInputText, setNameInputText] = useState<string>(name);
 
-  const onDatasetNameInputChange = (e: { target: { value: React.SetStateAction<string> } }) => {
-    setDatasetNameInputText(e.target.value);
+  const onNameInputChange = (e: { target: { value: React.SetStateAction<string> } }) => {
+    setNameInputText(e.target.value);
   };
 
   useEffect(
-    function checkDatasetNameInput() {
+    function checkNameInput() {
       const regexChars = /^$|^[a-zA-Z0-9-_.]+$/;
       const regexLength = /^.{0,30}$/;
-      setErrDatasetNameChars(datasetNameInputText.search(regexChars) == -1)
-      setErrDatasetNameLength(datasetNameInputText.search(regexLength) == -1)
-      setErrDatasetNameExist(existingDatasetsNames.includes(datasetNameInputText.toLowerCase()))
+      setErrNameChars(nameInputText.search(regexChars) == -1)
+      setErrNameLength(nameInputText.search(regexLength) == -1)
+      setErrNameExist(existingNames.includes(nameInputText.toLowerCase()))
       const regexp = /^(?!\s* $).+/;
-      if(datasetNameInputText.search(regexp) != -1) {
-        setErrDatasetNameRequired(false)
+      if(nameInputText.search(regexp) != -1) {
+        setErrNameRequired(false)
       }
     },
-    [datasetNameInputText]
+    [nameInputText]
   );
 
   let elements: JSX.Element[];
   elements = [
     <Input
-      label="Edit dataset name"
+      label={`Edit ${isDataset?"dataset":"datasource"} name`}
       rootMaxWidth={600}
-      value={datasetNameInputText}
-      onChange={onDatasetNameInputChange}
+      value={nameInputText}
+      onChange={onNameInputChange}
     />,
-      <>{errDatasetNameChars&&<div style={{color:"red"}}>{datasetNameWithIllegalCharactersErrText}</div>}
+      <>{errNameChars&&<div style={{color:"red"}}>{nameWithIllegalCharactersErrText}</div>}
       </>,
-    <>{errDatasetNameLength&&<div style={{color:"red"}}>{datasetNameLengthErrText}</div>}
+    <>{errNameLength&&<div style={{color:"red"}}>{nameLengthErrText}</div>}
     </>,
-    <>{errDatasetNameExist&&<div style={{color:"red"}}>{datasetNameExistErrText}</div>}
+    <>{errNameExist&&<div style={{color:"red"}}>{nameExistErrText}</div>}
     </>,
-    <>{errDatasetNameRequired&&<div style={{color:"red", fontSize:"12px"}}>{datasetNameRequiredErrText}</div>}
+    <>{errNameRequired&&<div style={{color:"red", fontSize:"12px"}}>{nameRequiredErrText}</div>}
     </>,
     <>
       {!displayDeleteBtns ? (
         <div className="dataset-settings-modal__buttons">
           <Button
-            width={110}
-            label="Delete dataset"
+            width={152}
+            label={`Delete ${isDataset?"dataset":"datasource"}`}
             variant={ButtonVariant.Error}
             onClick={() => setDisplayDeleteBtns(true)}
           />
           <Button
             width={120}
-            disabled={errDatasetNameLength||errDatasetNameChars||errDatasetNameExist}
+            disabled={errNameLength||errNameChars||errNameExist}
             label="Save changes"
             onClick={() => {
               const regexp = /^(?!\s* $).+/;
-              if (datasetNameInputText.search(regexp) == -1) {
-                setErrDatasetNameRequired(true)
+              if (nameInputText.search(regexp) == -1) {
+                setErrNameRequired(true)
               } else {
-                onEditDataset({
-                  originalName: datasetName,
-                  newName: datasetNameInputText,
+                onEdit({
+                  originalName: name,
+                  newName: nameInputText,
                 });
                 onClose();
               }
@@ -107,8 +109,8 @@ export function DatasetSettingsModal({
           <Button
             width={230}
             variant={ButtonVariant.Error}
-            onClick={() => onDeleteDataset(datasetName)}
-            label="I understand, delete this dataset"
+            onClick={() => onDelete(name)}
+            label={`I understand, delete anyway`}
           />
           <Button
             width={80}
