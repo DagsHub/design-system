@@ -96,6 +96,14 @@
       color: #dc2626!important;
     }
   }
+
+  &.disabled {
+    color: #FFFFFF!important;
+    background-color: #64748B!important;
+    .counter{
+      color: #ffffff!important;
+    }
+  }
 }
 
 .dagshub-btn {

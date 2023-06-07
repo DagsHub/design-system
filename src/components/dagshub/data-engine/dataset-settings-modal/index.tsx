@@ -12,6 +12,7 @@ export interface DatasetSettingsModal {
   onClose: () => void;
   existingNames:string[];
   isDataset:boolean; //true- dataset; false- datasource
+  onlyRemove?: boolean;
 }
 
 export function DatasetSettingsModal({
@@ -20,7 +21,8 @@ export function DatasetSettingsModal({
   onEdit,
   onClose,
   existingNames,
-  isDataset
+  isDataset,
+  onlyRemove
 }: DatasetSettingsModal) {
   const [displayDeleteBtns, setDisplayDeleteBtns] = useState<boolean>(false);
 
@@ -58,10 +60,11 @@ export function DatasetSettingsModal({
   let elements: JSX.Element[];
   elements = [
     <Input
-      label={`Edit ${isDataset?"dataset":"datasource"} name`}
+      label={onlyRemove?`${isDataset?"Dataset":"Datasource"} name`:`Edit ${isDataset?"dataset":"datasource"} name`}
       rootMaxWidth={600}
       value={nameInputText}
       onChange={onNameInputChange}
+      disabled={onlyRemove}
     />,
       <>{errNameChars&&<div style={{color:"red"}}>{nameWithIllegalCharactersErrText}</div>}
       </>,
@@ -80,7 +83,7 @@ export function DatasetSettingsModal({
             variant={ButtonVariant.Error}
             onClick={() => setDisplayDeleteBtns(true)}
           />
-          <Button
+          {!onlyRemove&&<Button
             width={120}
             disabled={errNameLength||errNameChars||errNameExist}
             label="Save changes"
@@ -98,7 +101,7 @@ export function DatasetSettingsModal({
             }
             }
             variant={ButtonVariant.Primary}
-          />
+          />}
         </div>
       ) : (
         <div className="dataset-settings-modal__buttons">
@@ -122,5 +125,5 @@ export function DatasetSettingsModal({
       )}
     </>
   ];
-  return <GenericModal title="Settings" elements={elements} onClose={onClose} />;
+  return <GenericModal title={onlyRemove?`Delete ${isDataset?"dataset":"datasource"}`:"Settings"} elements={elements} onClose={onClose} />;
 }

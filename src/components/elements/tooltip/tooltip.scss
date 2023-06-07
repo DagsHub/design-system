@@ -6,12 +6,17 @@
 }
 .tippy-box {
   position: relative;
-  background-color: #333 !important;
-  color: #fff;
-  border-radius: 4px;
-  font-size: 13px;
+  background-color: #192E36 !important;
+  color: #F8FAFC;
+  border-radius: 8px;
   font-family: 'Inter';
-  line-height: 1.4;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 125%;
+  padding: 8px;
+  isolation: isolate;
+
   white-space: normal;
   outline: 0;
   transition-property: transform, visibility, opacity;
@@ -70,6 +75,5 @@
 }
 .tippy-content {
   position: relative;
-  padding: 5px 9px;
   z-index: 1;
 }

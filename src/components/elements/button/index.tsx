@@ -8,7 +8,8 @@ export enum ButtonVariant {
   Secondary = 'secondary',
   OutlineSecondary = 'outline-secondary',
   Error = 'error',
-  Ghost = 'ghost'
+  Ghost = 'ghost',
+  Disabled ='disabled'
 }
 
 export enum ButtonStretch {
