@@ -19,7 +19,7 @@ OpenedBasic.args = {
       "\n" +
       "  test('renders learn react link', () => {\n" +
       "    render(<App />);\n" +
-      "    const linkElement = screen.getByText(/learn react/i);\n" +
+      "    const linkElement = screen.getByText(/learn react/i)kjndkfjnkjnkjnfvkjnkvjnkdfjnknfvkfjdnvkjdnkjnfkdvnfn;\n" +
       "    expect(linkElement).toBeInTheDocument(); import App from './App';\n" +
       "\n" +
       "  test('renders learn react link', () => {\n" +
