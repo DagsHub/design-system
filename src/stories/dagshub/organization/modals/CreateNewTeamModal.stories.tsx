@@ -45,6 +45,7 @@ export const Primary = () => {
 
   return (
     <CreateNewTeamModal
+      existingTeamNames={["team-a", "team-b"]}
       orgName="demo org"
       memberInputText={memberInput}
       onMemberInputChange={(e) => setMemberInput(e.target.value)}
