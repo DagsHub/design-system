@@ -26,7 +26,7 @@ export interface ButtonProps {
   className?: string;
   iconLeft?: JSX.Element;
   iconRight?: JSX.Element;
-  width?: number;
+  width?: number | string;
   counter?:number;
   counterLink?:string;
 }
