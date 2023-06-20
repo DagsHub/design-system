@@ -1,6 +1,5 @@
 .modal {
   width: 639px;
-  height: auto;
   background: var(--background);
   border-radius: 6px;
   position: fixed;
@@ -26,6 +25,7 @@
   font-family: 'Inter';
   font-style: normal;
   gap: 16px;
+  height: 100%;
 }
 
 .modal-content__title {

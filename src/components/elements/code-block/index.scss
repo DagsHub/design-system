@@ -1,7 +1,25 @@
 .text-area-wrapper{
   border-radius: 0px 0px 8px 8px;
   width: 599px;
+  border-radius: 0px 0px 8px 8px;
+  width: 599px;
+  position: relative;
 }
+
+.style-colab{
+  position: absolute;
+  z-index: 2;
+  right: 0px;
+  width: 146px;
+  height: 36px;
+  background: #e8e8e8;
+  border-radius: 0px 0px 0px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
 
 .shared-style{
   width: 599px;
@@ -20,6 +38,7 @@
   border-radius: 0px 0px 8px 8px;
   padding-top: 8px;
   resize: none;
+  box-sizing: border-box;
   &:focus-visible {
     outline: 0px;
   }
@@ -52,6 +71,7 @@
   height: 44px;
   background: #E9EDF2;
   border-radius: 8px 8px 0px 0px;
+  box-sizing: border-box;
 }
 
 .header-title{
