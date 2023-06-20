@@ -20,5 +20,6 @@ Primary.args = {
   teamName: 'Devops',
   teamDescription: 'this is description',
   onDeleteTeam: (args?: any) => {},
-  onEditTeam: (args?: any) => {}
+  onEditTeam: (args?: any) => {},
+  existingTeamNames: ["team-a", "team-b"],
 };
