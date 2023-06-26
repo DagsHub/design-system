@@ -139,7 +139,11 @@ export function BasicTable({
       return (
         <tr {...row.getRowProps({ style })}>
           {row.cells.map((cell) => {
-            return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
+            return <td {...cell.getCellProps({
+              style: {
+                minWidth: cell.column.minWidth,
+                width: cell.column.width,
+              }})}>{cell.render('Cell')}</td>;
           })}
         </tr>
       );
@@ -173,7 +177,7 @@ export function BasicTable({
   }
 
   return (
-    <>
+    <div className={"dagshub-react-table"}>
       {enableColumnHiding && (
         <div>
           <div>
@@ -216,7 +220,9 @@ export function BasicTable({
           {headerGroups.map((headerGroup) => (
             <tr className={'header'} {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>
+                <th {...column.getHeaderProps({
+                  style: { minWidth: column.minWidth, width: column.width },
+                })}>
                   {column.render('Header')}
                   <div
                     {...column.getResizerProps()}
@@ -273,7 +279,7 @@ export function BasicTable({
           )}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }
 

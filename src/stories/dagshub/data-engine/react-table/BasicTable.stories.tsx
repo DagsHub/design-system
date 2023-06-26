@@ -282,7 +282,7 @@ const MOCK_DATA = [
 
 export const Primary = Template.bind({});
 Primary.args = {
-  tcolumns: GROUPED_COLUMNS,
+  tcolumns: COLUMNS,
   data: MOCK_DATA,
   cellWidth: 200,
   rowHeight: 42,
