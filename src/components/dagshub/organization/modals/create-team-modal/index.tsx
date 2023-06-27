@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import isEmail from 'validator/lib/isEmail';
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { Icon } from '../../../../icons';
 import { Input, RadioButtonList } from '../../../../forms';
@@ -49,7 +49,7 @@ export interface CreateTeamModalProps {
   resultUsers?: UserInfoProps[];
   createTeam: (args?: any) => void;
   orgName: string;
-  existingTeamNames:string[];
+  existingTeamNames: string[];
 }
 
 export function CreateNewTeamModal({
@@ -59,8 +59,8 @@ export function CreateNewTeamModal({
   onMemberInputChange,
   resultUsers,
   createTeam,
- existingTeamNames
-                                   }: CreateTeamModalProps) {
+  existingTeamNames
+}: CreateTeamModalProps) {
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [addedMembers, setAddedMembers] = useState<UserInfoProps[]>([]);
@@ -72,34 +72,34 @@ export function CreateNewTeamModal({
   const [errTeamNameExist, setErrTeamNameExist] = useState<boolean>(false);
   const [errTeamNameRequired, setErrTeamNameRequired] = useState<boolean>(false);
 
-
-  const teamNameWithIllegalCharactersErrText="Team name must be valid alpha or numeric or dash(-_) or dot characters."
-  const teamNameLengthErrText="Team name must contain at most 30 characters."
-  const teamNameExistErrText="Team name has already been taken."
-  const teamNameRequiredErrText="Team name cannot be empty."
-  const teamDescriptionTooLongErrText="Team description must contain at most 255 characters."
+  const teamNameWithIllegalCharactersErrText =
+    'Team name must be valid alpha or numeric or dash(-_) or dot characters.';
+  const teamNameLengthErrText = 'Team name must contain at most 30 characters.';
+  const teamNameExistErrText = 'Team name has already been taken.';
+  const teamNameRequiredErrText = 'Team name cannot be empty.';
+  const teamDescriptionTooLongErrText = 'Team description must contain at most 255 characters.';
 
   useEffect(
-      function checkTeamNameInput() {
-        const regexChars = /^$|^[a-zA-Z0-9-_.]+$/;
-        const regexLength = /^.{0,30}$/;
-        setErrTeamNameChars(name.search(regexChars) == -1)
-        setErrTeamNameLength(name.search(regexLength) == -1)
-        setErrTeamNameExist(existingTeamNames.includes(name.toLowerCase()))
-          const regexp = /^(?!\s* $).+/;
-          if(name.search(regexp) != -1) {
-              setErrTeamNameRequired(false)
-          }
-      },
-      [name]
+    function checkTeamNameInput() {
+      const regexChars = /^$|^[a-zA-Z0-9-_.]+$/;
+      const regexLength = /^.{0,30}$/;
+      setErrTeamNameChars(name.search(regexChars) == -1);
+      setErrTeamNameLength(name.search(regexLength) == -1);
+      setErrTeamNameExist(existingTeamNames.includes(name.toLowerCase()));
+      const regexp = /^(?!\s* $).+/;
+      if (name.search(regexp) != -1) {
+        setErrTeamNameRequired(false);
+      }
+    },
+    [name]
   );
 
   useEffect(
-      function checkTeamDescriptionInput() {
-        const regexp = /^.{0,255}$/;
-        setErrTeamDescription(description.search(regexp) == -1)
-      },
-      [description]
+    function checkTeamDescriptionInput() {
+      const regexp = /^.{0,255}$/;
+      setErrTeamDescription(description.search(regexp) == -1);
+    },
+    [description]
   );
 
   function onAddMember(user: UserInfoProps) {
@@ -122,14 +122,26 @@ export function CreateNewTeamModal({
         setName(e.target.value);
       }}
     />,
-    <>{errTeamNameChars&&<div style={{color:"red", fontSize:"12px"}}>{teamNameWithIllegalCharactersErrText}</div>}
+    <>
+      {errTeamNameChars && (
+        <div style={{ color: 'red', fontSize: '12px' }}>{teamNameWithIllegalCharactersErrText}</div>
+      )}
     </>,
-    <>{errTeamNameLength&&<div style={{color:"red", fontSize:"12px"}}>{teamNameLengthErrText}</div>}
+    <>
+      {errTeamNameLength && (
+        <div style={{ color: 'red', fontSize: '12px' }}>{teamNameLengthErrText}</div>
+      )}
     </>,
-    <>{errTeamNameExist&&<div style={{color:"red", fontSize:"12px"}}>{teamNameExistErrText}</div>}
+    <>
+      {errTeamNameExist && (
+        <div style={{ color: 'red', fontSize: '12px' }}>{teamNameExistErrText}</div>
+      )}
     </>,
-      <>{errTeamNameRequired&&<div style={{color:"red", fontSize:"12px"}}>{teamNameRequiredErrText}</div>}
-      </>,
+    <>
+      {errTeamNameRequired && (
+        <div style={{ color: 'red', fontSize: '12px' }}>{teamNameRequiredErrText}</div>
+      )}
+    </>,
     <Input
       rootMaxWidth={600}
       label="2. Add description"
@@ -138,7 +150,10 @@ export function CreateNewTeamModal({
         setDescription(e.target.value);
       }}
     />,
-    <>{errTeamDescription&&<div style={{color:"red", fontSize:"12px"}}>{teamDescriptionTooLongErrText}</div>}
+    <>
+      {errTeamDescription && (
+        <div style={{ color: 'red', fontSize: '12px' }}>{teamDescriptionTooLongErrText}</div>
+      )}
     </>,
     // <p className="create-new-team-modal__instructions">
     //   3. Add people by searching their username or enter email address to invite someone outside
@@ -165,30 +180,30 @@ export function CreateNewTeamModal({
     />,
     <div className="team-settings-modal__buttons">
       <Button
-          disabled={errTeamDescription||errTeamNameLength||errTeamNameChars||errTeamNameExist}
-          variant={ButtonVariant.Primary}
+        disabled={errTeamDescription || errTeamNameLength || errTeamNameChars || errTeamNameExist}
+        variant={ButtonVariant.Primary}
         label="Create new team"
         width={600}
         onClick={async () => {
-            const regexp = /^(?!\s* $).+/;
-            if(name.search(regexp) == -1) {
-                setErrTeamNameRequired(true)
-            }else{
-                setErrTeamNameRequired(false)
-                await createTeam({
-                    name,
-                    description,
-                    // members: addedMembers,
-                    // invitees: getEmailMembers(memberInputText),
-                    permission:
-                        permission === UserPermissionForTeam.ReadAccess
-                            ? 'read'
-                            : permission === UserPermissionForTeam.WriteAccess
-                                ? 'write'
-                                : 'admin'
-                });
-                onClose();
-            }
+          const regexp = /^(?!\s* $).+/;
+          if (name.search(regexp) == -1) {
+            setErrTeamNameRequired(true);
+          } else {
+            setErrTeamNameRequired(false);
+            await createTeam({
+              name,
+              description,
+              // members: addedMembers,
+              // invitees: getEmailMembers(memberInputText),
+              permission:
+                permission === UserPermissionForTeam.ReadAccess
+                  ? 'read'
+                  : permission === UserPermissionForTeam.WriteAccess
+                  ? 'write'
+                  : 'admin'
+            });
+            onClose();
+          }
         }}
       />
     </div>

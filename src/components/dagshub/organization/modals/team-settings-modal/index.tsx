@@ -39,7 +39,7 @@ export interface TeamSettingsModalProps {
   onDeleteTeam: (args?: any) => void;
   onEditTeam: (args: OnEditTeamInput) => void;
   onClose: () => void;
-  existingTeamNames:string[];
+  existingTeamNames: string[];
 }
 
 export function TeamSettingsModal({
@@ -59,15 +59,12 @@ export function TeamSettingsModal({
   const [errTeamNameExist, setErrTeamNameExist] = useState<boolean>(false);
   const [errTeamNameRequired, setErrTeamNameRequired] = useState<boolean>(false);
 
-
-
-  const teamNameWithIllegalCharactersErrText="Team name must be valid alpha or numeric or dash(-_) or dot characters."
-  const teamNameLengthErrText="Team name cannot be empty and must contain at most 30 characters."
-  const teamNameRequiredErrText="Team name cannot be empty."
-  const teamNameExistErrText="Team name has already been taken."
-  const teamDescriptionTooLongErrText="Team description must contain at most 255 characters."
-
-
+  const teamNameWithIllegalCharactersErrText =
+    'Team name must be valid alpha or numeric or dash(-_) or dot characters.';
+  const teamNameLengthErrText = 'Team name cannot be empty and must contain at most 30 characters.';
+  const teamNameRequiredErrText = 'Team name cannot be empty.';
+  const teamNameExistErrText = 'Team name has already been taken.';
+  const teamDescriptionTooLongErrText = 'Team description must contain at most 255 characters.';
 
   const [teamNameInputText, setTeamNameInputText] = useState<string>(teamName);
   const [permission, setPermission] = useState<UserPermissionForTeam>(userPermissionForTeam);
@@ -87,23 +84,23 @@ export function TeamSettingsModal({
     function checkTeamNameInput() {
       const regexChars = /^$|^[a-zA-Z0-9-_.]+$/;
       const regexLength = /^.{0,30}$/;
-      setErrTeamNameChars(teamNameInputText.search(regexChars) == -1)
-      setErrTeamNameLength(teamNameInputText.search(regexLength) == -1)
-      setErrTeamNameExist(existingTeamNames.includes(teamNameInputText.toLowerCase()))
+      setErrTeamNameChars(teamNameInputText.search(regexChars) == -1);
+      setErrTeamNameLength(teamNameInputText.search(regexLength) == -1);
+      setErrTeamNameExist(existingTeamNames.includes(teamNameInputText.toLowerCase()));
       const regexp = /^(?!\s* $).+/;
-      if(teamNameInputText.search(regexp) != -1) {
-        setErrTeamNameRequired(false)
+      if (teamNameInputText.search(regexp) != -1) {
+        setErrTeamNameRequired(false);
       }
     },
     [teamNameInputText]
   );
 
   useEffect(
-      function checkTeamDescriptionInput() {
-        const regexp = /^.{0,255}$/;
-        setErrTeamDescription(teamDescriptionInputText.search(regexp) == -1)
-      },
-      [teamDescriptionInputText]
+    function checkTeamDescriptionInput() {
+      const regexp = /^.{0,255}$/;
+      setErrTeamDescription(teamDescriptionInputText.search(regexp) == -1);
+    },
+    [teamDescriptionInputText]
   );
 
   let elements: JSX.Element[];
@@ -115,13 +112,17 @@ export function TeamSettingsModal({
       value={teamNameInputText}
       onChange={onTeamNameInputChange}
     />,
-      <>{errTeamNameChars&&<div style={{color:"red"}}>{teamNameWithIllegalCharactersErrText}</div>}
-      </>,
-    <>{errTeamNameLength&&<div style={{color:"red"}}>{teamNameLengthErrText}</div>}
+    <>
+      {errTeamNameChars && (
+        <div style={{ color: 'red' }}>{teamNameWithIllegalCharactersErrText}</div>
+      )}
     </>,
-    <>{errTeamNameExist&&<div style={{color:"red"}}>{teamNameExistErrText}</div>}
-    </>,
-    <>{errTeamNameRequired&&<div style={{color:"red", fontSize:"12px"}}>{teamNameRequiredErrText}</div>}
+    <>{errTeamNameLength && <div style={{ color: 'red' }}>{teamNameLengthErrText}</div>}</>,
+    <>{errTeamNameExist && <div style={{ color: 'red' }}>{teamNameExistErrText}</div>}</>,
+    <>
+      {errTeamNameRequired && (
+        <div style={{ color: 'red', fontSize: '12px' }}>{teamNameRequiredErrText}</div>
+      )}
     </>,
     <Input
       label="Description"
@@ -130,7 +131,8 @@ export function TeamSettingsModal({
       value={teamDescriptionInputText}
       onChange={onTeamDescriptionInputChange}
     />,
-    <>{errTeamDescription&&<div style={{color:"red"}}>{teamDescriptionTooLongErrText}</div>}
+    <>
+      {errTeamDescription && <div style={{ color: 'red' }}>{teamDescriptionTooLongErrText}</div>}
     </>,
     <RadioButtonList
       initialChecked={permission}
@@ -149,28 +151,29 @@ export function TeamSettingsModal({
           />
           <Button
             width={120}
-            disabled={errTeamDescription||errTeamNameLength||errTeamNameChars||errTeamNameExist}
+            disabled={
+              errTeamDescription || errTeamNameLength || errTeamNameChars || errTeamNameExist
+            }
             label="Save changes"
             onClick={() => {
               const regexp = /^(?!\s* $).+/;
               if (teamNameInputText.search(regexp) == -1) {
-                setErrTeamNameRequired(true)
+                setErrTeamNameRequired(true);
               } else {
                 onEditTeam({
                   originalName: teamName,
                   newName: teamNameInputText,
                   description: teamDescriptionInputText,
                   permission:
-                      permission === UserPermissionForTeam.ReadAccess
-                          ? 'read'
-                          : permission === UserPermissionForTeam.WriteAccess
-                              ? 'write'
-                              : 'admin'
+                    permission === UserPermissionForTeam.ReadAccess
+                      ? 'read'
+                      : permission === UserPermissionForTeam.WriteAccess
+                      ? 'write'
+                      : 'admin'
                 });
                 onClose();
               }
-            }
-            }
+            }}
             variant={ButtonVariant.Primary}
           />
         </div>

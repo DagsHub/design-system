@@ -9,7 +9,7 @@ export enum ButtonVariant {
   OutlineSecondary = 'outline-secondary',
   Error = 'error',
   Ghost = 'ghost',
-  Disabled ='disabled'
+  Disabled = 'disabled'
 }
 
 export enum ButtonStretch {
@@ -27,8 +27,8 @@ export interface ButtonProps {
   iconLeft?: JSX.Element;
   iconRight?: JSX.Element;
   width?: number | string;
-  counter?:number;
-  counterLink?:string;
+  counter?: number;
+  counterLink?: string;
 }
 
 export const Button = React.forwardRef<
@@ -46,8 +46,8 @@ export const Button = React.forwardRef<
       iconLeft,
       iconRight,
       width,
-        counter,
-        counterLink,
+      counter,
+      counterLink,
       ...props
     },
     ref
@@ -67,8 +67,13 @@ export const Button = React.forwardRef<
           {iconLeft}
           {label}
           {iconRight}
-            {(!!counter && counter > 0 && counterLink )?<a href={counterLink} className="counter">{counter}</a>:
-            !!counter && counter > 0 && <div className="counter">{counter}</div>}
+          {!!counter && counter > 0 && counterLink ? (
+            <a href={counterLink} className="counter">
+              {counter}
+            </a>
+          ) : (
+            !!counter && counter > 0 && <div className="counter">{counter}</div>
+          )}
         </div>
       </button>
     );

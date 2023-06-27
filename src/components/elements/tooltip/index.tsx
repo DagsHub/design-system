@@ -5,7 +5,7 @@ import './tooltip.scss';
 
 export type TooltipProps = {
   content: React.ReactNode | string;
-  interactive?: boolean,
+  interactive?: boolean;
   children?: React.ReactElement<any>;
 } & TippyProps;
 

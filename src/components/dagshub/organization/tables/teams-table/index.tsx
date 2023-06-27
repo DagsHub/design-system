@@ -49,12 +49,12 @@ export interface TeamTableProps {
   teamDescription?: string;
   teamPermission: UserPermissionForTeam;
   members: Member[];
-  numMembers:number;
+  numMembers: number;
   teamRepos: RepoCardProps[];
-  handleCollapse: (teamId: number | string, shouldFetch:boolean) => Promise<void>;
+  handleCollapse: (teamId: number | string, shouldFetch: boolean) => Promise<void>;
   style: string;
   isActive: Boolean;
-  removeFromTeam: (teamName: string, id: number, name:string) => void;
+  removeFromTeam: (teamName: string, id: number, name: string) => void;
   addNewTeamMembers: (args?: any) => void;
   onEditTeam: (args: OnEditTeamInput) => void;
   onChangingTeamPermission: (args: OnChangingTeamPermissionInput) => void;
@@ -64,8 +64,8 @@ export interface TeamTableProps {
   isLogged: boolean;
   onStarActionClick: (args?: any) => () => Promise<void>;
   copyInvitationAction: (args?: any) => void;
-  existingTeamNames:string[];
-  addTeamReposLink:string;
+  existingTeamNames: string[];
+  addTeamReposLink: string;
 }
 
 export interface OnEditTeamInput {
@@ -113,7 +113,9 @@ export function TeamTable({
   const [displayTeamSettingsModal, setDisplayTeamSettingsModal] = useState<boolean>(false);
   const [displayAddNewTeamMemberModal, setDisplayAddNewTeamMemberModal] = useState<boolean>(false);
 
-  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<Record<number | string, boolean>>(createInitialMapState(members, false));
+  const [displayRemoveMemberFromTeamModal, setDisplayRemoveMemberFromTeamModal] = useState<
+    Record<number | string, boolean>
+  >(createInitialMapState(members, false));
 
   const [teamPerm, setTeamPerm] = useState<UserPermissionForTeam>(teamPermission);
   let options = teamPermissionsOptions.map((opt) => ({ ...opt, checked: opt.id === teamPerm }));
@@ -245,7 +247,8 @@ export function TeamTable({
                   await onDeleteTeam(teamName);
                   toggleSettingsModal();
                 }}
-               existingTeamNames={existingTeamNames}/>
+                existingTeamNames={existingTeamNames}
+              />
             )}
           </>
         )}
@@ -361,8 +364,12 @@ export function TeamTable({
               </a>
             ))}
           </span>
-           <a style={{textDecoration: "underline", color: "black", display: "flex",
-             flexShrink: 0}} href={addTeamReposLink}>Add more repositories</a>
+          <a
+            style={{ textDecoration: 'underline', color: 'black', display: 'flex', flexShrink: 0 }}
+            href={addTeamReposLink}
+          >
+            Add more repositories
+          </a>
         </span>,
         <span
           className="teams-table-footer-right-section"
@@ -387,7 +394,14 @@ export function TeamTable({
     };
   } else {
     footer = {
-      columns: [<span>This team doesn't have repositories yet{" "}<a style={{textDecoration: "underline", color: "black"}} href={addTeamReposLink}>Add team repositories</a></span>]
+      columns: [
+        <span>
+          This team doesn't have repositories yet{' '}
+          <a style={{ textDecoration: 'underline', color: 'black' }} href={addTeamReposLink}>
+            Add team repositories
+          </a>
+        </span>
+      ]
     };
   }
 

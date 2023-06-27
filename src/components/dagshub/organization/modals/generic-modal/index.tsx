@@ -7,13 +7,13 @@ export interface ModalProps {
   title: string;
   elements: JSX.Element[];
   onClose: () => void;
-  height?:number;
+  height?: number;
 }
 
-export function GenericModal({ title, elements, onClose , height}: ModalProps) {
-    const genericModalHeightStyle = {
-        height:height?height:"auto"
-    };
+export function GenericModal({ title, elements, onClose, height }: ModalProps) {
+  const genericModalHeightStyle = {
+    height: height ? height : 'auto'
+  };
 
   return (
     <>
