@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Icon } from '../../icons';
 
@@ -40,14 +40,11 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
     const isSuccess = type === 'success';
     const classes = classNames([`dagshub-toast`, className]);
 
-    useEffect(
-      function onAutoClose() {
-        if (autoCloseSeconds && onClose) {
-          autoCloseTimeoutId.current = setTimeout(onClose, autoCloseSeconds * 1000);
-        }
-      },
-      []
-    );
+    useEffect(function onAutoClose() {
+      if (autoCloseSeconds && onClose) {
+        autoCloseTimeoutId.current = setTimeout(onClose, autoCloseSeconds * 1000);
+      }
+    }, []);
 
     return (
       <div ref={ref} className={classes} style={{ width, top, bottom, left, right }}>

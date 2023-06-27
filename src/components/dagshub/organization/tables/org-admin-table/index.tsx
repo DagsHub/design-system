@@ -21,10 +21,10 @@ export interface OrgAdminTableProps {
   orgName: string;
   addMembers: (args?: any) => void;
   copyInvitationAction: (args?: any) => void;
-  handleCollapse: (shouldFetch:boolean) => Promise<void>;
+  handleCollapse: (shouldFetch: boolean) => Promise<void>;
   style: string;
   isActive: Boolean;
-  numMembers:number;
+  numMembers: number;
 }
 
 interface User {
@@ -194,17 +194,17 @@ export function OrgAdminTable({
       style: userIndex >= MAX_ROWS ? { display: style } : {}
     };
     rows.push(row);
-  })
+  });
 
   if (numMembers > MAX_ROWS) {
     let row: Row = {
       columns: [
         <span>{isActive ? 'Collapse' : 'See all team members'}</span>,
         <Icon
-            width={8}
-            height={5}
-            fill="#172D32"
-            icon={`solid-cheveron-${isActive ? 'up' : 'down'}`}
+          width={8}
+          height={5}
+          fill="#172D32"
+          icon={`solid-cheveron-${isActive ? 'up' : 'down'}`}
         />
       ],
       rowClasses: 'table__collapse',

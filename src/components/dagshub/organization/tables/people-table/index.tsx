@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from '../../../../icons';
 import { UserInfo } from '../../profiles/user-info';
 import { GenericTable, Row } from '../generic-table';
@@ -19,7 +19,7 @@ export interface PeopleTableProps {
   loggedUserId: number;
   loggedUserIsOwner: boolean;
   orgName: string;
-  handleCollapse: (shouldFetch:boolean) => Promise<void>;
+  handleCollapse: (shouldFetch: boolean) => Promise<void>;
   style: string;
   isActive: Boolean;
   numMembers: number;
@@ -175,10 +175,10 @@ export function PeopleTable(props: PeopleTableProps) {
       columns: [
         <span>{props.isActive ? 'Collapse' : 'See all team members'}</span>,
         <Icon
-            width={8}
-            height={5}
-            fill="#172D32"
-            icon={`solid-cheveron-${props.isActive ? 'up' : 'down'}`}
+          width={8}
+          height={5}
+          fill="#172D32"
+          icon={`solid-cheveron-${props.isActive ? 'up' : 'down'}`}
         />
       ],
       rowClasses: 'table__collapse',

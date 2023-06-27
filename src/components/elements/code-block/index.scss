@@ -1,4 +1,4 @@
-.text-area-wrapper{
+.text-area-wrapper {
   border-radius: 0px 0px 8px 8px;
   width: 599px;
   border-radius: 0px 0px 8px 8px;
@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.style-colab{
+.style-colab {
   position: absolute;
   z-index: 2;
   right: 0px;
@@ -20,8 +20,7 @@
   cursor: pointer;
 }
 
-
-.shared-style{
+.shared-style {
   width: 599px;
   height: 464px;
   font-family: 'Fira Code';
@@ -31,9 +30,9 @@
   line-height: 32px;
 }
 
-.text-area{
+.text-area {
   padding-left: 3.5rem;
-  background-color: #F1F5F9;
+  background-color: #f1f5f9;
   border: none;
   border-radius: 0px 0px 8px 8px;
   padding-top: 8px;
@@ -44,7 +43,7 @@
   }
 }
 
-.styled-numbers{
+.styled-numbers {
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
@@ -52,7 +51,7 @@
   box-shadow: none;
   position: absolute;
   color: grey;
-  background-color: #F1F5F9;
+  background-color: #f1f5f9;
   padding: 10px;
   width: auto;
   padding-top: 10px;
@@ -60,7 +59,7 @@
   height: 454px;
 }
 
-.style-header{
+.style-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -69,34 +68,32 @@
   gap: 16px;
   width: 100%;
   height: 44px;
-  background: #E9EDF2;
+  background: #e9edf2;
   border-radius: 8px 8px 0px 0px;
   box-sizing: border-box;
 }
 
-.header-title{
+.header-title {
   font-family: 'Inter';
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
-  color: #172D32;
+  color: #172d32;
 }
 
-.section{
+.section {
   display: flex;
-  gap:8px;
+  gap: 8px;
   justify-content: center;
   align-items: center;
 }
 
-.icon-background{
-  width:24px;
-  height:24px;
-  background:#CBD5E1;
+.icon-background {
+  width: 24px;
+  height: 24px;
+  background: #cbd5e1;
   border-radius: 2px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-
