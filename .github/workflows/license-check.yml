@@ -7,15 +7,25 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  license-check:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-
     - uses: actions/setup-node@v3
-
-    - name: Download node_modules
-      run: npm ci --ignore-scripts
-      
     - uses: dagshub/node-license-checker-action@v1
+      env:
+        EXCLUDE_PACKAGES: rollup-plugin-dts
+
+    - run: |
+        commit="$GITHUB_SHA"
+        base_link="github.com/$GITHUB_REPOSITORY"
+        date=`date "+%B %e %Y"`
+        awk -F',' -v "commit=$commit" -v "base_link=$base_link" -v "date=$date" '{OFS=","; print base_link,commit,date,$1,$2,$3}' licenses.csv > all-licenses.csv
+    
+    - name: Upload unified license report
+      uses: actions/upload-artifact@v3
+      with:
+        name: all-licenses.csv
+        path: scripts/licenses/report/all-licenses.csv
+        if-no-files-found: error
