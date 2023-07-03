@@ -12,10 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
     - uses: dagshub/node-license-checker-action@v1
       env:
-        EXCLUDE_PACKAGES: rollup-plugin-dts
+        EXCLUDE_PACKAGES: "rollup-plugin-dts"
 
     - run: |
         commit="$GITHUB_SHA"
