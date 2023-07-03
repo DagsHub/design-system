@@ -27,5 +27,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: all-licenses.csv
-        path: scripts/licenses/report/all-licenses.csv
+        path: all-licenses.csv
         if-no-files-found: error
