@@ -1,0 +1,21 @@
+name: License check
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-node@v3
+
+    - name: Download node_modules
+      run: npm ci --ignore-scripts
+      
+    - uses: dagshub/node-license-checker-action@v1

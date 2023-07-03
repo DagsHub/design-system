@@ -3,7 +3,7 @@ import { Icon } from '../../../../icons';
 
 import '../../../../styles/root.scss';
 import './repo-mini.scss';
-import {Tooltip} from "../../../../elements/tooltip";
+import { Tooltip } from '../../../../elements/tooltip';
 
 interface Topic {
   id: number;
@@ -78,145 +78,155 @@ export function MiniRepoCard({
   return (
     <>
       <a href={link}>
-      <div className="mini-desktop-repo mini-card">
-        <div className="mini-repo-card-content">
-          {!isMini && (
-            <div className="mini-repo-header">
-              <div className="mini-repo-info">
-                <Icon width={10.67} height={14} fill="#475569" icon="outline-repository-github" />
-                <span className="mini-repo-type">
-                  {isFork ? 'Forked repo' : isMirror ? 'Mirrored repo' : 'Repo'}
-                </span>
-                <Icon width={1} height={12} fill="#E2E8F0" icon="pipe" />
-                <span className="mini-days-ago">
-                  Updated {getUpdatedDaysAgo(updatedAt)} days ago
-                </span>
-              </div>
-              <div className="mini-star-section">
-                <a className="mini-star-number" href={starNumberLink}>
-                  {stars}
-                </a>
-                <a
-                  className="mini-star-action"
-                  href={starActionLink}
-                  onClick={(event: any) => {
-                    event.preventDefault();
-                    onStarActionClick(starActionLink);
-                  }}
-                >
-                  <i className={!isStaring ? 'mini-star' : 'mini-star-outline'} />
-                  {isStaring ? (
-                    <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star" />
-                  ) : (
-                    <Icon width={18} height={17.21} fill="#94A3B8" icon="outline-star" />
-                  )}
-                </a>
-              </div>
-            </div>
-          )}
-          <div className={'mini-repo-tags'}>
-            {isMini && (
-              <Icon width={13.66} height={18.99} fill="#475569" icon="outline-repository-github" />
-            )}
-            <div className="mini-repo-name">
-              <a className="mini-title1 mini-cut-text" href={link}>
-                {name}
-              </a>
-              <div className="mini-tag mini-public-private">{isPrivate ? 'Private' : 'Public'}</div>
-            </div>
-            {topics?.map(
-              (topic: Topic) =>
-                topic.categoryShowExplore && (
+        <div className="mini-desktop-repo mini-card">
+          <div className="mini-repo-card-content">
+            {!isMini && (
+              <div className="mini-repo-header">
+                <div className="mini-repo-info">
+                  <Icon width={10.67} height={14} fill="#475569" icon="outline-repository-github" />
+                  <span className="mini-repo-type">
+                    {isFork ? 'Forked repo' : isMirror ? 'Mirrored repo' : 'Repo'}
+                  </span>
+                  <Icon width={1} height={12} fill="#E2E8F0" icon="pipe" />
+                  <span className="mini-days-ago">
+                    Updated {getUpdatedDaysAgo(updatedAt)} days ago
+                  </span>
+                </div>
+                <div className="mini-star-section">
+                  <a className="mini-star-number" href={starNumberLink}>
+                    {stars}
+                  </a>
                   <a
-                    className={
-                      'mini-tag mini-repo-new-topic mini-category-' + topic.categoryColorClass
-                    }
-                    rel="nofollow"
-                    href={topic.categoryHref}
+                    className="mini-star-action"
+                    href={starActionLink}
+                    onClick={(event: any) => {
+                      event.preventDefault();
+                      onStarActionClick(starActionLink);
+                    }}
                   >
-                    {topic.name}
+                    <i className={!isStaring ? 'mini-star' : 'mini-star-outline'} />
+                    {isStaring ? (
+                      <Icon width={18} height={17.21} fill="#94A3B8" icon="solid-star" />
+                    ) : (
+                      <Icon width={18} height={17.21} fill="#94A3B8" icon="outline-star" />
+                    )}
                   </a>
-                )
+                </div>
+              </div>
             )}
-          </div>
-          <div className="mini-repo-main">
-            <div className="mini-repo-desc-block">
-              <p className="mini-repo-description">
-                {description ? description : 'No description'}
-              </p>
-            </div>
-            <div className="mini-repo-information">
-              {!isMini && <Icon width={564} height={1} fill="#E2E8F0" icon="divider" />}
-              <div className="mini-repo-info-text">
-                <div className="mini-stats">
-                  <Tooltip content={"Forks"} placement={"top-start"} >
-                  <a className="mini-stat-block" href={forksHref}>
-                    <Icon width={10.29} height={12} fill="#475569" icon="outline-fork" />
-                    <p>{numForks}</p>
-                  </a>
-                  </Tooltip>
-                  {!isMirror && (
-                      <Tooltip content={"Pull requests"} placement={"top-start"} >
-                      <a className="mini-stat-block" href={pullsHref}>
-                      <Icon
-                        width={15}
-                        height={14.5}
-                        fill="#475569"
-                        icon="outline-pull-request-github"
-                      />
-                      <p>{numOpenPulls}</p>
+            <div className={'mini-repo-tags'}>
+              {isMini && (
+                <Icon
+                  width={13.66}
+                  height={18.99}
+                  fill="#475569"
+                  icon="outline-repository-github"
+                />
+              )}
+              <div className="mini-repo-name">
+                <a className="mini-title1 mini-cut-text" href={link}>
+                  {name}
+                </a>
+                <div className="mini-tag mini-public-private">
+                  {isPrivate ? 'Private' : 'Public'}
+                </div>
+              </div>
+              {topics?.map(
+                (topic: Topic) =>
+                  topic.categoryShowExplore && (
+                    <a
+                      className={
+                        'mini-tag mini-repo-new-topic mini-category-' + topic.categoryColorClass
+                      }
+                      rel="nofollow"
+                      href={topic.categoryHref}
+                    >
+                      {topic.name}
                     </a>
-                      </Tooltip>
-                  )}
-                  <Tooltip content={"Open issues"} placement={"top-start"} >
-                  <a className="mini-stat-block" href={issuesHref}>
-                    <Icon width={14.67} height={14.67} fill="#475569" icon="outline-issue" />
-                    <p>{numOpenIssues}</p>
-                  </a>
-                  </Tooltip>
-                  {isMini && isLogged && (
-                    <div className="mini-star-section">
-                      <Tooltip content={isStaring ? 'Starred' : 'Star project'} placement={"top-start"} >
-                      <a
-                        className="mini-star-action"
-                        href={starActionLink}
-                        onClick={(event: any) => {
-                          event.preventDefault();
-                          onStarActionClick(starActionLink);
-                        }}
-                      >
-                        <i className={!isStaring ? 'mini-star' : 'mini-start-outline'}></i>
-                        {isStaring ? (
-                          <Icon width={12} height={11.47} fill="#475569" icon="solid-star" />
-                        ) : (
-                          <Icon width={12} height={11.47} fill="#475569" icon="outline-star" />
-                        )}
+                  )
+              )}
+            </div>
+            <div className="mini-repo-main">
+              <div className="mini-repo-desc-block">
+                <p className="mini-repo-description">
+                  {description ? description : 'No description'}
+                </p>
+              </div>
+              <div className="mini-repo-information">
+                {!isMini && <Icon width={564} height={1} fill="#E2E8F0" icon="divider" />}
+                <div className="mini-repo-info-text">
+                  <div className="mini-stats">
+                    <Tooltip content={'Forks'} placement={'top-start'}>
+                      <a className="mini-stat-block" href={forksHref}>
+                        <Icon width={10.29} height={12} fill="#475569" icon="outline-fork" />
+                        <p>{numForks}</p>
                       </a>
+                    </Tooltip>
+                    {!isMirror && (
+                      <Tooltip content={'Pull requests'} placement={'top-start'}>
+                        <a className="mini-stat-block" href={pullsHref}>
+                          <Icon
+                            width={15}
+                            height={14.5}
+                            fill="#475569"
+                            icon="outline-pull-request-github"
+                          />
+                          <p>{numOpenPulls}</p>
+                        </a>
                       </Tooltip>
-                      <a className="mini-star-number" href={starNumberLink}>
-                        {stars}
+                    )}
+                    <Tooltip content={'Open issues'} placement={'top-start'}>
+                      <a className="mini-stat-block" href={issuesHref}>
+                        <Icon width={14.67} height={14.67} fill="#475569" icon="outline-issue" />
+                        <p>{numOpenIssues}</p>
                       </a>
+                    </Tooltip>
+                    {isMini && isLogged && (
+                      <div className="mini-star-section">
+                        <Tooltip
+                          content={isStaring ? 'Starred' : 'Star project'}
+                          placement={'top-start'}
+                        >
+                          <a
+                            className="mini-star-action"
+                            href={starActionLink}
+                            onClick={(event: any) => {
+                              event.preventDefault();
+                              onStarActionClick(starActionLink);
+                            }}
+                          >
+                            <i className={!isStaring ? 'mini-star' : 'mini-start-outline'}></i>
+                            {isStaring ? (
+                              <Icon width={12} height={11.47} fill="#475569" icon="solid-star" />
+                            ) : (
+                              <Icon width={12} height={11.47} fill="#475569" icon="outline-star" />
+                            )}
+                          </a>
+                        </Tooltip>
+                        <a className="mini-star-number" href={starNumberLink}>
+                          {stars}
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                  {!isMini && (
+                    <div className="mini-belongs-to">
+                      {teams?.length > 0 ? 'Belongs to: ' : ''}
+                      {teams?.map((team, index: number) => (
+                        <span>
+                          <span>{index ? ', ' : ''}</span>
+                          <a className="mini-repo-team" href={team.teamLink}>
+                            {team.teamName}
+                          </a>
+                        </span>
+                      ))}
                     </div>
                   )}
                 </div>
-                {!isMini && (
-                  <div className="mini-belongs-to">
-                    {teams?.length > 0 ? 'Belongs to: ' : ''}
-                    {teams?.map((team, index: number) => (
-                      <span>
-                        <span>{index ? ', ' : ''}</span>
-                        <a className="mini-repo-team" href={team.teamLink}>
-                          {team.teamName}
-                        </a>
-                      </span>
-                    ))}
-                  </div>
-                )}
               </div>
             </div>
           </div>
         </div>
-      </div>
       </a>
     </>
   );

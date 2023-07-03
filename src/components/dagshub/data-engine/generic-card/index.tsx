@@ -8,19 +8,13 @@ export interface GenericCardProps {
   elements: JSX.Element[];
 }
 
-export function GenericCard({
-  width,
-  height,
- backgroundImg,
-    elements
-}: GenericCardProps) {
-
+export function GenericCard({ width, height, backgroundImg, elements }: GenericCardProps) {
   const cardStyle = {
-    backgroundImage: backgroundImg?`url(${backgroundImg})`:undefined,
+    backgroundImage: backgroundImg ? `url(${backgroundImg})` : undefined,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    maxWidth:width,
-    height:height,
+    maxWidth: width,
+    height: height
   };
 
   return (

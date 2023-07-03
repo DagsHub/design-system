@@ -34,7 +34,7 @@ export function BasicTable({
   enableColumnOrdering = false,
   enableColumnHiding = false,
   enableRowSelection = false,
-    enableResizing=false,
+  enableResizing = false,
   enableVirtualization = false,
   virtualizationTableHeight,
   rowHeight,
@@ -47,7 +47,7 @@ export function BasicTable({
     () => ({
       width: cellWidth,
       maxWidth: cellWidth,
-      height:rowHeight
+      height: rowHeight
     }),
     []
   );
@@ -90,8 +90,8 @@ export function BasicTable({
               Cell: ({ row }) => <Checkbox {...row.getToggleRowSelectedProps()} />,
               width: 52,
               minWidth: 30,
-              maxWidth: 400,
-        },
+              maxWidth: 400
+            },
             ...columns
           ];
         }
@@ -139,11 +139,18 @@ export function BasicTable({
       return (
         <tr {...row.getRowProps({ style })}>
           {row.cells.map((cell) => {
-            return <td {...cell.getCellProps({
-              style: {
-                minWidth: cell.column.minWidth,
-                width: cell.column.width,
-              }})}>{cell.render('Cell')}</td>;
+            return (
+              <td
+                {...cell.getCellProps({
+                  style: {
+                    minWidth: cell.column.minWidth,
+                    width: cell.column.width
+                  }
+                })}
+              >
+                {cell.render('Cell')}
+              </td>
+            );
           })}
         </tr>
       );
@@ -177,7 +184,7 @@ export function BasicTable({
   }
 
   return (
-    <div className={"dagshub-react-table"}>
+    <div className={'dagshub-react-table'}>
       {enableColumnHiding && (
         <div>
           <div>
@@ -214,15 +221,17 @@ export function BasicTable({
         </div>
       )}
 
-      {enableResizing&&<button onClick={resetResizing}>Reset Resizing</button>}
+      {enableResizing && <button onClick={resetResizing}>Reset Resizing</button>}
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr className={'header'} {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps({
-                  style: { minWidth: column.minWidth, width: column.width },
-                })}>
+                <th
+                  {...column.getHeaderProps({
+                    style: { minWidth: column.minWidth, width: column.width }
+                  })}
+                >
                   {column.render('Header')}
                   <div
                     {...column.getResizerProps()}
@@ -273,7 +282,8 @@ export function BasicTable({
               itemCount={rows.length}
               itemSize={rowHeight}
               width={totalColumnsWidth} //need to add scroller width like in the example
-              style={{overflow:"none"}}>
+              style={{ overflow: 'none' }}
+            >
               {RenderRow}
             </FixedSizeList>
           )}

@@ -53,8 +53,6 @@ export const Dropdown = ({
   const [checkedOptLabel, setOptLabel] = useState(_options.find((opt: any) => opt.checked)?.label);
   const [checkboxOptions, setOptions] = useState<any>(_options);
 
-
-
   useEffect(
     function setNewCheck() {
       setChecked(initialChecked);
