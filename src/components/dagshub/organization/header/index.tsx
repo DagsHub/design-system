@@ -9,13 +9,16 @@ export interface HeaderProps {
   orgSite?: string;
   orgPlan: string;
   orgLink: string;
+  badgeLink?:string;
 }
 
 export function Header(props: HeaderProps) {
   return (
     <div className="organization-header">
       <div className="organization-header__org-image">
-        <img src={props.orgImageSource}></img>
+          <a href={props.badgeLink??undefined}>
+              <img src={props.orgImageSource}></img>
+          </a>
       </div>
       <div className="org-info">
         <div className={'org-upper-info'}>
