@@ -8,13 +8,13 @@ export interface ModalProps {
   elements: JSX.Element[];
   onClose: () => void;
   height?: number;
-  maxHeight?:number;
+  maxHeight?: number;
 }
 
 export function GenericModal({ title, elements, onClose, height, maxHeight }: ModalProps) {
   const genericModalHeightStyle = {
     height: height ? height : 'auto',
-    maxHeight: maxHeight? maxHeight: 'auto'
+    maxHeight: maxHeight ? maxHeight : 'auto'
   };
 
   return (

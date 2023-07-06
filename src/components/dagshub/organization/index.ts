@@ -29,3 +29,4 @@ export * from '../organization/tables/people-table';
 export * from '../organization/tables/teams-table';
 export * from '../organization/tables/org-admin-table';
 export * from '../data-engine/react-table';
+export * from '../organization/fileTree';
