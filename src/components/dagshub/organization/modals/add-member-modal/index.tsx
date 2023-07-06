@@ -137,8 +137,8 @@ export function AddMemberModal({
         label={`Add new ${isTeam ? 'team' : 'organization'} ${
           isOrg && isAdmin ? 'admin' : 'member'
         }`}
-        width={600}
-        onClick={() =>
+          fullWidth={true}
+          onClick={() =>
           addMembers({
             team,
             access,
