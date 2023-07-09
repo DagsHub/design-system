@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { FileTree, FileTreeInterface } from '../../../../components';
 
@@ -7,19 +7,34 @@ const meta: Meta<FileTreeInterface> = {
   component: FileTree
 };
 
+const options = ['folder', 'bucket'];
+
 export default meta;
 
 const Template: StoryFn<FileTreeInterface> = (args) => <FileTree {...args} />;
 
-const getFilesCb = () => {
+function randomIntFromInterval(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+let counter = 2;
+
+const generateRandOption = (l: number) => {
+  return Array.from({ length: l }, (_, i) => {
+    counter = counter + 1;
+    const type = randomIntFromInterval(1, 2);
+    return { id: counter, type: options[type - 1], label: `item ${counter}` };
+  });
+};
+
+// const cache: { [index: number]: any } = {};
+
+const getFilesCb = (value: string) => {
+  const rndInt = randomIntFromInterval(0, 6);
+
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const res = [
-        { id: '3', type: 'folder', label: 'test 3' },
-        { id: '3', type: 'folder', label: 'test 4' },
-        { id: '3', type: 'folder', label: 'test 5' },
-        { id: '3', type: 'folder', label: 'test 6' }
-      ];
+      const res = generateRandOption(rndInt);
       resolve(res);
     }, 1000);
   });

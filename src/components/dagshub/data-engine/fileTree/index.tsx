@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Stack } from '@mui/material';
-import FileTreeItem, { FileListItem } from './FileTreeItem';
+import { FileListItem } from './FileTreeItem';
+import FileList from './FileList';
 
 export interface FileTreeInterface {
   list: FileListItem[];
@@ -9,7 +10,7 @@ export interface FileTreeInterface {
   getFilesCb: (id: string) => Promise<any>;
 }
 
-export const FileTree = ({ list, loading, error, getFilesCb }: FileTreeInterface) => {
+export function FileTree({ list, loading, error, getFilesCb }: FileTreeInterface) {
   const [selected, setSelected] = useState<string | null>(null);
 
   const handleSetSelected = (id: string) => {
@@ -23,7 +24,6 @@ export const FileTree = ({ list, loading, error, getFilesCb }: FileTreeInterface
   return (
     <Box>
       <Stack
-        // spacing={1}
         sx={{
           paddingBottom: 4,
           minHeight: '200px',
@@ -31,19 +31,14 @@ export const FileTree = ({ list, loading, error, getFilesCb }: FileTreeInterface
           overflowY: 'auto'
         }}
       >
-        <Box>selected {selected}</Box>
-        {list.map((file) => (
-          <FileTreeItem
-            setSelected={handleSetSelected}
-            getFilesCb={getFilesCb}
-            selected={selected == file.id}
-            key={file.id}
-            type={file.type}
-            label={file.label}
-            id={file.id}
-          />
-        ))}
+        <FileList
+          children={list}
+          loading={loading}
+          setSelected={handleSetSelected}
+          getFilesCb={getFilesCb}
+          selected={selected}
+        />
       </Stack>
     </Box>
   );
-};
+}
