@@ -1680,27 +1680,11 @@ export const icons = {
         </svg>
     ),
     'annotations': ({fill, width, height, onClick = () => {}}: IconProp) => (
-        <svg width={width} height={height} viewBox="0 0 260 259" fill={fill} xmlns="http://www.w3.org/2000/svg">
-            <g filter="url(#filter0_bd_3056_12217)">
-                <rect x="114" y="89.5078" width="32" height="32" rx="8" fill="#E2E8F0"/>
-                <path d="M121.5 96.5078H126.9V98.3078H134.1V96.5078H139.5V101.908H137.7V109.108H139.5V114.508H134.1V112.708H126.9V114.508H121.5V109.108H123.3V101.908H121.5V96.5078ZM134.1 101.908V100.108H126.9V101.908H125.1V109.108H126.9V110.908H134.1V109.108H135.9V101.908H134.1ZM123.3 98.3078V100.108H125.1V98.3078H123.3ZM135.9 98.3078V100.108H137.7V98.3078H135.9ZM123.3 110.908V112.708H125.1V110.908H123.3ZM135.9 110.908V112.708H137.7V110.908H135.9Z" fill="#23414D"/>
+        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="Icon/Outline/annotations">
+                <path id="Icon" d="M3.5 3.50781H8.9V5.30781H16.1V3.50781H21.5V8.90781H19.7V16.1078H21.5V21.5078H16.1V19.7078H8.9V21.5078H3.5V16.1078H5.3V8.90781H3.5V3.50781ZM16.1 8.90781V7.10781H8.9V8.90781H7.1V16.1078H8.9V17.9078H16.1V16.1078H17.9V8.90781H16.1ZM5.3 5.30781V7.10781H7.1V5.30781H5.3ZM17.9 5.30781V7.10781H19.7V5.30781H17.9ZM5.3 17.9078V19.7078H7.1V17.9078H5.3ZM17.9 17.9078V19.7078H19.7V17.9078H17.9Z" fill="#23414D"/>
             </g>
-            <defs>
-                <filter id="filter0_bd_3056_12217" x="-281.972" y="-306.465" width="823.945" height="823.945" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="197.986"/>
-                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_3056_12217"/>
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                    <feOffset dy="24"/>
-                    <feGaussianBlur stdDeviation="56.5675"/>
-                    <feComposite in2="hardAlpha" operator="out"/>
-                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.16 0"/>
-                    <feBlend mode="normal" in2="effect1_backgroundBlur_3056_12217" result="effect2_dropShadow_3056_12217"/>
-                    <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_3056_12217" result="shape"/>
-                </filter>
-            </defs>
         </svg>
-
     ),
 
 
