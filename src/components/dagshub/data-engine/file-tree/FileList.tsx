@@ -1,9 +1,9 @@
 import React from 'react';
-import FileTreeItem, { FileListItem } from './FileTreeItem';
+import { FileListItemType, FileTreeItem } from './FileTreeItem';
 import { Box, CircularProgress } from '@mui/material';
 
 interface FileListInterface {
-  children: FileListItem[] | null;
+  children: FileListItemType[] | null;
   loading: boolean;
   selected: string | null;
   getFilesCb: (id: string) => Promise<any>;
@@ -13,19 +13,24 @@ interface FileListInterface {
 const Loader = () => (
   <Box
     sx={{
-      padding: '8px 0',
-      height: '100px',
+      height: '32px',
       overflowY: 'auto',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center'
     }}
   >
-    <CircularProgress />
+    <CircularProgress size={22} />
   </Box>
 );
 
-const FileList = ({ children, loading, setSelected, getFilesCb, selected }: FileListInterface) => {
+export const FileList = ({
+  children,
+  loading,
+  setSelected,
+  getFilesCb,
+  selected
+}: FileListInterface) => {
   if (loading) {
     return <Loader />;
   }
@@ -34,8 +39,9 @@ const FileList = ({ children, loading, setSelected, getFilesCb, selected }: File
   }
   return (
     <Box>
-      {children?.map((child: FileListItem) => (
+      {children?.map((child: FileListItemType) => (
         <FileTreeItem
+          href={child?.href}
           setSelected={setSelected}
           getFilesCb={getFilesCb}
           selected={selected}
@@ -48,5 +54,3 @@ const FileList = ({ children, loading, setSelected, getFilesCb, selected }: File
     </Box>
   );
 };
-
-export default FileList;

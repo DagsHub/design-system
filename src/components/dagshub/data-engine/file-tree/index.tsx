@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import { Box, Stack } from '@mui/material';
-import { FileListItem } from './FileTreeItem';
-import FileList from './FileList';
+import { FileListItemType } from './FileTreeItem';
+import { FileList } from './FileList';
 
 export interface FileTreeInterface {
-  list: FileListItem[];
+  list: FileListItemType[];
   loading: boolean;
-  error: boolean;
+  onSelect: (id: string | null) => void;
   getFilesCb: (id: string) => Promise<any>;
 }
 
-export function FileTree({ list, loading, error, getFilesCb }: FileTreeInterface) {
+export const FileTree = ({ list, loading, getFilesCb, onSelect }: FileTreeInterface) => {
   const [selected, setSelected] = useState<string | null>(null);
 
   const handleSetSelected = (id: string) => {
     if (selected === id) {
       setSelected(null);
+      onSelect(null);
     } else {
       setSelected(id);
+      onSelect(id);
     }
   };
 
@@ -41,4 +43,4 @@ export function FileTree({ list, loading, error, getFilesCb }: FileTreeInterface
       </Stack>
     </Box>
   );
-}
+};

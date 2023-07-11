@@ -31,7 +31,7 @@ module.exports = [
       scss({ sourceMap: true, outputStyle: 'compressed' }),
       postcss(),
     ],
-    external: ["react", "react-dom"]
+    external: ["react", "react-dom", "@mui/material"]
   },
   {
     input: "dist/esm/types/index.d.ts",

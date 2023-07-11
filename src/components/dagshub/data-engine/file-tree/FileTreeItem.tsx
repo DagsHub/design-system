@@ -1,28 +1,38 @@
 import React, { useState } from 'react';
-import { Box, IconButton, Collapse, Stack, Typography, CircularProgress } from '@mui/material';
+import { Box, IconButton, Collapse, Stack, Typography } from '@mui/material';
 import { Icon } from '../../../icons';
 import { Tooltip } from '../../../elements';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import FileList from './FileList';
+import { FileList } from './FileList';
 
 export interface FileItemInterface {
   selected: string | null;
   label: string;
   type: string;
   id: string;
+  href?: string;
   getFilesCb: (id: string) => Promise<any>;
   setSelected: (id: string) => void;
 }
 
-export type FileListItem = {
+export type FileListItemType = {
   id: string;
   type: string;
   label: string;
+  href?: string;
 };
 
-function FileTreeItem({ selected, label, id, getFilesCb, setSelected, type }: FileItemInterface) {
+export function FileTreeItem({
+  selected,
+  label,
+  id,
+  getFilesCb,
+  setSelected,
+  type,
+  href
+}: FileItemInterface) {
   const [open, setOpen] = useState(false);
-  const [children, setChildren] = useState<FileListItem[] | null>(null);
+  const [children, setChildren] = useState<FileListItemType[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [cache, setCache] = useState<any>({});
 
@@ -72,7 +82,7 @@ function FileTreeItem({ selected, label, id, getFilesCb, setSelected, type }: Fi
           cursor: 'pointer',
           '&:hover': {
             border: '1px solid #C4B5FD',
-            borderRadius: '6``px',
+            borderRadius: '6px',
             backgroundColor: '#F8FAFC'
           },
           height: '32px',
@@ -114,11 +124,13 @@ function FileTreeItem({ selected, label, id, getFilesCb, setSelected, type }: Fi
           </Typography>
         </Box>
 
-        <Tooltip content="Open in new tab" placement="right">
-          <a className="see-all" href={''} target={'_blank'}>
-            <Icon width={12} height={12} icon={'redirect'} fill={'#94A3B8'} />
-          </a>
-        </Tooltip>
+        {href && (
+          <Tooltip content="Open in new tab" placement="right">
+            <a className="see-all" href={href} target={'_blank'}>
+              <Icon width={12} height={12} icon={'redirect'} fill={'#94A3B8'} />
+            </a>
+          </Tooltip>
+        )}
       </Box>
 
       <Collapse sx={{ ml: 2 }} in={open}>
@@ -135,5 +147,3 @@ function FileTreeItem({ selected, label, id, getFilesCb, setSelected, type }: Fi
     </Box>
   );
 }
-
-export default FileTreeItem;

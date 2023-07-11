@@ -27,11 +27,10 @@ const generateRandOption = (l: number) => {
   });
 };
 
-// const cache: { [index: number]: any } = {};
-
 const getFilesCb = (value: string) => {
   const rndInt = randomIntFromInterval(0, 6);
 
+  // mock api call
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const res = generateRandOption(rndInt);
@@ -40,21 +39,27 @@ const getFilesCb = (value: string) => {
   });
 };
 
+const onSelect = (id: string | null) => {
+  console.log('selected id ', id);
+};
+
 export const FileTreeWithFiles = Template.bind({});
 FileTreeWithFiles.args = {
   list: [
     {
       label: 'test 1',
       type: 'folder',
-      id: '1'
+      id: '1',
+      href: '/'
     },
     {
       label: 'test 2',
       type: 'folder',
-      id: '2'
+      id: '2',
+      href: '/'
     }
   ],
+  onSelect,
   getFilesCb,
-  loading: false,
-  error: false
+  loading: false
 };
