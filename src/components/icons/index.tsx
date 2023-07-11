@@ -1679,6 +1679,29 @@ export const icons = {
             <path d="M5.3 6.3C5.3 3.3 7.9 0 11.4 0C14.9 0 17.5 3.3 17.5 6.3C17.5 6.8 17.1 7.2 16.6 7.2C16.1 7.2 15.7 6.8 15.7 6.3C15.7 4.2 13.8 1.8 11.3 1.8C8.8 1.8 6.9 4.2 6.9 6.3C6.9 6.8 6.5 7.2 6 7.2C5.5 7.2 5.3 6.8 5.3 6.3ZM14 12.6H9C8.4 12.6 8 13 8 13.6C8 14.2 8.4 14.6 9 14.6H14C14.6 14.6 15 14.2 15 13.6C15 13 14.5 12.6 14 12.6ZM12.2 22H8C7.5 22 7 21.6 7 21L5.2 11.1H17.6L17.1 14C17.3 14 17.6 13.9 17.9 13.9C18.3 13.9 18.8 13.9 19.2 14L19.7 11.1V11H21C21.6 11 22 10.6 22 10C22 9.4 21.6 9 21 9H2C1.4 9 1 9.4 1 10C1 10.6 1.4 11 2 11H3.3C3.3 11 3.3 11 3.3 11.1L5.1 21C5.2 22.6 6.5 23.9 8.1 23.9H13.5C12.9 23.4 12.5 22.7 12.2 22ZM17.9 16C18.5 16 18.9 16.4 18.9 17V19H20.9C21.5 19 21.9 19.4 21.9 20C21.9 20.6 21.5 21 20.9 21H18.9V23C18.9 23.6 18.5 24 17.9 24C17.3 24 16.9 23.6 16.9 23V21H14.9C14.3 21 13.9 20.6 13.9 20C13.9 19.4 14.3 19 14.9 19H16.9V17C16.9 16.4 17.3 16 17.9 16Z" fill="#94A3B8"/>
         </svg>
     ),
+    'annotations': ({fill, width, height, onClick = () => {}}: IconProp) => (
+        <svg width="260" height="259" viewBox="0 0 260 259" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_bd_3056_12217)">
+                <rect x="114" y="89.5078" width="32" height="32" rx="8" fill="#E2E8F0"/>
+                <path d="M121.5 96.5078H126.9V98.3078H134.1V96.5078H139.5V101.908H137.7V109.108H139.5V114.508H134.1V112.708H126.9V114.508H121.5V109.108H123.3V101.908H121.5V96.5078ZM134.1 101.908V100.108H126.9V101.908H125.1V109.108H126.9V110.908H134.1V109.108H135.9V101.908H134.1ZM123.3 98.3078V100.108H125.1V98.3078H123.3ZM135.9 98.3078V100.108H137.7V98.3078H135.9ZM123.3 110.908V112.708H125.1V110.908H123.3ZM135.9 110.908V112.708H137.7V110.908H135.9Z" fill="#23414D"/>
+            </g>
+            <defs>
+                <filter id="filter0_bd_3056_12217" x="-281.972" y="-306.465" width="823.945" height="823.945" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="197.986"/>
+                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_3056_12217"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dy="24"/>
+                    <feGaussianBlur stdDeviation="56.5675"/>
+                    <feComposite in2="hardAlpha" operator="out"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.16 0"/>
+                    <feBlend mode="normal" in2="effect1_backgroundBlur_3056_12217" result="effect2_dropShadow_3056_12217"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_3056_12217" result="shape"/>
+                </filter>
+            </defs>
+        </svg>
+
+    ),
 
 
 };
