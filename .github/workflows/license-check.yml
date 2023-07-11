@@ -3,8 +3,14 @@ name: License check
 on:
   push:
     branches: [ "main" ]
+    paths:
+    - package.json
+    - package-lock.json
   pull_request:
     branches: [ "main" ]
+    paths:
+    - package.json
+    - package-lock.json
 
 jobs:
   license-check:
