@@ -1680,7 +1680,7 @@ export const icons = {
         </svg>
     ),
     'annotations': ({fill, width, height, onClick = () => {}}: IconProp) => (
-        <svg width="260" height="259" viewBox="0 0 260 259" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width={width} height={height} viewBox="0 0 260 259" fill={fill} xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_bd_3056_12217)">
                 <rect x="114" y="89.5078" width="32" height="32" rx="8" fill="#E2E8F0"/>
                 <path d="M121.5 96.5078H126.9V98.3078H134.1V96.5078H139.5V101.908H137.7V109.108H139.5V114.508H134.1V112.708H126.9V114.508H121.5V109.108H123.3V101.908H121.5V96.5078ZM134.1 101.908V100.108H126.9V101.908H125.1V109.108H126.9V110.908H134.1V109.108H135.9V101.908H134.1ZM123.3 98.3078V100.108H125.1V98.3078H123.3ZM135.9 98.3078V100.108H137.7V98.3078H135.9ZM123.3 110.908V112.708H125.1V110.908H123.3ZM135.9 110.908V112.708H137.7V110.908H135.9Z" fill="#23414D"/>
