@@ -21,6 +21,7 @@ export interface InputProps {
   onClick?: () => void;
   focusInput?: boolean;
   searchIcon?: boolean;
+  labelStyle?: React.CSSProperties | undefined;
 }
 
 export const Input = React.forwardRef<HTMLDivElement, InputProps>(
@@ -40,7 +41,8 @@ export const Input = React.forwardRef<HTMLDivElement, InputProps>(
       onChange = () => {},
       onClick = () => {},
       focusInput = false,
-      searchIcon = false
+      searchIcon = false,
+      labelStyle
     },
     ref
   ) => {
@@ -59,7 +61,7 @@ export const Input = React.forwardRef<HTMLDivElement, InputProps>(
 
     return (
       <div ref={ref} className={classes} style={{ maxWidth: rootMaxWidth, width: rootWidth }}>
-        {label && <label>{label}</label>}
+        {label && <label style={{ ...labelStyle }}>{label}</label>}
         <div className={'search-icon'}>
           {searchIcon && <Icon width={17} height={17} fill="#172D32" icon="outline-search" />}
         </div>

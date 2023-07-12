@@ -1,6 +1,7 @@
 .dagshub-dropdown {
   position: relative;
   white-space: pre-wrap;
+  font-family: 'Inter', sans-serif;
 
   .dagshub-dropdown__box {
     font-weight: 600;
@@ -17,6 +18,13 @@
     border: 1px solid var(--secondary-state-300);
     border-radius: 12px;
     cursor: pointer;
+  }
+
+  .dagshub-dropdown__dropdown_title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding-bottom: 8px;
   }
 
   .dagshub-dropdown__options {
