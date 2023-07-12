@@ -1660,7 +1660,7 @@ export const icons = {
       />
     </svg>
   ),
-  'beaker': ({ fill, width, height, onClick = () => {} }: IconProp) => (
+  beaker: ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
       width={width}
       height={height}
@@ -1729,13 +1729,23 @@ export const icons = {
       />
     </svg>
   ),
-    'annotations': ({fill, width, height, onClick = () => {}}: IconProp) => (
-        <svg width={width} height={height} viewBox="0 0 25 25" fill={fill} xmlns="http://www.w3.org/2000/svg">
-            <g id="Icon/Outline/annotations">
-                <path id="Icon" d="M3.5 3.50781H8.9V5.30781H16.1V3.50781H21.5V8.90781H19.7V16.1078H21.5V21.5078H16.1V19.7078H8.9V21.5078H3.5V16.1078H5.3V8.90781H3.5V3.50781ZM16.1 8.90781V7.10781H8.9V8.90781H7.1V16.1078H8.9V17.9078H16.1V16.1078H17.9V8.90781H16.1ZM5.3 5.30781V7.10781H7.1V5.30781H5.3ZM17.9 5.30781V7.10781H19.7V5.30781H17.9ZM5.3 17.9078V19.7078H7.1V17.9078H5.3ZM17.9 17.9078V19.7078H19.7V17.9078H17.9Z" fill="#23414D"/>
-            </g>
-        </svg>
-    ),
+  annotations: ({ fill, width, height, onClick = () => {} }: IconProp) => (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 25 25"
+      fill={fill}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="Icon/Outline/annotations">
+        <path
+          id="Icon"
+          d="M3.5 3.50781H8.9V5.30781H16.1V3.50781H21.5V8.90781H19.7V16.1078H21.5V21.5078H16.1V19.7078H8.9V21.5078H3.5V16.1078H5.3V8.90781H3.5V3.50781ZM16.1 8.90781V7.10781H8.9V8.90781H7.1V16.1078H8.9V17.9078H16.1V16.1078H17.9V8.90781H16.1ZM5.3 5.30781V7.10781H7.1V5.30781H5.3ZM17.9 5.30781V7.10781H19.7V5.30781H17.9ZM5.3 17.9078V19.7078H7.1V17.9078H5.3ZM17.9 17.9078V19.7078H19.7V17.9078H17.9Z"
+          fill="#23414D"
+        />
+      </g>
+    </svg>
+  )
 };
 
 export type IconType = keyof typeof icons;

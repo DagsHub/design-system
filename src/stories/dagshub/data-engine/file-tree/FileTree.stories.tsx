@@ -28,7 +28,7 @@ const generateRandOption = (l: number) => {
 };
 
 const getFilesCb = (value: string) => {
-  const rndInt = randomIntFromInterval(0, 6);
+  const rndInt = randomIntFromInterval(0, 2);
 
   // mock api call
   return new Promise((resolve, reject) => {
@@ -59,6 +59,7 @@ FileTreeWithFiles.args = {
       href: '/'
     }
   ],
+  emptyMessage: 'empty message ',
   onSelect,
   getFilesCb,
   loading: false
