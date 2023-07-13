@@ -30,7 +30,6 @@ export const FileTree = ({
     }
   };
 
-  console.log('emptyMessage', emptyMessage);
   return (
     <Box>
       <Stack
