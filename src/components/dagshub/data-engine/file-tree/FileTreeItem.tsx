@@ -31,7 +31,7 @@ export function FileTreeItem({
   setSelected,
   type,
   href,
-                               emptyMessage,
+  emptyMessage,
 }: FileItemInterface) {
   const [open, setOpen] = useState(false);
   const [children, setChildren] = useState<FileListItemType[] | null>(null);
