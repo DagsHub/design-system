@@ -26,15 +26,12 @@ export interface DropdownProps {
   alignOptionsToTheRight?: boolean;
   maxHeight?: number;
   dropdownBoxColor?: string;
-  dropdownTitle?: string;
   disabled?: boolean;
-  dropdownTitleStyle?: React.CSSProperties | undefined;
 }
 
 export const Dropdown = ({
   kind = 'basic',
   width,
-  dropdownTitle,
   label,
   options = [],
   initialChecked = '',
@@ -45,7 +42,6 @@ export const Dropdown = ({
   maxHeight,
   dropdownBoxColor = '#f8fafc',
   disabled = false,
-  dropdownTitleStyle,
   ...props
 }: DropdownProps & React.ButtonHTMLAttributes<HTMLDivElement>) => {
   const dropdownRef = useRef(null);
@@ -118,14 +114,6 @@ export const Dropdown = ({
       style={{ width, cursor: disabled ? 'not-allowed' : 'pointer' }}
       {...props}
     >
-      {dropdownTitle && (
-        <div
-          style={{ ...dropdownTitleStyle }}
-          className={classNames('dagshub-dropdown__dropdown_title')}
-        >
-          {dropdownTitle}
-        </div>
-      )}
       <div
         className="dagshub-dropdown__box"
         style={{ background: dropdownBoxColor, pointerEvents: disabled ? 'none' : 'all' }}
