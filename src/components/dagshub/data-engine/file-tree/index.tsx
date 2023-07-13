@@ -6,11 +6,18 @@ import { FileList } from './FileList';
 export interface FileTreeInterface {
   list: FileListItemType[];
   loading: boolean;
+  emptyMessage?: string;
   onSelect: (id: string | null) => void;
   getFilesCb: (id: string) => Promise<any>;
 }
 
-export const FileTree = ({ list, loading, getFilesCb, onSelect }: FileTreeInterface) => {
+export const FileTree = ({
+  list,
+  loading,
+  getFilesCb,
+  onSelect,
+  emptyMessage
+}: FileTreeInterface) => {
   const [selected, setSelected] = useState<string | null>(null);
 
   const handleSetSelected = (id: string) => {
@@ -34,6 +41,7 @@ export const FileTree = ({ list, loading, getFilesCb, onSelect }: FileTreeInterf
         }}
       >
         <FileList
+          emptyMessage={emptyMessage}
           children={list}
           loading={loading}
           setSelected={handleSetSelected}

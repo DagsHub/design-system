@@ -66,7 +66,7 @@ export interface TeamTableProps {
   copyInvitationAction: (args?: any) => void;
   existingTeamNames: string[];
   addTeamReposLink: string;
-  addTeamReposAnalyticsEventAction:()=>void;
+  addTeamReposAnalyticsEventAction: () => void;
 }
 
 export interface OnEditTeamInput {
@@ -399,7 +399,11 @@ export function TeamTable({
       columns: [
         <span>
           This team doesn't have repositories yet{' '}
-          <a onClick={addTeamReposAnalyticsEventAction} style={{ textDecoration: 'underline', color: 'black' }} href={addTeamReposLink}>
+          <a
+            onClick={addTeamReposAnalyticsEventAction}
+            style={{ textDecoration: 'underline', color: 'black' }}
+            href={addTeamReposLink}
+          >
             Add team repositories
           </a>
         </span>

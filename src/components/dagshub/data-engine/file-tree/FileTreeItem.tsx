@@ -9,6 +9,7 @@ export interface FileItemInterface {
   selected: string | null;
   label: string;
   type: string;
+  emptyMessage?: string;
   id: string;
   href?: string;
   getFilesCb: (id: string) => Promise<any>;
@@ -29,7 +30,8 @@ export function FileTreeItem({
   getFilesCb,
   setSelected,
   type,
-  href
+  href,
+  emptyMessage,
 }: FileItemInterface) {
   const [open, setOpen] = useState(false);
   const [children, setChildren] = useState<FileListItemType[] | null>(null);
@@ -136,6 +138,7 @@ export function FileTreeItem({
       <Collapse sx={{ ml: 2 }} in={open}>
         <Stack>
           <FileList
+              emptyMessage={emptyMessage}
             children={children}
             loading={loading}
             setSelected={setSelected}
