@@ -41,7 +41,7 @@ export const FileList = ({
       return <Box ml={2} p={1}>{emptyMessage}</Box>;
     }
     // fallback
-    return <Box p={1}>This file is empty</Box>;
+    return <Box p={1}>This directory is empty</Box>;
   }
   return (
     <Box>

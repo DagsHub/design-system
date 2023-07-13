@@ -59,7 +59,7 @@ FileTreeWithFiles.args = {
       href: '/'
     }
   ],
-  emptyMessage: 'empty message ',
+  emptyMessage: 'no files here',
   onSelect,
   getFilesCb,
   loading: false
