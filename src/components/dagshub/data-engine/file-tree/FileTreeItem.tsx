@@ -31,9 +31,10 @@ export function FileTreeItem({
   setSelected,
   type,
   href,
-  emptyMessage,
+  emptyMessage
 }: FileItemInterface) {
   const [open, setOpen] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
   const [children, setChildren] = useState<FileListItemType[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [cache, setCache] = useState<any>({});
@@ -43,6 +44,9 @@ export function FileTreeItem({
       setLoading(true);
       const res = await getFilesCb(id);
       setChildren(res);
+      if (!res?.length) {
+        setIsEmpty(true);
+      }
       const newCache = { ...cache };
       newCache[id] = res;
       setCache(newCache);
@@ -98,6 +102,7 @@ export function FileTreeItem({
             onClick={openFileHandler}
             disableRipple
             sx={{
+              visibility: isEmpty ? 'hidden' : 'unset',
               transition: '.1s ease-in-out',
               transform: open ? 'rotate(90deg)' : 'unset',
               '&:hover': {
@@ -135,18 +140,20 @@ export function FileTreeItem({
         )}
       </Box>
 
-      <Collapse sx={{ ml: 2 }} in={open}>
-        <Stack>
-          <FileList
+      {!isEmpty && (
+        <Collapse sx={{ ml: 2 }} in={open}>
+          <Stack>
+            <FileList
               emptyMessage={emptyMessage}
-            children={children}
-            loading={loading}
-            setSelected={setSelected}
-            getFilesCb={getFilesCb}
-            selected={selected}
-          />
-        </Stack>
-      </Collapse>
+              children={children}
+              loading={loading}
+              setSelected={setSelected}
+              getFilesCb={getFilesCb}
+              selected={selected}
+            />
+          </Stack>
+        </Collapse>
+      )}
     </Box>
   );
 }
