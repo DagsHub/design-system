@@ -38,7 +38,11 @@ export const FileList = ({
   }
   if (!children?.length) {
     if (emptyMessage) {
-      return <Box ml={2} p={1}>{emptyMessage}</Box>;
+      return (
+        <Box ml={2} p={1}>
+          {emptyMessage}
+        </Box>
+      );
     }
     // fallback
     return <Box p={1}>This directory is empty</Box>;
@@ -47,7 +51,7 @@ export const FileList = ({
     <Box>
       {children?.map((child: FileListItemType) => (
         <FileTreeItem
-            emptyMessage={emptyMessage}
+          emptyMessage={emptyMessage}
           href={child?.href}
           setSelected={setSelected}
           getFilesCb={getFilesCb}
