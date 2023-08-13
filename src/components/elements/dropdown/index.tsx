@@ -15,21 +15,18 @@ export interface DropdownOption {
 
 export interface DropdownProps {
   kind?: 'basic' | 'radio' | 'checkbox';
-  width: number|string;
+  width: number;
   label: string;
   isCollapsed?: boolean;
   options?: RadioButtonItemProps[];
   initialChecked?: number | string;
   onItemChecked?: (id: any) => void;
   title?: string;
-  optionWidth?: number|string;
+  optionWidth?: number;
   alignOptionsToTheRight?: boolean;
   maxHeight?: number;
   dropdownBoxColor?: string;
   disabled?: boolean;
-  height?:number|string;
-  errored?: boolean;
-  helperText?:string;
 }
 
 export const Dropdown = ({
@@ -45,9 +42,6 @@ export const Dropdown = ({
   maxHeight,
   dropdownBoxColor = '#f8fafc',
   disabled = false,
-  height,
-  errored,
-  helperText,
   ...props
 }: DropdownProps & React.ButtonHTMLAttributes<HTMLDivElement>) => {
   const dropdownRef = useRef(null);
@@ -113,17 +107,16 @@ export const Dropdown = ({
     };
   }, []);
 
-
   return (
     <div
       ref={dropdownRef}
       className="dagshub-dropdown"
-      style={{ width: width, height: height, cursor: disabled ? 'not-allowed' : 'pointer' }}
+      style={{ width, cursor: disabled ? 'not-allowed' : 'pointer' }}
       {...props}
     >
       <div
-        className={classNames([`"dagshub-dropdown__box"`], { disabled })}
-        style={{ height: '100%', background: dropdownBoxColor, pointerEvents: disabled ? 'none' : 'all' }}
+        className="dagshub-dropdown__box"
+        style={{ background: dropdownBoxColor, pointerEvents: disabled ? 'none' : 'all' }}
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
         {(kind != 'checkbox' && checkedOptLabel) || label}
@@ -137,7 +130,7 @@ export const Dropdown = ({
       {kind === 'checkbox' && !isCollapsed && (
         <div
           className={classNames('dagshub-dropdown__options', { right: alignOptionsToTheRight })}
-          style={{ maxHeight: maxHeight, width: optionWidth ? optionWidth : '100%' }}
+          style={{ maxHeight: maxHeight }}
         >
           {checkboxOptions?.map((opt: RadioButtonItemProps) => (
             <Checkbox
@@ -192,7 +185,6 @@ export const Dropdown = ({
           ))}
         </div>
       )}
-      {helperText && <p className="helper-text">{helperText}</p>}
     </div>
   );
 };

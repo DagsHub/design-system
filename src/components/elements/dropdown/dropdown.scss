@@ -3,14 +3,6 @@
   white-space: pre-wrap;
   font-family: 'Inter', sans-serif;
 
-  .helper-text {
-    color: #64748b;
-    font-weight: 500;
-    font-size: 12px;
-    height: 16px;
-    margin: 0px;
-  }
-
   .dagshub-dropdown__box {
     font-weight: 600;
     font-size: 14px;
@@ -26,14 +18,6 @@
     border: 1px solid var(--secondary-state-300);
     border-radius: 12px;
     cursor: pointer;
-
-    .errored {
-      border-color: #ef4444;
-    }
-
-    .errored .helper-text {
-      color: #ef4444;
-    }
   }
 
   .dagshub-dropdown__dropdown_title {
