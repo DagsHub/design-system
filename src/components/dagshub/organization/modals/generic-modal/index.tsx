@@ -4,7 +4,7 @@ import './generic-modal.scss';
 import { Icon } from '.././../../../icons/index';
 
 export interface ModalProps {
-  title: string;
+  title?: string;
   elements: JSX.Element[];
   onClose: () => void;
   height?: number;
@@ -24,7 +24,7 @@ export function GenericModal({ title, elements, onClose, height, maxHeight }: Mo
           <Icon width={10} height={10} fill="#94A3B8" icon="outline-x" />
         </button>
         <div className="modal-content">
-          <p className="modal-content__title">{title}</p>
+          {!!title && <p className="modal-content__title">{title}</p>}
           {elements}
         </div>
       </div>
