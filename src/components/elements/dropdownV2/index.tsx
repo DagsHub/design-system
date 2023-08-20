@@ -19,7 +19,7 @@ const MenuProps = {
   }
 };
 
-export default function DropdownV2({
+export function DropdownV2({
   onChange,
   initialChecked,
   options,
