@@ -1,0 +1,47 @@
+.error-component {
+  display: flex;
+  width: 100%;
+  max-width: 1216px;
+  padding: 8px;
+  box-sizing: border-box;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+
+  .error-component__text {
+    font-family: 'Inter';
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 8px 6px 8px;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .error-component__title {
+    font-weight: 500;
+  }
+
+  .error-component__support {
+    font-weight: 400;
+  }
+
+  .error-component__icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .error-component__support-link {
+    color: black;
+    text-decoration: underline;
+    &:hover {
+      color: black;
+      text-decoration: underline;
+    }
+  }
+}
