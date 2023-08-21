@@ -4,21 +4,6 @@ import { SyntheticEvent } from 'react';
 import Box from '@mui/material/Box';
 import { RadioButtonItemProps } from '../../forms';
 
-const MenuProps = {
-  PaperProps: {
-    style: {
-      background: '#F1F5F',
-      borderRadius: '12px',
-      padding: ' 0px 8px 0px 8px',
-      boxShadow: 'rgba(0, 0, 0, 0.25) 0px 1px 10px 0px',
-      fontFamily: 'Inter',
-      fontWeight: 500,
-      fontSize: '14px',
-      height: '200px'
-    }
-  }
-};
-
 export function DropdownV2({
   onChange,
   initialChecked,
@@ -38,9 +23,6 @@ export function DropdownV2({
   label: string;
   maxWidth?: string;
 }) {
-  const [value, setValue] = React.useState<string | number>(
-    initialChecked ? initialChecked.id : options[0].id
-  );
   const [inputValue, setInputValue] = React.useState('');
 
   return (
