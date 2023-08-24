@@ -33,6 +33,7 @@ export function DropdownV2({
         options={options ?? []}
         value={initialChecked}
         onChange={onChange}
+        autoHighlight
         inputValue={inputValue}
         onInputChange={(event, newInputValue) => {
           setInputValue(newInputValue);
