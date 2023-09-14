@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import {DropdownV2} from '../../../components';
+import { DropdownV2 } from '../../../components';
 import { RadioButtonItemProps } from '../../../components';
 
 const meta: Meta<typeof DropdownV2> = {
