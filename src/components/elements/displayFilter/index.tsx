@@ -11,8 +11,9 @@ export function DisplayFilter({ label, onChange, value }: DisplayFilterProps) {
   const [show, setShow] = useState<boolean>(false);
 
   const filterClicked = () => {
-    setShow(!show);
-    onChange(!show);
+    const currentShow = show;
+    setShow(!currentShow);
+    onChange(!currentShow);
   };
 
   useEffect(() => {
