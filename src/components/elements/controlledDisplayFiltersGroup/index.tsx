@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import { Box } from '@mui/material';
-import { DisplayFilter, DisplayFilterProps } from '../displayFilter';
+import { DisplayFilter } from '../displayFilter';
 import React from 'react';
 import { LabeledSwitch } from '../../forms';
 
+export interface DisplayFilterPartialProps {
+  label: string;
+  onChange: (show: boolean) => void;
+}
+
 export interface ControlledDisplayFiltersGroupProps {
-  filters: DisplayFilterProps[];
+  filters: DisplayFilterPartialProps[];
   label?: string;
   toggleShowAll: (show: boolean) => void;
   onFilterChange: (name: string, show: boolean) => void;

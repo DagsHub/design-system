@@ -57,7 +57,7 @@ export function LabeledSwitch({ onChange, label }: { onChange: () => void; label
     <FormGroup>
       <FormControlLabel
         onChange={onChange}
-        control={<StyledSwitch sx={{ m: 1 }} defaultChecked />}
+        control={<StyledSwitch sx={{ m: 1 }} />}
         label={label}
       />
     </FormGroup>

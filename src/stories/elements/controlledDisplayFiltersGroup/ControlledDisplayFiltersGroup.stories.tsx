@@ -22,21 +22,18 @@ ControlledDisplayFilterBasic.args = {
   filters: [
     {
       label: 'test label1',
-      onChange: (value) => console.log('changed', value),
-      value: false
+      onChange: (value) => console.log('changed', value)
     },
     {
       label: 'test label2',
-      onChange: (value) => console.log('changed', value),
-      value: false
+      onChange: (value) => console.log('changed', value)
     },
     {
       label: 'test label3 ',
-      onChange: (value) => console.log('changed', value),
-      value: false
+      onChange: (value) => console.log('changed', value)
     }
   ],
   onFilterChange: (value) => console.log('show all', value),
   toggleShowAll: (value) => console.log('toggle show all', value),
-  label: 'Grouped display filters example',
+  label: 'Grouped display filters example'
 };

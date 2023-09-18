@@ -7,6 +7,7 @@ export interface DisplayFilterProps {
   onChange: (show: boolean) => void;
   value: boolean;
 }
+
 export function DisplayFilter({ label, onChange, value }: DisplayFilterProps) {
   const [show, setShow] = useState<boolean>(false);
 
