@@ -33,9 +33,10 @@ export function ControlledDisplayFiltersGroup({
       <Box>
         <LabeledSwitch label={label} onChange={toggleAll} />
       </Box>
-      {filters.map((item) => {
+      {filters.map((item, index) => {
         return (
           <DisplayFilter
+            key={`${index}${item.label}`}
             value={showAll}
             label={item.label}
             onChange={(show) => updateFilter(item.label, show)}

@@ -12,7 +12,7 @@ const meta: Meta<ControlledDisplayFiltersGroupProps> = {
 
 export default meta;
 
-const Template: StoryFn<typeof ControlledDisplayFiltersGroup> = (args) => (
+const Template: StoryFn<typeof ControlledDisplayFiltersGroup> = (args: any) => (
   <ControlledDisplayFiltersGroup {...args} />
 );
 
@@ -22,21 +22,21 @@ ControlledDisplayFilterBasic.args = {
   filters: [
     {
       label: 'test label1',
-      onChange: (value) => console.log('changed', value),
+      onChange: (value: string) => console.log('changed', value),
       value: false
     },
     {
       label: 'test label2',
-      onChange: (value) => console.log('changed', value),
+      onChange: (value: string) => console.log('changed', value),
       value: false
     },
     {
       label: 'test label3 ',
-      onChange: (value) => console.log('changed', value),
+      onChange: (value: string) => console.log('changed', value),
       value: false
     }
   ],
-  onFilterChange: (value) => console.log('show all', value),
-  toggleShowAll: (value) => console.log('toggle show all', value),
+  onFilterChange: (value: string) => console.log('show all', value),
+  toggleShowAll: (value: string) => console.log('toggle show all', value),
   label: 'Grouped display filters example',
 };
