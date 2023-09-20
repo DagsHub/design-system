@@ -25,22 +25,23 @@ export function DisplayFilter({ label, onChange, value }: DisplayFilterProps) {
     <Stack
       gap={1}
       direction={'row'}
-      sx={{ cursor: 'pointer', width: 'fit-content' }}
+      sx={{ cursor: 'pointer', width: '100%', backgroundColor: "rgba(248, 250, 252, 1)" }}
       display={'flex'}
       justifyContent={'space-between'}
       alignItems={'center'}
       onClick={filterClicked}
+      padding={"8px"}
       role={'button'}
+      width={"100%"}
     >
       <Typography
         sx={{
-          padding: 1,
           lineHeight: '20px',
           color: '#172D32',
           fontFamily: 'Inter',
           fontSize: '14px',
           fontWeight: 500,
-          width: '144px'
+          width: '100%'
         }}
       >
         {label}

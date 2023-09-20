@@ -34,7 +34,9 @@ export function ControlledDisplayFiltersGroup({
   };
 
   return (
-    <Box>
+    <Box
+    sx={{width:"100%", backgroundColor:"rgba(248, 250, 252, 1)"}}
+    >
       <Box>
         <LabeledSwitch label={label} onChange={toggleAll} />
       </Box>

@@ -59,6 +59,16 @@ export function LabeledSwitch({ onChange, label }: { onChange: () => void; label
         onChange={onChange}
         control={<StyledSwitch sx={{ m: 1 }} />}
         label={label}
+        labelPlacement={"start"}
+        sx={{
+          ".MuiSwitch-root":{
+            margin:"0px"
+          },
+          ".MuiFormControlLabel-root":{
+            margin:"0px!important",
+            gap:"8px",
+            padding: "8px"
+          }}}
       />
     </FormGroup>
   );
