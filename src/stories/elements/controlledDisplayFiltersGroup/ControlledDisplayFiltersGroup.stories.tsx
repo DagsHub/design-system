@@ -21,19 +21,19 @@ export const ControlledDisplayFilterBasic: StoryFn<typeof ControlledDisplayFilte
 ControlledDisplayFilterBasic.args = {
   filters: [
     {
-      label: 'test label1',
+      label: 'metadata_key_1',
       onChange: (value) => console.log('changed', value)
     },
     {
-      label: 'test label2',
+      label: 'metadata_key_2',
       onChange: (value) => console.log('changed', value)
     },
     {
-      label: 'test label3 ',
+      label: 'metadata_key_3',
       onChange: (value) => console.log('changed', value)
     }
   ],
   onFilterChange: (value) => console.log('show all', value),
   toggleShowAll: (value) => console.log('toggle show all', value),
-  label: 'Grouped display filters example'
+  label: 'Show all'
 };

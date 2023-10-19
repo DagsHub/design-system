@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Divider } from '@mui/material';
 import { DisplayFilter } from '../displayFilter';
 import React from 'react';
 import { LabeledSwitch } from '../../forms';
@@ -34,19 +34,20 @@ export function ControlledDisplayFiltersGroup({
   };
 
   return (
-    <Box
-    sx={{width:"100%", backgroundColor:"rgba(248, 250, 252, 1)"}}
-    >
+    <Box sx={{ backgroundColor: 'rgba(248, 250, 252, 1)' }}>
       <Box>
         <LabeledSwitch label={label} onChange={toggleAll} />
       </Box>
       {filters.map((item) => {
         return (
-          <DisplayFilter
-            value={showAll}
-            label={item.label}
-            onChange={(show) => updateFilter(item.label, show)}
-          />
+          <>
+            <DisplayFilter
+              value={showAll}
+              label={item.label}
+              onChange={(show) => updateFilter(item.label, show)}
+            />
+            <Divider sx={{ backgroundColor: '#F8FAFC' }} />
+          </>
         );
       })}
     </Box>

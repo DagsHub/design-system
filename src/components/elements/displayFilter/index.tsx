@@ -1,4 +1,4 @@
-import { Stack, Typography } from '@mui/material';
+import { Divider, Stack, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Icon } from '../../icons';
 
@@ -25,14 +25,13 @@ export function DisplayFilter({ label, onChange, value }: DisplayFilterProps) {
     <Stack
       gap={1}
       direction={'row'}
-      sx={{ cursor: 'pointer', width: '100%', backgroundColor: "rgba(248, 250, 252, 1)" }}
+      sx={{ cursor: 'pointer', backgroundColor: 'rgba(248, 250, 252, 1)' }}
       display={'flex'}
       justifyContent={'space-between'}
       alignItems={'center'}
       onClick={filterClicked}
-      padding={"8px"}
+      padding={'8px'}
       role={'button'}
-      width={"100%"}
     >
       <Typography
         sx={{
@@ -40,14 +39,12 @@ export function DisplayFilter({ label, onChange, value }: DisplayFilterProps) {
           color: '#172D32',
           fontFamily: 'Inter',
           fontSize: '14px',
-          fontWeight: 500,
-          width: '100%'
+          fontWeight: 500
         }}
       >
         {label}
       </Typography>
-
-      <Icon icon={show ? 'eye' : 'eye-off'} height={16} width={16} fill={'#94A3B8'} />
+      <Icon icon={show ? 'eye' : 'eye-off'} height={20} width={21.08} fill={'#94A3B8'} />
     </Stack>
   );
 }
