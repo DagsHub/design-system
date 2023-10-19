@@ -57,8 +57,25 @@ export function LabeledSwitch({ onChange, label }: { onChange: () => void; label
     <FormGroup>
       <FormControlLabel
         onChange={onChange}
-        control={<StyledSwitch sx={{ m: 1 }} defaultChecked />}
+        control={<StyledSwitch sx={{ m: 1 }} />}
         label={label}
+        labelPlacement={'start'}
+        sx={{
+          margin: '0px!important',
+          gap: '8px',
+          padding: '8px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          '.MuiSwitch-root': {
+            margin: '0px'
+          },
+          '.MuiTypography-root': {
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontWeight: 500,
+            color: '#172D32'
+          }
+        }}
       />
     </FormGroup>
   );
