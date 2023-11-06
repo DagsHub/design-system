@@ -33,7 +33,6 @@ ControlledDisplayFilterBasic.args = {
       onChange: (value) => console.log('changed', value)
     }
   ],
-  onFilterChange: (value) => console.log('show all', value),
   toggleShowAll: (value) => console.log('toggle show all', value),
   toggleAllLabel: 'Show all'
 };
