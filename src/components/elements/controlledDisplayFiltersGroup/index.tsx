@@ -7,7 +7,7 @@ import _ from 'lodash';
 
 export interface DisplayFilterPartialProps {
   label: string;
-  onChange?: (show: boolean) => void;
+  onChange?: (name: string) => void;
 }
 
 export interface ControlledDisplayFiltersGroupProps {
@@ -66,7 +66,7 @@ export function ControlledDisplayFiltersGroup({
                 }
                 setDisplayedFilters(updatedFilters);
                 if(item.onChange)
-                  item.onChange(show)
+                  item.onChange(item.label)
                 }
               }
             />
