@@ -1,50 +1,74 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { Box, Divider } from '@mui/material';
 import { DisplayFilter } from '../displayFilter';
 import React from 'react';
 import { LabeledSwitch } from '../../forms';
+import _ from 'lodash';
 
 export interface DisplayFilterPartialProps {
   label: string;
-  onChange: (show: boolean) => void;
+  onChange?: (show: boolean) => void;
 }
 
 export interface ControlledDisplayFiltersGroupProps {
   filters: DisplayFilterPartialProps[];
-  label?: string;
+  toggleAllLabel?: string;
   toggleShowAll: (show: boolean) => void;
-  onFilterChange: (name: string, show: boolean) => void;
 }
 
 export function ControlledDisplayFiltersGroup({
   filters,
-  onFilterChange,
   toggleShowAll,
-  label
+  toggleAllLabel
 }: ControlledDisplayFiltersGroupProps) {
   const [showAll, setShowAll] = useState<boolean>(false);
+  const [displayedFilters, setDisplayedFilters] = useState<Set<string>>(() => new Set<string>());
+
+  const availableFiltersNames= new Set(filters.map((filter)=>filter.label));
 
   const toggleAll = () => {
+    if(!showAll){
+      setDisplayedFilters(availableFiltersNames);
+    }
+    else{
+      setDisplayedFilters(new Set());
+    }
     setShowAll(!showAll);
     toggleShowAll(!showAll);
   };
 
-  const updateFilter = (name: string, show: boolean) => {
-    onFilterChange(name, show);
-  };
+  useEffect(() => {
+    // When metadataToDisplay changes, check if it's equal to availableFiltersNames
+    if (_.isEqual(displayedFilters, availableFiltersNames)) {
+      setShowAll(true);
+    } else {
+      setShowAll(false);
+    }
+  }, [displayedFilters, availableFiltersNames]);
 
   return (
     <Box sx={{ backgroundColor: 'rgba(248, 250, 252, 1)' }}>
       <Box>
-        <LabeledSwitch label={label} onChange={toggleAll} />
+        <LabeledSwitch label={toggleAllLabel} onChange={toggleAll} checked={showAll}/>
       </Box>
       {filters.map((item) => {
         return (
           <>
             <DisplayFilter
-              value={showAll}
+              value={displayedFilters.has(item.label)}
               label={item.label}
-              onChange={(show) => updateFilter(item.label, show)}
+              onChange={(show) => {
+                const updatedFilters = new Set(displayedFilters);
+                if (updatedFilters.has(item.label)) {
+                  updatedFilters.delete(item.label);
+                } else {
+                  updatedFilters.add(item.label);
+                }
+                setDisplayedFilters(updatedFilters);
+                if(item.onChange)
+                  item.onChange(show)
+                }
+              }
             />
             <Divider sx={{ backgroundColor: '#F8FAFC' }} />
           </>

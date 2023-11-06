@@ -52,12 +52,12 @@ const StyledSwitch = styled((props: SwitchProps) => (
   }
 }));
 
-export function LabeledSwitch({ onChange, label }: { onChange: () => void; label?: string }) {
+export function LabeledSwitch({ onChange, label , checked}: { onChange: () => void; label?: string, checked: boolean }) {
   return (
     <FormGroup>
       <FormControlLabel
         onChange={onChange}
-        control={<StyledSwitch sx={{ m: 1 }} />}
+        control={<StyledSwitch sx={{ m: 1 }} checked={checked}/>}
         label={label}
         labelPlacement={'start'}
         sx={{
