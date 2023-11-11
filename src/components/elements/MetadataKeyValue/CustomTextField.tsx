@@ -1,9 +1,9 @@
 import React, {useState, useRef, useEffect} from 'react';
-import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import Box from "@mui/material/Box";
 import CancelIcon from '@mui/icons-material/Cancel';
+import StyledTextField from "./StyledTextField";
 
 function CustomTextField({
                              readOnly,
@@ -26,11 +26,12 @@ function CustomTextField({
     const textFieldWrapperContainerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        function handleClickOutside(event:any) {
+        function handleClickOutside(event: any) {
             if (isEditing && textFieldWrapperContainerRef.current && !textFieldWrapperContainerRef.current.contains(event.target)) {
                 handleSaveClick()
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
@@ -58,7 +59,7 @@ function CustomTextField({
         textFieldRef.current?.blur();
     };
 
-    const handleKeyDown = (event:any) => {
+    const handleKeyDown = (event: any) => {
         if (isEditing && event.key === 'Enter') {
             handleSaveClick();
         }
@@ -66,7 +67,7 @@ function CustomTextField({
 
     return (
         <Box
-            sx={{width: "100%", height:"100%"}}
+            sx={{width: "100%", height: "100%"}}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
             onMouseDown={e => {
@@ -74,54 +75,12 @@ function CustomTextField({
             }}
             ref={textFieldWrapperContainerRef}
         >
-            <TextField
-                sx={{
-                    width: "100%",
-                    height:"100%",
-                    '.Mui-focused': {
-                        background: 'rgba(255, 255, 255, 1)!important',
-                        boxShadow: "inset 0px 0px 0px 3px rgba(196, 181, 253, 0.5)!important",
-                    },
-                    '.MuiInputBase-root': {
-                        width:"100%",
-                        height: '100%',
-                        backgroundColor: 'rgba(248, 250, 252, 1)',
-                        '&:hover': {
-                            background: !readOnly && 'rgba(241, 245, 249, 1)',
-                        },
-                    },
-                    '.MuiInputBase-input': {
-                        fontFamily:"Inter",
-                        fontWeight:500,
-                        fontSize:"14px",
-                        lineHeight:"20px",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        padding: '8px',
-                    },
-                    '.MuiOutlinedInput-notchedOutline': {
-                        border: '0px',
-                    },
-                    '.MuiSvgIcon-root ': {
-                        fill: 'rgba(148, 163, 184, 1)'
-                    },
-                    '.MuiFormHelperText-root':{
-                        fontFamily:"Inter",
-                        fontWeight:500,
-                        fontSize:"12px",
-                        lineHeight:"16.8px",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        color: "rgba(71, 85, 105, 1)",
-                        margin:"0px",
-                        paddingLeft:"8px",
-                        paddingBottom:"8px",
-                    }
-                }}
+            <StyledTextField
+                changeColorOnHover={!readOnly || isEditing}
                 inputRef={textFieldRef}
                 InputProps={{
-                    autoComplete:'off',
-                    readOnly:readOnly && !isEditing,
+                    autoComplete: 'off',
+                    readOnly: readOnly && !isEditing,
                     endAdornment: isEditing ? (
                         <IconButton onClick={handleCancelClick}>
                             <CancelIcon fontSize={"small"}/>
@@ -132,7 +91,9 @@ function CustomTextField({
                         </IconButton>
                     ) : null,
                 }}
-                onChange={(e) => {setEditedValue(e.target.value)}}
+                onChange={(e: any) => {
+                    setEditedValue(e.target.value)
+                }}
                 onKeyDown={handleKeyDown}
                 value={isEditing ? editedValue : currentValue}
                 placeholder={placeholder}
