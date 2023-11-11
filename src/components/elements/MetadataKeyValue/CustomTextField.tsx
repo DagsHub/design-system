@@ -8,13 +8,13 @@ import StyledTextField from "./StyledTextField";
 function CustomTextField({
                              readOnly,
                              value,
-                             onChange,
+                             saveLocallyHandler,
                              placeholder,
                              helperText,
                          }: {
     readOnly: boolean;
     value?: string;
-    onChange: (newVal?: string) => void;
+    saveLocallyHandler: (newVal?: string) => void;
     placeholder?: string;
     helperText?: string;
 }) {
@@ -28,7 +28,7 @@ function CustomTextField({
     useEffect(() => {
         function handleClickOutside(event: any) {
             if (isEditing && textFieldWrapperContainerRef.current && !textFieldWrapperContainerRef.current.contains(event.target)) {
-                handleSaveClick()
+                onSaveHandler()
             }
         }
 
@@ -51,9 +51,9 @@ function CustomTextField({
         textFieldRef.current?.blur();
     };
 
-    const handleSaveClick = () => {
+    const onSaveHandler = () => {
         setCurrentValue(editedValue)
-        onChange(editedValue);
+        saveLocallyHandler(editedValue);
         setHovered(false);
         setEditing(false);
         textFieldRef.current?.blur();
@@ -61,7 +61,7 @@ function CustomTextField({
 
     const handleKeyDown = (event: any) => {
         if (isEditing && event.key === 'Enter') {
-            handleSaveClick();
+            onSaveHandler();
         }
     };
 
