@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Divider } from '@mui/material';
 import { DisplayFilter } from '../displayFilter';
 import React from 'react';
@@ -24,13 +24,12 @@ export function ControlledDisplayFiltersGroup({
   const [showAll, setShowAll] = useState<boolean>(false);
   const [displayedFilters, setDisplayedFilters] = useState<Set<string>>(() => new Set<string>());
 
-  const availableFiltersNames= new Set(filters.map((filter)=>filter.label));
+  const availableFiltersNames = new Set(filters.map((filter) => filter.label));
 
   const toggleAll = () => {
-    if(!showAll){
+    if (!showAll) {
       setDisplayedFilters(availableFiltersNames);
-    }
-    else{
+    } else {
       setDisplayedFilters(new Set());
     }
     setShowAll(!showAll);
@@ -49,7 +48,7 @@ export function ControlledDisplayFiltersGroup({
   return (
     <Box sx={{ backgroundColor: 'rgba(248, 250, 252, 1)' }}>
       <Box>
-        <LabeledSwitch label={toggleAllLabel} onChange={toggleAll} checked={showAll}/>
+        <LabeledSwitch label={toggleAllLabel} onChange={toggleAll} checked={showAll} />
       </Box>
       {filters.map((item) => {
         return (
@@ -65,10 +64,8 @@ export function ControlledDisplayFiltersGroup({
                   updatedFilters.add(item.label);
                 }
                 setDisplayedFilters(updatedFilters);
-                if(item.onChange)
-                  item.onChange(item.label)
-                }
-              }
+                if (item.onChange) item.onChange(item.label);
+              }}
             />
             <Divider sx={{ backgroundColor: '#F8FAFC' }} />
           </>
