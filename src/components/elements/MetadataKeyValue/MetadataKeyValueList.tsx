@@ -33,6 +33,7 @@ export function MetadataKeyValueList({
     const metadataFieldsSection = useRef(null);
 
     useEffect(() => {
+        console.log("tempList", temporaryMetadataList)
         onChangeHandler({...temporaryMetadataList})
         if (metadataFieldsSection.current) {
             (metadataFieldsSection.current as HTMLDivElement).scrollTop = (metadataFieldsSection.current as HTMLDivElement).scrollHeight;
@@ -72,6 +73,13 @@ export function MetadataKeyValueList({
         });
     };
 
+    const removeMetadataFieldByIndex = (indexToRemove:number) => {
+        setTemporaryMetadataList((prevList) => {
+            const newList = prevList.filter((_, index) => index !== indexToRemove);
+            return newList;
+        });
+    };
+
     return (
         <Box>
             <Box ref={metadataFieldsSection} sx={{maxHeight: maxMetadataFieldsSectionHeight, overflowY: "auto"}}>
@@ -85,6 +93,7 @@ export function MetadataKeyValueList({
                         saveKeyNameLocally={editKeyAtIndex}
                         saveValueTypeLocally={editValueTypeAtIndex}
                         saveValueLocally={editValueAtIndex}
+                        deleteFieldLocally={removeMetadataFieldByIndex}
                     />
                 ))}
             </Box>
