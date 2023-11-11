@@ -680,6 +680,32 @@ export const icons = {
       />
     </svg>
   ),
+  'outline-arrow-sm-left': ({ fill, width, height, onClick = () => {} }: IconProp) => (
+      <svg
+          onClick={onClick}
+          width={width}
+          height={height}
+          viewBox="0 0 14 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M6.70711 0.292893C7.09763 0.683418 7.09763 1.31658 6.70711 1.70711L3.41421 5L13 5C13.5523 5 14 5.44772 14 6C14 6.55229 13.5523 7 13 7L3.41421 7L6.70711 10.2929C7.09763 10.6834 7.09763 11.3166 6.70711 11.7071C6.31658 12.0976 5.68342 12.0976 5.29289 11.7071L0.292893 6.70711C0.105357 6.51957 0 6.26522 0 6C5.96046e-08 5.73478 0.105357 5.48043 0.292893 5.29289L5.29289 0.292893C5.68342 -0.0976311 6.31658 -0.097631 6.70711 0.292893Z"
+              fill={fill}/>
+      </svg>
+  ),
+  'outline-external-link': ({ fill, width, height, onClick = () => {} }: IconProp) => (
+      <svg
+          onClick={onClick}
+          width={width}
+          height={height}
+          viewBox="0 0 18 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M11 2C10.4477 2 10 1.55228 10 1C10 0.447715 10.4477 0 11 0H17C17.5523 0 18 0.447715 18 1V7C18 7.55228 17.5523 8 17 8C16.4477 8 16 7.55228 16 7V3.41421L7.70711 11.7071C7.31658 12.0976 6.68342 12.0976 6.29289 11.7071C5.90237 11.3166 5.90237 10.6834 6.29289 10.2929L14.5858 2H11ZM3 4C2.44772 4 2 4.44772 2 5V15C2 15.5523 2.44772 16 3 16H13C13.5523 16 14 15.5523 14 15V11C14 10.4477 14.4477 10 15 10C15.5523 10 16 10.4477 16 11V15C16 16.6569 14.6569 18 13 18H3C1.34315 18 0 16.6569 0 15V5C0 3.34315 1.34315 2 3 2H7C7.55228 2 8 2.44772 8 3C8 3.55228 7.55228 4 7 4H3Z"
+              fill={fill}/>
+      </svg>
+  ),
   'outline-repository-github': ({ fill, width, height, onClick = () => {} }: IconProp) => (
     <svg
       onClick={onClick}
