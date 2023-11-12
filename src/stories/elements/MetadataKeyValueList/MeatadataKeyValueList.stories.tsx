@@ -3,7 +3,7 @@ import React from 'react';
 import {
   MetadataKeyValueList,
   MetadataKeyValueListProps
-} from '../../../components/elements/MetadataKeyValue/MetadataKeyValueList';
+} from '../../../components/elements/metadataKeyValue/MetadataKeyValueList';
 
 const meta: Meta<MetadataKeyValueListProps> = {
   title: 'Elements/MetadataKeyValueList',
