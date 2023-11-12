@@ -9,4 +9,3 @@ export * from './displayFilter';
 export * from './controlledDisplayFiltersGroup';
 export * from './metadataTag/MetadataTag';
 export * from './metadataTag/MetadataTagRenderer';
-
