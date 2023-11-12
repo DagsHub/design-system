@@ -74,8 +74,7 @@ export function MetadataTag({
       sx={generateCssForIndex(index)}
       key={label}
     >
-      {label && `${label} : `}
-      {value}
+        {label && `${label} : `}{`${value}`}
     </Box>
   );
 }
