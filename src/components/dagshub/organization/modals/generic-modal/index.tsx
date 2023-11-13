@@ -9,17 +9,19 @@ export interface ModalProps {
   onClose: () => void;
   height?: number;
   maxHeight?: number;
+  style?: React.CSSProperties;
 }
 
-export function GenericModal({ title, elements, onClose, height, maxHeight }: ModalProps) {
-  const genericModalHeightStyle = {
+export function GenericModal({ title, elements, onClose, height, maxHeight, style }: ModalProps) {
+  const genericModalStyle = {
     height: height ? height : 'auto',
-    maxHeight: maxHeight ? maxHeight : 'auto'
+    maxHeight: maxHeight ? maxHeight : 'auto',
+    ...style,
   };
 
   return (
     <>
-      <div className="modal" style={genericModalHeightStyle}>
+      <div className="modal" style={genericModalStyle}>
         <button className="modal__x-button" onClick={onClose}>
           <Icon width={10} height={10} fill="#94A3B8" icon="outline-x" />
         </button>
