@@ -18,7 +18,7 @@ export interface MetadataKeyValuePairProps {
   saveKeyNameLocally?: (index: number, newVal?: string | undefined) => void;
   saveValueLocally?: (index: number, newVal?: string | undefined) => void;
   saveValueTypeLocally?: (index: number, newVal?: string | number | undefined) => void;
-  deleteFieldLocally?: (index: number) => void;
+  deleteFieldPermanently?: (index: number) => void;
 }
 
 export function MetadataKeyValuePair({
@@ -33,7 +33,7 @@ export function MetadataKeyValuePair({
   saveKeyNameLocally,
   saveValueLocally,
   saveValueTypeLocally,
-  deleteFieldLocally
+  deleteFieldPermanently
 }: MetadataKeyValuePairProps) {
   const valueTypes: RadioButtonItemProps[] = [
     {
@@ -134,8 +134,8 @@ export function MetadataKeyValuePair({
         <IconButton
           style={{ marginRight: '14px', height: '100%', padding: '6px' }}
           onClick={() => {
-            if (deleteFieldLocally) {
-              deleteFieldLocally(index);
+            if (deleteFieldPermanently) {
+              deleteFieldPermanently(index);
             }
           }}
         >

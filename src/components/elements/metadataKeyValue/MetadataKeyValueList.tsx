@@ -16,6 +16,7 @@ export interface MetadataKeyValueListProps {
   }[];
   isEditable: boolean;
   deletionEnabled: boolean;
+  onDeleteHandler?: (keyName:string)=>void;
   onChangeHandler: (
     metadataList: {
       key?: string;
@@ -32,6 +33,7 @@ export function MetadataKeyValueList({
   metadataList,
   isEditable,
   deletionEnabled,
+  onDeleteHandler,
   onChangeHandler
 }: MetadataKeyValueListProps) {
   //Todo:
@@ -41,6 +43,8 @@ export function MetadataKeyValueList({
   //  * When edit/ creating new keys, make sure the value match the value type.
   //  * When creating new keys, make sure that the new key name doesn't already exist.
   // - Not sure yet how the external save progress should work. For now, whenever I'm saving changes locally, I'm calling the external 'onChangeHandler' func.
+  //    Whoever use this component will have external save button.
+  // - The deletion of existing metadata field is immediate, and do not depend on the external save button
 
   const [temporaryMetadataList, setTemporaryMetadataList] = useState<
     {
@@ -74,7 +78,7 @@ export function MetadataKeyValueList({
     }
   };
 
-  const editKeyAtIndex = (index: number, newKey: string | undefined) => {
+  const locallyEditKeyAtIndex = (index: number, newKey: string | undefined) => {
     setTemporaryMetadataList((prevList) => {
       const newList = [...prevList];
       newList[index] = { ...newList[index], key: newKey };
@@ -82,7 +86,7 @@ export function MetadataKeyValueList({
     });
   };
 
-  const editValueAtIndex = (index: number, newValue: string | undefined) => {
+  const locallyEditValueAtIndex = (index: number, newValue: string | undefined) => {
     setTemporaryMetadataList((prevList) => {
       const newList = [...prevList];
       newList[index] = { ...newList[index], value: newValue };
@@ -90,7 +94,7 @@ export function MetadataKeyValueList({
     });
   };
 
-  const editValueTypeAtIndex = (index: number, newType: string | number | undefined) => {
+  const locallyEditValueTypeAtIndex = (index: number, newType: string | number | undefined) => {
     setTemporaryMetadataList((prevList) => {
       const newList = [...prevList];
       newList[index] = { ...newList[index], valueType: newType as string };
@@ -98,11 +102,21 @@ export function MetadataKeyValueList({
     });
   };
 
-  const removeMetadataFieldByIndex = (indexToRemove: number) => {
+  const locallyRemoveMetadataFieldByIndex = (indexToRemove: number) => {
     setTemporaryMetadataList((prevList) => {
       const newList = prevList.filter((_, index) => index !== indexToRemove);
       return newList;
     });
+  };
+
+  const permanentlyDeleteMetadataFieldByIndex = (indexToRemove: number) => {
+    setTemporaryMetadataList((prevList) => {
+      const newList = prevList.filter((_, index) => index !== indexToRemove);
+      return newList;
+    });
+    if(onDeleteHandler){
+      onDeleteHandler(metadataList[indexToRemove].key)
+    }
   };
 
   return (
@@ -117,11 +131,11 @@ export function MetadataKeyValueList({
             index={index}
             keyName={value.key}
             isEditable={isEditable}
-            deletionEnabled={isEditable && deletionEnabled}
-            saveKeyNameLocally={editKeyAtIndex}
-            saveValueTypeLocally={editValueTypeAtIndex}
-            saveValueLocally={editValueAtIndex}
-            deleteFieldLocally={removeMetadataFieldByIndex}
+            deletionEnabled={isEditable && deletionEnabled && !!onDeleteHandler}
+            saveKeyNameLocally={locallyEditKeyAtIndex}
+            saveValueTypeLocally={locallyEditValueTypeAtIndex}
+            saveValueLocally={locallyEditValueAtIndex}
+            deleteFieldPermanently={value.isNewlyCreated?locallyRemoveMetadataFieldByIndex:permanentlyDeleteMetadataFieldByIndex}
           />
         ))}
       </Box>
