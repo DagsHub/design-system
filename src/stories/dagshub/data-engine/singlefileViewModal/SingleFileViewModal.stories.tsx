@@ -29,7 +29,7 @@ singlefileViewModal.args = {
     setActiveSingleItemIndex: () => {
         console.log("set active single item index")
     },
-    hasNextPage: false,
+    hasMoreItemsToFetch: false,
     loadMoreItems: () => {
         console.log("load more items")
     },
@@ -101,7 +101,7 @@ singlefileViewModalNotSupportedType.args = {
     setActiveSingleItemIndex: () => {
         console.log("set active single item index")
     },
-    hasNextPage: false,
+    hasMoreItemsToFetch: false,
     loadMoreItems: () => {
         console.log("load more items")
     },

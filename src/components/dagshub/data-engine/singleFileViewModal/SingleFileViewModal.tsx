@@ -36,7 +36,7 @@ export interface singleFileViewModalProps {
     setActiveSingleItem: React.Dispatch<React.SetStateAction<Datapoint | null>>;
     activeSingleItemIndex: number | null;
     setActiveSingleItemIndex: React.Dispatch<React.SetStateAction<number | null>>;
-    hasNextPage: boolean | null;
+    hasMoreItemsToFetch: boolean | null;
     loadMoreItems: () => void;
     itemData?: itemData | null;
     items?: DatapointsConnectionEdge[];
@@ -47,7 +47,7 @@ function SingleFileViewModal({
                                  setActiveSingleItem,
                                  activeSingleItemIndex,
                                  setActiveSingleItemIndex,
-                                 hasNextPage,
+                                 hasMoreItemsToFetch,
                                  loadMoreItems,
                                  itemData,
                                  items
@@ -174,7 +174,7 @@ function SingleFileViewModal({
                                         <Button
                                             onClick={() => {
                                                 //if im close to the last fetched item, fetch more, so it won't get stack
-                                                if (activeSingleItemIndex + 10 == items?.length && hasNextPage) {
+                                                if (activeSingleItemIndex + 10 == items?.length && hasMoreItemsToFetch) {
                                                     loadMoreItems();
                                                 }
                                                 setActiveSingleItem(items[activeSingleItemIndex + 1]?.node);
@@ -190,7 +190,7 @@ function SingleFileViewModal({
                                                 />
                                             }
                                             variant={ButtonVariant.Secondary}
-                                            disabled={!hasNextPage && activeSingleItemIndex + 1 == items?.length}
+                                            disabled={!hasMoreItemsToFetch && activeSingleItemIndex + 1 == items?.length}
                                         />
                                     </Box>
                                 </Box>
