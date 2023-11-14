@@ -5,7 +5,7 @@ import SingleFileViewModal, {
 } from "../../../../components/dagshub/data-engine/singleFileViewModal/SingleFileViewModal";
 
 const meta: Meta<singleFileViewModalProps> = {
-    title: 'Data engine/ Modals /Single file view modal',
+    title: 'DagsHub/Data-Engine/Modals/Single file view modal',
     component: SingleFileViewModal
 };
 
