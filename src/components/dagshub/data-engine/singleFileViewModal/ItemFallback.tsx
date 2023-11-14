@@ -7,8 +7,8 @@ export function ItemFallback({
                                  width,
                                  onClick,
                              }: {
-    height: number;
-    width: number;
+    height: number|string;
+    width: number|string;
     onClick?: () => void;
 }) {
     return (

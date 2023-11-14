@@ -5,6 +5,7 @@ import {GenericModal} from "../../index";
 import {Button, ButtonVariant} from "../../../elements/button";
 import {Icon} from "../../../icons";
 import {ItemFallback} from "./ItemFallback";
+import "./style.scss";
 
 export interface MetadataField {
     key: string;
@@ -30,47 +31,34 @@ export interface itemData {
     fileName: string;
 }
 
+export interface singleFileViewModalProps {
+    closeModal: () => void;
+    setActiveSingleItem: React.Dispatch<React.SetStateAction<Datapoint | null>>;
+    activeSingleItemIndex: number | null;
+    setActiveSingleItemIndex: React.Dispatch<React.SetStateAction<number | null>>;
+    hasNextPage: boolean | null;
+    loadMoreItems: () => void;
+    itemData?: itemData | null;
+    items?: DatapointsConnectionEdge[];
+}
+
 function SingleFileViewModal({
                                  closeModal,
                                  setActiveSingleItem,
                                  activeSingleItemIndex,
                                  setActiveSingleItemIndex,
                                  hasNextPage,
-                                 onScrollHandler,
+                                 loadMoreItems,
                                  itemData,
                                  items
-                             }: {
-    closeModal: () => void;
-    setActiveSingleItem: React.Dispatch<React.SetStateAction<Datapoint | null>>;
-    activeSingleItemIndex: number | null;
-    setActiveSingleItemIndex: React.Dispatch<React.SetStateAction<number | null>>;
-    hasNextPage: boolean | null;
-    onScrollHandler: () => void;
-    itemData?: itemData | null;
-    items?: DatapointsConnectionEdge[];
-}) {
-
-    const styles = {
-        modal: {
-            width: "90%",
-            height: "90%",
-            modalContent: {
-                padding: 0,
-            },
-            modalXButton: {
-                top: 0,
-                right: 0,
-            },
-        },
-    };
+                             }: singleFileViewModalProps) {
 
     return (
-        <GenericModal
+        <div id={"gallery"}><GenericModal
             title={''}
             onClose={closeModal}
-            style={styles.modal}
             elements={[
-                <Box sx={{display: 'flex', width: '100%', height: '100%', padding: '24px', flexDirection: "column"}}>
+                <Box sx={{display: 'flex', width:"100%", height: "100%", flexDirection: "column", padding: "24px", boxSizing: "border-box"}}>
                     <Box
                         sx={{
                             display: 'flex',
@@ -78,7 +66,8 @@ function SingleFileViewModal({
                             height: '52px',
                             flexDirection: 'row',
                             alignItems: "center",
-                            justifyContent: "space-between"
+                            justifyContent: "space-between",
+                            flexShrink:0
                         }}
                     >
                         <Typography
@@ -111,6 +100,7 @@ function SingleFileViewModal({
                             width: '100%',
                             height: 'calc(100% - 52px)',
                             flexDirection: 'row',
+                            boxSizing:"border-box"
                         }}
                     >
                         <Box
@@ -120,6 +110,7 @@ function SingleFileViewModal({
                                 flexDirection: 'column',
                                 height: '100%',
                                 borderRight: '2px solid #E2E8F0',
+                                boxSizing:"border-box"
                             }}
                         >
                             <Box
@@ -129,7 +120,8 @@ function SingleFileViewModal({
                                     height: 'calc(100% - 52px)',
                                     padding: '8px',
                                     justifyContent: 'center',
-                                    bgcolor: "#F8FAFC"
+                                    bgcolor: "#F8FAFC",
+                                    boxSizing:"border-box"
                                 }}
                             >
                                 {!!itemData?.galleryFilePath && itemData.itemType === 'image' ? (
@@ -139,7 +131,7 @@ function SingleFileViewModal({
                                         src={itemData?.galleryFilePath}
                                     />
                                 ) : (
-                                    <ItemFallback height={200} width={350}/>
+                                    <ItemFallback height={"calc(100% - 52px)"} width={"100%"}/>
                                 )}
                             </Box>
                             {!!items && activeSingleItemIndex != null && (
@@ -151,6 +143,7 @@ function SingleFileViewModal({
                                         padding: '8px',
                                         justifyContent: 'center',
                                         alignItems: 'center',
+                                        boxSizing:"border-box"
                                     }}
                                 >
                                     <Box
@@ -182,7 +175,7 @@ function SingleFileViewModal({
                                             onClick={() => {
                                                 //if im close to the last fetched item, fetch more, so it won't get stack
                                                 if (activeSingleItemIndex + 10 == items?.length && hasNextPage) {
-                                                    onScrollHandler();
+                                                    loadMoreItems();
                                                 }
                                                 setActiveSingleItem(items[activeSingleItemIndex + 1]?.node);
                                                 setActiveSingleItemIndex(activeSingleItemIndex + 1);
@@ -207,7 +200,7 @@ function SingleFileViewModal({
                     </Box>
                 </Box>,
             ]}
-        />
+        /></div>
     );
 }
 
