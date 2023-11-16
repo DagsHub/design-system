@@ -162,16 +162,15 @@ sevenTags.args = {
   }
 };
 
-export const eightTags: StoryFn<typeof MetadataTagsRenderer> = Template.bind({});
-eightTags.args = {
-  itemMetadataTagsToDisplayDict: {
-    'This is a long tag labelll1': { value: 'this is a long value' },
-    'This is a long tag label2': { value: 'this is a long value' },
-    'This is a long tag label3': { value: 'this is a long value' },
-    'This is a long tag label4': { value: 'this is a long value' },
-    'This is a long tag label5': { value: 'this is a long value' },
-    'This is a long tag label6': { value: 'this is a long value' },
-    'This is a long tag label7': { value: 'this is a long value' },
-    'This is a long tag label8': { value: 'this is a long value' }
-  }
+const getManyTags = (n: number) => {
+    const tags: Record<string, { value: any }> = {};
+    for (let i = 0; i < n; i++) {
+        tags[`very long label${i}`] = { value: `value${i}` };
+    }
+    return tags;
+}
+
+export const manyTags: StoryFn<typeof MetadataTagsRenderer> = Template.bind({});
+manyTags.args = {
+  itemMetadataTagsToDisplayDict: getManyTags(1000),
 };
