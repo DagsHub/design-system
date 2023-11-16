@@ -1,16 +1,16 @@
 import { Box } from '@mui/material';
 import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import { MetadataTagsRenderer } from '../../../components';
+import { GalleryTagsGroup } from '../../../../components';
 
 const meta: Meta<{ itemMetadataTagsToDisplayDict: Record<string, { value: any }> }> = {
-  title: 'Elements/Metadata Tag',
-  component: MetadataTagsRenderer
+  title: 'DagsHub/Data-Engine/MetadataTags/Gallery tags group',
+  component: GalleryTagsGroup
 };
 
 export default meta;
 
-const Template: StoryFn<typeof MetadataTagsRenderer> = (args) => (
+const Template: StoryFn<typeof GalleryTagsGroup> = (args) => (
   <Box
     sx={{
       borderRadius: '8px',
@@ -61,7 +61,7 @@ const Template: StoryFn<typeof MetadataTagsRenderer> = (args) => (
         padding={'4px'}
         bottom={0}
       >
-        <MetadataTagsRenderer {...args} />
+        <GalleryTagsGroup {...args} />
       </Box>
     </Box>
     <Box
@@ -92,14 +92,14 @@ const Template: StoryFn<typeof MetadataTagsRenderer> = (args) => (
   </Box>
 );
 
-export const oneTag: StoryFn<typeof MetadataTagsRenderer> = Template.bind({});
+export const oneTag: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 oneTag.args = {
   itemMetadataTagsToDisplayDict: {
     'This is a long tag labelll1': { value: 'this is a long value' }
   }
 };
 
-export const twoTags: StoryFn<typeof MetadataTagsRenderer> = Template.bind({});
+export const twoTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 twoTags.args = {
   itemMetadataTagsToDisplayDict: {
     'This is a long tag labelll1': { value: 'this is a long value' },
@@ -107,7 +107,7 @@ twoTags.args = {
   }
 };
 
-export const threeTags: StoryFn<typeof MetadataTagsRenderer> = Template.bind({});
+export const threeTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 threeTags.args = {
   itemMetadataTagsToDisplayDict: {
     'This is a long tag labelll1': { value: 'this is a long value' },
@@ -116,7 +116,7 @@ threeTags.args = {
   }
 };
 
-export const fourTags: StoryFn<typeof MetadataTagsRenderer> = Template.bind({});
+export const fourTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 fourTags.args = {
   itemMetadataTagsToDisplayDict: {
     'This is a long tag labelll1': { value: 'this is a long value' },
@@ -126,7 +126,7 @@ fourTags.args = {
   }
 };
 
-export const fiveTags: StoryFn<typeof MetadataTagsRenderer> = Template.bind({});
+export const fiveTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 fiveTags.args = {
   itemMetadataTagsToDisplayDict: {
     'This is a long tag labelll1': { value: 'this is a long value' },
@@ -137,7 +137,7 @@ fiveTags.args = {
   }
 };
 
-export const sixTags: StoryFn<typeof MetadataTagsRenderer> = Template.bind({});
+export const sixTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 sixTags.args = {
   itemMetadataTagsToDisplayDict: {
     'This is a long tag labelll1': { value: 'this is a long value' },
@@ -149,7 +149,7 @@ sixTags.args = {
   }
 };
 
-export const sevenTags: StoryFn<typeof MetadataTagsRenderer> = Template.bind({});
+export const sevenTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 sevenTags.args = {
   itemMetadataTagsToDisplayDict: {
     'This is a long tag labelll1': { value: 'this is a long value' },
@@ -162,7 +162,7 @@ sevenTags.args = {
   }
 };
 
-export const eightTags: StoryFn<typeof MetadataTagsRenderer> = Template.bind({});
+export const eightTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 eightTags.args = {
   itemMetadataTagsToDisplayDict: {
     'This is a long tag labelll1': { value: 'this is a long value' },

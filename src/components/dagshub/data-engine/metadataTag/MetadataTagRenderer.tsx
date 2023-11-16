@@ -2,7 +2,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { MetadataTag } from './MetadataTag';
 
-export function MetadataTagsRenderer({
+export function GalleryTagsGroup({
   itemMetadataTagsToDisplayDict
 }: {
   itemMetadataTagsToDisplayDict: Record<string, { value: any }>;

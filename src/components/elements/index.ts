@@ -7,5 +7,4 @@ export * from './tooltip';
 export * from './genericError';
 export * from './displayFilter';
 export * from './controlledDisplayFiltersGroup';
-export * from './metadataTag/MetadataTag';
-export * from './metadataTag/MetadataTagRenderer';
+
