@@ -28,9 +28,9 @@ export function GalleryTagsGroup({
 
   const generateColors = (hue: number) => {
     const saturation = 100;
-    const lightness = 90;
-    const hoverLightness = 86;
-    const textColorLightness = 33;
+    const lightness = 95;
+    const hoverLightness = 90;
+    const textColorLightness = 35;
 
     const bg = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
     const hoverBg = `hsl(${hue}, ${saturation}%, ${hoverLightness}%)`;
