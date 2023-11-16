@@ -1,57 +1,19 @@
 import { Box } from '@mui/system';
 import React from 'react';
+import { SxProps } from '@mui/material';
+import { Theme } from '@emotion/react';
 
 export function MetadataTag({
-  index,
   label,
   value,
-  maxWidth
+  maxWidth,
+  sx
 }: {
-  index: number;
   label?: string;
   value: any;
   maxWidth?: number | string;
+  sx?: SxProps<Theme> | undefined;
 }) {
-  const getColorByIndex = (index: number) => {
-    const regularColors = [
-      { backgroundColor: '#F3E8FF', color: '#7E22CE' },
-      { backgroundColor: '#EEF0FC', color: '#5467DE' },
-      { backgroundColor: '#CFFAFE', color: '#0E7490' },
-      { backgroundColor: '#DCFCE7', color: '#166534' },
-      { backgroundColor: '#FEF9C3', color: '#A16207' },
-      { backgroundColor: '#FFEDD5', color: '#C2410C' },
-      { backgroundColor: '#FEF2F2', color: '#DC2626' }
-    ];
-
-    const hoverColors = [
-      { backgroundColor: '#E9D5FF', color: '#7E22CE' },
-      { backgroundColor: '#CCD3FF', color: '#5467DE' },
-      { backgroundColor: '#A5F3FC', color: '#0E7490' },
-      { backgroundColor: '#BBF7D0', color: '#166534' },
-      { backgroundColor: '#FEF08A', color: '#A16207' },
-      { backgroundColor: '#FED7AA', color: '#C2410C' },
-      { backgroundColor: '#FEE2E2', color: '#DC2626' }
-    ];
-
-    const colorIndex = index % 7;
-    return {
-      regular: regularColors[colorIndex],
-      hover: hoverColors[colorIndex]
-    };
-  };
-
-  const generateCssForIndex = (index: number) => {
-    const colors = getColorByIndex(index);
-    return {
-      backgroundColor: `${colors.regular.backgroundColor}!important`,
-      color: `${colors.regular.color}!important`,
-      '&:hover': {
-        backgroundColor: `${colors.hover.backgroundColor}!important`,
-        color: `${colors.hover.color}!important`
-      }
-    };
-  };
-
   return (
     <Box
       style={{
@@ -69,12 +31,15 @@ export function MetadataTag({
         fontSize: '12px',
         fontFamily: 'Inter',
         fontWeight: 600,
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        backgroundColor: 'rgba(241, 245, 249, 1)',
+        color: 'rgba(100, 116, 139, 1)'
       }}
-      sx={generateCssForIndex(index)}
+      sx={sx}
       key={label}
     >
-        {label && `${label} : `}{`${value}`}
+      {label && `${label} : `}
+      {`${value}`}
     </Box>
   );
 }
