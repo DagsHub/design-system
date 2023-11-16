@@ -9,18 +9,18 @@ export function GalleryTagsGroup({
 }) {
   const NUM_TAGS_LINES = 3;
   const MAX_TAGS = 6;
-  const SPACE_LEFT_FOR_COUNTER = 40;
   const GAP_BETWEEN_TAGS = 4;
   const length = Object.keys(itemMetadataTagsToDisplayDict).length;
+  const SPACE_LEFT_FOR_COUNTER = `${length-6}`.length *12 +16;
 
   function calcTagWidth(index: number) {
     if (length <= NUM_TAGS_LINES) {
       return 'undefined'; //no max width
-    } else if (index != MAX_TAGS - 1) {
+    } else if (length <=MAX_TAGS || index < MAX_TAGS - 1) {
       return `calc(50% - ${GAP_BETWEEN_TAGS / 2}px)`;
     } else {
       //the last tag before counter
-      return `calc(50% - ${GAP_BETWEEN_TAGS / 2}px - ${SPACE_LEFT_FOR_COUNTER}px)`;
+      return `calc(50% - ${GAP_BETWEEN_TAGS * 2}px - ${SPACE_LEFT_FOR_COUNTER}px)`;
     }
   }
 

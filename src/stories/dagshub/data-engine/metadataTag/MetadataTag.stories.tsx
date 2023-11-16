@@ -92,86 +92,68 @@ const Template: StoryFn<typeof GalleryTagsGroup> = (args) => (
   </Box>
 );
 
+const getNTags = (n: number) => {
+    const tags: Record<string, { value: any }> = {};
+    for (let i = 1; i <= n; i++) {
+        tags[`This is a very long label ${i}`] = { value: `A very long value ${i}` };
+    }
+    return tags;
+}
+
 export const oneTag: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 oneTag.args = {
-  itemMetadataTagsToDisplayDict: {
-    'This is a long tag labelll1': { value: 'this is a long value' }
-  }
+  itemMetadataTagsToDisplayDict: getNTags(1),
 };
 
 export const twoTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 twoTags.args = {
-  itemMetadataTagsToDisplayDict: {
-    'This is a long tag labelll1': { value: 'this is a long value' },
-    'This is a long tag label2': { value: 'this is a long value' }
-  }
+  itemMetadataTagsToDisplayDict: getNTags(2),
 };
 
 export const threeTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 threeTags.args = {
-  itemMetadataTagsToDisplayDict: {
-    'This is a long tag labelll1': { value: 'this is a long value' },
-    'This is a long tag label2': { value: 'this is a long value' },
-    'This is a long tag label3': { value: 'this is a long value' }
-  }
+  itemMetadataTagsToDisplayDict: getNTags(3),
 };
 
 export const fourTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 fourTags.args = {
-  itemMetadataTagsToDisplayDict: {
-    'This is a long tag labelll1': { value: 'this is a long value' },
-    'This is a long tag label2': { value: 'this is a long value' },
-    'This is a long tag label3': { value: 'this is a long value' },
-    'This is a long tag label4': { value: 'this is a long value' }
-  }
+  itemMetadataTagsToDisplayDict: getNTags(4),
 };
 
 export const fiveTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 fiveTags.args = {
-  itemMetadataTagsToDisplayDict: {
-    'This is a long tag labelll1': { value: 'this is a long value' },
-    'This is a long tag label2': { value: 'this is a long value' },
-    'This is a long tag label3': { value: 'this is a long value' },
-    'This is a long tag label4': { value: 'this is a long value' },
-    'This is a long tag label5': { value: 'this is a long value' }
-  }
+  itemMetadataTagsToDisplayDict: getNTags(5),
 };
 
 export const sixTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 sixTags.args = {
-  itemMetadataTagsToDisplayDict: {
-    'This is a long tag labelll1': { value: 'this is a long value' },
-    'This is a long tag label2': { value: 'this is a long value' },
-    'This is a long tag label3': { value: 'this is a long value' },
-    'This is a long tag label4': { value: 'this is a long value' },
-    'This is a long tag label5': { value: 'this is a long value' },
-    'This is a long tag label6': { value: 'this is a long value' }
-  }
+  itemMetadataTagsToDisplayDict: getNTags(6),
 };
 
 export const sevenTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 sevenTags.args = {
-  itemMetadataTagsToDisplayDict: {
-    'This is a long tag labelll1': { value: 'this is a long value' },
-    'This is a long tag label2': { value: 'this is a long value' },
-    'This is a long tag label3': { value: 'this is a long value' },
-    'This is a long tag label4': { value: 'this is a long value' },
-    'This is a long tag label5': { value: 'this is a long value' },
-    'This is a long tag label6': { value: 'this is a long value' },
-    'This is a long tag label7': { value: 'this is a long value' }
-  }
+  itemMetadataTagsToDisplayDict: getNTags(7),
 };
 
-export const eightTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
-eightTags.args = {
-  itemMetadataTagsToDisplayDict: {
-    'This is a long tag labelll1': { value: 'this is a long value' },
-    'This is a long tag label2': { value: 'this is a long value' },
-    'This is a long tag label3': { value: 'this is a long value' },
-    'This is a long tag label4': { value: 'this is a long value' },
-    'This is a long tag label5': { value: 'this is a long value' },
-    'This is a long tag label6': { value: 'this is a long value' },
-    'This is a long tag label7': { value: 'this is a long value' },
-    'This is a long tag label8': { value: 'this is a long value' }
-  }
+export const manyTags1: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
+manyTags1.args = {
+  itemMetadataTagsToDisplayDict: getNTags(100),
+};
+
+export const manyTags2: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
+manyTags2.args = {
+    itemMetadataTagsToDisplayDict: getNTags(1000),
+};
+
+export const mixedTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
+mixedTags.args = {
+    itemMetadataTagsToDisplayDict: {
+        'This is a long tag labelll1': { value: 'this is a long value' }, //long key and long value
+        'bool:': { value: 'true' }, // short key and short value
+        'Another long tag labelll2': { value: 'value' }, //long key and short value
+        'float:': { value: '12.3456789023457658768' }, //short key and long value
+        'another key': {value: 'another value'},
+        'size:': { value: '1234543' },
+        'bla:': { value: 'bla' }
+    }
 };
