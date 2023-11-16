@@ -4,19 +4,22 @@ import EditIcon from '@mui/icons-material/Edit';
 import Box from '@mui/material/Box';
 import CancelIcon from '@mui/icons-material/Cancel';
 import StyledTextField from './StyledTextField';
+import "./style.scss"
 
 function CustomTextField({
   readOnly,
   value,
-  saveLocallyHandler,
+  onSaveHandler,
   placeholder,
-  helperText
+  helperText,
+                           shouldHighlightIfEmpty
 }: {
   readOnly: boolean;
   value?: string;
-  saveLocallyHandler: (newVal?: string) => void;
+  onSaveHandler: (newVal?: string) => void;
   placeholder?: string;
   helperText?: string;
+  shouldHighlightIfEmpty?: boolean;
 }) {
   const [currentValue, setCurrentValue] = useState(value);
   const [isEditing, setEditing] = useState(false);
@@ -32,10 +35,9 @@ function CustomTextField({
         textFieldWrapperContainerRef.current &&
         !textFieldWrapperContainerRef.current.contains(event.target)
       ) {
-        onSaveHandler();
+        saveChangesHandler();
       }
     }
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -55,9 +57,9 @@ function CustomTextField({
     textFieldRef.current?.blur();
   };
 
-  const onSaveHandler = () => {
+  const saveChangesHandler = () => {
     setCurrentValue(editedValue);
-    saveLocallyHandler(editedValue);
+    onSaveHandler(editedValue);
     setHovered(false);
     setEditing(false);
     textFieldRef.current?.blur();
@@ -65,23 +67,51 @@ function CustomTextField({
 
   const handleKeyDown = (event: any) => {
     if (isEditing && event.key === 'Enter') {
-      onSaveHandler();
+      saveChangesHandler();
     }
   };
+  const getValue = ()=> {
+    if(isEditing){
+      return editedValue??'';
+    } else if(!!currentValue){
+      return currentValue??'';
+    } return '';
+  }
+
+  useEffect(() => {
+    function highlightDiv() {
+      // Add the "highlight" class to the div
+      textFieldWrapperContainerRef.current?.classList.add('highlight');
+
+      // Remove the "highlight" class after 2 seconds
+      setTimeout(() => {
+        textFieldWrapperContainerRef.current?.classList.remove('highlight');
+      }, 1500);
+    }
+
+    debugger;
+    if (shouldHighlightIfEmpty && !currentValue) {
+      highlightDiv();
+    }
+  }, [currentValue, shouldHighlightIfEmpty]);
+
 
   return (
     <Box
       sx={{ width: '100%', height: '100%' }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={() => {if(currentValue){setHovered(true)}}}//have the pencil logic only if a value already exists
+      onMouseLeave={() => {if(currentValue){setHovered(false)}}}//have the pencil logic only if a value already exists
       onMouseDown={(e) => {
-        e.preventDefault(); //make text field not focused on a regular click, but only when clicking in the edit button
+        if(currentValue){
+          e.preventDefault();
+        } //When there is value, make text field not focused on a regular click, but only when clicking on the edit button
       }}
       ref={textFieldWrapperContainerRef}
     >
       <StyledTextField
         changeColorOnHover={!readOnly || isEditing}
         inputRef={textFieldRef}
+        helperText={helperText}
         InputProps={{
           autoComplete: 'off',
           readOnly: readOnly && !isEditing,
@@ -96,12 +126,12 @@ function CustomTextField({
           ) : null
         }}
         onChange={(e: any) => {
+          setEditing(true);
           setEditedValue(e.target.value);
         }}
         onKeyDown={handleKeyDown}
-        value={isEditing ? editedValue : currentValue}
+        value={getValue()}
         placeholder={placeholder}
-        helperText={helperText}
       />
     </Box>
   );
