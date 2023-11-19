@@ -12,7 +12,8 @@ function CustomTextField({
                              onSaveHandler,
                              placeholder,
                              helperText,
-                             shouldHighlightIfEmpty
+                             shouldHighlightIfEmpty,
+                             autoFocus
                          }: {
     readOnly: boolean;
     value?: string;
@@ -20,6 +21,7 @@ function CustomTextField({
     placeholder?: string;
     helperText?: string;
     shouldHighlightIfEmpty?: boolean;
+    autoFocus?: boolean;
 }) {
     const [currentValue, setCurrentValue] = useState(value);
     const [isEditing, setEditing] = useState(false);
@@ -69,6 +71,9 @@ function CustomTextField({
     const handleKeyDown = (event: any) => {
         if (isEditing && event.key === 'Enter') {
             saveChangesHandler();
+        }
+        if (isEditing && event.key === 'Escape') {
+            handleCancelClick();
         }
     };
     const getValue = () => {
@@ -121,6 +126,7 @@ function CustomTextField({
                 changeColorOnHover={!readOnly || isEditing}
                 inputRef={textFieldRef}
                 helperText={helperText}
+                autoFocus={autoFocus}
                 InputProps={{
                     autoComplete: 'off',
                     readOnly: readOnly && !isEditing,

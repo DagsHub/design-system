@@ -143,12 +143,15 @@ export function MetadataKeyValueList({
   };
 
   const permanentlyDeleteMetadataFieldByIndex = (indexToRemove: number) => {
-    setTemporaryMetadataList((prevList) => {
-      const newList = prevList.filter((_, index) => index !== indexToRemove);
-      return newList;
-    });
     if(onDeleteHandler){
-      onDeleteHandler(metadataList[indexToRemove].key)
+      try{
+        onDeleteHandler(metadataList[indexToRemove].key);
+        setTemporaryMetadataList((prevList) => {
+          const newList = prevList.filter((_, index) => index !== indexToRemove);
+          return newList;
+        });
+      } catch (e){
+      }
     }
   };
 

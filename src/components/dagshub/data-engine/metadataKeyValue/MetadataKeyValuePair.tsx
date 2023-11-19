@@ -93,6 +93,7 @@ export function MetadataKeyValuePair({
                     helperText={description}
                     placeholder={isNewlyCreated || !value ? 'Enter field name' : 'Typing...'}
                     shouldHighlightIfEmpty={shouldHighlightEmptyFields}
+                    autoFocus={isNewlyCreated}
                 />
             </Box>
             <Box
