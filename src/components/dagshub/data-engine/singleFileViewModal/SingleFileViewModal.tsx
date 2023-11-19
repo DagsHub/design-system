@@ -53,6 +53,8 @@ function SingleFileViewModal({
                                  items
                              }: singleFileViewModalProps) {
 
+    const SIDEBAR_WIDTH = 290;
+
     return (
         <div id={"gallery"}><GenericModal
             title={''}
@@ -106,7 +108,7 @@ function SingleFileViewModal({
                         <Box
                             sx={{
                                 display: 'flex',
-                                width: '75%',
+                                width: `CALC(100% - ${SIDEBAR_WIDTH}px)`,
                                 flexDirection: 'column',
                                 height: '100%',
                                 borderRight: '2px solid #E2E8F0',
@@ -212,7 +214,7 @@ function SingleFileViewModal({
                                 </Box>
                             )}
                         </Box>
-                        <Box sx={{display: 'flex', width: '25%', padding: '8px'}}>bla</Box>
+                        <Box sx={{display: 'flex', width: `${SIDEBAR_WIDTH}px`, padding: '8px'}}>bla</Box>
                     </Box>
                 </Box>,
             ]}
