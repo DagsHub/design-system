@@ -121,6 +121,7 @@ function SingleFileViewModal({
                                     padding: '8px',
                                     justifyContent: 'center',
                                     bgcolor: "#F8FAFC",
+                                    alignItems:"center",
                                     boxSizing:"border-box"
                                 }}
                             >
@@ -130,6 +131,21 @@ function SingleFileViewModal({
                                         alt={''}
                                         src={itemData?.galleryFilePath}
                                     />
+                                ): itemData?.itemType === 'video' ? (
+                                    <video
+                                        style={{objectFit: 'contain', maxWidth: '100%', maxHeight: '100%'}}
+                                        controls
+                                        src={itemData?.galleryFilePath}
+                                    ></video>
+                                ): itemData?.itemType === 'audio' ? (
+                                    <audio
+                                        controls
+                                        preload="metadata"
+                                        style={{objectFit: 'contain', maxWidth: '100%', maxHeight: '100%', width:"80%"}}
+                                    >
+                                        <source src={itemData?.galleryFilePath} />
+                                        Your browser doesn't support HTML5 video tag.
+                                    </audio>
                                 ) : (
                                     <ItemFallback height={"calc(100% - 52px)"} width={"100%"}/>
                                 )}
