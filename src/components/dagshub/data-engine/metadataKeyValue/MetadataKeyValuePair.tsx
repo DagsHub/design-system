@@ -5,6 +5,7 @@ import {DropdownV2} from '../../../elements/dropdownV2';
 import {RadioButtonItemProps} from '../../../forms';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import IconButton from '@mui/material/IconButton';
+import {useMediaQuery} from "@mui/material";
 
 export interface MetadataKeyValuePairProps {
     index: number;
@@ -60,6 +61,8 @@ export function MetadataKeyValuePair({
         }
     ];
 
+    const breakpoint = useMediaQuery('(max-width: 477px)');
+
     return (
         <Box
             sx={{
@@ -70,13 +73,14 @@ export function MetadataKeyValuePair({
                 backgroundColor: '#F8FAFC',
                 borderBottom: '1px solid #E2E8F0',
                 alignItems: 'center',
-                gap: '8px'
+                gap: '8px',
+                flexWrap: isNewlyCreated && breakpoint ? 'wrap' : 'nowrap'
             }}
         >
             <Box
                 sx={{
                     display: 'flex',
-                    width: '35%',
+                    width: isNewlyCreated && breakpoint ? '100%' : '35%',
                     height: '100%',
                     flexShrink: 0
                 }}
@@ -99,7 +103,7 @@ export function MetadataKeyValuePair({
             <Box
                 sx={{
                     display: 'flex',
-                    width: '65%',
+                    width: isNewlyCreated && breakpoint ? '100%' : '65%',
                     height: '100%',
                     gap:"8px"
                 }}
@@ -137,19 +141,19 @@ export function MetadataKeyValuePair({
                     placeholder={isNewlyCreated || !value ? 'Add value' : 'Typing...'}
                     shouldHighlightIfEmpty={shouldHighlightEmptyFields}
                 />
+                {isEditable && isRemovable && (
+                    <IconButton
+                        style={{marginRight: '14px', height: '100%', padding: '6px'}}
+                        onClick={() => {
+                            if (deleteFieldPermanently) {
+                                deleteFieldPermanently(index);
+                            }
+                        }}
+                    >
+                        <DeleteOutlinedIcon style={{color: 'rgba(148, 163, 184, 1)'}} fontSize={'medium'}/>
+                    </IconButton>
+                )}
             </Box>
-            {isEditable && isRemovable && (
-                <IconButton
-                    style={{marginRight: '14px', height: '100%', padding: '6px'}}
-                    onClick={() => {
-                        if (deleteFieldPermanently) {
-                            deleteFieldPermanently(index);
-                        }
-                    }}
-                >
-                    <DeleteOutlinedIcon style={{color: 'rgba(148, 163, 184, 1)'}} fontSize={'medium'}/>
-                </IconButton>
-            )}
         </Box>
     );
 }
