@@ -6,3 +6,5 @@ export * from './metadataKeyValue/MetadataKeyValueList';
 export * from './metadataKeyValue/MetadataKeyValuePair';
 export * from './metadataKeyValue/CustomTextField';
 export * from './metadataKeyValue/StyledTextField';
+export * from './metadataTag/MetadataTag';
+export * from './metadataTag/GalleryTagsGroup';
