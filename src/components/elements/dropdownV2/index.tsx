@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import {RadioButtonItemProps} from '../../forms';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CancelIcon from '@mui/icons-material/Cancel';
+import "./style.scss"
 
 export function DropdownV2({
                                onChange,
@@ -19,7 +20,8 @@ export function DropdownV2({
                                isSquareCorners,
                                backgroundColorFocus,
                                withoutBorder,
-                               disableClearable
+                               disableClearable,
+                               shouldHighlightIfEmpty
                            }: {
     onChange: (event: SyntheticEvent<Element, Event>, value: RadioButtonItemProps | null) => void;
     initialChecked?: RadioButtonItemProps | undefined;
@@ -34,6 +36,7 @@ export function DropdownV2({
     backgroundColorFocus?: string;
     withoutBorder?: boolean;
     disableClearable?: boolean;
+    shouldHighlightIfEmpty?: boolean;
 }) {
     const [inputValue, setInputValue] = React.useState('');
     const [open, setOpen] = useState(false);
@@ -60,6 +63,22 @@ export function DropdownV2({
         }
     };
 
+    useEffect(() => {
+        function highlightDiv() {
+            // Add the "highlight" class to the div
+            autoCompleteWrapperRef.current?.classList.add('highlight');
+
+            // Remove the "highlight" class after 2 seconds
+            setTimeout(() => {
+                autoCompleteWrapperRef.current?.classList.remove('highlight');
+            }, 1000);
+        }
+
+        if (shouldHighlightIfEmpty && !inputValue) {
+            highlightDiv();
+        }
+    }, [inputValue, shouldHighlightIfEmpty]);
+
     return (
         <Box
             ref={autoCompleteWrapperRef}
@@ -67,6 +86,7 @@ export function DropdownV2({
                 display: 'flex',
                 gap: '8px',
                 width: maxWidth ?? '100%',
+                height: "100%",
                 flexDirection: 'column',
                 '.MuiAutocomplete-option': {
                     fontFamily: 'Inter',
@@ -98,6 +118,8 @@ export function DropdownV2({
                     setInputValue(newInputValue);
                 }}
                 sx={{
+                    height:"100%",
+                    display:"flex",
                     '.Mui-focused': {
                         background: backgroundColorFocus
                             ? `${backgroundColorFocus}!important`
