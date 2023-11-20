@@ -1,9 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import {
-  BasicTable,
-  BasicTableProps
-} from '../../../../components/dagshub/data-engine/react-table';
+import { BasicTable, BasicTableProps } from '../../../../components';
 
 const meta: Meta<BasicTableProps> = {
   title: 'DagsHub/Data-Engine/Tables/BasicTable',
