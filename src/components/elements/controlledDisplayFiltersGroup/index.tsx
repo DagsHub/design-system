@@ -29,7 +29,7 @@ export function ControlledDisplayFiltersGroup({
     const availableFiltersNames = new Set(filters.map((filter) => filter.label));
 
     function getInitialState() {
-        if (isToggleAll){
+        if (isToggleAll) {
             return availableFiltersNames;
         } else if (toggledFilters) {
             return toggledFilters;
@@ -79,8 +79,8 @@ export function ControlledDisplayFiltersGroup({
                                 setDisplayedFilters(updatedFilters);
                                 if (item.onChange)
                                     item.onChange(item.label)
-                            }
-                            }
+                                    ;
+                            }}
                         />
                         <Divider sx={{backgroundColor: '#F8FAFC'}}/>
                     </>
