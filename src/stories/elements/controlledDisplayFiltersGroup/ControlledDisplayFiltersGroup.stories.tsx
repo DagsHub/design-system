@@ -16,8 +16,7 @@ const Template: StoryFn<typeof ControlledDisplayFiltersGroup> = (args) => (
   <ControlledDisplayFiltersGroup {...args} />
 );
 
-export const displayFilterBasic: StoryFn<typeof ControlledDisplayFiltersGroup> =
-  Template.bind({});
+export const displayFilterBasic: StoryFn<typeof ControlledDisplayFiltersGroup> = Template.bind({});
 displayFilterBasic.args = {
   filters: [
     {
@@ -38,9 +37,9 @@ displayFilterBasic.args = {
 };
 
 export const ControlledDisplayFilterBasic1: StoryFn<typeof ControlledDisplayFiltersGroup> =
-    Template.bind({});
+  Template.bind({});
 ControlledDisplayFilterBasic1.args = {
-  isToggleAll:true,
+  isToggleAll: true,
   filters: [
     {
       label: 'metadata_key_1',
@@ -60,7 +59,7 @@ ControlledDisplayFilterBasic1.args = {
 };
 
 export const ControlledDisplayFilterBasic2: StoryFn<typeof ControlledDisplayFiltersGroup> =
-    Template.bind({});
+  Template.bind({});
 ControlledDisplayFilterBasic2.args = {
   toggledFilters: new Set(['metadata_key_2']),
   filters: [
