@@ -13,14 +13,14 @@ export interface DisplayFilterPartialProps {
 export interface ControlledDisplayFiltersGroupProps {
   filters: DisplayFilterPartialProps[];
   toggleAllLabel?: string;
-  toggleShowAll: (show: boolean) => void;
+  onToggleShowAll: (show: boolean) => void;
   isToggleAll?: boolean;
   toggledFilters?: Set<string>;
 }
 
 export function ControlledDisplayFiltersGroup({
   filters,
-  toggleShowAll,
+  onToggleShowAll,
   toggleAllLabel,
   isToggleAll,
   toggledFilters
@@ -46,7 +46,7 @@ export function ControlledDisplayFiltersGroup({
       setDisplayedFilters(new Set());
     }
     setShowAll(!showAll);
-    toggleShowAll(!showAll);
+    onToggleShowAll(!showAll);
   };
 
   useEffect(() => {
