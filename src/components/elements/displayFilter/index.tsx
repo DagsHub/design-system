@@ -4,7 +4,7 @@ import { Icon } from '../../icons';
 
 export interface DisplayFilterProps {
   label: string;
-  onChange: (show: boolean) => void;
+  onChange: () => void;
   value: boolean;
 }
 
@@ -14,7 +14,7 @@ export function DisplayFilter({ label, onChange, value }: DisplayFilterProps) {
   const filterClicked = () => {
     const currentShow = show;
     setShow(!currentShow);
-    onChange(!currentShow);
+    onChange();
   };
 
   useEffect(() => {

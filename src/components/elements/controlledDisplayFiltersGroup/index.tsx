@@ -69,7 +69,7 @@ export function ControlledDisplayFiltersGroup({
             <DisplayFilter
               value={showAll || displayedFilters.has(item.label)}
               label={item.label}
-              onChange={(show) => {
+              onChange={() => {
                 const updatedFilters = new Set(displayedFilters);
                 if (updatedFilters.has(item.label)) {
                   updatedFilters.delete(item.label);
