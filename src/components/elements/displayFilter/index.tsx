@@ -39,7 +39,10 @@ export function DisplayFilter({ label, onChange, value }: DisplayFilterProps) {
           color: '#172D32',
           fontFamily: 'Inter',
           fontSize: '14px',
-          fontWeight: 500
+          fontWeight: 500,
+          whiteSpace: 'nowrap',
+          textOverflow: 'ellipsis',
+          overflow: 'hidden',
         }}
       >
         {label}
