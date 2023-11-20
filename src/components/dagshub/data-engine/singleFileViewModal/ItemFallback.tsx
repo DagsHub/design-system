@@ -6,10 +6,12 @@ export function ItemFallback({
                                  height,
                                  width,
                                  onClick,
+                                 disableHoverMode
                              }: {
     height: number|string;
     width: number|string;
     onClick?: () => void;
+    disableHoverMode?: boolean;
 }) {
     return (
         <Box
@@ -27,7 +29,7 @@ export function ItemFallback({
                 justifyContent: 'center',
                 flexDirection: 'column',
                 '&:hover': {
-                    boxShadow: '0px 0px 0px 3px rgba(196, 181, 253, 0.50)',
+                    boxShadow: !disableHoverMode? '0px 0px 0px 3px rgba(196, 181, 253, 0.50)':undefined,
                 },
             }}
         >

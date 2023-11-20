@@ -202,7 +202,7 @@ function SingleFileViewModal({
                                             Your browser doesn't support HTML5 video tag.
                                         </audio>
                                     ) : (
-                                        <ItemFallback height={"calc(100% - 52px)"} width={"100%"}/>
+                                        <ItemFallback height={"calc(100% - 52px)"} width={"100%"} disableHoverMode/>
                                     )}
                                 </Box>
                                 {!!items && activeSingleItemIndex != null && (
