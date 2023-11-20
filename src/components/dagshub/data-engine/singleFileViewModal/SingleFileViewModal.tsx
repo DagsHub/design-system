@@ -90,7 +90,7 @@ function SingleFileViewModal({
                                 flexShrink: 0
                             }}
                         >
-                            <Typography
+                            {!showMetadataOverlay && <Typography
                                 sx={{
                                     fontWeight: 500,
                                     fontSize: "16px",
@@ -100,14 +100,14 @@ function SingleFileViewModal({
                                     textOverflow: "ellipsis",
                                 }}>
                                 {itemData?.fileName}
-                            </Typography>
+                            </Typography>}
                             <Box
                                 sx={{
                                     display: 'flex',
                                     height: '100%',
                                     flexDirection: 'row',
                                     alignItems: "center",
-                                    gap: "8px"
+                                    gap: "8px",
                                 }}>
                                 {breakpoint &&
                                     <Button
@@ -118,7 +118,7 @@ function SingleFileViewModal({
                                         label={''}
                                         iconRight={
                                             <Icon
-                                                icon={showMetadataOverlay ? 'solid-sidebar-collapse' : 'solid-sidebar-expand'}
+                                                icon={showMetadataOverlay ? 'solid-sidebar-arrow-right' : 'solid-sidebar-arrow-left'}
                                                 width={20}
                                                 height={20}
                                                 fill={'#172D32'}
@@ -127,7 +127,7 @@ function SingleFileViewModal({
                                         }
                                         variant={ButtonVariant.Secondary}
                                     />}
-                                <a href={itemData?.repoFilePath} target={"_blank"}>
+                                {!showMetadataOverlay && <a href={itemData?.repoFilePath} target={"_blank"}>
                                     <Button
                                         label={''}
                                         iconRight={
@@ -140,7 +140,7 @@ function SingleFileViewModal({
                                         }
                                         variant={ButtonVariant.Secondary}
                                     />
-                                </a>
+                                </a>}
                             </Box>
                         </Box>
                         <Box
@@ -159,7 +159,6 @@ function SingleFileViewModal({
                                     width: !breakpoint ? `CALC(100% - ${SIDEBAR_WIDTH}px)` : `100%`,
                                     flexDirection: 'column',
                                     height: '100%',
-                                    borderRight: '2px solid #E2E8F0',
                                     boxSizing: "border-box"
                                 }}
                             >
@@ -271,7 +270,8 @@ function SingleFileViewModal({
                                 <Box sx={{
                                     display: 'flex',
                                     width: !breakpoint ? `${SIDEBAR_WIDTH}px` : "100%",
-                                    padding: '8px'
+                                    padding: '8px',
+                                    borderLeft: !breakpoint ? '2px solid #E2E8F0':undefined,
                                 }}>Metadata key value component</Box>
                             }
                         </Box>
