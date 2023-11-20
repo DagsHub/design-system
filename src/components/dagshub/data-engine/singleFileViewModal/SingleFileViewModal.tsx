@@ -94,7 +94,10 @@ function SingleFileViewModal({
                                 sx={{
                                     fontWeight: 500,
                                     fontSize: "16px",
-                                    lineHeight: "24px"
+                                    lineHeight: "24px",
+                                    overflow: "hidden",
+                                    whiteSpace: "nowrap",
+                                    textOverflow: "ellipsis",
                                 }}>
                                 {itemData?.fileName}
                             </Typography>

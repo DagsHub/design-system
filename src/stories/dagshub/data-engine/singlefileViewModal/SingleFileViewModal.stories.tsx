@@ -182,7 +182,7 @@ singlefileViewModalVideo.args = {
             itemType: "video",
             repoFilePath: "https://dagshub.com/DAGsHub-Official/annotations-showcase/src/main/data/videos/earth-space-small.mp4",
             galleryFilePath: "https://dagshub.com/DAGsHub-Official/annotations-showcase/raw/main/data/videos/earth-space-small.mp4",
-            fileName: "/earth-space-small.mp4"
+            fileName: "earth-space-small.mp4"
         },
     items: [
 
