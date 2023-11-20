@@ -16,9 +16,53 @@ const Template: StoryFn<typeof ControlledDisplayFiltersGroup> = (args) => (
   <ControlledDisplayFiltersGroup {...args} />
 );
 
-export const ControlledDisplayFilterBasic: StoryFn<typeof ControlledDisplayFiltersGroup> =
+export const displayFilterBasic: StoryFn<typeof ControlledDisplayFiltersGroup> =
   Template.bind({});
-ControlledDisplayFilterBasic.args = {
+displayFilterBasic.args = {
+  filters: [
+    {
+      label: 'metadata_key_1',
+      onChange: (value) => console.log('changed', value)
+    },
+    {
+      label: 'metadata_key_2',
+      onChange: (value) => console.log('changed', value)
+    },
+    {
+      label: 'metadata_key_3',
+      onChange: (value) => console.log('changed', value)
+    }
+  ],
+  toggleShowAll: (value) => console.log('toggle show all', value),
+  toggleAllLabel: 'Show all'
+};
+
+export const ControlledDisplayFilterBasic1: StoryFn<typeof ControlledDisplayFiltersGroup> =
+    Template.bind({});
+ControlledDisplayFilterBasic1.args = {
+  isToggleAll:true,
+  filters: [
+    {
+      label: 'metadata_key_1',
+      onChange: (value) => console.log('changed', value)
+    },
+    {
+      label: 'metadata_key_2',
+      onChange: (value) => console.log('changed', value)
+    },
+    {
+      label: 'metadata_key_3',
+      onChange: (value) => console.log('changed', value)
+    }
+  ],
+  toggleShowAll: (value) => console.log('toggle show all', value),
+  toggleAllLabel: 'Show all'
+};
+
+export const ControlledDisplayFilterBasic2: StoryFn<typeof ControlledDisplayFiltersGroup> =
+    Template.bind({});
+ControlledDisplayFilterBasic2.args = {
+  toggledFilters: new Set(['metadata_key_2']),
   filters: [
     {
       label: 'metadata_key_1',
