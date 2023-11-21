@@ -7,4 +7,3 @@ export * from './tooltip';
 export * from './genericError';
 export * from './displayFilter';
 export * from './controlledDisplayFiltersGroup';
-

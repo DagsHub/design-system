@@ -3,9 +3,9 @@ import TextField, { TextFieldProps } from '@mui/material/TextField';
 
 function StyledTextField({
   changeColorOnHover,
-    focusModeDisabled,
+  focusModeDisabled,
   ...restProps
-}: { changeColorOnHover?: boolean, focusModeDisabled?:boolean } & TextFieldProps) {
+}: { changeColorOnHover?: boolean; focusModeDisabled?: boolean } & TextFieldProps) {
   return (
     <TextField
       {...restProps}
@@ -13,8 +13,10 @@ function StyledTextField({
         width: '100%',
         height: '100%',
         '.Mui-focused': {
-          background: !focusModeDisabled?'rgba(255, 255, 255, 1)!important':undefined,
-          boxShadow: !focusModeDisabled?'inset 0px 0px 0px 3px rgba(196, 181, 253, 0.5)!important':undefined
+          background: !focusModeDisabled ? 'rgba(255, 255, 255, 1)!important' : undefined,
+          boxShadow: !focusModeDisabled
+            ? 'inset 0px 0px 0px 3px rgba(196, 181, 253, 0.5)!important'
+            : undefined
         },
         '.MuiInputBase-root': {
           width: '100%',
