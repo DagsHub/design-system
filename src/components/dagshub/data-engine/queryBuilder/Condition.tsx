@@ -68,7 +68,7 @@ const Condition = ({condition, onChange, level = 0, isSimple, onRemove}:{conditi
                     {(isAndRelation?condition.and: condition.or)?.map((cond, index) => (
                         <div key={index}>
                             <Condition
-                                isSimple
+                                isSimple={isSimple}
                                 condition={cond}
                                 onChange={(newCond:AndOrMetadataInput) => {
                                     const newConditions = condition.and || condition.or || [];
