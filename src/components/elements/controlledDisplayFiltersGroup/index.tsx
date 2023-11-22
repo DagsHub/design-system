@@ -13,18 +13,31 @@ export interface DisplayFilterPartialProps {
 export interface ControlledDisplayFiltersGroupProps {
   filters: DisplayFilterPartialProps[];
   toggleAllLabel?: string;
-  toggleShowAll: (show: boolean) => void;
+  onToggleShowAll: (show: boolean) => void;
+  isToggleAll?: boolean;
+  toggledFilters?: Set<string>;
 }
 
 export function ControlledDisplayFiltersGroup({
   filters,
-  toggleShowAll,
-  toggleAllLabel
+  onToggleShowAll,
+  toggleAllLabel,
+  isToggleAll,
+  toggledFilters
 }: ControlledDisplayFiltersGroupProps) {
-  const [showAll, setShowAll] = useState<boolean>(false);
-  const [displayedFilters, setDisplayedFilters] = useState<Set<string>>(() => new Set<string>());
-
+  const [showAll, setShowAll] = useState<boolean>(isToggleAll ?? false);
   const availableFiltersNames = new Set(filters.map((filter) => filter.label));
+
+  function getInitialState() {
+    if (isToggleAll) {
+      return availableFiltersNames;
+    } else if (toggledFilters) {
+      return toggledFilters;
+    }
+    return new Set<string>();
+  }
+
+  const [displayedFilters, setDisplayedFilters] = useState<Set<string>>(getInitialState());
 
   const toggleAll = () => {
     if (!showAll) {
@@ -33,7 +46,7 @@ export function ControlledDisplayFiltersGroup({
       setDisplayedFilters(new Set());
     }
     setShowAll(!showAll);
-    toggleShowAll(!showAll);
+    onToggleShowAll(!showAll);
   };
 
   useEffect(() => {
@@ -54,9 +67,9 @@ export function ControlledDisplayFiltersGroup({
         return (
           <>
             <DisplayFilter
-              value={displayedFilters.has(item.label)}
+              value={showAll || displayedFilters.has(item.label)}
               label={item.label}
-              onChange={(show) => {
+              onChange={() => {
                 const updatedFilters = new Set(displayedFilters);
                 if (updatedFilters.has(item.label)) {
                   updatedFilters.delete(item.label);
