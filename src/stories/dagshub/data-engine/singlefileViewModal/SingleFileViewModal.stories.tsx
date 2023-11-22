@@ -252,8 +252,8 @@ singlefileViewModalNotSupportedType.args = {
     itemData:
         {
             itemType: "na",
-            repoFilePath: "/testerdag/baby-yoda-segmentation-dataset/src/master/s3:/allencell/.quilt/named_packages/aics/actk/1606370800",
-            galleryFilePath: "/testerdag/baby-yoda-segmentation-dataset/raw/master/s3:/allencell/.quilt/named_packages/aics/actk/1606370800",
+            repoFilePath: "https://dagshub.com/DAGsHub-Official/annotations-showcase/src/main/data/text/brown-dog.txt",
+            galleryFilePath: "https://dagshub.com/DAGsHub-Official/annotations-showcase/raw/main/data/text/brown-dog.txt",
             fileName: "1606370800"
         },
     items: [
