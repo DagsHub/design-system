@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import CancelIcon from '@mui/icons-material/Cancel';
 import StyledTextField from './StyledTextField';
 import './style.scss';
-import { Tooltip, Typography } from '@mui/material';
 
 function CustomTextField({
   readOnly,
@@ -103,16 +102,6 @@ function CustomTextField({
   }, [currentValue, shouldHighlightIfEmpty]);
 
   return (
-    <Tooltip
-      arrow
-      title={
-        <Typography fontFamily={'Inter'} fontSize={12}>
-          {getValue()}
-        </Typography>
-      }
-      open={!isEditing && isHovered}
-      placement="bottom-start"
-    >
       <Box
         sx={{ width: '100%', height: '100%' }}
         onMouseEnter={() => {
@@ -159,7 +148,6 @@ function CustomTextField({
           placeholder={placeholder}
         />
       </Box>
-    </Tooltip>
   );
 }
 
