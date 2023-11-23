@@ -1,27 +1,18 @@
 import React, {useState} from "react";
 import Condition from "./Condition";
 
-export const MetadataType= ["BOOLEAN", "INTEGER", "FLOAT", "STRING", "BLOB"];
+type MetadataType = "BOOLEAN" | "INTEGER" | "FLOAT" | "STRING" | "BLOB";
+type Comparator = "EQUAL" | "GREATER_THAN" | "GREATER_EQUAL_THAN" | "LESS_THAN" | "LESS_EQUAL_THAN" | "CONTAINS" | "IS_NULL";
 
-export enum Comparator {
-    EQUAL="EQUAL",
-    GREATER_THAN="GREATER_THAN",
-    GREATER_EQUAL_THAN="GREATER_EQUAL_THAN",
-    LESS_THAN="LESS_THAN",
-    LESS_EQUAL_THAN="LESS_EQUAL_THAN",
-    CONTAINS="CONTAINS",
-    IS_NULL="IS_NULL",
-}
-
-export const Operators =[
-    {label:"==", id: Comparator.EQUAL},
-    {label:">", id: Comparator.GREATER_THAN},
-    {label:">=", id: Comparator.GREATER_EQUAL_THAN},
-    {label:"<", id: Comparator.LESS_THAN},
-    {label:"<=", id: Comparator.LESS_EQUAL_THAN},
-    {label:"contains", id: Comparator.CONTAINS},
-    {label:"is null", id: Comparator.IS_NULL},
-]
+export const Operators: { label: string; id: Comparator }[] = [
+    { label: "==", id: "EQUAL" },
+    { label: ">", id: "GREATER_THAN" },
+    { label: ">=", id: "GREATER_EQUAL_THAN" },
+    { label: "<", id: "LESS_THAN" },
+    { label: "<=", id: "LESS_EQUAL_THAN" },
+    { label: "contains", id: "CONTAINS" },
+    { label: "is null", id: "IS_NULL" },
+];
 
 export interface MetadataInput {
     key?: string;
@@ -52,7 +43,7 @@ export function QueryBuilder({queryInput, forceCompoundMode=false}:{queryInput:Q
                 return {and:[{filter:queryInput.query.filter}]}
             }
         }else {
-            return {and:[{filter:{comparator: Comparator.EQUAL}}]}
+            return {and:[{filter:{comparator: Operators[0].id}}]}
         }
     }
     const checkIfSimpleMode = ()=>{

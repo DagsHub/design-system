@@ -1,5 +1,5 @@
 import React from 'react';
-import {AndOrMetadataInput, Comparator, Operators} from "./QueryBuilder";
+import {AndOrMetadataInput, Operators} from "./QueryBuilder";
 
 const Condition = ({condition, onChange, level = 0, isSimple, onRemove}:{condition: AndOrMetadataInput; onChange: any; level?: number; onRemove?:any, isSimple?:boolean}) => {
     const containerStyle = {
@@ -94,7 +94,7 @@ const Condition = ({condition, onChange, level = 0, isSimple, onRemove}:{conditi
                     ))}
                     <button onClick={() => {
                         const newConditions = condition.and || condition.or || [];
-                        newConditions.push({filter:{comparator: Comparator.EQUAL}});
+                        newConditions.push({filter:{comparator: Operators[0].id}});
                         if(isAndRelation){
                             onChange({...condition, and: newConditions});
                         } else {// or relation
@@ -105,7 +105,7 @@ const Condition = ({condition, onChange, level = 0, isSimple, onRemove}:{conditi
                     </button>
                     {!isSimple && <button onClick={() => {
                         const newConditions = condition.and || condition.or || [];
-                        newConditions.push({and:[{filter:{comparator: Comparator.EQUAL}}]});
+                        newConditions.push({and:[{filter:{comparator: Operators[0].id}}]});
                         if(isAndRelation){
                             onChange({...condition, and: newConditions});
                         } else {// or relation
