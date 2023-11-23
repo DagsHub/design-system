@@ -1,13 +1,7 @@
 import React, {useState} from "react";
 import Condition from "./Condition";
 
-export enum MetadataType {
-    BOOLEAN= "BOOLEAN",
-    INTEGER= "INTEGER",
-    FLOAT= "FLOAT",
-    STRING= "STRING",
-    BLOB="BLOB",
-}
+export const MetadataType= ["BOOLEAN", "INTEGER", "FLOAT", "STRING", "BLOB"];
 
 export enum Comparator {
     EQUAL="EQUAL",
@@ -43,15 +37,39 @@ export interface AndOrMetadataInput { // each condition is either AND or OR or F
     not?: Boolean;
 }
 
-export function QueryBuilder({isSimpleMode=false}:{isSimpleMode?:boolean}) {
-    const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>({
-        and: [{filter:{comparator: Comparator.EQUAL}}]
-    });
+export interface QueryInput {
+    query?: AndOrMetadataInput
+    include?: string[]
+    exclude?: string[]
+}
+
+export function QueryBuilder({queryInput, forceCompoundMode=false}:{queryInput:QueryInput, forceCompoundMode?:boolean}) {
+    const getInitialQuery=()=>{
+        if(!!queryInput.query){
+            if(!!queryInput.query.or || !!queryInput.query.and){
+                return queryInput.query
+            }else {
+                return {and:[{filter:queryInput.query.filter}]}
+            }
+        }else {
+            return {and:[{filter:{comparator: Comparator.EQUAL}}]}
+        }
+    }
+    const checkIfSimpleMode = ()=>{
+        if(forceCompoundMode){
+            return false;
+        }
+        if(!!queryInput.query?.or || !!queryInput.query?.and || !!queryInput.query?.not){
+            return false;
+        }
+        return true;
+    }
+    const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(getInitialQuery());
 
     return (
         <div className="App">
-            <h1>{isSimpleMode?"Simple":"Compound"} query builder</h1>
-            <Condition condition={rootCondition} onChange={setRootCondition} isSimple={isSimpleMode}/>
+            <h1>{checkIfSimpleMode()?"Simple":"Compound"} query builder</h1>
+            <Condition condition={rootCondition} onChange={setRootCondition} isSimple={checkIfSimpleMode()}/>
             <pre>{JSON.stringify(rootCondition, null, 2)}</pre>
         </div>
     );

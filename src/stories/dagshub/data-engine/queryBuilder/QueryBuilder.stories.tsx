@@ -13,9 +13,16 @@ const Template: StoryFn<typeof QueryBuilder> = (args) => <QueryBuilder {...args}
 
 export const compoundQueryBuilder: StoryFn<typeof QueryBuilder> = Template.bind({});
 compoundQueryBuilder.args = {
+  queryInput:{},
+  forceCompoundMode:true
 };
 
 export const simpleQueryBuilder: StoryFn<typeof QueryBuilder> = Template.bind({});
 simpleQueryBuilder.args = {
-  isSimpleMode: true
+  queryInput:{},
+};
+
+export const queryBuilderWithQuery: StoryFn<typeof QueryBuilder> = Template.bind({});
+queryBuilderWithQuery.args = {
+  queryInput:{"query":{"filter":{"key":"size","value":"1450000","valueType":"INTEGER","comparator":"LESS_EQUAL_THAN"}}},
 };
