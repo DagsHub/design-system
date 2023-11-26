@@ -43,7 +43,7 @@ export function QueryBuilder({queryInput, forceCompoundMode=false}:{queryInput:Q
                 return {and:[{filter:queryInput.query.filter}]}
             }
         }else {
-            return {and:[{filter:{comparator: Operators[0].id}}]}
+            return {and:[]}
         }
     }
     const checkIfSimpleMode = ()=>{

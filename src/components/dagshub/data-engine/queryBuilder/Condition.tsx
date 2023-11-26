@@ -1,19 +1,20 @@
 import React from 'react';
 import {AndOrMetadataInput, Operators} from "./QueryBuilder";
 
-const Condition = ({condition, onChange, level = 0, isSimple, onRemove}:{condition: AndOrMetadataInput; onChange: any; level?: number; onRemove?:any, isSimple?:boolean}) => {
+const Condition = ({condition, onChange, level = 0, isSimple, onRemove, onAdd}:{condition: AndOrMetadataInput; onChange: any; level?: number; onRemove?:any,onAdd?:any, isSimple?:boolean}) => {
     const containerStyle = {
-        border: '1px solid black',
-        padding: '10px',
-        margin: '10px 0',
+        fontFamily:"Inter",
+        fontSize:"14px",
+        lineHeight:"20px",
     };
 
     if (!condition?.or && !condition?.and) {
         // Simple condition
         return (
-            <div style={{padding:"10px", margin:"10px 0", backgroundColor:"lightgrey"}}>
+            <div style={{...containerStyle, padding:"10px", margin:"10px 0", backgroundColor:"lightgrey"}}>
                 {!isSimple && condition.not && <span>NOT </span>}
                 <input
+                    style={{...containerStyle}}
                     value={condition.filter?.key || undefined}
                     onChange=
                     {e => {
@@ -23,30 +24,40 @@ const Condition = ({condition, onChange, level = 0, isSimple, onRemove}:{conditi
                     placeholder="Field"
                 />
                 <select
+                    style={{...containerStyle}}
                     value={condition.filter?.comparator || Operators[0].id}
                     onChange={e => onChange({...condition, filter: {...condition.filter, comparator: e.target.value }})}
                 >
                     {Operators.map(op => <option key={op.label} value={op.id}>{op.label}</option>)}
                 </select>
                 <input
+                    style={{...containerStyle}}
                     value={condition.filter?.value || undefined}
                     onChange={e => onChange({...condition, filter: {...condition.filter, value: e.target.value }})}
                     placeholder="Value"
                 />
-                <button onClick={onRemove}>
-                    Remove Condition
+                <button onClick={onRemove} style={{...containerStyle}}>
+                    x
                 </button>
-                {!isSimple && <button onClick={()=>onChange({...condition, not: !condition.not})}>
+                <button onClick={onAdd}  style={{...containerStyle}}>
+                    +
+                </button>
+                {!isSimple && <button  style={{...containerStyle}} onClick={()=>onChange({...condition, not: !condition.not})}>
                     {condition.not? "Remove Not from condition":"Add NOT to condition"}
                 </button>}
             </div>
         );
     } else {
         // Compound condition (AND/OR)
+        //check if there are simple conditions in the group
         const isAndRelation = !!condition.and;
+        const isThereSimpleFilters= (isAndRelation?condition.and: condition.or)?.some((cond) =>
+            {return !!cond.filter;}
+        );
+
         return (
-            <div style={{padding:"10px", margin:"10px 0", border:level==0?"1px solid black": "1px dashed black"}}>
-                {!isSimple && condition.not && <span>NOT </span>}
+            <div style={{...containerStyle, padding:"10px", margin:"10px 0", border:level==0?"1px solid black": "1px dashed black"}}>
+                {!isSimple && condition.not && <span  style={{...containerStyle}}>NOT </span>}
                 {!isSimple && <><select
                     value={isAndRelation? 'AND' : 'OR'}
                     onChange={e => {
@@ -57,13 +68,24 @@ const Condition = ({condition, onChange, level = 0, isSimple, onRemove}:{conditi
                         }
                         //id the same relation, do nothing
                 }}>
-                    <option value="AND">AND</option>
-                    <option value="OR">OR</option>
+                    <option  style={{...containerStyle}} value="AND">AND</option>
+                    <option  style={{...containerStyle}} value="OR">OR</option>
                 </select>
-                <button onClick={()=>onChange({...condition, not: !condition.not})}>
+                <button  style={{...containerStyle}} onClick={()=>onChange({...condition, not: !condition.not})}>
                     {condition.not? "Remove Not from group":"Add NOT to group"}
                 </button></>}
-                {!isSimple && onRemove !== undefined && <button onClick={onRemove}>Remove Group</button>}
+                {!isSimple && onRemove !== undefined && <button  style={{...containerStyle}} onClick={onRemove}>Remove Group</button>}
+                {!isThereSimpleFilters && <div><button  style={{...containerStyle}} onClick={() => {
+                    const newConditions = condition.and || condition.or || [];
+                    newConditions.push({filter:{comparator: Operators[0].id}});
+                    if(isAndRelation){
+                        onChange({...condition, and: newConditions});
+                    } else {// or relation
+                        onChange({...condition, or: newConditions});
+                    }
+                }}>
+                    Add Condition
+                </button></div>}
                 <div>
                     {(isAndRelation?condition.and: condition.or)?.map((cond, index) => (
                         <div key={index}>
@@ -89,32 +111,31 @@ const Condition = ({condition, onChange, level = 0, isSimple, onRemove}:{conditi
                                         onChange({...condition, or: newConditions});
                                     }
                                 }}
+                                onAdd={() => {
+                                    const newConditions = condition.and || condition.or || [];
+                                    newConditions.push({filter:{comparator: Operators[0].id}});
+                                    if(isAndRelation){
+                                        onChange({...condition, and: newConditions});
+                                    } else {// or relation
+                                        onChange({...condition, or: newConditions});
+                                    }
+                                }
+                                }
                             />
                         </div>
                     ))}
-                    <button onClick={() => {
+                    {!isSimple && <div role={"button"} style={{...containerStyle, cursor:"pointer"}} onClick={() => {
                         const newConditions = condition.and || condition.or || [];
-                        newConditions.push({filter:{comparator: Operators[0].id}});
+                        newConditions.push({and:[]}); // is it ok or should it be [{}]
                         if(isAndRelation){
                             onChange({...condition, and: newConditions});
                         } else {// or relation
                             onChange({...condition, or: newConditions});
                         }
                     }}>
-                        Add Condition
-                    </button>
-                    {!isSimple && <button onClick={() => {
-                        const newConditions = condition.and || condition.or || [];
-                        newConditions.push({and:[{filter:{comparator: Operators[0].id}}]});
-                        if(isAndRelation){
-                            onChange({...condition, and: newConditions});
-                        } else {// or relation
-                            onChange({...condition, or: newConditions});
-                        }
-                    }}>
-                        Add Group
+                        Add Condition group (AND/OR)
                         {/*The group is AND by default*/}
-                    </button>}
+                    </div>}
                 </div>
             </div>
         );
