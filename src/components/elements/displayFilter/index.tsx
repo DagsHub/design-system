@@ -42,7 +42,7 @@ export function DisplayFilter({ label, onChange, value }: DisplayFilterProps) {
           fontWeight: 500,
           whiteSpace: 'nowrap',
           textOverflow: 'ellipsis',
-          overflow: 'hidden',
+          overflow: 'hidden'
         }}
       >
         {label}
