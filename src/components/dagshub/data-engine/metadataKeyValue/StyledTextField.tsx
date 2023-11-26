@@ -11,7 +11,6 @@ function StyledTextField({
       {...restProps}
       sx={{
         width: '100%',
-        height: '100%',
         '.Mui-focused': {
           background: !focusModeDisabled ? 'rgba(255, 255, 255, 1)!important' : undefined,
           boxShadow: !focusModeDisabled
@@ -20,7 +19,6 @@ function StyledTextField({
         },
         '.MuiInputBase-root': {
           width: '100%',
-          height: '100%',
           backgroundColor: 'rgba(248, 250, 252, 1)',
           borderRadius: 0,
           '&:hover': {

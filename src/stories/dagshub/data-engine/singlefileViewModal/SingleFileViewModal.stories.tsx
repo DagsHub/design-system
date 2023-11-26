@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import SingleFileViewModal, {
-  itemData,
+  ItemData,
   singleFileViewModalProps
 } from '../../../../components/dagshub/data-engine/singleFileViewModal/SingleFileViewModal';
 
@@ -12,7 +12,7 @@ const meta: Meta<singleFileViewModalProps> = {
 
 export default meta;
 
-const itemDataMockList: itemData[] = [
+const itemDataMockList: ItemData[] = [
   {
     itemIndex: 0,
     itemType: 'image',
@@ -72,7 +72,7 @@ const itemDataMockList: itemData[] = [
 ];
 
 const Template: StoryFn<typeof SingleFileViewModal> = (args) => {
-  const [currentItemData, setCurrentItemData] = React.useState<itemData>(itemDataMockList[0]);
+  const [currentItemData, setCurrentItemData] = React.useState<ItemData>(itemDataMockList[0]);
   return (
     <SingleFileViewModal
       {...args}

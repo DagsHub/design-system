@@ -30,7 +30,19 @@ export function CustomAccordion({ label, children }: { label: string; children: 
             flexDirection: 'column',
             height: '100%',
             overflow: 'auto'
-          }
+          },
+            '.MuiAccordion-region':{
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+                overflow: 'auto'
+            },
+            '.MuiCollapse-wrapperInner':{
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+                overflow: 'auto'
+            }
         }}
       >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -44,7 +56,7 @@ export function CustomAccordion({ label, children }: { label: string; children: 
             height: '100%'
           }}
         >
-          <Box sx={{ display: 'flex', gap: '8px', flexDirection: 'column' }}>{children}</Box>
+          <Box sx={{ display: 'flex', gap: '8px', flexDirection: 'column' , height:"100%"}}>{children}</Box>
         </AccordionDetails>
       </Accordion>
     </ThemeProvider>

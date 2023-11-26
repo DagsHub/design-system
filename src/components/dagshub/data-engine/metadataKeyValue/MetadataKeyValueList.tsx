@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 
 export interface MetadataKeyValueListProps {
-  maxMetadataFieldsSectionHeight?: string;
+  maxHeight?: string;
   metadataList: {
     key: string;
     value: string;
@@ -29,7 +29,7 @@ export interface MetadataKeyValueListProps {
 }
 
 export function MetadataKeyValueList({
-  maxMetadataFieldsSectionHeight,
+  maxHeight,
   metadataList,
   editingEnabled,
   deletionEnabled,
@@ -59,6 +59,7 @@ export function MetadataKeyValueList({
   const metadataFieldsSection = useRef(null);
   const [shouldHighlightEmptyFields, setShouldHighlightEmptyFields] = useState(false);
   const [autoFocusNewlyCreatedFieldKey, setAutoFocusNewlyCreatedFieldKey] = useState(true);
+  const [shouldScrollToBottom, setShouldScrollToBottom] = useState(false);//Should scroll to bottom only after adding new field
 
   useEffect(() => {
     setTemporaryMetadataList([...metadataList]);
@@ -66,7 +67,7 @@ export function MetadataKeyValueList({
 
   useEffect(() => {
     onChangeHandler({ ...temporaryMetadataList });
-    if (metadataFieldsSection.current) {
+    if (shouldScrollToBottom && metadataFieldsSection.current) {
       (metadataFieldsSection.current as HTMLDivElement).scrollTop = (
         metadataFieldsSection.current as HTMLDivElement
       ).scrollHeight;
@@ -100,6 +101,13 @@ export function MetadataKeyValueList({
   };
 
   const handleAddNew = () => {
+    setShouldScrollToBottom(true);
+    // Scroll to the bottom of the metadata fields box, whenever "add new" button is clicked
+    if (metadataFieldsSection.current) {
+      (metadataFieldsSection.current as HTMLDivElement).scrollTop = (
+          metadataFieldsSection.current as HTMLDivElement
+      ).scrollHeight;
+    }
     const hasEmptyFields = CheckIfEmptyFields();
     if (!hasEmptyFields) {
       const newField = {
@@ -111,12 +119,6 @@ export function MetadataKeyValueList({
         isNewlyCreated: true
       };
       setTemporaryMetadataList((prevList) => [...prevList, newField]);
-      // Scroll to the bottom of the metadata fields box, whenever "add new" button is clicked
-      if (metadataFieldsSection.current) {
-        (metadataFieldsSection.current as HTMLDivElement).scrollTop = (
-          metadataFieldsSection.current as HTMLDivElement
-        ).scrollHeight;
-      }
     }
   };
 
@@ -189,10 +191,10 @@ export function MetadataKeyValueList({
   };
 
   return (
-    <Box>
+    <Box sx={{display:"flex", flexDirection:"column", height:"100%",maxHeight: maxHeight ?? "100%"}}>
       <Box
         ref={metadataFieldsSection}
-        sx={{ maxHeight: maxMetadataFieldsSectionHeight, overflowY: 'auto' }}
+        sx={{ display:"flex", flexDirection:"column", height:"100%", maxHeight: "100%", overflowY: 'auto' }}
       >
         {temporaryMetadataList.map((metadataField, index) => (
           <MetadataKeyValuePair
