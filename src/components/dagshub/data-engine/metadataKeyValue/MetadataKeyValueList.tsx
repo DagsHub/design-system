@@ -59,7 +59,7 @@ export function MetadataKeyValueList({
   const metadataFieldsSection = useRef(null);
   const [shouldHighlightEmptyFields, setShouldHighlightEmptyFields] = useState(false);
   const [autoFocusNewlyCreatedFieldKey, setAutoFocusNewlyCreatedFieldKey] = useState(true);
-  const [shouldScrollToBottom, setShouldScrollToBottom] = useState(false);//Should scroll to bottom only after adding new field
+  const [shouldScrollToBottom, setShouldScrollToBottom] = useState(false); //Should scroll to bottom only after adding new field
 
   useEffect(() => {
     setTemporaryMetadataList([...metadataList]);
@@ -105,7 +105,7 @@ export function MetadataKeyValueList({
     // Scroll to the bottom of the metadata fields box, whenever "add new" button is clicked
     if (metadataFieldsSection.current) {
       (metadataFieldsSection.current as HTMLDivElement).scrollTop = (
-          metadataFieldsSection.current as HTMLDivElement
+        metadataFieldsSection.current as HTMLDivElement
       ).scrollHeight;
     }
     const hasEmptyFields = CheckIfEmptyFields();
@@ -191,10 +191,23 @@ export function MetadataKeyValueList({
   };
 
   return (
-    <Box sx={{display:"flex", flexDirection:"column", height:"100%",maxHeight: maxHeight ?? "100%"}}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        maxHeight: maxHeight ?? '100%'
+      }}
+    >
       <Box
         ref={metadataFieldsSection}
-        sx={{ display:"flex", flexDirection:"column", height:"100%", maxHeight: "100%", overflowY: 'auto' }}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          maxHeight: '100%',
+          overflowY: 'auto'
+        }}
       >
         {temporaryMetadataList.map((metadataField, index) => (
           <MetadataKeyValuePair
