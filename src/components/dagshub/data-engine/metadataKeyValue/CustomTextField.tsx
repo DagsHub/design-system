@@ -30,6 +30,10 @@ function CustomTextField({
   const textFieldRef = useRef<HTMLDivElement | null>(null);
   const textFieldWrapperContainerRef = useRef<HTMLDivElement | null>(null);
 
+  useEffect(()=>{
+    setCurrentValue(value)
+  },[value])
+
   useEffect(() => {
     function handleClickOutside(event: any) {
       if (
