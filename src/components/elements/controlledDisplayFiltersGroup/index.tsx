@@ -39,6 +39,14 @@ export function ControlledDisplayFiltersGroup({
 
   const [displayedFilters, setDisplayedFilters] = useState<Set<string>>(getInitialState());
 
+  useEffect(()=>{
+    setShowAll(isToggleAll ?? false)
+  },[isToggleAll])
+
+    useEffect(()=>{
+        setDisplayedFilters(getInitialState())
+    },[toggledFilters, availableFiltersNames])
+
   const toggleAll = () => {
     if (!showAll) {
       setDisplayedFilters(availableFiltersNames);
