@@ -142,6 +142,11 @@ function CustomTextField({
               <EditIcon fontSize={'small'} />
             </IconButton>
           ) : null,
+          sx:{
+            "input": {
+              width: (isEditing || (isHovered && !readOnly)) ? "calc(100% - 45px)" : "100%"
+            }
+          }
         }}
         onChange={(e: any) => {
           setEditing(true);

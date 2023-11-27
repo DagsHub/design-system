@@ -35,7 +35,6 @@ function StyledTextField({
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     padding: '8px',
-                    // flexGrow:0,
                 },
                 '.MuiOutlinedInput-notchedOutline': {
                     border: '0px'

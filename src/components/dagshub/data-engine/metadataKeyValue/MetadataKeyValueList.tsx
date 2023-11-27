@@ -58,18 +58,22 @@ export function MetadataKeyValueList({
   const [shouldScrollToBottom, setShouldScrollToBottom] = useState<boolean>(false); //Should scroll to bottom only after adding new field
 
   useEffect(() => {
+    console.log("imhere")
     setTemporaryMetadataList([...metadataList]);
-    setShouldScrollToBottom(false);
+    if (metadataFieldsSection.current) {
+      (metadataFieldsSection.current as HTMLDivElement).scrollTop = 0;
+    }
   }, [metadataList]);
 
   useEffect(() => {
     if (onChangeHandler) {
       onChangeHandler({...temporaryMetadataList});
     }
-    if (shouldScrollToBottom && metadataFieldsSection.current) {
+    if (shouldScrollToBottom && metadataFieldsSection.current) { // scroll to button only if + button was clicked
       (metadataFieldsSection.current as HTMLDivElement).scrollTop = (
         metadataFieldsSection.current as HTMLDivElement
       ).scrollHeight;
+      setShouldScrollToBottom(false);
     }
     setAutoFocusNewlyCreatedFieldKey(true); //highlight again when the user adds new field
   }, [temporaryMetadataList]);
@@ -101,15 +105,7 @@ export function MetadataKeyValueList({
   };
 
   const handleAddNew = () => {
-    if(!shouldScrollToBottom){
-      // Scroll to the bottom of the metadata fields box, whenever "add new" button is clicked, after the first click only
-      setShouldScrollToBottom(true);
-    }
-    if (metadataFieldsSection.current) {
-      (metadataFieldsSection.current as HTMLDivElement).scrollTop = (
-        metadataFieldsSection.current as HTMLDivElement
-      ).scrollHeight;
-    }
+    setShouldScrollToBottom(true)//scroll to button when clicking on the + button
     const hasEmptyFields = CheckIfEmptyFields();
     if (!hasEmptyFields) {
       const newField : NewMetadataField = {
