@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import './radio-button-item.scss';
 
 export interface RadioButtonItemProps {
-  id: number | string;
+  id: number | string | any;
   label?: string;
   className?: string;
   onChecked?: (arg: number | string) => void;

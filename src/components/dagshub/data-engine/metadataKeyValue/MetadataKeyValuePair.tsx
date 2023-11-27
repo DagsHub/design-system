@@ -6,6 +6,7 @@ import { RadioButtonItemProps } from '../../../forms';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import IconButton from '@mui/material/IconButton';
 import { useMediaQuery } from '@mui/material';
+import {MetadataType} from "./MetadataKeyValueList";
 
 export interface MetadataKeyValuePairProps {
   index: number;
@@ -18,7 +19,7 @@ export interface MetadataKeyValuePairProps {
   isRemovable?: boolean;
   saveKeyNameLocally?: (index: number, newVal?: string | undefined) => void;
   saveValueLocally?: (index: number, newVal?: string | undefined) => void;
-  saveValueTypeLocally?: (index: number, newVal?: string | number | undefined) => void;
+  saveValueTypeLocally?: (index: number, newVal?: MetadataType | undefined) => void;
   deleteFieldPermanently?: (index: number) => void;
   shouldHighlightEmptyFields?: boolean;
   autoFocusKey?: boolean;
@@ -40,25 +41,25 @@ export function MetadataKeyValuePair({
   shouldHighlightEmptyFields,
   autoFocusKey
 }: MetadataKeyValuePairProps) {
-  const valueTypes: RadioButtonItemProps[] = [
+  const valueTypes: {id:MetadataType, label:string}[] = [
     {
-      id: 'INTEGER',
+      id: "INTEGER",
       label: 'Int'
     },
     {
-      id: 'FLOAT',
+      id: "FLOAT",
       label: 'Float'
     },
     {
-      id: 'BOOLEAN',
+      id: "BOOLEAN",
       label: 'Boolean'
     },
     {
-      id: 'STRING',
+      id: "STRING",
       label: 'String'
     },
     {
-      id: 'BLOB',
+      id: "BLOB",
       label: 'Blob'
     }
   ];
