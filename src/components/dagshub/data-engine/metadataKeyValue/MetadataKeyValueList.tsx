@@ -55,10 +55,11 @@ export function MetadataKeyValueList({
   const metadataFieldsSection = useRef(null);
   const [shouldHighlightEmptyFields, setShouldHighlightEmptyFields] = useState(false);
   const [autoFocusNewlyCreatedFieldKey, setAutoFocusNewlyCreatedFieldKey] = useState(true);
-  const [shouldScrollToBottom, setShouldScrollToBottom] = useState(false); //Should scroll to bottom only after adding new field
+  const [shouldScrollToBottom, setShouldScrollToBottom] = useState<boolean>(false); //Should scroll to bottom only after adding new field
 
   useEffect(() => {
     setTemporaryMetadataList([...metadataList]);
+    setShouldScrollToBottom(false);
   }, [metadataList]);
 
   useEffect(() => {
@@ -70,6 +71,7 @@ export function MetadataKeyValueList({
         metadataFieldsSection.current as HTMLDivElement
       ).scrollHeight;
     }
+    setAutoFocusNewlyCreatedFieldKey(true); //highlight again when the user adds new field
   }, [temporaryMetadataList]);
 
   useEffect(() => {
@@ -99,8 +101,10 @@ export function MetadataKeyValueList({
   };
 
   const handleAddNew = () => {
-    setShouldScrollToBottom(true);
-    // Scroll to the bottom of the metadata fields box, whenever "add new" button is clicked
+    if(!shouldScrollToBottom){
+      // Scroll to the bottom of the metadata fields box, whenever "add new" button is clicked, after the first click only
+      setShouldScrollToBottom(true);
+    }
     if (metadataFieldsSection.current) {
       (metadataFieldsSection.current as HTMLDivElement).scrollTop = (
         metadataFieldsSection.current as HTMLDivElement
@@ -149,7 +153,7 @@ export function MetadataKeyValueList({
 
   const locallyRemoveMetadataFieldByIndex = (indexToRemove: number) => {
     if (temporaryMetadataList[indexToRemove].isNewlyCreated) {
-      setAutoFocusNewlyCreatedFieldKey(true);
+      setAutoFocusNewlyCreatedFieldKey(true); //stop highlighting the edited field
     }
     setTemporaryMetadataList((prevList) => {
       const newList = prevList.filter((_, index) => index !== indexToRemove);

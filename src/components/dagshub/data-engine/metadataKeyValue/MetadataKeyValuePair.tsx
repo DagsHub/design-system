@@ -81,9 +81,10 @@ export function MetadataKeyValuePair({
             <Box
                 sx={{
                     display: 'flex',
-                    flexShrink: 0,
-                    flexGrow: isNewlyCreated ? 1 : 0,
+                    flexShrink: 1,
+                    flexGrow: 1,
                     maxWidth: "100%",
+                    minWidth: "35%"
                 }}
             >
                 {/*key name should not be editable unless its newly created*/}
@@ -104,9 +105,11 @@ export function MetadataKeyValuePair({
             <Box
                 sx={{
                     display: 'flex',
-                    flexGrow: isNewlyCreated ? 1 : 0,
+                    flexGrow: 1,
                     maxWidth: "100%",
-                    gap: '8px'
+                    gap: '8px',
+                    flexShrink: 0,
+                    minWidth:"65%"
                 }}
             >
                 {isNewlyCreated && (
@@ -144,7 +147,7 @@ export function MetadataKeyValuePair({
                 />
                 {isEditable && isRemovable && (
                     <IconButton
-                        style={{marginRight: '14px', height: '100%', padding: '6px'}}
+                        style={{marginRight: '8px', height: '100%', padding: '6px'}}
                         onClick={() => {
                             if (deleteFieldPermanently) {
                                 deleteFieldPermanently(index);
