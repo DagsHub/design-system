@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Box } from '@mui/system';
-import { CustomAccordion } from './CustomAccordion';
+import { CustomAccordion } from '../customAccordion/CustomAccordion';
 import { MetadataKeyValueList } from '../metadataKeyValue/MetadataKeyValueList';
 import { Button, ButtonVariant } from '../../../elements';
 import { Icon } from '../../../icons';

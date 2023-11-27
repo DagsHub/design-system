@@ -6,7 +6,7 @@ import { Button, ButtonVariant } from '../../../elements/button';
 import { Icon } from '../../../icons';
 import { ItemFallback } from './ItemFallback';
 import './style.scss';
-import { CustomAccordion } from './CustomAccordion';
+import { CustomAccordion } from '../customAccordion/CustomAccordion';
 import TopButtonsSection from './TopButtonsSection';
 import { SingleFileViewDataSection } from './SingleFileViewDataSection';
 
