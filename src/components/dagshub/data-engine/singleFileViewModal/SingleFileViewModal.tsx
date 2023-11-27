@@ -26,7 +26,7 @@ export interface singleFileViewModalProps {
     itemData: ItemData;
     onGetNextItemClickHandler: () => void;
     onGetPreviousItemClickHandler: () => void;
-    metadataOnChangeHandler: (metadataList: NewMetadataField[]) => void;
+    metadataOnChangeHandler?: (metadataList: NewMetadataField[]) => void;
     enableMetadataEditing?: boolean;
     enableMetadataDeletion?: boolean;
 }

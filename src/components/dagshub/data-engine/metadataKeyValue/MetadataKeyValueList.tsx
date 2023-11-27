@@ -30,7 +30,7 @@ export interface MetadataKeyValueListProps {
   editingEnabled: boolean;
   deletionEnabled: boolean;
   onDeleteHandler?: (keyName: string) => void;
-  onChangeHandler: (metadataList: NewMetadataField[]) => void;
+  onChangeHandler?: (metadataList: NewMetadataField[]) => void;
 }
 
 export function MetadataKeyValueList({
@@ -62,7 +62,9 @@ export function MetadataKeyValueList({
   }, [metadataList]);
 
   useEffect(() => {
-    onChangeHandler({ ...temporaryMetadataList });
+    if (onChangeHandler) {
+      onChangeHandler({...temporaryMetadataList});
+    }
     if (shouldScrollToBottom && metadataFieldsSection.current) {
       (metadataFieldsSection.current as HTMLDivElement).scrollTop = (
         metadataFieldsSection.current as HTMLDivElement

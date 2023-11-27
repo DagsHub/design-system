@@ -91,12 +91,17 @@ const Template: StoryFn<typeof SingleFileViewModal> = (args) => {
     );
 };
 
-export const singlefileViewModal: StoryFn<typeof SingleFileViewModal> = Template.bind({});
+export const singlefileViewModalWithEditingEnabled: StoryFn<typeof SingleFileViewModal> = Template.bind({});
 
-singlefileViewModal.args = {
+singlefileViewModalWithEditingEnabled.args = {
     enableMetadataEditing: true,
     enableMetadataDeletion: true,
     metadataOnChangeHandler: (metadataList: NewMetadataField[]) => {
         console.log(metadataList)
     }
+};
+
+export const singlefileViewModal: StoryFn<typeof SingleFileViewModal> = Template.bind({});
+
+singlefileViewModal.args = {
 };

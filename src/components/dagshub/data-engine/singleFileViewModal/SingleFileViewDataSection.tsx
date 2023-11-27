@@ -22,7 +22,7 @@ export function SingleFileViewDataSection({
     onGetNextItemClickHandler: () => void;
     onGetPreviousItemClickHandler: () => void;
     showMetadataOverlay: boolean;
-    metadataOnChangeHandler: (metadataList: NewMetadataField[]) => void;
+    metadataOnChangeHandler?: (metadataList: NewMetadataField[]) => void;
     enableMetadataEditing?: boolean;
     enableMetadataDeletion?: boolean;
 }) {
