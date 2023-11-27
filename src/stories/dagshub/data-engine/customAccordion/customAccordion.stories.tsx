@@ -25,7 +25,7 @@ customAccordion.args = {
             { key: 'description', value: 'this is a video about earth space', valueType: 'STRING' },
             { key: 'categories', value: 'earth, space, live, human', valueType: 'INTEGER' }
         ]}
-        editingEnabled={false}
+        editingEnabled={true}
         deletionEnabled={false}
         onChangeHandler={() => {}}
         />
