@@ -134,17 +134,17 @@ function CustomTextField({
           autoComplete: 'off',
           readOnly: readOnly && !isEditing,
           endAdornment: isEditing ? (
-            <IconButton sx={{zIndex:1}} onClick={handleCancelClick}>
+            <IconButton sx={{ zIndex: 1 }} onClick={handleCancelClick}>
               <CancelIcon fontSize={'small'} />
             </IconButton>
           ) : isHovered && !readOnly ? (
-            <IconButton sx={{zIndex:1}} onClick={handleEditClick}>
+            <IconButton sx={{ zIndex: 1 }} onClick={handleEditClick}>
               <EditIcon fontSize={'small'} />
             </IconButton>
           ) : null,
-          sx:{
-            "input": {
-              width: (isEditing || (isHovered && !readOnly)) ? "calc(100% - 45px)" : "100%"
+          sx: {
+            input: {
+              width: isEditing || (isHovered && !readOnly) ? 'calc(100% - 45px)' : '100%'
             }
           }
         }}

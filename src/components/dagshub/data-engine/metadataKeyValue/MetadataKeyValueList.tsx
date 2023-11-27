@@ -5,7 +5,7 @@ import StyledTextField from './StyledTextField';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 
-export type MetadataType = "BOOLEAN" | "INTEGER" | "FLOAT" | "STRING" | "BLOB";
+export type MetadataType = 'BOOLEAN' | 'INTEGER' | 'FLOAT' | 'STRING' | 'BLOB';
 
 export interface NewMetadataField {
   key?: string;
@@ -51,14 +51,15 @@ export function MetadataKeyValueList({
   //    Whoever use this component will have external save button.
   // - The deletion of existing metadata field doesnt depend on the external save button.
 
-  const [temporaryMetadataList, setTemporaryMetadataList] = useState<NewMetadataField[]>([...metadataList]);
+  const [temporaryMetadataList, setTemporaryMetadataList] = useState<NewMetadataField[]>([
+    ...metadataList
+  ]);
   const metadataFieldsSection = useRef(null);
   const [shouldHighlightEmptyFields, setShouldHighlightEmptyFields] = useState(false);
   const [autoFocusNewlyCreatedFieldKey, setAutoFocusNewlyCreatedFieldKey] = useState(true);
   const [shouldScrollToBottom, setShouldScrollToBottom] = useState<boolean>(false); //Should scroll to bottom only after adding new field
 
   useEffect(() => {
-    console.log("imhere")
     setTemporaryMetadataList([...metadataList]);
     if (metadataFieldsSection.current) {
       (metadataFieldsSection.current as HTMLDivElement).scrollTop = 0;
@@ -67,13 +68,14 @@ export function MetadataKeyValueList({
 
   useEffect(() => {
     if (onChangeHandler) {
-      onChangeHandler({...temporaryMetadataList});
+      onChangeHandler({ ...temporaryMetadataList });
     }
-    if (shouldScrollToBottom && metadataFieldsSection.current) { // scroll to button only if + button was clicked
+    if (shouldScrollToBottom && metadataFieldsSection.current) {
+      // scroll to button only if + button was clicked
       (metadataFieldsSection.current as HTMLDivElement).scrollTop = (
         metadataFieldsSection.current as HTMLDivElement
       ).scrollHeight;
-      setShouldScrollToBottom(false);
+      setShouldScrollToBottom(false); //turn it off after scrolling
     }
     setAutoFocusNewlyCreatedFieldKey(true); //highlight again when the user adds new field
   }, [temporaryMetadataList]);
@@ -86,10 +88,7 @@ export function MetadataKeyValueList({
     }
   }, [shouldHighlightEmptyFields]);
 
-  //if empty fields- on click should highlight; if no empty fields, on click should ass new row
-  // add this highlited func to
-
-  const CheckIfEmptyFields = () => {
+  const CheckIfEmptyFieldsAndHighlightThem = () => {
     const hasEmptyFields = temporaryMetadataList.some((field) => {
       return (
         field.key === undefined ||
@@ -105,10 +104,10 @@ export function MetadataKeyValueList({
   };
 
   const handleAddNew = () => {
-    setShouldScrollToBottom(true)//scroll to button when clicking on the + button
-    const hasEmptyFields = CheckIfEmptyFields();
-    if (!hasEmptyFields) {
-      const newField : NewMetadataField = {
+    setShouldScrollToBottom(true); //scroll to button when clicking on the + button
+    const hasEmptyFields = CheckIfEmptyFieldsAndHighlightThem();
+    if (!hasEmptyFields) { //if there are no empty fields, add new field
+      const newField: NewMetadataField = {
         key: undefined,
         value: undefined,
         valueType: undefined,
