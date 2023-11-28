@@ -30,7 +30,7 @@
     }
     &:focus {
       background: #5467de;
-      box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+      box-shadow: inset 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
     }
     .counter {
       color: #ffffff !important;
@@ -45,7 +45,7 @@
     }
     &:focus {
       background: #cbd5e1;
-      border: 2px solid #c4b5fd;
+      box-shadow: inset 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
     }
     .counter {
       color: #172d32 !important;
@@ -63,7 +63,7 @@
     &:focus {
       background: #f1f5f9;
       border: 2px solid #e2e8f0;
-      box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+      box-shadow: inset 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
     }
     .counter {
       color: #172d32 !important;
@@ -86,7 +86,7 @@
       color: #ffffff;
       background-color: #dc2626;
       border: 2px solid #e2e8f0;
-      box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+      box-shadow: inset 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
       svg path {
         fill: #ffffff;
       }
@@ -123,7 +123,7 @@
     }
     &:focus {
       background: #f1f5f9;
-      box-shadow: 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
+      box-shadow: inset 0px 0px 0px 3px rgba(196, 181, 253, 0.5);
     }
 
     .counter {

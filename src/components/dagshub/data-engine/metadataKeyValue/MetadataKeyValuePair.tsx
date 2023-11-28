@@ -6,6 +6,7 @@ import { RadioButtonItemProps } from '../../../forms';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import IconButton from '@mui/material/IconButton';
 import { useMediaQuery } from '@mui/material';
+import { MetadataType } from './MetadataKeyValueList';
 
 export interface MetadataKeyValuePairProps {
   index: number;
@@ -18,7 +19,7 @@ export interface MetadataKeyValuePairProps {
   isRemovable?: boolean;
   saveKeyNameLocally?: (index: number, newVal?: string | undefined) => void;
   saveValueLocally?: (index: number, newVal?: string | undefined) => void;
-  saveValueTypeLocally?: (index: number, newVal?: string | number | undefined) => void;
+  saveValueTypeLocally?: (index: number, newVal?: MetadataType | undefined) => void;
   deleteFieldPermanently?: (index: number) => void;
   shouldHighlightEmptyFields?: boolean;
   autoFocusKey?: boolean;
@@ -40,7 +41,7 @@ export function MetadataKeyValuePair({
   shouldHighlightEmptyFields,
   autoFocusKey
 }: MetadataKeyValuePairProps) {
-  const valueTypes: RadioButtonItemProps[] = [
+  const valueTypes: { id: MetadataType; label: string }[] = [
     {
       id: 'INTEGER',
       label: 'Int'
@@ -63,8 +64,6 @@ export function MetadataKeyValuePair({
     }
   ];
 
-  const breakpoint = useMediaQuery('(max-width: 477px)');
-
   return (
     <Box
       sx={{
@@ -75,16 +74,16 @@ export function MetadataKeyValuePair({
         backgroundColor: '#F8FAFC',
         borderBottom: '1px solid #E2E8F0',
         alignItems: 'center',
-        gap: '8px',
-        flexWrap: isNewlyCreated && breakpoint ? 'wrap' : 'nowrap'
+        flexWrap: isNewlyCreated ? 'wrap' : 'nowrap'
       }}
     >
       <Box
         sx={{
           display: 'flex',
-          width: isNewlyCreated && breakpoint ? '100%' : '35%',
-          height: '100%',
-          flexShrink: 0
+          flexShrink: 1,
+          flexGrow: 1,
+          maxWidth: '100%',
+          minWidth: '35%'
         }}
       >
         {/*key name should not be editable unless its newly created*/}
@@ -105,9 +104,11 @@ export function MetadataKeyValuePair({
       <Box
         sx={{
           display: 'flex',
-          width: isNewlyCreated && breakpoint ? '100%' : '65%',
-          height: '100%',
-          gap: '8px'
+          flexGrow: 1,
+          maxWidth: '100%',
+          gap: '8px',
+          flexShrink: 0,
+          minWidth: '65%'
         }}
       >
         {isNewlyCreated && (
@@ -145,7 +146,7 @@ export function MetadataKeyValuePair({
         />
         {isEditable && isRemovable && (
           <IconButton
-            style={{ marginRight: '14px', height: '100%', padding: '6px' }}
+            style={{ marginRight: '8px', height: '100%', padding: '6px' }}
             onClick={() => {
               if (deleteFieldPermanently) {
                 deleteFieldPermanently(index);
