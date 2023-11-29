@@ -31,7 +31,7 @@ export interface singleFileViewModalProps {
   enableMetadataDeletion?: boolean;
 }
 
-function SingleFileViewModal({
+export function SingleFileViewModal({
   closeModal,
   itemData,
   onGetNextItemClickHandler,
