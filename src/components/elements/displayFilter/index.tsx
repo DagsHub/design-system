@@ -1,7 +1,7 @@
 import { Divider, Stack, ThemeProvider, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Icon } from '../../icons';
-import theme from '../../../../theme';
+import theme from '../../../theme';
 
 export interface DisplayFilterProps {
   label: string;

@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import { ThemeProvider, Typography } from '@mui/material';
 import { Button, ButtonVariant } from '../../../elements';
 import { Icon } from '../../../icons';
-import theme from '../../../../../theme';
+import theme from '../../../../theme';
 
 export default function TopButtonsSection({
   height,

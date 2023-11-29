@@ -6,7 +6,7 @@ import { RadioButtonItemProps } from '../../forms';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CancelIcon from '@mui/icons-material/Cancel';
 import './style.scss';
-import theme from '../../../../theme';
+import theme from '../../../theme';
 
 export function DropdownV2({
   onChange,
