@@ -11,7 +11,6 @@ function StyledTextField({
       {...restProps}
       sx={{
         width: '100%',
-        height: '100%',
         '.Mui-focused': {
           background: !focusModeDisabled ? 'rgba(255, 255, 255, 1)!important' : undefined,
           boxShadow: !focusModeDisabled
@@ -20,12 +19,13 @@ function StyledTextField({
         },
         '.MuiInputBase-root': {
           width: '100%',
-          height: '100%',
           backgroundColor: 'rgba(248, 250, 252, 1)',
           borderRadius: 0,
           '&:hover': {
             background: changeColorOnHover ? 'rgba(241, 245, 249, 1)' : undefined
-          }
+          },
+          position: 'relative',
+          paddingRight: '0px'
         },
         '.MuiInputBase-input': {
           fontFamily: 'Inter',
@@ -43,7 +43,9 @@ function StyledTextField({
           fill: 'rgba(148, 163, 184, 1)'
         },
         '.MuiButtonBase-root': {
-          padding: '6px'
+          padding: '6px',
+          position: 'absolute',
+          right: '8px'
         },
         '.MuiFormHelperText-root': {
           fontFamily: 'Inter',

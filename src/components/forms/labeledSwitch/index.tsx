@@ -73,7 +73,7 @@ export function LabeledSwitch({
           gap: '8px',
           padding: '8px',
           display: 'flex',
-          width: "calc(100% - 16px)",
+          width: 'calc(100% - 16px)',
 
           justifyContent: 'space-between',
           '.MuiSwitch-root': {
@@ -86,7 +86,7 @@ export function LabeledSwitch({
             color: '#172D32',
             whiteSpace: 'nowrap',
             textOverflow: 'ellipsis',
-            overflow: 'hidden',
+            overflow: 'hidden'
           }
         }}
       />

@@ -31,6 +31,10 @@ function CustomTextField({
   const textFieldWrapperContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    setCurrentValue(value);
+  }, [value]);
+
+  useEffect(() => {
     function handleClickOutside(event: any) {
       if (
         isEditing &&
@@ -102,52 +106,57 @@ function CustomTextField({
   }, [currentValue, shouldHighlightIfEmpty]);
 
   return (
-      <Box
-        sx={{ width: '100%', height: '100%' }}
-        onMouseEnter={() => {
-          if (currentValue) {
-            setHovered(true);
+    <Box
+      sx={{ width: '100%', height: '100%' }}
+      onMouseEnter={() => {
+        if (currentValue) {
+          setHovered(true);
+        }
+      }} //have the pencil logic only if a value already exists
+      onMouseLeave={() => {
+        if (currentValue) {
+          setHovered(false);
+        }
+      }} //have the pencil logic only if a value already exists
+      onMouseDown={(e) => {
+        if (currentValue) {
+          e.preventDefault();
+        } //When there is value, make text field not focused on a regular click, but only when clicking on the edit button
+      }}
+      ref={textFieldWrapperContainerRef}
+    >
+      <StyledTextField
+        changeColorOnHover={!readOnly || isEditing}
+        inputRef={textFieldRef}
+        helperText={helperText}
+        autoFocus={autoFocus}
+        InputProps={{
+          autoComplete: 'off',
+          readOnly: readOnly && !isEditing,
+          endAdornment: isEditing ? (
+            <IconButton sx={{ zIndex: 1 }} onClick={handleCancelClick}>
+              <CancelIcon fontSize={'small'} />
+            </IconButton>
+          ) : isHovered && !readOnly ? (
+            <IconButton sx={{ zIndex: 1 }} onClick={handleEditClick}>
+              <EditIcon fontSize={'small'} />
+            </IconButton>
+          ) : null,
+          sx: {
+            input: {
+              width: isEditing || (isHovered && !readOnly) ? 'calc(100% - 45px)' : '100%'
+            }
           }
-        }} //have the pencil logic only if a value already exists
-        onMouseLeave={() => {
-          if (currentValue) {
-            setHovered(false);
-          }
-        }} //have the pencil logic only if a value already exists
-        onMouseDown={(e) => {
-          if (currentValue) {
-            e.preventDefault();
-          } //When there is value, make text field not focused on a regular click, but only when clicking on the edit button
         }}
-        ref={textFieldWrapperContainerRef}
-      >
-        <StyledTextField
-          changeColorOnHover={!readOnly || isEditing}
-          inputRef={textFieldRef}
-          helperText={helperText}
-          autoFocus={autoFocus}
-          InputProps={{
-            autoComplete: 'off',
-            readOnly: readOnly && !isEditing,
-            endAdornment: isEditing ? (
-              <IconButton onClick={handleCancelClick}>
-                <CancelIcon fontSize={'small'} />
-              </IconButton>
-            ) : isHovered && !readOnly ? (
-              <IconButton onClick={handleEditClick}>
-                <EditIcon fontSize={'small'} />
-              </IconButton>
-            ) : null
-          }}
-          onChange={(e: any) => {
-            setEditing(true);
-            setEditedValue(e.target.value);
-          }}
-          onKeyDown={handleKeyDown}
-          value={getValue()}
-          placeholder={placeholder}
-        />
-      </Box>
+        onChange={(e: any) => {
+          setEditing(true);
+          setEditedValue(e.target.value);
+        }}
+        onKeyDown={handleKeyDown}
+        value={getValue()}
+        placeholder={placeholder}
+      />
+    </Box>
   );
 }
 

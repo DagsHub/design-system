@@ -16,22 +16,23 @@ const Template: StoryFn<typeof ControlledDisplayFiltersGroup> = (args) => (
   <ControlledDisplayFiltersGroup {...args} />
 );
 
-const filters= [
+const filters = [
   {
     label: 'metadata_key_1',
-    onChange: (value:string) => console.log('changed', value)
+    onChange: (value: string) => console.log('changed', value)
   },
   {
     label: 'metadata_key_2',
-    onChange: (value:string) => console.log('changed', value)
+    onChange: (value: string) => console.log('changed', value)
   },
   {
     label: 'metadata_key_3',
-    onChange: (value:string) => console.log('changed', value)
+    onChange: (value: string) => console.log('changed', value)
   }
-]
+];
 
-export const filterGroupNotControlled: StoryFn<typeof ControlledDisplayFiltersGroup> = Template.bind({});
+export const filterGroupNotControlled: StoryFn<typeof ControlledDisplayFiltersGroup> =
+  Template.bind({});
 filterGroupNotControlled.args = {
   filters: filters,
   onToggleShowAll: (value) => console.log('toggle show all', value),
@@ -47,8 +48,9 @@ filterGroupControlledAndToggledAll.args = {
   isToggleAll: true //Make the component controlled from outside and toggle all filters
 };
 
-export const filterGroupControlledAndPartiallyToggled: StoryFn<typeof ControlledDisplayFiltersGroup> =
-  Template.bind({});
+export const filterGroupControlledAndPartiallyToggled: StoryFn<
+  typeof ControlledDisplayFiltersGroup
+> = Template.bind({});
 filterGroupControlledAndPartiallyToggled.args = {
   filters: filters,
   onToggleShowAll: (value) => console.log('toggle show all', value),

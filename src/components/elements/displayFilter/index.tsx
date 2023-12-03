@@ -1,6 +1,7 @@
-import { Divider, Stack, Typography } from '@mui/material';
+import { Divider, Stack, ThemeProvider, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Icon } from '../../icons';
+import theme from '../../../theme';
 
 export interface DisplayFilterProps {
   label: string;
@@ -22,32 +23,21 @@ export function DisplayFilter({ label, onChange, value }: DisplayFilterProps) {
   }, [value]);
 
   return (
-    <Stack
-      gap={1}
-      direction={'row'}
-      sx={{ cursor: 'pointer', backgroundColor: 'rgba(248, 250, 252, 1)' }}
-      display={'flex'}
-      justifyContent={'space-between'}
-      alignItems={'center'}
-      onClick={filterClicked}
-      padding={'8px'}
-      role={'button'}
-    >
-      <Typography
-        sx={{
-          lineHeight: '20px',
-          color: '#172D32',
-          fontFamily: 'Inter',
-          fontSize: '14px',
-          fontWeight: 500,
-          whiteSpace: 'nowrap',
-          textOverflow: 'ellipsis',
-          overflow: 'hidden',
-        }}
+    <ThemeProvider theme={theme}>
+      <Stack
+        gap={1}
+        direction={'row'}
+        sx={{ cursor: 'pointer', backgroundColor: 'rgba(248, 250, 252, 1)' }}
+        display={'flex'}
+        justifyContent={'space-between'}
+        alignItems={'center'}
+        onClick={filterClicked}
+        padding={'8px'}
+        role={'button'}
       >
-        {label}
-      </Typography>
-      <Icon icon={show ? 'eye' : 'eye-off'} height={20} width={21.08} fill={'#94A3B8'} />
-    </Stack>
+        <Typography variant={'medium'}>{label}</Typography>
+        <Icon icon={show ? 'eye' : 'eye-off'} height={20} width={21.08} fill={'#94A3B8'} />
+      </Stack>
+    </ThemeProvider>
   );
 }
