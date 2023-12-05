@@ -50,18 +50,24 @@ export function QueryBuilder({queryInput, forceCompoundMode=false}:{queryInput:Q
         if(forceCompoundMode){
             return false;
         }
-        if(!!queryInput.query?.or || !!queryInput.query?.and || !!queryInput.query?.not){
+        if(!!queryInput.query?.or || !!queryInput.query?.not){
             return false;
+        }
+        if (!!queryInput.query?.and){ // if it's an and group with no nested groups and no not-conditions, it's simple as well
+            return !queryInput.query.and.some((cond) =>
+                {return !!cond.not || !!cond.or || !!cond.and}
+            );
         }
         return true;
     }
     const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(getInitialQuery());
 
+
     return (
         <div className="App">
             <h1>{checkIfSimpleMode()?"Simple":"Compound"} query builder</h1>
             <Condition condition={rootCondition} onChange={setRootCondition} isSimple={checkIfSimpleMode()}/>
-            <pre>{JSON.stringify(rootCondition, null, 2)}</pre>
+            <pre>UI QUERY {JSON.stringify(rootCondition, null, 2)}</pre>
         </div>
     );
 }

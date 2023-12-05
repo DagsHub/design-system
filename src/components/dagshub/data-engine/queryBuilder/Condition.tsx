@@ -8,7 +8,7 @@ const Condition = ({condition, onChange, level = 0, isSimple, onRemove, onAdd}:{
         lineHeight:"20px",
     };
 
-    if (!condition?.or && !condition?.and) {
+    if (!condition?.or && !condition?.and && !!condition?.filter) {
         // Simple condition
         return (
             <div style={{...containerStyle, padding:"10px", margin:"10px 0", backgroundColor:"lightgrey"}}>
