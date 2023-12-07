@@ -1,10 +1,10 @@
-import { Meta, StoryFn } from '@storybook/react';
+import {Meta, StoryFn} from '@storybook/react';
 import React from 'react';
 import {QueryBuilder} from "../../../../components/dagshub/data-engine/queryBuilder/QueryBuilder";
 
 const meta: Meta<typeof QueryBuilder> = {
-  title: 'DagsHub/Data-Engine/QueryBuilder/Condition',
-  component: QueryBuilder
+    title: 'DagsHub/Data-Engine/QueryBuilder/Condition',
+    component: QueryBuilder
 };
 
 export default meta;
@@ -13,16 +13,46 @@ const Template: StoryFn<typeof QueryBuilder> = (args) => <QueryBuilder {...args}
 
 export const compoundQueryBuilder: StoryFn<typeof QueryBuilder> = Template.bind({});
 compoundQueryBuilder.args = {
-  queryInput:{},
-  forceCompoundMode:true
+    queryInput: {},
+    forceCompoundMode: true,
+    metadataFields: [
+        {"name": "size", "valueType": "INTEGER", "tags": [], "multiple": false},
+        {"name": "author", "valueType": "STRING", "tags": [], "multiple": false},
+        {"name": "isCat", "valueType": "BOOLEAN", "tags": [], "multiple": false},
+        {"name": "weight", "valueType": "FLOAT", "tags": [], "multiple": false},
+        {"name": "image", "valueType": "BLOB", "tags": [], "multiple": false}
+    ]
 };
 
 export const simpleQueryBuilder: StoryFn<typeof QueryBuilder> = Template.bind({});
 simpleQueryBuilder.args = {
-  queryInput:{},
+    queryInput: {},
+    metadataFields: [
+        {"name": "size", "valueType": "INTEGER", "tags": [], "multiple": false},
+        {"name": "author", "valueType": "STRING", "tags": [], "multiple": false},
+        {"name": "isCat", "valueType": "BOOLEAN", "tags": [], "multiple": false},
+        {"name": "weight", "valueType": "FLOAT", "tags": [], "multiple": false},
+        {"name": "image", "valueType": "BLOB", "tags": [], "multiple": false}
+    ]
 };
 
 export const queryBuilderWithQuery: StoryFn<typeof QueryBuilder> = Template.bind({});
 queryBuilderWithQuery.args = {
-  queryInput:{"query":{"filter":{"key":"size","value":"1450000","valueType":"INTEGER","comparator":"LESS_EQUAL_THAN"}}},
+    queryInput: {
+        "query": {
+            "filter": {
+                "key": "size",
+                "value": "1450000",
+                "valueType": "INTEGER",
+                "comparator": "LESS_EQUAL_THAN"
+            }
+        }
+    },
+    metadataFields: [
+        {"name": "size", "valueType": "INTEGER", "tags": [], "multiple": false},
+        {"name": "author", "valueType": "STRING", "tags": [], "multiple": false},
+        {"name": "isCat", "valueType": "BOOLEAN", "tags": [], "multiple": false},
+        {"name": "weight", "valueType": "FLOAT", "tags": [], "multiple": false},
+        {"name": "image", "valueType": "BLOB", "tags": [], "multiple": false}
+    ]
 };
