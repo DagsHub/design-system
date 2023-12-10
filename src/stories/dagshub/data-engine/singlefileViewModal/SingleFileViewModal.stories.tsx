@@ -5,6 +5,7 @@ import SingleFileViewModal, {
   singleFileViewModalProps
 } from '../../../../components/dagshub/data-engine/singleFileViewModal/SingleFileViewModal';
 import { NewMetadataField } from '../../../../components';
+import {Button} from "@mui/material";
 
 const meta: Meta<singleFileViewModalProps> = {
   title: 'DagsHub/Data-Engine/Modals/Single file view modal',
@@ -104,11 +105,12 @@ const itemDataMockList: ItemData[] = [
 
 const Template: StoryFn<typeof SingleFileViewModal> = (args) => {
   const [currentItemData, setCurrentItemData] = React.useState<ItemData>(itemDataMockList[0]);
+  const [isModalOpen, setIsModalOpen] = React.useState<boolean>(true);
   return (
-    <SingleFileViewModal
+    <>{isModalOpen? <SingleFileViewModal
       {...args}
       closeModal={() => {
-        console.log('close modal');
+        setIsModalOpen(false);
       }}
       itemData={currentItemData}
       onGetNextItemClickHandler={() => {
@@ -117,7 +119,7 @@ const Template: StoryFn<typeof SingleFileViewModal> = (args) => {
       onGetPreviousItemClickHandler={() => {
         setCurrentItemData(itemDataMockList[currentItemData.itemIndex - 1]);
       }}
-    />
+    />:<Button onClick={()=>setIsModalOpen(true)}>Open modal</Button>}</>
   );
 };
 
