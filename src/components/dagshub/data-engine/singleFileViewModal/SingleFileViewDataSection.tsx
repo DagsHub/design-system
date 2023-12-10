@@ -78,7 +78,6 @@ export function SingleFileViewDataSection({
               padding: '8px',
               justifyContent: 'center',
               bgcolor: '#F8FAFC',
-              alignItems: 'center',
               boxSizing: 'border-box'
             }}
           >
@@ -95,7 +94,6 @@ export function SingleFileViewDataSection({
             width: '100%',
             height: `${ARROWS_SECTION_HEIGHT}px`,
             justifyContent: 'center',
-            alignItems: 'center',
             boxSizing: 'border-box'
           }}
         >

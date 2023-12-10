@@ -38,7 +38,8 @@ export function SingleFileViewFileRenderer({
             objectFit: 'contain',
             maxWidth: '100%',
             maxHeight: '100%',
-            width: '80%'
+            width: '80%',
+            alignSelf: 'center'
           }}
         >
           <source src={galleryFilePath} />
