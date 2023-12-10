@@ -9,6 +9,7 @@ import {
   ButtonStretch,
   ButtonProps
 } from '../../../components/elements/button';
+import {Icon} from "../../../components";
 
 const meta: Meta<ButtonProps> = {
   title: 'Elements/Button',
@@ -46,6 +47,31 @@ export const Presentation = () => {
     </div>
   );
 };
+
+export const WithIcon = () => {
+  return(
+      <>
+        <Button
+          label="With Icon"
+          variant={ButtonVariant.Primary}
+          iconLeft={<Icon fill={'#475569'} icon="outline-annotations" height={14} width={14} />}
+        />
+        <br /> <br />
+        <Button
+          label="With Icon"
+          variant={ButtonVariant.Secondary}
+          iconLeft={<Icon fill={'#475569'} icon="outline-annotations" height={14} width={14} />}
+        />
+        <br /> <br />
+        <Button
+            label={'With Icon'}
+            disabled
+            variant={ButtonVariant.Disabled}
+            iconLeft={<Icon fill={'#475569'} icon="outline-annotations" height={14} width={14} />}
+        />
+      </>
+    )
+}
 
 export const Interactive = Template.bind({});
 Interactive.args = {

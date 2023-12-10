@@ -20,6 +20,9 @@
     .counter {
       color: #ffffff !important;
     }
+    svg {
+      filter: brightness(100);
+    }
   }
 
   &.primary {
@@ -34,6 +37,9 @@
     }
     .counter {
       color: #ffffff !important;
+    }
+    svg {
+      filter: brightness(100);
     }
   }
 
