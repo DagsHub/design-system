@@ -20,6 +20,9 @@
     .counter {
       color: #ffffff !important;
     }
+    svg path {
+      fill: #ffffff;
+    }
   }
 
   &.primary {
@@ -34,6 +37,9 @@
     }
     .counter {
       color: #ffffff !important;
+    }
+    svg path {
+      fill: #ffffff;
     }
   }
 
@@ -94,6 +100,9 @@
 
     .counter {
       color: #dc2626 !important;
+    }
+    svg path {
+      fill: #dc2626;
     }
   }
 
