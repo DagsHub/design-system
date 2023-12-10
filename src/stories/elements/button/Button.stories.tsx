@@ -51,24 +51,21 @@ export const Presentation = () => {
 export const WithIcon = () => {
   return(
       <>
-        <Button
-          label="With Icon"
-          variant={ButtonVariant.Primary}
-          iconLeft={<Icon fill={'#475569'} icon="outline-annotations" height={14} width={14} />}
-        />
-        <br /> <br />
-        <Button
-          label="With Icon"
-          variant={ButtonVariant.Secondary}
-          iconLeft={<Icon fill={'#475569'} icon="outline-annotations" height={14} width={14} />}
-        />
-        <br /> <br />
-        <Button
-            label={'With Icon'}
-            disabled
-            variant={ButtonVariant.Disabled}
-            iconLeft={<Icon fill={'#475569'} icon="outline-annotations" height={14} width={14} />}
-        />
+      {enum2arr(ButtonVariant).map((variant) => (
+          <div key={variant}>
+              {enum2arr(ButtonStretch).map((stretch) => (
+                  <ButtonStory
+                      key={`${variant}-${stretch}`}
+                      variant={variant}
+                      disabled={variant===ButtonVariant.Disabled}
+                      stretch={stretch}
+                      label={`${startCase(variant)} / ${startCase(stretch)}`}
+                      iconLeft={<Icon fill={'#475569'} icon="outline-annotations" height={14} width={14} />}
+                  />
+              ))}
+              <br /> <br />
+          </div>
+      ))}
       </>
     )
 }

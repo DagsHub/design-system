@@ -20,8 +20,8 @@
     .counter {
       color: #ffffff !important;
     }
-    svg {
-      filter: brightness(100);
+    svg path {
+      fill: #ffffff;
     }
   }
 
@@ -38,8 +38,8 @@
     .counter {
       color: #ffffff !important;
     }
-    svg {
-      filter: brightness(100);
+    svg path {
+      fill: #ffffff;
     }
   }
 
@@ -100,6 +100,9 @@
 
     .counter {
       color: #dc2626 !important;
+    }
+    svg path {
+      fill: #dc2626;
     }
   }
 
