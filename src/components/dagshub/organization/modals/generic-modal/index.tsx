@@ -22,7 +22,6 @@ export function GenericModal({ title, elements, onClose, height, maxHeight }: Mo
 
   useEffect(() => {
     function handleClickOutside(event: any) {
-      debugger;
       if (
           modalRef.current &&
           !modalRef.current.contains(event.target)

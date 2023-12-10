@@ -43,8 +43,7 @@ export function SingleFileViewModal({
     const [showMetadataOverlay, setShowMetadataOverlay] = useState<boolean>(false);
     const breakpoint = useMediaQuery('(max-width: 800px)');
     const TOP_SECTION_HEIGHT = 52;
-    const LINE_HEIGHT = 24;
-    const TOP_SECTION_HEIGHT_ON_SMALL_SCREEN = TOP_SECTION_HEIGHT + LINE_HEIGHT; //Because I fource it to wrap
+    const TOP_SECTION_HEIGHT_ON_SMALL_SCREEN = 100;
     const modalRef = useRef<HTMLDivElement>();
 
     const handleKeyDown = (event: any) => {
@@ -78,13 +77,14 @@ export function SingleFileViewModal({
                             width: '100%',
                             height: '100%',
                             flexDirection: 'column',
-                            padding: '24px',
+                            padding: '8px',
+                            paddingTop: '0px',
                             boxSizing: 'border-box',
                             justifyContent: 'space-between'
                         }}
                     >
                         <TopButtonsSection
-                            height={`${TOP_SECTION_HEIGHT}px`}
+                            height={`${breakpoint? TOP_SECTION_HEIGHT_ON_SMALL_SCREEN: TOP_SECTION_HEIGHT}px`}
                             isSmallScreen={breakpoint}
                             fileName={itemData.fileName}
                             linkToFile={itemData.repoFilePath}
@@ -97,7 +97,7 @@ export function SingleFileViewModal({
                             sx={{
                                 height: breakpoint
                                     ? `calc(100% - ${TOP_SECTION_HEIGHT_ON_SMALL_SCREEN}px)`
-                                    : `calc(100% - 52px)`
+                                    : `calc(100% - ${TOP_SECTION_HEIGHT}px)`
                             }}
                         >
                             <SingleFileViewDataSection

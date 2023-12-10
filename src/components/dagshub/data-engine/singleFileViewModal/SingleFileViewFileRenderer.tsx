@@ -14,7 +14,7 @@ export function SingleFileViewFileRenderer({
     if (itemType === 'image') {
       return (
         <img
-          style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%' }}
+          style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%'}}
           alt={''}
           src={galleryFilePath}
         />
@@ -23,7 +23,7 @@ export function SingleFileViewFileRenderer({
     if (itemType === 'video') {
       return (
         <video
-          style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%' }}
+          style={{ objectFit: 'contain', maxWidth: '100%', maxHeight: '100%'}}
           controls
           src={galleryFilePath}
         ></video>
