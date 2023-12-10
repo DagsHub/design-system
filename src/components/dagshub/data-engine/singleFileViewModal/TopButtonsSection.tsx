@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import {Box} from '@mui/system';
-import {ThemeProvider, Typography} from '@mui/material';
+import {ThemeProvider, Tooltip, Typography} from '@mui/material';
 import {Button, ButtonVariant} from '../../../elements';
 import {Icon} from '../../../icons';
 import theme from '../../../../theme';
@@ -11,7 +11,8 @@ export default function TopButtonsSection({
                                               fileName,
                                               linkToFile,
                                               onMetadataIconClick,
-                                              metadataButtonIcon
+                                              metadataButtonIcon,
+    linkToDownloadFile
                                           }: {
     height: string;
     isSmallScreen: boolean;
@@ -19,6 +20,7 @@ export default function TopButtonsSection({
     linkToFile: string;
     onMetadataIconClick: () => void;
     metadataButtonIcon: string;
+    linkToDownloadFile: string;
 }) {
     const showSidebarButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -38,7 +40,7 @@ export default function TopButtonsSection({
                     boxSizing: 'border-box',
                 }}
             >
-                <Box sx={{display: "flex", gap:"8px", justifyContent: "flex-start", alignItems:"center"}}>
+                <Box sx={{display: "flex", gap: "8px", justifyContent: "flex-start", alignItems: "center"}}>
                     <Typography
                         variant={'large'}
                         sx={{
@@ -47,17 +49,18 @@ export default function TopButtonsSection({
                     >
                         {fileName}
                     </Typography>
-
+                    <Tooltip title={'Open file in new tab'} placement={'right'} disableInteractive={true} arrow={true}>
                         <a href={linkToFile} target={'_blank'}>
                             <Button
                                 label={''}
                                 iconRight={
-                                    <Icon icon={'outline-external-link'} width={15} height={15} fill={'rgba(148, 163, 184, 1)'}/>
+                                    <Icon icon={'outline-external-link'} width={15} height={15}
+                                          fill={'rgba(148, 163, 184, 1)'}/>
                                 }
                                 variant={ButtonVariant.Ghost}
                             />
                         </a>
-
+                    </Tooltip>
                 </Box>
                 <Box
                     sx={{
@@ -69,7 +72,7 @@ export default function TopButtonsSection({
                     }}
                 >
                     {isSmallScreen && (
-                        <><Button
+                        <Button
                             ref={showSidebarButtonRef}
                             onClick={() => {
                                 onMetadataIconClick();
@@ -81,10 +84,7 @@ export default function TopButtonsSection({
                             iconRight={<Icon icon={metadataButtonIcon} width={20} height={20} fill={'#172D32'}/>}
                             variant={ButtonVariant.Secondary}
                         />
-
-                        </>
                     )}
-
                     <Button
                         label={'Annotate this datapoint'}
                         iconLeft={
@@ -92,13 +92,15 @@ export default function TopButtonsSection({
                         }
                         variant={ButtonVariant.Secondary}
                     />
-                    <Button
-                        label={''}
-                        iconRight={
-                            <Icon icon={'outline-download'} width={15} height={15} fill={'#172D32'}/>
-                        }
-                        variant={ButtonVariant.Secondary}
-                    />
+                    <a href={linkToDownloadFile} download={fileName}>
+                        <Button
+                            label={''}
+                            iconRight={
+                                <Icon icon={'outline-download'} width={15} height={15} fill={'#172D32'}/>
+                            }
+                            variant={ButtonVariant.Secondary}
+                        />
+                    </a>
                 </Box>
             </Box>
         </ThemeProvider>

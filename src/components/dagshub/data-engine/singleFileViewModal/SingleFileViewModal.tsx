@@ -88,6 +88,7 @@ export function SingleFileViewModal({
                             isSmallScreen={breakpoint}
                             fileName={itemData.fileName}
                             linkToFile={itemData.repoFilePath}
+                            linkToDownloadFile={itemData.galleryFilePath}
                             onMetadataIconClick={() => setShowMetadataOverlay(!showMetadataOverlay)}
                             metadataButtonIcon={
                                 showMetadataOverlay ? 'solid-sidebar-arrow-left' : 'solid-sidebar-arrow-right'

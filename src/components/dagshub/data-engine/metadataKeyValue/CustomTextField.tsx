@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import CancelIcon from '@mui/icons-material/Cancel';
 import StyledTextField from './StyledTextField';
 import './style.scss';
+import {Tooltip} from "@mui/material";
 
 function CustomTextField({
   readOnly,
@@ -106,7 +107,9 @@ function CustomTextField({
   }, [currentValue, shouldHighlightIfEmpty]);
 
   return (
-    <Box
+      <Tooltip title={getValue()} placement={'right'} disableInteractive={true} arrow>
+
+      <Box
       sx={{ width: '100%', height: '100%' }}
       onMouseEnter={() => {
         if (currentValue) {
@@ -157,6 +160,7 @@ function CustomTextField({
         placeholder={placeholder}
       />
     </Box>
+      </Tooltip>
   );
 }
 
