@@ -14,9 +14,10 @@ const Template: StoryFn<CheckboxProps> = (args) => <Checkbox {...args} />;
 export const Presentation = () => {
   return (
     <div>
-      <Checkbox checked label="Checked!" /> <br />
-      <Checkbox label="Unchecked!" /> <br />
-      <Checkbox disabled label="Disabled!" /> <br />
+        <Checkbox checked label="Checked!" /> <br />
+        <Checkbox indeterminate label="Indeterminate!" /> <br />
+        <Checkbox label="Unchecked!" /> <br />
+        <Checkbox disabled label="Disabled!" /> <br />
     </div>
   );
 };
