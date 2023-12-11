@@ -1,8 +1,7 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 import '../../../../styles/root.scss';
 import './generic-modal.scss';
 import { Icon } from '.././../../../icons/index';
-import {Box} from "@mui/system";
 
 export interface ModalProps {
   title?: string;
@@ -22,10 +21,7 @@ export function GenericModal({ title, elements, onClose, height, maxHeight }: Mo
 
   useEffect(() => {
     function handleClickOutside(event: any) {
-      if (
-          modalRef.current &&
-          !modalRef.current.contains(event.target)
-      ) {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
         onClose();
       }
     }

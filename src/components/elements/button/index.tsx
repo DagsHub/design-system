@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import classNames from 'classnames';
 
 import './button.scss';
@@ -32,7 +32,9 @@ export interface ButtonProps {
   timeToBlurMS?: number;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>
+export const Button = React.forwardRef<
+  HTMLButtonElement,
+  ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>
 >(
   (
     {
@@ -48,9 +50,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & React.Bu
       counter,
       counterLink,
       timeToBlurMS = 400,
-        onClick,
+      onClick,
       ...props
     },
+    ref
   ) => {
     const classes = classNames([`dagshub-btn`, variant, stretch, className], { fullWidth });
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -62,11 +65,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps & React.Bu
         className={classes}
         disabled={disabled}
         style={{ width: fullWidth ? '100%' : width || 'auto' }}
-        onClick={(event)=>{
-            setTimeout(() => {
-                buttonRef?.current?.blur();
-            }, timeToBlurMS);
-            onClick && onClick(event);
+        onClick={(event) => {
+          setTimeout(() => {
+            buttonRef?.current?.blur();
+          }, timeToBlurMS);
+          onClick && onClick(event);
         }}
         {...props}
       >
