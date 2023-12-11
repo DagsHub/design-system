@@ -26,8 +26,6 @@ export function SingleFileViewDataSection({
     enableMetadataEditing?: boolean;
     enableMetadataDeletion?: boolean;
 }) {
-    const getPreviousItemButtonRef = useRef<HTMLButtonElement>(null);
-    const getNextItemButtonRef = useRef<HTMLButtonElement>(null);
     const SIDEBAR_WIDTH = 350; //I decided on this number
     const ARROWS_SECTION_HEIGHT = 52;
 
@@ -107,12 +105,9 @@ export function SingleFileViewDataSection({
                     >
                         <Button
                             tabIndex={0}
-                            ref={getPreviousItemButtonRef}
+                            timeToBlurMS={200}
                             onClick={() => {
                                 itemData.hasPrevious && onGetPreviousItemClickHandler();
-                                setTimeout(() => {
-                                    getPreviousItemButtonRef?.current?.blur();
-                                }, 200);
                             }}
                             label={''}
                             iconRight={
@@ -123,12 +118,9 @@ export function SingleFileViewDataSection({
                         />
                         <Button
                             tabIndex={0}
-                            ref={getNextItemButtonRef}
+                            timeToBlurMS={200}
                             onClick={() => {
                                 itemData.hasNext && onGetNextItemClickHandler();
-                                setTimeout(() => {
-                                    getNextItemButtonRef?.current?.blur();
-                                }, 200);
                             }}
                             label={''}
                             iconRight={

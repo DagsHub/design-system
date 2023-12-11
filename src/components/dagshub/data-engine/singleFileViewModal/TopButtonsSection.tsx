@@ -22,7 +22,6 @@ export default function TopButtonsSection({
     metadataButtonIcon: string;
     linkToDownloadFile: string;
 }) {
-    const showSidebarButtonRef = useRef<HTMLButtonElement>(null);
 
     return (
         <ThemeProvider theme={theme}>
@@ -73,12 +72,8 @@ export default function TopButtonsSection({
                 >
                     {isSmallScreen && (
                         <Button
-                            ref={showSidebarButtonRef}
                             onClick={() => {
                                 onMetadataIconClick();
-                                setTimeout(() => {
-                                    showSidebarButtonRef?.current?.blur();
-                                }, 400);
                             }}
                             label={''}
                             iconRight={<Icon icon={metadataButtonIcon} width={20} height={20} fill={'#172D32'}/>}
