@@ -53,6 +53,9 @@ export function SingleFileViewModal({
         if (event.key === 'ArrowRight') {
             itemData.hasNext && onGetNextItemClickHandler();
         }
+        if (event.key === 'Escape') {
+            closeModal();
+        }
     };
 
     useEffect(() => {
