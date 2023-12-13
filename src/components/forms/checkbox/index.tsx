@@ -28,16 +28,17 @@ export const Checkbox = ({
   const classes = classNames([`dagshub-checkbox`, className], { checked, disabled, indeterminate });
   const ref = React.useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    (ref.current as HTMLInputElement).indeterminate = indeterminate;
-    (ref.current as HTMLInputElement).checked = !indeterminate && checked;
-  }, [ref, indeterminate])
   return (
     <div className={classes} style={style}>
       <label>
         {
+          // Checked icon
           checked ? <Icon icon="checkmark" fill={'white'} /> :
+
+          // indeterminate icon
           indeterminate ? <RemoveIcon sx={{ color: 'white' }} fontSize="small"/> :
+
+          // Empty icon
           <Icon icon="checkmark" fill={'transparent'} />
         }
         <input
@@ -45,7 +46,7 @@ export const Checkbox = ({
           type="checkbox"
           aria-label={label}
           className={classes}
-          checked={checked}
+          checked={!indeterminate && checked}
           disabled={disabled}
           onChange={onChange}
           {...props}
