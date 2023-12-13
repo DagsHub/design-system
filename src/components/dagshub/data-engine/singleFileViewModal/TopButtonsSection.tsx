@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import { Box } from '@mui/system';
 import { ThemeProvider, Tooltip, Typography } from '@mui/material';
 import { Button, ButtonVariant } from '../../../elements';

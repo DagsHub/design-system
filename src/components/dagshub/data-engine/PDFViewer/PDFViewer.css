@@ -15,34 +15,33 @@
   display: flex;
   width: 100% !important;
   height: 100% !important;
-
 }
 
-.react-pdf__Page__canvas{
+.react-pdf__Page__canvas {
   display: flex;
   width: 100% !important;
   height: 100% !important;
 }
 
-.react-pdf__Page__annotations{
+.react-pdf__Page__annotations {
   display: flex;
   width: 100% !important;
   height: 100% !important;
 }
 
-.annotationLayer{
+.annotationLayer {
   display: flex;
   width: 100% !important;
   height: 100% !important;
 }
 
-.react-pdf__Page__textContent{
+.react-pdf__Page__textContent {
   display: flex;
   width: 100% !important;
   height: 100% !important;
 }
 
-.textLayer{
+.textLayer {
   display: flex;
   width: 100% !important;
   height: 100% !important;
@@ -54,4 +53,3 @@
   width: 100% !important;
   height: 100% !important;
 }
-
