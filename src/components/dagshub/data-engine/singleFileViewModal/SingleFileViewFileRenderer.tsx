@@ -1,41 +1,39 @@
-import {ItemFallback} from './ItemFallback';
-import React, {useEffect, useState} from 'react';
-import {CSVViewer} from "../CSVViewer/CSVViewer";
-
+import { ItemFallback } from './ItemFallback';
+import React, { useEffect, useState } from 'react';
+import { CSVViewer } from '../CSVViewer/CSVViewer';
 
 export function SingleFileViewFileRenderer({
-                                               galleryFilePath,
-                                               itemType,
-                                               itemFallbackHeight
-                                           }: {
-    galleryFilePath: string;
-    itemType: string;
-    itemFallbackHeight: string;
+  galleryFilePath,
+  itemType,
+  itemFallbackHeight
+}: {
+  galleryFilePath: string;
+  itemType: string;
+  itemFallbackHeight: string;
 }) {
+  const [csvHeaders, setCsvHeaders] = useState<string[]>([]);
+  const [csvValues, setCsvValues] = useState<string[][]>([]);
+  const [isError, setIsError] = useState<boolean>(false);
 
-    const [csvHeaders, setCsvHeaders] = useState<string[]>([]);
-    const [csvValues, setCsvValues] = useState<string[][]>([]);
-    const [isError, setIsError] = useState<boolean>(false);
-
-    useEffect(()=>{
-        if(itemType === 'csv'){
-            fetch(galleryFilePath)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    debugger;
-                    setCsvValues(data.values);
-                    setCsvHeaders(data.headers);
-                })
-                .catch((error) => {
-                    setIsError(true);
-                });
-        }
-    },[galleryFilePath, itemType])
+  useEffect(() => {
+    if (itemType === 'csv') {
+      fetch(galleryFilePath)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          debugger;
+          setCsvValues(data.values);
+          setCsvHeaders(data.headers);
+        })
+        .catch((error) => {
+          setIsError(true);
+        });
+    }
+  }, [galleryFilePath, itemType]);
 
   if (!!galleryFilePath && !!itemType) {
     if (itemType === 'image') {
@@ -73,11 +71,9 @@ export function SingleFileViewFileRenderer({
         </audio>
       );
     }
-      if (itemType === 'csv') {
-          return (
-              <CSVViewer headers={csvHeaders} values={csvValues}/>
-          );
-      }
+    if (itemType === 'csv') {
+      return <CSVViewer headers={csvHeaders} values={csvValues} />;
+    }
   }
   return <ItemFallback height={itemFallbackHeight} width={'100%'} disableHoverMode />;
 }
