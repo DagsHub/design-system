@@ -18,7 +18,7 @@ const options = {
 
 type PDFFile = string | File | null;
 
-export default function PDFViewer({ filePath }: { filePath: string }) {
+export default function PDFViewer({ filePath, onError }: { filePath: string, onError?: () => void }) {
   const [file, setFile] = useState<PDFFile>(filePath);
   const [numPages, setNumPages] = useState<number>();
 
@@ -31,7 +31,7 @@ export default function PDFViewer({ filePath }: { filePath: string }) {
   }, [filePath]);
 
   return (
-    <Document file={file} onLoadSuccess={onDocumentLoadSuccess} options={options}>
+    <Document file={file} onLoadSuccess={onDocumentLoadSuccess} options={options} onLoadError={onError}>
       {Array.from(new Array(numPages), (el, index) => (
         <Page key={`page_${index + 1}`} pageNumber={index + 1} />
       ))}
