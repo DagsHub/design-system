@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, {useEffect, useRef} from 'react';
 import { Box } from '@mui/system';
 import { ThemeProvider, Typography } from '@mui/material';
 import { Button, ButtonVariant } from '../../../elements';
 import { Icon } from '../../../icons';
 import theme from '../../../../theme';
+import {Checkbox} from "../../../forms";
 
 export default function TopButtonsSection({
   height,
@@ -11,7 +12,9 @@ export default function TopButtonsSection({
   fileName,
   linkToFile,
   onMetadataIconClick,
-  metadataButtonIcon
+  metadataButtonIcon,
+  onSelectItem,
+  selected,
 }: {
   height: string;
   isSmallScreen: boolean;
@@ -19,6 +22,8 @@ export default function TopButtonsSection({
   linkToFile: string;
   onMetadataIconClick: () => void;
   metadataButtonIcon: string;
+  onSelectItem?: () => void | undefined;
+  selected?: boolean;
 }) {
   const showSidebarButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -36,6 +41,12 @@ export default function TopButtonsSection({
           flexWrap: isSmallScreen ? 'wrap' : 'nowrap'
         }}
       >
+        {
+            (onSelectItem !== undefined && selected !== undefined) &&
+            <>
+                <Checkbox checked={selected} onChange={onSelectItem}/> &nbsp;
+            </>
+        }
         <Typography
           variant={'large'}
           sx={{

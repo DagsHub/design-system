@@ -29,6 +29,8 @@ export interface singleFileViewModalProps {
   metadataOnChangeHandler?: (metadataList: NewMetadataField[]) => void;
   enableMetadataEditing?: boolean;
   enableMetadataDeletion?: boolean;
+  onSelectItem?: (e?: any) => void;
+  selected?: boolean;
 }
 
 export function SingleFileViewModal({
@@ -38,7 +40,9 @@ export function SingleFileViewModal({
   onGetPreviousItemClickHandler,
   metadataOnChangeHandler,
   enableMetadataEditing,
-  enableMetadataDeletion
+  enableMetadataDeletion,
+  onSelectItem,
+  selected,
 }: singleFileViewModalProps) {
   const [showMetadataOverlay, setShowMetadataOverlay] = useState<boolean>(false);
   const breakpoint = useMediaQuery('(max-width: 800px)');
@@ -72,6 +76,8 @@ export function SingleFileViewModal({
               metadataButtonIcon={
                 showMetadataOverlay ? 'solid-sidebar-arrow-left' : 'solid-sidebar-arrow-right'
               }
+              onSelectItem={onSelectItem}
+              selected={selected}
             />
             <Box
               sx={{
