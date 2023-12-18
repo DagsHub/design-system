@@ -31,6 +31,7 @@ export interface singleFileViewModalProps {
   enableMetadataDeletion?: boolean;
   onSelectItem?: (e?: any) => void;
   selected?: boolean;
+  areAllSelected?: boolean
 }
 
 export function SingleFileViewModal({
@@ -43,6 +44,7 @@ export function SingleFileViewModal({
   enableMetadataDeletion,
   onSelectItem,
   selected,
+  areAllSelected,
 }: singleFileViewModalProps) {
   const [showMetadataOverlay, setShowMetadataOverlay] = useState<boolean>(false);
   const breakpoint = useMediaQuery('(max-width: 800px)');
@@ -78,6 +80,7 @@ export function SingleFileViewModal({
               }
               onSelectItem={onSelectItem}
               selected={selected}
+              areAllSelected={areAllSelected}
             />
             <Box
               sx={{

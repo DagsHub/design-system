@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import { Box } from '@mui/system';
 import { ThemeProvider, Typography } from '@mui/material';
-import { Button, ButtonVariant } from '../../../elements';
+import {Button, ButtonVariant, Tooltip} from '../../../elements';
 import { Icon } from '../../../icons';
 import theme from '../../../../theme';
 import {Checkbox} from "../../../forms";
@@ -15,6 +15,7 @@ export default function TopButtonsSection({
   metadataButtonIcon,
   onSelectItem,
   selected,
+  areAllSelected,
 }: {
   height: string;
   isSmallScreen: boolean;
@@ -24,6 +25,7 @@ export default function TopButtonsSection({
   metadataButtonIcon: string;
   onSelectItem?: () => void | undefined;
   selected?: boolean;
+  areAllSelected?: boolean;
 }) {
   const showSidebarButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -35,6 +37,7 @@ export default function TopButtonsSection({
           width: '100%',
           height: height,
           flexDirection: 'row',
+          gap: '5px',
           alignItems: 'center',
           justifyContent: 'space-between',
           flexShrink: 0,
@@ -43,9 +46,18 @@ export default function TopButtonsSection({
       >
         {
             (onSelectItem !== undefined && selected !== undefined) &&
-            <>
-                <Checkbox checked={selected} onChange={onSelectItem}/> &nbsp;
-            </>
+            <span>
+                <Tooltip
+                    content={"Turn off select all to deselect individual items"}
+                    trigger={'click'}
+                    placement={'bottom'}
+                    interactive
+                    disabled={!areAllSelected}>
+                    <Box>
+                        <Checkbox checked={selected} onChange={onSelectItem} disabled={areAllSelected}/>
+                    </Box>
+                </Tooltip>
+            </span>
         }
         <Typography
           variant={'large'}
