@@ -48,7 +48,7 @@ export default function TopButtonsSection({
             (onSelectItem !== undefined && selected !== undefined) &&
             <span>
                 <Tooltip
-                    content={"Turn off select all to deselect individual items"}
+                    content={"Disable “Select all” to choose specific items"}
                     trigger={'click'}
                     placement={'bottom'}
                     interactive
