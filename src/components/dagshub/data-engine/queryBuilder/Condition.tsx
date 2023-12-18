@@ -168,7 +168,8 @@ const Condition = ({
                 {!isThereSimpleFilters && <div>
                     <button style={{...containerStyle}} onClick={() => {
                         const newConditions = condition.and || condition.or || [];
-                        newConditions.push({filter: {comparator: Operators[0].id}});
+                        newConditions.splice(0,0,{filter: {comparator: Operators[0].id}});
+                        // newConditions.push({filter: {comparator: Operators[0].id}});
                         if (isAndRelation) {
                             onChange({...condition, and: newConditions});
                         } else {// or relation
@@ -176,6 +177,7 @@ const Condition = ({
                         }
                     }}>
                         Add Condition
+                    {/*    appears when there are no simple conditions, should add to the beginning of the list*/}
                     </button>
                 </div>}
                 <div>
@@ -206,7 +208,8 @@ const Condition = ({
                                 }}
                                 onAdd={() => {
                                     const newConditions = condition.and || condition.or || [];
-                                    newConditions.push({filter: {comparator: Operators[0].id}});
+                                    newConditions.splice(index+1, 0, {filter: {comparator: Operators[0].id}});
+                                    // newConditions.push({filter: {comparator: Operators[0].id}});
                                     if (isAndRelation) {
                                         onChange({...condition, and: newConditions});
                                     } else {// or relation
@@ -227,7 +230,7 @@ const Condition = ({
                         }
                     }}>
                         Add Condition group (AND/OR)
-                        {/*The group is AND by default*/}
+                        {/*The group is AND by default,and always added to the end*/}
                     </div>}
                 </div>
             </div>
