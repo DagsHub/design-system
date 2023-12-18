@@ -7,7 +7,7 @@
   transition: all 0.5s;
   box-sizing: border-box;
 
-  &:disabled {
+  &.disabled, &:disabled {
     color: #ffffff;
     background-color: #64748b;
     cursor: not-allowed;
@@ -106,7 +106,7 @@
     }
   }
 
-  &.disabled {
+  &.disabled, &:disabled {
     color: #ffffff !important;
     background-color: #64748b !important;
     .counter {
