@@ -7,7 +7,8 @@ import {
     Operators,
     StringOperators,
     BlobOperators, MetadataFieldProps
-} from "./QueryBuilder";
+} from "./TypesCondition";
+import {MetadataType} from "../metadataKeyValue/MetadataKeyValueList";
 
 class Comparator {
 }
@@ -19,8 +20,19 @@ const Condition = ({
                        level = 0,
                        isSimple,
                        onRemove,
-                       onAdd
-                   }: { condition: AndOrMetadataInput; onChange: any; metadataFields: MetadataFieldProps[], level?: number; onRemove?: any, onAdd?: any, isSimple?: boolean }) => {
+                       onAdd,
+                       verifyCondition
+                   }: {
+    condition: AndOrMetadataInput;
+    onChange: any;
+    metadataFields: MetadataFieldProps[],
+    level?: number;
+    onRemove?: any,
+    onAdd?: any,
+    isSimple?: boolean
+    verifyCondition:(valueType: MetadataType, value: string)=>boolean
+}) => {
+
     const containerStyle = {
         fontFamily: "Inter",
         fontSize: "14px",
@@ -29,6 +41,8 @@ const Condition = ({
 
     const [operatorsList, setOperatorsList] = useState<{ label: string; id: Comparator; }[]>(Operators);
     const [shouldDisplayValueField, setShouldDisplayValueField] = useState<boolean>(true);
+    const [isErrored, setIsErrored] = useState<boolean>(false);
+
     useEffect(() => {
         if (!!condition?.filter?.valueType) {
             switch (condition.filter.valueType) {
@@ -78,7 +92,16 @@ const Condition = ({
         }
     },[operatorsList])
 
+    useEffect(()=>{
+        if(!!condition.filter?.valueType && !!condition.filter?.value){
+            setIsErrored(!verifyCondition( condition.filter?.valueType, condition.filter?.value));
+        } else{
+            setIsErrored(false);
+        }
+    },[condition.filter?.valueType,condition.filter?.value])
+
     if (!condition?.or && !condition?.and && !!condition?.filter) {
+        const isEmpty= !condition.filter?.key || !condition.filter?.comparator || !condition.filter?.value;
         // Simple condition
         return (
             <div style={{...containerStyle, padding: "10px", margin: "10px 0", backgroundColor: "lightgrey"}}>
@@ -117,6 +140,7 @@ const Condition = ({
                         onChange={e => onChange({...condition, filter: {...condition.filter, value: e.target.value}})}
                         placeholder="Value"
                     />}
+                {isErrored && <span style={{color: "purple"}}>Value must be a {condition.filter?.valueType}</span>}
                 <button onClick={onRemove} style={{...containerStyle}}>
                     x
                 </button>
@@ -127,16 +151,19 @@ const Condition = ({
                     <button style={{...containerStyle}} onClick={() => onChange({...condition, not: !condition.not})}>
                         {condition.not ? "Remove Not from condition" : "Add NOT to condition"}
                     </button>}
+                {isEmpty && <span style={{color: "red"}}>Please fill all fields</span>}
             </div>
         );
     } else {
         // Compound condition (AND/OR)
         //check if there are simple conditions in the group
         const isAndRelation = !!condition.and;
-        const isThereSimpleFilters = (isAndRelation ? condition.and : condition.or)?.some((cond) => {
+        const areThereSimpleFilters = (isAndRelation ? condition.and : condition.or)?.some((cond) => {
                 return !!cond.filter;
             }
         );
+
+        const isEmpty = ((condition.and || condition.or)??[]).length==0;
 
         return (
             <div style={{
@@ -145,6 +172,7 @@ const Condition = ({
                 margin: "10px 0",
                 border: level == 0 ? "1px solid black" : "1px dashed black"
             }}>
+                {isEmpty && <div style={{color: "red"}}>Group is empty</div>}
                 {!isSimple && condition.not && <span style={{...containerStyle}}>NOT </span>}
                 {!isSimple && <><select
                     value={isAndRelation ? 'AND' : 'OR'}
@@ -154,7 +182,7 @@ const Condition = ({
                         } else if (!isAndRelation && e.target.value === 'AND') {
                             onChange({...condition, and: condition.or, or: undefined})
                         }
-                        //id the same relation, do nothing
+                        //if the same relation, do nothing
                     }}>
                     <option style={{...containerStyle}} value="AND">AND</option>
                     <option style={{...containerStyle}} value="OR">OR</option>
@@ -165,11 +193,10 @@ const Condition = ({
                 </>}
                 {!isSimple && onRemove !== undefined &&
                     <button style={{...containerStyle}} onClick={onRemove}>Remove Group</button>}
-                {!isThereSimpleFilters && <div>
+                {!areThereSimpleFilters && <div>
                     <button style={{...containerStyle}} onClick={() => {
                         const newConditions = condition.and || condition.or || [];
                         newConditions.splice(0,0,{filter: {comparator: Operators[0].id}});
-                        // newConditions.push({filter: {comparator: Operators[0].id}});
                         if (isAndRelation) {
                             onChange({...condition, and: newConditions});
                         } else {// or relation
@@ -187,6 +214,7 @@ const Condition = ({
                                 metadataFields={metadataFields}
                                 isSimple={isSimple}
                                 condition={cond}
+                                verifyCondition={verifyCondition}
                                 onChange={(newCond: AndOrMetadataInput) => {
                                     const newConditions = condition.and || condition.or || [];
                                     newConditions[index] = newCond;
@@ -209,7 +237,6 @@ const Condition = ({
                                 onAdd={() => {
                                     const newConditions = condition.and || condition.or || [];
                                     newConditions.splice(index+1, 0, {filter: {comparator: Operators[0].id}});
-                                    // newConditions.push({filter: {comparator: Operators[0].id}});
                                     if (isAndRelation) {
                                         onChange({...condition, and: newConditions});
                                     } else {// or relation
