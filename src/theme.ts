@@ -20,6 +20,11 @@ const lightTheme = createTheme({
     },
     components: {
         MuiTypography:{
+            styleOverrides: {
+                root: {
+                    fontFamily: 'Inter',
+                },
+            },
             variants: [
                 {
                     props: { variant: 'overflow' },
