@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import Condition from "./Condition";
-import condition from "./Condition";
 import {
     AndOrMetadataInput, convertToBackandFormatAndRemoveEmptyConditions,
     hasUncompletedConditions,
@@ -8,7 +7,6 @@ import {
     QueryInput,
     validateConditionValue
 } from "./TypesCondition";
-import {MetadataType} from "../metadataKeyValue/MetadataKeyValueList";
 
 export function QueryBuilder({
                                  queryInput,

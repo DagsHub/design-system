@@ -1,11 +1,11 @@
-type MetadataType =
+export type MetadataType =
     "BOOLEAN"
     | "INTEGER"
     | "FLOAT"
     | "STRING"
     | "BLOB";
 
-type Comparator =
+export type Comparator =
     "EQUAL"
     | "GREATER_THAN"
     | "GREATER_EQUAL_THAN"
