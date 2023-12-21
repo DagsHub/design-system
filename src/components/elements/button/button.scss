@@ -7,24 +7,6 @@
   transition: all 0.5s;
   box-sizing: border-box;
 
-  &.disabled, &:disabled {
-    color: #ffffff;
-    background-color: #64748b;
-    cursor: not-allowed;
-    &:hover {
-      background-color: #64748b;
-    }
-    &:focus {
-      background-color: #64748b;
-    }
-    .counter {
-      color: #ffffff !important;
-    }
-    svg path {
-      fill: #ffffff;
-    }
-  }
-
   &.primary {
     color: #ffffff;
     background-color: #5467de;
@@ -41,6 +23,13 @@
     svg path {
       fill: #ffffff;
     }
+    &.disabled, &:disabled {
+      background: #FBFAFD;
+      color: #737278;
+      svg path {
+        fill: #737278;
+      }
+    }
   }
 
   &.secondary {
@@ -55,6 +44,13 @@
     }
     .counter {
       color: #172d32 !important;
+    }
+    &.disabled, &:disabled {
+      background: var(--secondary-state-200, #E2E8F0);
+      color: #5D6F89;
+      svg path {
+        fill: #5D6F89;
+      }
     }
   }
 
@@ -73,6 +69,14 @@
     }
     .counter {
       color: #172d32 !important;
+    }
+
+    &.disabled, &:disabled {
+      color: #7B8EA8;
+      border: 2px solid var(--secondary-state-200, #E2E8F0);
+      svg path {
+        fill: #7B8EA8;
+      }
     }
   }
 
@@ -104,18 +108,17 @@
     svg path {
       fill: #dc2626;
     }
-  }
 
-  &.disabled, &:disabled {
-    color: #ffffff !important;
-    background-color: #64748b !important;
-    .counter {
-      color: #ffffff !important;
+    &.disabled, &:disabled {
+      border: 2px solid var(--secondary-state-200, #E2E8F0);
+      background: none;
+      color: #F15656;
+      svg path {
+        fill: #F15656;
+      }
     }
   }
-}
 
-.dagshub-btn {
   &.ghost {
     color: #172d32;
     background-color: transparent;
@@ -138,10 +141,15 @@
     .counter {
       color: #172d32 !important;
     }
-  }
-}
 
-.dagshub-btn {
+    &.disabled, &:disabled {
+      color: #7B8EA8;
+      svg path {
+        fill: #7B8EA8;
+      }
+    }
+  }
+
   &.normal {
     padding-right: 12px;
     padding-left: 12px;

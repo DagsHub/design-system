@@ -7,7 +7,7 @@ import '../../styles/root.scss';
 import './toast.scss';
 
 export interface ToastProps {
-  type?: 'success' | 'error';
+  type?: 'success' | 'error' | 'info';
   visible?: boolean;
   className?: string;
   children: React.ReactNode | null;
@@ -38,6 +38,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
   ) => {
     const autoCloseTimeoutId = useRef<any>(null);
     const isSuccess = type === 'success';
+    const isError = type === 'error';
     const classes = classNames([`dagshub-toast`, className]);
 
     useEffect(function onAutoClose() {
@@ -49,8 +50,8 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
     return (
       <div ref={ref} className={classes} style={{ width, top, bottom, left, right }}>
         <Icon
-          icon={isSuccess ? 'checkmark' : 'solid-exclamation-circle'}
-          fill={isSuccess ? 'green' : 'red'}
+          icon={isSuccess ? 'checkmark' : isError ? 'solid-exclamation-circle': ''}
+          fill={isSuccess ? 'green' : isError ? 'red' : 'transparent'}
         />
         <div>{children}</div>
         <Icon icon="solid-x" onClick={onClose} fill="#ABADC6" />
