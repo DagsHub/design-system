@@ -117,6 +117,7 @@ export function DropdownV2({
             <Box
                 ref={autoCompleteWrapperRef}
                 sx={{
+                    position: "relative",
                     display: 'flex',
                     gap: '8px',
                     maxWidth: maxWidth,
