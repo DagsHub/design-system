@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useRef } from 'react';
 import { Box } from '@mui/system';
 import { ThemeProvider, Typography } from '@mui/material';
 import {Button, ButtonVariant, Tooltip} from '../../../elements';
@@ -13,8 +13,8 @@ export default function TopButtonsSection({
   linkToFile,
   onMetadataIconClick,
   metadataButtonIcon,
-  onSelectItem,
-  selected,
+  onSelectItemToggle,
+  isSelected,
   areAllSelected,
 }: {
   height: string;
@@ -23,8 +23,8 @@ export default function TopButtonsSection({
   linkToFile: string;
   onMetadataIconClick: () => void;
   metadataButtonIcon: string;
-  onSelectItem?: () => void | undefined;
-  selected?: boolean;
+  onSelectItemToggle?: () => void | undefined;
+  isSelected?: boolean;
   areAllSelected?: boolean;
 }) {
   const showSidebarButtonRef = useRef<HTMLButtonElement>(null);
@@ -37,7 +37,7 @@ export default function TopButtonsSection({
           width: '100%',
           height: height,
           flexDirection: 'row',
-          gap: '5px',
+          gap: '8px',
           alignItems: 'center',
           justifyContent: 'space-between',
           flexShrink: 0,
@@ -45,16 +45,15 @@ export default function TopButtonsSection({
         }}
       >
         {
-            (onSelectItem !== undefined && selected !== undefined) &&
+            (onSelectItemToggle && isSelected !== undefined) &&
             <span>
                 <Tooltip
                     content={"Disable “Select all” to choose specific items"}
                     trigger={'click'}
                     placement={'bottom'}
-                    interactive
                     disabled={!areAllSelected}>
                     <Box>
-                        <Checkbox checked={selected} onChange={onSelectItem} disabled={areAllSelected}/>
+                        <Checkbox checked={isSelected || areAllSelected} onChange={onSelectItemToggle} disabled={areAllSelected}/>
                     </Box>
                 </Tooltip>
             </span>
