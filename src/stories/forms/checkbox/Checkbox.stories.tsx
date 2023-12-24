@@ -40,7 +40,7 @@ export const CheckboxStates = () => {
                                             checked={checked}
                                             disabled={disabled}
                                             indeterminate={indeterminate}
-                                            label={`${disabled ? "disabled" : "enabled"} | ${indeterminate ? "indeterminate" : "not indeterminate"}`}
+                                            label={`${disabled ? "disabled" : "enabled"} | ${indeterminate ? "indeterminate" : "unchecked"}`}
                                             style={{margin: '8px'}}
                                         />
                                     ))}
@@ -52,7 +52,7 @@ export const CheckboxStates = () => {
                                 key={`disabled-${disabled}`}
                                 checked={checked}
                                 disabled={disabled}
-                                label={`${checked ? "checked" : "unchecked"} | ${disabled ? "disabled" : "enabled"}`}
+                                label={`${disabled ? "disabled" : "enabled"} | ${checked ? "checked" : "unchecked"}`}
                                 style={{ margin: '8px' }}
                             />
                             )
