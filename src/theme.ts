@@ -7,6 +7,7 @@ declare module '@mui/material/Typography' {
         medium: true;
         mediumBold: true;
         large: true;
+        overflow: true;
     }
 }
 
@@ -22,13 +23,17 @@ const lightTheme = createTheme({
             styleOverrides: {
                 root: {
                     fontFamily: 'Inter',
-                    color: 'rgba(23, 45, 50, 1)',
-                    overflow: 'hidden',
-                    whiteSpace: 'nowrap',
-                    textOverflow: 'ellipsis',
                 },
             },
             variants: [
+                {
+                    props: { variant: 'overflow' },
+                    style: {
+                        textOverflow: 'ellipsis',
+                        overflow: 'hidden',
+                        whiteSpace: 'nowrap',
+                    },
+                },
                 {
                     props: { variant: 'small' },
                     style: {
