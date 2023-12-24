@@ -73,7 +73,11 @@ export function DropdownV2({
 
     useEffect(() => {
         if (makeWidthDynamic) {
-            setInputWidth(copyTextFieldRef.current?.scrollWidth ?? 0)
+            let width= copyTextFieldRef.current?.scrollWidth ?? 0;
+            if (!removeEndAdornment){
+                width += 24;
+            }
+            setInputWidth(width)
         }
     }, [inputValue, label, makeWidthDynamic]);
 
@@ -131,7 +135,8 @@ export function DropdownV2({
                         width: menuWidth ? "200px" : undefined
                     },
                     '.MuiAutocomplete-endAdornment': {
-                        display: removeEndAdornment ? "none" : undefined
+                        display: removeEndAdornment ? "none" : undefined,
+                        right: makeWidthDynamic?"4px!important":undefined
                     },
                     '.MuiAutocomplete-option': {
                         fontFamily: 'Inter',
@@ -159,7 +164,7 @@ export function DropdownV2({
                         No matching options
                     </Typography>}
                     disableClearable={disableClearable}
-                    ListboxProps={{style: {maxHeight: unsetMenuMaxHeight ? "unset" : undefined, padding: "8px"}}}
+                    ListboxProps={{style: {maxHeight: unsetMenuMaxHeight ? "unset" : undefined, padding: "8px", left: "0px"}}}
                     open={open}
                     onOpen={() => setOpen(true)}
                     onClose={() => setOpen(false)}
@@ -173,7 +178,11 @@ export function DropdownV2({
                     onChange={onChange}
                     autoHighlight
                     inputValue={inputValue}
-                    onInputChange={(event, newInputValue) => {
+                    onInputChange={(event, newInputValue, reason) => {
+                        if (makeWidthDynamic && reason === 'input' && newInputValue === '') {
+                            // Erasing input
+                            setOpen(false);
+                        }
                         setInputValue(newInputValue);
                     }}
                     sx={{
@@ -187,6 +196,7 @@ export function DropdownV2({
                             }
                         },
                         '.MuiInputBase-root': {
+                            boxSizing: 'border-box',
                             height: height,
                             backgroundColor: bgColor,
                             '&:hover': {
@@ -234,7 +244,6 @@ export function DropdownV2({
                             inputProps={{
                                 ...inputProps,
                                 readOnly: isReadOnly,
-                                style: {textAlign: alignInputTextToCenter ? "center" : undefined},
                             }}
                             placeholder={label}
                         />

@@ -7,6 +7,7 @@ declare module '@mui/material/Typography' {
         medium: true;
         mediumBold: true;
         large: true;
+        thin:true;
     }
 }
 
@@ -29,6 +30,14 @@ const lightTheme = createTheme({
                 },
             },
             variants: [
+                {
+                    props: { variant: 'thin' },
+                    style: {
+                        fontWeight: 400,
+                        fontSize: "14px",
+                        lineHeight: "20px",
+                    },
+                },
                 {
                     props: { variant: 'small' },
                     style: {

@@ -134,7 +134,7 @@ export function getZeroValueByType(type: MetadataType | undefined): string {
 export function hasUncompletedConditions(condition: AndOrMetadataInput): boolean {
     if (!!condition.or || !!condition.and) {
         if (condition.or?.length === 0 || condition.and?.length === 0) {
-            return true;
+            return false; // it is possible to have an empty group, it is not considered uncompleted
         }
         // Recursively check if all nested conditions are empty
         return (condition.or || condition.and || [])

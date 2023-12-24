@@ -67,8 +67,11 @@ export function QueryBuilder({
     return (
         <div className="App">
             <h1>{isSimpleMode ? "Simple" : "Compound"} query builder</h1>
+            <br/>
             <Condition condition={rootCondition} onChange={setRootCondition} isSimple={isSimpleMode}
                        metadataFields={metadataFieldsState} verifyCondition={validateConditionValue}/>
+            <br/>
+
             <button
                 onClick={() => {
                     const empty = hasUncompletedConditions(rootCondition)
@@ -80,6 +83,8 @@ export function QueryBuilder({
             >
                 Apply
             </button>
+            <br/>
+            <br/>
             <pre>UI {JSON.stringify(rootCondition, null, 2)}</pre>
             <pre>BACKEND {JSON.stringify(rootConditionBackend, null, 2)}</pre>
             <pre>IS_EMPTY {JSON.stringify(isUncompleted, null, 2)}</pre>

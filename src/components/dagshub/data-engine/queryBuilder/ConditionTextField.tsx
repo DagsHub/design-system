@@ -11,7 +11,8 @@ function ConditionTextField({
                                 onChange,
                                 placeholder,
                                 helperText,
-                                autoFocus
+                                autoFocus,
+    isErrored
                             }: {
     disabled: boolean;
     value?: string;
@@ -20,6 +21,7 @@ function ConditionTextField({
     helperText?: string;
     shouldHighlightIfEmpty?: boolean;
     autoFocus?: boolean;
+    isErrored?: boolean;
 }) {
     const [currentValue, setCurrentValue] = useState(value);
     const [inputWidth, setInputWidth] = useState<number>()
@@ -80,6 +82,7 @@ function ConditionTextField({
                 ref={textFieldWrapperContainerRef}
             >
                 <StyledTextField
+                    isErrored={isErrored}
                     setBorder={!disabled}
                     backgroundColor={"rgba(255, 255, 255, 1)"}
                     backgroundColorHover={"rgba(248, 250, 252, 1)"}

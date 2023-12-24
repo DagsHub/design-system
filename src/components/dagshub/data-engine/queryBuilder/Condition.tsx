@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
     AndOrMetadataInput,
-    BooleanOperators,
-    FloatOperators,
-    IntegerOperators,
+    MetadataFieldProps,
     Operators,
-    StringOperators,
-    BlobOperators, MetadataFieldProps
 } from "./TypesCondition";
 import {MetadataType} from "../metadataKeyValue/MetadataKeyValueList";
-
-class Comparator {
-}
+import SimpleCondition from "./SimpleCondition";
+import {Box} from "@mui/system";
+import {ConditionDropdown} from "./ConditionDropdown";
+import {Button, ButtonVariant} from "../../../elements";
+import {Icon} from "../../../icons";
+import {Menu, MenuItem, ThemeProvider, Typography} from "@mui/material";
+import theme from "../../../../theme";
 
 const Condition = ({
                        condition,
@@ -30,8 +30,11 @@ const Condition = ({
     onRemove?: any,
     onAdd?: any,
     isSimple?: boolean
-    verifyCondition:(valueType: MetadataType, value: string)=>boolean
+    verifyCondition: (valueType: MetadataType, value: string) => boolean
 }) => {
+
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const conditionGroupAddButtonRef = React.useRef<HTMLButtonElement>(null);
 
     const containerStyle = {
         fontFamily: "Inter",
@@ -39,123 +42,22 @@ const Condition = ({
         lineHeight: "20px",
     };
 
-    const [operatorsList, setOperatorsList] = useState<{ label: string; id: Comparator; }[]>(Operators);
-    const [shouldDisplayValueField, setShouldDisplayValueField] = useState<boolean>(true);
-    const [isErrored, setIsErrored] = useState<boolean>(false);
-
-    useEffect(() => {
-        if (!!condition?.filter?.valueType) {
-            switch (condition.filter.valueType) {
-                case "STRING":
-                    setOperatorsList(StringOperators);
-                    break;
-                case "INTEGER":
-                    setOperatorsList(IntegerOperators);
-                    break;
-                case "FLOAT":
-                    setOperatorsList(FloatOperators);
-                    break;
-                case "BOOLEAN":
-                    setOperatorsList(BooleanOperators);
-                    break;
-                case "BLOB":
-                    setOperatorsList(BlobOperators);
-                    break;
-            }
-        }
-    }, [condition.filter?.key])
-
-    useEffect(() => {
-        if (!!condition.filter?.comparator) {
-            switch (condition.filter.comparator) {
-                case "IS_NULL":
-                case "IS_NEGATIVE_INFINITY":
-                case "IS_POSITIVE_INFINITY":
-                case "IS_NAN":
-                    setShouldDisplayValueField(false);
-                    onChange({...condition, filter: {...condition.filter, value: undefined}});
-                    break;
-                default:
-                    setShouldDisplayValueField(true);
-                    break;
-            }
-        }
-    }, [condition.filter?.comparator])
-
-    useEffect(()=>{
-        if(!!condition.filter?.comparator){
-            // check if comparator exists in operatorsList, and if not, change the comparator to the first one in the list
-            const comparatorExists = operatorsList.some(op => op.id === condition.filter?.comparator);
-            if(!comparatorExists){
-                onChange({...condition, filter: {...condition.filter, comparator: operatorsList[0].id}});
-            }
-        }
-    },[operatorsList])
-
-    useEffect(()=>{
-        if(!!condition.filter?.valueType && !!condition.filter?.value){
-            setIsErrored(!verifyCondition( condition.filter?.valueType, condition.filter?.value));
-        } else{
-            setIsErrored(false);
-        }
-    },[condition.filter?.valueType,condition.filter?.value])
-
     if (!condition?.or && !condition?.and && !!condition?.filter) {
-        const isEmpty= !condition.filter?.key || !condition.filter?.comparator || !condition.filter?.value;
         // Simple condition
         return (
-            <div style={{...containerStyle, padding: "10px", margin: "10px 0", backgroundColor: "lightgrey"}}>
-                {!isSimple && condition.not && <span>NOT </span>}
-                <select
-                    style={{...containerStyle}}
-                    value={condition.filter?.key || undefined}// not sure if it's ok
-                    onChange=
-                        {e => {
-                            onChange({
-                                ...condition,
-                                filter: {
-                                    ...condition.filter,
-                                    key: e.target.value,
-                                    valueType: metadataFields.find(field => field.name === e.target.value)?.valueType
-                                }
-                            });
-                        }
-                        }
-                >
-                    <option value="" disabled selected>Select a metadata field</option>
-                    {metadataFields?.map(op => <option key={op.name} value={op.name}>{op.name}</option>)}
-                </select>
-                <select
-                    style={{...containerStyle}}
-                    value={condition.filter?.comparator as string || operatorsList[0].id as string}
-                    onChange={e => {onChange({...condition, filter: {...condition.filter, comparator: e.target.value}})}}
-                >
-                    {operatorsList.map(op => <option key={op.label} value={op.id as string}>{op.label}</option>)}
-                </select>
-                {shouldDisplayValueField &&
-                    <input
-                        style={{...containerStyle}}
-                        value={condition.filter?.value || undefined}
-                        aria-errormessage={"Value must be a " + condition.filter?.valueType}
-                        onChange={e => onChange({...condition, filter: {...condition.filter, value: e.target.value}})}
-                        placeholder="Value"
-                    />}
-                {isErrored && <span style={{color: "purple"}}>Value must be a {condition.filter?.valueType}</span>}
-                <button onClick={onRemove} style={{...containerStyle}}>
-                    x
-                </button>
-                <button onClick={onAdd} style={{...containerStyle}}>
-                    +
-                </button>
-                {!isSimple &&
-                    <button style={{...containerStyle}} onClick={() => onChange({...condition, not: !condition.not})}>
-                        {condition.not ? "Remove Not from condition" : "Add NOT to condition"}
-                    </button>}
-                {isEmpty && <span style={{color: "red"}}>Please fill all fields</span>}
-            </div>
+            <SimpleCondition
+                condition={condition}
+                onChange={onChange}
+                metadataFields={metadataFields}
+                verifyCondition={verifyCondition}
+                isSimple={isSimple}
+                onAdd={onAdd}
+                onRemove={onRemove}
+            />
         );
     } else {
-        // Compound condition (AND/OR)
+        // Group condition
+
         //check if there are simple conditions in the group
         const isAndRelation = !!condition.and;
         const areThereSimpleFilters = (isAndRelation ? condition.and : condition.or)?.some((cond) => {
@@ -163,51 +65,151 @@ const Condition = ({
             }
         );
 
-        const isEmpty = ((condition.and || condition.or)??[]).length==0;
+        const isEmpty = ((condition.and || condition.or) ?? []).length == 0;
 
         return (
-            <div style={{
-                ...containerStyle,
-                padding: "10px",
-                margin: "10px 0",
-                border: level == 0 ? "1px solid black" : "1px dashed black"
-            }}>
-                {isEmpty && <div style={{color: "red"}}>Group is empty</div>}
-                {!isSimple && condition.not && <span style={{...containerStyle}}>NOT </span>}
-                {!isSimple && <><select
-                    value={isAndRelation ? 'AND' : 'OR'}
-                    onChange={e => {
-                        if (isAndRelation && e.target.value === 'OR') {
-                            onChange({...condition, or: condition.and, and: undefined})
-                        } else if (!isAndRelation && e.target.value === 'AND') {
-                            onChange({...condition, and: condition.or, or: undefined})
-                        }
-                        //if the same relation, do nothing
-                    }}>
-                    <option style={{...containerStyle}} value="AND">AND</option>
-                    <option style={{...containerStyle}} value="OR">OR</option>
-                </select>
-                    <button style={{...containerStyle}} onClick={() => onChange({...condition, not: !condition.not})}>
-                        {condition.not ? "Remove Not from group" : "Add NOT to group"}
-                    </button>
-                </>}
-                {!isSimple && onRemove !== undefined &&
-                    <button style={{...containerStyle}} onClick={onRemove}>Remove Group</button>}
-                {!areThereSimpleFilters && <div>
-                    <button style={{...containerStyle}} onClick={() => {
-                        const newConditions = condition.and || condition.or || [];
-                        newConditions.splice(0,0,{filter: {comparator: Operators[0].id}});
-                        if (isAndRelation) {
-                            onChange({...condition, and: newConditions});
-                        } else {// or relation
-                            onChange({...condition, or: newConditions});
-                        }
-                    }}>
-                        Add Condition
-                    {/*    appears when there are no simple conditions, should add to the beginning of the list*/}
-                    </button>
-                </div>}
-                <div>
+            <ThemeProvider theme={theme}>
+
+                <Box
+                    style={{
+                        ...containerStyle,
+                        padding: "10px",
+                        border: level == 0 ? "1px solid rgba(226, 232, 240, 1)" : "2px dashed rgba(203, 213, 225, 1)",
+                        borderRadius: "16px",
+                        display: "flex", flexDirection: "column", gap: "8px", backgroundColor: "rgba(248, 250, 252, 1)"
+                    }}
+                >
+                    {!isSimple &&
+                        <Box style={{display: "flex", flexDirection: "row", gap: "4px"}}>
+                            {condition.not &&
+                                <Box style={{
+                                    display: "flex",
+                                    width: "fit-content",
+                                    alignItems: "center",
+                                    flexDirection: "row",
+                                    gap: "8px",
+                                    padding: "4px 8px",
+                                    backgroundColor: "rgba(241, 245, 249, 1)",
+                                    borderRadius: "8px",
+                                    border: "1px solid rgba(226, 232, 240, 1)",
+                                    boxSizing: "border-box",
+                                    height: "28px"
+                                }}>
+                                    <Typography variant={"medium"}
+                                                style={{color: "rgba(84, 103, 222, 1)"}}>NOT</Typography>
+                                    <span style={{display:"flex", cursor: "pointer"}}><Icon
+                                        onClick={() => onChange({...condition, not: !condition.not})}
+                                        icon={"solid-x-circle"} width={16} height={16} fill={"rgba(148, 163, 184, 1)"}/></span>
+                                </Box>
+                            }
+                            <ConditionDropdown
+                                inputColor={"rgba(84, 103, 222, 1)"}
+                                initialChecked={isAndRelation ? {id: 'AND', label: 'AND'} : {id: 'OR', label: 'OR'}}
+                                label={""}
+                                onChange={(e, value) => {
+                                    if (isAndRelation && value?.id === 'OR') {
+                                        onChange({...condition, or: condition.and, and: undefined})
+                                    } else if (!isAndRelation && value?.id === 'AND') {
+                                        onChange({...condition, and: condition.or, or: undefined})
+                                    }
+                                    //if the same relation, do nothing
+                                }}
+                                options={[{id: "AND", label: "AND"}, {id: "OR", label: "OR"}]}
+                            />
+
+                            {!isSimple && onRemove !== undefined && <Button
+                                style={{
+                                    width: "28px",
+                                    height: "28px",
+                                    borderRadius: "8px",
+                                    padding: "8px",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    display: "flex"
+                                }}
+                                label={""}
+                                variant={ButtonVariant.Ghost}
+                                onClick={onRemove}
+                                iconRight={<Icon icon={"solid-trash"} width={14} height={16}
+                                                 fill={"rgba(100, 116, 139, 1)"}/>}
+                            />}
+
+                            <Button
+                                ref={conditionGroupAddButtonRef}
+                                style={{
+                                    width: "28px",
+                                    height: "28px",
+                                    borderRadius: "8px",
+                                    padding: "8px",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    display: "flex"
+                                }}
+                                label={""}
+                                onClick={() => setIsOpen(true)}
+                                variant={ButtonVariant.Ghost}
+                                iconRight={<Icon icon={"solid-plus"} width={14} height={16}
+                                                 fill={"rgba(100, 116, 139, 1)"}/>}
+                            />
+                            <Menu
+                                sx={{
+                                    '& .MuiPaper-root': {
+                                        borderRadius: '12px',
+                                    },
+                                    padding: '8px',
+                                }}
+                                id="basic-menu"
+                                anchorEl={conditionGroupAddButtonRef.current}
+                                open={isOpen}
+                                onClose={() => setIsOpen(false)}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                <MenuItem onClick={() => {
+                                    const newConditions = condition.and || condition.or || [];
+                                    newConditions.push({and: []}); // is it ok or should it be [{}]
+                                    if (isAndRelation) {
+                                        onChange({...condition, and: newConditions});
+                                    } else {// or relation
+                                        onChange({...condition, or: newConditions});
+                                    }
+                                    setIsOpen(false)
+                                }}>
+                                    <Typography variant={"medium"}>
+                                        Add condition group
+                                    </Typography>
+                                </MenuItem>
+                                {!condition.not &&
+                                    <MenuItem onClick={() => {
+                                        onChange({...condition, not: !condition.not});
+                                        setIsOpen(false)
+                                    }}>
+                                        <Typography variant={"medium"}>
+                                            Add NOT to group
+                                        </Typography>
+                                    </MenuItem>
+                                }
+                                {!areThereSimpleFilters && <MenuItem onClick={() => {
+                                    const newConditions = condition.and || condition.or || [];
+                                    newConditions.splice(0, 0, {filter: {comparator: Operators[0].id}});
+                                    if (isAndRelation) {
+                                        onChange({...condition, and: newConditions});
+                                    } else {// or relation
+                                        onChange({...condition, or: newConditions});
+                                    }
+                                    setIsOpen(false)
+                                }}>
+                                    <Typography variant={"medium"}>
+                                        Add condition
+                                    </Typography>
+                                </MenuItem>}
+                            </Menu>
+                        </Box>
+                    }
+
+                    {/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/}
+
                     {(isAndRelation ? condition.and : condition.or)?.map((cond, index) => (
                         <div key={index}>
                             <Condition
@@ -236,7 +238,7 @@ const Condition = ({
                                 }}
                                 onAdd={() => {
                                     const newConditions = condition.and || condition.or || [];
-                                    newConditions.splice(index+1, 0, {filter: {comparator: Operators[0].id}});
+                                    newConditions.splice(index + 1, 0, {filter: {comparator: Operators[0].id}});
                                     if (isAndRelation) {
                                         onChange({...condition, and: newConditions});
                                     } else {// or relation
@@ -247,20 +249,8 @@ const Condition = ({
                             />
                         </div>
                     ))}
-                    {!isSimple && <div role={"button"} style={{...containerStyle, cursor: "pointer"}} onClick={() => {
-                        const newConditions = condition.and || condition.or || [];
-                        newConditions.push({and: []}); // is it ok or should it be [{}]
-                        if (isAndRelation) {
-                            onChange({...condition, and: newConditions});
-                        } else {// or relation
-                            onChange({...condition, or: newConditions});
-                        }
-                    }}>
-                        Add Condition group (AND/OR)
-                        {/*The group is AND by default,and always added to the end*/}
-                    </div>}
-                </div>
-            </div>
+                </Box>
+            </ThemeProvider>
         );
     }
 }

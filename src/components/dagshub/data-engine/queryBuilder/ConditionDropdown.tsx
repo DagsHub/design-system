@@ -12,7 +12,9 @@ export function ConditionDropdown({
                                       menuWidth = "175px",
                                       unsetMenuMaxHeight,
                                       inputColor = "rgba(23, 45, 50, 1)",
-    isReadOnly
+    isReadOnly,
+                                      removeEndAdornment,
+                                      alignInputTextToCenter
                                   }: {
     onChange: (event: SyntheticEvent<Element, Event>, value: RadioButtonItemProps | null) => void;
     initialChecked?: RadioButtonItemProps | undefined;
@@ -23,6 +25,8 @@ export function ConditionDropdown({
     unsetMenuMaxHeight?: boolean;
     inputColor?: string;
     isReadOnly?: boolean;
+    removeEndAdornment?: boolean;
+    alignInputTextToCenter?: boolean;
 }) {
 
     return (
@@ -38,8 +42,8 @@ export function ConditionDropdown({
             isReadOnly={!!isReadOnly}
             disableClearable={true}
             makeWidthDynamic={true}
-            removeEndAdornment={true}
-            alignInputTextToCenter={true}
+            removeEndAdornment={removeEndAdornment}
+            alignInputTextToCenter={alignInputTextToCenter}
             label={label ?? ""}
             height={'28px'}
             inputBorderRadius={"8px"}
