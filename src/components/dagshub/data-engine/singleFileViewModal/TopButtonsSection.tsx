@@ -50,7 +50,7 @@ export default function TopButtonsSection({
                 <Tooltip
                     content={"Disable “Select all” to choose specific items"}
                     trigger={'click'}
-                    placement={'bottom'}
+                    placement={'bottom-start'}
                     disabled={!areAllSelected}>
                     <Box>
                         <Checkbox checked={isSelected || areAllSelected} onChange={onSelectItemToggle} disabled={areAllSelected}/>
