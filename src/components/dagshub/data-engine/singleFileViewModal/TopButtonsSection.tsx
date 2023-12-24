@@ -49,7 +49,6 @@ export default function TopButtonsSection({
             <span>
                 <Tooltip
                     content={"Disable “Select all” to choose specific items"}
-                    trigger={'click'}
                     placement={'bottom-start'}
                     disabled={!areAllSelected}>
                     <Box>
