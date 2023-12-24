@@ -22,17 +22,27 @@ export const Presentation = () => {
   );
 };
 
-export const Checked = Template.bind({});
-Checked.args = {
-  checked: true,
-  label: 'Checked!'
-};
-
-export const Unchecked = Template.bind({});
-Unchecked.args = {
-  checked: false,
-  label: 'Unchecked!'
-};
+export const CheckboxStates = () => {
+    const checked = [true, false]
+    const disabled = [true, false]
+    return (
+        <div style={{ display: 'flex', gap: '8px', flexDirection: 'column' }}>
+            {checked.map((checked) => (
+                <div key={`checked-${checked}`} style={{ display: 'flex', gap: '8px', flexDirection: 'column' }}>
+                    {disabled.map((disabled) => (
+                        <Checkbox
+                            key={`disabled-${disabled}`}
+                            checked={checked}
+                            disabled={disabled}
+                            label={`${checked ? "checked" : "unchecked"} | ${disabled ? "disabled" : "enabled"}`}
+                            style={{ margin: '8px' }}
+                        />
+                    ))}
+                </div>
+            ))}
+        </div>
+    );
+}
 
 export const InteractiveCheckbox = () => {
     const [checked, setChecked] = React.useState(false);

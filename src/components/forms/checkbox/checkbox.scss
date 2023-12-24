@@ -48,10 +48,12 @@
   display: none;
 }
 
-.dagshub-checkbox:disabled,
-.dagshub-checkbox:disabled:hover,
-.dagshub-checkbox:disabled:focus {
-  color: #ffffff;
-  background-color: #64748b;
-  cursor: not-allowed;
+.dagshub-checkbox.disabled,
+.dagshub-checkbox.disabled:hover,
+.dagshub-checkbox.disabled:focus {
+  label {
+    color: #ffffff;
+    background-color: #64748b;
+    cursor: not-allowed;
+  }
 }
