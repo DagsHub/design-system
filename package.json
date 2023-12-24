@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/dagshub/design-system.git"
   },
-  "version": "0.1.42",
+  "version": "0.1.43",
   "description": "A component library for consuming dagshub user interfaces.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
