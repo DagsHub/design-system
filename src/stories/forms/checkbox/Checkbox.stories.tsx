@@ -25,19 +25,40 @@ export const Presentation = () => {
 export const CheckboxStates = () => {
     const checked = [true, false]
     const disabled = [true, false]
+    const indeterminate = [true, false]
     return (
         <div style={{ display: 'flex', gap: '8px', flexDirection: 'column' }}>
             {checked.map((checked) => (
                 <div key={`checked-${checked}`} style={{ display: 'flex', gap: '8px', flexDirection: 'column' }}>
-                    {disabled.map((disabled) => (
-                        <Checkbox
-                            key={`disabled-${disabled}`}
-                            checked={checked}
-                            disabled={disabled}
-                            label={`${checked ? "checked" : "unchecked"} | ${disabled ? "disabled" : "enabled"}`}
-                            style={{ margin: '8px' }}
-                        />
-                    ))}
+                    {disabled.map((disabled) => {
+                        if (!checked) {
+                            return (
+                                <div key={`disabled-${disabled}`} style={{ display: 'flex', gap: '8px', flexDirection: 'column' }}>
+                                    {indeterminate.map((indeterminate) => (
+                                        <Checkbox
+                                            key={`indeterminate-${indeterminate}`}
+                                            checked={checked}
+                                            disabled={disabled}
+                                            indeterminate={indeterminate}
+                                            label={`${disabled ? "disabled" : "enabled"} | ${indeterminate ? "indeterminate" : "not indeterminate"}`}
+                                            style={{margin: '8px'}}
+                                        />
+                                    ))}
+                                </div>
+                            )
+                        } else {
+                            return (
+                            <Checkbox
+                                key={`disabled-${disabled}`}
+                                checked={checked}
+                                disabled={disabled}
+                                label={`${checked ? "checked" : "unchecked"} | ${disabled ? "disabled" : "enabled"}`}
+                                style={{ margin: '8px' }}
+                            />
+                            )
+                        }
+                    }
+                    )}
                 </div>
             ))}
         </div>
