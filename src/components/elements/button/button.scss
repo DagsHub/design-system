@@ -7,21 +7,6 @@
   transition: all 0.5s;
   box-sizing: border-box;
 
-  &:disabled {
-    color: #ffffff;
-    background-color: #64748b;
-    cursor: not-allowed;
-    &:hover {
-      background-color: #64748b;
-    }
-    &:focus {
-      background-color: #64748b;
-    }
-    .counter {
-      color: #ffffff !important;
-    }
-  }
-
   &.primary {
     color: #ffffff;
     background-color: #5467de;
@@ -34,6 +19,17 @@
     }
     .counter {
       color: #ffffff !important;
+    }
+    svg path {
+      fill: #ffffff;
+    }
+    &.disabled,
+    &:disabled {
+      background: #fbfafd;
+      color: #737278;
+      svg path {
+        fill: #737278;
+      }
     }
   }
 
@@ -49,6 +45,14 @@
     }
     .counter {
       color: #172d32 !important;
+    }
+    &.disabled,
+    &:disabled {
+      background: var(--secondary-state-200, #e2e8f0);
+      color: #5d6f89;
+      svg path {
+        fill: #5d6f89;
+      }
     }
   }
 
@@ -67,6 +71,15 @@
     }
     .counter {
       color: #172d32 !important;
+    }
+
+    &.disabled,
+    &:disabled {
+      color: #7b8ea8;
+      border: 2px solid var(--secondary-state-200, #e2e8f0);
+      svg path {
+        fill: #7b8ea8;
+      }
     }
   }
 
@@ -95,18 +108,21 @@
     .counter {
       color: #dc2626 !important;
     }
-  }
+    svg path {
+      fill: #dc2626;
+    }
 
-  &.disabled {
-    color: #ffffff !important;
-    background-color: #64748b !important;
-    .counter {
-      color: #ffffff !important;
+    &.disabled,
+    &:disabled {
+      border: 2px solid var(--secondary-state-200, #e2e8f0);
+      background: none;
+      color: #f15656;
+      svg path {
+        fill: #f15656;
+      }
     }
   }
-}
 
-.dagshub-btn {
   &.ghost {
     color: #172d32;
     background-color: transparent;
@@ -129,10 +145,16 @@
     .counter {
       color: #172d32 !important;
     }
-  }
-}
 
-.dagshub-btn {
+    &.disabled,
+    &:disabled {
+      color: #7b8ea8;
+      svg path {
+        fill: #7b8ea8;
+      }
+    }
+  }
+
   &.normal {
     padding-right: 12px;
     padding-left: 12px;

@@ -15,6 +15,7 @@ export interface ItemData {
   metadataList: MetadataField[];
   hasNext: boolean;
   hasPrevious: boolean;
+  isSelected?: boolean;
 }
 
 export interface singleFileViewModalProps {
@@ -25,6 +26,8 @@ export interface singleFileViewModalProps {
   metadataOnChangeHandler?: (metadataList: NewMetadataField[]) => void;
   enableMetadataEditing?: boolean;
   enableMetadataDeletion?: boolean;
+  onSelectItemToggle?: (e?: any) => void;
+  areAllSelected?: boolean;
   onAnnotatedClick?: () => void;
   enableDatapointAnnotating?: boolean;
   enableFileDownloading?: boolean;
@@ -38,6 +41,8 @@ export function SingleFileViewModal({
   metadataOnChangeHandler,
   enableMetadataEditing,
   enableMetadataDeletion,
+  onSelectItemToggle,
+  areAllSelected,
   onAnnotatedClick,
   enableDatapointAnnotating,
   enableFileDownloading
@@ -93,6 +98,9 @@ export function SingleFileViewModal({
               metadataButtonIcon={
                 showMetadataOverlay ? 'solid-sidebar-arrow-left' : 'solid-sidebar-arrow-right'
               }
+              onSelectItemToggle={onSelectItemToggle}
+              isSelected={itemData.isSelected}
+              areAllSelected={areAllSelected}
               onAnnotatedClick={onAnnotatedClick}
               enableDatapointAnnotating={enableDatapointAnnotating}
               enableFileDownloading={enableFileDownloading}

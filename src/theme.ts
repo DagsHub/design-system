@@ -8,6 +8,7 @@ declare module '@mui/material/Typography' {
     medium: true;
     mediumBold: true;
     large: true;
+    overflow: true;
   }
 }
 
@@ -21,7 +22,6 @@ const lightTheme = createTheme({
   components: {
     MuiTooltip: {
       styleOverrides: {
-        tooltipPlacementTop: {},
         tooltip: {
           display: 'block',
           fontFamily: 'Inter',
@@ -36,7 +36,8 @@ const lightTheme = createTheme({
             margin: '0'
           },
           [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
-            margin: '0'
+            margin: '0',
+            marginTop:"4px"
           },
           [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
             margin: '8px'
@@ -53,14 +54,18 @@ const lightTheme = createTheme({
     MuiTypography: {
       styleOverrides: {
         root: {
-          fontFamily: 'Inter',
-          color: 'rgba(23, 45, 50, 1)',
-          overflow: 'hidden',
-          whiteSpace: 'nowrap',
-          textOverflow: 'ellipsis'
+          fontFamily: 'Inter'
         }
       },
       variants: [
+        {
+          props: { variant: 'overflow' },
+          style: {
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap'
+          }
+        },
         {
           props: { variant: 'small' },
           style: {

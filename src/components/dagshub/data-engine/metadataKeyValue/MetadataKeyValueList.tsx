@@ -194,7 +194,8 @@ export function MetadataKeyValueList({
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
-        maxHeight: maxHeight ?? '100%'
+        maxHeight: maxHeight ?? '100%',
+        overflowX: 'hidden'
       }}
     >
       <Box
@@ -204,7 +205,8 @@ export function MetadataKeyValueList({
           flexDirection: 'column',
           height: '100%',
           maxHeight: '100%',
-          overflowY: 'auto'
+          overflowY: 'auto',
+          overflowX: 'hidden'
         }}
       >
         {temporaryMetadataList.map((metadataField, index) => (

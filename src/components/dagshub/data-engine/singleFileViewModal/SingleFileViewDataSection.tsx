@@ -172,17 +172,18 @@ export function SingleFileViewDataSection({
               width: 'fit-content',
               alignSelf: 'flex-start',
               marginTop: '4px',
-              marginLeft: '16px'
+              marginLeft: '16px',
+                flexShrink: 0
             }}
           />
-          <CustomAccordion label={'Metadata'}>
+          <Box sx={{display:"flex", height:"calc(100% - 40px)"}}><CustomAccordion label={'Metadata'}>
             <MetadataKeyValueList
               metadataList={itemData.metadataList}
               editingEnabled={!!enableMetadataEditing}
               deletionEnabled={!!enableMetadataDeletion}
               onChangeHandler={metadataOnChangeHandler}
             />
-          </CustomAccordion>
+          </CustomAccordion></Box>
         </Box>
       )}
     </Box>

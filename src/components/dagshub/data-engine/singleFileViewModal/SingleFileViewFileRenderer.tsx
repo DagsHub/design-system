@@ -1,5 +1,6 @@
 import { ItemFallback } from './ItemFallback';
 import React, { useEffect, useState } from 'react';
+import { CSVViewer } from '../CSVViewer/CSVViewer';
 import { Box } from '@mui/system';
 import PDFViewer from '../PDFViewer/PDFViewer';
 
@@ -14,12 +15,11 @@ export function SingleFileViewFileRenderer({
 }) {
   const [textContent, setTextContent] = useState<string>('');
   const [isError, setIsError] = useState<boolean>(false);
+  const [csvHeaders, setCsvHeaders] = useState<string[]>([]);
+  const [csvValues, setCsvValues] = useState<string[][]>([]);
 
   useEffect(() => {
     setIsError(false);
-  }, [galleryFilePath, itemType]);
-
-  useEffect(() => {
     if (itemType === 'text') {
       fetch(galleryFilePath)
         .then((response) => {
@@ -30,6 +30,21 @@ export function SingleFileViewFileRenderer({
         })
         .then((data) => {
           setTextContent(data);
+        })
+        .catch((error) => {
+          setIsError(true);
+        });
+    } else if (itemType === 'csv') {
+      fetch(galleryFilePath)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setCsvValues(data.values);
+          setCsvHeaders(data.headers);
         })
         .catch((error) => {
           setIsError(true);
@@ -131,6 +146,9 @@ export function SingleFileViewFileRenderer({
           Your browser doesn't support HTML5 video tag.
         </audio>
       );
+    }
+    if (itemType === 'csv') {
+      return <CSVViewer headers={csvHeaders} values={csvValues} />;
     }
   }
   return <ItemFallback height={itemFallbackHeight} width={'100%'} disableHoverMode />;

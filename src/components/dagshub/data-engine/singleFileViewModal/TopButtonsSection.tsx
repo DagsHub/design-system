@@ -4,6 +4,7 @@ import { ThemeProvider, Tooltip, Typography } from '@mui/material';
 import { Button, ButtonVariant } from '../../../elements';
 import { Icon } from '../../../icons';
 import theme from '../../../../theme';
+import { Checkbox } from '../../../forms';
 
 export default function TopButtonsSection({
   height,
@@ -12,6 +13,9 @@ export default function TopButtonsSection({
   linkToFile,
   onMetadataIconClick,
   metadataButtonIcon,
+  onSelectItemToggle,
+  isSelected,
+  areAllSelected,
   linkToDownloadFile,
   onAnnotatedClick,
   enableDatapointAnnotating,
@@ -23,6 +27,9 @@ export default function TopButtonsSection({
   linkToFile: string;
   onMetadataIconClick: () => void;
   metadataButtonIcon: string;
+  onSelectItemToggle?: () => void | undefined;
+  isSelected?: boolean;
+  areAllSelected?: boolean;
   linkToDownloadFile: string;
   onAnnotatedClick?: () => void;
   enableDatapointAnnotating?: boolean;
@@ -36,6 +43,7 @@ export default function TopButtonsSection({
           width: 'calc(100% - 44px)',
           height: height,
           flexDirection: 'row',
+          gap: '8px',
           alignItems: 'center',
           justifyContent: 'space-between',
           flexShrink: 0,
@@ -47,6 +55,23 @@ export default function TopButtonsSection({
         <Box
           sx={{ display: 'flex', gap: '8px', justifyContent: 'flex-start', alignItems: 'center' }}
         >
+          {!!onSelectItemToggle && isSelected !== undefined && (
+            <span>
+              <Tooltip
+                title={areAllSelected?'Disable “Select all” to choose specific items':''}
+                placement={'bottom-start'}
+                arrow={true}
+              >
+                <Box>
+                  <Checkbox
+                    checked={isSelected || areAllSelected}
+                    onChange={onSelectItemToggle}
+                    disabled={areAllSelected}
+                  />
+                </Box>
+              </Tooltip>
+            </span>
+          )}
           <Typography
             variant={'large'}
             sx={{
