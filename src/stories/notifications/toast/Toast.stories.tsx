@@ -45,6 +45,16 @@ export const Error = () => {
   );
 };
 
+export const Info = () => {
+  const [visible, setVisible] = useState<boolean>(true);
+
+  return (
+    <Toast visible={visible} width={400} onClose={() => setVisible(false)} type="info">
+      I am an info toast!
+    </Toast>
+  );
+};
+
 export const AutoClose = () => {
   const [visible, setVisible] = useState<boolean>(true);
 
