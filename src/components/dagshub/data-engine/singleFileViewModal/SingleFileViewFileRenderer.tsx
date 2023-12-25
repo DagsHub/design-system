@@ -25,7 +25,6 @@ export function SingleFileViewFileRenderer({
           return response.json();
         })
         .then((data) => {
-          debugger;
           setCsvValues(data.values);
           setCsvHeaders(data.headers);
         })
