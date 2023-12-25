@@ -7,7 +7,7 @@ export function ItemFallback({
   width,
   onClick,
   disableHoverMode,
-    isError
+  isError
 }: {
   height: number | string;
   width: number | string;
@@ -35,7 +35,11 @@ export function ItemFallback({
         }
       }}
     >
-        {isError?<Icon icon={'file-x'} width={24} height={24} fill={'#94A3B8'} />:<Icon icon={'outline-file'} width={24} height={24} fill={'#94A3B8'} />}
+      {isError ? (
+        <Icon icon={'file-x'} width={24} height={24} fill={'#94A3B8'} />
+      ) : (
+        <Icon icon={'outline-file'} width={24} height={24} fill={'#94A3B8'} />
+      )}
     </Box>
   );
 }
