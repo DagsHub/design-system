@@ -27,10 +27,10 @@ const Condition = ({
     onChange: any;
     metadataFields: MetadataFieldProps[],
     level?: number;
-    onRemove?: any,
-    onAdd?: any,
-    isSimple?: boolean
-    verifyCondition: (valueType: MetadataType, value: string) => boolean
+    onRemove?: any;
+    onAdd?: any;
+    isSimple?: boolean;
+    verifyCondition: (valueType: MetadataType, value: string) => boolean;
 }) => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -79,6 +79,30 @@ const Condition = ({
                         display: "flex", flexDirection: "column", gap: "8px", backgroundColor: "rgba(248, 250, 252, 1)"
                     }}
                 >
+                    {isSimple && !areThereSimpleFilters &&
+                        <Button
+                        ref={conditionGroupAddButtonRef}
+                        style={{
+                            width: "28px",
+                            height: "28px",
+                            borderRadius: "8px",
+                            padding: "8px",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            display: "flex"
+                        }}
+                        label={""}
+                        onClick={() =>                                     {const newConditions = condition.and || condition.or || [];
+                            newConditions.splice(0, 0, {filter: {comparator: Operators[0].id}});
+                            if (isAndRelation) {
+                            onChange({...condition, and: newConditions});
+                        } else {// or relation
+                            onChange({...condition, or: newConditions});
+                        }}}
+                        variant={ButtonVariant.Ghost}
+                        iconRight={<Icon icon={"solid-plus"} width={14} height={16}
+                                         fill={"rgba(100, 116, 139, 1)"}/>}
+                    />}
                     {!isSimple &&
                         <Box style={{display: "flex", flexDirection: "row", gap: "4px"}}>
                             {condition.not &&
@@ -192,7 +216,7 @@ const Condition = ({
                                 }
                                 {!areThereSimpleFilters && <MenuItem onClick={() => {
                                     const newConditions = condition.and || condition.or || [];
-                                    newConditions.splice(0, 0, {filter: {comparator: Operators[0].id}});
+                                    newConditions.splice(0, 0, {id:, filter: {comparator: Operators[0].id}});
                                     if (isAndRelation) {
                                         onChange({...condition, and: newConditions});
                                     } else {// or relation

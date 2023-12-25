@@ -82,15 +82,15 @@ const SimpleCondition = ({
 
     useEffect(() => {
         // check if comparator exists in operatorsList, and if not, change the comparator to the first one in the list
-        // if(!!condition.filter?.comparator){
-        //  const comparatorExists = operatorsList.some(op => op.id === condition.filter?.comparator);
-        //  if(!comparatorExists){
-        //     onChange({...condition, filter: {...condition.filter, comparator: operatorsList[0].id}});
-        //  }
-        // }
+        if(!!condition.filter?.comparator){
+         const comparatorExists = operatorsList.some(op => op.id === condition.filter?.comparator);
+         if(!comparatorExists){
+            onChange({...condition, filter: {...condition.filter, comparator: operatorsList[0].id}});
+         }
+        }
 
         //Whenever the operatorsList changes, change the comparator to the first one in the list
-        onChange({...condition, filter: {...condition.filter, comparator: operatorsList[0].id}});
+        // onChange({...condition, filter: {...condition.filter, comparator: operatorsList[0].id}});
     }, [operatorsList])
 
     useEffect(() => {
@@ -157,7 +157,7 @@ const SimpleCondition = ({
                             ...condition,
                             filter: {
                                 ...condition.filter,
-                                key: value,
+                                key: value?.label,
                                 valueType: metadataFields.find(field => field.name === value?.label)?.valueType
                             }
                         });
@@ -234,7 +234,14 @@ const SimpleCondition = ({
                         display: "flex"
                     }}
                     label={""}
-                    onClick={() => setIsOpen(true)}
+                    onClick={() =>{
+                        if(isSimple){
+                            onAdd();
+                        } else{
+                            setIsOpen(true)
+                        }
+                    }
+                }
                     variant={ButtonVariant.Ghost}
                     iconRight={<Icon icon={"solid-plus"} width={14} height={16} fill={"rgba(100, 116, 139, 1)"}/>}
                 />
@@ -272,8 +279,10 @@ const SimpleCondition = ({
                         </MenuItem>}
                 </Menu>
                 {isEmpty &&
-                    <Box style={{height: "28px", display: "flex", alignItems: "center"}}><Typography variant={"thin"}
-                                                                                                     style={{color: "rgba(71, 85, 105, 1)"}}> *Required</Typography></Box>}
+                    <Box style={{height: "28px", display: "flex", alignItems: "center"}}>
+                        <Typography variant={"thin"} style={{color: "rgba(71, 85, 105, 1)"}}> *Required</Typography>
+                    </Box>
+                }
             </Box>
         </ThemeProvider>
     );
