@@ -50,7 +50,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
     return (
       <div ref={ref} className={classes} style={{ width, top, bottom, left, right }}>
         <Icon
-          icon={isSuccess ? 'checkmark' : isError ? 'solid-exclamation-circle': ''}
+          icon={isSuccess ? 'checkmark' : isError ? 'solid-exclamation-circle' : ''}
           fill={isSuccess ? 'green' : isError ? 'red' : 'transparent'}
         />
         <div>{children}</div>

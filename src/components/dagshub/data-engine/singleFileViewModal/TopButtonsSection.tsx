@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
 import { Box } from '@mui/system';
 import { ThemeProvider, Typography } from '@mui/material';
-import {Button, ButtonVariant, Tooltip} from '../../../elements';
+import { Button, ButtonVariant, Tooltip } from '../../../elements';
 import { Icon } from '../../../icons';
 import theme from '../../../../theme';
-import {Checkbox} from "../../../forms";
+import { Checkbox } from '../../../forms';
 
 export default function TopButtonsSection({
   height,
@@ -15,7 +15,7 @@ export default function TopButtonsSection({
   metadataButtonIcon,
   onSelectItemToggle,
   isSelected,
-  areAllSelected,
+  areAllSelected
 }: {
   height: string;
   isSmallScreen: boolean;
@@ -44,19 +44,23 @@ export default function TopButtonsSection({
           flexWrap: isSmallScreen ? 'wrap' : 'nowrap'
         }}
       >
-        {
-            (onSelectItemToggle && isSelected !== undefined) &&
-            <span>
-                <Tooltip
-                    content={"Disable “Select all” to choose specific items"}
-                    placement={'bottom-start'}
-                    disabled={!areAllSelected}>
-                    <Box>
-                        <Checkbox checked={isSelected || areAllSelected} onChange={onSelectItemToggle} disabled={areAllSelected}/>
-                    </Box>
-                </Tooltip>
-            </span>
-        }
+        {onSelectItemToggle && isSelected !== undefined && (
+          <span>
+            <Tooltip
+              content={'Disable “Select all” to choose specific items'}
+              placement={'bottom-start'}
+              disabled={!areAllSelected}
+            >
+              <Box>
+                <Checkbox
+                  checked={isSelected || areAllSelected}
+                  onChange={onSelectItemToggle}
+                  disabled={areAllSelected}
+                />
+              </Box>
+            </Tooltip>
+          </span>
+        )}
         <Typography
           variant={'large'}
           sx={{

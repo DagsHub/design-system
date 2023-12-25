@@ -26,11 +26,13 @@ export function ControlledDisplayFiltersGroup({
   toggledFilters
 }: ControlledDisplayFiltersGroupProps) {
   const [showAll, setShowAll] = useState<boolean>(isToggleAll ?? false);
-  const [availableFiltersNames, setAvailableFiltersNames] = useState<Set<string>>(new Set(filters.map((filter) => filter.label)));
+  const [availableFiltersNames, setAvailableFiltersNames] = useState<Set<string>>(
+    new Set(filters.map((filter) => filter.label))
+  );
 
-  useEffect(()=>{
-    setAvailableFiltersNames(new Set(filters.map((filter) => filter.label)))
-  },[filters])
+  useEffect(() => {
+    setAvailableFiltersNames(new Set(filters.map((filter) => filter.label)));
+  }, [filters]);
 
   function getInitialState() {
     if (isToggleAll) {
@@ -43,13 +45,13 @@ export function ControlledDisplayFiltersGroup({
 
   const [displayedFilters, setDisplayedFilters] = useState<Set<string>>(getInitialState());
 
-  useEffect(()=>{
-    setShowAll(isToggleAll ?? false)
-  },[isToggleAll])
+  useEffect(() => {
+    setShowAll(isToggleAll ?? false);
+  }, [isToggleAll]);
 
-    useEffect(()=>{
-        setDisplayedFilters(getInitialState())
-    },[toggledFilters, availableFiltersNames])
+  useEffect(() => {
+    setDisplayedFilters(getInitialState());
+  }, [toggledFilters, availableFiltersNames]);
 
   const toggleAll = () => {
     if (!showAll) {

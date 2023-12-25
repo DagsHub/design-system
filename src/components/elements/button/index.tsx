@@ -9,7 +9,7 @@ export enum ButtonVariant {
   SecondaryDisabled = 'secondary disabled',
   OutlineSecondary = 'outline-secondary',
   Error = 'error',
-  Ghost = 'ghost',
+  Ghost = 'ghost'
 }
 
 export enum ButtonStretch {
@@ -52,7 +52,10 @@ export const Button = React.forwardRef<
     },
     ref
   ) => {
-    const classes = classNames([`dagshub-btn`, variant, stretch, className], { fullWidth, disabled });
+    const classes = classNames([`dagshub-btn`, variant, stretch, className], {
+      fullWidth,
+      disabled
+    });
 
     return (
       <button

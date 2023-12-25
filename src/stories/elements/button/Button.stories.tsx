@@ -9,7 +9,7 @@ import {
   ButtonStretch,
   ButtonProps
 } from '../../../components/elements/button';
-import {Icon} from "../../../components";
+import { Icon } from '../../../components';
 
 const meta: Meta<ButtonProps> = {
   title: 'Elements/Button',
@@ -49,38 +49,42 @@ export const Presentation = () => {
 };
 
 export const WithIcon = () => {
-  return(
-      <>
+  return (
+    <>
       {enum2arr(ButtonVariant).map((variant) => (
-          <div key={variant}>
-              {enum2arr(ButtonStretch).map((stretch) => (
-                  <>
-                    <ButtonStory
-                        key={`${variant}-${stretch}`}
-                        variant={variant}
-                        disabled={false}
-                        stretch={stretch}
-                        label={`${startCase(variant)} / ${startCase(stretch)}`}
-                        iconLeft={<Icon fill={'#475569'} icon="outline-annotations" height={14} width={14} />}
-                    />
-                    {stretch === ButtonStretch.Slim && (
-                        <ButtonStory
-                            key={`${variant}-${stretch}-disabled`}
-                            variant={variant}
-                            disabled={true}
-                            stretch={stretch}
-                            label={`${startCase(variant)} / ${startCase(stretch)} disabled`}
-                            iconLeft={<Icon fill={'#475569'} icon="outline-annotations" height={14} width={14}/>}
-                        />)}
-                  </>
-
-              ))}
-              <br /> <br />
-          </div>
+        <div key={variant}>
+          {enum2arr(ButtonStretch).map((stretch) => (
+            <>
+              <ButtonStory
+                key={`${variant}-${stretch}`}
+                variant={variant}
+                disabled={false}
+                stretch={stretch}
+                label={`${startCase(variant)} / ${startCase(stretch)}`}
+                iconLeft={
+                  <Icon fill={'#475569'} icon="outline-annotations" height={14} width={14} />
+                }
+              />
+              {stretch === ButtonStretch.Slim && (
+                <ButtonStory
+                  key={`${variant}-${stretch}-disabled`}
+                  variant={variant}
+                  disabled={true}
+                  stretch={stretch}
+                  label={`${startCase(variant)} / ${startCase(stretch)} disabled`}
+                  iconLeft={
+                    <Icon fill={'#475569'} icon="outline-annotations" height={14} width={14} />
+                  }
+                />
+              )}
+            </>
+          ))}
+          <br /> <br />
+        </div>
       ))}
-      </>
-    )
-}
+    </>
+  );
+};
 
 export const Interactive = Template.bind({});
 Interactive.args = {

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { Icon } from '../../icons';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -11,7 +11,7 @@ export interface CheckboxProps {
   disabled?: boolean;
   className?: string;
   onChange?: (args?: any) => void;
-  indeterminate?: boolean
+  indeterminate?: boolean;
   style?: React.CSSProperties;
 }
 
@@ -33,13 +33,15 @@ export const Checkbox = ({
       <label>
         {
           // Checked icon
-          checked ? <Icon icon="checkmark" fill={'white'} /> :
-
-          // indeterminate icon
-          indeterminate ? <RemoveIcon sx={{ color: 'white' }} fontSize="small"/> :
-
-          // Empty icon
-          <Icon icon="checkmark" fill={'transparent'} />
+          checked ? (
+            <Icon icon="checkmark" fill={'white'} />
+          ) : // indeterminate icon
+          indeterminate ? (
+            <RemoveIcon sx={{ color: 'white' }} fontSize="small" />
+          ) : (
+            // Empty icon
+            <Icon icon="checkmark" fill={'transparent'} />
+          )
         }
         <input
           ref={ref}

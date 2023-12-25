@@ -23,8 +23,9 @@
     svg path {
       fill: #ffffff;
     }
-    &.disabled, &:disabled {
-      background: #FBFAFD;
+    &.disabled,
+    &:disabled {
+      background: #fbfafd;
       color: #737278;
       svg path {
         fill: #737278;
@@ -45,11 +46,12 @@
     .counter {
       color: #172d32 !important;
     }
-    &.disabled, &:disabled {
-      background: var(--secondary-state-200, #E2E8F0);
-      color: #5D6F89;
+    &.disabled,
+    &:disabled {
+      background: var(--secondary-state-200, #e2e8f0);
+      color: #5d6f89;
       svg path {
-        fill: #5D6F89;
+        fill: #5d6f89;
       }
     }
   }
@@ -71,11 +73,12 @@
       color: #172d32 !important;
     }
 
-    &.disabled, &:disabled {
-      color: #7B8EA8;
-      border: 2px solid var(--secondary-state-200, #E2E8F0);
+    &.disabled,
+    &:disabled {
+      color: #7b8ea8;
+      border: 2px solid var(--secondary-state-200, #e2e8f0);
       svg path {
-        fill: #7B8EA8;
+        fill: #7b8ea8;
       }
     }
   }
@@ -109,12 +112,13 @@
       fill: #dc2626;
     }
 
-    &.disabled, &:disabled {
-      border: 2px solid var(--secondary-state-200, #E2E8F0);
+    &.disabled,
+    &:disabled {
+      border: 2px solid var(--secondary-state-200, #e2e8f0);
       background: none;
-      color: #F15656;
+      color: #f15656;
       svg path {
-        fill: #F15656;
+        fill: #f15656;
       }
     }
   }
@@ -142,10 +146,11 @@
       color: #172d32 !important;
     }
 
-    &.disabled, &:disabled {
-      color: #7B8EA8;
+    &.disabled,
+    &:disabled {
+      color: #7b8ea8;
       svg path {
-        fill: #7B8EA8;
+        fill: #7b8ea8;
       }
     }
   }
