@@ -96,10 +96,11 @@ const Template: StoryFn<typeof SingleFileViewModal> = (args) => {
   const [currentItemData, setCurrentItemData] = React.useState<ItemData>(itemDataMockList[0]);
 
   const onSelectItemToggle = (e: BaseSyntheticEvent) => {
-    console.log(e.target.checked);
+    const isSelected = currentItemData.isSelected
+    itemDataMockList[currentItemData.itemIndex].isSelected = !isSelected;
     setCurrentItemData({
       ...currentItemData,
-      isSelected: e.target.checked
+      isSelected: !isSelected,
     });
   }
 
