@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import {BaseSyntheticEvent, useState} from 'react';
+import { BaseSyntheticEvent, useState } from 'react';
 import SingleFileViewModal, {
   ItemData,
   singleFileViewModalProps

@@ -58,7 +58,7 @@ export default function TopButtonsSection({
           {!!onSelectItemToggle && isSelected !== undefined && (
             <span>
               <Tooltip
-                title={areAllSelected?'Disable “Select all” to choose specific items':''}
+                title={areAllSelected ? 'Disable “Select all” to choose specific items' : ''}
                 placement={'bottom-start'}
                 arrow={true}
               >

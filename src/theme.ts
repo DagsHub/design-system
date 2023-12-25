@@ -37,7 +37,7 @@ const lightTheme = createTheme({
           },
           [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
             margin: '0',
-            marginTop:"4px"
+            marginTop: '4px'
           },
           [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
             margin: '8px'

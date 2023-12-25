@@ -74,7 +74,7 @@ export function MetadataKeyValuePair({
         backgroundColor: '#F8FAFC',
         borderBottom: '1px solid #E2E8F0',
         alignItems: 'center',
-        flexWrap: isNewlyCreated ? 'wrap' : 'nowrap',
+        flexWrap: isNewlyCreated ? 'wrap' : 'nowrap'
       }}
     >
       <Box
@@ -83,7 +83,7 @@ export function MetadataKeyValuePair({
           flexShrink: 1,
           flexGrow: 1,
           maxWidth: '100%',
-          minWidth: '35%',
+          minWidth: '35%'
         }}
       >
         {/*key name should not be editable unless its newly created*/}

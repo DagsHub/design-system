@@ -9,7 +9,7 @@ import {
 } from '../../../components/elements/button';
 import { Icon } from '../../../components';
 // @ts-ignore
-import startCase from "lodash/startCase";
+import startCase from 'lodash/startCase';
 
 const meta: Meta<ButtonProps> = {
   title: 'Elements/Button',
