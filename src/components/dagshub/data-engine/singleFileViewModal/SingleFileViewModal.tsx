@@ -1,5 +1,5 @@
 import { Box } from '@mui/system';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 import { GenericModal, MetadataField, MetadataKeyValueList, NewMetadataField } from '../../index';
 import { Button, ButtonVariant } from '../../../elements/button';
@@ -19,6 +19,7 @@ export interface ItemData {
   metadataList: MetadataField[];
   hasNext: boolean;
   hasPrevious: boolean;
+  isSelected?: boolean;
 }
 
 export interface singleFileViewModalProps {
@@ -29,6 +30,8 @@ export interface singleFileViewModalProps {
   metadataOnChangeHandler?: (metadataList: NewMetadataField[]) => void;
   enableMetadataEditing?: boolean;
   enableMetadataDeletion?: boolean;
+  onSelectItemToggle?: (e?: any) => void;
+  areAllSelected?: boolean
 }
 
 export function SingleFileViewModal({
@@ -38,7 +41,9 @@ export function SingleFileViewModal({
   onGetPreviousItemClickHandler,
   metadataOnChangeHandler,
   enableMetadataEditing,
-  enableMetadataDeletion
+  enableMetadataDeletion,
+  onSelectItemToggle,
+  areAllSelected,
 }: singleFileViewModalProps) {
   const [showMetadataOverlay, setShowMetadataOverlay] = useState<boolean>(false);
   const breakpoint = useMediaQuery('(max-width: 800px)');
@@ -72,6 +77,9 @@ export function SingleFileViewModal({
               metadataButtonIcon={
                 showMetadataOverlay ? 'solid-sidebar-arrow-left' : 'solid-sidebar-arrow-right'
               }
+              onSelectItemToggle={onSelectItemToggle}
+              isSelected={itemData.isSelected}
+              areAllSelected={areAllSelected}
             />
             <Box
               sx={{

@@ -8,14 +8,20 @@
   gap: 5px;
 }
 
-.checked label,
-.indeterminate label {
+.checked:not(.disabled) label,
+.indeterminate:not(.disabled) label {
   background-color: #5467de;
   border: 2px solid #5467de;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.checked.disabled label,
+.indeterminate.disabled label {
+  background-color: #94A3B8;
+  border-color: transparent;
 }
 
 .dagshub-checkbox:not(.disabled):hover label {
@@ -48,10 +54,11 @@
   display: none;
 }
 
-.dagshub-checkbox:disabled,
-.dagshub-checkbox:disabled:hover,
-.dagshub-checkbox:disabled:focus {
-  color: #ffffff;
-  background-color: #64748b;
-  cursor: not-allowed;
+.dagshub-checkbox.disabled,
+.dagshub-checkbox.disabled:hover,
+.dagshub-checkbox.disabled:focus {
+  label {
+    border-color: #94A3B8;
+    cursor: not-allowed;
+  }
 }

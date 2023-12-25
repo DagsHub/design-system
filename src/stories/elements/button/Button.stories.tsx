@@ -54,14 +54,26 @@ export const WithIcon = () => {
       {enum2arr(ButtonVariant).map((variant) => (
           <div key={variant}>
               {enum2arr(ButtonStretch).map((stretch) => (
-                  <ButtonStory
-                      key={`${variant}-${stretch}`}
-                      variant={variant}
-                      disabled={variant===ButtonVariant.Disabled}
-                      stretch={stretch}
-                      label={`${startCase(variant)} / ${startCase(stretch)}`}
-                      iconLeft={<Icon fill={'#475569'} icon="outline-annotations" height={14} width={14} />}
-                  />
+                  <>
+                    <ButtonStory
+                        key={`${variant}-${stretch}`}
+                        variant={variant}
+                        disabled={false}
+                        stretch={stretch}
+                        label={`${startCase(variant)} / ${startCase(stretch)}`}
+                        iconLeft={<Icon fill={'#475569'} icon="outline-annotations" height={14} width={14} />}
+                    />
+                    {stretch === ButtonStretch.Slim && (
+                        <ButtonStory
+                            key={`${variant}-${stretch}-disabled`}
+                            variant={variant}
+                            disabled={true}
+                            stretch={stretch}
+                            label={`${startCase(variant)} / ${startCase(stretch)} disabled`}
+                            iconLeft={<Icon fill={'#475569'} icon="outline-annotations" height={14} width={14}/>}
+                        />)}
+                  </>
+
               ))}
               <br /> <br />
           </div>
