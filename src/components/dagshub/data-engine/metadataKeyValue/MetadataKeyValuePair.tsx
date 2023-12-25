@@ -74,7 +74,7 @@ export function MetadataKeyValuePair({
         backgroundColor: '#F8FAFC',
         borderBottom: '1px solid #E2E8F0',
         alignItems: 'center',
-        flexWrap: isNewlyCreated ? 'wrap' : 'nowrap'
+        flexWrap: isNewlyCreated ? 'wrap' : 'nowrap', overflowX: 'hidden',
       }}
     >
       <Box
@@ -107,7 +107,7 @@ export function MetadataKeyValuePair({
           flexGrow: 1,
           maxWidth: '100%',
           gap: '8px',
-          flexShrink: 0,
+          flexShrink: 1,
           minWidth: '65%'
         }}
       >
