@@ -107,7 +107,7 @@ export function MetadataKeyValuePair({
           flexGrow: 1,
           maxWidth: '100%',
           gap: '8px',
-          flexShrink: 0,
+          flexShrink: 1,
           minWidth: '65%'
         }}
       >

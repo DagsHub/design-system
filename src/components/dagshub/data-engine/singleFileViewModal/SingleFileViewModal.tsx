@@ -1,12 +1,8 @@
 import { Box } from '@mui/system';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
-import { GenericModal, MetadataField, MetadataKeyValueList, NewMetadataField } from '../../index';
-import { Button, ButtonVariant } from '../../../elements/button';
-import { Icon } from '../../../icons';
-import { ItemFallback } from './ItemFallback';
+import { GenericModal, MetadataField, NewMetadataField } from '../../index';
 import './style.scss';
-import { CustomAccordion } from '../customAccordion/CustomAccordion';
 import TopButtonsSection from './TopButtonsSection';
 import { SingleFileViewDataSection } from './SingleFileViewDataSection';
 
@@ -19,6 +15,7 @@ export interface ItemData {
   metadataList: MetadataField[];
   hasNext: boolean;
   hasPrevious: boolean;
+  isSelected?: boolean;
 }
 
 export interface singleFileViewModalProps {
@@ -29,6 +26,11 @@ export interface singleFileViewModalProps {
   metadataOnChangeHandler?: (metadataList: NewMetadataField[]) => void;
   enableMetadataEditing?: boolean;
   enableMetadataDeletion?: boolean;
+  onSelectItemToggle?: (e?: any) => void;
+  areAllSelected?: boolean;
+  onAnnotatedClick?: () => void;
+  enableDatapointAnnotating?: boolean;
+  enableFileDownloading?: boolean;
 }
 
 export function SingleFileViewModal({
@@ -38,16 +40,38 @@ export function SingleFileViewModal({
   onGetPreviousItemClickHandler,
   metadataOnChangeHandler,
   enableMetadataEditing,
-  enableMetadataDeletion
+  enableMetadataDeletion,
+  onSelectItemToggle,
+  areAllSelected,
+  onAnnotatedClick,
+  enableDatapointAnnotating,
+  enableFileDownloading
 }: singleFileViewModalProps) {
   const [showMetadataOverlay, setShowMetadataOverlay] = useState<boolean>(false);
   const breakpoint = useMediaQuery('(max-width: 800px)');
   const TOP_SECTION_HEIGHT = 52;
-  const LINE_HEIGHT = 24;
-  const TOP_SECTION_HEIGHT_ON_SMALL_SCREEN = TOP_SECTION_HEIGHT + LINE_HEIGHT; //Because I fource it to wrap
+  const TOP_SECTION_HEIGHT_ON_SMALL_SCREEN = 100;
+  const modalRef = useRef<HTMLDivElement>();
+
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'ArrowLeft') {
+      itemData.hasPrevious && onGetPreviousItemClickHandler();
+    }
+    if (event.key === 'ArrowRight') {
+      itemData.hasNext && onGetNextItemClickHandler();
+    }
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    modalRef.current?.focus();
+    // Autofocus on the modal when it's open, so it will be possible to navigate between the items using the arrows
+  }, []);
 
   return (
-    <div id={'gallery'}>
+    <Box id={'gallery'} onKeyDown={handleKeyDown} tabIndex={0} ref={modalRef}>
       <GenericModal
         title={''}
         onClose={closeModal}
@@ -58,26 +82,34 @@ export function SingleFileViewModal({
               width: '100%',
               height: '100%',
               flexDirection: 'column',
-              padding: '24px',
+              padding: '8px',
+              paddingTop: '0px',
               boxSizing: 'border-box',
               justifyContent: 'space-between'
             }}
           >
             <TopButtonsSection
-              height={`${TOP_SECTION_HEIGHT}px`}
+              height={`${breakpoint ? TOP_SECTION_HEIGHT_ON_SMALL_SCREEN : TOP_SECTION_HEIGHT}px`}
               isSmallScreen={breakpoint}
               fileName={itemData.fileName}
               linkToFile={itemData.repoFilePath}
+              linkToDownloadFile={itemData.galleryFilePath}
               onMetadataIconClick={() => setShowMetadataOverlay(!showMetadataOverlay)}
               metadataButtonIcon={
                 showMetadataOverlay ? 'solid-sidebar-arrow-left' : 'solid-sidebar-arrow-right'
               }
+              onSelectItemToggle={onSelectItemToggle}
+              isSelected={itemData.isSelected}
+              areAllSelected={areAllSelected}
+              onAnnotatedClick={onAnnotatedClick}
+              enableDatapointAnnotating={enableDatapointAnnotating}
+              enableFileDownloading={enableFileDownloading}
             />
             <Box
               sx={{
                 height: breakpoint
                   ? `calc(100% - ${TOP_SECTION_HEIGHT_ON_SMALL_SCREEN}px)`
-                  : `calc(100% - 52px)`
+                  : `calc(100% - ${TOP_SECTION_HEIGHT}px)`
               }}
             >
               <SingleFileViewDataSection
@@ -94,7 +126,7 @@ export function SingleFileViewModal({
           </Box>
         ]}
       />
-    </div>
+    </Box>
   );
 }
 
