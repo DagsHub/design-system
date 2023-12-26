@@ -1,0 +1,52 @@
+.react-pdf__Document {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.react-pdf__Page {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  display: flex;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.react-pdf__Page__canvas {
+  display: flex;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.react-pdf__Page__annotations {
+  display: flex;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.annotationLayer {
+  display: flex;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.react-pdf__Page__textContent {
+  display: flex;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.textLayer {
+  display: flex;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.react-pdf__message {
+  display: none;
+}

@@ -74,8 +74,7 @@ export function MetadataKeyValuePair({
         backgroundColor: '#F8FAFC',
         borderBottom: '1px solid #E2E8F0',
         alignItems: 'center',
-        flexWrap: isNewlyCreated ? 'wrap' : 'nowrap',
-        overflowX: 'hidden'
+        flexWrap: isNewlyCreated ? 'wrap' : 'nowrap'
       }}
     >
       <Box

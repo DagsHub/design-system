@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles';
+import { tooltipClasses } from '@mui/material';
 
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
@@ -19,6 +20,37 @@ const lightTheme = createTheme({
     fontFamily: 'Inter'
   },
   components: {
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          display: 'block',
+          fontFamily: 'Inter',
+          fontWeight: 500,
+          fontSize: '12px',
+          lineHeight: '16.8px',
+          color: 'rgba(248, 250, 252, 1)',
+          backgroundColor: 'rgba(25, 46, 54, 1)',
+          borderRadius: '8px',
+          padding: '4px',
+          [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
+            margin: '0'
+          },
+          [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
+            margin: '0',
+            marginTop: '4px'
+          },
+          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
+            margin: '8px'
+          },
+          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
+            margin: '8px'
+          }
+        },
+        arrow: {
+          color: 'rgba(25, 46, 54, 1)'
+        }
+      }
+    },
     MuiTypography: {
       styleOverrides: {
         root: {

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Box } from '@mui/system';
 import { CustomAccordion } from '../customAccordion/CustomAccordion';
 import { MetadataKeyValueList, NewMetadataField } from '../metadataKeyValue/MetadataKeyValueList';
@@ -26,10 +26,10 @@ export function SingleFileViewDataSection({
   enableMetadataEditing?: boolean;
   enableMetadataDeletion?: boolean;
 }) {
-  const getPreviousItemButtonRef = useRef<HTMLButtonElement>(null);
-  const getNextItemButtonRef = useRef<HTMLButtonElement>(null);
   const SIDEBAR_WIDTH = 350; //I decided on this number
   const ARROWS_SECTION_HEIGHT = 52;
+
+  const [showMetadataSidebar, setShowMetadataSidebar] = useState<boolean>(true);
 
   return (
     <Box
@@ -45,7 +45,8 @@ export function SingleFileViewDataSection({
       <Box
         sx={{
           display: 'flex',
-          width: !isSmallScreen ? `CALC(100% - ${SIDEBAR_WIDTH}px)` : `100%`,
+          width:
+            !isSmallScreen && !!showMetadataSidebar ? `CALC(100% - ${SIDEBAR_WIDTH}px)` : `100%`,
           flexDirection: 'column',
           height: '100%',
           boxSizing: 'border-box'
@@ -78,10 +79,23 @@ export function SingleFileViewDataSection({
               padding: '8px',
               justifyContent: 'center',
               bgcolor: '#F8FAFC',
-              alignItems: 'center',
-              boxSizing: 'border-box'
+              boxSizing: 'border-box',
+              position: 'relative'
             }}
           >
+            {!isSmallScreen && !showMetadataSidebar && (
+              <Button
+                onClick={() => {
+                  setShowMetadataSidebar(!showMetadataSidebar);
+                }}
+                label={''}
+                iconRight={
+                  <Icon icon={'solid-sidebar-arrow-left'} width={20} height={20} fill={'#172D32'} />
+                }
+                variant={ButtonVariant.Secondary}
+                style={{ position: 'absolute', top: '4px', right: '4px', zIndex: 200 }}
+              />
+            )}
             <SingleFileViewFileRenderer
               galleryFilePath={itemData.galleryFilePath}
               itemType={itemData.itemType}
@@ -95,7 +109,6 @@ export function SingleFileViewDataSection({
             width: '100%',
             height: `${ARROWS_SECTION_HEIGHT}px`,
             justifyContent: 'center',
-            alignItems: 'center',
             boxSizing: 'border-box'
           }}
         >
@@ -108,12 +121,10 @@ export function SingleFileViewDataSection({
             }}
           >
             <Button
-              ref={getPreviousItemButtonRef}
+              tabIndex={0}
+              timeToBlurMS={200}
               onClick={() => {
                 itemData.hasPrevious && onGetPreviousItemClickHandler();
-                setTimeout(() => {
-                  getPreviousItemButtonRef?.current?.blur();
-                }, 200);
               }}
               label={''}
               iconRight={
@@ -123,12 +134,10 @@ export function SingleFileViewDataSection({
               disabled={!itemData.hasPrevious}
             />
             <Button
-              ref={getNextItemButtonRef}
+              tabIndex={0}
+              timeToBlurMS={200}
               onClick={() => {
                 itemData.hasNext && onGetNextItemClickHandler();
-                setTimeout(() => {
-                  getNextItemButtonRef?.current?.blur();
-                }, 200);
               }}
               label={''}
               iconRight={
@@ -140,7 +149,7 @@ export function SingleFileViewDataSection({
           </Box>
         </Box>
       </Box>
-      {!isSmallScreen && (
+      {!isSmallScreen && showMetadataSidebar && (
         <Box
           sx={{
             display: 'flex',
@@ -150,14 +159,33 @@ export function SingleFileViewDataSection({
             paddingBottom: '12px'
           }}
         >
-          <CustomAccordion label={'Metadata'}>
-            <MetadataKeyValueList
-              metadataList={itemData.metadataList}
-              editingEnabled={!!enableMetadataEditing}
-              deletionEnabled={!!enableMetadataDeletion}
-              onChangeHandler={metadataOnChangeHandler}
-            />
-          </CustomAccordion>
+          <Button
+            onClick={() => {
+              setShowMetadataSidebar(!showMetadataSidebar);
+            }}
+            label={''}
+            iconRight={
+              <Icon icon={'solid-sidebar-arrow-right'} width={20} height={20} fill={'#172D32'} />
+            }
+            variant={ButtonVariant.Secondary}
+            style={{
+              width: 'fit-content',
+              alignSelf: 'flex-start',
+              marginTop: '4px',
+              marginLeft: '16px',
+              flexShrink: 0
+            }}
+          />
+          <Box sx={{ display: 'flex', height: 'calc(100% - 40px)' }}>
+            <CustomAccordion label={'Metadata'}>
+              <MetadataKeyValueList
+                metadataList={itemData.metadataList}
+                editingEnabled={!!enableMetadataEditing}
+                deletionEnabled={!!enableMetadataDeletion}
+                onChangeHandler={metadataOnChangeHandler}
+              />
+            </CustomAccordion>
+          </Box>
         </Box>
       )}
     </Box>
