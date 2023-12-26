@@ -1,3 +1,6 @@
+import {useState} from "react";
+import _ from "lodash";
+
 export type MetadataType =
     "BOOLEAN"
     | "INTEGER"
@@ -76,6 +79,7 @@ export interface MetadataInput {
     value?: string;
     valueType?: MetadataType;
     comparator?: Comparator;
+    id?: string; // Add unique ID property
 }
 
 export interface AndOrMetadataInput { // each condition is either AND or OR or Filter
@@ -83,12 +87,33 @@ export interface AndOrMetadataInput { // each condition is either AND or OR or F
     and?: AndOrMetadataInput[];
     filter?: MetadataInput;
     not?: Boolean;
+    id?: string; // Add unique ID property
 }
 
 export interface QueryInput {
     query?: AndOrMetadataInput
     include?: string[]
     exclude?: string[]
+}
+
+export function generateUniqueId(): string {
+    return _.random(0, 100000).toString();
+}
+
+export function addUniqueIds(input: AndOrMetadataInput): AndOrMetadataInput {
+    debugger;
+    const id = generateUniqueId();
+    const updatedInput: AndOrMetadataInput = { ...input, id };
+
+    if (input.or) {
+        updatedInput.or = input.or.map(orInput => addUniqueIds(orInput));
+    }
+
+    if (input.and) {
+        updatedInput.and = input.and.map(andInput => addUniqueIds(andInput));
+    }
+
+    return updatedInput;
 }
 
 export const validateConditionValue = (valueType: MetadataType, value: string): boolean => {

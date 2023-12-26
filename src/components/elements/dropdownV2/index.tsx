@@ -7,6 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CancelIcon from '@mui/icons-material/Cancel';
 import './style.scss';
 import theme from '../../../theme';
+import _ from "lodash";
 
 export function DropdownV2({
                                onChange,
@@ -225,6 +226,7 @@ export function DropdownV2({
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
                             minWidth: "0px!important",
+                            textAlign:alignInputTextToCenter?"center":undefined,
                             '&::placeholder': {
                                 color: placeholderColor ? placeholderColor : undefined,
                                 opacity: placeholderColor ? 1 : undefined,

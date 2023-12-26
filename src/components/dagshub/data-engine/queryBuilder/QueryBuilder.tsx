@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Condition from "./Condition";
 import {
+    addUniqueIds,
     AndOrMetadataInput, convertToBackandFormatAndRemoveEmptyConditions,
     hasUncompletedConditions,
     MetadataFieldProps,
@@ -19,15 +20,17 @@ export function QueryBuilder({
 }) {
 
     const getInitialQuery = () => {
+        let condition: AndOrMetadataInput | undefined = undefined;
         if (!!queryInput.query) {
             if (!!queryInput.query.or || !!queryInput.query.and) {
-                return queryInput.query
+                condition= queryInput.query
             } else {
-                return {and: [{filter: queryInput.query.filter}]}
+                condition= {and: [{filter: queryInput.query.filter}]}
             }
         } else {
-            return {and: []}
+            condition= {and: []}
         }
+        return addUniqueIds(condition);
     }
     const checkIfSimpleMode = () => {
         if (forceCompoundMode) {

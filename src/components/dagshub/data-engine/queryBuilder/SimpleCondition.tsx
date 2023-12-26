@@ -157,7 +157,7 @@ const SimpleCondition = ({
                             ...condition,
                             filter: {
                                 ...condition.filter,
-                                key: value?.label,
+                                key: value?.id,
                                 valueType: metadataFields.find(field => field.name === value?.label)?.valueType
                             }
                         });
