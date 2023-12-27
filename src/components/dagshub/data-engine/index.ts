@@ -12,3 +12,4 @@ export * from './singleFileViewModal/ItemFallback';
 export * from './singleFileViewModal/SingleFileViewModal';
 export * from './customAccordion/CustomAccordion';
 export * from './PDFViewer/PDFViewer';
+export * from './CSVViewer/CSVViewer';
