@@ -5,6 +5,7 @@ const commonjs = require("@rollup/plugin-commonjs");
 const resolve = require("@rollup/plugin-node-resolve");
 const typescript = require("@rollup/plugin-typescript");
 const peerDepsExternal = require('rollup-plugin-peer-deps-external');
+const rollupJson = require("rollup-plugin-json");
 
 const packageJson = require("./package.json");
 
@@ -26,6 +27,7 @@ module.exports = [
     plugins: [
       peerDepsExternal(),
       resolve(),
+      rollupJson(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
       scss({ sourceMap: true, outputStyle: 'compressed' }),
