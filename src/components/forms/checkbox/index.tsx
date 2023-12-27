@@ -5,7 +5,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 
 import './checkbox.scss';
 
-export interface CheckboxProps {
+export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   checked?: boolean;
   disabled?: boolean;

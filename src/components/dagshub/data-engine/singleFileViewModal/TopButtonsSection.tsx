@@ -65,7 +65,7 @@ export default function TopButtonsSection({
                 <Box>
                   <Checkbox
                     checked={isSelected || areAllSelected}
-                    onChange={onSelectItemToggle}
+                    onClick={onSelectItemToggle}
                     disabled={areAllSelected}
                   />
                 </Box>
