@@ -18,7 +18,7 @@ const options = {
 
 type PDFFile = string | File | null;
 
-export default function PDFViewer({
+export function PDFViewer({
   filePath,
   onError
 }: {
