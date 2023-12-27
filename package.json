@@ -92,7 +92,6 @@
     "react-table": "^7.8.0",
     "react-use": "^17.4.0",
     "react-window": "^1.8.8",
-    "rollup-plugin-json": "^4.0.0",
     "styled-components": "^5.3.11",
     "validator": "^13.9.0"
   },
