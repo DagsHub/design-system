@@ -9,7 +9,7 @@ import {
   MetadataFieldProps,
   Operators,
   StringOperators
-} from './TypesCondition';
+} from './ConditionHelperFunctionsAndTypes';
 import { MetadataType } from '../metadataKeyValue/MetadataKeyValueList';
 import { ConditionDropdown } from './ConditionDropdown';
 import { Box, Menu, MenuItem, ThemeProvider, Typography } from '@mui/material';

@@ -8,7 +8,7 @@ import {
   MetadataFieldProps,
   QueryInput,
   validateConditionValue
-} from './TypesCondition';
+} from './ConditionHelperFunctionsAndTypes';
 
 export function QueryBuilder({
   queryInput,

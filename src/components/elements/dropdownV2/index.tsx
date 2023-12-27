@@ -273,11 +273,14 @@ export function DropdownV2({
           variant={'medium'}
           ref={copyTextFieldRef}
           style={{
+            display:"flex",
             zIndex: -1,
             color: 'transparent',
             borderRadius: '8px',
-            padding: '0px 9.5px',
+            padding: '0px 10px',
             position: 'absolute',
+            flexWrap:"nowrap",
+            width:"max-content",
             top: 0,
             left: 0
           }}

@@ -95,7 +95,6 @@ export function generateUniqueId(): string {
 }
 
 export function addUniqueIds(input: AndOrMetadataInput): AndOrMetadataInput {
-  debugger;
   const id = generateUniqueId();
   const updatedInput: AndOrMetadataInput = { ...input, id };
 
