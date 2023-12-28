@@ -36,7 +36,8 @@ export function CSVViewer({
       field: header,
       filter: 'agTextColumnFilter',
       width: columnWidth,
-      floatingFilter: true
+      floatingFilter: true,
+      headerTooltip: header
     }))
   ];
 
@@ -50,7 +51,7 @@ export function CSVViewer({
         fontFamily: 'Inter!important'
       }}
     >
-      <AgGridReact rowData={rowData} columnDefs={columnDefs}></AgGridReact>
+      <AgGridReact rowData={rowData} columnDefs={columnDefs} tooltipShowDelay={400}></AgGridReact>
     </div>
   );
 }

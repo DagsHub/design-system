@@ -119,7 +119,8 @@ export function SingleFileViewFileRenderer({
             overflowY: 'auto',
             fontWeight: 500,
             fontSize: '14px',
-            lineHeight: '20px'
+            lineHeight: '20px',
+            width: '100%'
           }}
         >
           {textContent}
@@ -148,7 +149,7 @@ export function SingleFileViewFileRenderer({
       );
     }
     if (itemType === 'csv') {
-      return <CSVViewer headers={csvHeaders} values={csvValues} columnWidth={200} />;
+      return <CSVViewer headers={csvHeaders} values={csvValues} columnWidth={160} />;
     }
   }
   return <ItemFallback height={itemFallbackHeight} width={'100%'} disableHoverMode />;
