@@ -18,13 +18,7 @@ const options = {
 
 type PDFFile = string | File | null;
 
-export function PDFViewer({
-  filePath,
-  onError
-}: {
-  filePath: string;
-  onError?: () => void;
-}) {
+export function PDFViewer({ filePath, onError }: { filePath: string; onError?: () => void }) {
   const [file, setFile] = useState<PDFFile>(filePath);
   const [numPages, setNumPages] = useState<number>();
 

@@ -19,7 +19,8 @@ export default function TopButtonsSection({
   linkToDownloadFile,
   onAnnotatedClick,
   enableDatapointAnnotating,
-  enableFileDownloading
+  enableFileDownloading,
+  metadataButtonTooltip
 }: {
   height: string;
   isSmallScreen: boolean;
@@ -34,6 +35,7 @@ export default function TopButtonsSection({
   onAnnotatedClick?: () => void;
   enableDatapointAnnotating?: boolean;
   enableFileDownloading?: boolean;
+  metadataButtonTooltip?: string;
 }) {
   return (
     <ThemeProvider theme={theme}>
@@ -112,14 +114,21 @@ export default function TopButtonsSection({
           }}
         >
           {isSmallScreen && (
-            <Button
-              onClick={() => {
-                onMetadataIconClick();
-              }}
-              label={''}
-              iconRight={<Icon icon={metadataButtonIcon} width={20} height={20} fill={'#172D32'} />}
-              variant={ButtonVariant.Secondary}
-            />
+            <Tooltip title={metadataButtonTooltip} placement={'bottom-start'} arrow={true}>
+              <div>
+                {/*Tooltip doesn't work directly on Button soI need this dix wrapper*/}
+                <Button
+                  onClick={() => {
+                    onMetadataIconClick();
+                  }}
+                  label={''}
+                  iconRight={
+                    <Icon icon={metadataButtonIcon} width={20} height={20} fill={'#172D32'} />
+                  }
+                  variant={ButtonVariant.Secondary}
+                />
+              </div>
+            </Tooltip>
           )}
           {enableDatapointAnnotating && (
             <Button
@@ -131,15 +140,17 @@ export default function TopButtonsSection({
             />
           )}
           {enableFileDownloading && (
-            <a href={linkToDownloadFile} download={fileName}>
-              <Button
-                label={''}
-                iconRight={
-                  <Icon icon={'outline-download'} width={15} height={15} fill={'#172D32'} />
-                }
-                variant={ButtonVariant.Secondary}
-              />
-            </a>
+            <Tooltip arrow={true} title={'Download raw file'}>
+              <a href={linkToDownloadFile} download={fileName}>
+                <Button
+                  label={''}
+                  iconRight={
+                    <Icon icon={'outline-download'} width={15} height={15} fill={'#172D32'} />
+                  }
+                  variant={ButtonVariant.Secondary}
+                />
+              </a>
+            </Tooltip>
           )}
         </Box>
       </Box>
