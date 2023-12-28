@@ -98,6 +98,9 @@ export function SingleFileViewModal({
               metadataButtonIcon={
                 showMetadataOverlay ? 'solid-sidebar-arrow-left' : 'solid-sidebar-arrow-right'
               }
+              metadataButtonTooltip={
+                showMetadataOverlay ? 'Hide metadata sidebar' : 'Show metadata sidebar'
+              }
               onSelectItemToggle={onSelectItemToggle}
               isSelected={itemData.isSelected}
               areAllSelected={areAllSelected}

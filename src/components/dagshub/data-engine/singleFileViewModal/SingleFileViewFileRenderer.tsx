@@ -2,7 +2,7 @@ import { ItemFallback } from './ItemFallback';
 import React, { useEffect, useState } from 'react';
 import { CSVViewer } from '../CSVViewer/CSVViewer';
 import { Box } from '@mui/system';
-import {PDFViewer} from '../PDFViewer/PDFViewer';
+import { PDFViewer } from '../PDFViewer/PDFViewer';
 
 export function SingleFileViewFileRenderer({
   galleryFilePath,
