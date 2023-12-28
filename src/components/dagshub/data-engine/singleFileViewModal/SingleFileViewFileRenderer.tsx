@@ -148,7 +148,7 @@ export function SingleFileViewFileRenderer({
       );
     }
     if (itemType === 'csv') {
-      return <CSVViewer headers={csvHeaders} values={csvValues} />;
+      return <CSVViewer headers={csvHeaders} values={csvValues} columnWidth={200} />;
     }
   }
   return <ItemFallback height={itemFallbackHeight} width={'100%'} disableHoverMode />;
