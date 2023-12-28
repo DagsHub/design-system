@@ -1910,11 +1910,21 @@ export const icons = {
     </svg>
   ),
   'outline-table': ({ fill, width, height, onClick = () => {} }: IconProp) => (
-      <svg onClick={onClick} width={width} height={height} viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M0 3C0 1.34315 1.34315 0 3 0H17C18.6569 0 20 1.34315 20 3V11C20 12.6569 18.6569 14 17 14H3C1.34315 14 0 12.6569 0 11V3ZM3 2C2.44772 2 2 2.44772 2 3V4H18V3C18 2.44772 17.5523 2 17 2H3ZM18 6H11V8H18V6ZM18 10H11V12H17C17.5523 12 18 11.5523 18 11V10ZM9 12V10H2V11C2 11.5523 2.44772 12 3 12H9ZM2 8H9V6H2V8Z"
-              fill={fill}/>
-      </svg>
+    <svg
+      onClick={onClick}
+      width={width}
+      height={height}
+      viewBox="0 0 20 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M0 3C0 1.34315 1.34315 0 3 0H17C18.6569 0 20 1.34315 20 3V11C20 12.6569 18.6569 14 17 14H3C1.34315 14 0 12.6569 0 11V3ZM3 2C2.44772 2 2 2.44772 2 3V4H18V3C18 2.44772 17.5523 2 17 2H3ZM18 6H11V8H18V6ZM18 10H11V12H17C17.5523 12 18 11.5523 18 11V10ZM9 12V10H2V11C2 11.5523 2.44772 12 3 12H9ZM2 8H9V6H2V8Z"
+        fill={fill}
+      />
+    </svg>
   )
 };
 
