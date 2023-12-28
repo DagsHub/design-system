@@ -1,9 +1,17 @@
-import React, {useCallback} from 'react';
+import React, { useCallback } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 
-export function CSVViewer({ headers, values, columnWidth=150 }: { headers: string[]; values: string[][], columnWidth?: number }) {
+export function CSVViewer({
+  headers,
+  values,
+  columnWidth = 150
+}: {
+  headers: string[];
+  values: string[][];
+  columnWidth?: number;
+}) {
   // Convert the data into the format expected by AgGridReact
   const rowData = values.map((rowValues) => {
     const rowDataObj: Record<string, string> = {};
@@ -35,7 +43,12 @@ export function CSVViewer({ headers, values, columnWidth=150 }: { headers: strin
   return (
     <div
       className={'ag-theme-quartz'}
-      style={{ width: `${headers.length*columnWidth}px`, maxWidth:"100%", height: '100%', fontFamily: 'Inter!important' }}
+      style={{
+        width: `${headers.length * columnWidth}px`,
+        maxWidth: '100%',
+        height: '100%',
+        fontFamily: 'Inter!important'
+      }}
     >
       <AgGridReact rowData={rowData} columnDefs={columnDefs}></AgGridReact>
     </div>
