@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
-import { AgGridReact } from 'ag-grid-react'; // React Grid Logic
-import 'ag-grid-community/styles/ag-grid.css'; // Core CSS
-import 'ag-grid-community/styles/ag-theme-quartz.css'; // Theme
+import React, { useCallback } from 'react';
+import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-quartz.css';
 
-export function CSVViewer({ headers, values }: { headers: string[]; values: string[][] }) {
+export function CSVViewer({
+  headers,
+  values,
+  columnWidth = 150
+}: {
+  headers: string[];
+  values: string[][];
+  columnWidth?: number;
+}) {
   // Convert the data into the format expected by AgGridReact
   const rowData = values.map((rowValues) => {
     const rowDataObj: Record<string, string> = {};
@@ -24,16 +32,26 @@ export function CSVViewer({ headers, values }: { headers: string[]; values: stri
     },
     ...headers.map((header) => ({
       headerName: header,
+      colId: header,
       field: header,
       filter: 'agTextColumnFilter',
-      width: 150,
-      floatingFilter: true
+      width: columnWidth,
+      floatingFilter: true,
+      headerTooltip: header
     }))
   ];
 
   return (
-    <div className={'ag-theme-quartz'} style={{ width: '100%', height: '100%' }}>
-      <AgGridReact rowData={rowData} columnDefs={columnDefs} />
+    <div
+      className={'ag-theme-quartz'}
+      style={{
+        width: `${headers.length * columnWidth + 67}px`,
+        maxWidth: '100%',
+        height: '100%',
+        fontFamily: 'Inter!important'
+      }}
+    >
+      <AgGridReact rowData={rowData} columnDefs={columnDefs} tooltipShowDelay={400}></AgGridReact>
     </div>
   );
 }

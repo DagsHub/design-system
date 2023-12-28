@@ -2,7 +2,7 @@ import { ItemFallback } from './ItemFallback';
 import React, { useEffect, useState } from 'react';
 import { CSVViewer } from '../CSVViewer/CSVViewer';
 import { Box } from '@mui/system';
-import PDFViewer from '../PDFViewer/PDFViewer';
+import { PDFViewer } from '../PDFViewer/PDFViewer';
 
 export function SingleFileViewFileRenderer({
   galleryFilePath,
@@ -119,7 +119,8 @@ export function SingleFileViewFileRenderer({
             overflowY: 'auto',
             fontWeight: 500,
             fontSize: '14px',
-            lineHeight: '20px'
+            lineHeight: '20px',
+            width: '100%'
           }}
         >
           {textContent}
@@ -148,7 +149,7 @@ export function SingleFileViewFileRenderer({
       );
     }
     if (itemType === 'csv') {
-      return <CSVViewer headers={csvHeaders} values={csvValues} />;
+      return <CSVViewer headers={csvHeaders} values={csvValues} columnWidth={160} />;
     }
   }
   return <ItemFallback height={itemFallbackHeight} width={'100%'} disableHoverMode />;
