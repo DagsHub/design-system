@@ -45,7 +45,7 @@ export function CSVViewer({
     <div
       className={'ag-theme-quartz'}
       style={{
-        width: `${headers.length * columnWidth + 52}px`,
+        width: `${headers.length * columnWidth + 67}px`,
         maxWidth: '100%',
         height: '100%',
         fontFamily: 'Inter!important'
