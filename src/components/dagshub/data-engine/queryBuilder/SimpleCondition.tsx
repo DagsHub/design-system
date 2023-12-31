@@ -164,6 +164,7 @@ const SimpleCondition = ({
           </Box>
         )}
         <ConditionDropdown
+            autoFocus={true}
           removeEndAdornment={true}
           alignInputTextToCenter={true}
           initialChecked={

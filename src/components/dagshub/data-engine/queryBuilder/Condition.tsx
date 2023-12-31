@@ -45,6 +45,7 @@ const Condition = ({
           isSimple={isSimple}
           onAdd={onAdd}
           onRemove={onRemove}
+          level={level}
         />
       )}
     </Box>

@@ -14,7 +14,8 @@ export function ConditionDropdown({
   inputColor = 'rgba(23, 45, 50, 1)',
   isReadOnly,
   removeEndAdornment,
-  alignInputTextToCenter
+  alignInputTextToCenter,
+    autoFocus
 }: {
   onChange: (event: SyntheticEvent<Element, Event>, value: RadioButtonItemProps | null) => void;
   initialChecked?: RadioButtonItemProps | undefined;
@@ -27,9 +28,11 @@ export function ConditionDropdown({
   isReadOnly?: boolean;
   removeEndAdornment?: boolean;
   alignInputTextToCenter?: boolean;
+  autoFocus?: boolean;
 }) {
   return (
     <DropdownV2
+        autoFocus={autoFocus}
       onChange={onChange}
       options={options}
       initialChecked={initialChecked}

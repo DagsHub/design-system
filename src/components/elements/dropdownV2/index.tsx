@@ -35,7 +35,8 @@ export function DropdownV2({
   borderColor = '#cbd5e1',
   borderColorHover = '#cbd5e1',
   bgColor = '#f8fafc',
-  bgColorHover = 'rgba(241, 245, 249, 1)'
+  bgColorHover = 'rgba(241, 245, 249, 1)',
+    autoFocus
 }: {
   onChange: (event: SyntheticEvent<Element, Event>, value: RadioButtonItemProps | null) => void;
   initialChecked?: RadioButtonItemProps | undefined;
@@ -63,6 +64,7 @@ export function DropdownV2({
   bgColorHover?: string;
   placeholderColor?: string;
   alignInputTextToCenter?: boolean;
+  autoFocus?: boolean;
 }) {
   const [inputValue, setInputValue] = React.useState('');
   const [open, setOpen] = useState(false);
@@ -256,6 +258,7 @@ export function DropdownV2({
                 readOnly: isReadOnly
               }}
               placeholder={label}
+              autoFocus={autoFocus}
             />
           )}
         />

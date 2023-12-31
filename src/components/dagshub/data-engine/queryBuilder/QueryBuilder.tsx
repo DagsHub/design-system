@@ -69,6 +69,14 @@ export function QueryBuilder({
     setMetadataFieldsState(metadataFields);
   }, [metadataFields]);
 
+  useEffect(()=>{
+      setIsUncompleted(hasUncompletedConditions(rootCondition));
+  },[rootCondition])
+
+    const onApply = () => {
+        setRootConditionBackend(convertToBackandFormatAndRemoveEmptyConditions(rootCondition));
+    }
+
   return (
     <div className="App">
       <h1>{isSimpleMode ? 'Simple' : 'Compound'} query builder</h1>
@@ -79,23 +87,7 @@ export function QueryBuilder({
         isSimple={isSimpleMode}
         metadataFields={metadataFieldsState}
         verifyCondition={validateConditionValue}
-        level={0}
       />
-      <br />
-
-      <button
-        onClick={() => {
-          const empty = hasUncompletedConditions(rootCondition);
-          setIsUncompleted(empty);
-          if (!empty) {
-            setRootConditionBackend(convertToBackandFormatAndRemoveEmptyConditions(rootCondition));
-          }
-        }}
-      >
-        Apply
-      </button>
-      <br />
-      <br />
       <pre>UI {JSON.stringify(rootCondition, null, 2)}</pre>
       <pre>BACKEND {JSON.stringify(rootConditionBackend, null, 2)}</pre>
       <pre>IS_EMPTY {JSON.stringify(isUncompleted, null, 2)}</pre>
