@@ -40,7 +40,7 @@ const SimpleCondition = ({
   const [shouldDisplayValueField, setShouldDisplayValueField] = useState<boolean>(true);
   const [isErrored, setIsErrored] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const conditionAddButtonRef = React.useRef<HTMLButtonElement>(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   useEffect(() => {
     if (!!condition?.filter?.valueType) {
@@ -83,18 +83,18 @@ const SimpleCondition = ({
 
   useEffect(() => {
     // check if comparator exists in operatorsList, and if not, change the comparator to the first one in the list
-    if (!!condition.filter?.comparator) {
-      const comparatorExists = operatorsList.some((op) => op.id === condition.filter?.comparator);
-      if (!comparatorExists) {
-        onChange({
-          ...condition,
-          filter: { ...condition.filter, comparator: operatorsList[0].id }
-        });
-      }
-    }
+    // if (!!condition.filter?.comparator) {
+    //   const comparatorExists = operatorsList.some((op) => op.id === condition.filter?.comparator);
+    //   if (!comparatorExists) {
+    //     onChange({
+    //       ...condition,
+    //       filter: { ...condition.filter, comparator: operatorsList[0].id }
+    //     });
+    //   }
+    // }
 
     //Whenever the operatorsList changes, change the comparator to the first one in the list
-    // onChange({...condition, filter: {...condition.filter, comparator: operatorsList[0].id}});
+    onChange({...condition, filter: {...condition.filter, comparator: operatorsList[0].id}});
   }, [operatorsList]);
 
   useEffect(() => {
@@ -249,7 +249,6 @@ const SimpleCondition = ({
           }
         />
         <Button
-          ref={conditionAddButtonRef}
           style={{
             width: '28px',
             height: '28px',
@@ -260,10 +259,11 @@ const SimpleCondition = ({
             display: 'flex'
           }}
           label={''}
-          onClick={() => {
+          onClick={(event) => {
             if (isSimple) {
               onAdd();
             } else {
+              setAnchorEl(event.currentTarget);
               setIsOpen(true);
             }
           }}
@@ -280,7 +280,7 @@ const SimpleCondition = ({
             padding: '8px'
           }}
           id="basic-menu"
-          anchorEl={conditionAddButtonRef.current}
+          anchorEl={anchorEl}
           open={isOpen}
           onClose={() => setIsOpen(false)}
           MenuListProps={{

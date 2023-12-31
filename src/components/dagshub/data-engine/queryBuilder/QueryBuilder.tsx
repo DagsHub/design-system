@@ -32,6 +32,7 @@ export function QueryBuilder({
     }
     return addUniqueIds(condition);
   };
+
   const checkIfSimpleMode = () => {
     if (forceCompoundMode) {
       return false;
@@ -78,6 +79,7 @@ export function QueryBuilder({
         isSimple={isSimpleMode}
         metadataFields={metadataFieldsState}
         verifyCondition={validateConditionValue}
+        level={0}
       />
       <br />
 
