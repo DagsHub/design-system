@@ -1,51 +1,8 @@
 import React from 'react';
 import {Meta, StoryFn} from "@storybook/react";
 import {LabelStudioPolygonDrawer, LabelStudioPolygonDrawerProps, Task} from "./LabelStudioPolygonDrawer";
-import {Image} from "react-konva";
-
-const taskData: Task = {
-  "annotations": [
-    {
-      "result": [
-        {
-          "id": "XSMXwwsaTa",
-          "from_name": "tag",
-          "to_name": "img",
-          "source": "$image",
-          "type": "polygonlabels",
-          "value": {
-            "points": [
-              [
-                27.2,
-                41.24629080118694
-              ],
-              [
-                25.73333333333333,
-                70.62314540059347
-              ],
-              [
-                48.13333333333333,
-                62.61127596439169
-              ],
-              [
-                48.13333333333333,
-                32.93768545994065
-              ]
-            ],
-            "polygonlabels": [
-              "Hello"
-            ]
-          }
-        }
-      ]
-    }
-  ],
-  "data": {
-    "image": "https://user.fm/files/v2-901310d5cb3fa90e0616ca10590bacb3/spacexmoon-800x501.jpg"
-  },
-  "id": 0,
-  "task_path": "../examples/image_polygons/tasks.json"
-}
+import { polygonTask } from './PolygonTasks';
+import { bboxTask } from './BboxTasks';
 
 const meta: Meta<typeof LabelStudioPolygonDrawer> = {
   title: 'DagsHub/Data-Engine/Annotation',
@@ -54,7 +11,7 @@ const meta: Meta<typeof LabelStudioPolygonDrawer> = {
 
 export default meta;
 
-const ImagePolygon: React.FC<{image: string} & LabelStudioPolygonDrawerProps> = (args) => {
+const ImagePolygon: React.FC<{ image: string } & LabelStudioPolygonDrawerProps> = (args) => {
   return (
     <div style={{position: 'relative'}}>
       <img alt={"image from dataset"} src={args.image}/>
@@ -64,16 +21,74 @@ const ImagePolygon: React.FC<{image: string} & LabelStudioPolygonDrawerProps> = 
 }
 
 const Template: StoryFn<typeof ImagePolygon> = (args) => (
-    <ImagePolygon {...args} />
+  <ImagePolygon {...args} />
 );
 
-export const annotationBbox: StoryFn<typeof ImagePolygon> = Template.bind({});
-annotationBbox.args = {
-  image: taskData.data.image,
-  annotations: {"annotations": taskData.annotations},
+export const annotationPolygon: StoryFn<typeof ImagePolygon> = Template.bind({});
+annotationPolygon.args = {
+  image: polygonTask.data.image,
+  annotationsMap: {
+    polygons: polygonTask.annotations,
+  },
   width: 800,
   height: 500,
   colorProvider: (label: string, column?: string) => {
+    if (label === 'squirrel') {
+      return [255, 0, 0];
+    }
+    return [122, 255, 0];
+  }
+};
+
+export const annotationBbox: StoryFn<typeof ImagePolygon> = Template.bind({});
+annotationBbox.args = {
+  image: polygonTask.data.image,
+  annotationsMap: {
+    bboxes: bboxTask.annotations,
+  },
+  width: 800,
+  height: 500,
+  colorProvider: (label: string, column?: string) => {
+    if (label === 'squirrel') {
+      return [255, 0, 0];
+    }
+    return [122, 255, 0];
+  }
+};
+
+export const annotationCombinedColorByLabel: StoryFn<typeof ImagePolygon> = Template.bind({});
+annotationCombinedColorByLabel.args = {
+  image: polygonTask.data.image,
+  annotationsMap: {
+    polygons: polygonTask.annotations,
+    bboxes: bboxTask.annotations,
+  },
+  width: 800,
+  height: 500,
+  colorProvider: (label: string, column?: string) => {
+    if (label === 'squirrel') {
+      return [255, 0, 0];
+    } else if (label === 'car') {
+      return [0, 120, 124];
+    } else {
+      return [122, 255, 0];
+    }
+  }
+};
+
+export const annotationCombinedColorByColumn: StoryFn<typeof ImagePolygon> = Template.bind({});
+annotationCombinedColorByColumn.args = {
+  image: polygonTask.data.image,
+  annotationsMap: {
+    polygons: polygonTask.annotations,
+    bboxes: bboxTask.annotations,
+  },
+  width: 800,
+  height: 500,
+  colorProvider: (label: string, column?: string) => {
+    if (column === 'bboxes') {
+      return [255, 0, 0];
+    }
     return [122, 255, 0];
   }
 };

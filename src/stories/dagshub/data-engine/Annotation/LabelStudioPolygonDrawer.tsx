@@ -1,57 +1,72 @@
 import React, {useEffect, useRef, useState} from "react";
-import useImage from "use-image";
-import {Image, Layer, Line, Stage, Text} from "react-konva";
+import {Layer, Line, Stage, Text} from "react-konva";
 
-interface Point {
-  0: number;
-  1: number;
-}
+type Point = [number, number];
 
-interface PolygonLabel {
+type PolygonLabel = {
   points: Point[];
   polygonlabels: string[];
-}
+} & Record<string, any>;
 
-interface Result {
+type RectangleLabel = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  rectanglelabels: string[];
+} & Record<string, any>;
+
+type Result = PolygonResult | RectangleResult;
+
+type ResultCommon = {
   id: string;
-  from_name: string;
-  to_name: string;
-  source: string;
   type: string;
+} & Record<string, any>;
+
+type PolygonResult = ResultCommon & {
   value: PolygonLabel;
 }
 
-interface Annotation {
-  result: Result[];
+type RectangleResult = ResultCommon & {
+  value: RectangleLabel;
 }
 
-interface Annotations {
+type Annotation = {
+  result: Result[];
+} & Record<string, any>;
+
+type AnnotationsMap = {
   [fieldName: string]: Annotation[];
 }
 
-interface TaskData {
+type TaskData = {
   image: string;
 }
 
-export interface Task {
+export type Task = {
   annotations: Annotation[];
   data: TaskData;
-  id: number;
-  task_path: string;
-}
+} & Record<string, any>;
 
 type RGB = [number, number, number];
 
 export interface LabelStudioPolygonDrawerProps {
-  annotations: Annotations;
-  width?: number;
-  height?: number;
+  annotationsMap: AnnotationsMap;
+  width: number;
+  height: number;
   colorProvider: (label: string, column?: string) => RGB;
 }
 
+function isPolygonLabel(result: Result): result is PolygonResult {
+  return (result as PolygonResult).type === 'polygonlabels';
+}
+
+function isRectangleLabel(result: Result): result is RectangleResult {
+  return (result as RectangleResult).type === 'rectanglelabels';
+}
 
 export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> = ({
-  annotations,
+  annotationsMap,
   width,
   height,
   colorProvider,
@@ -101,61 +116,78 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
     ]
   }
 
-
   return (
     <div ref={containerRef} style={{width: '100%', height: '100%'}}>
-      <Stage width={stageWidth} height={stageHeight} style={{position: 'absolute', top: 0, left: 0 }}>
+      <Stage width={stageWidth} height={stageHeight} style={{position: 'absolute', top: 0, left: 0}}>
         <Layer>
-          {Object.entries(annotations).map(([column, annotation], aIndex) =>
-            annotation.result.map((result, rIndex) => {
-              const points = transformPoints(
-                result.value.points,
-                width || 0,
-                height || 0,
-              );
-              const flatPoints = points.flatMap((p) => [p[0], p[1]]);
-              const bboxPoints = getPolygonBbox(points);
-              const flatBboxPoints = bboxPoints.flatMap((p) => [p[0], p[1]]);
-
-              const label = result.value.polygonlabels[0];
-              const center = getPolygonCenter(result.value.points.map(pointTransformer(image?.width || 0, image?.height || 0)));
-              const fontSize = 14;
-              const [R,G,B] = colorProvider(label);
-              const strokeColor = `rgb(${R},${G},${B})`;
-              const fillColor = `rgba(${R},${G},${B},0.5)`;
-
-              return (
-                <React.Fragment key={`${aIndex}-${rIndex}`}>
-                  {/* Draw polygon */}
-                  <Line
-                    key={`${aIndex}-${rIndex}`}
-                    points={flatPoints}
-                    closed
-                    stroke={strokeColor}
-                    strokeWidth={2}
-                    fill={fillColor}
-                  />
-                  {/* Draw Bbox */}
-                  <Line
-                    key={`${aIndex}-${rIndex}-bbox`}
-                    points={flatBboxPoints}
-                    closed
-                    stroke={strokeColor}
-                    strokeWidth={2}
-                  />
-                  <Text
-                    x={bboxPoints[0][0]}
-                    y={bboxPoints[0][1] - fontSize}
-                    text={label}
-                    fontSize={14}
-                    fill='white'
-                    fontStyle='bold'
-                    align='center'
-                  />
-                </React.Fragment>
-              );
-            })
-          )}
+          {Object.entries(annotationsMap).map(([column, annotations]) =>
+            annotations.map((annotation, aIndex) =>
+              annotation.result.map((result, rIndex) => {
+                let flatPoints: number[] | null = null;
+                let flatBboxPoints: number[] = [];
+                let label: string = "";
+                if (isPolygonLabel(result)) {
+                  const points = transformPoints(
+                    result.value.points,
+                    width || 0,
+                    height || 0,
+                  );
+                  flatPoints = points.flatMap((p) => [p[0], p[1]]);
+                  const bboxPoints = getPolygonBbox(points);
+                  flatBboxPoints = bboxPoints.flatMap((p) => [p[0], p[1]]);
+                  label = result.value.polygonlabels[0];
+                } else if (isRectangleLabel(result)) {
+                  const bboxPoints = transformPoints(
+                    [
+                      [result.value.x, result.value.y],
+                      [result.value.x + result.value.width, result.value.y],
+                      [result.value.x + result.value.width, result.value.y + result.value.height],
+                      [result.value.x, result.value.y + result.value.height],
+                    ],
+                    width || 0,
+                    height || 0,
+                  );
+                  flatBboxPoints = bboxPoints.flatMap((p) => [p[0], p[1]]);
+                  label = result.value.rectanglelabels[0];
+                }
+                const fontSize = 14;
+                const [R, G, B] = colorProvider(label, column);
+                const strokeColor = `rgb(${R},${G},${B})`;
+                const fillColor = `rgba(${R},${G},${B},0.5)`;
+                const textPosition = [flatBboxPoints[0], flatBboxPoints[1] - fontSize];
+                return (
+                  <React.Fragment key={`${aIndex}-${rIndex}`}>
+                    {/* Draw polygon */}
+                    {flatPoints &&
+                      <Line
+                        key={`${column}-${aIndex}-${rIndex}`}
+                        points={flatPoints}
+                        closed
+                        stroke={strokeColor}
+                        strokeWidth={2}
+                        fill={fillColor}
+                      />}
+                    {/* Draw Bbox */}
+                    <Line
+                      key={`${column}-${aIndex}-${rIndex}-bbox`}
+                      points={flatBboxPoints}
+                      closed
+                      stroke={strokeColor}
+                      strokeWidth={2}
+                    />
+                    <Text
+                      x={textPosition[0]}
+                      y={textPosition[1]}
+                      text={label}
+                      fontSize={14}
+                      fill='white'
+                      fontStyle='bold'
+                      align='center'
+                    />
+                  </React.Fragment>
+                );
+              })
+            ))}
         </Layer>
       </Stage>
     </div>
