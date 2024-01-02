@@ -11,3 +11,5 @@ export * from './metadataTag/GalleryTagsGroup';
 export * from './singleFileViewModal/ItemFallback';
 export * from './singleFileViewModal/SingleFileViewModal';
 export * from './customAccordion/CustomAccordion';
+export * from './annotations/LabelStudioPolygonDrawer';
+export * from './gallery/GalleryBox';
