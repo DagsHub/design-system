@@ -1,9 +1,8 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { ItemData, RadioButtonItemProps } from '../../../../components';
+import { RadioButtonItemProps } from '../../../../components';
 import { ConditionDropdown } from '../../../../components/dagshub/data-engine/queryBuilder/ConditionDropdown';
-import { Comparator } from '../../../../components/dagshub/data-engine/queryBuilder/TypesCondition';
-import SingleFileViewModal from '../../../../components/dagshub/data-engine/singleFileViewModal/SingleFileViewModal';
+import { Comparator } from '../../../../components/dagshub/data-engine/queryBuilder/QueryBuilderContext';
 
 const meta: Meta<typeof ConditionDropdown> = {
   title: 'DagsHub/Data-Engine/QueryBuilder/Condition/ConditionDropdown',

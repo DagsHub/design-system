@@ -1,4 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { ConditionDropdown } from './ConditionDropdown';
+import { Box, IconButton, Menu, MenuItem, ThemeProvider, Typography } from '@mui/material';
+import ConditionTextField from './ConditionTextField';
+import { Button, ButtonVariant } from '../../../elements';
+import { Icon } from '../../../icons';
+import theme from '../../../../theme';
+import AddIcon from '@mui/icons-material/Add';
 import {
   AndOrMetadataInput,
   BlobOperators,
@@ -6,35 +13,24 @@ import {
   Comparator,
   FloatOperators,
   IntegerOperators,
-  MetadataFieldProps,
   Operators,
-  StringOperators
-} from './ConditionHelperFunctionsAndTypes';
-import { MetadataType } from '../metadataKeyValue/MetadataKeyValueList';
-import { ConditionDropdown } from './ConditionDropdown';
-import { Box, Menu, MenuItem, ThemeProvider, Typography } from '@mui/material';
-import ConditionTextField from './ConditionTextField';
-import { Button, ButtonVariant } from '../../../elements';
-import { Icon } from '../../../icons';
-import theme from '../../../../theme';
+  StringOperators,
+  useQueryBuilderContext
+} from './QueryBuilderContext';
 
 const SimpleCondition = ({
   condition,
   onChange,
-  metadataFields,
-  isSimple,
   onRemove,
-  onAdd,
-  verifyCondition
+  onAdd
 }: {
   condition: AndOrMetadataInput;
   onChange: any;
-  metadataFields: MetadataFieldProps[];
-  onRemove?: any;
-  onAdd?: any;
-  isSimple?: boolean;
-  verifyCondition: (valueType: MetadataType, value: string) => boolean;
+  onRemove: () => void;
+  onAdd: () => void;
 }) => {
+  const { isSimpleMode, validateConditionValue, metadataFieldsList } = useQueryBuilderContext();
+
   const [operatorsList, setOperatorsList] =
     useState<{ label: string; id: Comparator }[]>(Operators);
   const [shouldDisplayValueField, setShouldDisplayValueField] = useState<boolean>(true);
@@ -94,12 +90,12 @@ const SimpleCondition = ({
     // }
 
     //Whenever the operatorsList changes, change the comparator to the first one in the list
-    onChange({...condition, filter: {...condition.filter, comparator: operatorsList[0].id}});
+    onChange({ ...condition, filter: { ...condition.filter, comparator: operatorsList[0].id } });
   }, [operatorsList]);
 
   useEffect(() => {
     if (!!condition.filter?.valueType && !!condition.filter?.value) {
-      setIsErrored(!verifyCondition(condition.filter?.valueType, condition.filter?.value));
+      setIsErrored(!validateConditionValue(condition.filter?.valueType, condition.filter?.value));
     } else {
       setIsErrored(false);
     }
@@ -107,7 +103,9 @@ const SimpleCondition = ({
 
   const isEmpty =
     !condition.filter?.key || !condition.filter?.comparator || !condition.filter?.value;
-  const selectedMetadataKey = metadataFields.find((field) => field.name === condition.filter?.key);
+  const selectedMetadataKey = metadataFieldsList.find(
+    (field) => field.name === condition.filter?.key
+  );
   const selectedOperator = operatorsList.find(
     (operator) => operator.id === condition.filter?.comparator
   );
@@ -116,7 +114,7 @@ const SimpleCondition = ({
   return (
     <ThemeProvider theme={theme}>
       <Box style={{ display: 'flex', flexDirection: 'row', gap: '4px' }}>
-        {!isSimple && condition.not && (
+        {!isSimpleMode && condition.not && (
           <Box
             style={{
               display: 'flex',
@@ -164,9 +162,8 @@ const SimpleCondition = ({
           </Box>
         )}
         <ConditionDropdown
-            autoFocus={true}
           removeEndAdornment={true}
-          alignInputTextToCenter={true}
+          alignInputTextToCenter={false}
           initialChecked={
             selectedMetadataKey
               ? { id: selectedMetadataKey.name, label: selectedMetadataKey.name }
@@ -179,11 +176,12 @@ const SimpleCondition = ({
               filter: {
                 ...condition.filter,
                 key: value?.id,
-                valueType: metadataFields.find((field) => field.name === value?.label)?.valueType
+                valueType: metadataFieldsList.find((field) => field.name === value?.label)
+                  ?.valueType
               }
             });
           }}
-          options={metadataFields?.map((field) => ({ id: field.name, label: field.name }))}
+          options={metadataFieldsList?.map((field) => ({ id: field.name, label: field.name }))}
         />
         <ConditionDropdown
           removeEndAdornment
@@ -249,7 +247,7 @@ const SimpleCondition = ({
             <Icon icon={'solid-trash'} width={14} height={16} fill={'rgba(100, 116, 139, 1)'} />
           }
         />
-        <Button
+        <IconButton
           style={{
             width: '28px',
             height: '28px',
@@ -259,20 +257,17 @@ const SimpleCondition = ({
             justifyContent: 'center',
             display: 'flex'
           }}
-          label={''}
           onClick={(event) => {
-            if (isSimple) {
+            if (isSimpleMode) {
               onAdd();
             } else {
               setAnchorEl(event.currentTarget);
               setIsOpen(true);
             }
           }}
-          variant={ButtonVariant.Ghost}
-          iconRight={
-            <Icon icon={'solid-plus'} width={14} height={16} fill={'rgba(100, 116, 139, 1)'} />
-          }
-        />
+        >
+          <AddIcon fontSize={'medium'} sx={{ fill: 'rgba(100, 116, 139, 1)' }} />
+        </IconButton>
         <Menu
           sx={{
             '& .MuiPaper-root': {
@@ -296,7 +291,7 @@ const SimpleCondition = ({
           >
             <Typography variant={'medium'}>Add condition</Typography>
           </MenuItem>
-          {!isSimple && !condition.not && (
+          {!isSimpleMode && !condition.not && (
             <MenuItem
               onClick={() => {
                 onChange({ ...condition, not: !condition.not });

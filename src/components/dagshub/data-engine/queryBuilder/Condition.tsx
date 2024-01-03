@@ -1,28 +1,21 @@
 import React from 'react';
-import { AndOrMetadataInput, MetadataFieldProps } from './ConditionHelperFunctionsAndTypes';
-import { MetadataType } from '../metadataKeyValue/MetadataKeyValueList';
 import SimpleCondition from './SimpleCondition';
 import { Box } from '@mui/system';
 import GroupCondition from './GroupCondition';
+import { AndOrMetadataInput } from './QueryBuilderContext';
 
 const Condition = ({
   condition,
   onChange,
-  metadataFields,
   level = 0,
-  isSimple,
   onRemove,
-  onAdd,
-  verifyCondition
+  onAdd
 }: {
   condition: AndOrMetadataInput;
   onChange: any;
-  metadataFields: MetadataFieldProps[];
   level?: number;
-  onRemove?: any;
-  onAdd?: any;
-  isSimple?: boolean;
-  verifyCondition: (valueType: MetadataType, value: string) => boolean;
+  onRemove?: () => void;
+  onAdd?: () => void;
 }) => {
   return (
     <Box key={condition.id ?? condition.filter?.id}>
@@ -30,20 +23,13 @@ const Condition = ({
         <SimpleCondition
           condition={condition}
           onChange={onChange}
-          metadataFields={metadataFields}
-          verifyCondition={verifyCondition}
-          isSimple={isSimple}
-          onAdd={onAdd}
-          onRemove={onRemove}
+          onAdd={onAdd ?? (() => {})}
+          onRemove={onRemove ?? (() => {})}
         />
       ) : (
         <GroupCondition
           condition={condition}
           onChange={onChange}
-          metadataFields={metadataFields}
-          verifyCondition={verifyCondition}
-          isSimple={isSimple}
-          onAdd={onAdd}
           onRemove={onRemove}
           level={level}
         />

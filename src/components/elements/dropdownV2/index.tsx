@@ -36,7 +36,7 @@ export function DropdownV2({
   borderColorHover = '#cbd5e1',
   bgColor = '#f8fafc',
   bgColorHover = 'rgba(241, 245, 249, 1)',
-    autoFocus
+  autoFocus
 }: {
   onChange: (event: SyntheticEvent<Element, Event>, value: RadioButtonItemProps | null) => void;
   initialChecked?: RadioButtonItemProps | undefined;
@@ -71,14 +71,18 @@ export function DropdownV2({
   const [inputWidth, setInputWidth] = useState<number>();
 
   const autoCompleteWrapperRef = useRef<HTMLDivElement | null>(null);
+  const autoCompleteRef = useRef<HTMLDivElement | null>(null);
+
   const textFieldRef = useRef<HTMLDivElement | null>(null);
   const copyTextFieldRef = useRef<HTMLDivElement | null>(null);
+
+  const END_ADORNMENT_WIDTH = 24;
 
   useEffect(() => {
     if (makeWidthDynamic) {
       let width = copyTextFieldRef.current?.scrollWidth ?? 0;
       if (!removeEndAdornment) {
-        width += 24;
+        width += END_ADORNMENT_WIDTH;
       }
       setInputWidth(width);
     }
@@ -90,6 +94,7 @@ export function DropdownV2({
       textFieldRef.current?.blur();
     }
   };
+
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
     return () => {
@@ -276,14 +281,14 @@ export function DropdownV2({
           variant={'medium'}
           ref={copyTextFieldRef}
           style={{
-            display:"flex",
+            display: 'flex',
             zIndex: -1,
             color: 'transparent',
             borderRadius: '8px',
             padding: '0px 10px',
             position: 'absolute',
-            flexWrap:"nowrap",
-            width:"max-content",
+            flexWrap: 'nowrap',
+            width: 'max-content',
             top: 0,
             left: 0
           }}
