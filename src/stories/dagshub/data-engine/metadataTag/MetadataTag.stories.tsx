@@ -12,7 +12,7 @@ export default meta;
 const Template: StoryFn<typeof GalleryTagsGroup> = (args) => (
   <GalleryBox
     style={{fontFamily: 'Inter', fontSize: '14px'}}
-    cell={{width: 270, height: 220}}
+    cell={{width: 299, height: 220}}
     fileName={"fileName.json"}
   >
     <img
@@ -24,7 +24,7 @@ const Template: StoryFn<typeof GalleryTagsGroup> = (args) => (
         cursor: 'pointer',
         display: 'block'
       }}
-      src={'https://dagshub.com/Dean/COCO_1K/raw/main/data/images/train/000000000009.jpg'}
+      src={'https://dagshub.com/Dean/COCO_1K/raw/main/data/images/train/000000005105.jpg'}
       alt=""
     />
     <BoxedGalleryTagsGroup {...args} />

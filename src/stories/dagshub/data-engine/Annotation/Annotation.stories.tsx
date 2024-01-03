@@ -1,13 +1,12 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import {Meta, StoryFn} from "@storybook/react";
+import {GalleryBox} from "../../../../components";
 import {
   LabelStudioPolygonDrawer,
   LabelStudioPolygonDrawerProps,
-  Task,
-  useContainerDimensions
 } from "../../../../components";
-import { polygonTask } from './PolygonTasks';
-import { bboxTask } from './BboxTasks';
+import {polygonTask} from './PolygonTasks';
+import {bboxTask} from './BboxTasks';
 
 const meta: Meta<typeof LabelStudioPolygonDrawer> = {
   title: 'DagsHub/Data-Engine/Annotation',
@@ -17,13 +16,12 @@ const meta: Meta<typeof LabelStudioPolygonDrawer> = {
 export default meta;
 
 const ImagePolygon: React.FC<{ image: string } & LabelStudioPolygonDrawerProps> = (args) => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const [width, height] = useContainerDimensions(ref);
   return (
-    <div style={{width: "100%", position: 'relative'}}>
-      <img ref={ref} style={{width: "100%"}} alt={"image from dataset"} src={args.image}/>
-      <LabelStudioPolygonDrawer {...args} width={width} height={height}/>
-    </div>
+    // <GalleryBox style={{fontFamily: 'Inter', fontSize: '14px'}}
+    //             cell={{width: 500, height: 320}}
+    //             fileName={"Luna.jpg"}>
+      <LabelStudioPolygonDrawer {...args} src={args.image}/>
+    // </GalleryBox>
   );
 }
 
@@ -37,6 +35,8 @@ annotationPolygon.args = {
   annotationsMap: {
     polygons: polygonTask.annotations,
   },
+  displayColumns: ['polygons'],
+  displayLabels: ['Hello', 'car'],
   colorProvider: (label: string, column?: string) => {
     if (label === 'squirrel') {
       return [255, 0, 0];
@@ -51,6 +51,8 @@ annotationBbox.args = {
   annotationsMap: {
     bboxes: bboxTask.annotations,
   },
+  displayColumns: ['polygons', 'bboxes'],
+  displayLabels: ['Hello', 'squirrel'],
   colorProvider: (label: string, column?: string) => {
     if (label === 'squirrel') {
       return [255, 0, 0];
@@ -66,6 +68,8 @@ annotationCombinedColorByLabel.args = {
     polygons: polygonTask.annotations,
     bboxes: bboxTask.annotations,
   },
+  displayColumns: ['polygons', 'bboxes'],
+  displayLabels: ['squirrel', 'car', 'Hello'],
   colorProvider: (label: string, column?: string) => {
     if (label === 'squirrel') {
       return [255, 0, 0];
@@ -84,10 +88,12 @@ annotationCombinedColorByColumn.args = {
     polygons: polygonTask.annotations,
     bboxes: bboxTask.annotations,
   },
+  displayColumns: ['polygons', 'bboxes'],
+  displayLabels: ['squirrel', 'car', 'Hello'],
   colorProvider: (label: string, column?: string) => {
     if (column === 'bboxes') {
       return [255, 0, 0];
     }
     return [122, 255, 0];
-  }
+  },
 };
