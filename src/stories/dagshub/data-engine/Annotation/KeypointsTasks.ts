@@ -1,4 +1,6 @@
-export const keypointsTask = {
+import { Task } from "../../../../components/dagshub/data-engine/annotations/annotationTypes";
+
+export const keypointsTask: Task = {
   "id": 1,
   "annotations": [{
     "id": 1,

@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/dagshub/design-system.git"
   },
-  "version": "0.1.45",
+  "version": "0.1.53",
   "description": "A component library for consuming dagshub user interfaces.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -47,7 +47,7 @@
     "@storybook/react-webpack5": "^7.0.0-alpha.0",
     "@storybook/testing-library": "^0.0.14-next.1",
     "@types/node": "^18.14.2",
-    "@types/react": "^18.0.28",
+    "@types/react": "^18.2.46",
     "@types/react-dom": "^18.0.11",
     "@types/react-table": "^7.7.14",
     "@types/react-window": "^1.8.5",
@@ -77,6 +77,7 @@
   },
   "peerDependencies": {
     "react": "^18.2.0",
+    "react-konva": "^18.2.10",
     "react-dom": "^18.2.0"
   },
   "dependencies": {
@@ -90,7 +91,6 @@
     "@tippyjs/react": "^4.2.6",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",
-    "react-konva": "^18.2.10",
     "react-table": "^7.8.0",
     "react-use": "^17.4.0",
     "react-window": "^1.8.8",

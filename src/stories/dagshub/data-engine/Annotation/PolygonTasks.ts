@@ -1,4 +1,4 @@
-import {Task} from "./LabelStudioPolygonDrawer";
+import { Task } from "../../../../components/dagshub/data-engine/annotations/annotationTypes";
 
 export const polygonTask: Task = {
   "annotations": [

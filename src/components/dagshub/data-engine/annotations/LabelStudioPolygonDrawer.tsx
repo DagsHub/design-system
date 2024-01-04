@@ -18,7 +18,7 @@ export interface LabelStudioPolygonDrawerProps {
   annotationsMap: AnnotationsMap;
   colorProvider: (label: string, column?: string) => RGB;
   displayColumns: string[];
-  displayLabels: string[];
+  displayLabels?: string[];
   style?: React.CSSProperties;
 }
 
@@ -27,7 +27,7 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
     annotationsMap,
     colorProvider,
     displayColumns = [],
-    displayLabels = [],
+    displayLabels = ["all"],
   }) => {
     const ref = useRef<HTMLImageElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -98,7 +98,7 @@ function SingleLabelAnnotation({
   rIndex,
   dimension,
   colorProvider,
-  displayLabels,
+  displayLabels = ["all"],
 }: {
   column: string;
   result: Result;
@@ -112,7 +112,7 @@ function SingleLabelAnnotation({
   let flatBboxPoints: number[] = [];
   const labelComponents: React.ReactNode[] = [];
   const label = getLabel(result);
-  if (!displayLabels.includes(label)) {
+  if (!displayLabels.includes("all") && !displayLabels.includes(label)) {
     return null;
   }
   const fontSize = 14;

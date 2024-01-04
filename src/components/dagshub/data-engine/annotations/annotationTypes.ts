@@ -51,6 +51,7 @@ export type AnnotationsMap = {
 
 export type TaskData = {
   image: string;
+  size?: number;
 }
 
 export type Task = {

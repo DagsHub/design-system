@@ -21,7 +21,8 @@ export function getPolygonLabelBbox(label: PolygonResult, dimension: Dimension):
   const minY = Math.min(...ys);
   const maxX = Math.max(...xs);
   const maxY = Math.max(...ys);
-  return [[minX, minY], [minX, maxY], [maxX, maxY], [maxX, minY]].flatMap((p) => pointPercentToPixel(p, dimension));
+  const bbox: Point[] = [[minX, minY], [minX, maxY], [maxX, maxY], [maxX, minY]]
+  return bbox.flatMap((p) => pointPercentToPixel(p, dimension));
 }
 
 export function isPolygonLabel(result: Result): result is PolygonResult {

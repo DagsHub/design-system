@@ -1,6 +1,5 @@
 import React, {CSSProperties} from 'react';
 import {Meta, StoryFn} from "@storybook/react";
-import {GalleryBox} from "../../../../components";
 import {
   LabelStudioPolygonDrawer,
   LabelStudioPolygonDrawerProps,
@@ -18,13 +17,9 @@ export default meta;
 
 const ImagePolygon: React.FC<{ image: string } & LabelStudioPolygonDrawerProps> = (args) => {
   return (
-    // <GalleryBox style={{fontFamily: 'Inter', fontSize: '14px'}}
-    //             cell={{width: 500, height: 320}}
-    //             fileName={"Luna.jpg"}>
       <LabelStudioPolygonDrawer {...args} src={args.image}/>
-    // </GalleryBox>
   );
-}
+};
 
 const Template: StoryFn<typeof ImagePolygon> = (args) => (
   <ImagePolygon {...args} />
