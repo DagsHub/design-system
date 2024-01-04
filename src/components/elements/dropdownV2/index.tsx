@@ -7,7 +7,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CancelIcon from '@mui/icons-material/Cancel';
 import './style.scss';
 import theme from '../../../theme';
-import _ from 'lodash';
 
 export function DropdownV2({
   onChange,
@@ -69,13 +68,9 @@ export function DropdownV2({
   const [inputValue, setInputValue] = React.useState('');
   const [open, setOpen] = useState(false);
   const [inputWidth, setInputWidth] = useState<number>();
-
   const autoCompleteWrapperRef = useRef<HTMLDivElement | null>(null);
-  const autoCompleteRef = useRef<HTMLDivElement | null>(null);
-
   const textFieldRef = useRef<HTMLDivElement | null>(null);
   const copyTextFieldRef = useRef<HTMLDivElement | null>(null);
-
   const END_ADORNMENT_WIDTH = 24;
 
   useEffect(() => {

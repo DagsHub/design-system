@@ -15,11 +15,6 @@ export type Comparator =
   | 'IS_NEGATIVE_INFINITY'
   | 'IS_NAN';
 
-export enum SourceType {
-  DATASET = 'dataset',
-  DATASOURCE = 'datasource'
-}
-
 export const Operators: { label: string; id: Comparator; value?: string }[] = [
   { label: '==', id: 'EQUAL' },
   { label: '>', id: 'GREATER_THAN' },
@@ -96,27 +91,17 @@ export interface QueryInput {
 }
 
 interface QueryBuilderContextInterface {
-  sourceType: SourceType;
-  sourceName: string;
-  onSaveAsNewDatasetButtonClicked: () => void;
-  onUpdateCurrentDatasetButtonClicked: () => void;
-  onApplyQueryButtonClicked: () => void;
-  onClearQuery: () => void;
-  onResetQuery: () => void;
-  isSaveButtonDisabled: boolean;
-  isApplyButtonDisabled: boolean;
   isSimpleMode: boolean;
   setIsSimpleMode: (isSimpleMode: boolean) => void;
   rootCondition: AndOrMetadataInput;
   setRootCondition: (rootCondition: AndOrMetadataInput) => void;
   metadataFieldsList: MetadataFieldProps[];
-  newDatasetName: string;
-  setNewDatasetName: (newDatasetName: string) => void;
   generateUniqueId: () => string;
   addUniqueIds: (input: AndOrMetadataInput) => AndOrMetadataInput;
-  validateConditionValue: (valueType: MetadataType, value: string) => boolean;
   getZeroValueByType: (type: MetadataType | undefined) => string;
-  hasUncompletedConditions: (condition: AndOrMetadataInput) => boolean;
+  getOperatorsByMetadataType: (type: MetadataType) => { label: string; id: Comparator }[];
+  checkIfOperatorRequiresValueField: (operator: Comparator) => boolean;
+  validateValueByType: (valueType: MetadataType, value: string) => boolean;
   convertToBackandFormatAndRemoveEmptyConditions: (
     condition: AndOrMetadataInput
   ) => AndOrMetadataInput | null;
@@ -139,23 +124,15 @@ export const QueryBuilderProvider = ({
   queryInput,
   metadataFields,
   forceCompoundMode = false,
-  sourceType,
-  sourceName,
-  onApplyQuery,
-  onSaveNewDataset,
-  onUpdateDatasetQuery,
-  isQueryApiLoading
+  validateValueByType,
+  onChange
 }: {
   children: ReactNode;
   queryInput: QueryInput;
   metadataFields: MetadataFieldProps[]; // need to take into consideration the select and the alias
   forceCompoundMode?: boolean;
-  sourceType: SourceType;
-  sourceName: string;
-  onApplyQuery: (queryInput: QueryInput) => void;
-  onSaveNewDataset: (newDatasetName: string, queryInput: QueryInput) => void;
-  onUpdateDatasetQuery: (queryInput: QueryInput) => void;
-  isQueryApiLoading: boolean;
+  validateValueByType: (valueType: MetadataType, value: string) => boolean;
+  onChange: (query: QueryInput) => void;
 }) => {
   const getInitialQuery = () => {
     let condition: AndOrMetadataInput | undefined = undefined;
@@ -193,11 +170,6 @@ export const QueryBuilderProvider = ({
   // const [rootConditionBackend, setRootConditionBackend] = useState<AndOrMetadataInput | null>(null);
   const [metadataFieldsList, setMetadataFieldsList] =
     useState<MetadataFieldProps[]>(metadataFields);
-  const [isUncompleted, setIsUncompleted] = useState<boolean>(false);
-  const [isErrored, setIsErrored] = useState<boolean>(false);
-  const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState<boolean>(false);
-  const [isApplyButtonDisabled, setIsApplyButtonDisabled] = useState<boolean>(false);
-  const [newDatasetName, setNewDatasetName] = useState<string>('');
 
   useEffect(() => {
     setIsSimpleMode(checkIfSimpleMode());
@@ -213,37 +185,10 @@ export const QueryBuilderProvider = ({
   }, [metadataFields]);
 
   useEffect(() => {
-    setIsUncompleted(hasUncompletedConditions(rootCondition));
-    setIsErrored(false); //Todo: validate query and set isErrored
+    onChange({
+      query: convertToBackandFormatAndRemoveEmptyConditions(rootCondition) ?? {}
+    });
   }, [rootCondition]);
-
-  useEffect(() => {
-    setIsApplyButtonDisabled(isUncompleted || isQueryApiLoading || isErrored);
-    setIsSaveButtonDisabled(isUncompleted || isErrored);
-  }, [isQueryApiLoading, isUncompleted, isErrored]);
-
-  const onSaveAsNewDatasetButtonClicked = () => {
-    onSaveNewDataset(newDatasetName, {
-      query: convertToBackandFormatAndRemoveEmptyConditions(rootCondition) ?? {}
-    });
-  };
-  const onUpdateCurrentDatasetButtonClicked = () => {
-    onUpdateDatasetQuery({
-      query: convertToBackandFormatAndRemoveEmptyConditions(rootCondition) ?? {}
-    });
-  };
-
-  const onApplyQueryButtonClicked = () => {
-    onApplyQuery({ query: convertToBackandFormatAndRemoveEmptyConditions(rootCondition) ?? {} });
-  };
-
-  const onClearQuery = () => {
-    setRootCondition({ and: [] });
-  };
-
-  const onResetQuery = () => {
-    setRootCondition(getInitialQuery());
-  };
 
   function generateUniqueId(): string {
     return _.random(0, 100000).toString();
@@ -260,29 +205,6 @@ export const QueryBuilderProvider = ({
     }
     return updatedInput;
   }
-
-  const validateConditionValue = (valueType: MetadataType, value: string): boolean => {
-    try {
-      switch (valueType) {
-        case 'BOOLEAN':
-          return value === 'true' || value === 'false';
-        case 'INTEGER':
-          const integerRegex = /^([-+]?(0|[1-9][0-9]*))$/;
-          return !isNaN(parseInt(value)) && integerRegex.test(value);
-        case 'FLOAT':
-          const floatRegex = /^([-+]?(0\.[0-9]+|0|[1-9][0-9]*(\.[0-9]+)?))$/;
-          return !isNaN(parseFloat(value)) && floatRegex.test(value);
-        case 'STRING':
-          return true;
-        case 'BLOB':
-          return true;
-        default:
-          return false; //This mechanism is not perfect, cause for numbers with a lot of digits, there is rounding, and then it's not equal to the string
-      }
-    } catch (e) {
-      return false;
-    }
-  };
 
   function getZeroValueByType(type: MetadataType | undefined): string {
     switch (type) {
@@ -301,28 +223,33 @@ export const QueryBuilderProvider = ({
     }
   }
 
-  function hasUncompletedConditions(condition: AndOrMetadataInput): boolean {
-    if (!!condition.or || !!condition.and) {
-      if (condition.or?.length === 0 || condition.and?.length === 0) {
-        return false; // it is possible to have an empty group, it is not considered uncompleted
-      }
-      // Recursively check if all nested conditions are empty
-      return (condition.or || condition.and || []).every(hasUncompletedConditions);
-    } else if (!!condition.filter) {
-      // If it's a simple filter, check if it's empty
-      return (
-        !condition.filter.key ||
-        (!condition.filter.value &&
-          !(
-            condition.filter?.comparator === 'IS_POSITIVE_INFINITY' ||
-            condition.filter?.comparator === 'IS_NEGATIVE_INFINITY' ||
-            condition.filter?.comparator === 'IS_NAN' ||
-            condition.filter?.comparator === 'IS_NULL'
-          ))
-      );
+  function getOperatorsByMetadataType(type: MetadataType): { label: string; id: Comparator }[] {
+    switch (type) {
+      case 'BOOLEAN':
+        return BooleanOperators;
+      case 'INTEGER':
+        return IntegerOperators;
+      case 'FLOAT':
+        return FloatOperators;
+      case 'STRING':
+        return StringOperators;
+      case 'BLOB':
+        return BlobOperators;
+      default:
+        return [];
     }
-    // Return false if it's not a filter, OR, or AND
-    return false;
+  }
+
+  function checkIfOperatorRequiresValueField(operator: Comparator): boolean {
+    switch (operator) {
+      case 'IS_NULL':
+      case 'IS_POSITIVE_INFINITY':
+      case 'IS_NEGATIVE_INFINITY':
+      case 'IS_NAN':
+        return false;
+      default:
+        return true;
+    }
   }
 
   function convertToBackandFormatAndRemoveEmptyConditions(
@@ -385,28 +312,18 @@ export const QueryBuilderProvider = ({
   return (
     <QueryBuilderContext.Provider
       value={{
-        sourceType,
-        sourceName,
-        onSaveAsNewDatasetButtonClicked,
-        onUpdateCurrentDatasetButtonClicked,
-        onApplyQueryButtonClicked,
-        onClearQuery,
-        onResetQuery,
-        isSaveButtonDisabled,
-        isApplyButtonDisabled,
         isSimpleMode,
         setIsSimpleMode,
         rootCondition,
         setRootCondition,
         metadataFieldsList,
-        newDatasetName,
-        setNewDatasetName,
         generateUniqueId,
         addUniqueIds,
-        validateConditionValue,
         getZeroValueByType,
-        hasUncompletedConditions,
-        convertToBackandFormatAndRemoveEmptyConditions
+        getOperatorsByMetadataType,
+        checkIfOperatorRequiresValueField,
+        convertToBackandFormatAndRemoveEmptyConditions,
+        validateValueByType
       }}
     >
       {children}

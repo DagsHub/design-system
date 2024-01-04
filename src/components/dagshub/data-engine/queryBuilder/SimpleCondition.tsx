@@ -8,13 +8,8 @@ import theme from '../../../../theme';
 import AddIcon from '@mui/icons-material/Add';
 import {
   AndOrMetadataInput,
-  BlobOperators,
-  BooleanOperators,
   Comparator,
-  FloatOperators,
-  IntegerOperators,
   Operators,
-  StringOperators,
   useQueryBuilderContext
 } from './QueryBuilderContext';
 
@@ -29,7 +24,13 @@ const SimpleCondition = ({
   onRemove: () => void;
   onAdd: () => void;
 }) => {
-  const { isSimpleMode, validateConditionValue, metadataFieldsList } = useQueryBuilderContext();
+  const {
+    isSimpleMode,
+    validateValueByType,
+    metadataFieldsList,
+    getOperatorsByMetadataType,
+    checkIfOperatorRequiresValueField
+  } = useQueryBuilderContext();
 
   const [operatorsList, setOperatorsList] =
     useState<{ label: string; id: Comparator }[]>(Operators);
@@ -40,62 +41,31 @@ const SimpleCondition = ({
 
   useEffect(() => {
     if (!!condition?.filter?.valueType) {
-      switch (condition.filter.valueType) {
-        case 'STRING':
-          setOperatorsList(StringOperators);
-          break;
-        case 'INTEGER':
-          setOperatorsList(IntegerOperators);
-          break;
-        case 'FLOAT':
-          setOperatorsList(FloatOperators);
-          break;
-        case 'BOOLEAN':
-          setOperatorsList(BooleanOperators);
-          break;
-        case 'BLOB':
-          setOperatorsList(BlobOperators);
-          break;
-      }
+      setOperatorsList(getOperatorsByMetadataType(condition.filter.valueType));
+      //Reset the value field whenever the valueType changes
+      onChange({ ...condition, filter: { ...condition.filter, value: '' } });
     }
-  }, [condition.filter?.key]);
+  }, [condition?.filter?.valueType]);
 
   useEffect(() => {
     if (!!condition.filter?.comparator) {
-      switch (condition.filter.comparator) {
-        case 'IS_NULL':
-        case 'IS_NEGATIVE_INFINITY':
-        case 'IS_POSITIVE_INFINITY':
-        case 'IS_NAN':
-          setShouldDisplayValueField(false);
-          onChange({ ...condition, filter: { ...condition.filter, value: undefined } });
-          break;
-        default:
-          setShouldDisplayValueField(true);
-          break;
+      if (checkIfOperatorRequiresValueField(condition.filter.comparator)) {
+        setShouldDisplayValueField(true);
+      } else {
+        setShouldDisplayValueField(false);
+        onChange({ ...condition, filter: { ...condition.filter, value: '' } });
       }
     }
   }, [condition.filter?.comparator]);
 
   useEffect(() => {
-    // check if comparator exists in operatorsList, and if not, change the comparator to the first one in the list
-    // if (!!condition.filter?.comparator) {
-    //   const comparatorExists = operatorsList.some((op) => op.id === condition.filter?.comparator);
-    //   if (!comparatorExists) {
-    //     onChange({
-    //       ...condition,
-    //       filter: { ...condition.filter, comparator: operatorsList[0].id }
-    //     });
-    //   }
-    // }
-
     //Whenever the operatorsList changes, change the comparator to the first one in the list
     onChange({ ...condition, filter: { ...condition.filter, comparator: operatorsList[0].id } });
   }, [operatorsList]);
 
   useEffect(() => {
     if (!!condition.filter?.valueType && !!condition.filter?.value) {
-      setIsErrored(!validateConditionValue(condition.filter?.valueType, condition.filter?.value));
+      setIsErrored(!validateValueByType(condition.filter?.valueType, condition.filter?.value));
     } else {
       setIsErrored(false);
     }
@@ -110,7 +80,6 @@ const SimpleCondition = ({
     (operator) => operator.id === condition.filter?.comparator
   );
 
-  // Simple condition
   return (
     <ThemeProvider theme={theme}>
       <Box style={{ display: 'flex', flexDirection: 'row', gap: '4px' }}>
@@ -198,21 +167,47 @@ const SimpleCondition = ({
           }}
           options={operatorsList?.map((op) => ({ id: op.id, label: op.label }))}
         />
-        {shouldDisplayValueField && (
-          <ConditionTextField
-            value={condition.filter?.value}
-            placeholder={'Enter value'}
-            disabled={false}
-            onChange={(newVal) =>
-              onChange({
-                ...condition,
-                filter: { ...condition.filter, value: newVal }
-              })
-            }
-            helperText={isErrored ? `Value is not valid` : ''}
-            isErrored={isErrored}
-          />
-        )}
+        {shouldDisplayValueField &&
+          (condition.filter?.valueType === 'BOOLEAN' && condition.filter.comparator === 'EQUAL' ? (
+            <ConditionDropdown
+              removeEndAdornment
+              initialChecked={
+                condition.filter.value === 'true'
+                  ? {
+                      id: 'true',
+                      label: 'true'
+                    }
+                  : condition.filter.value === 'false'
+                  ? { id: 'false', label: 'false' }
+                  : undefined
+              }
+              label={'Set boolean'}
+              onChange={(event, value) => {
+                onChange({
+                  ...condition,
+                  filter: { ...condition.filter, value: value?.id }
+                });
+              }}
+              options={[
+                { id: 'true', label: 'true' },
+                { id: 'false', label: 'false' }
+              ]}
+            />
+          ) : (
+            <ConditionTextField
+              value={condition.filter?.value}
+              placeholder={'Enter value'}
+              disabled={false}
+              onChange={(newVal) =>
+                onChange({
+                  ...condition,
+                  filter: { ...condition.filter, value: newVal }
+                })
+              }
+              helperText={isErrored ? `Value is not valid` : ''}
+              isErrored={isErrored}
+            />
+          ))}
         {condition.not && (
           <Box
             style={{

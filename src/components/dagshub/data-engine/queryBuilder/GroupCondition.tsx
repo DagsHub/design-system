@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/system';
 import { ConditionDropdown } from './ConditionDropdown';
-import { Button as DagshubButton, ButtonStretch, ButtonVariant } from '../../../elements';
+import { Button as DagshubButton, ButtonVariant } from '../../../elements';
 import { Icon } from '../../../icons';
 import { IconButton, Menu, MenuItem, ThemeProvider, Typography } from '@mui/material';
 import theme from '../../../../theme';
 import Condition from './Condition';
 import AddIcon from '@mui/icons-material/Add';
-import {
-  AndOrMetadataInput,
-  Operators,
-  SourceType,
-  useQueryBuilderContext
-} from './QueryBuilderContext';
+import { AndOrMetadataInput, Operators, useQueryBuilderContext } from './QueryBuilderContext';
 
 const GroupCondition = ({
   condition,
@@ -25,19 +20,22 @@ const GroupCondition = ({
   level: number;
   onRemove?: () => void;
 }) => {
-  const { isSimpleMode, generateUniqueId, onApplyQueryButtonClicked, sourceType } =
-    useQueryBuilderContext();
+  const { isSimpleMode, generateUniqueId } = useQueryBuilderContext();
   const [isAddMenuOpen, setIsAddMenuOpen] = useState<boolean>(false);
   const [addMenuAnchorEl, setAddMenuAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const [isSaveMenuOpen, setIsSaveMenuOpen] = useState<boolean>(false);
-  const [saveMenuAnchorEl, setSaveMenuAnchorEl] = React.useState<null | HTMLElement>(null);
-
-  //check if there are simple conditions in the group
   const isAndRelation = !!condition.and;
   const areThereSimpleFilters = (isAndRelation ? condition.and : condition.or)?.some((cond) => {
     return !!cond.filter;
   });
+
+  const onChangeHandler = (conditions: AndOrMetadataInput[]) => {
+    if (isAndRelation) {
+      onChange({ ...condition, and: conditions });
+    } else {
+      onChange({ ...condition, or: conditions });
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -45,7 +43,7 @@ const GroupCondition = ({
         style={{
           border:
             level == 0 ? '1px solid rgba(226, 232, 240, 1)' : '2px dashed rgba(203, 213, 225, 1)',
-          borderRadius: '16px',
+          borderRadius: level == 0 ? '16px 16px 0px 0px' : '16px',
           display: 'flex',
           flexDirection: 'column',
           backgroundColor: 'rgba(248, 250, 252, 1)'
@@ -73,12 +71,7 @@ const GroupCondition = ({
               onClick={() => {
                 const newConditions = condition.and || condition.or || [];
                 newConditions.splice(0, 0, { filter: { comparator: Operators[0].id } });
-                if (isAndRelation) {
-                  onChange({ ...condition, and: newConditions });
-                } else {
-                  // or relation
-                  onChange({ ...condition, or: newConditions });
-                }
+                onChangeHandler(newConditions);
               }}
             >
               <AddIcon fontSize={'medium'} sx={{ fill: 'rgba(100, 116, 139, 1)' }} />
@@ -197,12 +190,7 @@ const GroupCondition = ({
                   onClick={() => {
                     const newConditions = condition.and || condition.or || [];
                     newConditions.push({ and: [] }); // is it ok or should it be [{}]
-                    if (isAndRelation) {
-                      onChange({ ...condition, and: newConditions });
-                    } else {
-                      // or relation
-                      onChange({ ...condition, or: newConditions });
-                    }
+                    onChangeHandler(newConditions);
                     setIsAddMenuOpen(false);
                   }}
                 >
@@ -230,12 +218,7 @@ const GroupCondition = ({
                           value: ''
                         }
                       });
-                      if (isAndRelation) {
-                        onChange({ ...condition, and: newConditions });
-                      } else {
-                        // or relation
-                        onChange({ ...condition, or: newConditions });
-                      }
+                      onChangeHandler(newConditions);
                       setIsAddMenuOpen(false);
                     }}
                   >
@@ -252,23 +235,13 @@ const GroupCondition = ({
               onChange={(newCond: AndOrMetadataInput) => {
                 const newConditions = condition.and || condition.or || [];
                 newConditions[index] = newCond;
-                if (isAndRelation) {
-                  onChange({ ...condition, and: newConditions });
-                } else {
-                  // or relation
-                  onChange({ ...condition, or: newConditions });
-                }
+                onChangeHandler(newConditions);
               }}
               level={level + 1}
               onRemove={() => {
                 const newConditions = condition.and || condition.or || [];
                 newConditions.splice(index, 1);
-                if (isAndRelation) {
-                  onChange({ ...condition, and: newConditions });
-                } else {
-                  // or relation
-                  onChange({ ...condition, or: newConditions });
-                }
+                onChangeHandler(newConditions);
               }}
               onAdd={() => {
                 const newConditions = condition.and || condition.or || [];
@@ -280,86 +253,11 @@ const GroupCondition = ({
                     value: ''
                   }
                 });
-                if (isAndRelation) {
-                  onChange({ ...condition, and: newConditions });
-                } else {
-                  // or relation
-                  onChange({ ...condition, or: newConditions });
-                }
+                onChangeHandler(newConditions);
               }}
             />
           ))}
         </Box>
-        {level === 0 && (
-          <Box
-            sx={{
-              height: '40px',
-              borderRadius: '0px 0px 16px 16px',
-              display: 'flex',
-              alignItems: 'center',
-              paddingLeft: '10px',
-              borderTop: '1px solid rgba(226, 232, 240, 1)',
-              gap: '8px'
-            }}
-          >
-            <DagshubButton
-              style={{ borderRadius: '8px' }}
-              label={'Apply query'}
-              stretch={ButtonStretch.Slim}
-              disabled={false} //Todo: if loading disable
-              onClick={() => {
-                onApplyQueryButtonClicked();
-              }}
-            />
-            <DagshubButton
-              style={{ borderRadius: '8px' }}
-              label={sourceType == SourceType.DATASOURCE ? 'Save as new dataset' : 'Save query'}
-              stretch={ButtonStretch.Slim}
-              disabled={false} //Should i disable under some conditions?
-              onClick={(event) => {
-                if (sourceType == SourceType.DATASET) {
-                  setSaveMenuAnchorEl(event.currentTarget);
-                  setIsSaveMenuOpen(true);
-                } else {
-                  //datasource
-                  //Todo: save as new dataset
-                }
-              }}
-            />
-            <Menu
-              sx={{
-                '& .MuiPaper-root': {
-                  borderRadius: '12px'
-                },
-                padding: '8px'
-              }}
-              id="basic-menu"
-              anchorEl={saveMenuAnchorEl}
-              open={isSaveMenuOpen}
-              onClose={() => setIsSaveMenuOpen(false)}
-              MenuListProps={{
-                'aria-labelledby': 'basic-button'
-              }}
-            >
-              <MenuItem
-                onClick={() => {
-                  //Todo : save as new dataset
-                  setIsSaveMenuOpen(false);
-                }}
-              >
-                <Typography variant={'medium'}>Save as new dataset</Typography>
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  //Todo : update current dataset + have the name of the source
-                  setIsSaveMenuOpen(false);
-                }}
-              >
-                <Typography variant={'medium'}>Update current dataset</Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
-        )}
       </Box>
     </ThemeProvider>
   );

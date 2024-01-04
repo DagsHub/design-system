@@ -1,9 +1,9 @@
 import React from 'react';
 import {
   MetadataFieldProps,
+  MetadataType,
   QueryBuilderProvider,
-  QueryInput,
-  SourceType
+  QueryInput
 } from './QueryBuilderContext';
 import QueryWrapper from './QueryWrapper';
 
@@ -11,34 +11,22 @@ export function QueryBuilder({
   queryInput,
   metadataFields,
   forceCompoundMode = false,
-  sourceType,
-  sourceName,
-  onApplyQuery,
-  onSaveNewDataset,
-  onUpdateDatasetQuery,
-  isQueryApiLoading
+  onChange,
+  validateValueByType
 }: {
   queryInput: QueryInput;
   metadataFields: MetadataFieldProps[]; // need to take into consideration the select and the alias
   forceCompoundMode?: boolean;
-  sourceType: SourceType;
-  sourceName: string;
-  onApplyQuery: (queryInput: QueryInput) => void;
-  onSaveNewDataset: (newDatasetName: string, queryInput: QueryInput) => void;
-  onUpdateDatasetQuery: (queryInput: QueryInput) => void;
-  isQueryApiLoading: boolean;
+  onChange: (query: QueryInput) => void;
+  validateValueByType: (valueType: MetadataType, value: string) => boolean;
 }) {
   return (
     <QueryBuilderProvider
       queryInput={queryInput}
       metadataFields={metadataFields}
-      sourceType={sourceType}
-      sourceName={sourceName}
-      onApplyQuery={onApplyQuery}
-      onSaveNewDataset={onSaveNewDataset}
-      onUpdateDatasetQuery={onUpdateDatasetQuery}
-      isQueryApiLoading={isQueryApiLoading}
       forceCompoundMode={forceCompoundMode}
+      validateValueByType={validateValueByType}
+      onChange={onChange}
     >
       <QueryWrapper />
     </QueryBuilderProvider>

@@ -4,7 +4,6 @@ import StyledTextField from '../metadataKeyValue/StyledTextField';
 import '../metadataKeyValue/style.scss';
 import { ThemeProvider, Typography } from '@mui/material';
 import theme from '../../../../theme';
-import _ from 'lodash';
 
 function ConditionTextField({
   disabled,
