@@ -1,15 +1,15 @@
 import React, {CSSProperties, useEffect, useRef, useState} from "react";
-import {Layer, Line, Stage, Text} from "react-konva";
+import {Circle, Layer, Line, Stage, Text} from "react-konva";
 import {useContainerDimensions} from "./utils";
 import {
   getLabel,
-  getPolygonLabelBbox,
+  getPolygonLabelBbox, isKeyPointLabel,
   isPolygonLabel, isRectangleLabel,
   pointPercentToPixel,
-  rectangleLabelToPolygon
+  rectangleLabelToBbox
 } from "./labelstudioUtils";
 import {
-  AnnotationsMap,
+  AnnotationsMap, Result,
   RGB,
 } from "./annotationTypes";
 
@@ -68,53 +68,17 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
               }
               return annotations.map((annotation, aIndex) =>
                 annotation.result.map((result, rIndex) => {
-                  let flatPoints: number[] = [];
-                  let flatBboxPoints: number[] = [];
-                  const label = getLabel(result);
-                  if (!displayLabels.includes(label)) {
-                    return null;
-                  }
-                  if (isPolygonLabel(result)) {
-                    flatPoints = result.value.points.flatMap((p) => pointPercentToPixel(p, dimension));
-                    flatBboxPoints = getPolygonLabelBbox(result, dimension);
-                  } else if (isRectangleLabel(result)) {
-                    flatBboxPoints = rectangleLabelToPolygon(result, dimension);
-                  }
-                  const fontSize = 14;
-                  const [R, G, B] = colorProvider(label, column);
-                  const strokeColor = `rgb(${R},${G},${B})`;
-                  const fillColor = `rgba(${R},${G},${B},0.5)`;
-                  const textPosition = [flatBboxPoints[0], flatBboxPoints[1] - fontSize];
                   return (
-                    <React.Fragment key={`${aIndex}-${rIndex}`}>
-                      {/* Draw polygon */}
-                      {flatPoints &&
-                        <Line
-                          key={`${column}-${aIndex}-${rIndex}`}
-                          points={flatPoints}
-                          closed
-                          stroke={strokeColor}
-                          strokeWidth={2}
-                          fill={fillColor}
-                        />}
-                      {/* Draw Bbox */}
-                      <Line
-                        key={`${column}-${aIndex}-${rIndex}-bbox`}
-                        points={flatBboxPoints}
-                        closed
-                        stroke={strokeColor}
-                        strokeWidth={2}
-                      />
-                      <Text
-                        x={textPosition[0]}
-                        y={textPosition[1]}
-                        text={label}
-                        fontSize={14}
-                        fill='white'
-                        fontStyle='bold'
-                        align='center'
-                      />
-                    </React.Fragment>
+                    <SingleLabelAnnotation
+                      key={`${column}-${aIndex}-${rIndex}`}
+                      column={column}
+                      result={result}
+                      aIndex={aIndex}
+                      rIndex={rIndex}
+                      dimension={dimension}
+                      colorProvider={colorProvider}
+                      displayLabels={displayLabels}
+                    />
                   );
                 })
               );
@@ -126,3 +90,82 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
     );
   }
 ;
+
+function SingleLabelAnnotation({
+  column,
+  result,
+  aIndex,
+  rIndex,
+  dimension,
+  colorProvider,
+  displayLabels,
+}: {
+  column: string;
+  result: Result;
+  aIndex: number;
+  rIndex: number;
+  dimension: { width: number; height: number };
+  colorProvider: (label: string, column?: string) => RGB;
+  displayLabels: string[];
+}) {
+  let flatPoints: number[] = [];
+  let flatBboxPoints: number[] = [];
+  const labelComponents: React.ReactNode[] = [];
+  const label = getLabel(result);
+  if (!displayLabels.includes(label)) {
+    return null;
+  }
+  const fontSize = 14;
+  const [R, G, B] = colorProvider(label, column);
+  const strokeColor = `rgb(${R},${G},${B})`;
+  const fillColor = `rgba(${R},${G},${B},0.5)`;
+
+  if (isPolygonLabel(result)) {
+    flatPoints = result.value.points.flatMap((p) => pointPercentToPixel(p, dimension));
+    flatBboxPoints = getPolygonLabelBbox(result, dimension);
+    labelComponents.push(
+      <Line
+        key={`${column}-${aIndex}-${rIndex}`}
+        points={flatPoints}
+        closed
+        stroke={strokeColor}
+        strokeWidth={2}
+        fill={fillColor}
+      />
+    );
+  } else if (isRectangleLabel(result)) {
+    flatBboxPoints = rectangleLabelToBbox(result, dimension);
+  } else if (isKeyPointLabel(result)) {
+    const { x: xPercent, y: yPercent } = result.value;
+    const [x, y] = pointPercentToPixel([xPercent, yPercent], dimension);
+    labelComponents.push(
+      <Circle x={x} y={y} radius={3} fill={strokeColor} />
+    );
+  }
+  if (flatBboxPoints.length > 0) {
+    const textPosition = {x: flatBboxPoints[0], y: flatBboxPoints[1] - fontSize};
+    labelComponents.push(
+      <Line
+        key={`${column}-${aIndex}-${rIndex}-bbox`}
+        points={flatBboxPoints}
+        closed
+        stroke={strokeColor}
+        strokeWidth={2}
+      />,
+      <Text
+        x={textPosition.x}
+        y={textPosition.y}
+        text={label}
+        fontSize={14}
+        fill='white'
+        fontStyle='bold'
+        align='center'
+      />
+    );
+  }
+  return (
+    <React.Fragment key={`${aIndex}-${rIndex}`}>
+      {labelComponents}
+    </React.Fragment>
+  );
+}

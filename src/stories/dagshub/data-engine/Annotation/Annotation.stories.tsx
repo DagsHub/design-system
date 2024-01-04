@@ -7,6 +7,7 @@ import {
 } from "../../../../components";
 import {polygonTask} from './PolygonTasks';
 import {bboxTask} from './BboxTasks';
+import {keypointsTask} from './KeypointsTasks';
 
 const meta: Meta<typeof LabelStudioPolygonDrawer> = {
   title: 'DagsHub/Data-Engine/Annotation',
@@ -93,6 +94,26 @@ annotationCombinedColorByColumn.args = {
   colorProvider: (label: string, column?: string) => {
     if (column === 'bboxes') {
       return [255, 0, 0];
+    }
+    return [122, 255, 0];
+  },
+};
+
+export const annotationKeypoints: StoryFn<typeof ImagePolygon> = Template.bind({});
+annotationKeypoints.args = {
+  image: keypointsTask.data.image,
+  annotationsMap: {
+    keypoints: keypointsTask.annotations,
+  },
+  displayColumns: ['keypoints'],
+  displayLabels: ['eye_a', 'eye_b', 'nose', 'mouth'],
+  colorProvider: (label: string, column?: string) => {
+    if (label === 'eye_a') {
+      return [255, 0, 0];
+    } else if (label === 'eye_b') {
+      return [0, 120, 124];
+    } else if (label === 'nose') {
+      return [0, 0, 255];
     }
     return [122, 255, 0];
   },

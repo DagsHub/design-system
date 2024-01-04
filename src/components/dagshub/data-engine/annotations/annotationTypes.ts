@@ -15,7 +15,14 @@ export type RectangleLabel = {
   rectanglelabels: string[];
 } & Record<string, any>;
 
-export type Result = PolygonResult | RectangleResult;
+export type KeyPointLabel = {
+  x: number;
+  y: number;
+  width: number;
+  keypointlabels: string[];
+} & Record<string, any>;
+
+export type Result = PolygonResult | RectangleResult | KeyPointResult;
 
 export type ResultCommon = {
   id: string;
@@ -28,6 +35,10 @@ export type PolygonResult = ResultCommon & {
 
 export type RectangleResult = ResultCommon & {
   value: RectangleLabel;
+}
+
+export type KeyPointResult = ResultCommon & {
+  value: KeyPointLabel;
 }
 
 export type Annotation = {

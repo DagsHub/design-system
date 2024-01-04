@@ -1,4 +1,4 @@
-import {Point, PolygonResult, RectangleResult, Result} from "./annotationTypes";
+import {KeyPointResult, Point, PolygonResult, RectangleResult, Result} from "./annotationTypes";
 
 type Dimension = { width: number, height: number };
 
@@ -7,7 +7,7 @@ export const pointPercentToPixel = (point: Point, dimension: Dimension): Point =
   point[1] * dimension.height / 100
 ];
 
-export function rectangleLabelToPolygon(label: RectangleResult, dimension: Dimension): number[] {
+export function rectangleLabelToBbox(label: RectangleResult, dimension: Dimension): number[] {
   const { x, y, width, height } = label.value;
   const points: Point[] = [[x, y], [x + width, y], [x + width, y + height], [x, y + height]];
   return points.flatMap((p) => pointPercentToPixel(p, dimension));
@@ -32,11 +32,17 @@ export function isRectangleLabel(result: Result): result is RectangleResult {
   return (result as RectangleResult).type === 'rectanglelabels';
 }
 
-export function getLabel(label: PolygonResult | RectangleResult): string {
+export function isKeyPointLabel(result: Result): result is KeyPointResult {
+  return (result as KeyPointResult).type === 'keypointlabels';
+}
+
+export function getLabel(label: Result): string {
   if (isPolygonLabel(label)) {
     return label.value.polygonlabels[0];
   } else if (isRectangleLabel(label)) {
     return label.value.rectanglelabels[0];
+  } else if (isKeyPointLabel(label)) {
+    return label.value.keypointlabels[0];
   }
   return ""
 }
