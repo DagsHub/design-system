@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ConditionDropdown } from './ConditionDropdown';
-import { Box, IconButton, Menu, MenuItem, ThemeProvider, Typography } from '@mui/material';
+import { Box, IconButton, Menu, MenuItem, ThemeProvider, Tooltip, Typography } from '@mui/material';
 import ConditionTextField from './ConditionTextField';
 import { Button, ButtonVariant } from '../../../elements';
 import { Icon } from '../../../icons';
@@ -225,44 +225,52 @@ const SimpleCondition = ({
             <Typography variant={'medium'}>)</Typography>
           </Box>
         )}
-        <Button
-          style={{
-            width: '28px',
-            height: '28px',
-            borderRadius: '8px',
-            padding: '8px',
-            alignItems: 'center',
-            justifyContent: 'center',
-            display: 'flex'
-          }}
-          label={''}
-          variant={ButtonVariant.Ghost}
-          onClick={onRemove}
-          iconRight={
-            <Icon icon={'solid-trash'} width={14} height={16} fill={'rgba(100, 116, 139, 1)'} />
-          }
-        />
-        <IconButton
-          style={{
-            width: '28px',
-            height: '28px',
-            borderRadius: '8px',
-            padding: '8px',
-            alignItems: 'center',
-            justifyContent: 'center',
-            display: 'flex'
-          }}
-          onClick={(event) => {
-            if (isSimpleMode) {
-              onAdd();
-            } else {
-              setAnchorEl(event.currentTarget);
-              setIsOpen(true);
-            }
-          }}
-        >
-          <AddIcon fontSize={'medium'} sx={{ fill: 'rgba(100, 116, 139, 1)' }} />
-        </IconButton>
+        <Tooltip title={'Remove condition'} placement={'top'} arrow={true} disableInteractive>
+          <div>
+            {' '}
+            {/*This div is needed for the tooltip to work*/}
+            <Button
+              style={{
+                width: '28px',
+                height: '28px',
+                borderRadius: '8px',
+                padding: '8px',
+                alignItems: 'center',
+                justifyContent: 'center',
+                display: 'flex'
+              }}
+              label={''}
+              variant={ButtonVariant.Ghost}
+              onClick={onRemove}
+              iconRight={
+                <Icon icon={'solid-trash'} width={14} height={16} fill={'rgba(100, 116, 139, 1)'} />
+              }
+            />
+          </div>
+        </Tooltip>
+        <Tooltip title={'Add'} placement={'top'} arrow={true} disableInteractive>
+          <IconButton
+            style={{
+              width: '28px',
+              height: '28px',
+              borderRadius: '8px',
+              padding: '8px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              display: 'flex'
+            }}
+            onClick={(event) => {
+              if (isSimpleMode) {
+                onAdd();
+              } else {
+                setAnchorEl(event.currentTarget);
+                setIsOpen(true);
+              }
+            }}
+          >
+            <AddIcon fontSize={'medium'} sx={{ fill: 'rgba(100, 116, 139, 1)' }} />
+          </IconButton>
+        </Tooltip>
         <Menu
           sx={{
             '& .MuiPaper-root': {

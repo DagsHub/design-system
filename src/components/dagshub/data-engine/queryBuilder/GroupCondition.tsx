@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import { ConditionDropdown } from './ConditionDropdown';
 import { Button as DagshubButton, ButtonVariant } from '../../../elements';
 import { Icon } from '../../../icons';
-import { IconButton, Menu, MenuItem, ThemeProvider, Typography } from '@mui/material';
+import { IconButton, Menu, MenuItem, ThemeProvider, Tooltip, Typography } from '@mui/material';
 import theme from '../../../../theme';
 import Condition from './Condition';
 import AddIcon from '@mui/icons-material/Add';
@@ -58,24 +58,26 @@ const GroupCondition = ({
           }}
         >
           {isSimpleMode && !areThereSimpleFilters && (
-            <IconButton
-              style={{
-                width: '28px',
-                height: '28px',
-                borderRadius: '8px',
-                padding: '8px',
-                alignItems: 'center',
-                justifyContent: 'center',
-                display: 'flex'
-              }}
-              onClick={() => {
-                const newConditions = condition.and || condition.or || [];
-                newConditions.splice(0, 0, { filter: { comparator: Operators[0].id } });
-                onChangeHandler(newConditions);
-              }}
-            >
-              <AddIcon fontSize={'medium'} sx={{ fill: 'rgba(100, 116, 139, 1)' }} />
-            </IconButton>
+            <Tooltip title={'Add condition'} placement={'top'} arrow={true} disableInteractive>
+              <IconButton
+                style={{
+                  width: '28px',
+                  height: '28px',
+                  borderRadius: '8px',
+                  padding: '8px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  display: 'flex'
+                }}
+                onClick={() => {
+                  const newConditions = condition.and || condition.or || [];
+                  newConditions.splice(0, 0, { filter: { comparator: Operators[0].id } });
+                  onChangeHandler(newConditions);
+                }}
+              >
+                <AddIcon fontSize={'medium'} sx={{ fill: 'rgba(100, 116, 139, 1)' }} />
+              </IconButton>
+            </Tooltip>
           )}
           {!isSimpleMode && (
             <Box style={{ display: 'flex', flexDirection: 'row', gap: '4px' }}>
@@ -130,7 +132,37 @@ const GroupCondition = ({
               />
 
               {!isSimpleMode && onRemove !== undefined && (
-                <DagshubButton
+                <Tooltip title={'Remove group'} placement={'top'} arrow={true} disableInteractive>
+                  <div>
+                    {' '}
+                    {/*This div is needed for the tooltip to work*/}
+                    <DagshubButton
+                      style={{
+                        width: '28px',
+                        height: '28px',
+                        borderRadius: '8px',
+                        padding: '8px',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        display: 'flex'
+                      }}
+                      label={''}
+                      variant={ButtonVariant.Ghost}
+                      onClick={onRemove}
+                      iconRight={
+                        <Icon
+                          icon={'solid-trash'}
+                          width={14}
+                          height={16}
+                          fill={'rgba(100, 116, 139, 1)'}
+                        />
+                      }
+                    />
+                  </div>
+                </Tooltip>
+              )}
+              <Tooltip title={'Add'} placement={'top'} arrow={true} disableInteractive>
+                <IconButton
                   style={{
                     width: '28px',
                     height: '28px',
@@ -140,37 +172,14 @@ const GroupCondition = ({
                     justifyContent: 'center',
                     display: 'flex'
                   }}
-                  label={''}
-                  variant={ButtonVariant.Ghost}
-                  onClick={onRemove}
-                  iconRight={
-                    <Icon
-                      icon={'solid-trash'}
-                      width={14}
-                      height={16}
-                      fill={'rgba(100, 116, 139, 1)'}
-                    />
-                  }
-                />
-              )}
-
-              <IconButton
-                style={{
-                  width: '28px',
-                  height: '28px',
-                  borderRadius: '8px',
-                  padding: '8px',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  display: 'flex'
-                }}
-                onClick={(event) => {
-                  setAddMenuAnchorEl(event.currentTarget);
-                  setIsAddMenuOpen(true);
-                }}
-              >
-                <AddIcon fontSize={'medium'} sx={{ fill: 'rgba(100, 116, 139, 1)' }} />
-              </IconButton>
+                  onClick={(event) => {
+                    setAddMenuAnchorEl(event.currentTarget);
+                    setIsAddMenuOpen(true);
+                  }}
+                >
+                  <AddIcon fontSize={'medium'} sx={{ fill: 'rgba(100, 116, 139, 1)' }} />
+                </IconButton>
+              </Tooltip>
               <Menu
                 sx={{
                   '& .MuiPaper-root': {
