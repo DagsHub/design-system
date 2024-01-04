@@ -30,7 +30,7 @@ module.exports = [
       scss({ sourceMap: true, outputStyle: 'compressed' }),
       postcss(),
     ],
-    external: ["react", "react-dom", "@mui/material", "react-konva"]
+    external: ["react", "react-dom", "@mui/material", "canvas"]
   },
   {
     input: "dist/esm/types/index.d.ts",

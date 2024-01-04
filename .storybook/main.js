@@ -7,6 +7,7 @@ module.exports = {
     '@storybook/addon-docs',
     '@storybook/preset-scss'
   ],
+  staticDirs: ['../public'],
   framework: {
     name: '@storybook/react-webpack5',
     options: {}
@@ -19,21 +20,5 @@ module.exports = {
   },
   core: {
     builder: "webpack5",
-  },
-  webpackFinal: async (config) => {
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      use: [
-        {
-          loader: require.resolve('babel-loader'),
-          options: {
-            presets: [['react-app', { flow: false, typescript: true }]],
-            plugins: ['relay'],
-          },
-        },
-      ],
-    });
-    config.resolve.extensions.push('.ts', '.tsx');
-    return config;
   },
 };
