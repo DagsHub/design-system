@@ -43,8 +43,8 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
     const imgStyle: CSSProperties = {
       margin: "auto",
       objectFit: "contain",
-      maxWidth: "100%",
-      maxHeight: "100%",
+      width: "100%",
+      height: "100%",
       display: "block"
     }
     const left = containerWidth ? (containerWidth - width) / 2 : 0;
