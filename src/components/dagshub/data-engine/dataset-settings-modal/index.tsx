@@ -67,10 +67,10 @@ export function DatasetSettingsModal({
       <>
         {
         isDataset ?
-        <Message text={'Deleting a dataset will only remove the query, but it won’t delete the actual files and metadata in the repository.'}
+        <Message text={'Deleting a dataset will only remove the query, it won’t delete the actual files and metadata in the repository.'}
                  kind={'warning'}
         /> :
-        <Message text={'Deleting a datasource will only remove the source from the table and its associated metadata, but it won’t delete the actual files in the repository.'}
+        <Message text={'Deleting a datasource will only remove the source from the table and its associated metadata, it won’t delete the actual files in the repository.'}
                  kind={'warning'}
         />
         }
