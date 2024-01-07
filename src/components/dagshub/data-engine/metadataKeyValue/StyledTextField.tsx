@@ -13,6 +13,7 @@ function StyledTextField({
   backgroundColorHover = 'rgba(241, 245, 249, 1)',
   backgroundColorFocus = 'rgba(255, 255, 255, 1)',
   helperTextPaddingLeft = '8px',
+  helperTextPaddingBottom = '8px',
   ...restProps
 }: {
   changeColorOnHover?: boolean;
@@ -26,6 +27,7 @@ function StyledTextField({
   backgroundColorHover?: string;
   backgroundColorFocus?: string;
   helperTextPaddingLeft?: string;
+  helperTextPaddingBottom?: string;
 } & TextFieldProps) {
   return (
     <TextField
@@ -89,7 +91,7 @@ function StyledTextField({
           color: isErrored ? 'rgba(239, 68, 68, 1)' : 'rgba(71, 85, 105, 1)',
           margin: '0px',
           paddingLeft: helperTextPaddingLeft,
-          paddingBottom: '8px',
+          paddingBottom: helperTextPaddingBottom,
           boxShadow: 'none!important'
         }
       }}

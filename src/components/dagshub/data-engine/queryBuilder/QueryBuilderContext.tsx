@@ -80,7 +80,7 @@ export interface AndOrMetadataInput {
   or?: AndOrMetadataInput[];
   and?: AndOrMetadataInput[];
   filter?: MetadataInput;
-  not?: Boolean;
+  not?: boolean;
   id?: string;
 }
 
@@ -105,6 +105,7 @@ interface QueryBuilderContextInterface {
   convertToBackandFormatAndRemoveEmptyConditions: (
     condition: AndOrMetadataInput
   ) => AndOrMetadataInput | null;
+  queryInputInBackendFormat: QueryInput;
 }
 
 export const QueryBuilderContext = createContext<QueryBuilderContextInterface | undefined>(
@@ -165,6 +166,7 @@ export const QueryBuilderProvider = ({
   };
 
   const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(getInitialQuery());
+  const [queryInputInBackendFormat, setQueryInputInBackendFormat] = useState<QueryInput>({});
   const [isSimpleMode, setIsSimpleMode] = useState<boolean>(checkIfSimpleMode());
 
   // const [rootConditionBackend, setRootConditionBackend] = useState<AndOrMetadataInput | null>(null);
@@ -185,9 +187,11 @@ export const QueryBuilderProvider = ({
   }, [metadataFields]);
 
   useEffect(() => {
-    onChange({
+    let formattedQuery: QueryInput = {
       query: convertToBackandFormatAndRemoveEmptyConditions(rootCondition) ?? {}
-    });
+    };
+    onChange(formattedQuery);
+    setQueryInputInBackendFormat(formattedQuery);
   }, [rootCondition]);
 
   function generateUniqueId(): string {
@@ -256,9 +260,9 @@ export const QueryBuilderProvider = ({
     condition: AndOrMetadataInput
   ): AndOrMetadataInput | null {
     if (!!condition.or || !!condition.and) {
-      // Recursively remove empty conditions from nested conditions
+      // Recursively convert to backand format and remove empty conditions
       const nonEmptyConditions = (condition.or || condition.and || [])
-        .map(convertToBackandFormatAndRemoveEmptyConditions) //for each nested condition call removeEmptyConditions
+        .map(convertToBackandFormatAndRemoveEmptyConditions)
         .filter((c) => c !== null) as AndOrMetadataInput[];
 
       // If all nested conditions are removed and the current condition is empty, return null
@@ -281,7 +285,8 @@ export const QueryBuilderProvider = ({
             condition.filter?.comparator === 'IS_POSITIVE_INFINITY' ||
             condition.filter?.comparator === 'IS_NEGATIVE_INFINITY' ||
             condition.filter?.comparator === 'IS_NAN' ||
-            condition.filter?.comparator === 'IS_NULL'
+            condition.filter?.comparator === 'IS_NULL' ||
+            (condition.filter?.valueType == 'STRING' && condition.filter?.comparator == 'EQUAL')
           ))
       ) {
         return null;
@@ -289,24 +294,38 @@ export const QueryBuilderProvider = ({
     }
     // Return the original input if it's not a filter, OR, or AND
     if (condition.filter?.comparator === 'IS_POSITIVE_INFINITY') {
-      return { ...condition, filter: { ...condition.filter, comparator: 'EQUAL', value: '+Inf' } };
+      return {
+        ...condition,
+        id: undefined,
+        filter: { ...condition.filter, comparator: 'EQUAL', value: '+Inf', id: undefined }
+      };
     }
     if (condition.filter?.comparator === 'IS_NEGATIVE_INFINITY') {
-      return { ...condition, filter: { ...condition.filter, comparator: 'EQUAL', value: '-Inf' } };
+      return {
+        ...condition,
+        id: undefined,
+        filter: { ...condition.filter, comparator: 'EQUAL', value: '-Inf', id: undefined }
+      };
     }
     if (condition.filter?.comparator === 'IS_NAN') {
-      return { ...condition, filter: { ...condition.filter, comparator: 'EQUAL', value: 'NaN' } };
+      return {
+        ...condition,
+        id: undefined,
+        filter: { ...condition.filter, comparator: 'EQUAL', value: 'NaN', id: undefined }
+      };
     }
     if (condition.filter?.comparator === 'IS_NULL') {
       return {
         ...condition,
+        id: undefined,
         filter: {
           ...condition.filter,
-          value: getZeroValueByType(condition.filter.valueType)
+          value: getZeroValueByType(condition.filter.valueType),
+          id: undefined
         }
       };
     }
-    return condition;
+    return { ...condition, id: undefined, filter: { ...condition.filter, id: undefined } };
   }
 
   return (
@@ -323,7 +342,8 @@ export const QueryBuilderProvider = ({
         getOperatorsByMetadataType,
         checkIfOperatorRequiresValueField,
         convertToBackandFormatAndRemoveEmptyConditions,
-        validateValueByType
+        validateValueByType,
+        queryInputInBackendFormat
       }}
     >
       {children}

@@ -84,6 +84,7 @@ function ConditionTextField({
         ref={textFieldWrapperContainerRef}
       >
         <StyledTextField
+          helperTextPaddingBottom={'0px'}
           isErrored={isErrored}
           setBorder={!disabled}
           backgroundColor={'rgba(255, 255, 255, 1)'}

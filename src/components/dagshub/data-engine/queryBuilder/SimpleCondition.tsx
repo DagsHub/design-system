@@ -72,10 +72,15 @@ const SimpleCondition = ({
   }, [condition.filter?.valueType, condition.filter?.value]);
 
   const isEmpty =
-    !condition.filter?.key || !condition.filter?.comparator || !condition.filter?.value;
+    !(condition.filter?.valueType == 'STRING' && condition.filter?.comparator == 'EQUAL') &&
+    ((!condition.filter?.value && shouldDisplayValueField) ||
+      !condition.filter?.key ||
+      !condition.filter?.comparator);
+
   const selectedMetadataKey = metadataFieldsList.find(
     (field) => field.name === condition.filter?.key
   );
+
   const selectedOperator = operatorsList.find(
     (operator) => operator.id === condition.filter?.comparator
   );
@@ -170,6 +175,7 @@ const SimpleCondition = ({
         {shouldDisplayValueField &&
           (condition.filter?.valueType === 'BOOLEAN' && condition.filter.comparator === 'EQUAL' ? (
             <ConditionDropdown
+              isReadOnly={true}
               removeEndAdornment
               initialChecked={
                 condition.filter.value === 'true'

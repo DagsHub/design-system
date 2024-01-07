@@ -12,13 +12,15 @@ export function QueryBuilder({
   metadataFields,
   forceCompoundMode = false,
   onChange,
-  validateValueByType
+  validateValueByType,
+  showConditionSummary = false
 }: {
   queryInput: QueryInput;
   metadataFields: MetadataFieldProps[]; // need to take into consideration the select and the alias
   forceCompoundMode?: boolean;
   onChange: (query: QueryInput) => void;
   validateValueByType: (valueType: MetadataType, value: string) => boolean;
+  showConditionSummary?: boolean;
 }) {
   return (
     <QueryBuilderProvider
@@ -28,7 +30,7 @@ export function QueryBuilder({
       validateValueByType={validateValueByType}
       onChange={onChange}
     >
-      <QueryWrapper />
+      <QueryWrapper showConditionSummary />
     </QueryBuilderProvider>
   );
 }

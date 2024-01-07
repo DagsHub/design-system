@@ -47,7 +47,8 @@ compoundQueryBuilderDatasource.args = {
     { name: 'image', valueType: 'BLOB', tags: [], multiple: false }
   ],
   validateValueByType: validateValueByType,
-  onChange: () => {}
+  onChange: () => {},
+  showConditionSummary: true
 };
 
 export const compoundQueryBuilderDataset: StoryFn<typeof QueryBuilder> = Template.bind({});
@@ -62,7 +63,8 @@ compoundQueryBuilderDataset.args = {
     { name: 'image', valueType: 'BLOB', tags: [], multiple: false }
   ],
   validateValueByType: validateValueByType,
-  onChange: () => {}
+  onChange: () => {},
+  showConditionSummary: true
 };
 
 export const simpleQueryBuilder: StoryFn<typeof QueryBuilder> = Template.bind({});
@@ -76,7 +78,8 @@ simpleQueryBuilder.args = {
     { name: 'image', valueType: 'BLOB', tags: [], multiple: false }
   ],
   validateValueByType: validateValueByType,
-  onChange: () => {}
+  onChange: () => {},
+  showConditionSummary: true
 };
 
 export const queryBuilderWithQuery: StoryFn<typeof QueryBuilder> = Template.bind({});
@@ -99,5 +102,6 @@ queryBuilderWithQuery.args = {
     { name: 'image', valueType: 'BLOB', tags: [], multiple: false }
   ],
   validateValueByType: validateValueByType,
-  onChange: () => {}
+  onChange: () => {},
+  showConditionSummary: true
 };
