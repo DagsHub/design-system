@@ -15,4 +15,3 @@ export * from './CSVViewer/CSVViewer';
 export * from './PDFViewer/PDFViewer';
 export * from './CSVViewer/CSVViewer';
 export * from './queryBuilder/QueryBuilder';
-
