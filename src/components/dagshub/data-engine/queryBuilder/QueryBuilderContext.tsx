@@ -11,9 +11,9 @@ export type Comparator =
   | 'LESS_EQUAL_THAN'
   | 'CONTAINS'
   | 'IS_NULL';
-  // | 'IS_POSITIVE_INFINITY'
-  // | 'IS_NEGATIVE_INFINITY'
-  // | 'IS_NAN';
+// | 'IS_POSITIVE_INFINITY'
+// | 'IS_NEGATIVE_INFINITY'
+// | 'IS_NAN';
 
 export const Operators: { label: string; id: Comparator; value?: string }[] = [
   { label: '==', id: 'EQUAL' },
@@ -218,9 +218,9 @@ export const QueryBuilderProvider = ({
   function checkIfOperatorRequiresValueField(operator: Comparator): boolean {
     switch (operator) {
       case 'IS_NULL':
-      // case 'IS_POSITIVE_INFINITY':
-      // case 'IS_NEGATIVE_INFINITY':
-      // case 'IS_NAN':
+        // case 'IS_POSITIVE_INFINITY':
+        // case 'IS_NEGATIVE_INFINITY':
+        // case 'IS_NAN':
         return false;
       default:
         return true;
