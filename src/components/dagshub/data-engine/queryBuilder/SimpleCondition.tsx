@@ -42,8 +42,6 @@ export function SimpleCondition({
   useEffect(() => {
     if (!!condition?.filter?.valueType) {
       setOperatorsList(getOperatorsByMetadataType(condition.filter.valueType));
-      //Reset the value field whenever the valueType changes
-      onChange({ ...condition, filter: { ...condition.filter, value: '' } });
     }
   }, [condition?.filter?.valueType]);
 
@@ -59,8 +57,16 @@ export function SimpleCondition({
   }, [condition.filter?.comparator]);
 
   useEffect(() => {
-    //Whenever the operatorsList changes, change the comparator to the first one in the list
-    onChange({ ...condition, filter: { ...condition.filter, comparator: operatorsList[0].id } });
+    // check if comparator exists in operatorsList, and if not, change the comparator to the first one in the list
+    if (!!condition.filter?.comparator) {
+      const comparatorExists = operatorsList.some((op) => op.id === condition.filter?.comparator);
+      if (!comparatorExists) {
+        onChange({
+          ...condition,
+          filter: { ...condition.filter, comparator: operatorsList[0].id }
+        });
+      }
+    }
   }, [operatorsList]);
 
   useEffect(() => {

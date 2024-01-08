@@ -10,15 +10,13 @@ export function QueryWrapper({ showConditionSummary }: { showConditionSummary: b
 
   return (
     <Box>
-      <Typography>{isSimpleMode ? 'Simple' : 'Compound'} query builder</Typography>
-      <br />
-      <Condition condition={rootCondition} onChange={setRootCondition} />
       {showConditionSummary && (
         <>
           <pre>UI FORMAT {JSON.stringify(rootCondition, null, 2)}</pre>
           <pre>BACKEND FORMAT {JSON.stringify(queryInputInBackendFormat, null, 2)}</pre>
         </>
       )}
+      <Condition condition={rootCondition} onChange={setRootCondition} />
     </Box>
   );
 }
