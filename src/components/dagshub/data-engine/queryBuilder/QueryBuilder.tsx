@@ -7,7 +7,7 @@ import {
 } from './QueryBuilderContext';
 import QueryWrapper from './QueryWrapper';
 
-export default function QueryBuilder({
+export function QueryBuilder({
   queryInput,
   metadataFields,
   forceCompoundMode = false,
@@ -34,3 +34,5 @@ export default function QueryBuilder({
     </QueryBuilderProvider>
   );
 }
+
+export default QueryBuilder;

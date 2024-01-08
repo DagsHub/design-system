@@ -4,7 +4,7 @@ import { Box } from '@mui/system';
 import GroupCondition from './GroupCondition';
 import { AndOrMetadataInput } from './QueryBuilderContext';
 
-const Condition = ({
+export function Condition({
   condition,
   onChange,
   level = 0,
@@ -16,7 +16,7 @@ const Condition = ({
   level?: number;
   onRemove?: () => void;
   onAdd?: () => void;
-}) => {
+}) {
   return (
     <Box key={condition.id ?? condition.filter?.id}>
       {!condition?.or && !condition?.and && !!condition?.filter ? (
@@ -36,6 +36,6 @@ const Condition = ({
       )}
     </Box>
   );
-};
+}
 
 export default Condition;
