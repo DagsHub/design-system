@@ -37,8 +37,6 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
 
     const containerStyle: CSSProperties = {
       position: "relative",
-      width: "100%",
-      height: "100%",
     };
     const imgStyle: CSSProperties = {
       margin: "auto",
