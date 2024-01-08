@@ -122,7 +122,7 @@ export function ConditionTextField({
           }}
           onKeyDown={handleKeyDown}
           value={currentValue}
-          placeholder={focused ? 'Typing...' : placeholder}
+          placeholder={focused ? undefined : placeholder}
         />
         <Typography
           variant={'medium'}
@@ -142,7 +142,7 @@ export function ConditionTextField({
             boxSizing: 'border-box'
           }}
         >
-          {currentValue ? currentValue : focused ? 'Typing...' : placeholder}
+          {currentValue ? currentValue : focused ? undefined : placeholder}
         </Typography>
         {/*This is a hidden div that is used to calculate the width of the input field*/}
       </Box>
