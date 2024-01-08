@@ -86,19 +86,3 @@ export function GalleryTagsGroup({
     </Box>
   );
 }
-
-export const BoxedGalleryTagsGroup = (args: {itemMetadataTagsToDisplayDict: Record<string, { value: any }>}) => (
-  <Box
-    flex={1}
-    bgcolor={'transparent'}
-    position={'absolute'}
-    zIndex={20}
-    maxHeight={'80px'}
-    overflow={'hidden'}
-    width={'100%'}
-    padding={'4px'}
-    bottom={0}
-  >
-    <GalleryTagsGroup {...args} />
-  </Box>
-);
