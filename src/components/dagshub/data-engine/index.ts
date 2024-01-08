@@ -17,3 +17,4 @@ export * from './annotations/annotationTypes'
 export * from './PDFViewer/PDFViewer';
 export * from './CSVViewer/CSVViewer';
 export * from './queryBuilder/QueryBuilder';
+export * from './queryBuilder/QueryBuilderContext';
