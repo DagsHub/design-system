@@ -100,7 +100,7 @@ interface QueryBuilderContextInterface {
   addUniqueIds: (input: AndOrMetadataInput) => AndOrMetadataInput;
   getOperatorsByMetadataType: (type: MetadataType) => { label: string; id: Comparator }[];
   checkIfOperatorRequiresValueField: (operator: Comparator) => boolean;
-  validateValueByType: (valueType: MetadataType, value: string) => boolean;
+  validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
 }
 
 export const QueryBuilderContext = createContext<QueryBuilderContextInterface | undefined>(
@@ -127,7 +127,7 @@ export const QueryBuilderProvider = ({
   queryInput: QueryInput;
   metadataFields: MetadataFieldProps[]; // need to take into consideration the select and the alias
   forceCompoundMode?: boolean;
-  validateValueByType: (valueType: MetadataType, value: string) => boolean;
+  validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   onChange: (query: QueryInput) => void;
 }) => {
   const getInitialQuery = () => {

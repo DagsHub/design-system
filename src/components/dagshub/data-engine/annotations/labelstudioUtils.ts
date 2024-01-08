@@ -1,15 +1,20 @@
-import {KeyPointResult, Point, PolygonResult, RectangleResult, Result} from "./annotationTypes";
+import { KeyPointResult, Point, PolygonResult, RectangleResult, Result } from './annotationTypes';
 
-type Dimension = { width: number, height: number };
+type Dimension = { width: number; height: number };
 
 export const pointPercentToPixel = (point: Point, dimension: Dimension): Point => [
-  point[0] * dimension.width / 100,
-  point[1] * dimension.height / 100
+  (point[0] * dimension.width) / 100,
+  (point[1] * dimension.height) / 100
 ];
 
 export function rectangleLabelToBbox(label: RectangleResult, dimension: Dimension): number[] {
   const { x, y, width, height } = label.value;
-  const points: Point[] = [[x, y], [x + width, y], [x + width, y + height], [x, y + height]];
+  const points: Point[] = [
+    [x, y],
+    [x + width, y],
+    [x + width, y + height],
+    [x, y + height]
+  ];
   return points.flatMap((p) => pointPercentToPixel(p, dimension));
 }
 
@@ -21,7 +26,12 @@ export function getPolygonLabelBbox(label: PolygonResult, dimension: Dimension):
   const minY = Math.min(...ys);
   const maxX = Math.max(...xs);
   const maxY = Math.max(...ys);
-  const bbox: Point[] = [[minX, minY], [minX, maxY], [maxX, maxY], [maxX, minY]]
+  const bbox: Point[] = [
+    [minX, minY],
+    [minX, maxY],
+    [maxX, maxY],
+    [maxX, minY]
+  ];
   return bbox.flatMap((p) => pointPercentToPixel(p, dimension));
 }
 
@@ -45,5 +55,5 @@ export function getLabel(label: Result): string {
   } else if (isKeyPointLabel(label)) {
     return label.value.keypointlabels[0];
   }
-  return ""
+  return '';
 }
