@@ -1,11 +1,12 @@
 import React from 'react';
 import {
+  Comparator,
   MetadataFieldProps,
   QueryBuilderProvider,
   QueryInput
 } from './QueryBuilderContext';
 import QueryWrapper from './QueryWrapper';
-import {MetadataType} from "../metadataKeyValue/MetadataKeyValueList";
+import { MetadataType } from '../metadataKeyValue/MetadataKeyValueList';
 
 export function QueryBuilder({
   queryInput,
@@ -19,7 +20,7 @@ export function QueryBuilder({
   metadataFields: MetadataFieldProps[]; // need to take into consideration the select and the alias
   forceCompoundMode?: boolean;
   onChange: (query: QueryInput) => void;
-  validateValueByType: (valueType: MetadataType, value: string) => boolean;
+  validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   showConditionSummary?: boolean;
 }) {
   return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export type Point = [number, number];
 
@@ -31,15 +31,15 @@ export type ResultCommon = {
 
 export type PolygonResult = ResultCommon & {
   value: PolygonLabel;
-}
+};
 
 export type RectangleResult = ResultCommon & {
   value: RectangleLabel;
-}
+};
 
 export type KeyPointResult = ResultCommon & {
   value: KeyPointLabel;
-}
+};
 
 export type Annotation = {
   result: Result[];
@@ -47,12 +47,12 @@ export type Annotation = {
 
 export type AnnotationsMap = {
   [fieldName: string]: Annotation[];
-}
+};
 
 export type TaskData = {
   image: string;
   size?: number;
-}
+};
 
 export type Task = {
   annotations: Annotation[];
@@ -60,4 +60,3 @@ export type Task = {
 } & Record<string, any>;
 
 export type RGB = [number, number, number];
-

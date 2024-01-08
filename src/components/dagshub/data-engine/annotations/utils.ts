@@ -1,5 +1,5 @@
 // Debounce function
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from 'react';
 
 const debounce = (fn: Function, delay: number) => {
   let timeoutId = 0;
@@ -14,28 +14,28 @@ const debounce = (fn: Function, delay: number) => {
 };
 
 export function useContainerDimensions(myRef: React.RefObject<HTMLDivElement>) {
-  const [dimensions, setDimensions] = useState({width: 0, height: 0})
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   useEffect(() => {
     const getDimensions = () => ({
       width: myRef.current?.offsetWidth || 0,
       height: myRef.current?.offsetHeight || 0
-    })
+    });
 
     const handleResize = () => {
       debounce(() => {
-        setDimensions(getDimensions())
+        setDimensions(getDimensions());
       }, 200)();
-    }
+    };
 
     if (myRef.current) {
-      setDimensions(getDimensions())
+      setDimensions(getDimensions());
     }
-    myRef.current?.addEventListener("resize", handleResize)
-    myRef.current?.addEventListener("load", handleResize)
+    myRef.current?.addEventListener('resize', handleResize);
+    myRef.current?.addEventListener('load', handleResize);
     return () => {
-      window.removeEventListener("resize", handleResize)
-    }
-  }, [myRef])
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [myRef]);
 
   return [dimensions.width, dimensions.height];
 }
