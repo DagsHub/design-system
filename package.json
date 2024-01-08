@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/dagshub/design-system.git"
   },
-  "version": "0.1.58",
+  "version": "0.1.59",
   "description": "A component library for consuming dagshub user interfaces.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -75,7 +75,8 @@
   },
   "peerDependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-konva": "^18.2.10"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -83,7 +84,10 @@
     "@mui/icons-material": "^5.13.7",
     "@mui/material": "^5.13.7",
     "@mui/styled-engine-sc": "^5.12.0",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-url": "^8.0.2",
     "@storybook/cli": "^7.0.0-beta.20",
+    "@storybook/core": "^6.5.16",
     "@tippyjs/react": "^4.2.6",
     "ag-grid-community": "^31.0.1",
     "ag-grid-react": "^31.0.1",
@@ -93,7 +97,9 @@
     "react-table": "^7.8.0",
     "react-use": "^17.4.0",
     "react-window": "^1.8.8",
+    "recoil": "^0.7.7",
     "styled-components": "^5.3.11",
+    "use-image": "^1.1.1",
     "validator": "^13.9.0"
   },
   "bugs": {
