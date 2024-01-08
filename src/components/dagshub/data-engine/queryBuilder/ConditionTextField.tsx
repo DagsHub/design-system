@@ -5,7 +5,7 @@ import '../metadataKeyValue/style.scss';
 import { ThemeProvider, Typography } from '@mui/material';
 import theme from '../../../../theme';
 
-function ConditionTextField({
+export function ConditionTextField({
   disabled,
   value,
   onChange,

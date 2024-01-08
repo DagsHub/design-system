@@ -13,7 +13,7 @@ import {
   useQueryBuilderContext
 } from './QueryBuilderContext';
 
-const SimpleCondition = ({
+export function SimpleCondition({
   condition,
   onChange,
   onRemove,
@@ -23,7 +23,7 @@ const SimpleCondition = ({
   onChange: any;
   onRemove: () => void;
   onAdd: () => void;
-}) => {
+}) {
   const {
     isSimpleMode,
     validateValueByType,
@@ -322,6 +322,6 @@ const SimpleCondition = ({
       </Box>
     </ThemeProvider>
   );
-};
+}
 
 export default SimpleCondition;

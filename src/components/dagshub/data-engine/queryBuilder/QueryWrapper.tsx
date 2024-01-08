@@ -4,7 +4,7 @@ import { QueryBuilderContext, useQueryBuilderContext } from './QueryBuilderConte
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 
-const QueryWrapper = ({ showConditionSummary }: { showConditionSummary: boolean }) => {
+export function QueryWrapper({ showConditionSummary }: { showConditionSummary: boolean }) {
   const { rootCondition, queryInputInBackendFormat, setRootCondition, isSimpleMode } =
     useQueryBuilderContext();
 
@@ -21,6 +21,6 @@ const QueryWrapper = ({ showConditionSummary }: { showConditionSummary: boolean 
       )}
     </Box>
   );
-};
+}
 
 export default QueryWrapper;
