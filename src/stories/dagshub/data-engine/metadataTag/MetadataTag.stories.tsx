@@ -1,6 +1,7 @@
-import {Meta, StoryFn} from '@storybook/react';
+import { Box } from '@mui/material';
+import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import {GalleryTagsGroup, BoxedGalleryTagsGroup, GalleryBox} from '../../../../components';
+import { GalleryTagsGroup } from '../../../../components';
 
 const meta: Meta<{ itemMetadataTagsToDisplayDict: Record<string, { value: any }> }> = {
   title: 'DagsHub/Data-Engine/MetadataTags/Gallery tags group',
@@ -10,31 +11,91 @@ const meta: Meta<{ itemMetadataTagsToDisplayDict: Record<string, { value: any }>
 export default meta;
 
 const Template: StoryFn<typeof GalleryTagsGroup> = (args) => (
-  <GalleryBox
-    style={{fontFamily: 'Inter', fontSize: '14px'}}
-    cell={{width: 299, height: 220}}
-    fileName={"fileName.json"}
+  <Box
+    sx={{
+      borderRadius: '8px',
+      height: '220px',
+      width: '270px',
+      display: 'flex',
+      justifyContent: 'flex-start',
+      alignItems: 'center'
+    }}
+    display={'flex'}
+    flexDirection={'column'}
+    border={''}
   >
-    <img
+    <Box
       style={{
-        objectFit: 'contain',
-        maxHeight: '190px',
-        maxWidth: '254px',
-        borderRadius: '0px',
+        height: '190px',
+        width: '270px',
+        backgroundColor: '#F8FAFC',
+        borderRadius: '8px',
         cursor: 'pointer',
-        display: 'block'
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative'
       }}
-      src={'https://dagshub.com/Dean/COCO_1K/raw/main/data/images/train/000000005105.jpg'}
-      alt=""
-    />
-    <BoxedGalleryTagsGroup {...args} />
-  </GalleryBox>
+    >
+      <img
+        style={{
+          objectFit: 'contain',
+          maxHeight: '190px',
+          maxWidth: '254px',
+          borderRadius: '0px',
+          cursor: 'pointer',
+          display: 'block'
+        }}
+        src={'https://dagshub.com/Dean/COCO_1K/raw/main/data/images/train/000000000009.jpg'}
+        alt=""
+      />
+
+      <Box
+        flex={1}
+        bgcolor={'transparent'}
+        position={'absolute'}
+        zIndex={20}
+        maxHeight={'80px'}
+        overflow={'hidden'}
+        width={'100%'}
+        padding={'4px'}
+        bottom={0}
+      >
+        <GalleryTagsGroup {...args} />
+      </Box>
+    </Box>
+    <Box
+      sx={{
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        textAlign: 'end',
+        justifyContent: 'flex-start',
+        height: '30px',
+        fontFamily: 'Inter',
+        fontSize: '14px'
+      }}
+    >
+      <a
+        style={{
+          color: '#5467DE',
+          cursor: 'pointer',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap'
+        }}
+        target="_blank"
+      >
+        fileName.json
+      </a>
+    </Box>
+  </Box>
 );
 
 const getNTags = (n: number) => {
   const tags: Record<string, { value: any }> = {};
   for (let i = 1; i <= n; i++) {
-    tags[`This is a very long label ${i}`] = {value: `A very long value ${i}`};
+    tags[`This is a very long label ${i}`] = { value: `A very long value ${i}` };
   }
   return tags;
 };
@@ -87,13 +148,13 @@ manyTags2.args = {
 export const mixedTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 mixedTags.args = {
   itemMetadataTagsToDisplayDict: {
-    'This is a long tag labelll1': {value: 'this is a long value'}, //long key and long value
-    bool: {value: 'true'}, // short key and short value
-    'Another long tag labelll2': {value: 'value'}, //long key and short value
-    float: {value: '12.3456789023457658768'}, //short key and long value
-    'another key': {value: 'another value'},
-    size: {value: '1234543'},
-    bla: {value: 'bla'}
+    'This is a long tag labelll1': { value: 'this is a long value' }, //long key and long value
+    bool: { value: 'true' }, // short key and short value
+    'Another long tag labelll2': { value: 'value' }, //long key and short value
+    float: { value: '12.3456789023457658768' }, //short key and long value
+    'another key': { value: 'another value' },
+    size: { value: '1234543' },
+    bla: { value: 'bla' }
   }
 };
 
