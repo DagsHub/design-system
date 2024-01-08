@@ -10,10 +10,10 @@ export type Comparator =
   | 'LESS_THAN'
   | 'LESS_EQUAL_THAN'
   | 'CONTAINS'
-  | 'IS_NULL'
-  | 'IS_POSITIVE_INFINITY'
-  | 'IS_NEGATIVE_INFINITY'
-  | 'IS_NAN';
+  | 'IS_NULL';
+  // | 'IS_POSITIVE_INFINITY'
+  // | 'IS_NEGATIVE_INFINITY'
+  // | 'IS_NAN';
 
 export const Operators: { label: string; id: Comparator; value?: string }[] = [
   { label: '==', id: 'EQUAL' },
@@ -55,10 +55,10 @@ export const FloatOperators: { label: string; id: Comparator }[] = [
   { label: '>=', id: 'GREATER_EQUAL_THAN' },
   { label: '<', id: 'LESS_THAN' },
   { label: '<=', id: 'LESS_EQUAL_THAN' },
-  { label: 'is null', id: 'IS_NULL' },
-  { label: 'is +Inf', id: 'IS_POSITIVE_INFINITY' },
-  { label: 'is -Inf', id: 'IS_NEGATIVE_INFINITY' },
-  { label: 'is NaN', id: 'IS_NAN' }
+  { label: 'is null', id: 'IS_NULL' }
+  // { label: 'is +Inf', id: 'IS_POSITIVE_INFINITY' },
+  // { label: 'is -Inf', id: 'IS_NEGATIVE_INFINITY' },
+  // { label: 'is NaN', id: 'IS_NAN' }
 ];
 
 export interface MetadataFieldProps {
@@ -218,9 +218,9 @@ export const QueryBuilderProvider = ({
   function checkIfOperatorRequiresValueField(operator: Comparator): boolean {
     switch (operator) {
       case 'IS_NULL':
-      case 'IS_POSITIVE_INFINITY':
-      case 'IS_NEGATIVE_INFINITY':
-      case 'IS_NAN':
+      // case 'IS_POSITIVE_INFINITY':
+      // case 'IS_NEGATIVE_INFINITY':
+      // case 'IS_NAN':
         return false;
       default:
         return true;
