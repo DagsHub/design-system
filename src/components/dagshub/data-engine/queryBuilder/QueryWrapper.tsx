@@ -10,12 +10,12 @@ export function QueryWrapper({ showConditionSummary }: { showConditionSummary: b
 
   return (
     <Box>
-        {showConditionSummary && (
-            <>
-                <pre>UI FORMAT {JSON.stringify(rootCondition, null, 2)}</pre>
-                <pre>BACKEND FORMAT {JSON.stringify(queryInputInBackendFormat, null, 2)}</pre>
-            </>
-        )}
+      {showConditionSummary && (
+        <>
+          <pre>UI FORMAT {JSON.stringify(rootCondition, null, 2)}</pre>
+          <pre>BACKEND FORMAT {JSON.stringify(queryInputInBackendFormat, null, 2)}</pre>
+        </>
+      )}
       <Condition condition={rootCondition} onChange={setRootCondition} />
     </Box>
   );

@@ -22,7 +22,6 @@ export function QueryBuilder({
   validateValueByType: (valueType: MetadataType, value: string) => boolean;
   showConditionSummary?: boolean;
 }) {
-
   return (
     <QueryBuilderProvider
       queryInput={queryInput}
