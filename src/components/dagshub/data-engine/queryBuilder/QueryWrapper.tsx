@@ -5,15 +5,13 @@ import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 
 export function QueryWrapper({ showConditionSummary }: { showConditionSummary: boolean }) {
-  const { rootCondition, queryInputInBackendFormat, setRootCondition, isSimpleMode } =
-    useQueryBuilderContext();
+  const { rootCondition, setRootCondition, isSimpleMode } = useQueryBuilderContext();
 
   return (
     <Box>
       {showConditionSummary && (
         <>
           <pre>UI FORMAT {JSON.stringify(rootCondition, null, 2)}</pre>
-          <pre>BACKEND FORMAT {JSON.stringify(queryInputInBackendFormat, null, 2)}</pre>
         </>
       )}
       <Condition condition={rootCondition} onChange={setRootCondition} />
