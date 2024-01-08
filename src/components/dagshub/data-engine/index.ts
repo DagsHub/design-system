@@ -12,6 +12,8 @@ export * from './singleFileViewModal/ItemFallback';
 export * from './singleFileViewModal/SingleFileViewModal';
 export * from './customAccordion/CustomAccordion';
 export * from './CSVViewer/CSVViewer';
+export * from './annotations/LabelStudioPolygonDrawer';
+export * from './annotations/annotationTypes'
 export * from './PDFViewer/PDFViewer';
 export * from './CSVViewer/CSVViewer';
 export * from './queryBuilder/QueryBuilder';
