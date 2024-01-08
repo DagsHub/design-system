@@ -1,11 +1,11 @@
 import React from 'react';
 import {
   MetadataFieldProps,
-  MetadataType,
   QueryBuilderProvider,
   QueryInput
 } from './QueryBuilderContext';
 import QueryWrapper from './QueryWrapper';
+import {MetadataType} from "../metadataKeyValue/MetadataKeyValueList";
 
 export function QueryBuilder({
   queryInput,

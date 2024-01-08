@@ -1,6 +1,7 @@
 import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import _ from 'lodash';
-import {MetadataType} from "../metadataKeyValue/MetadataKeyValueList";
+
+type MetadataType = 'BOOLEAN' | 'INTEGER' | 'FLOAT' | 'STRING' | 'BLOB';
 
 export type Comparator =
   | 'EQUAL'
