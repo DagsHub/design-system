@@ -10,10 +10,10 @@ export type Comparator =
   | 'LESS_THAN'
   | 'LESS_EQUAL_THAN'
   | 'CONTAINS'
-  | 'IS_NULL'
-  | 'IS_POSITIVE_INFINITY'
-  | 'IS_NEGATIVE_INFINITY'
-  | 'IS_NAN';
+  | 'IS_NULL';
+// | 'IS_POSITIVE_INFINITY'
+// | 'IS_NEGATIVE_INFINITY'
+// | 'IS_NAN';
 
 export const Operators: { label: string; id: Comparator; value?: string }[] = [
   { label: '==', id: 'EQUAL' },
@@ -55,10 +55,10 @@ export const FloatOperators: { label: string; id: Comparator }[] = [
   { label: '>=', id: 'GREATER_EQUAL_THAN' },
   { label: '<', id: 'LESS_THAN' },
   { label: '<=', id: 'LESS_EQUAL_THAN' },
-  { label: 'is null', id: 'IS_NULL' },
-  { label: 'is +Inf', id: 'IS_POSITIVE_INFINITY' },
-  { label: 'is -Inf', id: 'IS_NEGATIVE_INFINITY' },
-  { label: 'is NaN', id: 'IS_NAN' }
+  { label: 'is null', id: 'IS_NULL' }
+  // { label: 'is +Inf', id: 'IS_POSITIVE_INFINITY' },
+  // { label: 'is -Inf', id: 'IS_NEGATIVE_INFINITY' },
+  // { label: 'is NaN', id: 'IS_NAN' }
 ];
 
 export interface MetadataFieldProps {
@@ -98,14 +98,9 @@ interface QueryBuilderContextInterface {
   metadataFieldsList: MetadataFieldProps[];
   generateUniqueId: () => string;
   addUniqueIds: (input: AndOrMetadataInput) => AndOrMetadataInput;
-  getZeroValueByType: (type: MetadataType | undefined) => string;
   getOperatorsByMetadataType: (type: MetadataType) => { label: string; id: Comparator }[];
   checkIfOperatorRequiresValueField: (operator: Comparator) => boolean;
   validateValueByType: (valueType: MetadataType, value: string) => boolean;
-  convertToBackandFormatAndRemoveEmptyConditions: (
-    condition: AndOrMetadataInput
-  ) => AndOrMetadataInput | null;
-  queryInputInBackendFormat: QueryInput;
 }
 
 export const QueryBuilderContext = createContext<QueryBuilderContextInterface | undefined>(
@@ -166,10 +161,7 @@ export const QueryBuilderProvider = ({
   };
 
   const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(getInitialQuery());
-  const [queryInputInBackendFormat, setQueryInputInBackendFormat] = useState<QueryInput>({});
   const [isSimpleMode, setIsSimpleMode] = useState<boolean>(checkIfSimpleMode());
-
-  // const [rootConditionBackend, setRootConditionBackend] = useState<AndOrMetadataInput | null>(null);
   const [metadataFieldsList, setMetadataFieldsList] =
     useState<MetadataFieldProps[]>(metadataFields);
 
@@ -187,11 +179,7 @@ export const QueryBuilderProvider = ({
   }, [metadataFields]);
 
   useEffect(() => {
-    let formattedQuery: QueryInput = {
-      query: convertToBackandFormatAndRemoveEmptyConditions(rootCondition) ?? {}
-    };
-    onChange(formattedQuery);
-    setQueryInputInBackendFormat(formattedQuery);
+    onChange({ ...queryInput, query: rootCondition });
   }, [rootCondition]);
 
   function generateUniqueId(): string {
@@ -208,23 +196,6 @@ export const QueryBuilderProvider = ({
       updatedInput.and = input.and.map((andInput) => addUniqueIds(andInput));
     }
     return updatedInput;
-  }
-
-  function getZeroValueByType(type: MetadataType | undefined): string {
-    switch (type) {
-      case 'BOOLEAN':
-        return 'false';
-      case 'INTEGER':
-        return '0';
-      case 'FLOAT':
-        return '0.0';
-      case 'STRING':
-        return '';
-      case 'BLOB':
-        return '';
-      default:
-        return '';
-    }
   }
 
   function getOperatorsByMetadataType(type: MetadataType): { label: string; id: Comparator }[] {
@@ -247,85 +218,13 @@ export const QueryBuilderProvider = ({
   function checkIfOperatorRequiresValueField(operator: Comparator): boolean {
     switch (operator) {
       case 'IS_NULL':
-      case 'IS_POSITIVE_INFINITY':
-      case 'IS_NEGATIVE_INFINITY':
-      case 'IS_NAN':
+        // case 'IS_POSITIVE_INFINITY':
+        // case 'IS_NEGATIVE_INFINITY':
+        // case 'IS_NAN':
         return false;
       default:
         return true;
     }
-  }
-
-  function convertToBackandFormatAndRemoveEmptyConditions(
-    condition: AndOrMetadataInput
-  ): AndOrMetadataInput | null {
-    if (!!condition.or || !!condition.and) {
-      // Recursively convert to backand format and remove empty conditions
-      const nonEmptyConditions = (condition.or || condition.and || [])
-        .map(convertToBackandFormatAndRemoveEmptyConditions)
-        .filter((c) => c !== null) as AndOrMetadataInput[];
-
-      // If all nested conditions are removed and the current condition is empty, return null
-      if (nonEmptyConditions.length === 0) {
-        return null;
-      }
-
-      // Return the modified condition
-      if (condition.or) {
-        return { or: nonEmptyConditions };
-      } else {
-        return { and: nonEmptyConditions };
-      }
-    } else if (!!condition.filter) {
-      // If it's a simple filter, check if it's empty
-      if (
-        !condition.filter.key ||
-        (!condition.filter.value &&
-          !(
-            condition.filter?.comparator === 'IS_POSITIVE_INFINITY' ||
-            condition.filter?.comparator === 'IS_NEGATIVE_INFINITY' ||
-            condition.filter?.comparator === 'IS_NAN' ||
-            condition.filter?.comparator === 'IS_NULL' ||
-            (condition.filter?.valueType == 'STRING' && condition.filter?.comparator == 'EQUAL')
-          ))
-      ) {
-        return null;
-      }
-    }
-    // Return the original input if it's not a filter, OR, or AND
-    if (condition.filter?.comparator === 'IS_POSITIVE_INFINITY') {
-      return {
-        ...condition,
-        id: undefined,
-        filter: { ...condition.filter, comparator: 'EQUAL', value: '+Inf', id: undefined }
-      };
-    }
-    if (condition.filter?.comparator === 'IS_NEGATIVE_INFINITY') {
-      return {
-        ...condition,
-        id: undefined,
-        filter: { ...condition.filter, comparator: 'EQUAL', value: '-Inf', id: undefined }
-      };
-    }
-    if (condition.filter?.comparator === 'IS_NAN') {
-      return {
-        ...condition,
-        id: undefined,
-        filter: { ...condition.filter, comparator: 'EQUAL', value: 'NaN', id: undefined }
-      };
-    }
-    if (condition.filter?.comparator === 'IS_NULL') {
-      return {
-        ...condition,
-        id: undefined,
-        filter: {
-          ...condition.filter,
-          value: getZeroValueByType(condition.filter.valueType),
-          id: undefined
-        }
-      };
-    }
-    return { ...condition, id: undefined, filter: { ...condition.filter, id: undefined } };
   }
 
   return (
@@ -338,12 +237,9 @@ export const QueryBuilderProvider = ({
         metadataFieldsList,
         generateUniqueId,
         addUniqueIds,
-        getZeroValueByType,
         getOperatorsByMetadataType,
         checkIfOperatorRequiresValueField,
-        convertToBackandFormatAndRemoveEmptyConditions,
-        validateValueByType,
-        queryInputInBackendFormat
+        validateValueByType
       }}
     >
       {children}

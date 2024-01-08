@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import { QueryBuilder } from '../../../../components/dagshub/data-engine/queryBuilder/QueryBuilder';
+import QueryBuilder from '../../../../components/dagshub/data-engine/queryBuilder/QueryBuilder';
 import { MetadataType } from '../../../../components/dagshub/data-engine/queryBuilder/QueryBuilderContext';
 
 const meta: Meta<typeof QueryBuilder> = {

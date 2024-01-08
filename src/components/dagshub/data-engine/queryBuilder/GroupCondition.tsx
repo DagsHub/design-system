@@ -9,7 +9,7 @@ import Condition from './Condition';
 import AddIcon from '@mui/icons-material/Add';
 import { AndOrMetadataInput, Operators, useQueryBuilderContext } from './QueryBuilderContext';
 
-const GroupCondition = ({
+export function GroupCondition({
   condition,
   onChange,
   level,
@@ -19,7 +19,7 @@ const GroupCondition = ({
   onChange: any;
   level: number;
   onRemove?: () => void;
-}) => {
+}) {
   const { isSimpleMode, generateUniqueId } = useQueryBuilderContext();
   const [isAddMenuOpen, setIsAddMenuOpen] = useState<boolean>(false);
   const [addMenuAnchorEl, setAddMenuAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -270,6 +270,6 @@ const GroupCondition = ({
       </Box>
     </ThemeProvider>
   );
-};
+}
 
 export default GroupCondition;

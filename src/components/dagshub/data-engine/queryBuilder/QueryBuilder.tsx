@@ -30,7 +30,9 @@ export function QueryBuilder({
       validateValueByType={validateValueByType}
       onChange={onChange}
     >
-      <QueryWrapper showConditionSummary />
+      <QueryWrapper showConditionSummary={showConditionSummary} />
     </QueryBuilderProvider>
   );
 }
+
+export default QueryBuilder;
