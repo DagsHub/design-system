@@ -1,9 +1,9 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React from 'react';
 import {
   ControlledDisplayFiltersGroup,
   ControlledDisplayFiltersGroupProps
 } from '../../../components';
+import {Box} from "@mui/system";
 
 const meta: Meta<ControlledDisplayFiltersGroupProps> = {
   title: 'Elements/Display filter group',
@@ -13,7 +13,9 @@ const meta: Meta<ControlledDisplayFiltersGroupProps> = {
 export default meta;
 
 const Template: StoryFn<typeof ControlledDisplayFiltersGroup> = (args) => (
-  <ControlledDisplayFiltersGroup {...args} />
+  <Box width={'300px'}>
+    <ControlledDisplayFiltersGroup {...args} />
+  </Box>
 );
 
 const filters = [
