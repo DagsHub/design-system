@@ -1,6 +1,6 @@
 import React, { CSSProperties, useEffect, useRef, useState } from 'react';
 import { Circle, Layer, Line, Stage, Text, Image } from 'react-konva';
-import {useContainerDimensions, useImageDimensions} from './utils';
+import { useContainerDimensions } from './utils';
 import {
   getLabel,
   getPolygonLabelBbox,
@@ -29,17 +29,41 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
   displayColumns = [],
   displayLabels = ['all']
 }) => {
-  const ref = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [width, height] = useImageDimensions(ref);
   const [containerWidth, containerHeight] = useContainerDimensions(containerRef);
-  const dimension = { width, height };
-  const [image] = useImage(src)
+  const [dimension, setDimension] = useState<{
+    width: number;
+    height: number;
+  }>({
+    width: 0,
+    height: 0
+  });
+  const [image] = useImage(src);
 
+  useEffect(() => {
+    if (containerRef.current && image) {
+      // const containerWidth = containerRef.current.clientWidth;
+      // const containerHeight = containerRef.current.clientHeight;
+      const ratio = image.width / image.height;
+      const containerRatio = containerWidth / containerHeight;
+      const dominantRatio = ratio > containerRatio ? 'width' : 'height';
+      if (dominantRatio === 'width') {
+        setDimension({
+          width: containerWidth,
+          height: containerWidth / ratio
+        });
+      } else {
+        setDimension({
+          width: containerHeight * ratio,
+          height: containerHeight
+        });
+      }
+    }
+  }, [image, containerWidth, containerHeight]);
   const containerStyle: CSSProperties = {
-    position: 'relative',
-    width: width || '100%',
-    height: height || '100%',
+    display: 'flex',
+    width: '100%',
+    height: '100%'
   };
   const imgStyle: CSSProperties = {
     margin: 'auto',
@@ -48,24 +72,21 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
     height: '100%',
     display: 'block'
   };
-  const left = containerWidth ? (containerWidth - width) / 2 : 0;
-  const top = containerHeight ? (containerHeight - height) / 2 : 0;
-  const style: CSSProperties = {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    // width,
-    // height
-    width: '100%',
-    height: '100%',
-  };
 
   return (
-    <div ref={containerRef} style={containerStyle}>
-      <img ref={ref} style={imgStyle} alt={'image from dataset'} src={src} />
-      <Stage width={width} height={height} style={style}>
+    <div id="ls-container" ref={containerRef} style={containerStyle}>
+      <Stage
+        width={dimension.width}
+        height={dimension.height}
+        style={{
+          position: 'relative',
+          width: dimension.width,
+          height: dimension.height,
+          margin: 'auto'
+        }}
+      >
         <Layer>
-          {/*<Image ref={ref} image={image} />*/}
+          <Image image={image} width={dimension.width} height={dimension.height} />
           {Object.entries(annotationsMap)?.map(([column, annotations]) => {
             if (!displayColumns.includes(column)) {
               return null;
