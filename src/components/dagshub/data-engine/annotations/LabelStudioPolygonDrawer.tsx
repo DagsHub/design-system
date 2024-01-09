@@ -1,6 +1,6 @@
 import React, { CSSProperties, useEffect, useRef, useState } from 'react';
-import { Circle, Layer, Line, Stage, Text } from 'react-konva';
-import { useContainerDimensions } from './utils';
+import { Circle, Layer, Line, Stage, Text, Image } from 'react-konva';
+import {useContainerDimensions, useImageDimensions} from './utils';
 import {
   getLabel,
   getPolygonLabelBbox,
@@ -11,6 +11,7 @@ import {
   rectangleLabelToBbox
 } from './labelstudioUtils';
 import { AnnotationsMap, Result, RGB } from './annotationTypes';
+import useImage from 'use-image';
 
 export interface LabelStudioPolygonDrawerProps {
   src: string;
@@ -30,12 +31,15 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
 }) => {
   const ref = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [width, height] = useContainerDimensions(ref);
+  const [width, height] = useImageDimensions(ref);
   const [containerWidth, containerHeight] = useContainerDimensions(containerRef);
   const dimension = { width, height };
+  const [image] = useImage(src)
 
   const containerStyle: CSSProperties = {
-    position: 'relative'
+    position: 'relative',
+    width: width || '100%',
+    height: height || '100%',
   };
   const imgStyle: CSSProperties = {
     margin: 'auto',
@@ -48,10 +52,12 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
   const top = containerHeight ? (containerHeight - height) / 2 : 0;
   const style: CSSProperties = {
     position: 'absolute',
-    left,
-    top,
-    width,
-    height
+    left: 0,
+    top: 0,
+    // width,
+    // height
+    width: '100%',
+    height: '100%',
   };
 
   return (
@@ -59,12 +65,13 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
       <img ref={ref} style={imgStyle} alt={'image from dataset'} src={src} />
       <Stage width={width} height={height} style={style}>
         <Layer>
-          {Object.entries(annotationsMap).map(([column, annotations]) => {
+          {/*<Image ref={ref} image={image} />*/}
+          {Object.entries(annotationsMap)?.map(([column, annotations]) => {
             if (!displayColumns.includes(column)) {
               return null;
             }
-            return annotations.map((annotation, aIndex) =>
-              annotation.result.map((result, rIndex) => {
+            return annotations?.map((annotation, aIndex) =>
+              annotation.result?.map((result, rIndex) => {
                 return (
                   <SingleLabelAnnotation
                     key={`${column}-${aIndex}-${rIndex}`}
