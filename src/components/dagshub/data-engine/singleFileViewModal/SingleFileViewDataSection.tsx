@@ -4,7 +4,7 @@ import { CustomAccordion } from '../customAccordion/CustomAccordion';
 import { MetadataKeyValueList, NewMetadataField } from '../metadataKeyValue/MetadataKeyValueList';
 import { Button, ButtonVariant } from '../../../elements';
 import { Icon } from '../../../icons';
-import { ItemData } from './SingleFileViewModal';
+import { ItemData, VisualizerProps } from './SingleFileViewModal';
 import { SingleFileViewFileRenderer } from './SingleFileViewFileRenderer';
 import { ThemeProvider, Tooltip } from '@mui/material';
 import theme from '../../../../theme';
@@ -17,7 +17,8 @@ export function SingleFileViewDataSection({
   showMetadataOverlay,
   metadataOnChangeHandler,
   enableMetadataEditing,
-  enableMetadataDeletion
+  enableMetadataDeletion,
+  visualizerRenderer
 }: {
   isSmallScreen: boolean;
   itemData: ItemData;
@@ -27,12 +28,12 @@ export function SingleFileViewDataSection({
   metadataOnChangeHandler?: (metadataList: NewMetadataField[]) => void;
   enableMetadataEditing?: boolean;
   enableMetadataDeletion?: boolean;
+  visualizerRenderer: (props: VisualizerProps) => React.ReactNode;
 }) {
   const SIDEBAR_WIDTH = 350; //I decided on this number
   const ARROWS_SECTION_HEIGHT = 52;
 
   const [showMetadataSidebar, setShowMetadataSidebar] = useState<boolean>(true);
-
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -118,11 +119,7 @@ export function SingleFileViewDataSection({
                   </div>
                 </Tooltip>
               )}
-              <SingleFileViewFileRenderer
-                galleryFilePath={itemData.galleryFilePath}
-                itemType={itemData.itemType}
-                itemFallbackHeight={`calc(100% - ${ARROWS_SECTION_HEIGHT}px)`}
-              />
+              {visualizerRenderer({itemData})}
             </Box>
           )}
           <Box

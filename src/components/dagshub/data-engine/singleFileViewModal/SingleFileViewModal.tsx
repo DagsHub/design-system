@@ -1,7 +1,7 @@
 import { Box } from '@mui/system';
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
-import { GenericModal, MetadataField, NewMetadataField } from '../../index';
+import {GenericModal, MetadataField, NewMetadataField, RGB} from '../../index';
 import './style.scss';
 import TopButtonsSection from './TopButtonsSection';
 import { SingleFileViewDataSection } from './SingleFileViewDataSection';
@@ -18,6 +18,10 @@ export interface ItemData {
   isSelected?: boolean;
 }
 
+export type VisualizerProps = {
+  itemData: ItemData;
+}
+
 export interface singleFileViewModalProps {
   closeModal: () => void;
   itemData: ItemData;
@@ -31,6 +35,7 @@ export interface singleFileViewModalProps {
   onAnnotatedClick?: () => void;
   enableDatapointAnnotating?: boolean;
   enableFileDownloading?: boolean;
+  visualizerRenderer: (props: VisualizerProps) => React.ReactNode;
 }
 
 export function SingleFileViewModal({
@@ -45,7 +50,8 @@ export function SingleFileViewModal({
   areAllSelected,
   onAnnotatedClick,
   enableDatapointAnnotating,
-  enableFileDownloading
+  enableFileDownloading,
+  visualizerRenderer,
 }: singleFileViewModalProps) {
   const [showMetadataOverlay, setShowMetadataOverlay] = useState<boolean>(false);
   const breakpoint = useMediaQuery('(max-width: 800px)');
@@ -124,6 +130,7 @@ export function SingleFileViewModal({
                 metadataOnChangeHandler={metadataOnChangeHandler}
                 enableMetadataEditing={enableMetadataEditing}
                 enableMetadataDeletion={enableMetadataDeletion}
+                visualizerRenderer={visualizerRenderer}
               />
             </Box>
           </Box>

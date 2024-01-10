@@ -3,20 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { CSVViewer } from '../CSVViewer/CSVViewer';
 import { Box } from '@mui/system';
 import { PDFViewer } from '../PDFViewer/PDFViewer';
+import { VisualizerProps } from './SingleFileViewModal';
 
-export function SingleFileViewFileRenderer({
-  galleryFilePath,
-  itemType,
-  itemFallbackHeight
-}: {
-  galleryFilePath: string;
-  itemType: string;
-  itemFallbackHeight: string;
-}) {
+export const SingleFileViewFileRenderer = ({ itemData }: VisualizerProps) => {
   const [textContent, setTextContent] = useState<string>('');
   const [isError, setIsError] = useState<boolean>(false);
   const [csvHeaders, setCsvHeaders] = useState<string[]>([]);
   const [csvValues, setCsvValues] = useState<string[][]>([]);
+
+  const { galleryFilePath, itemType } = itemData;
 
   useEffect(() => {
     setIsError(false);
@@ -55,7 +50,7 @@ export function SingleFileViewFileRenderer({
   if (!!galleryFilePath && !!itemType) {
     if (isError) {
       return (
-        <ItemFallback height={itemFallbackHeight} width={'100%'} disableHoverMode isError={true} />
+        <ItemFallback height={'100%'} width={'100%'} disableHoverMode isError={true} />
       );
     }
     if (itemType === 'image') {
@@ -152,5 +147,6 @@ export function SingleFileViewFileRenderer({
       return <CSVViewer headers={csvHeaders} values={csvValues} columnWidth={160} />;
     }
   }
-  return <ItemFallback height={itemFallbackHeight} width={'100%'} disableHoverMode />;
-}
+  return <ItemFallback height={''} width={'100%'} disableHoverMode />;
+};
+
