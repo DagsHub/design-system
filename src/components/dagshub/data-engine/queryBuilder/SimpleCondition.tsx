@@ -70,8 +70,8 @@ export function SimpleCondition({
   }, [operatorsList]);
 
   useEffect(() => {
-    if (!!condition.filter?.valueType && !!condition.filter?.value) {
-      setIsErrored(!validateValueByType(condition.filter?.valueType, condition.filter?.value));
+    if (!!condition.filter?.valueType && !!condition.filter?.value && !!condition.filter?.comparator) {
+      setIsErrored(!validateValueByType(condition.filter.valueType, condition.filter.value, condition.filter.comparator));
     } else {
       setIsErrored(false);
     }
