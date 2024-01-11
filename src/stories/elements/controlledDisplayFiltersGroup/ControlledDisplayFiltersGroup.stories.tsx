@@ -3,7 +3,8 @@ import {
   ControlledDisplayFiltersGroup,
   ControlledDisplayFiltersGroupProps
 } from '../../../components';
-import {Box} from "@mui/system";
+import { Box } from '@mui/system';
+import React from 'react';
 
 const meta: Meta<ControlledDisplayFiltersGroupProps> = {
   title: 'Elements/Display filter group',
@@ -29,7 +30,21 @@ const filters = [
   },
   {
     label: 'metadata_key_3',
-    onChange: (value: string) => console.log('changed', value)
+    onChange: (value: string) => console.log('changed', value),
+    children: [
+      {
+        label: 'metadata_key_1.1',
+        onChange: (value: string) => console.log('changed', value)
+      },
+      {
+        label: 'metadata_key_1.2',
+        onChange: (value: string) => console.log('changed', value)
+      },
+      {
+        label: 'metadata_key_1.3 as of 06/10/1987 6:00',
+        onChange: (value: string) => console.log('changed', value)
+      }
+    ]
   }
 ];
 

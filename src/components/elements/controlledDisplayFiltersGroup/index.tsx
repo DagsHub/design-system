@@ -5,9 +5,14 @@ import React from 'react';
 import { LabeledSwitch } from '../../forms';
 import _ from 'lodash';
 
+type childFilter = {
+  label: string;
+  onChange: (value: string) => void;
+};
 export interface DisplayFilterPartialProps {
   label: string;
   onChange?: (name: string) => void;
+  children?: childFilter[];
 }
 
 export interface ControlledDisplayFiltersGroupProps {
@@ -81,8 +86,11 @@ export function ControlledDisplayFiltersGroup({
         return (
           <>
             <DisplayFilter
+              children={item.children}
+              showAll={showAll}
               value={showAll || displayedFilters.has(item.label)}
               label={item.label}
+              showCollapse
               onChange={() => {
                 const updatedFilters = new Set(displayedFilters);
                 if (updatedFilters.has(item.label)) {
@@ -94,7 +102,6 @@ export function ControlledDisplayFiltersGroup({
                 if (item.onChange) item.onChange(item.label);
               }}
             />
-            <Divider sx={{ backgroundColor: '#F8FAFC' }} />
           </>
         );
       })}

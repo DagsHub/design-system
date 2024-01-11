@@ -1,6 +1,6 @@
 import React, { CSSProperties, useEffect, useRef, useState } from 'react';
 import { Circle, Layer, Line, Stage, Text, Image } from 'react-konva';
-import {useContainerDimensions, useImageDimensions} from './utils';
+import { useContainerDimensions, useImageDimensions } from './utils';
 import {
   getLabel,
   getPolygonLabelBbox,
@@ -34,12 +34,12 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
   const [width, height] = useImageDimensions(ref);
   const [containerWidth, containerHeight] = useContainerDimensions(containerRef);
   const dimension = { width, height };
-  const [image] = useImage(src)
+  const [image] = useImage(src);
 
   const containerStyle: CSSProperties = {
     position: 'relative',
     width: width || '100%',
-    height: height || '100%',
+    height: height || '100%'
   };
   const imgStyle: CSSProperties = {
     margin: 'auto',
@@ -57,7 +57,7 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
     // width,
     // height
     width: '100%',
-    height: '100%',
+    height: '100%'
   };
 
   return (

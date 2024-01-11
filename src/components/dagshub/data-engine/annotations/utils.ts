@@ -1,5 +1,5 @@
 // Debounce function
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 const debounce = (fn: Function, delay: number) => {
   let timeoutId = 0;
@@ -14,7 +14,7 @@ const debounce = (fn: Function, delay: number) => {
 };
 
 export function useImageDimensions(myRef: React.RefObject<HTMLImageElement>) {
-  const [dimensions, setDimensions] = useState({width: 0, height: 0});
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [ratio, setRatio] = useState(1);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export function useImageDimensions(myRef: React.RefObject<HTMLImageElement>) {
         return myRef.current.naturalWidth / myRef.current.naturalHeight;
       }
       return 1;
-    }
+    };
 
     const handleResize = () => {
       debounce(() => {
@@ -62,13 +62,12 @@ export function useImageDimensions(myRef: React.RefObject<HTMLImageElement>) {
       return {
         width: (myRef.current?.offsetHeight || 0) * ratio,
         height: myRef.current?.offsetHeight || 0
-      }
+      };
       // return {
       //   width: myRef.current?.offsetWidth || 0,
       //   height: myRef.current?.offsetHeight || 0
       // }
     };
-
 
     const handleResize = () => {
       debounce(() => {
@@ -89,9 +88,8 @@ export function useImageDimensions(myRef: React.RefObject<HTMLImageElement>) {
   return [dimensions.width, dimensions.height];
 }
 
-
 export function useContainerDimensions(myRef: React.RefObject<HTMLDivElement>) {
-  const [dimensions, setDimensions] = useState({width: 0, height: 0});
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   useEffect(() => {
     const getDimensions = () => ({
       width: myRef.current?.offsetWidth || 0,
