@@ -102,6 +102,8 @@ interface QueryBuilderContextInterface {
   checkIfOperatorRequiresValueField: (operator: Comparator) => boolean;
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   isCollapsed?: boolean;
+  isDisplayableInSimpleMode: boolean;
+  onToggleQueryMode: () => void;
 }
 
 export const QueryBuilderContext = createContext<QueryBuilderContextInterface | undefined>(
@@ -147,35 +149,50 @@ export const QueryBuilderProvider = ({
     return addUniqueIds(condition);
   };
 
-  const checkIfSimpleMode = () => {
-    if (forceCompoundMode) {
+  const checkIfConditionIsDisplayableInSimpleMode = (query: AndOrMetadataInput|undefined): boolean => {
+    if(!query) return true;
+    if (!!query?.or || !!query?.not) {
       return false;
     }
-    if (!!queryInput.query?.or || !!queryInput.query?.not) {
-      return false;
-    }
-    if (!!queryInput.query?.and) {
+    if (!!query?.and) {
       // if it's an and group with no nested groups and no not-conditions, it's simple as well
-      return !queryInput.query.and.some((cond: AndOrMetadataInput) => {
+      return !query.and.some((cond: AndOrMetadataInput) => {
         return !!cond.not || !!cond.or || !!cond.and;
       });
     }
     return true;
+  }
+
+  const checkIfSimpleMode = (query: AndOrMetadataInput|undefined) => {
+    return !forceCompoundMode && checkIfConditionIsDisplayableInSimpleMode(query);
   };
 
   const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(getInitialQuery());
-  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(checkIfSimpleMode());
+  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(checkIfSimpleMode(queryInput.query));
   const [metadataFieldsList, setMetadataFieldsList] =
     useState<MetadataFieldProps[]>(metadataFields);
+  const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
+
+  useEffect(()=>{
+    setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
+  },[queryInput.query])
+
+  useEffect(()=>{
+    setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(rootCondition));
+  },[rootCondition])
 
   useEffect(() => {
-    setIsSimpleMode(checkIfSimpleMode());
     setRootCondition(getInitialQuery());
+    setIsSimpleMode(checkIfSimpleMode(queryInput.query));
   }, [queryInput]);
 
   useEffect(() => {
-    setIsSimpleMode(checkIfSimpleMode());
-  }, [forceCompoundMode]);
+    setIsSimpleMode(checkIfSimpleMode(queryInput.query));
+  }, [forceCompoundMode, queryInput.query]);
+
+  function onToggleQueryMode() {
+    setIsSimpleMode(!isSimpleMode);
+  }
 
   useEffect(() => {
     setMetadataFieldsList(metadataFields);
@@ -243,7 +260,9 @@ export const QueryBuilderProvider = ({
         getOperatorsByMetadataType,
         checkIfOperatorRequiresValueField,
         validateValueByType,
-        isCollapsed
+        isCollapsed,
+        isDisplayableInSimpleMode,
+        onToggleQueryMode
       }}
     >
       {children}

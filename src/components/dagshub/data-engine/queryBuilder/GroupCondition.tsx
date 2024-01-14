@@ -8,6 +8,7 @@ import theme from '../../../../theme';
 import Condition from './Condition';
 import AddIcon from '@mui/icons-material/Add';
 import {AndOrMetadataInput, Operators, useQueryBuilderContext} from './QueryBuilderContext';
+import {LabeledSwitch} from "../../../forms";
 
 export function GroupCondition({
                                  condition,
@@ -20,7 +21,7 @@ export function GroupCondition({
   level: number;
   onRemove?: () => void;
 }) {
-  const {isSimpleMode, generateUniqueId, isCollapsed} = useQueryBuilderContext();
+  const {isSimpleMode, generateUniqueId, isCollapsed, isDisplayableInSimpleMode, onToggleQueryMode} = useQueryBuilderContext();
   const [isAddMenuOpen, setIsAddMenuOpen] = useState<boolean>(false);
   const [addMenuAnchorEl, setAddMenuAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -53,22 +54,43 @@ export function GroupCondition({
           "::-webkit-scrollbar-track": {
             bgcolor: "transparent", /* Color of the track */
             borderRadius: "8px", /* Set the border radius for the track */
-            marginTop: "16px"
+            marginTop: "32px"
           },
         }}
         style={{
           border:
             level == 0 ? '1px solid rgba(226, 232, 240, 1)' : '2px dashed rgba(203, 213, 225, 1)',
-          borderRadius: level == 0 ? '16px 16px 0px 0px' : '16px',
+          borderRadius: level == 0 ? '8px 8px 0px 0px' : '16px',
           display: 'flex',
           flexDirection: 'column',
           backgroundColor: 'rgba(248, 250, 252, 1)',
-          maxHeight: (level == 0 && isCollapsed )? "220px" : undefined,
-          height: level == 0 ?"100%":undefined,
+          maxHeight: (level == 0 && isCollapsed) ? "220px" : undefined,
+          height: level == 0 ? "100%" : undefined,
           overflowY: level == 0 ? "auto" : "hidden",
-          width:"100%"
+          width: "100%",
+          position: "relative",
+          overflowX: "hidden",
         }}
       >
+        { level==0 && <Box sx={{
+          position: "absolute",
+          top: "-1px",
+          right: "-1px",
+          borderRadius: "0px 8px 0px 14px",
+          border: "1px solid rgba(226, 232, 240, 1)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          '& .MuiSwitch-switchBase':{
+            '&.Mui-checked':{
+              '& + .MuiSwitch-track':{
+                backgroundColor: "rgba(84, 103, 222, 1)!important",
+              }
+            }
+          }
+        }}>
+          <LabeledSwitch label={"Advanced query builder"} labelPlacement={"end"} padding={"8px"} checked={!isSimpleMode} disabled={!isDisplayableInSimpleMode} onChange={onToggleQueryMode}/>
+        </Box>}
         <Box
           style={{
             padding: '10px',

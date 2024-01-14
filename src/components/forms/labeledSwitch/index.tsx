@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch, { SwitchProps } from '@mui/material/Switch';
+import {Typography} from "@mui/material";
 
 const StyledSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -55,35 +56,43 @@ const StyledSwitch = styled((props: SwitchProps) => (
 export function LabeledSwitch({
   onChange,
   label,
-  checked
+  checked,
+  labelPlacement = 'start',
+  padding = '8px',
+  color = '#172D32',
+  disabled = false
 }: {
   onChange: () => void;
   label?: string;
   checked: boolean;
+  labelPlacement?: 'start' | 'end';
+  padding?: string;
+  color?: string;
+  disabled?: boolean;
 }) {
   return (
     <FormGroup>
       <FormControlLabel
         onChange={onChange}
         control={<StyledSwitch sx={{ m: 1 }} checked={checked} />}
-        label={label}
-        labelPlacement={'start'}
+        label={<Typography variant={"medium"}>{label}</Typography>}
+        labelPlacement={labelPlacement}
+        disabled={disabled}
         sx={{
           margin: '0px!important',
           gap: '8px',
-          padding: '8px',
+          padding: padding,
           display: 'flex',
-          width: 'calc(100% - 16px)',
-
+          width: '100%',
           justifyContent: 'space-between',
           '.MuiSwitch-root': {
-            margin: '0px'
+            margin: '0px',
           },
           '.MuiTypography-root': {
             fontFamily: 'Inter',
             fontSize: '14px',
             fontWeight: 500,
-            color: '#172D32',
+            color: color,
             whiteSpace: 'nowrap',
             textOverflow: 'ellipsis',
             overflow: 'hidden'
