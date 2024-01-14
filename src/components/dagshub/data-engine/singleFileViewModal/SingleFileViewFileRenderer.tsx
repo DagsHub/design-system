@@ -147,6 +147,6 @@ export const SingleFileViewFileRenderer = ({ itemData }: VisualizerProps) => {
       return <CSVViewer headers={csvHeaders} values={csvValues} columnWidth={160} />;
     }
   }
-  return <ItemFallback height={''} width={'100%'} disableHoverMode />;
+  return <ItemFallback height={'100%'} width={'100%'} disableHoverMode />;
 };
 
