@@ -30,7 +30,7 @@ export function Message({ text, kind, support }: MessageProps) {
                     <AlertTitle>{text}</AlertTitle>
                     Contact us via our{' '}
                     <a
-                        className={'message-component__support-link'}
+                        style={{textDecoration: 'underline'}}
                         target="_blank"
                         rel="noopener noreferrer"
                         href={'https://discord.com/invite/9gU36Y6'}
