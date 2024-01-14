@@ -23,7 +23,7 @@ export interface LabelStudioPolygonDrawerProps {
   style?: React.CSSProperties;
 }
 
-type dimension = { width: number; height: number };
+type Dimension = { width: number; height: number };
 
 export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> = ({
   src,
@@ -122,7 +122,7 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
 function getSingleAnnotationResultLayers(
   column: string,
   result: Result,
-  dimension: dimension,
+  dimension: Dimension,
   colorProvider: (label: string, column?: string) => RGB,
   displayLabels = ['all'],
   labelLayersPush: (elem: React.ReactNode) => void,
