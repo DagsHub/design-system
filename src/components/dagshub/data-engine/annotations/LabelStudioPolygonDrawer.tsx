@@ -162,7 +162,6 @@ function SingleLabelAnnotation({
     const [x, y] = pointPercentToPixel([xPercent, yPercent], dimension);
     labelComponents.push(<Circle x={x} y={y} radius={3} fill={strokeColor} />);
   } else if (isEllipseLabel(result)) {
-    debugger;
     const { x: cxPercent, y: cyPercent, radiusX: rxPercent, radiusY: ryPercent } = result.value;
     const [cx, cy] = pointPercentToPixel([cxPercent, cyPercent], dimension);
     const [rx, ry] = pointPercentToPixel([rxPercent, ryPercent], dimension);
