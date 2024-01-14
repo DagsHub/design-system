@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/dagshub/design-system.git"
   },
-  "version": "0.1.65",
+  "version": "0.1.66",
   "description": "A component library for consuming dagshub user interfaces.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -48,7 +48,7 @@
     "@storybook/testing-library": "^0.0.14-next.1",
     "@types/node": "^18.14.2",
     "@types/react": "^18.2.46",
-    "@types/react-dom": "^18.0.11",
+    "@types/react-dom": "^18.2.18",
     "@types/react-table": "^7.7.19",
     "@types/react-window": "^1.8.5",
     "@types/validator": "^13.7.14",

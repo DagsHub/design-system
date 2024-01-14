@@ -28,7 +28,7 @@ export interface BasicTableProps {
   listInnerRef: any;
 }
 
-const BasicTable = ({
+export const BasicTable = ({
   tcolumns,
   data,
   enableColumnOrdering = false,
@@ -292,5 +292,4 @@ const BasicTable = ({
   );
 }
 
-export default BasicTable;
 //how can I give each column its own width

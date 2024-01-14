@@ -6,6 +6,12 @@ import './style.scss';
 import TopButtonsSection from './TopButtonsSection';
 import { SingleFileViewDataSection } from './SingleFileViewDataSection';
 
+export interface Datapoint {
+  id: number;
+  path: string;
+  metadata: MetadataField[];
+}
+
 export interface ItemData {
   itemIndex: number;
   itemType: string;
@@ -16,9 +22,14 @@ export interface ItemData {
   hasNext: boolean;
   hasPrevious: boolean;
   isSelected?: boolean;
+  item?: Datapoint;
 }
 
 export type VisualizerProps = {
+  itemData: ItemData;
+}
+
+export type SidebarProps = {
   itemData: ItemData;
 }
 
@@ -36,6 +47,7 @@ export interface singleFileViewModalProps {
   enableDatapointAnnotating?: boolean;
   enableFileDownloading?: boolean;
   visualizerRenderer: (props: VisualizerProps) => React.ReactNode;
+  sidebarRenderers?: () => React.ReactNode;
 }
 
 export function SingleFileViewModal({
@@ -52,6 +64,7 @@ export function SingleFileViewModal({
   enableDatapointAnnotating,
   enableFileDownloading,
   visualizerRenderer,
+  sidebarRenderers,
 }: singleFileViewModalProps) {
   const [showMetadataOverlay, setShowMetadataOverlay] = useState<boolean>(false);
   const breakpoint = useMediaQuery('(max-width: 800px)');
@@ -131,6 +144,7 @@ export function SingleFileViewModal({
                 enableMetadataEditing={enableMetadataEditing}
                 enableMetadataDeletion={enableMetadataDeletion}
                 visualizerRenderer={visualizerRenderer}
+                sidebarRenderers={sidebarRenderers}
               />
             </Box>
           </Box>

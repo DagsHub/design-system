@@ -4,8 +4,7 @@ import { CustomAccordion } from '../customAccordion/CustomAccordion';
 import { MetadataKeyValueList, NewMetadataField } from '../metadataKeyValue/MetadataKeyValueList';
 import { Button, ButtonVariant } from '../../../elements';
 import { Icon } from '../../../icons';
-import { ItemData, VisualizerProps } from './SingleFileViewModal';
-import { SingleFileViewFileRenderer } from './SingleFileViewFileRenderer';
+import {ItemData, SidebarProps, VisualizerProps} from './SingleFileViewModal';
 import { ThemeProvider, Tooltip } from '@mui/material';
 import theme from '../../../../theme';
 
@@ -18,7 +17,8 @@ export function SingleFileViewDataSection({
   metadataOnChangeHandler,
   enableMetadataEditing,
   enableMetadataDeletion,
-  visualizerRenderer
+  visualizerRenderer,
+  sidebarRenderers,
 }: {
   isSmallScreen: boolean;
   itemData: ItemData;
@@ -29,6 +29,7 @@ export function SingleFileViewDataSection({
   enableMetadataEditing?: boolean;
   enableMetadataDeletion?: boolean;
   visualizerRenderer: (props: VisualizerProps) => React.ReactNode;
+  sidebarRenderers?: () => React.ReactNode;
 }) {
   const SIDEBAR_WIDTH = 350; //I decided on this number
   const ARROWS_SECTION_HEIGHT = 52;
@@ -210,15 +211,24 @@ export function SingleFileViewDataSection({
                 />
               </div>
             </Tooltip>
-            <Box sx={{ display: 'flex', height: 'calc(100% - 40px)' }}>
-              <CustomAccordion label={'Metadata'}>
-                <MetadataKeyValueList
-                  metadataList={itemData.metadataList}
-                  editingEnabled={!!enableMetadataEditing}
-                  deletionEnabled={!!enableMetadataDeletion}
-                  onChangeHandler={metadataOnChangeHandler}
-                />
-              </CustomAccordion>
+            <Box sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'start',
+              overflow: 'auto',
+              height: '100%',
+            }}>
+              <>
+                <CustomAccordion label={'Metadata'}>
+                  <MetadataKeyValueList
+                    metadataList={itemData.metadataList}
+                    editingEnabled={!!enableMetadataEditing}
+                    deletionEnabled={!!enableMetadataDeletion}
+                    onChangeHandler={metadataOnChangeHandler}
+                  />
+                </CustomAccordion>
+                {sidebarRenderers && sidebarRenderers()}
+              </>
             </Box>
           </Box>
         )}
