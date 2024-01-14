@@ -1,5 +1,5 @@
 import React, { CSSProperties, useEffect, useRef, useState } from 'react';
-import { Circle, Layer, Line, Stage, Text, Image } from 'react-konva';
+import { Circle, Layer, Line, Stage, Text, Image, Ellipse } from 'react-konva';
 import { useContainerDimensions } from './utils';
 import {
   getLabel,
@@ -7,6 +7,7 @@ import {
   isKeyPointLabel,
   isPolygonLabel,
   isRectangleLabel,
+  isEllipseLabel,
   pointPercentToPixel,
   rectangleLabelToBbox
 } from './labelstudioUtils';
@@ -21,6 +22,8 @@ export interface LabelStudioPolygonDrawerProps {
   displayLabels?: string[];
   style?: React.CSSProperties;
 }
+
+type Dimension = { width: number; height: number };
 
 export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> = ({
   src,
@@ -42,8 +45,6 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
 
   useEffect(() => {
     if (containerRef.current && image) {
-      // const containerWidth = containerRef.current.clientWidth;
-      // const containerHeight = containerRef.current.clientHeight;
       const ratio = image.width / image.height;
       const containerRatio = containerWidth / containerHeight;
       const dominantRatio = ratio > containerRatio ? 'width' : 'height';
@@ -73,6 +74,30 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
     display: 'block'
   };
 
+  const labelComponents: React.ReactNode[] = [];
+  const textComponents: React.ReactNode[] = [];
+
+  Object.entries(annotationsMap)?.forEach(([column, annotations]) => {
+    if (!displayColumns.includes(column)) {
+      return null;
+    }
+    return annotations?.forEach((annotation) =>
+      annotation.result?.forEach((result) =>
+        getSingleAnnotationResultLayers(
+          column,
+          result,
+          dimension,
+          colorProvider,
+          displayLabels,
+          labelComponents.push.bind(labelComponents),
+          textComponents.push.bind(textComponents)
+        ))
+    );
+  });
+
+  // Apply all the text components after the drawings so that the text is on top of the drawings
+  const drawingLayers = labelComponents.concat(textComponents);
+
   return (
     <div id="ls-container" ref={containerRef} style={containerStyle}>
       <Stage
@@ -87,53 +112,24 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
       >
         <Layer>
           <Image image={image} width={dimension.width} height={dimension.height} />
-          {Object.entries(annotationsMap)?.map(([column, annotations]) => {
-            if (!displayColumns.includes(column)) {
-              return null;
-            }
-            return annotations?.map((annotation, aIndex) =>
-              annotation.result?.map((result, rIndex) => {
-                return (
-                  <SingleLabelAnnotation
-                    key={`${column}-${aIndex}-${rIndex}`}
-                    column={column}
-                    result={result}
-                    aIndex={aIndex}
-                    rIndex={rIndex}
-                    dimension={dimension}
-                    colorProvider={colorProvider}
-                    displayLabels={displayLabels}
-                  />
-                );
-              })
-            );
-          })}
+          {drawingLayers}
         </Layer>
       </Stage>
     </div>
   );
 };
 
-function SingleLabelAnnotation({
-  column,
-  result,
-  aIndex,
-  rIndex,
-  dimension,
-  colorProvider,
-  displayLabels = ['all']
-}: {
-  column: string;
-  result: Result;
-  aIndex: number;
-  rIndex: number;
-  dimension: { width: number; height: number };
-  colorProvider: (label: string, column?: string) => RGB;
-  displayLabels: string[];
-}) {
+function getSingleAnnotationResultLayers(
+  column: string,
+  result: Result,
+  dimension: Dimension,
+  colorProvider: (label: string, column?: string) => RGB,
+  displayLabels = ['all'],
+  labelLayersPush: (elem: React.ReactNode) => void,
+  textLayersPush: (elem: React.ReactNode) => void
+) {
   let flatPoints: number[] = [];
   let flatBboxPoints: number[] = [];
-  const labelComponents: React.ReactNode[] = [];
   const label = getLabel(result);
   if (!displayLabels.includes('all') && !displayLabels.includes(label)) {
     return null;
@@ -142,37 +138,40 @@ function SingleLabelAnnotation({
   const [R, G, B] = colorProvider(label, column);
   const strokeColor = `rgb(${R},${G},${B})`;
   const fillColor = `rgba(${R},${G},${B},0.5)`;
-
   if (isPolygonLabel(result)) {
     flatPoints = result.value.points.flatMap((p) => pointPercentToPixel(p, dimension));
     flatBboxPoints = getPolygonLabelBbox(result, dimension);
-    labelComponents.push(
-      <Line
-        key={`${column}-${aIndex}-${rIndex}`}
-        points={flatPoints}
-        closed
-        stroke={strokeColor}
-        strokeWidth={2}
-        fill={fillColor}
-      />
+    labelLayersPush(
+      <Line points={flatPoints} closed stroke={strokeColor} strokeWidth={2} fill={fillColor} />
     );
   } else if (isRectangleLabel(result)) {
     flatBboxPoints = rectangleLabelToBbox(result, dimension);
   } else if (isKeyPointLabel(result)) {
     const { x: xPercent, y: yPercent } = result.value;
     const [x, y] = pointPercentToPixel([xPercent, yPercent], dimension);
-    labelComponents.push(<Circle x={x} y={y} radius={3} fill={strokeColor} />);
-  }
-  if (flatBboxPoints.length > 0) {
-    const textPosition = { x: flatBboxPoints[0], y: flatBboxPoints[1] - fontSize };
-    labelComponents.push(
-      <Line
-        key={`${column}-${aIndex}-${rIndex}-bbox`}
-        points={flatBboxPoints}
-        closed
+    labelLayersPush(<Circle x={x} y={y} radius={3} fill={strokeColor} />);
+  } else if (isEllipseLabel(result)) {
+    const { x: cxPercent, y: cyPercent, radiusX: rxPercent, radiusY: ryPercent } = result.value;
+    const [cx, cy] = pointPercentToPixel([cxPercent, cyPercent], dimension);
+    const [rx, ry] = pointPercentToPixel([rxPercent, ryPercent], dimension);
+    labelLayersPush(
+      <Ellipse
+        x={cx}
+        y={cy}
+        radiusX={rx}
+        radiusY={ry}
         stroke={strokeColor}
         strokeWidth={2}
-      />,
+        fill={fillColor}
+      />
+    );
+  }
+  if (flatBboxPoints.length > 0) {
+    labelLayersPush(
+      <Line points={flatBboxPoints} closed stroke={strokeColor} strokeWidth={2} />
+    );
+    const textPosition = { x: flatBboxPoints[0], y: flatBboxPoints[1] - fontSize };
+    textLayersPush(
       <Text
         x={textPosition.x}
         y={textPosition.y}
@@ -184,5 +183,4 @@ function SingleLabelAnnotation({
       />
     );
   }
-  return <React.Fragment key={`${aIndex}-${rIndex}`}>{labelComponents}</React.Fragment>;
 }
