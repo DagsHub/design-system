@@ -1,5 +1,5 @@
 import React, { CSSProperties, useEffect, useRef, useState } from 'react';
-import { Circle, Layer, Line, Stage, Text, Image } from 'react-konva';
+import {Circle, Layer, Line, Stage, Text, Image, Ellipse} from 'react-konva';
 import { useContainerDimensions } from './utils';
 import {
   getLabel,
@@ -7,6 +7,7 @@ import {
   isKeyPointLabel,
   isPolygonLabel,
   isRectangleLabel,
+  isEllipseLabel,
   pointPercentToPixel,
   rectangleLabelToBbox
 } from './labelstudioUtils';
@@ -42,8 +43,6 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
 
   useEffect(() => {
     if (containerRef.current && image) {
-      // const containerWidth = containerRef.current.clientWidth;
-      // const containerHeight = containerRef.current.clientHeight;
       const ratio = image.width / image.height;
       const containerRatio = containerWidth / containerHeight;
       const dominantRatio = ratio > containerRatio ? 'width' : 'height';
@@ -162,6 +161,22 @@ function SingleLabelAnnotation({
     const { x: xPercent, y: yPercent } = result.value;
     const [x, y] = pointPercentToPixel([xPercent, yPercent], dimension);
     labelComponents.push(<Circle x={x} y={y} radius={3} fill={strokeColor} />);
+  } else if (isEllipseLabel(result)) {
+    debugger;
+    const { x: cxPercent, y: cyPercent, radiusX: rxPercent, radiusY: ryPercent } = result.value;
+    const [cx, cy] = pointPercentToPixel([cxPercent, cyPercent], dimension);
+    const [rx, ry] = pointPercentToPixel([rxPercent, ryPercent], dimension);
+    labelComponents.push(
+      <Ellipse
+        x={cx}
+        y={cy}
+        radiusX={rx}
+        radiusY={ry}
+        stroke={strokeColor}
+        strokeWidth={2}
+        fill={fillColor}
+      />
+    );
   }
   if (flatBboxPoints.length > 0) {
     const textPosition = { x: flatBboxPoints[0], y: flatBboxPoints[1] - fontSize };

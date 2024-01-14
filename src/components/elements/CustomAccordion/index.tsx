@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import theme from '../../../../theme';
+import theme from '../../../theme';
 
 export function CustomAccordion({ label, children }: { label: string; children: React.ReactNode }) {
   return (

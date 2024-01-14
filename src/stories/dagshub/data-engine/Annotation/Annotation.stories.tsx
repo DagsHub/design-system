@@ -4,6 +4,7 @@ import { LabelStudioPolygonDrawer, LabelStudioPolygonDrawerProps } from '../../.
 import { polygonTask, giraffesTask } from './PolygonTasks';
 import { bboxTask } from './BboxTasks';
 import { keypointsTask } from './KeypointsTasks';
+import { ellipseTask } from './EllipseTasks';
 
 const meta: Meta<typeof LabelStudioPolygonDrawer> = {
   title: 'DagsHub/Data-Engine/Annotation',
@@ -126,6 +127,22 @@ annotationGiraffe.args = {
   displayLabels: ['giraffe'],
   colorProvider: (label: string, column?: string) => {
     if (label === 'giraffe') {
+      return [255, 0, 0];
+    }
+    return [122, 255, 0];
+  }
+};
+
+export const annotationEllipses: StoryFn<typeof ImagePolygon> = Template.bind({});
+annotationEllipses.args = {
+  image: ellipseTask.data.image,
+  annotationsMap: {
+    ellipses: ellipseTask.annotations
+  },
+  displayColumns: ['ellipses'],
+  displayLabels: ['Healthy'],
+  colorProvider: (label: string, column?: string) => {
+    if (label === 'Healthy') {
       return [255, 0, 0];
     }
     return [122, 255, 0];
