@@ -1,5 +1,6 @@
 dist/
 node_modules/
+types/
 
 # production
 /build
@@ -21,3 +22,7 @@ yarn-error.log*
 
 # Editors
 .idea/
+
+# for now ignore bun since we use npm
+bun.lockb
+

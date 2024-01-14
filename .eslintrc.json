@@ -1,6 +1,10 @@
 {
   "extends": [
+    "eslint:recommended",
     "next/core-web-vitals",
     "plugin:storybook/recommended"
-  ]
+  ],
+  "rules": {
+    "object-property-newline": "warn"
+  }
 }
