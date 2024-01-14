@@ -47,7 +47,7 @@ export interface singleFileViewModalProps {
   enableDatapointAnnotating?: boolean;
   enableFileDownloading?: boolean;
   visualizerRenderer: (props: VisualizerProps) => React.ReactNode;
-  sidebarRenderers?: () => React.ReactNode;
+  sidebarRenderers?: React.ReactNode;
 }
 
 export function SingleFileViewModal({

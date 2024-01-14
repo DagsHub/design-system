@@ -29,7 +29,7 @@ export function SingleFileViewDataSection({
   enableMetadataEditing?: boolean;
   enableMetadataDeletion?: boolean;
   visualizerRenderer: (props: VisualizerProps) => React.ReactNode;
-  sidebarRenderers?: () => React.ReactNode;
+  sidebarRenderers?: React.ReactNode;
 }) {
   const SIDEBAR_WIDTH = 350; //I decided on this number
   const ARROWS_SECTION_HEIGHT = 52;
@@ -227,7 +227,7 @@ export function SingleFileViewDataSection({
                     onChangeHandler={metadataOnChangeHandler}
                   />
                 </CustomAccordion>
-                {sidebarRenderers && sidebarRenderers()}
+                {sidebarRenderers}
               </>
             </Box>
           </Box>
