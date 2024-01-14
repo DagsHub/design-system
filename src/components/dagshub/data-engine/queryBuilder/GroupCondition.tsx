@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import { Box } from '@mui/system';
-import { ConditionDropdown } from './ConditionDropdown';
-import { Button as DagshubButton, ButtonVariant } from '../../../elements';
-import { Icon } from '../../../icons';
-import { IconButton, Menu, MenuItem, ThemeProvider, Tooltip, Typography } from '@mui/material';
+import React, {useState} from 'react';
+import {Box} from '@mui/system';
+import {ConditionDropdown} from './ConditionDropdown';
+import {Button as DagshubButton, ButtonVariant} from '../../../elements';
+import {Icon} from '../../../icons';
+import {IconButton, Menu, MenuItem, ThemeProvider, Tooltip, Typography} from '@mui/material';
 import theme from '../../../../theme';
 import Condition from './Condition';
 import AddIcon from '@mui/icons-material/Add';
-import { AndOrMetadataInput, Operators, useQueryBuilderContext } from './QueryBuilderContext';
+import {AndOrMetadataInput, Operators, useQueryBuilderContext} from './QueryBuilderContext';
 
 export function GroupCondition({
-  condition,
-  onChange,
-  level,
-  onRemove
-}: {
+                                 condition,
+                                 onChange,
+                                 level,
+                                 onRemove,
+                               }: {
   condition: AndOrMetadataInput;
   onChange: any;
   level: number;
   onRemove?: () => void;
 }) {
-  const { isSimpleMode, generateUniqueId } = useQueryBuilderContext();
+  const {isSimpleMode, generateUniqueId, isCollapsed} = useQueryBuilderContext();
   const [isAddMenuOpen, setIsAddMenuOpen] = useState<boolean>(false);
   const [addMenuAnchorEl, setAddMenuAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -31,22 +31,42 @@ export function GroupCondition({
 
   const onChangeHandler = (conditions: AndOrMetadataInput[]) => {
     if (isAndRelation) {
-      onChange({ ...condition, and: conditions });
+      onChange({...condition, and: conditions});
     } else {
-      onChange({ ...condition, or: conditions });
+      onChange({...condition, or: conditions});
     }
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Box
+        sx={{
+          "::-webkit-scrollbar": {
+            width: "8px", /* Set a width for the scrollbar */
+          },
+
+          "::-webkit-scrollbar-thumb": {
+            bgcolor: "rgba(23, 45, 50, 0.15)", /* Color of the thumb */
+            borderRadius: "6px", /* Set the border radius for the thumb */
+          },
+
+          "::-webkit-scrollbar-track": {
+            bgcolor: "transparent", /* Color of the track */
+            borderRadius: "8px", /* Set the border radius for the track */
+            marginTop: "16px"
+          },
+        }}
         style={{
           border:
             level == 0 ? '1px solid rgba(226, 232, 240, 1)' : '2px dashed rgba(203, 213, 225, 1)',
           borderRadius: level == 0 ? '16px 16px 0px 0px' : '16px',
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: 'rgba(248, 250, 252, 1)'
+          backgroundColor: 'rgba(248, 250, 252, 1)',
+          maxHeight: (level == 0 && isCollapsed )? "220px" : undefined,
+          height: level == 0 ?"100%":undefined,
+          overflowY: level == 0 ? "auto" : "hidden",
+          width:"100%"
         }}
       >
         <Box
@@ -54,7 +74,8 @@ export function GroupCondition({
             padding: '10px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '8px'
+            gap: '8px',
+            height: '100%',
           }}
         >
           {isSimpleMode && !areThereSimpleFilters && (
@@ -71,16 +92,16 @@ export function GroupCondition({
                 }}
                 onClick={() => {
                   const newConditions = condition.and || condition.or || [];
-                  newConditions.splice(0, 0, { filter: { comparator: Operators[0].id } });
+                  newConditions.splice(0, 0, {filter: {comparator: Operators[0].id}});
                   onChangeHandler(newConditions);
                 }}
               >
-                <AddIcon fontSize={'medium'} sx={{ fill: 'rgba(100, 116, 139, 1)' }} />
+                <AddIcon fontSize={'medium'} sx={{fill: 'rgba(100, 116, 139, 1)'}}/>
               </IconButton>
             </Tooltip>
           )}
           {!isSimpleMode && (
-            <Box style={{ display: 'flex', flexDirection: 'row', gap: '4px' }}>
+            <Box style={{display: 'flex', flexDirection: 'row', gap: '4px'}}>
               {condition.not && (
                 <Box
                   style={{
@@ -97,12 +118,12 @@ export function GroupCondition({
                     height: '28px'
                   }}
                 >
-                  <Typography variant={'medium'} style={{ color: 'rgba(84, 103, 222, 1)' }}>
+                  <Typography variant={'medium'} style={{color: 'rgba(84, 103, 222, 1)'}}>
                     NOT
                   </Typography>
-                  <span style={{ display: 'flex', cursor: 'pointer' }}>
+                  <span style={{display: 'flex', cursor: 'pointer'}}>
                     <Icon
-                      onClick={() => onChange({ ...condition, not: !condition.not })}
+                      onClick={() => onChange({...condition, not: !condition.not})}
                       icon={'solid-x-circle'}
                       width={16}
                       height={16}
@@ -115,20 +136,20 @@ export function GroupCondition({
                 isReadOnly={true}
                 inputColor={'rgba(84, 103, 222, 1)'}
                 initialChecked={
-                  isAndRelation ? { id: 'AND', label: 'AND' } : { id: 'OR', label: 'OR' }
+                  isAndRelation ? {id: 'AND', label: 'AND'} : {id: 'OR', label: 'OR'}
                 }
                 label={''}
                 onChange={(e, value) => {
                   if (isAndRelation && value?.id === 'OR') {
-                    onChange({ ...condition, or: condition.and, and: undefined });
+                    onChange({...condition, or: condition.and, and: undefined});
                   } else if (!isAndRelation && value?.id === 'AND') {
-                    onChange({ ...condition, and: condition.or, or: undefined });
+                    onChange({...condition, and: condition.or, or: undefined});
                   }
                   //if the same relation, do nothing
                 }}
                 options={[
-                  { id: 'AND', label: 'AND' },
-                  { id: 'OR', label: 'OR' }
+                  {id: 'AND', label: 'AND'},
+                  {id: 'OR', label: 'OR'}
                 ]}
               />
 
@@ -178,7 +199,7 @@ export function GroupCondition({
                     setIsAddMenuOpen(true);
                   }}
                 >
-                  <AddIcon fontSize={'medium'} sx={{ fill: 'rgba(100, 116, 139, 1)' }} />
+                  <AddIcon fontSize={'medium'} sx={{fill: 'rgba(100, 116, 139, 1)'}}/>
                 </IconButton>
               </Tooltip>
               <Menu
@@ -218,7 +239,7 @@ export function GroupCondition({
                 <MenuItem
                   onClick={() => {
                     const newConditions = condition.and || condition.or || [];
-                    newConditions.push({ and: [] }); // is it ok or should it be [{}]
+                    newConditions.push({and: []}); // is it ok or should it be [{}]
                     onChangeHandler(newConditions);
                     setIsAddMenuOpen(false);
                   }}
@@ -228,7 +249,7 @@ export function GroupCondition({
                 {!condition.not && (
                   <MenuItem
                     onClick={() => {
-                      onChange({ ...condition, not: !condition.not });
+                      onChange({...condition, not: !condition.not});
                       setIsAddMenuOpen(false);
                     }}
                   >

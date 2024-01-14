@@ -87,6 +87,24 @@ export function ConditionTextField({
         }}
         ref={textFieldWrapperContainerRef}
       >
+        <Typography
+          variant={'medium'}
+          ref={copyTextFieldRef}
+          style={{
+            display: 'flex',
+            zIndex: -1,
+            color: 'transparent',
+            borderRadius: '8px',
+            padding: '0px 10px',
+            flexWrap: 'nowrap',
+            width: 'max-content',
+            height: '0px',
+            boxSizing: 'border-box'
+          }}
+        >
+          {currentValue ? currentValue : focused ? undefined : placeholder}
+        </Typography>
+        {/*This is a hidden div that is used to calculate the width of the input field*/}
         <StyledTextField
           helperTextPaddingBottom={'0px'}
           isErrored={isErrored}
@@ -125,24 +143,6 @@ export function ConditionTextField({
           value={currentValue}
           placeholder={focused ? undefined : placeholder}
         />
-        <Typography
-          variant={'medium'}
-          ref={copyTextFieldRef}
-          style={{
-            display: 'flex',
-            zIndex: -1,
-            color: 'transparent',
-            borderRadius: '8px',
-            padding: '0px 10px',
-            flexWrap: 'nowrap',
-            width: 'max-content',
-            height: '0px',
-            boxSizing: 'border-box'
-          }}
-        >
-          {currentValue ? currentValue : focused ? undefined : placeholder}
-        </Typography>
-        {/*This is a hidden div that is used to calculate the width of the input field*/}
       </Box>
     </ThemeProvider>
   );

@@ -153,6 +153,25 @@ export function DropdownV2({
           }
         }}
       >
+        <Typography
+          variant={'medium'}
+          ref={copyTextFieldRef}
+          style={{
+            display: 'flex',
+            zIndex: -1,
+            color: 'transparent',
+            borderRadius: '8px',
+            padding: '0px 10px',
+            flexWrap: 'nowrap',
+            width: 'max-content',
+            boxSizing: 'border-box',
+            height: '0px',
+            paddingRight: removeEndAdornment ? '10px' : `${END_ADORNMENT_WIDTH + 10}px`
+          }}
+        >
+          {inputValue ? inputValue : label}
+        </Typography>
+        {/*This is a hidden div that is used to calculate the width of the input field*/}
         <Autocomplete
           noOptionsText={
             <Typography
@@ -270,25 +289,7 @@ export function DropdownV2({
             {helperText}
           </Typography>
         )}
-        <Typography
-          variant={'medium'}
-          ref={copyTextFieldRef}
-          style={{
-            display: 'flex',
-            zIndex: -1,
-            color: 'transparent',
-            borderRadius: '8px',
-            padding: '0px 10px',
-            flexWrap: 'nowrap',
-            width: 'max-content',
-            boxSizing: 'border-box',
-            height: '0px',
-            paddingRight: removeEndAdornment ? '10px' : `${END_ADORNMENT_WIDTH + 10}px`
-          }}
-        >
-          {inputValue ? inputValue : label}
-        </Typography>
-        {/*This is a hidden div that is used to calculate the width of the input field*/}
+
       </Box>
     </ThemeProvider>
   );
