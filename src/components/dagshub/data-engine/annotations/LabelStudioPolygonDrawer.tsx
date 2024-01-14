@@ -76,7 +76,6 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
 
   const labelComponents: React.ReactNode[] = [];
   const textComponents: React.ReactNode[] = [];
-  // const drawingLayers: React.ReactNode[] = [];
 
   Object.entries(annotationsMap)?.forEach(([column, annotations]) => {
     if (!displayColumns.includes(column)) {
@@ -96,6 +95,7 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
     );
   });
 
+  // Apply all the text components after the drawings so that the text is on top of the drawings
   const drawingLayers = labelComponents.concat(textComponents);
 
   return (
