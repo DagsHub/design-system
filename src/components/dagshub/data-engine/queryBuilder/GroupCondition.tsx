@@ -112,6 +112,7 @@ export function GroupCondition({
                 </Box>
               )}
               <ConditionDropdown
+                isReadOnly={true}
                 inputColor={'rgba(84, 103, 222, 1)'}
                 initialChecked={
                   isAndRelation ? { id: 'AND', label: 'AND' } : { id: 'OR', label: 'OR' }
@@ -195,6 +196,25 @@ export function GroupCondition({
                   'aria-labelledby': 'basic-button'
                 }}
               >
+                {!areThereSimpleFilters && (
+                  <MenuItem
+                    onClick={() => {
+                      const newConditions = condition.and || condition.or || [];
+                      newConditions.splice(0, 0, {
+                        filter: {
+                          id: generateUniqueId(),
+                          key: '',
+                          comparator: Operators[0].id,
+                          value: ''
+                        }
+                      });
+                      onChangeHandler(newConditions);
+                      setIsAddMenuOpen(false);
+                    }}
+                  >
+                    <Typography variant={'medium'}>Add condition</Typography>
+                  </MenuItem>
+                )}
                 <MenuItem
                   onClick={() => {
                     const newConditions = condition.and || condition.or || [];
@@ -213,25 +233,6 @@ export function GroupCondition({
                     }}
                   >
                     <Typography variant={'medium'}>Add NOT to group</Typography>
-                  </MenuItem>
-                )}
-                {!areThereSimpleFilters && (
-                  <MenuItem
-                    onClick={() => {
-                      const newConditions = condition.and || condition.or || [];
-                      newConditions.splice(0, 0, {
-                        filter: {
-                          id: generateUniqueId(),
-                          key: '',
-                          comparator: Operators[0].id,
-                          value: ''
-                        }
-                      });
-                      onChangeHandler(newConditions);
-                      setIsAddMenuOpen(false);
-                    }}
-                  >
-                    <Typography variant={'medium'}>Add condition</Typography>
                   </MenuItem>
                 )}
               </Menu>

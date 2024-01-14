@@ -9,12 +9,13 @@ export function QueryWrapper({ showConditionSummary }: { showConditionSummary: b
 
   return (
     <Box>
+      <Condition condition={rootCondition} onChange={setRootCondition} />
       {showConditionSummary && (
         <>
+          <br />
           <pre>UI FORMAT {JSON.stringify(rootCondition, null, 2)}</pre>
         </>
       )}
-      <Condition condition={rootCondition} onChange={setRootCondition} />
     </Box>
   );
 }
