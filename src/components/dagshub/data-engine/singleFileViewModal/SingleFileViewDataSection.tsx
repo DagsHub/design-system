@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Box } from '@mui/system';
-import { CustomAccordion } from '../../../elements/CustomAccordion';
 import { MetadataKeyValueList, NewMetadataField } from '../metadataKeyValue/MetadataKeyValueList';
-import { Button, ButtonVariant } from '../../../elements';
+import { Button, ButtonVariant, CustomAccordion } from '../../../elements';
 import { Icon } from '../../../icons';
 import {ItemData, SidebarProps, VisualizerProps} from './SingleFileViewModal';
 import { ThemeProvider, Tooltip } from '@mui/material';
