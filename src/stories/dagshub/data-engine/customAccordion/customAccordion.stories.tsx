@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { CustomAccordion, MetadataKeyValueList } from '../../../../components';
 
 const meta: Meta<typeof CustomAccordion> = {
-  title: 'DagsHub/Data-Engine/CustomAccordion/Custom Accordion',
+  title: 'Elements/CustomAccordion',
   component: CustomAccordion
 };
 

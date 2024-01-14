@@ -1,10 +1,16 @@
 import { Box } from '@mui/system';
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
-import { GenericModal, MetadataField, NewMetadataField } from '../../index';
+import {GenericModal, MetadataField, NewMetadataField, RGB} from '../../index';
 import './style.scss';
 import TopButtonsSection from './TopButtonsSection';
 import { SingleFileViewDataSection } from './SingleFileViewDataSection';
+
+export interface Datapoint {
+  id: number;
+  path: string;
+  metadata: MetadataField[];
+}
 
 export interface ItemData {
   itemIndex: number;
@@ -16,6 +22,15 @@ export interface ItemData {
   hasNext: boolean;
   hasPrevious: boolean;
   isSelected?: boolean;
+  item?: Datapoint;
+}
+
+export type VisualizerProps = {
+  itemData: ItemData;
+}
+
+export type SidebarProps = {
+  itemData: ItemData;
 }
 
 export interface singleFileViewModalProps {
@@ -31,6 +46,8 @@ export interface singleFileViewModalProps {
   onAnnotatedClick?: () => void;
   enableDatapointAnnotating?: boolean;
   enableFileDownloading?: boolean;
+  visualizerRenderer: (props: VisualizerProps) => React.ReactNode;
+  sidebarRenderers?: React.ReactNode;
 }
 
 export function SingleFileViewModal({
@@ -45,7 +62,9 @@ export function SingleFileViewModal({
   areAllSelected,
   onAnnotatedClick,
   enableDatapointAnnotating,
-  enableFileDownloading
+  enableFileDownloading,
+  visualizerRenderer,
+  sidebarRenderers,
 }: singleFileViewModalProps) {
   const [showMetadataOverlay, setShowMetadataOverlay] = useState<boolean>(false);
   const breakpoint = useMediaQuery('(max-width: 800px)');
@@ -124,6 +143,8 @@ export function SingleFileViewModal({
                 metadataOnChangeHandler={metadataOnChangeHandler}
                 enableMetadataEditing={enableMetadataEditing}
                 enableMetadataDeletion={enableMetadataDeletion}
+                visualizerRenderer={visualizerRenderer}
+                sidebarRenderers={sidebarRenderers}
               />
             </Box>
           </Box>

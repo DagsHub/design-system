@@ -28,7 +28,7 @@ export interface BasicTableProps {
   listInnerRef: any;
 }
 
-export function BasicTable({
+export const BasicTable = ({
   tcolumns,
   data,
   enableColumnOrdering = false,
@@ -41,7 +41,7 @@ export function BasicTable({
   cellWidth,
   onScroll,
   listInnerRef
-}: BasicTableProps) {
+}: BasicTableProps) => {
   const columns = useMemo<any>(() => tcolumns, []);
   const defaultColumn = React.useMemo(
     () => ({
@@ -97,8 +97,7 @@ export function BasicTable({
         }
         return [...columns];
       });
-    }
-  );
+    });
 
   const changeOrder = (sIndex: number, dIndex: number) => {
     const colOrder = visibleColumns.map((o) => o.id);
