@@ -88,7 +88,6 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
         <Layer>
           <Image image={image} width={dimension.width} height={dimension.height} />
           {Object.entries(annotationsMap)?.map(([column, annotations]) => {
-            debugger;
             if (!displayColumns.includes(column)) {
               return null;
             }

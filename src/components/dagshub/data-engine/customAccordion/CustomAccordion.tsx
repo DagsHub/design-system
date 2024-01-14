@@ -17,44 +17,13 @@ export function CustomAccordion({ label, children }: { label: string; children: 
         disableGutters
         defaultExpanded
         variant={'outlined'}
-        sx={{
-          border: 'none',
-          '&:before': {
-            display: 'none'
-          },
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100%',
-          '.MuiCollapse-wrapper': {
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-            overflow: 'auto'
-          },
-          '.MuiAccordion-region': {
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-            overflow: 'auto'
-          },
-          '.MuiCollapse-wrapperInner': {
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-            overflow: 'auto'
-          }
-        }}
+        sx={{ border: 'none' }}
       >
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant={'large'}>{label}</Typography>
         </AccordionSummary>
         <AccordionDetails
-          sx={{
-            padding: '0px 16px 0px 16px',
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%'
-          }}
+          sx={{ padding: '0px 16px 0px 16px' }}
         >
           <Box sx={{ display: 'flex', gap: '8px', flexDirection: 'column', height: '100%' }}>
             {children}
