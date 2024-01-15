@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
-import { Box } from '@mui/system';
-import { ConditionDropdown } from './ConditionDropdown';
-import { Button as DagshubButton, ButtonVariant } from '../../../elements';
-import { Icon } from '../../../icons';
-import { IconButton, Menu, MenuItem, ThemeProvider, Tooltip, Typography } from '@mui/material';
+import React, {useState} from 'react';
+import {Box} from '@mui/system';
+import {ConditionDropdown} from './ConditionDropdown';
+import {Button as DagshubButton, ButtonVariant} from '../../../elements';
+import {Icon} from '../../../icons';
+import {IconButton, Menu, MenuItem, ThemeProvider, Tooltip, Typography} from '@mui/material';
 import theme from '../../../../theme';
 import Condition from './Condition';
 import AddIcon from '@mui/icons-material/Add';
-import { AndOrMetadataInput, Operators, useQueryBuilderContext } from './QueryBuilderContext';
+import {AndOrMetadataInput, Operators, useQueryBuilderContext} from './QueryBuilderContext';
+import {LabeledSwitch} from "../../../forms";
 
 export function GroupCondition({
-  condition,
-  onChange,
-  level,
-  onRemove
-}: {
+                                 condition,
+                                 onChange,
+                                 level,
+                                 onRemove,
+                               }: {
   condition: AndOrMetadataInput;
   onChange: any;
   level: number;
   onRemove?: () => void;
 }) {
-  const { isSimpleMode, generateUniqueId } = useQueryBuilderContext();
+  const {isSimpleMode, generateUniqueId, isDisplayableInSimpleMode, onToggleQueryMode} = useQueryBuilderContext();
   const [isAddMenuOpen, setIsAddMenuOpen] = useState<boolean>(false);
   const [addMenuAnchorEl, setAddMenuAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -31,30 +32,69 @@ export function GroupCondition({
 
   const onChangeHandler = (conditions: AndOrMetadataInput[]) => {
     if (isAndRelation) {
-      onChange({ ...condition, and: conditions });
+      onChange({...condition, and: conditions});
     } else {
-      onChange({ ...condition, or: conditions });
+      onChange({...condition, or: conditions});
     }
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Box
+        sx={{
+          "::-webkit-scrollbar": {
+            width: "8px", /* Set a width for the scrollbar */
+          },
+
+          "::-webkit-scrollbar-thumb": {
+            bgcolor: "rgba(23, 45, 50, 0.15)", /* Color of the thumb */
+            borderRadius: "6px", /* Set the border radius for the thumb */
+          },
+
+          "::-webkit-scrollbar-track": {
+            bgcolor: "transparent", /* Color of the track */
+            borderRadius: "8px", /* Set the border radius for the track */
+          },
+        }}
         style={{
           border:
             level == 0 ? '1px solid rgba(226, 232, 240, 1)' : '2px dashed rgba(203, 213, 225, 1)',
-          borderRadius: level == 0 ? '16px 16px 0px 0px' : '16px',
+          borderRadius: level == 0 ? '8px 8px 0px 0px' : '16px',
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: 'rgba(248, 250, 252, 1)'
+          backgroundColor: 'rgba(248, 250, 252, 1)',
+          position: "relative",
+          width: "100%",
         }}
       >
+        { level==0 && <Box sx={{
+          position: "absolute",
+          top: "-1px",
+          right: "-1px",
+          borderRadius: "0px 0px 0px 14px",
+          border: "1px solid rgba(226, 232, 240, 1)",
+          display: "flex",
+          justifyContent: "center",
+          borderRight: "none",
+          borderTop: "none",
+          alignItems: "center",
+          '& .MuiSwitch-switchBase':{
+            '&.Mui-checked':{
+              '& + .MuiSwitch-track':{
+                backgroundColor: "rgba(84, 103, 222, 1)!important",
+              }
+            }
+          }
+        }}>
+          <LabeledSwitch label={"Advanced query builder"} labelPlacement={"end"} padding={"8px"} checked={!isSimpleMode} disabled={!isDisplayableInSimpleMode} onChange={onToggleQueryMode}/>
+        </Box>}
         <Box
           style={{
             padding: '10px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '8px'
+            gap: '8px',
+            height: '100%',
           }}
         >
           {isSimpleMode && !areThereSimpleFilters && (
@@ -71,16 +111,16 @@ export function GroupCondition({
                 }}
                 onClick={() => {
                   const newConditions = condition.and || condition.or || [];
-                  newConditions.splice(0, 0, { filter: { comparator: Operators[0].id } });
+                  newConditions.splice(0, 0, {filter: {comparator: Operators[0].id}});
                   onChangeHandler(newConditions);
                 }}
               >
-                <AddIcon fontSize={'medium'} sx={{ fill: 'rgba(100, 116, 139, 1)' }} />
+                <AddIcon fontSize={'medium'} sx={{fill: 'rgba(100, 116, 139, 1)'}}/>
               </IconButton>
             </Tooltip>
           )}
           {!isSimpleMode && (
-            <Box style={{ display: 'flex', flexDirection: 'row', gap: '4px' }}>
+            <Box style={{display: 'flex', flexDirection: 'row', gap: '4px'}}>
               {condition.not && (
                 <Box
                   style={{
@@ -97,12 +137,12 @@ export function GroupCondition({
                     height: '28px'
                   }}
                 >
-                  <Typography variant={'medium'} style={{ color: 'rgba(84, 103, 222, 1)' }}>
+                  <Typography variant={'medium'} style={{color: 'rgba(84, 103, 222, 1)'}}>
                     NOT
                   </Typography>
-                  <span style={{ display: 'flex', cursor: 'pointer' }}>
+                  <span style={{display: 'flex', cursor: 'pointer'}}>
                     <Icon
-                      onClick={() => onChange({ ...condition, not: !condition.not })}
+                      onClick={() => onChange({...condition, not: !condition.not})}
                       icon={'solid-x-circle'}
                       width={16}
                       height={16}
@@ -112,22 +152,23 @@ export function GroupCondition({
                 </Box>
               )}
               <ConditionDropdown
+                isReadOnly={true}
                 inputColor={'rgba(84, 103, 222, 1)'}
                 initialChecked={
-                  isAndRelation ? { id: 'AND', label: 'AND' } : { id: 'OR', label: 'OR' }
+                  isAndRelation ? {id: 'AND', label: 'AND'} : {id: 'OR', label: 'OR'}
                 }
                 label={''}
                 onChange={(e, value) => {
                   if (isAndRelation && value?.id === 'OR') {
-                    onChange({ ...condition, or: condition.and, and: undefined });
+                    onChange({...condition, or: condition.and, and: undefined});
                   } else if (!isAndRelation && value?.id === 'AND') {
-                    onChange({ ...condition, and: condition.or, or: undefined });
+                    onChange({...condition, and: condition.or, or: undefined});
                   }
                   //if the same relation, do nothing
                 }}
                 options={[
-                  { id: 'AND', label: 'AND' },
-                  { id: 'OR', label: 'OR' }
+                  {id: 'AND', label: 'AND'},
+                  {id: 'OR', label: 'OR'}
                 ]}
               />
 
@@ -177,7 +218,7 @@ export function GroupCondition({
                     setIsAddMenuOpen(true);
                   }}
                 >
-                  <AddIcon fontSize={'medium'} sx={{ fill: 'rgba(100, 116, 139, 1)' }} />
+                  <AddIcon fontSize={'medium'} sx={{fill: 'rgba(100, 116, 139, 1)'}}/>
                 </IconButton>
               </Tooltip>
               <Menu
@@ -195,26 +236,6 @@ export function GroupCondition({
                   'aria-labelledby': 'basic-button'
                 }}
               >
-                <MenuItem
-                  onClick={() => {
-                    const newConditions = condition.and || condition.or || [];
-                    newConditions.push({ and: [] }); // is it ok or should it be [{}]
-                    onChangeHandler(newConditions);
-                    setIsAddMenuOpen(false);
-                  }}
-                >
-                  <Typography variant={'medium'}>Add condition group</Typography>
-                </MenuItem>
-                {!condition.not && (
-                  <MenuItem
-                    onClick={() => {
-                      onChange({ ...condition, not: !condition.not });
-                      setIsAddMenuOpen(false);
-                    }}
-                  >
-                    <Typography variant={'medium'}>Add NOT to group</Typography>
-                  </MenuItem>
-                )}
                 {!areThereSimpleFilters && (
                   <MenuItem
                     onClick={() => {
@@ -232,6 +253,26 @@ export function GroupCondition({
                     }}
                   >
                     <Typography variant={'medium'}>Add condition</Typography>
+                  </MenuItem>
+                )}
+                <MenuItem
+                  onClick={() => {
+                    const newConditions = condition.and || condition.or || [];
+                    newConditions.push({and: []}); // is it ok or should it be [{}]
+                    onChangeHandler(newConditions);
+                    setIsAddMenuOpen(false);
+                  }}
+                >
+                  <Typography variant={'medium'}>Add condition group</Typography>
+                </MenuItem>
+                {!condition.not && (
+                  <MenuItem
+                    onClick={() => {
+                      onChange({...condition, not: !condition.not});
+                      setIsAddMenuOpen(false);
+                    }}
+                  >
+                    <Typography variant={'medium'}>Add NOT to group</Typography>
                   </MenuItem>
                 )}
               </Menu>
