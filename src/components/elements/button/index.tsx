@@ -8,6 +8,7 @@ export enum ButtonVariant {
   Secondary = 'secondary',
   SecondaryDisabled = 'secondary disabled',
   OutlineSecondary = 'outline-secondary',
+  OutlinePrimary = 'outline-primary',
   Error = 'error',
   Ghost = 'ghost'
 }
