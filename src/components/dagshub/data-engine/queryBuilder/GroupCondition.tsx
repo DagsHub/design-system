@@ -54,7 +54,6 @@ export function GroupCondition({
           "::-webkit-scrollbar-track": {
             bgcolor: "transparent", /* Color of the track */
             borderRadius: "8px", /* Set the border radius for the track */
-            marginTop: "32px"
           },
         }}
         style={{
@@ -76,10 +75,12 @@ export function GroupCondition({
           position: "absolute",
           top: "-1px",
           right: "-1px",
-          borderRadius: "0px 8px 0px 14px",
+          borderRadius: "0px 0px 0px 14px",
           border: "1px solid rgba(226, 232, 240, 1)",
           display: "flex",
           justifyContent: "center",
+          borderRight: "none",
+          borderTop: "none",
           alignItems: "center",
           '& .MuiSwitch-switchBase':{
             '&.Mui-checked':{
