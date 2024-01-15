@@ -65,7 +65,7 @@ export function GroupCondition({
           backgroundColor: 'rgba(248, 250, 252, 1)',
           position: "relative",
           width: "100%",
-          overflowX: "hidden",
+          overflow: "hidden",
 
           // Todo: fix issue with dropdowns within the query being cut off when overflow hidden
           // maxHeight: (level == 0 && isCollapsed) ? "220px" : undefined,
