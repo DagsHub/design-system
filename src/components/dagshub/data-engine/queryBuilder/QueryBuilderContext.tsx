@@ -101,7 +101,6 @@ interface QueryBuilderContextInterface {
   getOperatorsByMetadataType: (type: MetadataType) => { label: string; id: Comparator }[];
   checkIfOperatorRequiresValueField: (operator: Comparator) => boolean;
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
-  isCollapsed?: boolean;
   isDisplayableInSimpleMode: boolean;
   onToggleQueryMode: () => void;
 }
@@ -125,7 +124,6 @@ export const QueryBuilderProvider = ({
   forceCompoundMode = false,
   validateValueByType,
   onChange,
-  isCollapsed
 }: {
   children: ReactNode;
   queryInput: QueryInput;
@@ -133,7 +131,6 @@ export const QueryBuilderProvider = ({
   forceCompoundMode?: boolean;
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   onChange: (query: QueryInput) => void;
-  isCollapsed?: boolean;
 }) => {
   const getInitialQuery = () => {
     let condition: AndOrMetadataInput | undefined = undefined;
@@ -260,7 +257,6 @@ export const QueryBuilderProvider = ({
         getOperatorsByMetadataType,
         checkIfOperatorRequiresValueField,
         validateValueByType,
-        isCollapsed,
         isDisplayableInSimpleMode,
         onToggleQueryMode
       }}

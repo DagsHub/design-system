@@ -15,7 +15,6 @@ export function QueryBuilder({
   onChange,
   validateValueByType,
   showConditionSummary = false,
-  isCollapsed = true,
 }: {
   queryInput: QueryInput;
   metadataFields: MetadataFieldProps[]; // need to take into consideration the select and the alias
@@ -23,7 +22,6 @@ export function QueryBuilder({
   onChange: (query: QueryInput) => void;
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   showConditionSummary?: boolean;
-  isCollapsed?: boolean;
 }) {
   return (
     <QueryBuilderProvider
@@ -32,7 +30,6 @@ export function QueryBuilder({
       forceCompoundMode={forceCompoundMode}
       validateValueByType={validateValueByType}
       onChange={onChange}
-      isCollapsed={isCollapsed}
     >
       <QueryWrapper showConditionSummary={showConditionSummary} />
     </QueryBuilderProvider>

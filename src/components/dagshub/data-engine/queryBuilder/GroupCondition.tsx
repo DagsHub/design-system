@@ -21,7 +21,7 @@ export function GroupCondition({
   level: number;
   onRemove?: () => void;
 }) {
-  const {isSimpleMode, generateUniqueId, isCollapsed, isDisplayableInSimpleMode, onToggleQueryMode} = useQueryBuilderContext();
+  const {isSimpleMode, generateUniqueId, isDisplayableInSimpleMode, onToggleQueryMode} = useQueryBuilderContext();
   const [isAddMenuOpen, setIsAddMenuOpen] = useState<boolean>(false);
   const [addMenuAnchorEl, setAddMenuAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -65,12 +65,6 @@ export function GroupCondition({
           backgroundColor: 'rgba(248, 250, 252, 1)',
           position: "relative",
           width: "100%",
-          overflow: "hidden",
-
-          // Todo: fix issue with dropdowns within the query being cut off when overflow hidden
-          // maxHeight: (level == 0 && isCollapsed) ? "220px" : undefined,
-          // height: level == 0 ? "100%" : undefined,
-          // overflowY: level == 0 ? "auto" : "hidden",
         }}
       >
         { level==0 && <Box sx={{
