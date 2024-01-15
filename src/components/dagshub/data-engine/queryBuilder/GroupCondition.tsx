@@ -63,12 +63,14 @@ export function GroupCondition({
           display: 'flex',
           flexDirection: 'column',
           backgroundColor: 'rgba(248, 250, 252, 1)',
-          maxHeight: (level == 0 && isCollapsed) ? "220px" : undefined,
-          height: level == 0 ? "100%" : undefined,
-          overflowY: level == 0 ? "auto" : "hidden",
-          width: "100%",
           position: "relative",
+          width: "100%",
           overflowX: "hidden",
+
+          // Todo: fix issue with dropdowns within the query being cut off when overflow hidden
+          // maxHeight: (level == 0 && isCollapsed) ? "220px" : undefined,
+          // height: level == 0 ? "100%" : undefined,
+          // overflowY: level == 0 ? "auto" : "hidden",
         }}
       >
         { level==0 && <Box sx={{
