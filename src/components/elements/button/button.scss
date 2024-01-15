@@ -80,6 +80,9 @@
       svg path {
         fill: #7b8ea8;
       }
+      &:hover {
+        background: transparent;
+      }
     }
   }
 
@@ -182,6 +185,9 @@
       color: #7b8ea8;
       svg path {
         fill: #7b8ea8;
+      }
+      &:hover {
+        background-color: transparent;
       }
     }
   }
