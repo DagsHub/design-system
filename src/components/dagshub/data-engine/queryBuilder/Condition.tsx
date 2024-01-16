@@ -20,8 +20,7 @@ export function Condition({
   isCollapsed?: boolean;
 }) {
   return (
-    <Box
-      key={condition.id ?? condition.filter?.id}>
+    <Box key={condition.id ?? condition.filter?.id}>
       {!condition?.or && !condition?.and && !!condition?.filter ? (
         <SimpleCondition
           condition={condition}

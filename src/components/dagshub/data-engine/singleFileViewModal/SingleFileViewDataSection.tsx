@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import { MetadataKeyValueList, NewMetadataField } from '../metadataKeyValue/MetadataKeyValueList';
 import { Button, ButtonVariant, CustomAccordion } from '../../../elements';
 import { Icon } from '../../../icons';
-import {ItemData, SidebarProps, VisualizerProps} from './SingleFileViewModal';
+import { ItemData, SidebarProps, VisualizerProps } from './SingleFileViewModal';
 import { ThemeProvider, Tooltip } from '@mui/material';
 import theme from '../../../../theme';
 
@@ -17,7 +17,7 @@ export function SingleFileViewDataSection({
   enableMetadataEditing,
   enableMetadataDeletion,
   visualizerRenderer,
-  sidebarRenderers,
+  sidebarRenderers
 }: {
   isSmallScreen: boolean;
   itemData: ItemData;
@@ -119,7 +119,7 @@ export function SingleFileViewDataSection({
                   </div>
                 </Tooltip>
               )}
-              {visualizerRenderer({itemData})}
+              {visualizerRenderer({ itemData })}
             </Box>
           )}
           <Box
@@ -210,13 +210,15 @@ export function SingleFileViewDataSection({
                 />
               </div>
             </Tooltip>
-            <Box sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'start',
-              overflow: 'auto',
-              height: '100%',
-            }}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'start',
+                overflow: 'auto',
+                height: '100%'
+              }}
+            >
               <>
                 <CustomAccordion label={'Metadata'}>
                   <MetadataKeyValueList

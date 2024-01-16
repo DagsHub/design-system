@@ -188,7 +188,7 @@ const Template: StoryFn<typeof SingleFileViewModal> = (args) => {
           onAnnotatedClick={() => {
             console.log('annotated');
           }}
-          visualizerRenderer={({itemData}) => <SingleFileViewFileRenderer itemData={itemData} />}
+          visualizerRenderer={({ itemData }) => <SingleFileViewFileRenderer itemData={itemData} />}
         />
       ) : (
         <Button onClick={() => setIsModalOpen(true)}>Open modal</Button>

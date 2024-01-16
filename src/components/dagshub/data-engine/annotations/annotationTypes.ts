@@ -29,7 +29,7 @@ export type EllipseLabel = {
   radiusY: number;
   rotation: number;
   ellipselabels: string[];
-}
+};
 
 export type Result = PolygonResult | RectangleResult | KeyPointResult | EllipseResult;
 
@@ -52,7 +52,7 @@ export type KeyPointResult = ResultCommon & {
 
 export type EllipseResult = ResultCommon & {
   value: EllipseLabel;
-}
+};
 
 export type Annotation = {
   result: Result[];

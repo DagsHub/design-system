@@ -97,7 +97,8 @@ export const BasicTable = ({
         }
         return [...columns];
       });
-    });
+    }
+  );
 
   const changeOrder = (sIndex: number, dIndex: number) => {
     const colOrder = visibleColumns.map((o) => o.id);
@@ -290,6 +291,6 @@ export const BasicTable = ({
       </table>
     </div>
   );
-}
+};
 
 //how can I give each column its own width

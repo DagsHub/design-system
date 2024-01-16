@@ -123,7 +123,7 @@ export const QueryBuilderProvider = ({
   metadataFields,
   forceCompoundMode = false,
   validateValueByType,
-  onChange,
+  onChange
 }: {
   children: ReactNode;
   queryInput: QueryInput;
@@ -146,8 +146,10 @@ export const QueryBuilderProvider = ({
     return addUniqueIds(condition);
   };
 
-  const checkIfConditionIsDisplayableInSimpleMode = (query: AndOrMetadataInput|undefined): boolean => {
-    if(!query) return true;
+  const checkIfConditionIsDisplayableInSimpleMode = (
+    query: AndOrMetadataInput | undefined
+  ): boolean => {
+    if (!query) return true;
     if (!!query?.or || !!query?.not) {
       return false;
     }
@@ -158,9 +160,9 @@ export const QueryBuilderProvider = ({
       });
     }
     return true;
-  }
+  };
 
-  const checkIfSimpleMode = (query: AndOrMetadataInput|undefined) => {
+  const checkIfSimpleMode = (query: AndOrMetadataInput | undefined) => {
     return !forceCompoundMode && checkIfConditionIsDisplayableInSimpleMode(query);
   };
 
@@ -168,15 +170,17 @@ export const QueryBuilderProvider = ({
   const [isSimpleMode, setIsSimpleMode] = useState<boolean>(checkIfSimpleMode(queryInput.query));
   const [metadataFieldsList, setMetadataFieldsList] =
     useState<MetadataFieldProps[]>(metadataFields);
-  const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
+  const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(
+    checkIfConditionIsDisplayableInSimpleMode(queryInput.query)
+  );
 
-  useEffect(()=>{
+  useEffect(() => {
     setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
-  },[queryInput.query])
+  }, [queryInput.query]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(rootCondition));
-  },[rootCondition])
+  }, [rootCondition]);
 
   useEffect(() => {
     setRootCondition(getInitialQuery());

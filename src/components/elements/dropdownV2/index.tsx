@@ -289,7 +289,6 @@ export function DropdownV2({
             {helperText}
           </Typography>
         )}
-
       </Box>
     </ThemeProvider>
   );
