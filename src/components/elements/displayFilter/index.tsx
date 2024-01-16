@@ -13,8 +13,8 @@ import { Icon } from '../../icons';
 import theme from '../../../theme';
 import { Box } from '@mui/system';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import AddIcon from '@mui/icons-material/Add';
 import CancelIcon from '@mui/icons-material/Cancel';
+import ComparePopover from './ComparePopover';
 
 type childFilter = {
   label: string;
@@ -25,50 +25,21 @@ export interface DisplayFilterProps {
   showAll?: boolean;
   onChange: () => void;
   value: boolean;
-  showCollapse?: boolean;
   showCancel?: boolean;
   children?: childFilter[];
   isChild?: boolean;
 }
 
-const CompareButton = () => {
-  return (
-    <Stack
-      width={'100%'}
-      direction={'row'}
-      sx={{ cursor: 'pointer', backgroundColor: 'rgba(248, 250, 252, 1)', color: 'black' }}
-      display={'flex'}
-      justifyContent={'space-between'}
-      alignItems={'center'}
-      padding={'8px'}
-    >
-      <Typography variant={'medium'}>Compare to</Typography>
-      <IconButton
-        sx={{ padding: 0, height: '20px', width: '21.08px' }}
-        disableRipple
-        onClick={() => console.log('Compare')}
-      >
-        <AddIcon sx={{ height: '20px', width: '21.08px' }} fill={'#94A3B8'} />
-      </IconButton>
-    </Stack>
-  );
-};
-
-class value {}
-
 export function DisplayFilter({
   label,
   onChange,
   value,
-  showCollapse,
   showCancel,
   children,
-  showAll,
-  isChild
+  showAll
 }: DisplayFilterProps) {
   const [show, setShow] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
-  const [localChildren, setLocalChildren] = useState<childFilter[] | undefined>(children);
 
   const filterClicked = () => {
     setShow(!show);
@@ -111,20 +82,12 @@ export function DisplayFilter({
           role={'button'}
         >
           <Box
+            alignItems={'center'}
+            justifyContent={'space-between'}
+            display={'flex'}
             width={'inherit'}
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
-            }}
           >
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                width: '80%'
-              }}
-            >
+            <Box display={'flex'} alignItems={'center'} width={'80%'}>
               <Typography
                 sx={{
                   overflow: 'hidden',
@@ -136,7 +99,7 @@ export function DisplayFilter({
                 {label}
               </Typography>
 
-              {showCollapse && (
+              {children?.length && (
                 <IconButton
                   sx={{
                     transition: '.3s ease-in-out',
@@ -179,30 +142,35 @@ export function DisplayFilter({
             </Stack>
           </Box>
         </Stack>
+
+        <ComparePopover />
+
+        {/*annotations */}
+        {children?.length && (
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <Box borderLeft={'3px solid #C4B5FD'} paddingLeft={2}>
+                {children?.map((item) => (
+                  <Tooltip title={item?.label}>
+                    <div>
+                      <DisplayFilter
+                        isChild
+                        value={!!showAll}
+                        label={item?.label}
+                        onChange={() => console.log('changed')}
+                        showCancel
+                      />
+                    </div>
+                  </Tooltip>
+                ))}
+
+                <Divider sx={{ backgroundColor: '#F8FAFC' }} />
+              </Box>
+            </List>
+          </Collapse>
+        )}
+
         <Divider sx={{ backgroundColor: '#F8FAFC' }} />
-
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <Box borderLeft={'3px solid #C4B5FD'} paddingLeft={2}>
-              {localChildren?.map((item) => (
-                <Tooltip title={item?.label}>
-                  <div>
-                    <DisplayFilter
-                      isChild
-                      value={!!showAll}
-                      label={item?.label}
-                      onChange={() => console.log('changed')}
-                      showCancel
-                    />
-                  </div>
-                </Tooltip>
-              ))}
-
-              <CompareButton />
-              <Divider sx={{ backgroundColor: '#F8FAFC' }} />
-            </Box>
-          </List>
-        </Collapse>
       </ThemeProvider>
     </div>
   );

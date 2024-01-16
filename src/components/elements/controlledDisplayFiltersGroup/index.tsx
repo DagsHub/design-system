@@ -90,7 +90,6 @@ export function ControlledDisplayFiltersGroup({
               showAll={showAll}
               value={showAll || displayedFilters.has(item.label)}
               label={item.label}
-              showCollapse
               onChange={() => {
                 const updatedFilters = new Set(displayedFilters);
                 if (updatedFilters.has(item.label)) {
