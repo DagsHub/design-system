@@ -11,7 +11,7 @@ export function deductDays(days: number) {
   return newDate;
 }
 
-const defaultPresets: PresetType[] = [
+const defaultPresets = [
   {
     name: '1 day ago',
     value: deductDays(1)
@@ -26,15 +26,7 @@ const defaultPresets: PresetType[] = [
   }
 ];
 
-export type PresetType = {
-  name: string;
-  value: Date;
-};
-interface ComparePopoverInterface {
-  presets?: PresetType[];
-}
-
-const ComparePopover = ({ presets }: ComparePopoverInterface = { presets: defaultPresets }) => {
+const ComparePopover = ({ presets }: { presets?: { name: string; value: Date; }[]} ) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -71,7 +63,7 @@ const ComparePopover = ({ presets }: ComparePopoverInterface = { presets: defaul
           horizontal: 'left'
         }}
       >
-        {presets && <DateManager presets={presets} />}
+        {presets && <DateManager presets={presets?.length ? presets : defaultPresets} />}
       </Popover>
     </div>
   );

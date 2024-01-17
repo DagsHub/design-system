@@ -1,5 +1,4 @@
 import { List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material';
-import { PresetType } from '../displayFilter/ComparePopover';
 import { Box } from '@mui/system';
 import React from 'react';
 
@@ -7,6 +6,11 @@ interface ListItemType {
   name: string;
   value: Date;
 }
+
+type PresetType = {
+  name: string;
+  value: Date;
+};
 
 const PresetsList = ({
   list,

@@ -6,15 +6,7 @@ import { DatePicker, LocalizationProvider, TimeField } from '@mui/x-date-pickers
 import { Button, ButtonStretch, ButtonVariant } from '../button';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import theme from '../../../theme';
-import Presets from './Presets';
-
-type PresetType = {
-  value: number;
-  name: string;
-};
-export interface DateManagerProps {
-  presets: PresetType[];
-}
+import PresetsContent from './Presets';
 
 const customCalendar = createSvgIcon(
   <svg width="20" height="20" viewBox="0 0 20 20" fill="#64748B" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +20,7 @@ const customCalendar = createSvgIcon(
   'calendar'
 );
 
-export const DateManager = ({ presets }: DateManagerProps) => {
+export const DateManager = ({ presets }: { presets: { name: string; value: Date; }[] }) => {
   const defaultDisplayName = `as of ${dayjs().format('YYYY-MM-DD')} ${dayjs().format('HH:mm:ss')}`;
   const [date, setDate] = useState<Dayjs | null>(dayjs());
   const [hour, setHour] = useState<Dayjs | null>(dayjs());
@@ -104,7 +96,7 @@ export const DateManager = ({ presets }: DateManagerProps) => {
             <Divider flexItem orientation={'vertical'} sx={{ backgroundColor: '#F8FAFC' }} />
 
             <Box px={1} py={2} width={'50%'}>
-              <Presets presets={presets} onPresetClick={(value) => setDate(dayjs(value))} />
+              <PresetsContent presets={presets} onPresetClick={(value) => setDate(dayjs(value))} />
             </Box>
           </Box>
 
