@@ -116,6 +116,43 @@ const lightTheme = createTheme({
           }
         }
       ]
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: true
+      }
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          border: '2px solid #cbd5e1',
+          fontSize: '14px',
+          fontWeight: 500,
+          padding: '0',
+          height: '44px',
+          borderRadius: '12px',
+          backgroundColor: '#f8fafc',
+          outline: '0',
+          '& fieldset': { border: 'none' },
+          '&:focus-within': {
+            boxShadow: '0px 0px 0px 3px rgba(196, 181, 253, 0.5)'
+          }
+        }
+      }
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          fontSize: '14px',
+          fontWeight: 500,
+          borderRadius: '12px',
+          border: '2px solid #cbd5e1',
+          '& fieldset': { border: 'none' },
+          '&:focus': {
+            boxShadow: '0px 0px 0px 3px rgba(196, 181, 253, 0.5)'
+          }
+        }
+      }
     }
   }
 });

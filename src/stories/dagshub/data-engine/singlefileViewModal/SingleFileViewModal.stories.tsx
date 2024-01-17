@@ -7,6 +7,7 @@ import SingleFileViewModal, {
 import { NewMetadataField } from '../../../../components';
 import { Button } from '@mui/material';
 import React from 'react';
+import { SingleFileViewFileRenderer } from '../../../../components/dagshub/data-engine/singleFileViewModal/SingleFileViewFileRenderer';
 
 const meta: Meta<singleFileViewModalProps> = {
   title: 'DagsHub/Data-Engine/Modals/Single file view modal',
@@ -187,6 +188,7 @@ const Template: StoryFn<typeof SingleFileViewModal> = (args) => {
           onAnnotatedClick={() => {
             console.log('annotated');
           }}
+          visualizerRenderer={({ itemData }) => <SingleFileViewFileRenderer itemData={itemData} />}
         />
       ) : (
         <Button onClick={() => setIsModalOpen(true)}>Open modal</Button>

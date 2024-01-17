@@ -10,10 +10,10 @@ export type Comparator =
   | 'LESS_THAN'
   | 'LESS_EQUAL_THAN'
   | 'CONTAINS'
-  | 'IS_NULL';
-// | 'IS_POSITIVE_INFINITY'
-// | 'IS_NEGATIVE_INFINITY'
-// | 'IS_NAN';
+  | 'IS_NULL'
+  | 'IS_POSITIVE_INFINITY'
+  | 'IS_NEGATIVE_INFINITY'
+  | 'IS_NAN';
 
 export const Operators: { label: string; id: Comparator; value?: string }[] = [
   { label: '==', id: 'EQUAL' },
@@ -55,10 +55,10 @@ export const FloatOperators: { label: string; id: Comparator }[] = [
   { label: '>=', id: 'GREATER_EQUAL_THAN' },
   { label: '<', id: 'LESS_THAN' },
   { label: '<=', id: 'LESS_EQUAL_THAN' },
-  { label: 'is null', id: 'IS_NULL' }
-  // { label: 'is +Inf', id: 'IS_POSITIVE_INFINITY' },
-  // { label: 'is -Inf', id: 'IS_NEGATIVE_INFINITY' },
-  // { label: 'is NaN', id: 'IS_NAN' }
+  { label: 'is null', id: 'IS_NULL' },
+  { label: 'is +Inf', id: 'IS_POSITIVE_INFINITY' },
+  { label: 'is -Inf', id: 'IS_NEGATIVE_INFINITY' },
+  { label: 'is NaN', id: 'IS_NAN' }
 ];
 
 export interface MetadataFieldProps {
@@ -101,6 +101,8 @@ interface QueryBuilderContextInterface {
   getOperatorsByMetadataType: (type: MetadataType) => { label: string; id: Comparator }[];
   checkIfOperatorRequiresValueField: (operator: Comparator) => boolean;
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
+  isDisplayableInSimpleMode: boolean;
+  onToggleQueryMode: () => void;
 }
 
 export const QueryBuilderContext = createContext<QueryBuilderContextInterface | undefined>(
@@ -144,35 +146,54 @@ export const QueryBuilderProvider = ({
     return addUniqueIds(condition);
   };
 
-  const checkIfSimpleMode = () => {
-    if (forceCompoundMode) {
+  const checkIfConditionIsDisplayableInSimpleMode = (
+    query: AndOrMetadataInput | undefined
+  ): boolean => {
+    if (!query) return true;
+    if (!!query?.or || !!query?.not) {
       return false;
     }
-    if (!!queryInput.query?.or || !!queryInput.query?.not) {
-      return false;
-    }
-    if (!!queryInput.query?.and) {
+    if (!!query?.and) {
       // if it's an and group with no nested groups and no not-conditions, it's simple as well
-      return !queryInput.query.and.some((cond: AndOrMetadataInput) => {
+      return !query.and.some((cond: AndOrMetadataInput) => {
         return !!cond.not || !!cond.or || !!cond.and;
       });
     }
     return true;
   };
 
+  const checkIfSimpleMode = (query: AndOrMetadataInput | undefined) => {
+    return !forceCompoundMode && checkIfConditionIsDisplayableInSimpleMode(query);
+  };
+
   const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(getInitialQuery());
-  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(checkIfSimpleMode());
+  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(checkIfSimpleMode(queryInput.query));
   const [metadataFieldsList, setMetadataFieldsList] =
     useState<MetadataFieldProps[]>(metadataFields);
+  const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(
+    checkIfConditionIsDisplayableInSimpleMode(queryInput.query)
+  );
 
   useEffect(() => {
-    setIsSimpleMode(checkIfSimpleMode());
+    setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
+  }, [queryInput.query]);
+
+  useEffect(() => {
+    setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(rootCondition));
+  }, [rootCondition]);
+
+  useEffect(() => {
     setRootCondition(getInitialQuery());
+    setIsSimpleMode(checkIfSimpleMode(queryInput.query));
   }, [queryInput]);
 
   useEffect(() => {
-    setIsSimpleMode(checkIfSimpleMode());
-  }, [forceCompoundMode]);
+    setIsSimpleMode(checkIfSimpleMode(queryInput.query));
+  }, [forceCompoundMode, queryInput.query]);
+
+  function onToggleQueryMode() {
+    setIsSimpleMode(!isSimpleMode);
+  }
 
   useEffect(() => {
     setMetadataFieldsList(metadataFields);
@@ -218,9 +239,9 @@ export const QueryBuilderProvider = ({
   function checkIfOperatorRequiresValueField(operator: Comparator): boolean {
     switch (operator) {
       case 'IS_NULL':
-        // case 'IS_POSITIVE_INFINITY':
-        // case 'IS_NEGATIVE_INFINITY':
-        // case 'IS_NAN':
+      case 'IS_POSITIVE_INFINITY':
+      case 'IS_NEGATIVE_INFINITY':
+      case 'IS_NAN':
         return false;
       default:
         return true;
@@ -239,7 +260,9 @@ export const QueryBuilderProvider = ({
         addUniqueIds,
         getOperatorsByMetadataType,
         checkIfOperatorRequiresValueField,
-        validateValueByType
+        validateValueByType,
+        isDisplayableInSimpleMode,
+        onToggleQueryMode
       }}
     >
       {children}

@@ -22,7 +22,16 @@ export type KeyPointLabel = {
   keypointlabels: string[];
 } & Record<string, any>;
 
-export type Result = PolygonResult | RectangleResult | KeyPointResult;
+export type EllipseLabel = {
+  x: number;
+  y: number;
+  radiusX: number;
+  radiusY: number;
+  rotation: number;
+  ellipselabels: string[];
+};
+
+export type Result = PolygonResult | RectangleResult | KeyPointResult | EllipseResult;
 
 export type ResultCommon = {
   id: string;
@@ -39,6 +48,10 @@ export type RectangleResult = ResultCommon & {
 
 export type KeyPointResult = ResultCommon & {
   value: KeyPointLabel;
+};
+
+export type EllipseResult = ResultCommon & {
+  value: EllipseLabel;
 };
 
 export type Annotation = {

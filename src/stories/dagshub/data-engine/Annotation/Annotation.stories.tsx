@@ -1,9 +1,10 @@
 import React, { CSSProperties } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { LabelStudioPolygonDrawer, LabelStudioPolygonDrawerProps } from '../../../../components';
-import { polygonTask } from './PolygonTasks';
+import { polygonTask, giraffesTask } from './PolygonTasks';
 import { bboxTask } from './BboxTasks';
 import { keypointsTask } from './KeypointsTasks';
+import { ellipseTask } from './EllipseTasks';
 
 const meta: Meta<typeof LabelStudioPolygonDrawer> = {
   title: 'DagsHub/Data-Engine/Annotation',
@@ -13,7 +14,16 @@ const meta: Meta<typeof LabelStudioPolygonDrawer> = {
 export default meta;
 
 const ImagePolygon: React.FC<{ image: string } & LabelStudioPolygonDrawerProps> = (args) => {
-  return <LabelStudioPolygonDrawer {...args} src={args.image} />;
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '100vh'
+      }}
+    >
+      <LabelStudioPolygonDrawer {...args} src={args.image} />
+    </div>
+  );
 };
 
 const Template: StoryFn<typeof ImagePolygon> = (args) => <ImagePolygon {...args} />;
@@ -102,6 +112,38 @@ annotationKeypoints.args = {
       return [0, 120, 124];
     } else if (label === 'nose') {
       return [0, 0, 255];
+    }
+    return [122, 255, 0];
+  }
+};
+
+export const annotationGiraffe: StoryFn<typeof ImagePolygon> = Template.bind({});
+annotationGiraffe.args = {
+  image: giraffesTask.data.image,
+  annotationsMap: {
+    polygons: giraffesTask.annotations
+  },
+  displayColumns: ['polygons'],
+  displayLabels: ['giraffe'],
+  colorProvider: (label: string, column?: string) => {
+    if (label === 'giraffe') {
+      return [255, 0, 0];
+    }
+    return [122, 255, 0];
+  }
+};
+
+export const annotationEllipses: StoryFn<typeof ImagePolygon> = Template.bind({});
+annotationEllipses.args = {
+  image: ellipseTask.data.image,
+  annotationsMap: {
+    ellipses: ellipseTask.annotations
+  },
+  displayColumns: ['ellipses'],
+  displayLabels: ['Healthy'],
+  colorProvider: (label: string, column?: string) => {
+    if (label === 'Healthy') {
+      return [255, 0, 0];
     }
     return [122, 255, 0];
   }

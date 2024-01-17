@@ -6,4 +6,6 @@ export * from './code-block';
 export * from './tooltip';
 export * from './genericError';
 export * from './displayFilter';
+export * from './dateManager';
 export * from './controlledDisplayFiltersGroup';
+export * from './CustomAccordion';

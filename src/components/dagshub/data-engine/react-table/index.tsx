@@ -28,7 +28,7 @@ export interface BasicTableProps {
   listInnerRef: any;
 }
 
-export function BasicTable({
+export const BasicTable = ({
   tcolumns,
   data,
   enableColumnOrdering = false,
@@ -41,7 +41,7 @@ export function BasicTable({
   cellWidth,
   onScroll,
   listInnerRef
-}: BasicTableProps) {
+}: BasicTableProps) => {
   const columns = useMemo<any>(() => tcolumns, []);
   const defaultColumn = React.useMemo(
     () => ({
@@ -291,6 +291,6 @@ export function BasicTable({
       </table>
     </div>
   );
-}
+};
 
 //how can I give each column its own width

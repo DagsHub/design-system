@@ -1,11 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { Box } from '@mui/system';
-import { CustomAccordion } from '../customAccordion/CustomAccordion';
 import { MetadataKeyValueList, NewMetadataField } from '../metadataKeyValue/MetadataKeyValueList';
-import { Button, ButtonVariant } from '../../../elements';
+import { Button, ButtonVariant, CustomAccordion } from '../../../elements';
 import { Icon } from '../../../icons';
-import { ItemData } from './SingleFileViewModal';
-import { SingleFileViewFileRenderer } from './SingleFileViewFileRenderer';
+import { ItemData, SidebarProps, VisualizerProps } from './SingleFileViewModal';
 import { ThemeProvider, Tooltip } from '@mui/material';
 import theme from '../../../../theme';
 
@@ -17,7 +15,9 @@ export function SingleFileViewDataSection({
   showMetadataOverlay,
   metadataOnChangeHandler,
   enableMetadataEditing,
-  enableMetadataDeletion
+  enableMetadataDeletion,
+  visualizerRenderer,
+  sidebarRenderers
 }: {
   isSmallScreen: boolean;
   itemData: ItemData;
@@ -27,12 +27,13 @@ export function SingleFileViewDataSection({
   metadataOnChangeHandler?: (metadataList: NewMetadataField[]) => void;
   enableMetadataEditing?: boolean;
   enableMetadataDeletion?: boolean;
+  visualizerRenderer: (props: VisualizerProps) => React.ReactNode;
+  sidebarRenderers?: React.ReactNode;
 }) {
   const SIDEBAR_WIDTH = 350; //I decided on this number
   const ARROWS_SECTION_HEIGHT = 52;
 
   const [showMetadataSidebar, setShowMetadataSidebar] = useState<boolean>(true);
-
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -118,11 +119,7 @@ export function SingleFileViewDataSection({
                   </div>
                 </Tooltip>
               )}
-              <SingleFileViewFileRenderer
-                galleryFilePath={itemData.galleryFilePath}
-                itemType={itemData.itemType}
-                itemFallbackHeight={`calc(100% - ${ARROWS_SECTION_HEIGHT}px)`}
-              />
+              {visualizerRenderer({ itemData })}
             </Box>
           )}
           <Box
@@ -213,15 +210,26 @@ export function SingleFileViewDataSection({
                 />
               </div>
             </Tooltip>
-            <Box sx={{ display: 'flex', height: 'calc(100% - 40px)' }}>
-              <CustomAccordion label={'Metadata'}>
-                <MetadataKeyValueList
-                  metadataList={itemData.metadataList}
-                  editingEnabled={!!enableMetadataEditing}
-                  deletionEnabled={!!enableMetadataDeletion}
-                  onChangeHandler={metadataOnChangeHandler}
-                />
-              </CustomAccordion>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'start',
+                overflow: 'auto',
+                height: '100%'
+              }}
+            >
+              <>
+                <CustomAccordion label={'Metadata'}>
+                  <MetadataKeyValueList
+                    metadataList={itemData.metadataList}
+                    editingEnabled={!!enableMetadataEditing}
+                    deletionEnabled={!!enableMetadataDeletion}
+                    onChangeHandler={metadataOnChangeHandler}
+                  />
+                </CustomAccordion>
+                {sidebarRenderers}
+              </>
             </Box>
           </Box>
         )}

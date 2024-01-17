@@ -105,10 +105,11 @@ export function useContainerDimensions(myRef: React.RefObject<HTMLDivElement>) {
     if (myRef.current) {
       setDimensions(getDimensions());
     }
-    myRef.current?.addEventListener('resize', handleResize);
     myRef.current?.addEventListener('load', handleResize);
+    const observer = new ResizeObserver(handleResize);
+    observer.observe(myRef.current as Element);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      observer.disconnect();
     };
   }, [myRef]);
 
