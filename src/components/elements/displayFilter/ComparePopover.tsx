@@ -29,6 +29,7 @@ const defaultPresets = [
 const ComparePopover = ({ presets }: { presets?: { name: string; value: Date; }[]} ) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
+  console.log('presets', presets)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -63,7 +64,7 @@ const ComparePopover = ({ presets }: { presets?: { name: string; value: Date; }[
           horizontal: 'left'
         }}
       >
-        {presets && <DateManager presets={presets?.length ? presets : defaultPresets} />}
+        <DateManager presets={presets?.length ? presets : defaultPresets} />
       </Popover>
     </div>
   );
