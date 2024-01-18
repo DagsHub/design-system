@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import React, {createContext, ReactNode, useCallback, useContext, useEffect, useState} from 'react';
 import _ from 'lodash';
 
 type MetadataType = 'BOOLEAN' | 'INTEGER' | 'FLOAT' | 'STRING' | 'BLOB';
@@ -132,7 +132,8 @@ export const QueryBuilderProvider = ({
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   onChange: (query: QueryInput) => void;
 }) => {
-  const getInitialQuery = () => {
+  const getInitialQuery = useCallback(() => {
+    debugger;
     let condition: AndOrMetadataInput | undefined = undefined;
     if (!!queryInput.query) {
       if (!!queryInput.query.or || !!queryInput.query.and) {
@@ -144,7 +145,7 @@ export const QueryBuilderProvider = ({
       condition = { and: [] };
     }
     return addUniqueIds(condition);
-  };
+  },[queryInput]);
 
   const checkIfConditionIsDisplayableInSimpleMode = (query: AndOrMetadataInput|undefined): boolean => {
     if(!query) return true;
@@ -160,12 +161,12 @@ export const QueryBuilderProvider = ({
     return true;
   }
 
-  const checkIfSimpleMode = (query: AndOrMetadataInput|undefined) => {
+  const checkIfSimpleMode = useCallback((query: AndOrMetadataInput|undefined) => {
     return !forceCompoundMode && checkIfConditionIsDisplayableInSimpleMode(query);
-  };
+  },[forceCompoundMode]);
 
-  const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(getInitialQuery());
-  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(checkIfSimpleMode(queryInput.query));
+  const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(()=>getInitialQuery());
+  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(()=>checkIfSimpleMode(queryInput.query));
   const [metadataFieldsList, setMetadataFieldsList] =
     useState<MetadataFieldProps[]>(metadataFields);
   const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
@@ -177,11 +178,6 @@ export const QueryBuilderProvider = ({
   useEffect(()=>{
     setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(rootCondition));
   },[rootCondition])
-
-  useEffect(() => {
-    setRootCondition(getInitialQuery());
-    setIsSimpleMode(checkIfSimpleMode(queryInput.query));
-  }, [queryInput]);
 
   useEffect(() => {
     setIsSimpleMode(checkIfSimpleMode(queryInput.query));
