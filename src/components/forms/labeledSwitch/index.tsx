@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch, { SwitchProps } from '@mui/material/Switch';
-import {Typography} from "@mui/material";
+import { Typography } from '@mui/material';
 
 const StyledSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -75,7 +75,7 @@ export function LabeledSwitch({
       <FormControlLabel
         onChange={onChange}
         control={<StyledSwitch sx={{ m: 1 }} checked={checked} />}
-        label={<Typography variant={"medium"}>{label}</Typography>}
+        label={<Typography variant={'medium'}>{label}</Typography>}
         labelPlacement={labelPlacement}
         disabled={disabled}
         sx={{
@@ -86,7 +86,7 @@ export function LabeledSwitch({
           width: '100%',
           justifyContent: 'space-between',
           '.MuiSwitch-root': {
-            margin: '0px',
+            margin: '0px'
           },
           '.MuiTypography-root': {
             fontFamily: 'Inter',
