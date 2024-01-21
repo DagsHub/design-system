@@ -3,7 +3,7 @@ import {Box} from '@mui/system';
 import {ConditionDropdown} from './ConditionDropdown';
 import {Button as DagshubButton, ButtonVariant} from '../../../elements';
 import {Icon} from '../../../icons';
-import {IconButton, Menu, MenuItem, ThemeProvider, Tooltip, Typography} from '@mui/material';
+import {Divider, IconButton, Menu, MenuItem, ThemeProvider, Tooltip, Typography} from '@mui/material';
 import theme from '../../../../theme';
 import Condition from './Condition';
 import AddIcon from '@mui/icons-material/Add';
@@ -67,7 +67,13 @@ export function GroupCondition({
           width: "100%",
         }}
       >
-        { level==0 && <Box sx={{
+        { level==0 &&
+          <Tooltip
+            title={!isDisplayableInSimpleMode ? 'Simplified query cannot contain groups, OR, NOT' : ''}
+            placement={'top-start'}
+            arrow={true}
+          >
+          <Box sx={{
           position: "absolute",
           top: "-1px",
           right: "-1px",
@@ -87,7 +93,9 @@ export function GroupCondition({
           }
         }}>
           <LabeledSwitch label={"Advanced query builder"} labelPlacement={"end"} padding={"8px"} checked={!isSimpleMode} disabled={!isDisplayableInSimpleMode} onChange={onToggleQueryMode}/>
-        </Box>}
+        </Box>
+          </Tooltip>
+        }
         <Box
           style={{
             padding: '10px',
@@ -226,8 +234,9 @@ export function GroupCondition({
                   '& .MuiPaper-root': {
                     borderRadius: '12px'
                   },
-                  padding: '8px'
-                }}
+                  '.MuiList-root':{
+                    padding:"8px!important"
+                  }                }}
                 id="basic-menu"
                 anchorEl={addMenuAnchorEl}
                 open={isAddMenuOpen}
@@ -236,6 +245,18 @@ export function GroupCondition({
                   'aria-labelledby': 'basic-button'
                 }}
               >
+                <MenuItem
+                  onClick={() => {
+                    const newConditions = condition.and || condition.or || [];
+                    newConditions.push({and: []}); // is it ok or should it be [{}]
+                    onChangeHandler(newConditions);
+                    setIsAddMenuOpen(false);
+                  }}
+                  sx={{ display: 'flex', flexDirection: 'row', gap: '8px', alignItems: 'center', padding:"8px!important" }}
+                >
+                  <Icon icon={"outline-group"} width={11.83} height={13.95} fill={"rgba(71, 85, 105, 1)"}/>
+                  <Typography variant={'medium'}>Add condition group</Typography>
+                </MenuItem>
                 {!areThereSimpleFilters && (
                   <MenuItem
                     onClick={() => {
@@ -251,29 +272,26 @@ export function GroupCondition({
                       onChangeHandler(newConditions);
                       setIsAddMenuOpen(false);
                     }}
+                    sx={{ display: 'flex', flexDirection: 'row', gap: '8px', alignItems: 'center', padding:"8px!important" }}
                   >
+                    <Icon icon={"solid-plus"} width={11.2} height={11.2} fill={"rgba(71, 85, 105, 1)"}/>
                     <Typography variant={'medium'}>Add condition</Typography>
                   </MenuItem>
                 )}
-                <MenuItem
-                  onClick={() => {
-                    const newConditions = condition.and || condition.or || [];
-                    newConditions.push({and: []}); // is it ok or should it be [{}]
-                    onChangeHandler(newConditions);
-                    setIsAddMenuOpen(false);
-                  }}
-                >
-                  <Typography variant={'medium'}>Add condition group</Typography>
-                </MenuItem>
                 {!condition.not && (
-                  <MenuItem
-                    onClick={() => {
-                      onChange({...condition, not: !condition.not});
-                      setIsAddMenuOpen(false);
-                    }}
-                  >
-                    <Typography variant={'medium'}>Add NOT to group</Typography>
-                  </MenuItem>
+                  <>
+                    <Divider sx={{ height:"2px", backgroundColor: 'rgba(226, 232, 240, 1)', border:"0px", margin: "0px!important" }} />
+                    <MenuItem
+                      onClick={() => {
+                        onChange({...condition, not: !condition.not});
+                        setIsAddMenuOpen(false);
+                      }}
+                      sx={{ display: 'flex', flexDirection: 'row', gap: '8px', alignItems: 'center', padding:"8px!important" }}
+                    >
+                      <Icon icon={"outline-not"} width={14} height={14} fill={"rgba(71, 85, 105, 1)"}/>
+                      <Typography variant={'medium'}>Add NOT to group</Typography>
+                    </MenuItem>
+                  </>
                 )}
               </Menu>
             </Box>

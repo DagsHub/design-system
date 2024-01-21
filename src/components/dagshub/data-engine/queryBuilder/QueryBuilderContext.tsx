@@ -1,5 +1,6 @@
 import React, {createContext, ReactNode, useCallback, useContext, useEffect, useState} from 'react';
 import _ from 'lodash';
+import {root} from "postcss";
 
 type MetadataType = 'BOOLEAN' | 'INTEGER' | 'FLOAT' | 'STRING' | 'BLOB';
 
@@ -132,8 +133,8 @@ export const QueryBuilderProvider = ({
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   onChange: (query: QueryInput) => void;
 }) => {
+
   const getInitialQuery = useCallback(() => {
-    debugger;
     let condition: AndOrMetadataInput | undefined = undefined;
     if (!!queryInput.query) {
       if (!!queryInput.query.or || !!queryInput.query.and) {
@@ -144,7 +145,7 @@ export const QueryBuilderProvider = ({
     } else {
       condition = { and: [] };
     }
-    return addUniqueIds(condition);
+    return addUniqueIds(convertBackandFormatToUiFormat(condition)??{ and: [] });
   },[queryInput]);
 
   const checkIfConditionIsDisplayableInSimpleMode = (query: AndOrMetadataInput|undefined): boolean => {
@@ -191,10 +192,24 @@ export const QueryBuilderProvider = ({
     setMetadataFieldsList(metadataFields);
   }, [metadataFields]);
 
+  //This function is used to remove the root and wrapper, if it was added for ui purposes and not needed anymore
+  const removeRootAndBlockIfWasAddedAndNotNeeded = (condition: AndOrMetadataInput |null)=> {
+    if (!queryInput.query?.and && !!condition?.and) {
+      if (condition.and.length === 0) {
+        return undefined;
+      }
+      if (condition.and.length === 1 && !!condition.and[0].filter) {
+        return condition.and[0];
+      }
+      return condition;
+    }
+    return condition;
+  }
+
   useEffect(() => {
-    onChange({ ...queryInput, query: convertUiFormatToBackandFormat(
+    onChange({ ...queryInput, query: removeRootAndBlockIfWasAddedAndNotNeeded(convertUiFormatToBackandFormat(
         removeIdFields(rootCondition ?? {})
-      ) ?? undefined, });
+      )) ?? undefined, });
   }, [rootCondition]);
 
   function generateUniqueId(): string {
@@ -299,19 +314,19 @@ export const QueryBuilderProvider = ({
     if ((condition.filter?.comparator as string) === 'IS_POSITIVE_INFINITY') {
       return {
         ...condition,
-        filter: { ...condition.filter, comparator: 'EQUAL', value: '+Inf' },
+        filter: { ...condition.filter, comparator: 'EQUAL', value: "inf" },
       };
     }
     if ((condition.filter?.comparator as string) === 'IS_NEGATIVE_INFINITY') {
       return {
         ...condition,
-        filter: { ...condition.filter, comparator: 'EQUAL', value: '-Inf' },
+        filter: { ...condition.filter, comparator: 'EQUAL', value: "-inf"},
       };
     }
     if ((condition.filter?.comparator as string) === 'IS_NAN') {
       return {
         ...condition,
-        filter: { ...condition.filter, comparator: 'EQUAL', value: 'NaN' },
+        filter: { ...condition.filter, comparator: 'EQUAL', value: "nan" },
       };
     }
     if (condition.filter?.comparator === 'IS_NULL') {
@@ -342,19 +357,19 @@ export const QueryBuilderProvider = ({
       }
     }
     if(condition?.filter?.valueType === "FLOAT" && condition?.filter?.comparator === "EQUAL"){
-      if (condition.filter.value === '+Inf') {
+      if (condition.filter.value === 'inf') {
         return {
           ...condition,
           filter: { ...condition.filter, comparator: 'IS_POSITIVE_INFINITY', value: '' },
         };
       }
-      if (condition.filter.value === '-Inf') {
+      if (condition.filter.value === '-inf') {
         return {
           ...condition,
           filter: { ...condition.filter, comparator: 'IS_NEGATIVE_INFINITY', value: '' },
         };
       }
-      if (condition.filter.value === 'NaN') {
+      if (condition.filter.value === 'nan') {
         return {
           ...condition,
           filter: { ...condition.filter, comparator: 'IS_NAN', value: '' },
