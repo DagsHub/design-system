@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/dagshub/design-system.git"
   },
-  "version": "0.1.69",
+  "version": "0.1.72",
   "description": "A component library for consuming dagshub user interfaces.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -88,7 +88,7 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-url": "^8.0.2",
     "@storybook/cli": "^7.0.0-beta.20",
-    "@storybook/core": "^6.1.21",
+    "@storybook/core": "^6.5.16",
     "@tippyjs/react": "^4.2.6",
     "ag-grid-community": "^31.0.1",
     "ag-grid-react": "^31.0.1",
