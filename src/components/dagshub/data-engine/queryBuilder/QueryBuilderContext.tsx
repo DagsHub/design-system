@@ -188,6 +188,7 @@ export const QueryBuilderProvider = ({
   );
 
   useEffect(() => {
+    setRootCondition(() => getInitialQuery());
     setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
   }, [queryInput.query]);
 
