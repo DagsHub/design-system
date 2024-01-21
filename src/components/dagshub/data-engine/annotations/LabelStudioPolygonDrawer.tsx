@@ -91,7 +91,8 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
           displayLabels,
           labelComponents.push.bind(labelComponents),
           textComponents.push.bind(textComponents)
-        ))
+        )
+      )
     );
   });
 
@@ -167,9 +168,7 @@ function getSingleAnnotationResultLayers(
     );
   }
   if (flatBboxPoints.length > 0) {
-    labelLayersPush(
-      <Line points={flatBboxPoints} closed stroke={strokeColor} strokeWidth={2} />
-    );
+    labelLayersPush(<Line points={flatBboxPoints} closed stroke={strokeColor} strokeWidth={2} />);
     const textPosition = { x: flatBboxPoints[0], y: flatBboxPoints[1] - fontSize };
     textLayersPush(
       <Text

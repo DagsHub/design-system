@@ -49,9 +49,7 @@ export const SingleFileViewFileRenderer = ({ itemData }: VisualizerProps) => {
 
   if (!!galleryFilePath && !!itemType) {
     if (isError) {
-      return (
-        <ItemFallback height={'100%'} width={'100%'} disableHoverMode isError={true} />
-      );
+      return <ItemFallback height={'100%'} width={'100%'} disableHoverMode isError={true} />;
     }
     if (itemType === 'image') {
       return (
@@ -149,4 +147,3 @@ export const SingleFileViewFileRenderer = ({ itemData }: VisualizerProps) => {
   }
   return <ItemFallback height={'100%'} width={'100%'} disableHoverMode />;
 };
-

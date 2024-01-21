@@ -1,6 +1,13 @@
-import React, {createContext, ReactNode, useCallback, useContext, useEffect, useState} from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useState
+} from 'react';
 import _ from 'lodash';
-import {root} from "postcss";
+import { root } from 'postcss';
 
 type MetadataType = 'BOOLEAN' | 'INTEGER' | 'FLOAT' | 'STRING' | 'BLOB';
 
@@ -124,7 +131,7 @@ export const QueryBuilderProvider = ({
   metadataFields,
   forceCompoundMode = false,
   validateValueByType,
-  onChange,
+  onChange
 }: {
   children: ReactNode;
   queryInput: QueryInput;
@@ -133,7 +140,6 @@ export const QueryBuilderProvider = ({
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   onChange: (query: QueryInput) => void;
 }) => {
-
   const getInitialQuery = useCallback(() => {
     let condition: AndOrMetadataInput | undefined = undefined;
     if (!!queryInput.query) {
@@ -145,11 +151,13 @@ export const QueryBuilderProvider = ({
     } else {
       condition = { and: [] };
     }
-    return addUniqueIds(convertBackandFormatToUiFormat(condition)??{ and: [] });
-  },[queryInput]);
+    return addUniqueIds(convertBackandFormatToUiFormat(condition) ?? { and: [] });
+  }, [queryInput]);
 
-  const checkIfConditionIsDisplayableInSimpleMode = (query: AndOrMetadataInput|undefined): boolean => {
-    if(!query) return true;
+  const checkIfConditionIsDisplayableInSimpleMode = (
+    query: AndOrMetadataInput | undefined
+  ): boolean => {
+    if (!query) return true;
     if (!!query?.or || !!query?.not) {
       return false;
     }
@@ -160,25 +168,32 @@ export const QueryBuilderProvider = ({
       });
     }
     return true;
-  }
+  };
 
-  const checkIfSimpleMode = useCallback((query: AndOrMetadataInput|undefined) => {
-    return !forceCompoundMode && checkIfConditionIsDisplayableInSimpleMode(query);
-  },[forceCompoundMode]);
+  const checkIfSimpleMode = useCallback(
+    (query: AndOrMetadataInput | undefined) => {
+      return !forceCompoundMode && checkIfConditionIsDisplayableInSimpleMode(query);
+    },
+    [forceCompoundMode]
+  );
 
-  const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(()=>getInitialQuery());
-  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(()=>checkIfSimpleMode(queryInput.query));
+  const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(() => getInitialQuery());
+  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(() =>
+    checkIfSimpleMode(queryInput.query)
+  );
   const [metadataFieldsList, setMetadataFieldsList] =
     useState<MetadataFieldProps[]>(metadataFields);
-  const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
+  const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(
+    checkIfConditionIsDisplayableInSimpleMode(queryInput.query)
+  );
 
-  useEffect(()=>{
+  useEffect(() => {
     setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
-  },[queryInput.query])
+  }, [queryInput.query]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(rootCondition));
-  },[rootCondition])
+  }, [rootCondition]);
 
   useEffect(() => {
     setIsSimpleMode(checkIfSimpleMode(queryInput.query));
@@ -193,7 +208,7 @@ export const QueryBuilderProvider = ({
   }, [metadataFields]);
 
   //This function is used to remove the root and wrapper, if it was added for ui purposes and not needed anymore
-  const removeRootAndBlockIfWasAddedAndNotNeeded = (condition: AndOrMetadataInput |null)=> {
+  const removeRootAndBlockIfWasAddedAndNotNeeded = (condition: AndOrMetadataInput | null) => {
     if (!queryInput.query?.and && !!condition?.and) {
       if (condition.and.length === 0) {
         return undefined;
@@ -204,12 +219,16 @@ export const QueryBuilderProvider = ({
       return condition;
     }
     return condition;
-  }
+  };
 
   useEffect(() => {
-    onChange({ ...queryInput, query: removeRootAndBlockIfWasAddedAndNotNeeded(convertUiFormatToBackandFormat(
-        removeIdFields(rootCondition ?? {})
-      )) ?? undefined, });
+    onChange({
+      ...queryInput,
+      query:
+        removeRootAndBlockIfWasAddedAndNotNeeded(
+          convertUiFormatToBackandFormat(removeIdFields(rootCondition ?? {}))
+        ) ?? undefined
+    });
   }, [rootCondition]);
 
   function generateUniqueId(): string {
@@ -301,8 +320,9 @@ export const QueryBuilderProvider = ({
   ): AndOrMetadataInput | null {
     if (!!condition.or || !!condition.and) {
       // Recursively convert to backand format
-      const formattedNestedConditions = (condition.or || condition.and || [])
-        .flatMap((c) => convertUiFormatToBackandFormat(c) as AndOrMetadataInput);
+      const formattedNestedConditions = (condition.or || condition.and || []).flatMap(
+        (c) => convertUiFormatToBackandFormat(c) as AndOrMetadataInput
+      );
 
       // Return the modified condition
       if (condition.or) {
@@ -314,19 +334,19 @@ export const QueryBuilderProvider = ({
     if ((condition.filter?.comparator as string) === 'IS_POSITIVE_INFINITY') {
       return {
         ...condition,
-        filter: { ...condition.filter, comparator: 'EQUAL', value: "inf" },
+        filter: { ...condition.filter, comparator: 'EQUAL', value: 'inf' }
       };
     }
     if ((condition.filter?.comparator as string) === 'IS_NEGATIVE_INFINITY') {
       return {
         ...condition,
-        filter: { ...condition.filter, comparator: 'EQUAL', value: "-inf"},
+        filter: { ...condition.filter, comparator: 'EQUAL', value: '-inf' }
       };
     }
     if ((condition.filter?.comparator as string) === 'IS_NAN') {
       return {
         ...condition,
-        filter: { ...condition.filter, comparator: 'EQUAL', value: "nan" },
+        filter: { ...condition.filter, comparator: 'EQUAL', value: 'nan' }
       };
     }
     if (condition.filter?.comparator === 'IS_NULL') {
@@ -334,8 +354,8 @@ export const QueryBuilderProvider = ({
         ...condition,
         filter: {
           ...condition.filter,
-          value: getZeroValueByType(condition.filter.valueType),
-        },
+          value: getZeroValueByType(condition.filter.valueType)
+        }
       };
     }
     return condition;
@@ -346,8 +366,9 @@ export const QueryBuilderProvider = ({
   ): AndOrMetadataInput | null {
     if (!!condition.or || !!condition.and) {
       // Recursively convert to ui format
-      const formattedNestedConditions = (condition.or || condition.and || [])
-        .flatMap((c) => convertBackandFormatToUiFormat(c) as AndOrMetadataInput);
+      const formattedNestedConditions = (condition.or || condition.and || []).flatMap(
+        (c) => convertBackandFormatToUiFormat(c) as AndOrMetadataInput
+      );
 
       // Return the modified condition
       if (condition.or) {
@@ -356,23 +377,23 @@ export const QueryBuilderProvider = ({
         return { and: formattedNestedConditions };
       }
     }
-    if(condition?.filter?.valueType === "FLOAT" && condition?.filter?.comparator === "EQUAL"){
+    if (condition?.filter?.valueType === 'FLOAT' && condition?.filter?.comparator === 'EQUAL') {
       if (condition.filter.value === 'inf') {
         return {
           ...condition,
-          filter: { ...condition.filter, comparator: 'IS_POSITIVE_INFINITY', value: '' },
+          filter: { ...condition.filter, comparator: 'IS_POSITIVE_INFINITY', value: '' }
         };
       }
       if (condition.filter.value === '-inf') {
         return {
           ...condition,
-          filter: { ...condition.filter, comparator: 'IS_NEGATIVE_INFINITY', value: '' },
+          filter: { ...condition.filter, comparator: 'IS_NEGATIVE_INFINITY', value: '' }
         };
       }
       if (condition.filter.value === 'nan') {
         return {
           ...condition,
-          filter: { ...condition.filter, comparator: 'IS_NAN', value: '' },
+          filter: { ...condition.filter, comparator: 'IS_NAN', value: '' }
         };
       }
     }
@@ -381,8 +402,8 @@ export const QueryBuilderProvider = ({
         ...condition,
         filter: {
           ...condition.filter,
-          value: '',
-        },
+          value: ''
+        }
       };
     }
     return condition;

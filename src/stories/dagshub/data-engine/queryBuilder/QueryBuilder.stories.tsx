@@ -69,14 +69,16 @@ compoundQueryBuilderDataset.args = {
 
 export const simpleQueryBuilder: StoryFn<typeof QueryBuilder> = Template.bind({});
 simpleQueryBuilder.args = {
-  queryInput: {query:{
+  queryInput: {
+    query: {
       filter: {
         key: 'weight',
         comparator: 'EQUAL',
         valueType: 'FLOAT',
-        value: "inf"
+        value: 'inf'
       }
-    }},
+    }
+  },
   metadataFields: [
     { name: 'size', valueType: 'INTEGER', tags: [], multiple: false },
     { name: 'author', valueType: 'STRING', tags: [], multiple: false },
@@ -106,7 +108,7 @@ emptyQuery.args = {
 
 export const emptyQueryWithinAndBlock: StoryFn<typeof QueryBuilder> = Template.bind({});
 emptyQueryWithinAndBlock.args = {
-  queryInput: {query: {and: []}},
+  queryInput: { query: { and: [] } },
   metadataFields: [
     { name: 'size', valueType: 'INTEGER', tags: [], multiple: false },
     { name: 'author', valueType: 'STRING', tags: [], multiple: false },
@@ -129,7 +131,7 @@ queryBuilderWithQuery.args = {
             key: 'weight',
             comparator: 'EQUAL',
             valueType: 'FLOAT',
-            value: "inf"
+            value: 'inf'
           }
         },
         {
@@ -137,7 +139,7 @@ queryBuilderWithQuery.args = {
             key: 'weight',
             comparator: 'EQUAL',
             valueType: 'FLOAT',
-            value: "-inf"
+            value: '-inf'
           }
         },
         {
@@ -145,7 +147,7 @@ queryBuilderWithQuery.args = {
             key: 'weight',
             comparator: 'EQUAL',
             valueType: 'FLOAT',
-            value: "nan"
+            value: 'nan'
           }
         },
         {
@@ -153,7 +155,7 @@ queryBuilderWithQuery.args = {
             key: 'image',
             comparator: 'IS_NULL',
             valueType: 'FLOAT',
-            value: ""
+            value: ''
           }
         },
         {

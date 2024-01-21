@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { ConditionDropdown } from './ConditionDropdown';
-import {Box, Divider, IconButton, Menu, MenuItem, ThemeProvider, Tooltip, Typography} from '@mui/material';
+import {
+  Box,
+  Divider,
+  IconButton,
+  Menu,
+  MenuItem,
+  ThemeProvider,
+  Tooltip,
+  Typography
+} from '@mui/material';
 import ConditionTextField from './ConditionTextField';
 import { Button, ButtonVariant } from '../../../elements';
 import { Icon } from '../../../icons';
@@ -332,8 +341,8 @@ export function SimpleCondition({
             '& .MuiPaper-root': {
               borderRadius: '12px'
             },
-            '.MuiList-root':{
-              padding:"8px!important"
+            '.MuiList-root': {
+              padding: '8px!important'
             }
           }}
           id="basic-menu"
@@ -349,24 +358,43 @@ export function SimpleCondition({
               onAdd();
               setIsOpen(false);
             }}
-            sx={{ display: 'flex', flexDirection: 'row', gap: '8px', alignItems: 'center', padding:"8px!important" }}
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '8px',
+              alignItems: 'center',
+              padding: '8px!important'
+            }}
           >
-            <Icon icon={"solid-plus"} width={11.2} height={11.2} fill={"rgba(71, 85, 105, 1)"}/>
+            <Icon icon={'solid-plus'} width={11.2} height={11.2} fill={'rgba(71, 85, 105, 1)'} />
             <Typography variant={'medium'}>Add condition</Typography>
           </MenuItem>
           {!isSimpleMode && !condition.not && (
             <>
-              <Divider sx={{ height:"2px", backgroundColor: 'rgba(226, 232, 240, 1)', border:"0px" , margin:"0px!important"}} />
+              <Divider
+                sx={{
+                  height: '2px',
+                  backgroundColor: 'rgba(226, 232, 240, 1)',
+                  border: '0px',
+                  margin: '0px!important'
+                }}
+              />
               <MenuItem
-              onClick={() => {
-                onChange({ ...condition, not: !condition.not });
-                setIsOpen(false);
-              }}
-              sx={{ display: 'flex', flexDirection: 'row', gap: '8px', alignItems: 'center', padding:"8px!important" }}
-            >
-                <Icon icon={"outline-not"} width={14} height={14} fill={"rgba(71, 85, 105, 1)"}/>
-              <Typography variant={'medium'}>Add NOT to condition</Typography>
-            </MenuItem>
+                onClick={() => {
+                  onChange({ ...condition, not: !condition.not });
+                  setIsOpen(false);
+                }}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: '8px',
+                  alignItems: 'center',
+                  padding: '8px!important'
+                }}
+              >
+                <Icon icon={'outline-not'} width={14} height={14} fill={'rgba(71, 85, 105, 1)'} />
+                <Typography variant={'medium'}>Add NOT to condition</Typography>
+              </MenuItem>
             </>
           )}
         </Menu>

@@ -1,7 +1,7 @@
 import { Box } from '@mui/system';
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
-import {GenericModal, MetadataField, NewMetadataField, RGB} from '../../index';
+import { GenericModal, MetadataField, NewMetadataField, RGB } from '../../index';
 import './style.scss';
 import TopButtonsSection from './TopButtonsSection';
 import { SingleFileViewDataSection } from './SingleFileViewDataSection';
@@ -27,11 +27,11 @@ export interface ItemData {
 
 export type VisualizerProps = {
   itemData: ItemData;
-}
+};
 
 export type SidebarProps = {
   itemData: ItemData;
-}
+};
 
 export interface singleFileViewModalProps {
   closeModal: () => void;
@@ -64,7 +64,7 @@ export function SingleFileViewModal({
   enableDatapointAnnotating,
   enableFileDownloading,
   visualizerRenderer,
-  sidebarRenderers,
+  sidebarRenderers
 }: singleFileViewModalProps) {
   const [showMetadataOverlay, setShowMetadataOverlay] = useState<boolean>(false);
   const breakpoint = useMediaQuery('(max-width: 800px)');
