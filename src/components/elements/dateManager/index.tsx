@@ -20,26 +20,38 @@ const NoResultsState = () => {
         the timestamp you entered and try again.
       </Typography>
     </Box>
-  )
+  );
 };
 export const DateManager = ({
   presets,
-  showNoResults
+  showNoResults,
+  search,
+  close
 }: {
   presets: { name: string; value: Date }[];
   showNoResults?: boolean;
+  search: ({ name, value }: { name: string; value: string }) => void;
+  close: () => void;
 }) => {
   const defaultDisplayName = `as of ${dayjs().format('YYYY-MM-DD')} ${dayjs().format('HH:mm:ss')}`;
-  const [date, setDate] = useState<Dayjs | null>(dayjs());
-  const [hour, setHour] = useState<Dayjs | null>(dayjs());
+
+  const [date, setDate] = useState<Dayjs | null | string>(dayjs());
+  const [hour, setHour] = useState<Dayjs | null | string>(dayjs());
+  const [value, setValue] = useState<string>(defaultDisplayName);
   const [displayName, setDisplayName] = useState(defaultDisplayName);
   const [displayNameTouched, setDisplayNameTouched] = useState(false);
+  const [errorDate, setErrorDate] = useState(false);
+
+  const updateValue = (value: string) => setValue(value);
 
   // update the display name unless the display name area is touched.
   useEffect(() => {
+    const value = `${dayjs(date).format('YYYY-MM-DD')} ${dayjs(hour).format('HH:mm:ss')}`;
     if (!displayNameTouched) {
-      setDisplayName(`as of ${date?.format('YYYY-MM-DD')} ${hour?.format('HH:mm:ss')}`);
+      setDisplayName(`as of ${value}`);
     }
+
+    updateValue(value);
   }, [hour, date]);
 
   return (
@@ -73,6 +85,14 @@ export const DateManager = ({
                     format="YYYY-MM-DD"
                     value={date}
                     onChange={setDate}
+                    onError={(reason, value) => {
+                      console.log('reason, ',reason)
+                      if (reason) {
+                        setErrorDate(true);
+                      } else {
+                        setErrorDate(false);
+                      }
+                    }}
                     slots={{
                       openPickerIcon: createSvgIcon(
                         <svg
@@ -143,13 +163,16 @@ export const DateManager = ({
               <Button
                 stretch={ButtonStretch.Slim}
                 variant={ButtonVariant.OutlineSecondary}
-                onClick={() => {}}
+                onClick={close}
                 label={'Cancel'}
               />
               <Button
                 stretch={ButtonStretch.Slim}
                 variant={ButtonVariant.Primary}
-                onClick={() => {}}
+                onClick={() => {
+                  search({ name: displayName, value });
+                }}
+                disabled={!date || errorDate}
                 label={'Search'}
               />
             </Box>

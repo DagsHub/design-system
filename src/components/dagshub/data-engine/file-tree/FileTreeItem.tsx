@@ -100,7 +100,6 @@ export function FileTreeItem({
         <Box display={'flex'} alignItems={'center'}>
           <IconButton
             onClick={openFileHandler}
-            disableRipple
             sx={{
               visibility: isEmpty ? 'hidden' : 'unset',
               transition: '.1s ease-in-out',

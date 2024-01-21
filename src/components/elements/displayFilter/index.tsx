@@ -16,30 +16,25 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CancelIcon from '@mui/icons-material/Cancel';
 import ComparePopover from './ComparePopover';
 
-type childFilter = {
-  label: string;
-  onChange: (value: string) => void;
-};
 export interface DisplayFilterProps {
   label: string;
   showAll?: boolean;
   onChange: () => void;
   value: boolean;
   showCancel?: boolean;
-  children?: childFilter[];
+  showCompare?: boolean;
   isChild?: boolean;
+  cancelFilter?: (e: any) => void;
 }
 
-export function DisplayFilter({
-  label,
-  onChange,
-  value,
-  showCancel,
-  children,
-  showAll
+export function DisplayFilter({ label, onChange, value, showCancel, showAll, showCompare, cancelFilter,
 }: DisplayFilterProps) {
   const [show, setShow] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
+  const [children, setChildren] = useState<{ name: string; value: string }[]>([{
+    value: '',
+    name: 'as of now'
+  }]);
 
   const filterClicked = () => {
     setShow(!show);
@@ -51,13 +46,23 @@ export function DisplayFilter({
     setOpen(!open);
   };
 
-  const cancelFilter = (e: React.SyntheticEvent) => {
-    e.stopPropagation();
-  };
-
   useEffect(() => {
     setShow(value);
   }, [value]);
+
+  const search = ({ name, value }: { name: string; value: string }) => {
+    console.log('value ', value);
+    console.log('name ', name);
+    // has results -
+    // add the tag to the children list.
+    const newChildren = [...children || [], { name, value}];
+    setChildren(newChildren);
+    // empty - toggle on no results
+  };
+
+  const removeChildFilter = (e: any) => {
+    console.log('e', e);
+  };
 
   return (
     <div>
@@ -67,19 +72,20 @@ export function DisplayFilter({
           gap={1}
           direction={'row'}
           sx={{
-            cursor: 'pointer',
-            background: '#F8FAFC',
+            background: open ? '#F1F5F9' : '#F8FAFC',
             color: '#172D32',
+            '&:hover': {
+              backgroundColor: '#F1F5F9'
+            },
             '&:hover #cancel': {
               display: 'initial'
-            }
+            },
+            borderLeft: open ? '3px solid #C4B5FD' : '3px solid transparent'
           }}
           display={'flex'}
           justifyContent={'space-between'}
           alignItems={'center'}
-          onClick={filterClicked}
           padding={'8px'}
-          role={'button'}
         >
           <Box
             alignItems={'center'}
@@ -99,16 +105,18 @@ export function DisplayFilter({
                 {label}
               </Typography>
 
-              {children?.length && (
+              {children?.length > 1 && (
                 <IconButton
                   sx={{
+                    padding: 0,
+                    height: '20px',
+                    width: '20px',
                     transition: '.3s ease-in-out',
                     transform: open ? 'rotate(180deg)' : 'unset',
                     '&:hover': {
                       backgroundColor: 'transparent'
                     }
                   }}
-                  disableRipple
                   onClick={onToggle}
                 >
                   <ExpandMoreIcon />
@@ -117,8 +125,8 @@ export function DisplayFilter({
             </Box>
 
             <Stack direction={'row'} gap={1}>
-              {showCancel && (
-                <IconButton onClick={cancelFilter} sx={{ padding: 0 }} disableRipple>
+              {!!cancelFilter && (
+                <IconButton onClick={() => cancelFilter(label) } sx={{ padding: 0 }}>
                   <CancelIcon
                     id={'cancel'}
                     sx={{
@@ -132,10 +140,11 @@ export function DisplayFilter({
                 </IconButton>
               )}
 
+              {showCompare && <ComparePopover search={search}/>}
+
               <IconButton
                 sx={{ padding: 0, height: '20px', width: '21.08px' }}
-                disableRipple
-                onClick={() => {}}
+                onClick={filterClicked}
               >
                 <Icon icon={show ? 'eye' : 'eye-off'} height={20} width={21.08} fill={'#94A3B8'} />
               </IconButton>
@@ -143,22 +152,21 @@ export function DisplayFilter({
           </Box>
         </Stack>
 
-        <ComparePopover />
-
         {/*annotations */}
-        {children?.length && (
+        {children?.length > 1 && (
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <Box borderLeft={'3px solid #C4B5FD'} paddingLeft={2}>
+              <Box paddingLeft={2}>
                 {children?.map((item) => (
-                  <Tooltip title={item?.label}>
+                  <Tooltip title={item?.name}>
                     <div>
                       <DisplayFilter
                         isChild
                         value={!!showAll}
-                        label={item?.label}
+                        label={item?.name}
                         onChange={() => console.log('changed')}
                         showCancel
+                        cancelFilter={removeChildFilter}
                       />
                     </div>
                   </Tooltip>

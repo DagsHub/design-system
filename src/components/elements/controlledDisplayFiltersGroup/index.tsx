@@ -13,6 +13,7 @@ export interface DisplayFilterPartialProps {
   label: string;
   onChange?: (name: string) => void;
   children?: childFilter[];
+  showCompare?: boolean;
 }
 
 export interface ControlledDisplayFiltersGroupProps {
@@ -28,7 +29,7 @@ export function ControlledDisplayFiltersGroup({
   onToggleShowAll,
   toggleAllLabel,
   isToggleAll,
-  toggledFilters
+  toggledFilters,
 }: ControlledDisplayFiltersGroupProps) {
   const [showAll, setShowAll] = useState<boolean>(isToggleAll ?? false);
   const [availableFiltersNames, setAvailableFiltersNames] = useState<Set<string>>(
@@ -86,7 +87,7 @@ export function ControlledDisplayFiltersGroup({
         return (
           <>
             <DisplayFilter
-              children={item.children}
+              showCompare={item?.showCompare}
               showAll={showAll}
               value={showAll || displayedFilters.has(item.label)}
               label={item.label}

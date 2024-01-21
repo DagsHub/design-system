@@ -26,11 +26,17 @@ const defaultPresets = [
   }
 ];
 
-const ComparePopover = ({ presets }: { presets?: { name: string; value: Date; }[]} ) => {
+const ComparePopover = ({
+  presets,
+  search
+}: {
+  presets?: { name: string; value: Date }[];
+  search: ({ name, value }: { name: string; value: string }) => void;
+}) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
-  console.log('presets', presets)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
 
@@ -47,7 +53,6 @@ const ComparePopover = ({ presets }: { presets?: { name: string; value: Date; }[
         <IconButton
           aria-describedby={id}
           sx={{ padding: 0, height: '20px', width: '21.08px' }}
-          disableRipple
           onClick={handleClick}
         >
           <AddIcon sx={{ height: '20px', width: '21.08px' }} fill={'#94A3B8'} />
@@ -64,7 +69,11 @@ const ComparePopover = ({ presets }: { presets?: { name: string; value: Date; }[
           horizontal: 'left'
         }}
       >
-        <DateManager presets={presets?.length ? presets : defaultPresets} />
+        <DateManager
+          close={handleClose}
+          search={search}
+          presets={presets?.length ? presets : defaultPresets}
+        />
       </Popover>
     </div>
   );

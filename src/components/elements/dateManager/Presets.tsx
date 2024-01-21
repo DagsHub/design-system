@@ -32,7 +32,6 @@ const PresetsList = ({
                 borderRadius: '6px'
               }
             }}
-            href="#simple-list"
             onClick={(e) => {
               e.stopPropagation();
               onPresetClick(item.value);
