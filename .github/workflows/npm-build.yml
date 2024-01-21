@@ -16,5 +16,6 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - run: rm package-lock.json
       - run: npm i
       - run: npm run build
