@@ -2,7 +2,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { useState } from 'react';
 import { Button } from '@mui/material';
 import React from 'react';
-import {NewDatasetNameModal} from "../../../../components/dagshub/data-engine/queryBuilder/NewDatasetNameModal";
+import { NewDatasetNameModal } from '../../../../components/dagshub/data-engine/queryBuilder/NewDatasetNameModal';
 
 const meta: Meta<typeof NewDatasetNameModal> = {
   title: 'DagsHub/Data-Engine/QueryBuilder/Modals/NewDatasetNameModal',
@@ -22,7 +22,7 @@ const Template: StoryFn<typeof NewDatasetNameModal> = (args) => {
           onClose={() => {
             setIsModalOpen(false);
           }}
-          onSave={()=>{}}
+          onSave={() => {}}
           onDatasetNameChange={(value: string) => {
             console.log(value);
           }}
