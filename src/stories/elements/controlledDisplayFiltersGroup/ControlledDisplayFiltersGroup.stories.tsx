@@ -41,7 +41,8 @@ export const filterGroupNotControlled: StoryFn<typeof ControlledDisplayFiltersGr
   Template.bind({});
 filterGroupNotControlled.args = {
   filters: filters,
-  onToggleShowAll: (value) => console.log('toggle show all', value),
+  activeFiltersChanged: (activeFilters) => {},
+  onToggleShowAll: (value) => {},
   toggleAllLabel: 'Show all'
 };
 
@@ -49,7 +50,8 @@ export const filterGroupControlledAndToggledAll: StoryFn<typeof ControlledDispla
   Template.bind({});
 filterGroupControlledAndToggledAll.args = {
   filters: filters,
-  onToggleShowAll: (value) => console.log('toggle show all', value),
+  activeFiltersChanged: (activeFilters) => {},
+  onToggleShowAll: (value) => {},
   toggleAllLabel: 'Show all',
   isToggleAll: true //Make the component controlled from outside and toggle all filters
 };
@@ -59,7 +61,8 @@ export const filterGroupControlledAndPartiallyToggled: StoryFn<
 > = Template.bind({});
 filterGroupControlledAndPartiallyToggled.args = {
   filters: filters,
-  onToggleShowAll: (value) => console.log('toggle show all', value),
+  activeFiltersChanged: (activeFilters) => {},
+  onToggleShowAll: (value) => {},
   toggleAllLabel: 'Show all',
   toggledFilters: new Set(['metadata_key_2']) //Make the component controlled from outside and toggle 1 filter out of three
 };

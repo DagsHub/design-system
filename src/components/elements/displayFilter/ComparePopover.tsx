@@ -71,7 +71,11 @@ const ComparePopover = ({
       >
         <DateManager
           close={handleClose}
-          search={search}
+          search={(val) => {
+            search(val);
+            // todo if no results, show empty message, showNoResults prop.
+            handleClose();
+          }}
           presets={presets?.length ? presets : defaultPresets}
         />
       </Popover>

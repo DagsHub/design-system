@@ -22,6 +22,7 @@ export interface ControlledDisplayFiltersGroupProps {
   onToggleShowAll: (show: boolean) => void;
   isToggleAll?: boolean;
   toggledFilters?: Set<string>;
+  activeFiltersChanged: (activeFilters: string[]) => void;
 }
 
 export function ControlledDisplayFiltersGroup({
@@ -30,11 +31,13 @@ export function ControlledDisplayFiltersGroup({
   toggleAllLabel,
   isToggleAll,
   toggledFilters,
+  activeFiltersChanged
 }: ControlledDisplayFiltersGroupProps) {
   const [showAll, setShowAll] = useState<boolean>(isToggleAll ?? false);
   const [availableFiltersNames, setAvailableFiltersNames] = useState<Set<string>>(
     new Set(filters.map((filter) => filter.label))
   );
+  const [displayedFilters, setDisplayedFilters] = useState<Set<string>>(getInitialState());
 
   useEffect(() => {
     setAvailableFiltersNames(new Set(filters.map((filter) => filter.label)));
@@ -48,8 +51,6 @@ export function ControlledDisplayFiltersGroup({
     }
     return new Set<string>();
   }
-
-  const [displayedFilters, setDisplayedFilters] = useState<Set<string>>(getInitialState());
 
   useEffect(() => {
     setShowAll(isToggleAll ?? false);
@@ -78,6 +79,31 @@ export function ControlledDisplayFiltersGroup({
     }
   }, [displayedFilters, availableFiltersNames]);
 
+  const onFilterChange = (label: string) => {
+    const updatedFilters = new Set(displayedFilters);
+    if (updatedFilters.has(label)) {
+      updatedFilters.delete(label);
+    } else {
+      updatedFilters.add(label);
+    }
+    setDisplayedFilters(updatedFilters);
+    // if (item.onChange) item.onChange(item.label);
+  };
+
+  const addFilter = (value: string) => {
+    setAvailableFiltersNames(new Set([...availableFiltersNames, value]));
+  };
+
+  const removeFilter = (value: string) => {
+    const updatedFilterList = new Set(availableFiltersNames);
+    updatedFilterList.delete(value);
+    setAvailableFiltersNames(updatedFilterList);
+  };
+
+  useEffect(() => {
+    activeFiltersChanged([...displayedFilters]);
+  }, [displayedFilters]);
+
   return (
     <Box sx={{ backgroundColor: 'rgba(248, 250, 252, 1)' }}>
       <Box>
@@ -87,20 +113,12 @@ export function ControlledDisplayFiltersGroup({
         return (
           <>
             <DisplayFilter
+              addFilter={addFilter}
+              removeFilter={removeFilter}
               showCompare={item?.showCompare}
-              showAll={showAll}
               value={showAll || displayedFilters.has(item.label)}
               label={item.label}
-              onChange={() => {
-                const updatedFilters = new Set(displayedFilters);
-                if (updatedFilters.has(item.label)) {
-                  updatedFilters.delete(item.label);
-                } else {
-                  updatedFilters.add(item.label);
-                }
-                setDisplayedFilters(updatedFilters);
-                if (item.onChange) item.onChange(item.label);
-              }}
+              onChange={onFilterChange}
             />
           </>
         );

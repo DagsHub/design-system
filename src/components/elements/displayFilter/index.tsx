@@ -18,27 +18,43 @@ import ComparePopover from './ComparePopover';
 
 export interface DisplayFilterProps {
   label: string;
-  showAll?: boolean;
-  onChange: () => void;
+  onChange: (filterName: string) => void;
   value: boolean;
-  showCancel?: boolean;
   showCompare?: boolean;
   isChild?: boolean;
-  cancelFilter?: (e: any) => void;
+  showRemoveButton?: boolean;
+  removeFilter?: (e: any) => void;
+  addFilter?: (value: string) => void;
 }
 
-export function DisplayFilter({ label, onChange, value, showCancel, showAll, showCompare, cancelFilter,
+export function DisplayFilter({
+  label,
+  onChange,
+  value,
+  showCompare,
+  removeFilter,
+  addFilter,
+  showRemoveButton
 }: DisplayFilterProps) {
-  const [show, setShow] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(true);
+  const [showAllChildren, setShowAllChildren] = useState<boolean>(true);
   const [open, setOpen] = useState<boolean>(false);
-  const [children, setChildren] = useState<{ name: string; value: string }[]>([{
-    value: '',
-    name: 'as of now'
-  }]);
+  const [children, setChildren] = useState<{ name: string; value: string }[]>([
+    {
+      value: '',
+      name: 'as of now'
+    }
+  ]);
 
   const filterClicked = () => {
-    setShow(!show);
-    onChange();
+    if (children.length > 1) {
+      children.map((item) => onChange(item.value));
+      setShowAllChildren(!showAllChildren);
+      setShow(!showAllChildren);
+    } else {
+      onChange(label);
+      setShow(!show);
+    }
   };
 
   const onToggle = (e: React.SyntheticEvent) => {
@@ -46,22 +62,35 @@ export function DisplayFilter({ label, onChange, value, showCancel, showAll, sho
     setOpen(!open);
   };
 
+  // control the show indication from outside when value changes (toggle all button)
   useEffect(() => {
     setShow(value);
+    if (value) {
+      setShowAllChildren(value);
+    }
   }, [value]);
 
+  // when show changes from outside
+  useEffect(() => {
+    if (children.length > 1) {
+      setShowAllChildren(show);
+    }
+  }, [show]);
+
   const search = ({ name, value }: { name: string; value: string }) => {
-    console.log('value ', value);
-    console.log('name ', name);
     // has results -
     // add the tag to the children list.
-    const newChildren = [...children || [], { name, value}];
+    const newChildren = [...(children || []), { name, value }];
     setChildren(newChildren);
+    addFilter && addFilter(value);
+    setOpen(true);
+
     // empty - toggle on no results
   };
 
-  const removeChildFilter = (e: any) => {
-    console.log('e', e);
+  const removeChildFilter = (filterToRemove: string) => {
+    const newChildren = children.filter((item) => item.name !== filterToRemove);
+    setChildren(newChildren);
   };
 
   return (
@@ -125,8 +154,8 @@ export function DisplayFilter({ label, onChange, value, showCancel, showAll, sho
             </Box>
 
             <Stack direction={'row'} gap={1}>
-              {!!cancelFilter && (
-                <IconButton onClick={() => cancelFilter(label) } sx={{ padding: 0 }}>
+              {showRemoveButton && (
+                <IconButton onClick={() => removeFilter && removeFilter(label)} sx={{ padding: 0 }}>
                   <CancelIcon
                     id={'cancel'}
                     sx={{
@@ -140,7 +169,7 @@ export function DisplayFilter({ label, onChange, value, showCancel, showAll, sho
                 </IconButton>
               )}
 
-              {showCompare && <ComparePopover search={search}/>}
+              {showCompare && <ComparePopover search={search} />}
 
               <IconButton
                 sx={{ padding: 0, height: '20px', width: '21.08px' }}
@@ -152,21 +181,20 @@ export function DisplayFilter({ label, onChange, value, showCancel, showAll, sho
           </Box>
         </Stack>
 
-        {/*annotations */}
         {children?.length > 1 && (
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <Box paddingLeft={2}>
-                {children?.map((item) => (
+                {children?.map((item, index) => (
                   <Tooltip title={item?.name}>
                     <div>
                       <DisplayFilter
+                        showRemoveButton={index > 0}
                         isChild
-                        value={!!showAll}
+                        value={showAllChildren}
                         label={item?.name}
-                        onChange={() => console.log('changed')}
-                        showCancel
-                        cancelFilter={removeChildFilter}
+                        onChange={() => onChange(item.name)}
+                        removeFilter={removeChildFilter}
                       />
                     </div>
                   </Tooltip>
