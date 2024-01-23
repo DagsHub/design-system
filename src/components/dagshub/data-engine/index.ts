@@ -17,4 +17,3 @@ export * from './PDFViewer/PDFViewer';
 export * from './CSVViewer/CSVViewer';
 export * from './queryBuilder/QueryBuilder';
 export * from './queryBuilder/QueryBuilderContext';
-export * from './queryBuilder/NewDatasetNameModal';

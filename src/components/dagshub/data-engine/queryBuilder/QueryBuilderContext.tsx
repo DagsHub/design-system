@@ -192,7 +192,7 @@ export const QueryBuilderProvider = ({
       JSON.stringify(removeIdFields(getInitialQuery())) !==
       JSON.stringify(removeIdFields(rootCondition))
     ) {
-      setRootCondition(() => getInitialQuery());
+      setRootCondition(getInitialQuery);
     }
     setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
   }, [queryInput.query]);
