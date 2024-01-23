@@ -12,6 +12,43 @@ const meta: Meta<ControlledDisplayFiltersGroupProps> = {
 };
 
 export default meta;
+function getRandomBoolean() {
+  return Math.random() < 0.5;
+}
+
+function generateRandomData() {
+  const data = [];
+  const names = ['John', 'Alice', 'Bob', 'Eve', 'Charlie'];
+
+  if (getRandomBoolean()) {
+    for (let i = 0; i < 5; i++) {
+      const randomIndex = Math.floor(Math.random() * names.length);
+      const name = names[randomIndex];
+      const value = Math.floor(Math.random() * 100);
+      data.push({ name, value });
+    }
+  }
+
+  return data;
+}
+
+function fetchData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const randomData = generateRandomData();
+      const isEmpty = randomData.length === 0;
+
+      if (isEmpty) {
+        resolve([]);
+      } else {
+        resolve(randomData);
+      }
+    }, 1000); // Simulating an asynchronous operation
+  });
+}
+
+
+
 
 const Template: StoryFn<typeof ControlledDisplayFiltersGroup> = (args) => (
   <Box width={'300px'}>
