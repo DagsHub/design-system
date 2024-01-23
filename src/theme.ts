@@ -10,6 +10,7 @@ declare module '@mui/material/Typography' {
     large: true;
     overflow: true;
     thin: true;
+    largeBold: true;
   }
 }
 
@@ -111,6 +112,14 @@ const lightTheme = createTheme({
           props: { variant: 'large' },
           style: {
             fontWeight: 500,
+            fontSize: '16px',
+            lineHeight: '24px'
+          }
+        },
+        {
+          props: { variant: 'largeBold' },
+          style: {
+            fontWeight: 700,
             fontSize: '16px',
             lineHeight: '24px'
           }
