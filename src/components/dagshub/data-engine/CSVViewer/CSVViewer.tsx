@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
+import {SizeColumnsToFitGridStrategy} from "ag-grid-community/dist/lib/interfaces/autoSizeStrategy";
 
 export function CSVViewer({
   headers,
@@ -38,6 +39,11 @@ export function CSVViewer({
     }))
   ];
 
+  const autoSizeStrategy: SizeColumnsToFitGridStrategy = {
+    type: 'fitGridWidth',
+    defaultMinWidth: 100,
+  };
+
   return (
     <div
       className={'ag-theme-quartz'}
@@ -47,7 +53,11 @@ export function CSVViewer({
         fontFamily: 'Inter!important'
       }}
     >
-      <AgGridReact rowData={rowData} columnDefs={columnDefs} tooltipShowDelay={400}></AgGridReact>
+      <AgGridReact rowData={rowData}
+                   columnDefs={columnDefs}
+                   autoSizeStrategy={autoSizeStrategy}
+                   tooltipShowDelay={400}>
+      </AgGridReact>
     </div>
   );
 }
