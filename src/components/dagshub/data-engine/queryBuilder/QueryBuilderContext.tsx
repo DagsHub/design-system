@@ -188,7 +188,12 @@ export const QueryBuilderProvider = ({
   );
 
   useEffect(() => {
-    setRootCondition(() => getInitialQuery());
+    if (
+      JSON.stringify(removeIdFields(getInitialQuery())) !==
+      JSON.stringify(removeIdFields(rootCondition))
+    ) {
+      setRootCondition(getInitialQuery);
+    }
     setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
   }, [queryInput.query]);
 
