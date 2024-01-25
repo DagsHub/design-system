@@ -145,7 +145,7 @@ function getSingleAnnotationResultLayers(
     flatPoints = result.value.points.flatMap((p) => pointPercentToPixel(p, dimension));
     flatBboxPoints = getPolygonLabelBbox(result, dimension);
     labelLayersPush(
-      <Line points={flatPoints} closed stroke={strokeColor} strokeWidth={1} fill={fillColor} />
+      <Line points={flatPoints} closed stroke={strokeColor} strokeWidth={2} fill={fillColor} />
     );
   } else if (isRectangleLabel(result)) {
     flatBboxPoints = rectangleLabelToBbox(result, dimension);
