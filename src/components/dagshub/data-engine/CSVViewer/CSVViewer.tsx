@@ -2,15 +2,9 @@ import React, { useCallback } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
-import {SizeColumnsToFitGridStrategy} from "ag-grid-community/dist/lib/interfaces/autoSizeStrategy";
+import { SizeColumnsToFitGridStrategy } from 'ag-grid-community/dist/lib/interfaces/autoSizeStrategy';
 
-export function CSVViewer({
-  headers,
-  values,
-}: {
-  headers: string[];
-  values: string[][];
-}) {
+export function CSVViewer({ headers, values }: { headers: string[]; values: string[][] }) {
   // Convert the data into the format expected by AgGridReact
   const rowData = values.map((rowValues) => {
     const rowDataObj: Record<string, string> = {};
@@ -41,7 +35,7 @@ export function CSVViewer({
 
   const autoSizeStrategy: SizeColumnsToFitGridStrategy = {
     type: 'fitGridWidth',
-    defaultMinWidth: 100,
+    defaultMinWidth: 100
   };
 
   return (
@@ -53,11 +47,12 @@ export function CSVViewer({
         fontFamily: 'Inter!important'
       }}
     >
-      <AgGridReact rowData={rowData}
-                   columnDefs={columnDefs}
-                   autoSizeStrategy={autoSizeStrategy}
-                   tooltipShowDelay={400}>
-      </AgGridReact>
+      <AgGridReact
+        rowData={rowData}
+        columnDefs={columnDefs}
+        autoSizeStrategy={autoSizeStrategy}
+        tooltipShowDelay={400}
+      ></AgGridReact>
     </div>
   );
 }

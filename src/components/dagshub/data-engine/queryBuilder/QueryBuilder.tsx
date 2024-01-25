@@ -15,7 +15,7 @@ export function QueryBuilder({
   onChange,
   validateValueByType,
   showConditionSummary = false,
-                               onQueryBuilderModeToggle,
+  onQueryBuilderModeToggle
 }: {
   queryInput: QueryInput;
   metadataFields: MetadataFieldProps[]; // need to take into consideration the select and the alias

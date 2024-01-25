@@ -109,7 +109,7 @@ interface QueryBuilderContextInterface {
   checkIfOperatorRequiresValueField: (operator: Comparator) => boolean;
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   isDisplayableInSimpleMode: boolean;
-  onToggleQueryMode: (isCompoundModeOn:boolean) => void;
+  onToggleQueryMode: (isCompoundModeOn: boolean) => void;
 }
 
 export const QueryBuilderContext = createContext<QueryBuilderContextInterface | undefined>(
@@ -191,7 +191,7 @@ export const QueryBuilderProvider = ({
 
   useEffect(() => {
     setIsCompoundModeForced(forceCompoundMode);
-  },[forceCompoundMode]);
+  }, [forceCompoundMode]);
 
   useEffect(() => {
     if (
@@ -238,9 +238,10 @@ export const QueryBuilderProvider = ({
     _.debounce(() => {
       onChange({
         ...queryInput,
-        query: removeRootAndBlockIfWasAddedAndNotNeeded(
-          convertUiFormatToBackandFormat(removeIdFields(rootCondition ?? {}))
-        ) ?? undefined
+        query:
+          removeRootAndBlockIfWasAddedAndNotNeeded(
+            convertUiFormatToBackandFormat(removeIdFields(rootCondition ?? {}))
+          ) ?? undefined
       });
     }, 200),
     [onChange, queryInput, rootCondition]
