@@ -7,7 +7,6 @@ import React, {
   useState
 } from 'react';
 import _ from 'lodash';
-import { root } from 'postcss';
 
 type MetadataType = 'BOOLEAN' | 'INTEGER' | 'FLOAT' | 'STRING' | 'BLOB';
 
@@ -235,16 +234,24 @@ export const QueryBuilderProvider = ({
     return condition;
   };
 
-  useEffect(() => {
-    // const debouncedOnChange = _.debounce(onChange, 200);
-    onChange({
-      ...queryInput,
-      query:
-        removeRootAndBlockIfWasAddedAndNotNeeded(
+  const debouncedOnChange = useCallback(
+    _.debounce(() => {
+      onChange({
+        ...queryInput,
+        query: removeRootAndBlockIfWasAddedAndNotNeeded(
           convertUiFormatToBackandFormat(removeIdFields(rootCondition ?? {}))
         ) ?? undefined
-    });
-  }, [rootCondition]);
+      });
+    }, 200),
+    [onChange, queryInput, rootCondition]
+  );
+
+  useEffect(() => {
+    debouncedOnChange();
+    return () => {
+      debouncedOnChange.cancel();
+    };
+  }, [debouncedOnChange]);
 
   function generateUniqueId(): string {
     return _.random(0, 100000).toString();
