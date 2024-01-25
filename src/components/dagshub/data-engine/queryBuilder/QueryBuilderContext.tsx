@@ -127,9 +127,9 @@ export const useQueryBuilderContext = () => {
 export const QueryBuilderProvider = ({
   children,
   queryInput,
-                                       metadataFields,
+  metadataFields,
   validateValueByType,
-  onChange,
+  onChange
 }: {
   children: ReactNode;
   queryInput: QueryInput;
@@ -172,8 +172,8 @@ export const QueryBuilderProvider = ({
     checkIfConditionIsDisplayableInSimpleMode(queryInput.query)
   );
   const [isCompoundModeForced, setIsCompoundModeForced] = useState<boolean>(false);
-  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(() =>
-    isDisplayableInSimpleMode && !isCompoundModeForced
+  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(
+    () => isDisplayableInSimpleMode && !isCompoundModeForced
   );
 
   useEffect(() => {
@@ -195,9 +195,9 @@ export const QueryBuilderProvider = ({
   }
 
   useEffect(() => {
-    console.log("set is simple mode", isDisplayableInSimpleMode && !isCompoundModeForced);
-    console.log("is compound mode forced", isCompoundModeForced);
-    console.log("is displayable in simple mode", isDisplayableInSimpleMode);
+    console.log('set is simple mode', isDisplayableInSimpleMode && !isCompoundModeForced);
+    console.log('is compound mode forced', isCompoundModeForced);
+    console.log('is displayable in simple mode', isDisplayableInSimpleMode);
     setIsSimpleMode(isDisplayableInSimpleMode && !isCompoundModeForced);
   }, [isCompoundModeForced, isDisplayableInSimpleMode]);
 
