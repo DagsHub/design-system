@@ -109,7 +109,7 @@ interface QueryBuilderContextInterface {
   checkIfOperatorRequiresValueField: (operator: Comparator) => boolean;
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   isDisplayableInSimpleMode: boolean;
-  onToggleQueryMode: (isCompoundModeOn: boolean) => void;
+  onToggleQueryMode: () => void;
 }
 
 export const QueryBuilderContext = createContext<QueryBuilderContextInterface | undefined>(
@@ -127,19 +127,15 @@ export const useQueryBuilderContext = () => {
 export const QueryBuilderProvider = ({
   children,
   queryInput,
-  metadataFields,
-  forceCompoundMode = false,
+                                       metadataFields,
   validateValueByType,
   onChange,
-  onQueryBuilderModeToggle
 }: {
   children: ReactNode;
   queryInput: QueryInput;
   metadataFields: MetadataFieldProps[]; // need to take into consideration the select and the alias
-  forceCompoundMode?: boolean;
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   onChange: (query: QueryInput) => void;
-  onQueryBuilderModeToggle: (isCompoundModeOn: boolean) => void;
 }) => {
   const getInitialQuery = useCallback(() => {
     let condition: AndOrMetadataInput | undefined = undefined;
@@ -171,27 +167,14 @@ export const QueryBuilderProvider = ({
     return true;
   };
 
-  const checkIfSimpleMode = useCallback(
-    (query: AndOrMetadataInput | undefined) => {
-      return !forceCompoundMode && checkIfConditionIsDisplayableInSimpleMode(query);
-    },
-    [forceCompoundMode]
-  );
-
   const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(() => getInitialQuery());
-  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(() =>
-    checkIfSimpleMode(queryInput.query)
-  );
-  const [metadataFieldsList, setMetadataFieldsList] =
-    useState<MetadataFieldProps[]>(metadataFields);
   const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(
     checkIfConditionIsDisplayableInSimpleMode(queryInput.query)
   );
-  const [isCompoundModeForced, setIsCompoundModeForced] = useState<boolean>(forceCompoundMode);
-
-  useEffect(() => {
-    setIsCompoundModeForced(forceCompoundMode);
-  }, [forceCompoundMode]);
+  const [isCompoundModeForced, setIsCompoundModeForced] = useState<boolean>(false);
+  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(() =>
+    isDisplayableInSimpleMode && !isCompoundModeForced
+  );
 
   useEffect(() => {
     if (
@@ -199,26 +182,24 @@ export const QueryBuilderProvider = ({
       JSON.stringify(removeIdFields(rootCondition))
     ) {
       setRootCondition(getInitialQuery);
+      setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
     }
-    setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
   }, [queryInput.query]);
 
   useEffect(() => {
     setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(rootCondition));
   }, [rootCondition]);
 
-  useEffect(() => {
-    setIsSimpleMode(checkIfSimpleMode(queryInput.query));
-  }, [forceCompoundMode, queryInput.query]);
-
   function onToggleQueryMode() {
     setIsCompoundModeForced(!isCompoundModeForced);
-    onQueryBuilderModeToggle(!isCompoundModeForced);
   }
 
   useEffect(() => {
-    setMetadataFieldsList(metadataFields);
-  }, [metadataFields]);
+    console.log("set is simple mode", isDisplayableInSimpleMode && !isCompoundModeForced);
+    console.log("is compound mode forced", isCompoundModeForced);
+    console.log("is displayable in simple mode", isDisplayableInSimpleMode);
+    setIsSimpleMode(isDisplayableInSimpleMode && !isCompoundModeForced);
+  }, [isCompoundModeForced, isDisplayableInSimpleMode]);
 
   //This function is used to remove the root and wrapper, if it was added for ui purposes and not needed anymore
   const removeRootAndBlockIfWasAddedAndNotNeeded = (condition: AndOrMetadataInput | null) => {
@@ -439,7 +420,7 @@ export const QueryBuilderProvider = ({
         setIsSimpleMode,
         rootCondition,
         setRootCondition,
-        metadataFieldsList,
+        metadataFieldsList: metadataFields,
         generateUniqueId,
         addUniqueIds,
         getOperatorsByMetadataType,
