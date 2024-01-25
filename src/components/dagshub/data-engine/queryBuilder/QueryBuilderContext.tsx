@@ -167,13 +167,12 @@ export const QueryBuilderProvider = ({
     return true;
   };
 
-  const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(() => getInitialQuery());
+  const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(getInitialQuery);
   const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(
-    checkIfConditionIsDisplayableInSimpleMode(queryInput.query)
+    ()=>checkIfConditionIsDisplayableInSimpleMode(queryInput.query)
   );
-  const [isCompoundModeForced, setIsCompoundModeForced] = useState<boolean>(false);
   const [isSimpleMode, setIsSimpleMode] = useState<boolean>(
-    () => isDisplayableInSimpleMode && !isCompoundModeForced
+    isDisplayableInSimpleMode
   );
 
   useEffect(() => {
@@ -191,15 +190,24 @@ export const QueryBuilderProvider = ({
   }, [rootCondition]);
 
   function onToggleQueryMode() {
-    setIsCompoundModeForced(!isCompoundModeForced);
+    setIsSimpleMode((isSimpleMode)=>{
+      if(isSimpleMode){
+        return false;
+      } else{
+        return isDisplayableInSimpleMode;
+      }
+    });
   }
 
   useEffect(() => {
-    console.log('set is simple mode', isDisplayableInSimpleMode && !isCompoundModeForced);
-    console.log('is compound mode forced', isCompoundModeForced);
-    console.log('is displayable in simple mode', isDisplayableInSimpleMode);
-    setIsSimpleMode(isDisplayableInSimpleMode && !isCompoundModeForced);
-  }, [isCompoundModeForced, isDisplayableInSimpleMode]);
+    setIsSimpleMode((isSimpleMode)=>{
+      if(isSimpleMode){
+        return isDisplayableInSimpleMode;
+      }else{
+        return false;
+      }
+    });
+  }, [isDisplayableInSimpleMode]);
 
   //This function is used to remove the root and wrapper, if it was added for ui purposes and not needed anymore
   const removeRootAndBlockIfWasAddedAndNotNeeded = (condition: AndOrMetadataInput | null) => {
