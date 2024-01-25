@@ -110,7 +110,7 @@ interface QueryBuilderContextInterface {
   checkIfOperatorRequiresValueField: (operator: Comparator) => boolean;
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   isDisplayableInSimpleMode: boolean;
-  onToggleQueryMode: () => void;
+  onToggleQueryMode: (isCompoundModeOn:boolean) => void;
 }
 
 export const QueryBuilderContext = createContext<QueryBuilderContextInterface | undefined>(
@@ -131,7 +131,8 @@ export const QueryBuilderProvider = ({
   metadataFields,
   forceCompoundMode = false,
   validateValueByType,
-  onChange
+  onChange,
+  onQueryBuilderModeToggle
 }: {
   children: ReactNode;
   queryInput: QueryInput;
@@ -139,6 +140,7 @@ export const QueryBuilderProvider = ({
   forceCompoundMode?: boolean;
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   onChange: (query: QueryInput) => void;
+  onQueryBuilderModeToggle: (isCompoundModeOn: boolean) => void;
 }) => {
   const getInitialQuery = useCallback(() => {
     let condition: AndOrMetadataInput | undefined = undefined;
@@ -186,6 +188,11 @@ export const QueryBuilderProvider = ({
   const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(
     checkIfConditionIsDisplayableInSimpleMode(queryInput.query)
   );
+  const [isCompoundModeForced, setIsCompoundModeForced] = useState<boolean>(forceCompoundMode);
+
+  useEffect(() => {
+    setIsCompoundModeForced(forceCompoundMode);
+  },[forceCompoundMode]);
 
   useEffect(() => {
     if (
@@ -206,7 +213,8 @@ export const QueryBuilderProvider = ({
   }, [forceCompoundMode, queryInput.query]);
 
   function onToggleQueryMode() {
-    setIsSimpleMode(!isSimpleMode);
+    setIsCompoundModeForced(!isCompoundModeForced);
+    onQueryBuilderModeToggle(!isCompoundModeForced);
   }
 
   useEffect(() => {
@@ -228,6 +236,7 @@ export const QueryBuilderProvider = ({
   };
 
   useEffect(() => {
+    // const debouncedOnChange = _.debounce(onChange, 200);
     onChange({
       ...queryInput,
       query:
