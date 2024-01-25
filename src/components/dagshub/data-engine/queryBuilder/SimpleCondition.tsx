@@ -208,8 +208,7 @@ export function SimpleCondition({
               filter: {
                 ...condition.filter,
                 key: value?.id,
-                valueType: metadataFields.find((field) => field.name === value?.label)
-                  ?.valueType
+                valueType: metadataFields.find((field) => field.name === value?.label)?.valueType
               }
             });
           }}
