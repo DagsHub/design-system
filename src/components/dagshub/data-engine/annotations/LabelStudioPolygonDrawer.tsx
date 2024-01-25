@@ -1,5 +1,10 @@
-import React, { CSSProperties, useEffect, useRef, useState } from 'react';
-import { Circle, Layer, Line, Stage, Text, Image, Ellipse } from 'react-konva';
+import React, {
+  CSSProperties,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
+import { Circle, Layer, Line, Stage, Text, Image, Ellipse, Rect, Group } from 'react-konva';
 import { useContainerDimensions } from './utils';
 import {
   getLabel,
@@ -66,13 +71,6 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
     width: '100%',
     height: '100%'
   };
-  const imgStyle: CSSProperties = {
-    margin: 'auto',
-    objectFit: 'contain',
-    width: '100%',
-    height: '100%',
-    display: 'block'
-  };
 
   const labelComponents: React.ReactNode[] = [];
   const textComponents: React.ReactNode[] = [];
@@ -129,6 +127,9 @@ function getSingleAnnotationResultLayers(
   labelLayersPush: (elem: React.ReactNode) => void,
   textLayersPush: (elem: React.ReactNode) => void
 ) {
+  const [textWidth, setTextWidth] = useState<number>(1);
+  const [textHeight, setTextHeight] = useState<number>(1);
+
   let flatPoints: number[] = [];
   let flatBboxPoints: number[] = [];
   const label = getLabel(result);
@@ -139,11 +140,12 @@ function getSingleAnnotationResultLayers(
   const [R, G, B] = colorProvider(label, column);
   const strokeColor = `rgb(${R},${G},${B})`;
   const fillColor = `rgba(${R},${G},${B},0.5)`;
+
   if (isPolygonLabel(result)) {
     flatPoints = result.value.points.flatMap((p) => pointPercentToPixel(p, dimension));
     flatBboxPoints = getPolygonLabelBbox(result, dimension);
     labelLayersPush(
-      <Line points={flatPoints} closed stroke={strokeColor} strokeWidth={2} fill={fillColor} />
+      <Line points={flatPoints} closed stroke={strokeColor} strokeWidth={1} fill={fillColor} />
     );
   } else if (isRectangleLabel(result)) {
     flatBboxPoints = rectangleLabelToBbox(result, dimension);
@@ -155,6 +157,9 @@ function getSingleAnnotationResultLayers(
     const { x: cxPercent, y: cyPercent, radiusX: rxPercent, radiusY: ryPercent } = result.value;
     const [cx, cy] = pointPercentToPixel([cxPercent, cyPercent], dimension);
     const [rx, ry] = pointPercentToPixel([rxPercent, ryPercent], dimension);
+
+    const strokeWidth = rx * 2 > 6 || ry * 2 > 6 ? 2 : 0;
+
     labelLayersPush(
       <Ellipse
         x={cx}
@@ -162,24 +167,45 @@ function getSingleAnnotationResultLayers(
         radiusX={rx}
         radiusY={ry}
         stroke={strokeColor}
-        strokeWidth={2}
+        strokeWidth={strokeWidth}
         fill={fillColor}
       />
     );
   }
   if (flatBboxPoints.length > 0) {
-    labelLayersPush(<Line points={flatBboxPoints} closed stroke={strokeColor} strokeWidth={2} />);
+    labelLayersPush(<Line points={flatBboxPoints} closed stroke={strokeColor} strokeWidth={1} />);
     const textPosition = { x: flatBboxPoints[0], y: flatBboxPoints[1] - fontSize };
-    textLayersPush(
-      <Text
-        x={textPosition.x}
-        y={textPosition.y}
-        text={label}
-        fontSize={14}
-        fill="white"
-        fontStyle="bold"
-        align="center"
-      />
+
+    const text = (
+      <Group listening={false}>
+        <Rect
+          x={textPosition.x + textHeight}
+          y={textPosition.y + textHeight}
+          width={textWidth + 20}
+          height={textHeight + 10}
+          opacity={0.3}
+          fill={`rgba(${R},${G},${B}, 1)`}
+          shadowBlur={10}
+        />
+        <Text
+          ref={(e) => {
+            setTextWidth(e?.textWidth ?? 1);
+            setTextHeight(e?.textHeight ?? 1);
+          }}
+          x={textPosition.x}
+          y={textPosition.y}
+          padding={20}
+          height={32}
+          text={label}
+          fontSize={14}
+          fill="white"
+          fontStyle="bold"
+          align="center"
+          zIndex={3}
+        />
+      </Group>
     );
+
+    textLayersPush(text);
   }
 }
