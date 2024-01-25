@@ -179,9 +179,9 @@ function getSingleAnnotationResultLayers(
     const text = (
       <Group listening={false}>
         <Rect
-          x={textPosition.x + textHeight}
-          y={textPosition.y + textHeight}
-          width={textWidth + 20}
+          x={textPosition.x}
+          y={textPosition.y - 10}
+          width={textWidth + 10}
           height={textHeight + 10}
           opacity={0.3}
           fill={`rgba(${R},${G},${B}, 1)`}
@@ -192,8 +192,8 @@ function getSingleAnnotationResultLayers(
             setTextWidth(e?.textWidth ?? 1);
             setTextHeight(e?.textHeight ?? 1);
           }}
-          x={textPosition.x}
-          y={textPosition.y}
+          x={textPosition.x - 15}
+          y={textPosition.y - 25}
           padding={20}
           height={32}
           text={label}
