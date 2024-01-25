@@ -32,7 +32,6 @@ export function SingleFileViewDataSection({
 }) {
   const SIDEBAR_WIDTH = 350; //I decided on this number
   const ARROWS_SECTION_HEIGHT = 52;
-  console.log('item data ', itemData)
 
   const [showMetadataSidebar, setShowMetadataSidebar] = useState<boolean>(true);
   return (
