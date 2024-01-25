@@ -173,6 +173,7 @@ export function DropdownV2({
         </Typography>
         {/*This is a hidden div that is used to calculate the width of the input field*/}
         <Autocomplete
+          isOptionEqualToValue={(option: RadioButtonItemProps, value:RadioButtonItemProps) => option.id === value.id && option.label === value.label}
           noOptionsText={
             <Typography
               sx={{
