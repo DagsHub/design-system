@@ -102,7 +102,7 @@ interface QueryBuilderContextInterface {
   setIsSimpleMode: (isSimpleMode: boolean) => void;
   rootCondition: AndOrMetadataInput;
   setRootCondition: (rootCondition: AndOrMetadataInput) => void;
-  metadataFieldsList: MetadataFieldProps[];
+  metadataFields: MetadataFieldProps[];
   generateUniqueId: () => string;
   addUniqueIds: (input: AndOrMetadataInput) => AndOrMetadataInput;
   getOperatorsByMetadataType: (type: MetadataType) => { label: string; id: Comparator }[];
@@ -426,7 +426,7 @@ export const QueryBuilderProvider = ({
         setIsSimpleMode,
         rootCondition,
         setRootCondition,
-        metadataFieldsList: metadataFields,
+        metadataFields,
         generateUniqueId,
         addUniqueIds,
         getOperatorsByMetadataType,
