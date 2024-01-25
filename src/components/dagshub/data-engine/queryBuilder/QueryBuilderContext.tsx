@@ -252,7 +252,7 @@ export const QueryBuilderProvider = ({
     return () => {
       debouncedOnChange.cancel();
     };
-  }, [debouncedOnChange]);
+  }, [rootCondition]);
 
   function generateUniqueId(): string {
     return _.random(0, 100000).toString();
