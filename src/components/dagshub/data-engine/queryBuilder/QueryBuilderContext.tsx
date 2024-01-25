@@ -168,12 +168,10 @@ export const QueryBuilderProvider = ({
   };
 
   const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(getInitialQuery);
-  const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(
-    ()=>checkIfConditionIsDisplayableInSimpleMode(queryInput.query)
+  const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(() =>
+    checkIfConditionIsDisplayableInSimpleMode(queryInput.query)
   );
-  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(
-    isDisplayableInSimpleMode
-  );
+  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(isDisplayableInSimpleMode);
 
   useEffect(() => {
     if (
@@ -190,20 +188,20 @@ export const QueryBuilderProvider = ({
   }, [rootCondition]);
 
   function onToggleQueryMode() {
-    setIsSimpleMode((isSimpleMode)=>{
-      if(isSimpleMode){
+    setIsSimpleMode((isSimpleMode) => {
+      if (isSimpleMode) {
         return false;
-      } else{
+      } else {
         return isDisplayableInSimpleMode;
       }
     });
   }
 
   useEffect(() => {
-    setIsSimpleMode((isSimpleMode)=>{
-      if(isSimpleMode){
+    setIsSimpleMode((isSimpleMode) => {
+      if (isSimpleMode) {
         return isDisplayableInSimpleMode;
-      }else{
+      } else {
         return false;
       }
     });
