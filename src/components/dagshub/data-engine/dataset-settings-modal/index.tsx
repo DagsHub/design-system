@@ -4,6 +4,7 @@ import { Input } from '../../../forms';
 import { GenericModal } from '../../organization';
 import { ButtonVariant, Button } from '../../../elements';
 import './dataset-settings-modal.scss';
+import {Message} from "../../../elements/message";
 
 export interface DatasetSettingsModal {
   name: string;
@@ -63,6 +64,17 @@ export function DatasetSettingsModal({
 
   let elements: JSX.Element[];
   elements = [
+      <>
+        {
+        isDataset ?
+        <Message text={'Deleting a dataset will only remove the query, it won’t delete the actual files and metadata in the repository.'}
+                 kind={'warning'}
+        /> :
+        <Message text={'Deleting a datasource will only remove the source from the table and its associated metadata, it won’t delete the actual files in the repository.'}
+                 kind={'warning'}
+        />
+        }
+        </>,
     <Input
       label={
         onlyRemove
