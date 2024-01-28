@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import QueryBuilder from '../../../../components/dagshub/data-engine/queryBuilder/QueryBuilder';
-import { MetadataType } from '../../../../components/dagshub/data-engine/queryBuilder/QueryBuilderContext';
+import { MetadataType } from '../../../../components';
 
 const meta: Meta<typeof QueryBuilder> = {
   title: 'DagsHub/Data-Engine/QueryBuilder/Condition',
@@ -69,7 +69,46 @@ compoundQueryBuilderDataset.args = {
 
 export const simpleQueryBuilder: StoryFn<typeof QueryBuilder> = Template.bind({});
 simpleQueryBuilder.args = {
+  queryInput: {
+    query: {
+      filter: {
+        key: 'weight',
+        comparator: 'EQUAL',
+        valueType: 'FLOAT',
+        value: 'inf'
+      }
+    }
+  },
+  metadataFields: [
+    { name: 'size', valueType: 'INTEGER', tags: [], multiple: false },
+    { name: 'author', valueType: 'STRING', tags: [], multiple: false },
+    { name: 'isCat', valueType: 'BOOLEAN', tags: [], multiple: false },
+    { name: 'weight', valueType: 'FLOAT', tags: [], multiple: false },
+    { name: 'image', valueType: 'BLOB', tags: [], multiple: false }
+  ],
+  validateValueByType: validateValueByType,
+  onChange: () => {},
+  showConditionSummary: true
+};
+
+export const emptyQuery: StoryFn<typeof QueryBuilder> = Template.bind({});
+emptyQuery.args = {
   queryInput: {},
+  metadataFields: [
+    { name: 'size', valueType: 'INTEGER', tags: [], multiple: false },
+    { name: 'author', valueType: 'STRING', tags: [], multiple: false },
+    { name: 'isCat', valueType: 'BOOLEAN', tags: [], multiple: false },
+    { name: 'weight', valueType: 'FLOAT', tags: [], multiple: false },
+    { name: 'image', valueType: 'BLOB', tags: [], multiple: false }
+  ],
+  validateValueByType: validateValueByType,
+  onChange: () => {},
+  showConditionSummary: true
+};
+
+export const emptyQueryWithinAndBlock: StoryFn<typeof QueryBuilder> = Template.bind({});
+emptyQueryWithinAndBlock.args = {
+  queryInput: { query: { and: [] } },
   metadataFields: [
     { name: 'size', valueType: 'INTEGER', tags: [], multiple: false },
     { name: 'author', valueType: 'STRING', tags: [], multiple: false },
@@ -86,12 +125,60 @@ export const queryBuilderWithQuery: StoryFn<typeof QueryBuilder> = Template.bind
 queryBuilderWithQuery.args = {
   queryInput: {
     query: {
-      filter: {
-        key: 'size',
-        value: '1450000',
-        valueType: 'INTEGER',
-        comparator: 'LESS_EQUAL_THAN'
-      }
+      and: [
+        {
+          filter: {
+            key: 'weight',
+            comparator: 'EQUAL',
+            valueType: 'FLOAT',
+            value: 'inf'
+          }
+        },
+        {
+          filter: {
+            key: 'weight',
+            comparator: 'EQUAL',
+            valueType: 'FLOAT',
+            value: '-inf'
+          }
+        },
+        {
+          filter: {
+            key: 'weight',
+            comparator: 'EQUAL',
+            valueType: 'FLOAT',
+            value: 'nan'
+          }
+        },
+        {
+          filter: {
+            key: 'image',
+            comparator: 'IS_NULL',
+            valueType: 'FLOAT',
+            value: ''
+          }
+        },
+        {
+          filter: {
+            key: 'size',
+            value: '1450000',
+            valueType: 'INTEGER',
+            comparator: 'LESS_EQUAL_THAN'
+          }
+        },
+        {
+          and: [
+            {
+              filter: {
+                key: 'isCat',
+                comparator: 'EQUAL',
+                valueType: 'BOOLEAN',
+                value: 'true'
+              }
+            }
+          ]
+        }
+      ]
     }
   },
   metadataFields: [

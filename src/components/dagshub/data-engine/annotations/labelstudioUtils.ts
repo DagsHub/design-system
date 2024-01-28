@@ -47,6 +47,10 @@ export function isKeyPointLabel(result: Result): result is KeyPointResult {
   return (result as KeyPointResult).type === 'keypointlabels';
 }
 
+export function isEllipseLabel(result: Result): result is KeyPointResult {
+  return (result as KeyPointResult).type === 'ellipselabels';
+}
+
 export function getLabel(label: Result): string {
   if (isPolygonLabel(label)) {
     return label.value.polygonlabels[0];
@@ -54,6 +58,8 @@ export function getLabel(label: Result): string {
     return label.value.rectanglelabels[0];
   } else if (isKeyPointLabel(label)) {
     return label.value.keypointlabels[0];
+  } else if (isEllipseLabel(label)) {
+    return label.value.ellipselabels[0];
   }
   return '';
 }

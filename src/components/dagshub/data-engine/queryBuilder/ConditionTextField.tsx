@@ -24,12 +24,11 @@ export function ConditionTextField({
   isErrored?: boolean;
 }) {
   const [currentValue, setCurrentValue] = useState(value);
-  const [inputWidth, setInputWidth] = useState<number>();
-
   const textFieldRef = useRef<HTMLDivElement | null>(null);
   const textFieldWrapperContainerRef = useRef<HTMLDivElement | null>(null);
   const [focused, setFocused] = useState(false);
   const copyTextFieldRef = useRef<HTMLDivElement | null>(null);
+  const [inputWidth, setInputWidth] = useState<number>(copyTextFieldRef.current?.scrollWidth ?? 0);
 
   useEffect(() => {
     setInputWidth(copyTextFieldRef.current?.scrollWidth ?? 0);
@@ -74,7 +73,12 @@ export function ConditionTextField({
         sx={{
           display: 'flex',
           height: '100%',
-          position: 'relative'
+          flexDirection: 'column',
+          width: !!inputWidth ? inputWidth : 'min-content',
+          minWidth: '40px',
+          '.MuiFormHelperText-root': {
+            width: 'max-content'
+          }
         }}
         onMouseDown={(e) => {
           if (disabled) {
@@ -83,6 +87,24 @@ export function ConditionTextField({
         }}
         ref={textFieldWrapperContainerRef}
       >
+        <Typography
+          variant={'medium'}
+          ref={copyTextFieldRef}
+          style={{
+            display: 'flex',
+            zIndex: -1,
+            color: 'transparent',
+            borderRadius: '8px',
+            padding: '0px 10px',
+            flexWrap: 'nowrap',
+            width: 'max-content',
+            height: '0px',
+            boxSizing: 'border-box'
+          }}
+        >
+          {currentValue ? currentValue : focused ? undefined : placeholder}
+        </Typography>
+        {/*This is a hidden div that is used to calculate the width of the input field*/}
         <StyledTextField
           helperTextPaddingBottom={'0px'}
           isErrored={isErrored}
@@ -92,7 +114,6 @@ export function ConditionTextField({
           backgroundColorFocus={'rgba(248, 250, 252, 1)'}
           helperTextPaddingLeft={'0px'}
           disabled={disabled}
-          width={'auto'}
           borderRadius={'8px'}
           changeColorOnHover={!disabled}
           inputRef={textFieldRef}
@@ -110,8 +131,6 @@ export function ConditionTextField({
                   opacity: 1
                 },
                 height: '28px',
-                minWidth: '40px',
-                width: `${inputWidth}px`,
                 boxSizing: 'border-box'
               }
             }
@@ -124,27 +143,6 @@ export function ConditionTextField({
           value={currentValue}
           placeholder={focused ? undefined : placeholder}
         />
-        <Typography
-          variant={'medium'}
-          ref={copyTextFieldRef}
-          style={{
-            display: 'flex',
-            flexWrap: 'nowrap',
-            width: 'max-content',
-            zIndex: -1,
-            color: 'transparent',
-            borderRadius: '8px',
-            padding: '0px 9px',
-            minWidth: '40px',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            boxSizing: 'border-box'
-          }}
-        >
-          {currentValue ? currentValue : focused ? undefined : placeholder}
-        </Typography>
-        {/*This is a hidden div that is used to calculate the width of the input field*/}
       </Box>
     </ThemeProvider>
   );

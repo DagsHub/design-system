@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { ConditionDropdown } from './ConditionDropdown';
-import { Box, IconButton, Menu, MenuItem, ThemeProvider, Tooltip, Typography } from '@mui/material';
+import {
+  Box,
+  Divider,
+  IconButton,
+  Menu,
+  MenuItem,
+  ThemeProvider,
+  Tooltip,
+  Typography
+} from '@mui/material';
 import ConditionTextField from './ConditionTextField';
 import { Button, ButtonVariant } from '../../../elements';
 import { Icon } from '../../../icons';
@@ -9,6 +18,7 @@ import AddIcon from '@mui/icons-material/Add';
 import {
   AndOrMetadataInput,
   Comparator,
+  MetadataFieldProps,
   Operators,
   useQueryBuilderContext
 } from './QueryBuilderContext';
@@ -32,12 +42,58 @@ export function SimpleCondition({
     checkIfOperatorRequiresValueField
   } = useQueryBuilderContext();
 
-  const [operatorsList, setOperatorsList] =
-    useState<{ label: string; id: Comparator }[]>(Operators);
-  const [shouldDisplayValueField, setShouldDisplayValueField] = useState<boolean>(true);
+  const [operatorsList, setOperatorsList] = useState<{ label: string; id: Comparator }[]>(
+    condition?.filter?.valueType
+      ? getOperatorsByMetadataType(condition.filter.valueType)
+      : Operators
+  );
+  const [shouldDisplayValueField, setShouldDisplayValueField] = useState<boolean>(
+    condition.filter?.comparator
+      ? checkIfOperatorRequiresValueField(condition.filter?.comparator)
+      : false
+  );
   const [isErrored, setIsErrored] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  function checkIfConditionIsUncompleted() {
+    return (
+      !(condition.filter?.valueType == 'STRING' && condition.filter?.comparator == 'EQUAL') &&
+      ((!condition.filter?.value && shouldDisplayValueField) ||
+        !condition.filter?.key ||
+        !condition.filter?.comparator)
+    );
+  }
+
+  const [isEmpty, setIsEmpty] = useState<boolean>(checkIfConditionIsUncompleted());
+
+  function getSelectedMetadataKey() {
+    return metadataFieldsList?.find((field) => field.name === condition.filter?.key);
+  }
+
+  const [selectedMetadataKey, setSelectedMetadataKey] = useState<MetadataFieldProps | undefined>(
+    getSelectedMetadataKey()
+  );
+
+  function getSelectedComparator() {
+    return operatorsList?.find((operator) => operator.id === condition.filter?.comparator);
+  }
+
+  const [selectedOperator, setSelectedOperator] = useState<
+    { label: string; id: Comparator } | undefined
+  >(getSelectedComparator());
+
+  useEffect(() => {
+    setIsEmpty(checkIfConditionIsUncompleted());
+  }, [condition]);
+
+  useEffect(() => {
+    setSelectedMetadataKey(getSelectedMetadataKey());
+  }, [metadataFieldsList, condition.filter?.key]);
+
+  useEffect(() => {
+    setSelectedOperator(getSelectedComparator());
+  }, [operatorsList, condition.filter?.comparator]);
 
   useEffect(() => {
     if (!!condition?.filter?.valueType) {
@@ -59,8 +115,8 @@ export function SimpleCondition({
   useEffect(() => {
     // check if comparator exists in operatorsList, and if not, change the comparator to the first one in the list
     if (!!condition.filter?.comparator) {
-      const comparatorExists = operatorsList.some((op) => op.id === condition.filter?.comparator);
-      if (!comparatorExists) {
+      const comparatorExists = operatorsList?.some((op) => op.id === condition.filter?.comparator);
+      if (!!operatorsList && !comparatorExists) {
         onChange({
           ...condition,
           filter: { ...condition.filter, comparator: operatorsList[0].id }
@@ -70,26 +126,22 @@ export function SimpleCondition({
   }, [operatorsList]);
 
   useEffect(() => {
-    if (!!condition.filter?.valueType && !!condition.filter?.value && !!condition.filter?.comparator) {
-      setIsErrored(!validateValueByType(condition.filter.valueType, condition.filter.value, condition.filter.comparator));
+    if (
+      !!condition.filter?.valueType &&
+      !!condition.filter?.value &&
+      !!condition.filter?.comparator
+    ) {
+      setIsErrored(
+        !validateValueByType(
+          condition.filter.valueType,
+          condition.filter.value,
+          condition.filter.comparator
+        )
+      );
     } else {
       setIsErrored(false);
     }
   }, [condition.filter?.valueType, condition.filter?.value]);
-
-  const isEmpty =
-    !(condition.filter?.valueType == 'STRING' && condition.filter?.comparator == 'EQUAL') &&
-    ((!condition.filter?.value && shouldDisplayValueField) ||
-      !condition.filter?.key ||
-      !condition.filter?.comparator);
-
-  const selectedMetadataKey = metadataFieldsList.find(
-    (field) => field.name === condition.filter?.key
-  );
-
-  const selectedOperator = operatorsList.find(
-    (operator) => operator.id === condition.filter?.comparator
-  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -164,6 +216,7 @@ export function SimpleCondition({
           options={metadataFieldsList?.map((field) => ({ id: field.name, label: field.name }))}
         />
         <ConditionDropdown
+          isReadOnly={true}
           removeEndAdornment
           alignInputTextToCenter={true}
           inputColor={'rgba(84, 103, 222, 1)'}
@@ -176,7 +229,7 @@ export function SimpleCondition({
           onChange={(e, value) => {
             onChange({ ...condition, filter: { ...condition.filter, comparator: value?.id } });
           }}
-          options={operatorsList?.map((op) => ({ id: op.id, label: op.label }))}
+          options={operatorsList?.map((op) => ({ id: op.id, label: op.label })) ?? []}
         />
         {shouldDisplayValueField &&
           (condition.filter?.valueType === 'BOOLEAN' && condition.filter.comparator === 'EQUAL' ? (
@@ -288,7 +341,9 @@ export function SimpleCondition({
             '& .MuiPaper-root': {
               borderRadius: '12px'
             },
-            padding: '8px'
+            '.MuiList-root': {
+              padding: '8px!important'
+            }
           }}
           id="basic-menu"
           anchorEl={anchorEl}
@@ -303,18 +358,44 @@ export function SimpleCondition({
               onAdd();
               setIsOpen(false);
             }}
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '8px',
+              alignItems: 'center',
+              padding: '8px!important'
+            }}
           >
+            <Icon icon={'solid-plus'} width={11.2} height={11.2} fill={'rgba(71, 85, 105, 1)'} />
             <Typography variant={'medium'}>Add condition</Typography>
           </MenuItem>
           {!isSimpleMode && !condition.not && (
-            <MenuItem
-              onClick={() => {
-                onChange({ ...condition, not: !condition.not });
-                setIsOpen(false);
-              }}
-            >
-              <Typography variant={'medium'}>Add NOT to condition</Typography>
-            </MenuItem>
+            <>
+              <Divider
+                sx={{
+                  height: '2px',
+                  backgroundColor: 'rgba(226, 232, 240, 1)',
+                  border: '0px',
+                  margin: '0px!important'
+                }}
+              />
+              <MenuItem
+                onClick={() => {
+                  onChange({ ...condition, not: !condition.not });
+                  setIsOpen(false);
+                }}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: '8px',
+                  alignItems: 'center',
+                  padding: '8px!important'
+                }}
+              >
+                <Icon icon={'outline-not'} width={14} height={14} fill={'rgba(71, 85, 105, 1)'} />
+                <Typography variant={'medium'}>Add NOT to condition</Typography>
+              </MenuItem>
+            </>
           )}
         </Menu>
         {isEmpty && (

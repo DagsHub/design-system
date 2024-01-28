@@ -9,13 +9,15 @@ export function Condition({
   onChange,
   level = 0,
   onRemove,
-  onAdd
+  onAdd,
+  isCollapsed = true
 }: {
   condition: AndOrMetadataInput;
   onChange: any;
   level?: number;
   onRemove?: () => void;
   onAdd?: () => void;
+  isCollapsed?: boolean;
 }) {
   return (
     <Box key={condition.id ?? condition.filter?.id}>

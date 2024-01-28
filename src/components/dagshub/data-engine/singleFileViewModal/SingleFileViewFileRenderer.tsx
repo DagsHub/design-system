@@ -49,9 +49,7 @@ export const SingleFileViewFileRenderer = ({ itemData }: VisualizerProps) => {
 
   if (!!galleryFilePath && !!itemType) {
     if (isError) {
-      return (
-        <ItemFallback height={'100%'} width={'100%'} disableHoverMode isError={true} />
-      );
+      return <ItemFallback height={'100%'} width={'100%'} disableHoverMode isError={true} />;
     }
     if (itemType === 'image') {
       return (
@@ -144,9 +142,8 @@ export const SingleFileViewFileRenderer = ({ itemData }: VisualizerProps) => {
       );
     }
     if (itemType === 'csv') {
-      return <CSVViewer headers={csvHeaders} values={csvValues} columnWidth={160} />;
+      return <CSVViewer headers={csvHeaders} values={csvValues} />;
     }
   }
   return <ItemFallback height={'100%'} width={'100%'} disableHoverMode />;
 };
-

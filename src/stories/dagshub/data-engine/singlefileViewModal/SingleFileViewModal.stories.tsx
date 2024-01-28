@@ -170,26 +170,30 @@ const Template: StoryFn<typeof SingleFileViewModal> = (args) => {
   return (
     <>
       {isModalOpen ? (
-        <SingleFileViewModal
-          {...args}
-          closeModal={() => {
-            setIsModalOpen(false);
-          }}
-          itemData={currentItemData}
-          onGetNextItemClickHandler={() => {
-            setCurrentItemData(itemDataMockList[currentItemData.itemIndex + 1]);
-          }}
-          onGetPreviousItemClickHandler={() => {
-            setCurrentItemData(itemDataMockList[currentItemData.itemIndex - 1]);
-          }}
-          onSelectItemToggle={onSelectItemToggle}
-          enableDatapointAnnotating={true}
-          enableFileDownloading={true}
-          onAnnotatedClick={() => {
-            console.log('annotated');
-          }}
-          visualizerRenderer={({itemData}) => <SingleFileViewFileRenderer itemData={itemData} />}
-        />
+        <div id="single-file-view">
+          <SingleFileViewModal
+            {...args}
+            closeModal={() => {
+              setIsModalOpen(false);
+            }}
+            itemData={currentItemData}
+            onGetNextItemClickHandler={() => {
+              setCurrentItemData(itemDataMockList[currentItemData.itemIndex + 1]);
+            }}
+            onGetPreviousItemClickHandler={() => {
+              setCurrentItemData(itemDataMockList[currentItemData.itemIndex - 1]);
+            }}
+            onSelectItemToggle={onSelectItemToggle}
+            enableDatapointAnnotating={true}
+            enableFileDownloading={true}
+            onAnnotatedClick={() => {
+              console.log('annotated');
+            }}
+            visualizerRenderer={({ itemData }) => (
+              <SingleFileViewFileRenderer itemData={itemData} />
+            )}
+          />
+        </div>
       ) : (
         <Button onClick={() => setIsModalOpen(true)}>Open modal</Button>
       )}

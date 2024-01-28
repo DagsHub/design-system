@@ -65,21 +65,21 @@ export function DropdownV2({
   alignInputTextToCenter?: boolean;
   autoFocus?: boolean;
 }) {
-  const [inputValue, setInputValue] = React.useState('');
+  const [inputValue, setInputValue] = React.useState(initialChecked?.label ?? '');
   const [open, setOpen] = useState(false);
-  const [inputWidth, setInputWidth] = useState<number>();
   const autoCompleteWrapperRef = useRef<HTMLDivElement | null>(null);
   const textFieldRef = useRef<HTMLDivElement | null>(null);
   const copyTextFieldRef = useRef<HTMLDivElement | null>(null);
   const END_ADORNMENT_WIDTH = 24;
+  const [inputWidth, setInputWidth] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    setInputValue(initialChecked?.label ?? '');
+  }, [initialChecked]);
 
   useEffect(() => {
     if (makeWidthDynamic) {
-      let width = copyTextFieldRef.current?.scrollWidth ?? 0;
-      if (!removeEndAdornment) {
-        width += END_ADORNMENT_WIDTH;
-      }
-      setInputWidth(width);
+      setInputWidth(copyTextFieldRef.current?.scrollWidth ?? 0);
     }
   }, [inputValue, label, makeWidthDynamic]);
 
@@ -124,9 +124,7 @@ export function DropdownV2({
       <Box
         ref={autoCompleteWrapperRef}
         sx={{
-          position: 'relative',
           display: 'flex',
-          gap: '8px',
           maxWidth: maxWidth,
           minWidth: '40px',
           width: makeWidthDynamic ? `${inputWidth}px` : '100%',
@@ -155,6 +153,25 @@ export function DropdownV2({
           }
         }}
       >
+        <Typography
+          variant={'medium'}
+          ref={copyTextFieldRef}
+          style={{
+            display: 'flex',
+            zIndex: -1,
+            color: 'transparent',
+            borderRadius: '8px',
+            padding: '0px 10px',
+            flexWrap: 'nowrap',
+            width: 'max-content',
+            boxSizing: 'border-box',
+            height: '0px',
+            paddingRight: removeEndAdornment ? '10px' : `${END_ADORNMENT_WIDTH + 10}px`
+          }}
+        >
+          {inputValue ? inputValue : label}
+        </Typography>
+        {/*This is a hidden div that is used to calculate the width of the input field*/}
         <Autocomplete
           noOptionsText={
             <Typography
@@ -272,25 +289,6 @@ export function DropdownV2({
             {helperText}
           </Typography>
         )}
-        <Typography
-          variant={'medium'}
-          ref={copyTextFieldRef}
-          style={{
-            display: 'flex',
-            zIndex: -1,
-            color: 'transparent',
-            borderRadius: '8px',
-            padding: '0px 10px',
-            position: 'absolute',
-            flexWrap: 'nowrap',
-            width: 'max-content',
-            top: 0,
-            left: 0
-          }}
-        >
-          {inputValue ? inputValue : label}
-        </Typography>
-        {/*This is a hidden div that is used to calculate the width of the input field*/}
       </Box>
     </ThemeProvider>
   );
