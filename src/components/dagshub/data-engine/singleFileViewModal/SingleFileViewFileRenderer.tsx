@@ -142,7 +142,7 @@ export const SingleFileViewFileRenderer = ({ itemData }: VisualizerProps) => {
       );
     }
     if (itemType === 'csv') {
-      return <CSVViewer headers={csvHeaders} values={csvValues} columnWidth={160} />;
+      return <CSVViewer headers={csvHeaders} values={csvValues} />;
     }
   }
   return <ItemFallback height={'100%'} width={'100%'} disableHoverMode />;
