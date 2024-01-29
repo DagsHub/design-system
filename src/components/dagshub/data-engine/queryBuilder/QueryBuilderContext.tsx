@@ -99,7 +99,6 @@ export interface QueryInput {
 
 interface QueryBuilderContextInterface {
   isSimpleMode: boolean;
-  setIsSimpleMode: (isSimpleMode: boolean) => void;
   rootCondition: AndOrMetadataInput;
   setRootCondition: (rootCondition: AndOrMetadataInput) => void;
   metadataFields: MetadataFieldProps[];
@@ -221,24 +220,14 @@ export const QueryBuilderProvider = ({
     return condition;
   };
 
-  const debouncedOnChange = useCallback(
-    _.debounce(() => {
-      onChange({
-        ...queryInput,
-        query:
-          removeRootAndBlockIfWasAddedAndNotNeeded(
-            convertUiFormatToBackandFormat(removeIdFields(rootCondition ?? {}))
-          ) ?? undefined
-      });
-    }, 200),
-    [onChange, queryInput, rootCondition]
-  );
-
   useEffect(() => {
-    debouncedOnChange();
-    return () => {
-      debouncedOnChange.cancel();
-    };
+    onChange({
+      ...queryInput,
+      query:
+        removeRootAndBlockIfWasAddedAndNotNeeded(
+          convertUiFormatToBackandFormat(removeIdFields(rootCondition ?? {}))
+        ) ?? undefined
+    });
   }, [rootCondition]);
 
   function generateUniqueId(): string {
@@ -423,7 +412,6 @@ export const QueryBuilderProvider = ({
     <QueryBuilderContext.Provider
       value={{
         isSimpleMode,
-        setIsSimpleMode,
         rootCondition,
         setRootCondition,
         metadataFields,
