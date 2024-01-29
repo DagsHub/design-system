@@ -173,7 +173,7 @@ function getSingleAnnotationResultLayers(
     const [cx, cy] = pointPercentToPixel([cxPercent, cyPercent], dimension);
     const [rx, ry] = pointPercentToPixel([rxPercent, ryPercent], dimension);
 
-    const strokeWidth = rx * 2 > minStrokedObjectSize || ry * 2 > minStrokedObjectSize ? 2 : 0;
+    const strokeWidth = rx * 2 > minStrokedObjectSize || ry * 2 > minStrokedObjectSize ? polygonStrokeWidth : 0;
 
     labelLayersPush(
       <Ellipse
