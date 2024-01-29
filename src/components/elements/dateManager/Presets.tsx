@@ -1,23 +1,18 @@
+import React from 'react';
 import { List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
-
-interface ListItemType {
-  name: string;
-  value: Date;
-}
 
 type PresetType = {
-  name: string;
-  value: Date;
+  alias: string;
+  value: string;
 };
 
 const PresetsList = ({
   list,
   onPresetClick
 }: {
-  list: ListItemType[];
-  onPresetClick: (value: Date) => void;
+  list: PresetType[];
+  onPresetClick: (value: string) => void;
 }) => {
   return (
     <List>
@@ -32,7 +27,6 @@ const PresetsList = ({
                 borderRadius: '6px'
               }
             }}
-            href="#simple-list"
             onClick={(e) => {
               e.stopPropagation();
               onPresetClick(item.value);
@@ -44,7 +38,7 @@ const PresetsList = ({
                 fontWeight: '500',
                 lineHeight: '20px'
               }}
-              primary={item.name}
+              primary={item.alias}
             />
           </ListItemButton>
         </ListItem>
@@ -57,7 +51,7 @@ const Presets = ({
   onPresetClick,
   presets
 }: {
-  onPresetClick: (date: Date) => void;
+  onPresetClick: (date: string) => void;
   presets: PresetType[];
 }) => {
   return (

@@ -1,10 +1,11 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 import { DateManager, DateManagerProps } from '../../../components';
+import dayjs from 'dayjs';
 
 function deductDays(days: number) {
   const date = new Date();
-  return date.setDate(date.getDay() - days);
+  return dayjs(date.setDate(date.getDay() - days)).format('YYYY-MM-DD');
 }
 
 const meta: Meta<DateManagerProps> = {

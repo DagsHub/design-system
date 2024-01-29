@@ -1,9 +1,4 @@
-import React, {
-  CSSProperties,
-  useEffect,
-  useRef,
-  useState
-} from 'react';
+import React, { CSSProperties, useEffect, useRef, useState } from 'react';
 import { Circle, Layer, Line, Stage, Text, Image, Ellipse, Rect, Group } from 'react-konva';
 import { useContainerDimensions } from './utils';
 import {

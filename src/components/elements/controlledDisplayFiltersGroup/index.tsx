@@ -3,96 +3,84 @@ import { Box, Divider } from '@mui/material';
 import { DisplayFilter } from '../displayFilter';
 import React from 'react';
 import { LabeledSwitch } from '../../forms';
-import _ from 'lodash';
-
-export interface DisplayFilterPartialProps {
-  label: string;
-  onChange?: (name: string) => void;
-}
 
 export interface ControlledDisplayFiltersGroupProps {
-  filters: DisplayFilterPartialProps[];
+  filters: { value: string; alias: string }[];
   toggleAllLabel?: string;
-  onToggleShowAll: (show: boolean) => void;
   isToggleAll?: boolean;
   toggledFilters?: Set<string>;
+  onChange: (activeFilters: { value: string; alias: string }[]) => void;
+  search: ({
+    alias,
+    value
+  }: {
+    alias: string;
+    value: string;
+  }) => Promise<{ alias: string; value: string }[]>;
 }
 
 export function ControlledDisplayFiltersGroup({
   filters,
-  onToggleShowAll,
   toggleAllLabel,
   isToggleAll,
-  toggledFilters
+  search,
+  onChange
 }: ControlledDisplayFiltersGroupProps) {
+  const [displayedFilters, setDisplayedFilters] = useState<
+    Map<string, { value: string; alias: string }>
+  >(new Map<string, { value: string; alias: string }>());
   const [showAll, setShowAll] = useState<boolean>(isToggleAll ?? false);
-  const [availableFiltersNames, setAvailableFiltersNames] = useState<Set<string>>(
-    new Set(filters.map((filter) => filter.label))
-  );
+  const [availableFiltersNames, setAvailableFiltersNames] = useState<
+    Map<string, { value: string; alias: string }>
+  >(new Map(filters.map((filter) => [filter.value, filter])));
 
   useEffect(() => {
-    setAvailableFiltersNames(new Set(filters.map((filter) => filter.label)));
+    setAvailableFiltersNames(new Map(filters.map((filter) => [filter.value, filter])));
   }, [filters]);
-
-  function getInitialState() {
-    if (isToggleAll) {
-      return availableFiltersNames;
-    } else if (toggledFilters) {
-      return toggledFilters;
-    }
-    return new Set<string>();
-  }
-
-  const [displayedFilters, setDisplayedFilters] = useState<Set<string>>(getInitialState());
 
   useEffect(() => {
     setShowAll(isToggleAll ?? false);
   }, [isToggleAll]);
 
-  useEffect(() => {
-    setDisplayedFilters(getInitialState());
-  }, [toggledFilters, availableFiltersNames]);
+  const toggleShowAll = () => {
+    const updatedFiltersToDisplay = showAll ? new Map() : availableFiltersNames;
 
-  const toggleAll = () => {
-    if (!showAll) {
-      setDisplayedFilters(availableFiltersNames);
-    } else {
-      setDisplayedFilters(new Set());
-    }
+    setDisplayedFilters(updatedFiltersToDisplay);
+
+    onChange([...updatedFiltersToDisplay.values()]);
     setShowAll(!showAll);
-    onToggleShowAll(!showAll);
   };
 
   useEffect(() => {
-    // When metadataToDisplay changes, check if it's equal to availableFiltersNames
-    if (_.isEqual(displayedFilters, availableFiltersNames)) {
-      setShowAll(true);
-    } else {
-      setShowAll(false);
-    }
+    // toggle showAll when manually changing all the group to "on"
+    const isEqual = availableFiltersNames.size === displayedFilters.size;
+    setShowAll(isEqual);
   }, [displayedFilters, availableFiltersNames]);
+
+  const onFilterDisplayStateChanged = (filter: { alias: string; value: string }) => {
+    const updatedDisplayedFilters = new Map(displayedFilters);
+    if (updatedDisplayedFilters.has(filter.value)) {
+      updatedDisplayedFilters.delete(filter.value);
+    } else {
+      updatedDisplayedFilters.set(filter.value, filter);
+    }
+    setDisplayedFilters(updatedDisplayedFilters);
+    onChange([...updatedDisplayedFilters.values()]);
+  };
 
   return (
     <Box sx={{ backgroundColor: 'rgba(248, 250, 252, 1)' }}>
       <Box>
-        <LabeledSwitch label={toggleAllLabel} onChange={toggleAll} checked={showAll} />
+        <LabeledSwitch label={toggleAllLabel} onChange={toggleShowAll} checked={showAll} />
       </Box>
-      {filters.map((item) => {
+      {[...availableFiltersNames.values()].map((item) => {
         return (
           <>
             <DisplayFilter
-              value={showAll || displayedFilters.has(item.label)}
-              label={item.label}
-              onChange={() => {
-                const updatedFilters = new Set(displayedFilters);
-                if (updatedFilters.has(item.label)) {
-                  updatedFilters.delete(item.label);
-                } else {
-                  updatedFilters.add(item.label);
-                }
-                setDisplayedFilters(updatedFilters);
-                if (item.onChange) item.onChange(item.label);
-              }}
+              search={search}
+              value={showAll || displayedFilters.has(item.value)}
+              filter={item}
+              onChange={onFilterDisplayStateChanged}
             />
             <Divider sx={{ backgroundColor: '#F8FAFC' }} />
           </>
