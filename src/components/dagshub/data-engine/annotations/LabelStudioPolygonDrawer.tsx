@@ -1,10 +1,17 @@
-import React, {
-  CSSProperties,
-  useEffect,
-  useRef,
-  useState
-} from 'react';
-import { Circle, Layer, Line, Stage, Text, Image, Ellipse, Rect, Group } from 'react-konva';
+import React, { CSSProperties, useEffect, useRef, useState } from 'react';
+import {
+  Circle,
+  Layer,
+  Line,
+  Stage,
+  Text,
+  Image,
+  Ellipse,
+  Rect,
+  Tag,
+  Group,
+  Label
+} from 'react-konva';
 import { useContainerDimensions } from './utils';
 import {
   getLabel,
@@ -96,7 +103,7 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
 
   // Apply all the text components after the drawings so that the text is on top of the drawings
   const drawingLayers = labelComponents.concat(textComponents);
-
+  debugger;
   return (
     <div id="ls-container" ref={containerRef} style={containerStyle}>
       <Stage
@@ -127,8 +134,8 @@ function getSingleAnnotationResultLayers(
   labelLayersPush: (elem: React.ReactNode) => void,
   textLayersPush: (elem: React.ReactNode) => void
 ) {
-  const [textWidth, setTextWidth] = useState<number>(1);
-  const [textHeight, setTextHeight] = useState<number>(1);
+  // const [textWidth, setTextWidth] = useState<number>(1);
+  // const [textHeight, setTextHeight] = useState<number>(1);
 
   let flatPoints: number[] = [];
   let flatBboxPoints: number[] = [];
@@ -137,6 +144,10 @@ function getSingleAnnotationResultLayers(
     return null;
   }
   const fontSize = 14;
+  const bboxStrokeWidth = 2;
+  const polygonStrokeWidth = 2;
+  const labelBoxPaddingWidth = 8;
+  const labelBoxPaddingHeight = 4;
   const [R, G, B] = colorProvider(label, column);
   const strokeColor = `rgb(${R},${G},${B})`;
   const fillColor = `rgba(${R},${G},${B},0.5)`;
@@ -145,7 +156,13 @@ function getSingleAnnotationResultLayers(
     flatPoints = result.value.points.flatMap((p) => pointPercentToPixel(p, dimension));
     flatBboxPoints = getPolygonLabelBbox(result, dimension);
     labelLayersPush(
-      <Line points={flatPoints} closed stroke={strokeColor} strokeWidth={2} fill={fillColor} />
+      <Line
+        points={flatPoints}
+        closed
+        stroke={strokeColor}
+        strokeWidth={polygonStrokeWidth}
+        fill={fillColor}
+      />
     );
   } else if (isRectangleLabel(result)) {
     flatBboxPoints = rectangleLabelToBbox(result, dimension);
@@ -173,36 +190,30 @@ function getSingleAnnotationResultLayers(
     );
   }
   if (flatBboxPoints.length > 0) {
-    labelLayersPush(<Line points={flatBboxPoints} closed stroke={strokeColor} strokeWidth={1} />);
-    const textPosition = { x: flatBboxPoints[0], y: flatBboxPoints[1] - fontSize };
+    labelLayersPush(
+      <Line points={flatBboxPoints} closed stroke={strokeColor} strokeWidth={bboxStrokeWidth} />
+    );
+    const labelBoxHeight = fontSize + labelBoxPaddingHeight * 2;
+    const labelBoxPosition = {
+      x: flatBboxPoints[0] - bboxStrokeWidth / 2,
+      y: flatBboxPoints[1] - labelBoxHeight
+    };
 
     const text = (
       <Group listening={false}>
-        <Rect
-          x={textPosition.x}
-          y={textPosition.y - 10}
-          width={textWidth + 10}
-          height={textHeight + 10}
-          opacity={0.3}
-          fill={`rgba(${R},${G},${B}, 1)`}
-          shadowBlur={10}
-        />
-        <Text
-          ref={(e) => {
-            setTextWidth(e?.textWidth ?? 1);
-            setTextHeight(e?.textHeight ?? 1);
-          }}
-          x={textPosition.x - 15}
-          y={textPosition.y - 25}
-          padding={20}
-          height={32}
-          text={label}
-          fontSize={14}
-          fill="white"
-          fontStyle="bold"
-          align="center"
-          zIndex={3}
-        />
+        <Label {...labelBoxPosition}>
+          <Tag fill={`rgba(${R},${G},${B}, 1)`} cornerRadius={[5, 5, 0, 0]} />
+          <Text
+            align="center"
+            verticalAlign={'middle'}
+            text={label}
+            fontSize={14}
+            fill="white"
+            padding={labelBoxPaddingWidth}
+            // height overrides the padding on Y axis
+            height={fontSize + labelBoxPaddingHeight * 2}
+          />
+        </Label>
       </Group>
     );
 
