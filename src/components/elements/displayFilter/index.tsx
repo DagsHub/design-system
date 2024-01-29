@@ -4,18 +4,16 @@ import { Icon } from '../../icons';
 import theme from '../../../theme';
 import ComparePopover from './ComparePopover';
 import { Box } from '@mui/system';
+import {FilterType} from "../controlledDisplayFiltersGroup";
 
 export interface DisplayFilterProps {
-  filter: { alias: string; value: string };
-  onChange: ({ alias, value }: { alias: string; value: string }) => void;
+  filter: FilterType;
+  onChange: ({ alias, value }: FilterType) => void;
   value: boolean;
   search: ({
     alias,
     value
-  }: {
-    alias: string;
-    value: string;
-  }) => Promise<{ alias: string; value: string }[]>;
+  }: FilterType) => Promise<FilterType[]>;
 }
 
 export function DisplayFilter({ filter, onChange, value, search }: DisplayFilterProps) {

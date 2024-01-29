@@ -4,19 +4,18 @@ import { DisplayFilter } from '../displayFilter';
 import React from 'react';
 import { LabeledSwitch } from '../../forms';
 
+export type FilterType = { alias: string; value: string };
+
 export interface ControlledDisplayFiltersGroupProps {
-  filters: { value: string; alias: string }[];
+  filters: FilterType[];
   toggleAllLabel?: string;
   isToggleAll?: boolean;
   toggledFilters?: Set<string>;
-  onChange: (activeFilters: { value: string; alias: string }[]) => void;
+  onChange: (activeFilters: FilterType[]) => void;
   search: ({
     alias,
     value
-  }: {
-    alias: string;
-    value: string;
-  }) => Promise<{ alias: string; value: string }[]>;
+  }: FilterType) => Promise<FilterType[]>;
 }
 
 export function ControlledDisplayFiltersGroup({
@@ -27,11 +26,11 @@ export function ControlledDisplayFiltersGroup({
   onChange
 }: ControlledDisplayFiltersGroupProps) {
   const [displayedFilters, setDisplayedFilters] = useState<
-    Map<string, { value: string; alias: string }>
-  >(new Map<string, { value: string; alias: string }>());
+    Map<string, FilterType>
+  >(new Map<string, FilterType>());
   const [showAll, setShowAll] = useState<boolean>(isToggleAll ?? false);
   const [availableFiltersNames, setAvailableFiltersNames] = useState<
-    Map<string, { value: string; alias: string }>
+    Map<string, FilterType>
   >(new Map(filters.map((filter) => [filter.value, filter])));
 
   useEffect(() => {
@@ -57,7 +56,7 @@ export function ControlledDisplayFiltersGroup({
     setShowAll(isEqual);
   }, [displayedFilters, availableFiltersNames]);
 
-  const onFilterDisplayStateChanged = (filter: { alias: string; value: string }) => {
+  const onFilterDisplayStateChanged = (filter: FilterType) => {
     const updatedDisplayedFilters = new Map(displayedFilters);
     if (updatedDisplayedFilters.has(filter.value)) {
       updatedDisplayedFilters.delete(filter.value);

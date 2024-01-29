@@ -8,10 +8,11 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import theme from '../../../theme';
 import PresetsContent from './Presets';
 import { SearchForm } from './SearchForm';
+import {FilterType} from "../controlledDisplayFiltersGroup";
 
 export interface DateManagerProps {
-  presets: { alias: string; value: string }[];
-  compare: ({ alias, value }: { alias: string; value: string }) => void;
+  presets: FilterType[];
+  compare: ({ alias, value }: FilterType) => void;
   close: () => void;
   loading: boolean;
 }

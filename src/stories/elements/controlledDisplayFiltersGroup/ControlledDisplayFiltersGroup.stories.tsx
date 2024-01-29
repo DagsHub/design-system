@@ -2,7 +2,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 import {
   ControlledDisplayFiltersGroup,
-  ControlledDisplayFiltersGroupProps
+  ControlledDisplayFiltersGroupProps, FilterType
 } from '../../../components';
 import { Box } from '@mui/system';
 
@@ -40,15 +40,12 @@ let filters = [
 
 const Template: StoryFn<typeof ControlledDisplayFiltersGroup> = (args) => {
   const [availableFilters, setAvailableFilters] = useState(filters);
-  const [activeFilters, setActiveFilters] = useState<{ value: string; alias: string }[]>();
+  const [_, setActiveFilters] = useState<FilterType[]>();
 
   function fetchData({
     value,
     alias
-  }: {
-    value: string;
-    alias: string;
-  }): Promise<{ value: string; alias: string }[]> {
+  }: FilterType): Promise<FilterType[]> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const randomData = generateRandomData();
@@ -64,8 +61,7 @@ const Template: StoryFn<typeof ControlledDisplayFiltersGroup> = (args) => {
     });
   }
 
-  const onChange = (activeFilters: { value: string; alias: string }[]) => {
-    console.log('activeFilters', activeFilters);
+  const onChange = (activeFilters: FilterType[]) => {
     setActiveFilters(activeFilters);
   };
 
@@ -77,38 +73,6 @@ const Template: StoryFn<typeof ControlledDisplayFiltersGroup> = (args) => {
         filters={availableFilters}
         search={fetchData}
       />
-
-      <Box sx={{ color: 'red' }}>
-        {activeFilters?.length &&
-          activeFilters.map(
-            (item: {
-              alias:
-                | string
-                | number
-                | boolean
-                | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-                | Iterable<React.ReactNode>
-                | React.ReactPortal
-                | null
-                | undefined;
-              value:
-                | string
-                | number
-                | boolean
-                | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-                | Iterable<React.ReactNode>
-                | React.ReactPortal
-                | null
-                | undefined;
-            }) => {
-              return (
-                <Box>
-                  item {item.alias} - {item.value}
-                </Box>
-              );
-            }
-          )}
-      </Box>
     </Box>
   );
 };
@@ -123,7 +87,7 @@ export const filterGroupControlledAndToggledAll: StoryFn<typeof ControlledDispla
   Template.bind({});
 filterGroupControlledAndToggledAll.args = {
   toggleAllLabel: 'Show all',
-  onChange: (activeFilters: { value: string; alias: string }[]) =>
+  onChange: (activeFilters: FilterType[]) =>
     console.log('changed', activeFilters),
   isToggleAll: true //Make the component controlled from outside and toggle all filters
 };
@@ -132,7 +96,7 @@ export const filterGroupControlledAndPartiallyToggled: StoryFn<
   typeof ControlledDisplayFiltersGroup
 > = Template.bind({});
 filterGroupControlledAndPartiallyToggled.args = {
-  onChange: (activeFilters: { value: string; alias: string }[]) =>
+  onChange: (activeFilters: FilterType[]) =>
     console.log('changed', activeFilters),
   toggleAllLabel: 'Show all',
   toggledFilters: new Set(['metadata_key_2']) //Make the component controlled from outside and toggle 1 filter out of three

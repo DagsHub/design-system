@@ -4,13 +4,14 @@ import { DateManager } from '../dateManager';
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { Icon } from '../../icons';
+import {FilterType} from "../controlledDisplayFiltersGroup";
 
 function deductDays(days: number) {
   const date = new Date();
   return dayjs(date.setDate(date.getDay() - days)).format('YYYY-MM-DD');
 }
 
-export const defaultPresets: { alias: string; value: string }[] = [
+export const defaultPresets: FilterType[] = [
   {
     alias: '1 day ago',
     value: deductDays(1)
@@ -29,14 +30,11 @@ const ComparePopover = ({
   presets,
   search
 }: {
-  presets?: { alias: string; value: string }[];
+  presets?: FilterType[];
   search: ({
     alias,
     value
-  }: {
-    alias: string;
-    value: string;
-  }) => Promise<{ alias: string; value: string }[]>;
+  }: FilterType) => Promise<FilterType[]>;
 }) => {
   const [loading, setLoading] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -52,7 +50,7 @@ const ComparePopover = ({
   const open = Boolean(anchorEl);
   const id = open ? 'popover' : undefined;
 
-  const compare = async ({ value, alias }: { value: string; alias: string }) => {
+  const compare = async ({ value, alias }: FilterType) => {
     setLoading(true);
     try {
       const res = await search({ alias, value });

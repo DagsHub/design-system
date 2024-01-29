@@ -1,17 +1,13 @@
 import React from 'react';
 import { List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-
-type PresetType = {
-  alias: string;
-  value: string;
-};
+import {FilterType} from "../controlledDisplayFiltersGroup";
 
 const PresetsList = ({
   list,
   onPresetClick
 }: {
-  list: PresetType[];
+  list: FilterType[];
   onPresetClick: (value: string) => void;
 }) => {
   return (
