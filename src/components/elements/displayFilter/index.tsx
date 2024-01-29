@@ -11,9 +11,10 @@ export interface DisplayFilterProps {
   onChange: ({ alias, value }: FilterType) => void;
   value: boolean;
   search: ({ alias, value }: FilterType) => Promise<FilterType[]>;
+    showCompareButton?: boolean
 }
 
-export function DisplayFilter({ filter, onChange, value, search }: DisplayFilterProps) {
+export function DisplayFilter({ filter, onChange, value, search, showCompareButton }: DisplayFilterProps) {
   const [show, setShow] = useState<boolean>(false);
 
   const filterClicked = () => {
@@ -64,7 +65,8 @@ export function DisplayFilter({ filter, onChange, value, search }: DisplayFilter
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
                 textOverflow: 'ellipsis',
-                width: '130px'
+                width: '130px',
+                  cursor: 'unset'
               }}
               variant={'medium'}
               component={'div'}
@@ -74,7 +76,7 @@ export function DisplayFilter({ filter, onChange, value, search }: DisplayFilter
           </Tooltip>
         </Box>
 
-        <ComparePopover search={search} />
+          {showCompareButton && <ComparePopover search={search}/>}
       </Stack>
     </ThemeProvider>
   );

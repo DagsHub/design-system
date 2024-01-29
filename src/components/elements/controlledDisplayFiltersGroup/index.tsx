@@ -13,6 +13,7 @@ export interface ControlledDisplayFiltersGroupProps {
   toggledFilters?: Set<string>;
   onChange: (activeFilters: FilterType[]) => void;
   search: ({ alias, value }: FilterType) => Promise<FilterType[]>;
+  showCompareButton?: boolean
 }
 
 export function ControlledDisplayFiltersGroup({
@@ -20,7 +21,8 @@ export function ControlledDisplayFiltersGroup({
   toggleAllLabel,
   isToggleAll,
   search,
-  onChange
+  onChange,
+                                                showCompareButton,
 }: ControlledDisplayFiltersGroupProps) {
   const [displayedFilters, setDisplayedFilters] = useState<Map<string, FilterType>>(
     isToggleAll
@@ -79,6 +81,7 @@ export function ControlledDisplayFiltersGroup({
         return (
           <>
             <DisplayFilter
+                showCompareButton={showCompareButton}
               search={search}
               value={showAll || displayedFilters.has(item.value)}
               filter={item}

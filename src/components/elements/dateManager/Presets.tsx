@@ -48,7 +48,7 @@ const Presets = ({
   presets
 }: {
   onPresetClick: (date: string) => void;
-  presets: PresetType[];
+  presets: FilterType[];
 }) => {
   return (
     <>
