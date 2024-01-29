@@ -7,7 +7,6 @@ import React, {
   useState,
 } from 'react';
 import _ from 'lodash';
-import { root } from 'postcss';
 
 type MetadataType = 'BOOLEAN' | 'INTEGER' | 'FLOAT' | 'STRING' | 'BLOB';
 
@@ -100,10 +99,9 @@ export interface QueryInput {
 
 interface QueryBuilderContextInterface {
   isSimpleMode: boolean;
-  setIsSimpleMode: (isSimpleMode: boolean) => void;
   rootCondition: AndOrMetadataInput;
   setRootCondition: (rootCondition: AndOrMetadataInput) => void;
-  metadataFieldsList: MetadataFieldProps[];
+  metadataFields: MetadataFieldProps[];
   generateUniqueId: () => string;
   addUniqueIds: (input: AndOrMetadataInput) => AndOrMetadataInput;
   getOperatorsByMetadataType: (type: MetadataType) => { label: string; id: Comparator }[];
@@ -129,14 +127,12 @@ export const QueryBuilderProvider = ({
   children,
   queryInput,
   metadataFields,
-  forceCompoundMode = false,
   validateValueByType,
   onChange,
 }: {
   children: ReactNode;
   queryInput: QueryInput;
   metadataFields: MetadataFieldProps[]; // need to take into consideration the select and the alias
-  forceCompoundMode?: boolean;
   validateValueByType: (valueType: MetadataType, value: string, comparator: Comparator) => boolean;
   onChange: (query: QueryInput) => void;
 }) => {
@@ -170,22 +166,11 @@ export const QueryBuilderProvider = ({
     return true;
   };
 
-  const checkIfSimpleMode = useCallback(
-    (query: AndOrMetadataInput | undefined) => {
-      return !forceCompoundMode && checkIfConditionIsDisplayableInSimpleMode(query);
-    },
-    [forceCompoundMode]
-  );
-
-  const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(() => getInitialQuery());
-  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(() =>
-    checkIfSimpleMode(queryInput.query)
-  );
-  const [metadataFieldsList, setMetadataFieldsList] =
-    useState<MetadataFieldProps[]>(metadataFields);
-  const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(
+  const [rootCondition, setRootCondition] = useState<AndOrMetadataInput>(getInitialQuery);
+  const [isDisplayableInSimpleMode, setIsDisplayableInSimpleMode] = useState<boolean>(() =>
     checkIfConditionIsDisplayableInSimpleMode(queryInput.query)
   );
+  const [isSimpleMode, setIsSimpleMode] = useState<boolean>(isDisplayableInSimpleMode);
 
   useEffect(() => {
     if (
@@ -193,25 +178,33 @@ export const QueryBuilderProvider = ({
       JSON.stringify(removeIdFields(rootCondition))
     ) {
       setRootCondition(getInitialQuery);
+      setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
     }
-    setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(queryInput.query));
   }, [queryInput.query]);
 
   useEffect(() => {
     setIsDisplayableInSimpleMode(checkIfConditionIsDisplayableInSimpleMode(rootCondition));
   }, [rootCondition]);
 
-  useEffect(() => {
-    setIsSimpleMode(checkIfSimpleMode(queryInput.query));
-  }, [forceCompoundMode, queryInput.query]);
-
   function onToggleQueryMode() {
-    setIsSimpleMode(!isSimpleMode);
+    setIsSimpleMode((isSimpleMode) => {
+      if (isSimpleMode) {
+        return false;
+      } else {
+        return isDisplayableInSimpleMode;
+      }
+    });
   }
 
   useEffect(() => {
-    setMetadataFieldsList(metadataFields);
-  }, [metadataFields]);
+    setIsSimpleMode((isSimpleMode) => {
+      if (isSimpleMode) {
+        return isDisplayableInSimpleMode;
+      } else {
+        return false;
+      }
+    });
+  }, [isDisplayableInSimpleMode]);
 
   //This function is used to remove the root and wrapper, if it was added for ui purposes and not needed anymore
   const removeRootAndBlockIfWasAddedAndNotNeeded = (condition: AndOrMetadataInput | null) => {
@@ -419,10 +412,9 @@ export const QueryBuilderProvider = ({
     <QueryBuilderContext.Provider
       value={{
         isSimpleMode,
-        setIsSimpleMode,
         rootCondition,
         setRootCondition,
-        metadataFieldsList,
+        metadataFields,
         generateUniqueId,
         addUniqueIds,
         getOperatorsByMetadataType,

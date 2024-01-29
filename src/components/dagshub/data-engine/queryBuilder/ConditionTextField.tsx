@@ -4,6 +4,7 @@ import StyledTextField from '../metadataKeyValue/StyledTextField';
 import '../metadataKeyValue/style.scss';
 import { ThemeProvider, Typography } from '@mui/material';
 import theme from '../../../../theme';
+import {useDebounce} from "react-use";
 
 export function ConditionTextField({
   disabled,
@@ -66,6 +67,10 @@ export function ConditionTextField({
       textFieldRef.current?.blur();
     }
   };
+
+  useDebounce(() => {
+    onChange(currentValue);
+  },200, [currentValue]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -137,7 +142,6 @@ export function ConditionTextField({
           }}
           onChange={(e: any) => {
             setCurrentValue(e.target.value);
-            onChange(e.target.value);
           }}
           onKeyDown={handleKeyDown}
           value={currentValue}

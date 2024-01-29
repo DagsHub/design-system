@@ -37,7 +37,7 @@ export function SimpleCondition({
   const {
     isSimpleMode,
     validateValueByType,
-    metadataFieldsList,
+    metadataFields,
     getOperatorsByMetadataType,
     checkIfOperatorRequiresValueField,
   } = useQueryBuilderContext();
@@ -68,7 +68,7 @@ export function SimpleCondition({
   const [isEmpty, setIsEmpty] = useState<boolean>(checkIfConditionIsUncompleted());
 
   function getSelectedMetadataKey() {
-    return metadataFieldsList?.find((field) => field.name === condition.filter?.key);
+    return metadataFields?.find((field) => field.name === condition.filter?.key);
   }
 
   const [selectedMetadataKey, setSelectedMetadataKey] = useState<MetadataFieldProps | undefined>(
@@ -89,7 +89,7 @@ export function SimpleCondition({
 
   useEffect(() => {
     setSelectedMetadataKey(getSelectedMetadataKey());
-  }, [metadataFieldsList, condition.filter?.key]);
+  }, [metadataFields, condition.filter?.key]);
 
   useEffect(() => {
     setSelectedOperator(getSelectedComparator());
@@ -208,12 +208,11 @@ export function SimpleCondition({
               filter: {
                 ...condition.filter,
                 key: value?.id,
-                valueType: metadataFieldsList.find((field) => field.name === value?.label)
-                  ?.valueType,
-              },
+                valueType: metadataFields.find((field) => field.name === value?.label)?.valueType,
+              }
             });
           }}
-          options={metadataFieldsList?.map((field) => ({ id: field.name, label: field.name }))}
+          options={metadataFields?.map((field) => ({ id: field.name, label: field.name }))}
         />
         <ConditionDropdown
           isReadOnly={true}
