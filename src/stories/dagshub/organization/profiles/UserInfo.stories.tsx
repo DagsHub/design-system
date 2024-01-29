@@ -2,12 +2,12 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   UserInfo,
-  UserInfoProps
+  UserInfoProps,
 } from '../../../../components/dagshub/organization/profiles/user-info';
 
 const meta: Meta<UserInfoProps> = {
   title: 'DagsHub/Org/Profiles/UserInfo',
-  component: UserInfo
+  component: UserInfo,
 };
 
 export default meta;
@@ -20,5 +20,5 @@ const imageLink =
 export const Primary = Template.bind({});
 Primary.args = {
   imageSource: imageLink,
-  userName: 'KBolashev'
+  userName: 'KBolashev',
 };

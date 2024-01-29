@@ -2,12 +2,12 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   WebhooksSettingsTab,
-  WebhooksSettingsTabProps
+  WebhooksSettingsTabProps,
 } from '../../../../components/dagshub/organization/settings-tabs/webhooks-tab';
 
 const meta: Meta<WebhooksSettingsTabProps> = {
   title: 'DagsHub/Org/SettingsTabs/WebhooksSettingsTab',
-  component: WebhooksSettingsTab
+  component: WebhooksSettingsTab,
 };
 
 export default meta;

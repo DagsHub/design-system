@@ -21,7 +21,7 @@ export function CSVViewer({ headers, values }: { headers: string[]; values: stri
       suppressMenu: true, // Hide the menu for the row number column
       valueGetter: 'node.rowIndex + 1',
       width: 50, // Set a fixed width for the row number column
-      sortable: false
+      sortable: false,
     },
     ...headers.map((header) => ({
       headerName: header,
@@ -29,13 +29,13 @@ export function CSVViewer({ headers, values }: { headers: string[]; values: stri
       field: header,
       filter: 'agTextColumnFilter',
       floatingFilter: true,
-      headerTooltip: header
-    }))
+      headerTooltip: header,
+    })),
   ];
 
   const autoSizeStrategy: SizeColumnsToFitGridStrategy = {
     type: 'fitGridWidth',
-    defaultMinWidth: 100
+    defaultMinWidth: 100,
   };
 
   return (
@@ -44,7 +44,7 @@ export function CSVViewer({ headers, values }: { headers: string[]; values: stri
       style={{
         width: '100%',
         height: '100%',
-        fontFamily: 'Inter!important'
+        fontFamily: 'Inter!important',
       }}
     >
       <AgGridReact

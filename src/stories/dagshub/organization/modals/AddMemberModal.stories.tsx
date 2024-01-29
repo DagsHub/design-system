@@ -2,12 +2,12 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   AddMemberModal,
-  AddMemberModalProps
+  AddMemberModalProps,
 } from '../../../../components/dagshub/organization/modals/add-member-modal';
 
 const meta: Meta<AddMemberModalProps> = {
   title: 'DagsHub/Org/Modals/AddMemberModal',
-  component: AddMemberModal
+  component: AddMemberModal,
 };
 
 export default meta;
@@ -22,8 +22,8 @@ Primary.args = {
   name: 'ORG1',
   teams: [
     { id: 1, name: 'team1' },
-    { id: 2, name: 'team2' }
-  ]
+    { id: 2, name: 'team2' },
+  ],
 };
 
 export const Secondary = Template.bind({});
@@ -31,12 +31,12 @@ Secondary.args = {
   isOrg: true,
   isAdmin: false,
   isTeam: false,
-  name: 'ORG2'
+  name: 'ORG2',
 };
 export const Tertiary = Template.bind({});
 Tertiary.args = {
   isOrg: false,
   isAdmin: false,
   isTeam: true,
-  name: 'TEAM1'
+  name: 'TEAM1',
 };

@@ -31,7 +31,7 @@ export function FileTreeItem({
   setSelected,
   type,
   href,
-  emptyMessage
+  emptyMessage,
 }: FileItemInterface) {
   const [open, setOpen] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -89,12 +89,12 @@ export function FileTreeItem({
           '&:hover': {
             border: '1px solid #C4B5FD',
             borderRadius: '6px',
-            backgroundColor: '#F8FAFC'
+            backgroundColor: '#F8FAFC',
           },
           height: '32px',
           border: isSelected ? '1px solid rgba(196, 181, 253, 0.5)' : '1px solid white',
           background: isSelected ? '#F7F8FF' : 'unset',
-          borderRadius: isSelected ? '6px' : 'unset'
+          borderRadius: isSelected ? '6px' : 'unset',
         }}
       >
         <Box display={'flex'} alignItems={'center'}>
@@ -106,14 +106,14 @@ export function FileTreeItem({
               transition: '.1s ease-in-out',
               transform: open ? 'rotate(90deg)' : 'unset',
               '&:hover': {
-                backgroundColor: 'transparent'
-              }
+                backgroundColor: 'transparent',
+              },
             }}
           >
             <ArrowForwardIosIcon
               sx={{
                 height: '12px',
-                width: '16px'
+                width: '16px',
               }}
             />
           </IconButton>

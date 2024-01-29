@@ -16,22 +16,22 @@ export function Message({ text, kind, support }: MessageProps) {
         kind === 'info'
           ? {
               background: '#eff6ff',
-              border: '1px solid #93c5fd'
+              border: '1px solid #93c5fd',
             }
           : kind === 'warning'
           ? {
               background: '#fefbea',
-              border: '1px solid #fde68a'
+              border: '1px solid #fde68a',
             }
           : kind === 'error'
           ? {
               background: '#fef2f2',
-              border: '1px solid #fecaca'
+              border: '1px solid #fecaca',
             }
           : kind == 'success'
           ? {
               background: '#f0fdf4',
-              border: '1px solid #86efac'
+              border: '1px solid #86efac',
             }
           : null
       }

@@ -10,7 +10,7 @@ import { Icon } from '../../../components';
 
 const meta: Meta<TooltipProps> = {
   title: 'Elements/Tooltip',
-  component: Tooltip
+  component: Tooltip,
 };
 
 export default meta;

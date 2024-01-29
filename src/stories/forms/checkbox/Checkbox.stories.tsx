@@ -4,7 +4,7 @@ import { Checkbox, CheckboxProps } from '../../../components/forms/checkbox';
 
 const meta: Meta<CheckboxProps> = {
   title: 'Forms/Checkbox',
-  component: Checkbox
+  component: Checkbox,
 };
 
 export default meta;

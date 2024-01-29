@@ -4,7 +4,7 @@ import { Message } from '../../components/elements/message';
 
 const meta: Meta<typeof Message> = {
   title: 'Elements/Message',
-  component: Message
+  component: Message,
 };
 
 export default meta;
@@ -15,26 +15,26 @@ export const ErrorMessage: StoryFn<typeof Message> = Template.bind({});
 ErrorMessage.args = {
   text: 'Error, please try again.',
   kind: 'error',
-  support: true
+  support: true,
 };
 
 export const WarningMessage: StoryFn<typeof Message> = Template.bind({});
 WarningMessage.args = {
   text: 'This is a warning message.',
   kind: 'warning',
-  support: true
+  support: true,
 };
 
 export const InfoMessage: StoryFn<typeof Message> = Template.bind({});
 InfoMessage.args = {
   text: 'This is some useful information about the page you are on.',
   kind: 'info',
-  support: false
+  support: false,
 };
 
 export const SuccessMessage: StoryFn<typeof Message> = Template.bind({});
 SuccessMessage.args = {
   text: 'Success! You did it!',
   kind: 'success',
-  support: false
+  support: false,
 };

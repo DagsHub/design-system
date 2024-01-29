@@ -12,7 +12,7 @@ export function ConditionTextField({
   placeholder,
   helperText,
   autoFocus,
-  isErrored
+  isErrored,
 }: {
   disabled: boolean;
   value?: string;
@@ -77,8 +77,8 @@ export function ConditionTextField({
           width: !!inputWidth ? inputWidth : 'min-content',
           minWidth: '40px',
           '.MuiFormHelperText-root': {
-            width: 'max-content'
-          }
+            width: 'max-content',
+          },
         }}
         onMouseDown={(e) => {
           if (disabled) {
@@ -99,7 +99,7 @@ export function ConditionTextField({
             flexWrap: 'nowrap',
             width: 'max-content',
             height: '0px',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
           }}
         >
           {currentValue ? currentValue : focused ? undefined : placeholder}
@@ -128,12 +128,12 @@ export function ConditionTextField({
               input: {
                 '&::placeholder': {
                   color: 'rgba(23, 45, 50, 1)!important',
-                  opacity: 1
+                  opacity: 1,
                 },
                 height: '28px',
-                boxSizing: 'border-box'
-              }
-            }
+                boxSizing: 'border-box',
+              },
+            },
           }}
           onChange={(e: any) => {
             setCurrentValue(e.target.value);

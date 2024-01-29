@@ -63,7 +63,7 @@ const Header = styled.h2`
 
 export default {
   title: 'Icons',
-  component: Icon
+  component: Icon,
 };
 
 export const IconsList = () => {
@@ -96,5 +96,5 @@ export const IconsList = () => {
 export const SingleIcon = (args) => <Icon {...args} />;
 SingleIcon.args = {
   icon: 'checkmark',
-  fill: '#000'
+  fill: '#000',
 };

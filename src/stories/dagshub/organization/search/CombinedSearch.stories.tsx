@@ -2,12 +2,12 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   CombinedSearchProps,
-  CombinedSearch
+  CombinedSearch,
 } from '../../../../components/dagshub/organization/search/combined-search';
 
 const meta: Meta<CombinedSearchProps> = {
   title: 'DagsHub/Org/Search/CombinedSearch',
-  component: CombinedSearch
+  component: CombinedSearch,
 };
 
 export default meta;
@@ -22,29 +22,29 @@ Primary.args = {
   resultUsers: [
     {
       imageSource: imageLink,
-      userName: 'ItayMalka'
+      userName: 'ItayMalka',
     },
     {
       imageSource: imageLink,
-      userName: 'TalMalka'
+      userName: 'TalMalka',
     },
     {
       imageSource: imageLink,
-      userName: 'ShaharMalka'
+      userName: 'ShaharMalka',
     },
     {
       imageSource: imageLink,
-      userName: 'ItayMalka'
+      userName: 'ItayMalka',
     },
     {
       imageSource: imageLink,
-      userName: 'TalMalka'
+      userName: 'TalMalka',
     },
     {
       imageSource: imageLink,
-      userName: 'ShaharMalka'
-    }
+      userName: 'ShaharMalka',
+    },
   ],
   inputText: '',
-  onInputChange: () => {}
+  onInputChange: () => {},
 };

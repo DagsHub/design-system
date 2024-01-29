@@ -18,7 +18,7 @@ const Loader = () => (
       overflowY: 'auto',
       display: 'flex',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
     }}
   >
     <CircularProgress size={22} />
@@ -31,7 +31,7 @@ export const FileList = ({
   setSelected,
   getFilesCb,
   selected,
-  emptyMessage
+  emptyMessage,
 }: FileListInterface) => {
   if (loading) {
     return <Loader />;

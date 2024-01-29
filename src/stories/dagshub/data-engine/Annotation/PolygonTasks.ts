@@ -15,10 +15,10 @@ export const polygonTask: Task = {
               [27.2, 41.24629080118694],
               [25.73333333333333, 70.62314540059347],
               [48.13333333333333, 62.61127596439169],
-              [48.13333333333333, 32.93768545994065]
+              [48.13333333333333, 32.93768545994065],
             ],
-            polygonlabels: ['Hello']
-          }
+            polygonlabels: ['Hello'],
+          },
         },
         {
           id: 'b69404cca6',
@@ -97,30 +97,30 @@ export const polygonTask: Task = {
               [39.8422, 59.9672],
               [39.8422, 59.6258],
               [39.8109, 58.7309],
-              [39.8719, 58.1751]
+              [39.8719, 58.1751],
             ],
-            polygonlabels: ['car']
+            polygonlabels: ['car'],
           },
           to_name: 'image',
           from_name: 'label',
           image_rotation: 0,
           original_width: 640,
-          original_height: 457
-        }
-      ]
-    }
+          original_height: 457,
+        },
+      ],
+    },
   ],
   data: {
-    image: 'https://user.fm/files/v2-901310d5cb3fa90e0616ca10590bacb3/spacexmoon-800x501.jpg'
+    image: 'https://user.fm/files/v2-901310d5cb3fa90e0616ca10590bacb3/spacexmoon-800x501.jpg',
   },
   id: 0,
-  task_path: '../examples/image_polygons/tasks.json'
+  task_path: '../examples/image_polygons/tasks.json',
 };
 
 export const giraffesTask: Task = {
   data: {
     image:
-      'https://dagshub.com/api/v1/repos/Dean/COCO_1K/raw/main/data/images/train/000000000072.jpg'
+      'https://dagshub.com/api/v1/repos/Dean/COCO_1K/raw/main/data/images/train/000000000072.jpg',
   },
   annotations: [
     {
@@ -158,15 +158,15 @@ export const giraffesTask: Task = {
               [35.0281, 95.9547],
               [31.997700000000002, 93.03439999999999],
               [33.6815, 87.4156],
-              [37.7237, 83.1453]
+              [37.7237, 83.1453],
             ],
-            polygonlabels: ['giraffe']
+            polygonlabels: ['giraffe'],
           },
           to_name: 'image',
           from_name: 'label',
           image_rotation: 0,
           original_width: 427,
-          original_height: 640
+          original_height: 640,
         },
         {
           id: '42e150b428',
@@ -252,19 +252,19 @@ export const giraffesTask: Task = {
               [53.6745, 22.2969],
               [47.9344, 20.9453],
               [43.547999999999995, 21.6219],
-              [40.171, 22.0719]
+              [40.171, 22.0719],
             ],
-            polygonlabels: ['giraffe']
+            polygonlabels: ['giraffe'],
           },
           to_name: 'image',
           from_name: 'label',
           image_rotation: 0,
           original_width: 427,
-          original_height: 640
-        }
+          original_height: 640,
+        },
       ],
-      ground_truth: false
-    }
+      ground_truth: false,
+    },
   ],
-  is_labeled: true
+  is_labeled: true,
 };

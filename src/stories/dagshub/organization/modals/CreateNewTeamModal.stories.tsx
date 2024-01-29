@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   CreateTeamModalProps,
-  CreateNewTeamModal
+  CreateNewTeamModal,
 } from '../../../../components/dagshub/organization/modals/create-team-modal';
 
 const meta: Meta<CreateTeamModalProps> = {
   title: 'DagsHub/Org/Modals/CreateNewTeamModal',
-  component: CreateNewTeamModal
+  component: CreateNewTeamModal,
 };
 
 export default meta;
@@ -24,7 +24,7 @@ const users = [
   { id: 6, userName: 'user6', homeLink: '', imageSource: imageLink },
   { id: 7, userName: 'user7', homeLink: '', imageSource: imageLink },
   { id: 8, userName: 'user8', homeLink: '', imageSource: imageLink },
-  { id: 9, userName: 'user9', homeLink: '', imageSource: imageLink }
+  { id: 9, userName: 'user9', homeLink: '', imageSource: imageLink },
 ];
 
 export const Primary = () => {

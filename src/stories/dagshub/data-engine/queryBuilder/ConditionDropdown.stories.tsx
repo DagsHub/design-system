@@ -6,7 +6,7 @@ import { Comparator } from '../../../../components/dagshub/data-engine/queryBuil
 
 const meta: Meta<typeof ConditionDropdown> = {
   title: 'DagsHub/Data-Engine/QueryBuilder/Condition/ConditionDropdown',
-  component: ConditionDropdown
+  component: ConditionDropdown,
 };
 
 export default meta;
@@ -18,7 +18,7 @@ const Operators: { label: string; id: Comparator; value?: string }[] = [
   { label: '<', id: 'LESS_THAN' },
   { label: '<=', id: 'LESS_EQUAL_THAN' },
   { label: 'contains', id: 'CONTAINS' },
-  { label: 'is null', id: 'IS_NULL' }
+  { label: 'is null', id: 'IS_NULL' },
 ];
 
 const Template: StoryFn<typeof ConditionDropdown> = (args) => {

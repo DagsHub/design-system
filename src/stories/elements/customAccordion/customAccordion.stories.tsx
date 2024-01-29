@@ -4,7 +4,7 @@ import { CustomAccordion, MetadataKeyValueList } from '../../../components';
 
 const meta: Meta<typeof CustomAccordion> = {
   title: 'Elements/CustomAccordion',
-  component: CustomAccordion
+  component: CustomAccordion,
 };
 
 export default meta;
@@ -23,11 +23,11 @@ customAccordion.args = {
         { key: 'is_video', value: 'true', valueType: 'BOOLEAN' },
         { key: 'length', value: '16 seconds', valueType: 'STRING' },
         { key: 'description', value: 'this is a video about earth space', valueType: 'STRING' },
-        { key: 'categories', value: 'earth, space, live, human', valueType: 'INTEGER' }
+        { key: 'categories', value: 'earth, space, live, human', valueType: 'INTEGER' },
       ]}
       editingEnabled={true}
       deletionEnabled={false}
       onChangeHandler={() => {}}
     />
-  )
+  ),
 };

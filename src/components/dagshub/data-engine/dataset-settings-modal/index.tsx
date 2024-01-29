@@ -23,7 +23,7 @@ export function DatasetSettingsModal({
   onClose,
   existingNames,
   isDataset,
-  onlyRemove
+  onlyRemove,
 }: DatasetSettingsModal) {
   const [displayDeleteBtns, setDisplayDeleteBtns] = useState<boolean>(false);
 
@@ -121,7 +121,7 @@ export function DatasetSettingsModal({
                 } else {
                   onEdit({
                     originalName: name,
-                    newName: nameInputText
+                    newName: nameInputText,
                   });
                   onClose();
                 }
@@ -150,7 +150,7 @@ export function DatasetSettingsModal({
           />
         </div>
       )}
-    </>
+    </>,
   ];
   return (
     <GenericModal

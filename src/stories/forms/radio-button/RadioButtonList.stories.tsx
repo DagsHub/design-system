@@ -7,7 +7,7 @@ import { RadioButtonListProps } from '../../../components/forms/radio-button/rad
 
 const meta: Meta<RadioButtonListProps> = {
   title: 'Forms/RadioButtonList',
-  component: RadioButtonList
+  component: RadioButtonList,
 };
 
 export default meta;
@@ -24,7 +24,7 @@ Primary.args = {
       label: 'Member access to organization',
       description:
         'Members have no special access by default. Grant them repository access once they are added.',
-      icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
+      icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />,
     },
     {
       id: 'admin-access',
@@ -32,7 +32,7 @@ Primary.args = {
       label: 'Admin access to organization',
       description:
         'Admins have full access to all repositories and have admin rights to the organization',
-      icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
-    }
-  ]
+      icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />,
+    },
+  ],
 };

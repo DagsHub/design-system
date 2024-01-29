@@ -24,7 +24,7 @@ export function HorizontalMenuTab({
   href = undefined,
   checked = false,
   Wrapper = ({ children }) => <>{children}</>,
-  onClick
+  onClick,
 }: HorizontalMenuTabProps) {
   return React.createElement(
     Wrapper,

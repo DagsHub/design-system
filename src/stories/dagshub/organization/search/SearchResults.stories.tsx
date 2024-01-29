@@ -2,12 +2,12 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   SearchResultList,
-  SearchResultListProps
+  SearchResultListProps,
 } from '../../../../components/dagshub/organization/search/search-results';
 
 const meta: Meta<SearchResultListProps> = {
   title: 'DagsHub/Org/Search/SearchResultList',
-  component: SearchResultList
+  component: SearchResultList,
 };
 
 export default meta;
@@ -21,27 +21,27 @@ Primary.args = {
   users: [
     {
       imageSource: imageLink,
-      userName: 'ItayMalka'
+      userName: 'ItayMalka',
     },
     {
       imageSource: imageLink,
-      userName: 'TalMalka'
+      userName: 'TalMalka',
     },
     {
       imageSource: imageLink,
-      userName: 'ShaharMalka'
+      userName: 'ShaharMalka',
     },
     {
       imageSource: imageLink,
-      userName: 'ItayMalka'
+      userName: 'ItayMalka',
     },
     {
       imageSource: imageLink,
-      userName: 'TalMalka'
+      userName: 'TalMalka',
     },
     {
       imageSource: imageLink,
-      userName: 'ShaharMalka'
-    }
-  ]
+      userName: 'ShaharMalka',
+    },
+  ],
 };

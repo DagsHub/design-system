@@ -1974,7 +1974,7 @@ export const icons = {
         fill={fill}
       />
     </svg>
-  )
+  ),
 };
 
 export type IconType = keyof typeof icons;
@@ -2001,7 +2001,7 @@ export const Icon = ({
       width,
       height,
       onClick,
-      ...props
+      ...props,
     });
   }
   return null;

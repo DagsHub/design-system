@@ -22,14 +22,14 @@ export function CardEmptyState({
   buttonText,
   buttonLink,
   buttonAction,
-  backgroundImg
+  backgroundImg,
 }: CardEmptyStateProps) {
   const cardStyle = {
     backgroundImage: backgroundImg ? `url(${backgroundImg})` : undefined,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     maxWidth: width,
-    height: height
+    height: height,
   };
 
   return (
