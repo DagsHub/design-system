@@ -36,7 +36,7 @@ export function RemoveMemberModal(props: RemoveMemberModalProps) {
         onClick={props.onRemove}
       />
       <Button variant={ButtonVariant.Primary} label={'Cancel'} width={95} onClick={props.onClose} />
-    </div>
+    </div>,
   ];
   return (
     <GenericModal

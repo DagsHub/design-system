@@ -1,5 +1,17 @@
 import React, { CSSProperties, useEffect, useRef, useState } from 'react';
-import { Circle, Layer, Line, Stage, Text, Image, Ellipse } from 'react-konva';
+import {
+  Circle,
+  Layer,
+  Line,
+  Stage,
+  Text,
+  Image,
+  Ellipse,
+  Rect,
+  Tag,
+  Group,
+  Label,
+} from 'react-konva';
 import { useContainerDimensions } from './utils';
 import {
   getLabel,
@@ -9,7 +21,7 @@ import {
   isRectangleLabel,
   isEllipseLabel,
   pointPercentToPixel,
-  rectangleLabelToBbox
+  rectangleLabelToBbox,
 } from './labelstudioUtils';
 import { AnnotationsMap, Result, RGB } from './annotationTypes';
 import useImage from 'use-image';
@@ -30,7 +42,7 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
   annotationsMap,
   colorProvider,
   displayColumns = [],
-  displayLabels = ['all']
+  displayLabels = ['all'],
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, containerHeight] = useContainerDimensions(containerRef);
@@ -39,7 +51,7 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
     height: number;
   }>({
     width: 0,
-    height: 0
+    height: 0,
   });
   const [image] = useImage(src);
 
@@ -51,12 +63,12 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
       if (dominantRatio === 'width') {
         setDimension({
           width: containerWidth,
-          height: containerWidth / ratio
+          height: containerWidth / ratio,
         });
       } else {
         setDimension({
           width: containerHeight * ratio,
-          height: containerHeight
+          height: containerHeight,
         });
       }
     }
@@ -64,14 +76,7 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
   const containerStyle: CSSProperties = {
     display: 'flex',
     width: '100%',
-    height: '100%'
-  };
-  const imgStyle: CSSProperties = {
-    margin: 'auto',
-    objectFit: 'contain',
-    width: '100%',
     height: '100%',
-    display: 'block'
   };
 
   const labelComponents: React.ReactNode[] = [];
@@ -98,7 +103,6 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
 
   // Apply all the text components after the drawings so that the text is on top of the drawings
   const drawingLayers = labelComponents.concat(textComponents);
-
   return (
     <div id="ls-container" ref={containerRef} style={containerStyle}>
       <Stage
@@ -108,7 +112,7 @@ export const LabelStudioPolygonDrawer: React.FC<LabelStudioPolygonDrawerProps> =
           position: 'relative',
           width: dimension.width,
           height: dimension.height,
-          margin: 'auto'
+          margin: 'auto',
         }}
       >
         <Layer>
@@ -136,14 +140,27 @@ function getSingleAnnotationResultLayers(
     return null;
   }
   const fontSize = 14;
+  const bboxStrokeWidth = 2;
+  const polygonStrokeWidth = 2;
+  const labelBoxPaddingWidth = 8;
+  const labelBoxPaddingHeight = 4;
+  const labelBoxCornerRadius = 5;
+  const minStrokedObjectSize = 12;
   const [R, G, B] = colorProvider(label, column);
   const strokeColor = `rgb(${R},${G},${B})`;
   const fillColor = `rgba(${R},${G},${B},0.5)`;
+
   if (isPolygonLabel(result)) {
     flatPoints = result.value.points.flatMap((p) => pointPercentToPixel(p, dimension));
     flatBboxPoints = getPolygonLabelBbox(result, dimension);
     labelLayersPush(
-      <Line points={flatPoints} closed stroke={strokeColor} strokeWidth={2} fill={fillColor} />
+      <Line
+        points={flatPoints}
+        closed
+        stroke={strokeColor}
+        strokeWidth={polygonStrokeWidth}
+        fill={fillColor}
+      />
     );
   } else if (isRectangleLabel(result)) {
     flatBboxPoints = rectangleLabelToBbox(result, dimension);
@@ -155,6 +172,9 @@ function getSingleAnnotationResultLayers(
     const { x: cxPercent, y: cyPercent, radiusX: rxPercent, radiusY: ryPercent } = result.value;
     const [cx, cy] = pointPercentToPixel([cxPercent, cyPercent], dimension);
     const [rx, ry] = pointPercentToPixel([rxPercent, ryPercent], dimension);
+
+    const strokeWidth = rx * 2 > minStrokedObjectSize || ry * 2 > minStrokedObjectSize ? polygonStrokeWidth : 0;
+
     labelLayersPush(
       <Ellipse
         x={cx}
@@ -162,24 +182,42 @@ function getSingleAnnotationResultLayers(
         radiusX={rx}
         radiusY={ry}
         stroke={strokeColor}
-        strokeWidth={2}
+        strokeWidth={strokeWidth}
         fill={fillColor}
       />
     );
   }
   if (flatBboxPoints.length > 0) {
-    labelLayersPush(<Line points={flatBboxPoints} closed stroke={strokeColor} strokeWidth={2} />);
-    const textPosition = { x: flatBboxPoints[0], y: flatBboxPoints[1] - fontSize };
-    textLayersPush(
-      <Text
-        x={textPosition.x}
-        y={textPosition.y}
-        text={label}
-        fontSize={14}
-        fill="white"
-        fontStyle="bold"
-        align="center"
-      />
+    labelLayersPush(
+      <Line points={flatBboxPoints} closed stroke={strokeColor} strokeWidth={bboxStrokeWidth} />
     );
+    const labelBoxHeight = fontSize + labelBoxPaddingHeight * 2;
+    const labelBoxPosition = {
+      x: flatBboxPoints[0] - bboxStrokeWidth / 2,
+      y: flatBboxPoints[1] - labelBoxHeight,
+    };
+
+    const text = (
+      <Group listening={false}>
+        <Label {...labelBoxPosition}>
+          <Tag
+            fill={`rgba(${R},${G},${B}, 1)`}
+            cornerRadius={[labelBoxCornerRadius, labelBoxCornerRadius, 0, 0]}
+          />
+          <Text
+            align="center"
+            verticalAlign={'middle'}
+            text={label}
+            fontSize={14}
+            fill="white"
+            padding={labelBoxPaddingWidth}
+            // height overrides the padding on Y axis
+            height={fontSize + labelBoxPaddingHeight * 2}
+          />
+        </Label>
+      </Group>
+    );
+
+    textLayersPush(text);
   }
 }

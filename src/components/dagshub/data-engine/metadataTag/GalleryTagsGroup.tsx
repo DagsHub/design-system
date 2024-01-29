@@ -3,7 +3,7 @@ import React from 'react';
 import { MetadataTag } from './MetadataTag';
 
 export function GalleryTagsGroup({
-  itemMetadataTagsToDisplayDict
+  itemMetadataTagsToDisplayDict,
 }: {
   itemMetadataTagsToDisplayDict: Record<string, { value: any }>;
 }) {
@@ -41,7 +41,7 @@ export function GalleryTagsGroup({
       bg,
       hoverBg,
       text,
-      hoverText
+      hoverText,
     };
   };
 
@@ -50,7 +50,7 @@ export function GalleryTagsGroup({
 
     return {
       regular: { backgroundColor: bg, color: text },
-      hover: { backgroundColor: hoverBg, color: hoverText }
+      hover: { backgroundColor: hoverBg, color: hoverText },
     };
   };
 
@@ -61,8 +61,8 @@ export function GalleryTagsGroup({
       color: `${colors.regular.color}!important`,
       '&:hover': {
         backgroundColor: `${colors.hover.backgroundColor}!important`,
-        color: `${colors.hover.color}!important`
-      }
+        color: `${colors.hover.color}!important`,
+      },
     };
   };
 

@@ -2,12 +2,12 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   ProfileImageList,
-  ProfileImageListProps
+  ProfileImageListProps,
 } from '../../../../components/dagshub/organization/profiles/profile-image-list';
 
 const meta: Meta<ProfileImageListProps> = {
   title: 'DagsHub/Org/Profiles/ProfileImageList',
-  component: ProfileImageList
+  component: ProfileImageList,
 };
 
 export default meta;
@@ -28,16 +28,16 @@ Primary.args = {
     { id: 6, userName: 'tal6', homeLink: '', relAvatarLink: imageLink },
     { id: 7, userName: 'tal7', homeLink: '', relAvatarLink: imageLink },
     { id: 8, userName: 'tal8', homeLink: '', relAvatarLink: imageLink },
-    { id: 9, userName: 'tal9', homeLink: '', relAvatarLink: imageLink }
+    { id: 9, userName: 'tal9', homeLink: '', relAvatarLink: imageLink },
   ],
-  maxImages: 6
+  maxImages: 6,
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   userList: [
     { id: 1, userName: 'tal1', homeLink: '', relAvatarLink: imageLink },
-    { id: 2, userName: 'tal2', homeLink: '', relAvatarLink: imageLink }
+    { id: 2, userName: 'tal2', homeLink: '', relAvatarLink: imageLink },
   ],
-  maxImages: 2
+  maxImages: 2,
 };

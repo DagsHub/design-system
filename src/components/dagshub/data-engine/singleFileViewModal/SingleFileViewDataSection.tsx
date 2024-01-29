@@ -17,7 +17,7 @@ export function SingleFileViewDataSection({
   enableMetadataEditing,
   enableMetadataDeletion,
   visualizerRenderer,
-  sidebarRenderers
+  sidebarRenderers,
 }: {
   isSmallScreen: boolean;
   itemData: ItemData;
@@ -43,7 +43,7 @@ export function SingleFileViewDataSection({
           width: '100%',
           height: '100%',
           flexDirection: 'row',
-          boxSizing: 'border-box'
+          boxSizing: 'border-box',
         }}
       >
         <Box
@@ -53,7 +53,7 @@ export function SingleFileViewDataSection({
               !isSmallScreen && !!showMetadataSidebar ? `CALC(100% - ${SIDEBAR_WIDTH}px)` : `100%`,
             flexDirection: 'column',
             height: '100%',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
           }}
         >
           {isSmallScreen && showMetadataOverlay ? (
@@ -62,7 +62,7 @@ export function SingleFileViewDataSection({
                 display: 'flex',
                 width: !isSmallScreen ? `${SIDEBAR_WIDTH}px` : 'auto',
                 flexDirection: 'column',
-                height: `calc(100% - ${ARROWS_SECTION_HEIGHT}px)`
+                height: `calc(100% - ${ARROWS_SECTION_HEIGHT}px)`,
               }}
             >
               <CustomAccordion label={'Metadata'}>
@@ -84,7 +84,7 @@ export function SingleFileViewDataSection({
                 justifyContent: 'center',
                 bgcolor: '#F8FAFC',
                 boxSizing: 'border-box',
-                position: 'relative'
+                position: 'relative',
               }}
             >
               {!isSmallScreen && !showMetadataSidebar && (
@@ -96,7 +96,7 @@ export function SingleFileViewDataSection({
                       right: '4px',
                       zIndex: 200,
                       width: '44px',
-                      height: '36px'
+                      height: '36px',
                     }}
                   >
                     {/*Tooltip doesn't work directly on Button soI need this dix wrapper*/}
@@ -128,7 +128,7 @@ export function SingleFileViewDataSection({
               width: '100%',
               height: `${ARROWS_SECTION_HEIGHT}px`,
               justifyContent: 'center',
-              boxSizing: 'border-box'
+              boxSizing: 'border-box',
             }}
           >
             <Box
@@ -136,7 +136,7 @@ export function SingleFileViewDataSection({
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                gap: '8px'
+                gap: '8px',
               }}
             >
               <Button
@@ -180,7 +180,7 @@ export function SingleFileViewDataSection({
               width: !isSmallScreen ? `${SIDEBAR_WIDTH}px` : '100%',
               borderLeft: !isSmallScreen ? '2px solid #E2E8F0' : undefined,
               flexDirection: 'column',
-              paddingBottom: '12px'
+              paddingBottom: '12px',
             }}
           >
             <Tooltip title={'Hide metadata sidebar'} placement={'right'} arrow={true}>
@@ -205,7 +205,7 @@ export function SingleFileViewDataSection({
                     alignSelf: 'flex-start',
                     marginTop: '4px',
                     marginLeft: '16px',
-                    flexShrink: 0
+                    flexShrink: 0,
                   }}
                 />
               </div>
@@ -216,7 +216,7 @@ export function SingleFileViewDataSection({
                 flexDirection: 'column',
                 justifyContent: 'start',
                 overflow: 'auto',
-                height: '100%'
+                height: '100%',
               }}
             >
               <>

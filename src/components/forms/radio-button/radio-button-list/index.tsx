@@ -19,7 +19,7 @@ export function RadioButtonList({
   initialChecked = '',
   style = {},
   onChecked = () => {},
-  items
+  items,
 }: RadioButtonListProps) {
   const _items = items.map((item) => ({ ...item, checked: item.id === initialChecked }));
 

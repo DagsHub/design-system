@@ -15,7 +15,7 @@ export function VerticalMenuTab({
   text,
   href = '/',
   checked = false,
-  Wrapper = ({ children }) => <>{children}</>
+  Wrapper = ({ children }) => <>{children}</>,
 }: HorizontalMenuTabProps) {
   return React.createElement(
     Wrapper,

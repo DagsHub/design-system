@@ -29,18 +29,18 @@ const teamPermissionsOptions: RadioButtonItemProps[] = [
       'members can:\n' +
       '• read from\n' +
       '• push to\n' +
-      "• add collaborators to the team's repositories"
+      "• add collaborators to the team's repositories",
   },
   {
     id: UserPermissionForTeam.WriteAccess,
     label: UserPermissionForTeam.WriteAccess,
-    description: 'members can:\n' + '• read from\n' + "• push to the team's repositories"
+    description: 'members can:\n' + '• read from\n' + "• push to the team's repositories",
   },
   {
     id: UserPermissionForTeam.ReadAccess,
     label: UserPermissionForTeam.ReadAccess,
-    description: 'members can:\n' + '• view\n' + "• clone the team's repositories"
-  }
+    description: 'members can:\n' + '• view\n' + "• clone the team's repositories",
+  },
 ];
 
 export interface TeamTableProps {
@@ -107,7 +107,7 @@ export function TeamTable({
   copyInvitationAction,
   existingTeamNames,
   addTeamReposLink,
-  addTeamReposAnalyticsEventAction
+  addTeamReposAnalyticsEventAction,
 }: TeamTableProps) {
   const [users, setUsers] = useState<any[]>([]);
   const [inputText, setInputText] = useState<string>('');
@@ -137,7 +137,7 @@ export function TeamTable({
   const handleClick = (userId: number | string) => {
     setDisplayRemoveMemberFromTeamModal({
       ...displayRemoveMemberFromTeamModal,
-      [userId]: !displayRemoveMemberFromTeamModal[userId]
+      [userId]: !displayRemoveMemberFromTeamModal[userId],
     });
   };
 
@@ -160,7 +160,7 @@ export function TeamTable({
     setUsers(
       rsp.data.map((user: any) => ({
         userName: user.username,
-        imageSource: user.avatar_url
+        imageSource: user.avatar_url,
       }))
     );
   }, [debouncedInputText]);
@@ -233,7 +233,7 @@ export function TeamTable({
                   originalName,
                   newName,
                   description,
-                  permission
+                  permission,
                 }: OnEditTeamInput) => {
                   await onEditTeam({ originalName, newName, description, permission });
                   setTeamPerm(
@@ -254,15 +254,15 @@ export function TeamTable({
             )}
           </>
         )}
-      </span>
-    ]
+      </span>,
+    ],
   };
 
   let rows: Row[] = [];
   if (!members?.length) {
     let row: Row = {
       columns: [<span>This team doesn't have any members yet</span>],
-      style: { width: '100%' }
+      style: { width: '100%' },
     };
     rows.push(row);
   }
@@ -301,9 +301,9 @@ export function TeamTable({
               onClose={() => handleClick(member.id)}
             />
           )}
-        </>
+        </>,
       ],
-      style: userIndex >= MAX_ROWS ? { display: style } : {}
+      style: userIndex >= MAX_ROWS ? { display: style } : {},
     };
     rows.push(row);
   });
@@ -317,10 +317,10 @@ export function TeamTable({
           height={5}
           fill="#172D32"
           icon={`solid-cheveron-${isActive ? 'up' : 'down'}`}
-        />
+        />,
       ],
       rowClasses: 'table__collapse',
-      onClick: () => handleCollapse(teamId, !isActive)
+      onClick: () => handleCollapse(teamId, !isActive),
     };
     rows.push(row);
   }
@@ -348,7 +348,7 @@ export function TeamTable({
                       ? 'write'
                       : permission === 'Admin access'
                       ? 'admin'
-                      : 'read'
+                      : 'read',
                 });
                 setTeamPerm(permission);
               }}
@@ -391,8 +391,8 @@ export function TeamTable({
               onClick={() => setDisplayMiniCardModal(!displayMiniCardModal)}
             />
           )}
-        </div>
-      ]
+        </div>,
+      ],
     };
   } else {
     footer = {
@@ -406,8 +406,8 @@ export function TeamTable({
           >
             Add team repositories
           </a>
-        </span>
-      ]
+        </span>,
+      ],
     };
   }
 

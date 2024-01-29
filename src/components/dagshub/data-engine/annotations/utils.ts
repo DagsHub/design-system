@@ -18,7 +18,7 @@ export function useContainerDimensions(myRef: React.RefObject<HTMLDivElement>) {
   useEffect(() => {
     const getDimensions = () => ({
       width: myRef.current?.offsetWidth || 0,
-      height: myRef.current?.offsetHeight || 0
+      height: myRef.current?.offsetHeight || 0,
     });
 
     const handleResize = () => {

@@ -4,7 +4,7 @@ import { FileTree, FileTreeInterface } from '../../../../components';
 
 const meta: Meta<FileTreeInterface> = {
   title: 'Elements/FileTree',
-  component: FileTree
+  component: FileTree,
 };
 
 const options = ['folder', 'bucket'];
@@ -50,17 +50,17 @@ FileTreeWithFiles.args = {
       label: 'test 1',
       type: 'folder',
       id: '1',
-      href: '/'
+      href: '/',
     },
     {
       label: 'test 2',
       type: 'folder',
       id: '2',
-      href: '/'
-    }
+      href: '/',
+    },
   ],
   emptyMessage: 'no files here',
   onSelect,
   getFilesCb,
-  loading: false
+  loading: false,
 };

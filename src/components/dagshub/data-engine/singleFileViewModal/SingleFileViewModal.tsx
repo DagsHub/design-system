@@ -64,7 +64,7 @@ export function SingleFileViewModal({
   enableDatapointAnnotating,
   enableFileDownloading,
   visualizerRenderer,
-  sidebarRenderers
+  sidebarRenderers,
 }: singleFileViewModalProps) {
   const [showMetadataOverlay, setShowMetadataOverlay] = useState<boolean>(false);
   const breakpoint = useMediaQuery('(max-width: 800px)');
@@ -104,7 +104,7 @@ export function SingleFileViewModal({
               padding: '8px',
               paddingTop: '0px',
               boxSizing: 'border-box',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
             }}
           >
             <TopButtonsSection
@@ -131,7 +131,7 @@ export function SingleFileViewModal({
               sx={{
                 height: breakpoint
                   ? `calc(100% - ${TOP_SECTION_HEIGHT_ON_SMALL_SCREEN}px)`
-                  : `calc(100% - ${TOP_SECTION_HEIGHT}px)`
+                  : `calc(100% - ${TOP_SECTION_HEIGHT}px)`,
               }}
             >
               <SingleFileViewDataSection
@@ -147,7 +147,7 @@ export function SingleFileViewModal({
                 sidebarRenderers={sidebarRenderers}
               />
             </Box>
-          </Box>
+          </Box>,
         ]}
       />
     </Box>

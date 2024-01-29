@@ -14,7 +14,7 @@ export function GenericCard({ width, height, backgroundImg, elements }: GenericC
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     maxWidth: width,
-    height: height
+    height: height,
   };
 
   return (

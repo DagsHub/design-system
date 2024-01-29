@@ -5,7 +5,7 @@ import {
   Button,
   ButtonVariant,
   ButtonStretch,
-  ButtonProps
+  ButtonProps,
 } from '../../../components/elements/button';
 import { Icon } from '../../../components';
 // @ts-ignore
@@ -13,7 +13,7 @@ import startCase from 'lodash/startCase';
 
 const meta: Meta<ButtonProps> = {
   title: 'Elements/Button',
-  component: Button
+  component: Button,
 };
 
 export default meta;
@@ -90,5 +90,5 @@ export const Interactive = Template.bind({});
 Interactive.args = {
   variant: ButtonVariant.Primary,
   stretch: ButtonStretch.Normal,
-  label: 'Change me!'
+  label: 'Change me!',
 };

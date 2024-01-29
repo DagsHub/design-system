@@ -4,7 +4,7 @@ type Dimension = { width: number; height: number };
 
 export const pointPercentToPixel = (point: Point, dimension: Dimension): Point => [
   (point[0] * dimension.width) / 100,
-  (point[1] * dimension.height) / 100
+  (point[1] * dimension.height) / 100,
 ];
 
 export function rectangleLabelToBbox(label: RectangleResult, dimension: Dimension): number[] {
@@ -13,7 +13,7 @@ export function rectangleLabelToBbox(label: RectangleResult, dimension: Dimensio
     [x, y],
     [x + width, y],
     [x + width, y + height],
-    [x, y + height]
+    [x, y + height],
   ];
   return points.flatMap((p) => pointPercentToPixel(p, dimension));
 }
@@ -30,7 +30,7 @@ export function getPolygonLabelBbox(label: PolygonResult, dimension: Dimension):
     [minX, minY],
     [minX, maxY],
     [maxX, maxY],
-    [maxX, minY]
+    [maxX, minY],
   ];
   return bbox.flatMap((p) => pointPercentToPixel(p, dimension));
 }

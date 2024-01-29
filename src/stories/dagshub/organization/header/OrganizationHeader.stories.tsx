@@ -4,7 +4,7 @@ import { Header, HeaderProps } from '../../../../components/dagshub/organization
 
 const meta: Meta<HeaderProps> = {
   title: 'DagsHub/Org/Header/Header',
-  component: Header
+  component: Header,
 };
 
 export default meta;
@@ -19,11 +19,11 @@ Primary.args = {
   orgImageSource: imageLink,
   orgName: 'Dagshub',
   orgSite: 'https://DagsHub.com',
-  orgPlan: 'teams plan'
+  orgPlan: 'teams plan',
 };
 export const Primary2 = Template.bind({});
 Primary2.args = {
   orgImageSource: imageLink,
   orgName: 'Dagshub',
-  orgPlan: 'teams plan'
+  orgPlan: 'teams plan',
 };

@@ -7,7 +7,7 @@ export function MetadataTag({
   label,
   value,
   maxWidth,
-  sx
+  sx,
 }: {
   label?: string;
   value: any;
@@ -33,7 +33,7 @@ export function MetadataTag({
         fontWeight: 600,
         boxSizing: 'border-box',
         backgroundColor: 'rgba(241, 245, 249, 1)',
-        color: 'rgba(100, 116, 139, 1)'
+        color: 'rgba(100, 116, 139, 1)',
       }}
       sx={sx}
       key={label}
