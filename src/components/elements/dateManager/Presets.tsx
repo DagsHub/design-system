@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import {FilterType} from "../controlledDisplayFiltersGroup";
+import { FilterType } from '../controlledDisplayFiltersGroup';
 
 const PresetsList = ({
   list,

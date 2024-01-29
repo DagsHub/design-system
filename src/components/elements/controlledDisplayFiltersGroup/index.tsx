@@ -12,10 +12,7 @@ export interface ControlledDisplayFiltersGroupProps {
   isToggleAll?: boolean;
   toggledFilters?: Set<string>;
   onChange: (activeFilters: FilterType[]) => void;
-  search: ({
-    alias,
-    value
-  }: FilterType) => Promise<FilterType[]>;
+  search: ({ alias, value }: FilterType) => Promise<FilterType[]>;
 }
 
 export function ControlledDisplayFiltersGroup({
@@ -25,13 +22,13 @@ export function ControlledDisplayFiltersGroup({
   search,
   onChange
 }: ControlledDisplayFiltersGroupProps) {
-  const [displayedFilters, setDisplayedFilters] = useState<
-    Map<string, FilterType>
-  >(new Map<string, FilterType>());
+  const [displayedFilters, setDisplayedFilters] = useState<Map<string, FilterType>>(
+    new Map<string, FilterType>()
+  );
   const [showAll, setShowAll] = useState<boolean>(isToggleAll ?? false);
-  const [availableFiltersNames, setAvailableFiltersNames] = useState<
-    Map<string, FilterType>
-  >(new Map(filters.map((filter) => [filter.value, filter])));
+  const [availableFiltersNames, setAvailableFiltersNames] = useState<Map<string, FilterType>>(
+    new Map(filters.map((filter) => [filter.value, filter]))
+  );
 
   useEffect(() => {
     setAvailableFiltersNames(new Map(filters.map((filter) => [filter.value, filter])));

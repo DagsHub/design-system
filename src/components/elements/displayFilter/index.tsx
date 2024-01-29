@@ -1,19 +1,16 @@
-import {IconButton, Stack, ThemeProvider, Tooltip, Typography} from '@mui/material';
+import { IconButton, Stack, ThemeProvider, Tooltip, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Icon } from '../../icons';
 import theme from '../../../theme';
 import ComparePopover from './ComparePopover';
 import { Box } from '@mui/system';
-import {FilterType} from "../controlledDisplayFiltersGroup";
+import { FilterType } from '../controlledDisplayFiltersGroup';
 
 export interface DisplayFilterProps {
   filter: FilterType;
   onChange: ({ alias, value }: FilterType) => void;
   value: boolean;
-  search: ({
-    alias,
-    value
-  }: FilterType) => Promise<FilterType[]>;
+  search: ({ alias, value }: FilterType) => Promise<FilterType[]>;
 }
 
 export function DisplayFilter({ filter, onChange, value, search }: DisplayFilterProps) {
@@ -62,18 +59,18 @@ export function DisplayFilter({ filter, onChange, value, search }: DisplayFilter
             <Icon icon={show ? 'eye' : 'eye-off'} height={20} width={21.08} fill={'#94A3B8'} />
           </IconButton>
           <Tooltip title={filter.alias}>
-              <Typography
-                  sx={{
-                      overflow: 'hidden',
-                      whiteSpace: 'nowrap',
-                      textOverflow: 'ellipsis',
-                      width: '130px'
-                  }}
-                  variant={'medium'}
-                  component={'div'}
-              >
-                  {filter.alias}
-              </Typography>
+            <Typography
+              sx={{
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis',
+                width: '130px'
+              }}
+              variant={'medium'}
+              component={'div'}
+            >
+              {filter.alias}
+            </Typography>
           </Tooltip>
         </Box>
 

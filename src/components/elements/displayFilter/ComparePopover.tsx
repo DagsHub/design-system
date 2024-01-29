@@ -4,7 +4,7 @@ import { DateManager } from '../dateManager';
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { Icon } from '../../icons';
-import {FilterType} from "../controlledDisplayFiltersGroup";
+import { FilterType } from '../controlledDisplayFiltersGroup';
 
 function deductDays(days: number) {
   const date = new Date();
@@ -31,10 +31,7 @@ const ComparePopover = ({
   search
 }: {
   presets?: FilterType[];
-  search: ({
-    alias,
-    value
-  }: FilterType) => Promise<FilterType[]>;
+  search: ({ alias, value }: FilterType) => Promise<FilterType[]>;
 }) => {
   const [loading, setLoading] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);

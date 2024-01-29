@@ -2,7 +2,8 @@ import { Meta, StoryFn } from '@storybook/react';
 import React, { useState } from 'react';
 import {
   ControlledDisplayFiltersGroup,
-  ControlledDisplayFiltersGroupProps, FilterType
+  ControlledDisplayFiltersGroupProps,
+  FilterType
 } from '../../../components';
 import { Box } from '@mui/system';
 
@@ -42,10 +43,7 @@ const Template: StoryFn<typeof ControlledDisplayFiltersGroup> = (args) => {
   const [availableFilters, setAvailableFilters] = useState(filters);
   const [_, setActiveFilters] = useState<FilterType[]>();
 
-  function fetchData({
-    value,
-    alias
-  }: FilterType): Promise<FilterType[]> {
+  function fetchData({ value, alias }: FilterType): Promise<FilterType[]> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const randomData = generateRandomData();
@@ -87,8 +85,7 @@ export const filterGroupControlledAndToggledAll: StoryFn<typeof ControlledDispla
   Template.bind({});
 filterGroupControlledAndToggledAll.args = {
   toggleAllLabel: 'Show all',
-  onChange: (activeFilters: FilterType[]) =>
-    console.log('changed', activeFilters),
+  onChange: (activeFilters: FilterType[]) => console.log('changed', activeFilters),
   isToggleAll: true //Make the component controlled from outside and toggle all filters
 };
 
@@ -96,8 +93,7 @@ export const filterGroupControlledAndPartiallyToggled: StoryFn<
   typeof ControlledDisplayFiltersGroup
 > = Template.bind({});
 filterGroupControlledAndPartiallyToggled.args = {
-  onChange: (activeFilters: FilterType[]) =>
-    console.log('changed', activeFilters),
+  onChange: (activeFilters: FilterType[]) => console.log('changed', activeFilters),
   toggleAllLabel: 'Show all',
   toggledFilters: new Set(['metadata_key_2']) //Make the component controlled from outside and toggle 1 filter out of three
 };
