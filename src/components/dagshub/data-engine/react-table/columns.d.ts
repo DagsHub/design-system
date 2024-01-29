@@ -1,26 +1,26 @@
 export const COLUMNS = [
   {
     Header: 'Id',
-    accessor: 'id'
+    accessor: 'id',
   },
   {
     Header: 'First Name',
-    accessor: 'first_name'
+    accessor: 'first_name',
   },
   {
     Header: 'Last Name',
-    accessor: 'last_name'
+    accessor: 'last_name',
   },
   {
     Header: 'Date Of Birth',
-    accessor: 'date_of_birth'
+    accessor: 'date_of_birth',
   },
   {
     Header: 'Country',
-    accessor: 'country'
+    accessor: 'country',
   },
   {
     Header: 'Phone',
-    accessor: 'phone'
-  }
+    accessor: 'phone',
+  },
 ];

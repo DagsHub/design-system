@@ -8,7 +8,7 @@ import { ellipseTask } from './EllipseTasks';
 
 const meta: Meta<typeof LabelStudioPolygonDrawer> = {
   title: 'DagsHub/Data-Engine/Annotation',
-  component: LabelStudioPolygonDrawer
+  component: LabelStudioPolygonDrawer,
 };
 
 export default meta;
@@ -18,7 +18,7 @@ const ImagePolygon: React.FC<{ image: string } & LabelStudioPolygonDrawerProps> 
     <div
       style={{
         width: '100%',
-        height: '100vh'
+        height: '100vh',
       }}
     >
       <LabelStudioPolygonDrawer {...args} src={args.image} />
@@ -32,7 +32,7 @@ export const annotationPolygon: StoryFn<typeof ImagePolygon> = Template.bind({})
 annotationPolygon.args = {
   image: polygonTask.data.image,
   annotationsMap: {
-    polygons: polygonTask.annotations
+    polygons: polygonTask.annotations,
   },
   displayColumns: ['polygons'],
   displayLabels: ['Hello', 'car'],
@@ -41,14 +41,14 @@ annotationPolygon.args = {
       return [255, 0, 0];
     }
     return [122, 255, 0];
-  }
+  },
 };
 
 export const annotationBbox: StoryFn<typeof ImagePolygon> = Template.bind({});
 annotationBbox.args = {
   image: polygonTask.data.image,
   annotationsMap: {
-    bboxes: bboxTask.annotations
+    bboxes: bboxTask.annotations,
   },
   displayColumns: ['polygons', 'bboxes'],
   displayLabels: ['Hello', 'squirrel'],
@@ -57,7 +57,7 @@ annotationBbox.args = {
       return [255, 0, 0];
     }
     return [122, 255, 0];
-  }
+  },
 };
 
 export const annotationCombinedColorByLabel: StoryFn<typeof ImagePolygon> = Template.bind({});
@@ -65,7 +65,7 @@ annotationCombinedColorByLabel.args = {
   image: polygonTask.data.image,
   annotationsMap: {
     polygons: polygonTask.annotations,
-    bboxes: bboxTask.annotations
+    bboxes: bboxTask.annotations,
   },
   displayColumns: ['polygons', 'bboxes'],
   displayLabels: ['squirrel', 'car', 'Hello'],
@@ -77,7 +77,7 @@ annotationCombinedColorByLabel.args = {
     } else {
       return [122, 255, 0];
     }
-  }
+  },
 };
 
 export const annotationCombinedColorByColumn: StoryFn<typeof ImagePolygon> = Template.bind({});
@@ -85,7 +85,7 @@ annotationCombinedColorByColumn.args = {
   image: polygonTask.data.image,
   annotationsMap: {
     polygons: polygonTask.annotations,
-    bboxes: bboxTask.annotations
+    bboxes: bboxTask.annotations,
   },
   displayColumns: ['polygons', 'bboxes'],
   displayLabels: ['squirrel', 'car', 'Hello'],
@@ -94,14 +94,14 @@ annotationCombinedColorByColumn.args = {
       return [255, 0, 0];
     }
     return [122, 255, 0];
-  }
+  },
 };
 
 export const annotationKeypoints: StoryFn<typeof ImagePolygon> = Template.bind({});
 annotationKeypoints.args = {
   image: keypointsTask.data.image,
   annotationsMap: {
-    keypoints: keypointsTask.annotations
+    keypoints: keypointsTask.annotations,
   },
   displayColumns: ['keypoints'],
   displayLabels: ['eye_a', 'eye_b', 'nose', 'mouth'],
@@ -114,14 +114,14 @@ annotationKeypoints.args = {
       return [0, 0, 255];
     }
     return [122, 255, 0];
-  }
+  },
 };
 
 export const annotationGiraffe: StoryFn<typeof ImagePolygon> = Template.bind({});
 annotationGiraffe.args = {
   image: giraffesTask.data.image,
   annotationsMap: {
-    polygons: giraffesTask.annotations
+    polygons: giraffesTask.annotations,
   },
   displayColumns: ['polygons'],
   displayLabels: ['giraffe'],
@@ -130,14 +130,14 @@ annotationGiraffe.args = {
       return [255, 0, 0];
     }
     return [122, 255, 0];
-  }
+  },
 };
 
 export const annotationEllipses: StoryFn<typeof ImagePolygon> = Template.bind({});
 annotationEllipses.args = {
   image: ellipseTask.data.image,
   annotationsMap: {
-    ellipses: ellipseTask.annotations
+    ellipses: ellipseTask.annotations,
   },
   displayColumns: ['ellipses'],
   displayLabels: ['Healthy'],
@@ -146,5 +146,5 @@ annotationEllipses.args = {
       return [255, 0, 0];
     }
     return [122, 255, 0];
-  }
+  },
 };

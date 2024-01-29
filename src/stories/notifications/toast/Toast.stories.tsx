@@ -7,7 +7,7 @@ import '../../../components/styles/root.scss';
 
 const meta: Meta<ToastProps> = {
   title: 'Notifications/Toast',
-  component: Toast
+  component: Toast,
 };
 
 export default meta;

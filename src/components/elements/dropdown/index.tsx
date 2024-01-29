@@ -157,7 +157,7 @@ export const Dropdown = ({
           }}
           initialChecked={checked}
           className={classNames('dagshub-dropdown__options dagshub-dropdown__options-radio', {
-            right: alignOptionsToTheRight
+            right: alignOptionsToTheRight,
           })}
           style={{ width: optionWidth ? optionWidth : '100%', maxHeight: maxHeight }}
         />

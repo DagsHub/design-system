@@ -72,7 +72,7 @@ export function RepoCard({
   issuesHref,
   pullsHref,
   onStarActionClick,
-  isLogged
+  isLogged,
 }: RepoCardProps) {
   const stars = IsGithubIntegrated ? githubStarCount + numStars : numStars;
   return (

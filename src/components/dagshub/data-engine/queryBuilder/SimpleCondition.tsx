@@ -8,7 +8,7 @@ import {
   MenuItem,
   ThemeProvider,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
 import ConditionTextField from './ConditionTextField';
 import { Button, ButtonVariant } from '../../../elements';
@@ -20,14 +20,14 @@ import {
   Comparator,
   MetadataFieldProps,
   Operators,
-  useQueryBuilderContext
+  useQueryBuilderContext,
 } from './QueryBuilderContext';
 
 export function SimpleCondition({
   condition,
   onChange,
   onRemove,
-  onAdd
+  onAdd,
 }: {
   condition: AndOrMetadataInput;
   onChange: any;
@@ -39,7 +39,7 @@ export function SimpleCondition({
     validateValueByType,
     metadataFieldsList,
     getOperatorsByMetadataType,
-    checkIfOperatorRequiresValueField
+    checkIfOperatorRequiresValueField,
   } = useQueryBuilderContext();
 
   const [operatorsList, setOperatorsList] = useState<{ label: string; id: Comparator }[]>(
@@ -119,7 +119,7 @@ export function SimpleCondition({
       if (!!operatorsList && !comparatorExists) {
         onChange({
           ...condition,
-          filter: { ...condition.filter, comparator: operatorsList[0].id }
+          filter: { ...condition.filter, comparator: operatorsList[0].id },
         });
       }
     }
@@ -159,7 +159,7 @@ export function SimpleCondition({
               borderRadius: '8px',
               border: '1px solid rgba(226, 232, 240, 1)',
               boxSizing: 'border-box',
-              height: '28px'
+              height: '28px',
             }}
           >
             <Typography variant={'medium'} style={{ color: 'rgba(84, 103, 222, 1)' }}>
@@ -187,7 +187,7 @@ export function SimpleCondition({
               borderRadius: '8px',
               border: '1px solid rgba(226, 232, 240, 1)',
               boxSizing: 'border-box',
-              height: '28px'
+              height: '28px',
             }}
           >
             <Typography variant={'medium'}>(</Typography>
@@ -209,8 +209,8 @@ export function SimpleCondition({
                 ...condition.filter,
                 key: value?.id,
                 valueType: metadataFieldsList.find((field) => field.name === value?.label)
-                  ?.valueType
-              }
+                  ?.valueType,
+              },
             });
           }}
           options={metadataFieldsList?.map((field) => ({ id: field.name, label: field.name }))}
@@ -240,7 +240,7 @@ export function SimpleCondition({
                 condition.filter.value === 'true'
                   ? {
                       id: 'true',
-                      label: 'true'
+                      label: 'true',
                     }
                   : condition.filter.value === 'false'
                   ? { id: 'false', label: 'false' }
@@ -250,12 +250,12 @@ export function SimpleCondition({
               onChange={(event, value) => {
                 onChange({
                   ...condition,
-                  filter: { ...condition.filter, value: value?.id }
+                  filter: { ...condition.filter, value: value?.id },
                 });
               }}
               options={[
                 { id: 'true', label: 'true' },
-                { id: 'false', label: 'false' }
+                { id: 'false', label: 'false' },
               ]}
             />
           ) : (
@@ -266,7 +266,7 @@ export function SimpleCondition({
               onChange={(newVal) =>
                 onChange({
                   ...condition,
-                  filter: { ...condition.filter, value: newVal }
+                  filter: { ...condition.filter, value: newVal },
                 })
               }
               helperText={isErrored ? `Value is not valid` : ''}
@@ -284,7 +284,7 @@ export function SimpleCondition({
               borderRadius: '8px',
               border: '1px solid rgba(226, 232, 240, 1)',
               boxSizing: 'border-box',
-              height: '28px'
+              height: '28px',
             }}
           >
             <Typography variant={'medium'}>)</Typography>
@@ -302,7 +302,7 @@ export function SimpleCondition({
                 padding: '8px',
                 alignItems: 'center',
                 justifyContent: 'center',
-                display: 'flex'
+                display: 'flex',
               }}
               label={''}
               variant={ButtonVariant.Ghost}
@@ -322,7 +322,7 @@ export function SimpleCondition({
               padding: '8px',
               alignItems: 'center',
               justifyContent: 'center',
-              display: 'flex'
+              display: 'flex',
             }}
             onClick={(event) => {
               if (isSimpleMode) {
@@ -339,18 +339,18 @@ export function SimpleCondition({
         <Menu
           sx={{
             '& .MuiPaper-root': {
-              borderRadius: '12px'
+              borderRadius: '12px',
             },
             '.MuiList-root': {
-              padding: '8px!important'
-            }
+              padding: '8px!important',
+            },
           }}
           id="basic-menu"
           anchorEl={anchorEl}
           open={isOpen}
           onClose={() => setIsOpen(false)}
           MenuListProps={{
-            'aria-labelledby': 'basic-button'
+            'aria-labelledby': 'basic-button',
           }}
         >
           <MenuItem
@@ -363,7 +363,7 @@ export function SimpleCondition({
               flexDirection: 'row',
               gap: '8px',
               alignItems: 'center',
-              padding: '8px!important'
+              padding: '8px!important',
             }}
           >
             <Icon icon={'solid-plus'} width={11.2} height={11.2} fill={'rgba(71, 85, 105, 1)'} />
@@ -376,7 +376,7 @@ export function SimpleCondition({
                   height: '2px',
                   backgroundColor: 'rgba(226, 232, 240, 1)',
                   border: '0px',
-                  margin: '0px!important'
+                  margin: '0px!important',
                 }}
               />
               <MenuItem
@@ -389,7 +389,7 @@ export function SimpleCondition({
                   flexDirection: 'row',
                   gap: '8px',
                   alignItems: 'center',
-                  padding: '8px!important'
+                  padding: '8px!important',
                 }}
               >
                 <Icon icon={'outline-not'} width={14} height={14} fill={'rgba(71, 85, 105, 1)'} />

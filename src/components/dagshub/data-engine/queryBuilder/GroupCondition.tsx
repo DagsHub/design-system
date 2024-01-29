@@ -10,7 +10,7 @@ import {
   MenuItem,
   ThemeProvider,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
 import theme from '../../../../theme';
 import Condition from './Condition';
@@ -22,7 +22,7 @@ export function GroupCondition({
   condition,
   onChange,
   level,
-  onRemove
+  onRemove,
 }: {
   condition: AndOrMetadataInput;
   onChange: any;
@@ -52,18 +52,18 @@ export function GroupCondition({
       <Box
         sx={{
           '::-webkit-scrollbar': {
-            width: '8px' /* Set a width for the scrollbar */
+            width: '8px' /* Set a width for the scrollbar */,
           },
 
           '::-webkit-scrollbar-thumb': {
             bgcolor: 'rgba(23, 45, 50, 0.15)' /* Color of the thumb */,
-            borderRadius: '6px' /* Set the border radius for the thumb */
+            borderRadius: '6px' /* Set the border radius for the thumb */,
           },
 
           '::-webkit-scrollbar-track': {
             bgcolor: 'transparent' /* Color of the track */,
-            borderRadius: '8px' /* Set the border radius for the track */
-          }
+            borderRadius: '8px' /* Set the border radius for the track */,
+          },
         }}
         style={{
           border:
@@ -73,7 +73,7 @@ export function GroupCondition({
           flexDirection: 'column',
           backgroundColor: 'rgba(248, 250, 252, 1)',
           position: 'relative',
-          width: '100%'
+          width: '100%',
         }}
       >
         {level == 0 && (
@@ -99,10 +99,10 @@ export function GroupCondition({
                 '& .MuiSwitch-switchBase': {
                   '&.Mui-checked': {
                     '& + .MuiSwitch-track': {
-                      backgroundColor: 'rgba(84, 103, 222, 1)!important'
-                    }
-                  }
-                }
+                      backgroundColor: 'rgba(84, 103, 222, 1)!important',
+                    },
+                  },
+                },
               }}
             >
               <LabeledSwitch
@@ -122,7 +122,7 @@ export function GroupCondition({
             display: 'flex',
             flexDirection: 'column',
             gap: '8px',
-            height: '100%'
+            height: '100%',
           }}
         >
           {isSimpleMode && !areThereSimpleFilters && (
@@ -135,7 +135,7 @@ export function GroupCondition({
                   padding: '8px',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  display: 'flex'
+                  display: 'flex',
                 }}
                 onClick={() => {
                   const newConditions = condition.and || condition.or || [];
@@ -162,7 +162,7 @@ export function GroupCondition({
                     borderRadius: '8px',
                     border: '1px solid rgba(226, 232, 240, 1)',
                     boxSizing: 'border-box',
-                    height: '28px'
+                    height: '28px',
                   }}
                 >
                   <Typography variant={'medium'} style={{ color: 'rgba(84, 103, 222, 1)' }}>
@@ -196,7 +196,7 @@ export function GroupCondition({
                 }}
                 options={[
                   { id: 'AND', label: 'AND' },
-                  { id: 'OR', label: 'OR' }
+                  { id: 'OR', label: 'OR' },
                 ]}
               />
 
@@ -213,7 +213,7 @@ export function GroupCondition({
                         padding: '8px',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        display: 'flex'
+                        display: 'flex',
                       }}
                       label={''}
                       variant={ButtonVariant.Ghost}
@@ -239,7 +239,7 @@ export function GroupCondition({
                     padding: '8px',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    display: 'flex'
+                    display: 'flex',
                   }}
                   onClick={(event) => {
                     setAddMenuAnchorEl(event.currentTarget);
@@ -252,18 +252,18 @@ export function GroupCondition({
               <Menu
                 sx={{
                   '& .MuiPaper-root': {
-                    borderRadius: '12px'
+                    borderRadius: '12px',
                   },
                   '.MuiList-root': {
-                    padding: '8px!important'
-                  }
+                    padding: '8px!important',
+                  },
                 }}
                 id="basic-menu"
                 anchorEl={addMenuAnchorEl}
                 open={isAddMenuOpen}
                 onClose={() => setIsAddMenuOpen(false)}
                 MenuListProps={{
-                  'aria-labelledby': 'basic-button'
+                  'aria-labelledby': 'basic-button',
                 }}
               >
                 <MenuItem
@@ -278,7 +278,7 @@ export function GroupCondition({
                     flexDirection: 'row',
                     gap: '8px',
                     alignItems: 'center',
-                    padding: '8px!important'
+                    padding: '8px!important',
                   }}
                 >
                   <Icon
@@ -298,8 +298,8 @@ export function GroupCondition({
                           id: generateUniqueId(),
                           key: '',
                           comparator: Operators[0].id,
-                          value: ''
-                        }
+                          value: '',
+                        },
                       });
                       onChangeHandler(newConditions);
                       setIsAddMenuOpen(false);
@@ -309,7 +309,7 @@ export function GroupCondition({
                       flexDirection: 'row',
                       gap: '8px',
                       alignItems: 'center',
-                      padding: '8px!important'
+                      padding: '8px!important',
                     }}
                   >
                     <Icon
@@ -328,7 +328,7 @@ export function GroupCondition({
                         height: '2px',
                         backgroundColor: 'rgba(226, 232, 240, 1)',
                         border: '0px',
-                        margin: '0px!important'
+                        margin: '0px!important',
                       }}
                     />
                     <MenuItem
@@ -341,7 +341,7 @@ export function GroupCondition({
                         flexDirection: 'row',
                         gap: '8px',
                         alignItems: 'center',
-                        padding: '8px!important'
+                        padding: '8px!important',
                       }}
                     >
                       <Icon
@@ -379,8 +379,8 @@ export function GroupCondition({
                     id: generateUniqueId(),
                     key: '',
                     comparator: Operators[0].id,
-                    value: ''
-                  }
+                    value: '',
+                  },
                 });
                 onChangeHandler(newConditions);
               }}

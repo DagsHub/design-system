@@ -47,7 +47,7 @@ export function AddMemberModal({
   resultUsers = [],
   placeholder = '',
   addMembers,
-  copyInvitationAction
+  copyInvitationAction,
 }: AddMemberModalProps) {
   const [team, setTeam] = useState<number | string>('');
   const [access, setAccess] = useState<string>('member-access');
@@ -143,7 +143,7 @@ export function AddMemberModal({
             team,
             access,
             members: addedMembers,
-            invitees: getEmailMembers(inputText)
+            invitees: getEmailMembers(inputText),
           })
         }
       />
@@ -164,7 +164,7 @@ export function AddMemberModal({
       {/*    copyInvitationAction();*/}
       {/*  }}*/}
       {/*/>*/}
-    </div>
+    </div>,
   ];
 
   return (

@@ -42,7 +42,7 @@ export const Input = React.forwardRef<HTMLDivElement, InputProps>(
       onClick = () => {},
       focusInput = false,
       searchIcon = false,
-      labelStyle
+      labelStyle,
     },
     ref
   ) => {

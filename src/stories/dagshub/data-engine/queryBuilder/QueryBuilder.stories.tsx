@@ -5,7 +5,7 @@ import { MetadataType } from '../../../../components';
 
 const meta: Meta<typeof QueryBuilder> = {
   title: 'DagsHub/Data-Engine/QueryBuilder/Condition',
-  component: QueryBuilder
+  component: QueryBuilder,
 };
 
 export default meta;
@@ -44,11 +44,11 @@ compoundQueryBuilderDatasource.args = {
     { name: 'author', valueType: 'STRING', tags: [], multiple: false },
     { name: 'isCat', valueType: 'BOOLEAN', tags: [], multiple: false },
     { name: 'weight', valueType: 'FLOAT', tags: [], multiple: false },
-    { name: 'image', valueType: 'BLOB', tags: [], multiple: false }
+    { name: 'image', valueType: 'BLOB', tags: [], multiple: false },
   ],
   validateValueByType: validateValueByType,
   onChange: () => {},
-  showConditionSummary: true
+  showConditionSummary: true,
 };
 
 export const compoundQueryBuilderDataset: StoryFn<typeof QueryBuilder> = Template.bind({});
@@ -60,11 +60,11 @@ compoundQueryBuilderDataset.args = {
     { name: 'author', valueType: 'STRING', tags: [], multiple: false },
     { name: 'isCat', valueType: 'BOOLEAN', tags: [], multiple: false },
     { name: 'weight', valueType: 'FLOAT', tags: [], multiple: false },
-    { name: 'image', valueType: 'BLOB', tags: [], multiple: false }
+    { name: 'image', valueType: 'BLOB', tags: [], multiple: false },
   ],
   validateValueByType: validateValueByType,
   onChange: () => {},
-  showConditionSummary: true
+  showConditionSummary: true,
 };
 
 export const simpleQueryBuilder: StoryFn<typeof QueryBuilder> = Template.bind({});
@@ -75,20 +75,20 @@ simpleQueryBuilder.args = {
         key: 'weight',
         comparator: 'EQUAL',
         valueType: 'FLOAT',
-        value: 'inf'
-      }
-    }
+        value: 'inf',
+      },
+    },
   },
   metadataFields: [
     { name: 'size', valueType: 'INTEGER', tags: [], multiple: false },
     { name: 'author', valueType: 'STRING', tags: [], multiple: false },
     { name: 'isCat', valueType: 'BOOLEAN', tags: [], multiple: false },
     { name: 'weight', valueType: 'FLOAT', tags: [], multiple: false },
-    { name: 'image', valueType: 'BLOB', tags: [], multiple: false }
+    { name: 'image', valueType: 'BLOB', tags: [], multiple: false },
   ],
   validateValueByType: validateValueByType,
   onChange: () => {},
-  showConditionSummary: true
+  showConditionSummary: true,
 };
 
 export const emptyQuery: StoryFn<typeof QueryBuilder> = Template.bind({});
@@ -99,11 +99,11 @@ emptyQuery.args = {
     { name: 'author', valueType: 'STRING', tags: [], multiple: false },
     { name: 'isCat', valueType: 'BOOLEAN', tags: [], multiple: false },
     { name: 'weight', valueType: 'FLOAT', tags: [], multiple: false },
-    { name: 'image', valueType: 'BLOB', tags: [], multiple: false }
+    { name: 'image', valueType: 'BLOB', tags: [], multiple: false },
   ],
   validateValueByType: validateValueByType,
   onChange: () => {},
-  showConditionSummary: true
+  showConditionSummary: true,
 };
 
 export const emptyQueryWithinAndBlock: StoryFn<typeof QueryBuilder> = Template.bind({});
@@ -114,11 +114,11 @@ emptyQueryWithinAndBlock.args = {
     { name: 'author', valueType: 'STRING', tags: [], multiple: false },
     { name: 'isCat', valueType: 'BOOLEAN', tags: [], multiple: false },
     { name: 'weight', valueType: 'FLOAT', tags: [], multiple: false },
-    { name: 'image', valueType: 'BLOB', tags: [], multiple: false }
+    { name: 'image', valueType: 'BLOB', tags: [], multiple: false },
   ],
   validateValueByType: validateValueByType,
   onChange: () => {},
-  showConditionSummary: true
+  showConditionSummary: true,
 };
 
 export const queryBuilderWithQuery: StoryFn<typeof QueryBuilder> = Template.bind({});
@@ -131,40 +131,40 @@ queryBuilderWithQuery.args = {
             key: 'weight',
             comparator: 'EQUAL',
             valueType: 'FLOAT',
-            value: 'inf'
-          }
+            value: 'inf',
+          },
         },
         {
           filter: {
             key: 'weight',
             comparator: 'EQUAL',
             valueType: 'FLOAT',
-            value: '-inf'
-          }
+            value: '-inf',
+          },
         },
         {
           filter: {
             key: 'weight',
             comparator: 'EQUAL',
             valueType: 'FLOAT',
-            value: 'nan'
-          }
+            value: 'nan',
+          },
         },
         {
           filter: {
             key: 'image',
             comparator: 'IS_NULL',
             valueType: 'FLOAT',
-            value: ''
-          }
+            value: '',
+          },
         },
         {
           filter: {
             key: 'size',
             value: '1450000',
             valueType: 'INTEGER',
-            comparator: 'LESS_EQUAL_THAN'
-          }
+            comparator: 'LESS_EQUAL_THAN',
+          },
         },
         {
           and: [
@@ -173,22 +173,22 @@ queryBuilderWithQuery.args = {
                 key: 'isCat',
                 comparator: 'EQUAL',
                 valueType: 'BOOLEAN',
-                value: 'true'
-              }
-            }
-          ]
-        }
-      ]
-    }
+                value: 'true',
+              },
+            },
+          ],
+        },
+      ],
+    },
   },
   metadataFields: [
     { name: 'size', valueType: 'INTEGER', tags: [], multiple: false },
     { name: 'author', valueType: 'STRING', tags: [], multiple: false },
     { name: 'isCat', valueType: 'BOOLEAN', tags: [], multiple: false },
     { name: 'weight', valueType: 'FLOAT', tags: [], multiple: false },
-    { name: 'image', valueType: 'BLOB', tags: [], multiple: false }
+    { name: 'image', valueType: 'BLOB', tags: [], multiple: false },
   ],
   validateValueByType: validateValueByType,
   onChange: () => {},
-  showConditionSummary: true
+  showConditionSummary: true,
 };

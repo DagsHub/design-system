@@ -2,12 +2,12 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   MiniRepoCardsModal,
-  MiniRepoCardsModalProps
+  MiniRepoCardsModalProps,
 } from '../../../../components/dagshub/organization/modals/mini-repo-cards-modal';
 
 const meta: Meta<MiniRepoCardsModalProps> = {
   title: 'DagsHub/Org/Modals/MiniRepoCardsModal',
-  component: MiniRepoCardsModal
+  component: MiniRepoCardsModal,
 };
 
 export default meta;
@@ -40,76 +40,76 @@ Primary.args = {
           name: 'general',
           categoryShowExplore: false,
           categoryColorClass: 'general',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'task',
           categoryShowExplore: false,
           categoryColorClass: 'task',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'type',
           categoryShowExplore: false,
           categoryColorClass: 'type',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'integration',
           categoryShowExplore: false,
           categoryColorClass: 'integration',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'data domain',
           categoryShowExplore: false,
           categoryColorClass: 'data_domain',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'general',
           categoryShowExplore: false,
           categoryColorClass: 'general',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'task',
           categoryShowExplore: false,
           categoryColorClass: 'task',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'type',
           categoryShowExplore: false,
           categoryColorClass: 'type',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'integration',
           categoryShowExplore: false,
           categoryColorClass: 'integration',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'data domain',
           categoryShowExplore: false,
           categoryColorClass: 'data_domain',
-          categoryHref: ''
-        }
+          categoryHref: '',
+        },
       ],
       teams: [
         { teamName: 'team1', teamLink: '' },
         { teamName: 'team2', teamLink: '' },
-        { teamName: 'team3', teamLink: '' }
+        { teamName: 'team3', teamLink: '' },
       ],
       repoNameHref: '',
       starActionLink: '',
@@ -118,7 +118,7 @@ Primary.args = {
       forksHref: '',
       issuesHref: '',
       pullsHref: '',
-      onStarActionClick: () => {}
+      onStarActionClick: () => {},
     },
     {
       isMini: true,
@@ -142,41 +142,41 @@ Primary.args = {
           name: 'general',
           categoryShowExplore: false,
           categoryColorClass: 'general',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'task',
           categoryShowExplore: false,
           categoryColorClass: 'task',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'type',
           categoryShowExplore: false,
           categoryColorClass: 'type',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'integration',
           categoryShowExplore: false,
           categoryColorClass: 'integration',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'data domain',
           categoryShowExplore: false,
           categoryColorClass: 'data_domain',
-          categoryHref: ''
-        }
+          categoryHref: '',
+        },
       ],
       teams: [
         { teamName: 'team1', teamLink: '' },
         { teamName: 'team2', teamLink: '' },
-        { teamName: 'team3', teamLink: '' }
+        { teamName: 'team3', teamLink: '' },
       ],
       repoNameHref: '',
       starActionLink: '',
@@ -185,7 +185,7 @@ Primary.args = {
       forksHref: '',
       issuesHref: '',
       pullsHref: '',
-      onStarActionClick: () => {}
+      onStarActionClick: () => {},
     },
     {
       isMini: true,
@@ -209,36 +209,36 @@ Primary.args = {
           name: 'general',
           categoryShowExplore: false,
           categoryColorClass: 'general',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'task',
           categoryShowExplore: false,
           categoryColorClass: 'task',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'type',
           categoryShowExplore: false,
           categoryColorClass: 'type',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'integration',
           categoryShowExplore: false,
           categoryColorClass: 'integration',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'data domain',
           categoryShowExplore: false,
           categoryColorClass: 'data_domain',
-          categoryHref: ''
-        }
+          categoryHref: '',
+        },
       ],
       teams: [],
       repoNameHref: '',
@@ -248,7 +248,7 @@ Primary.args = {
       forksHref: '',
       issuesHref: '',
       pullsHref: '',
-      onStarActionClick: () => {}
+      onStarActionClick: () => {},
     },
     {
       isMini: true,
@@ -272,41 +272,41 @@ Primary.args = {
           name: 'general',
           categoryShowExplore: false,
           categoryColorClass: 'general',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'task',
           categoryShowExplore: false,
           categoryColorClass: 'task',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'type',
           categoryShowExplore: false,
           categoryColorClass: 'type',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'integration',
           categoryShowExplore: false,
           categoryColorClass: 'integration',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'data domain',
           categoryShowExplore: false,
           categoryColorClass: 'data_domain',
-          categoryHref: ''
-        }
+          categoryHref: '',
+        },
       ],
       teams: [
         { teamName: 'team1', teamLink: '' },
         { teamName: 'team2', teamLink: '' },
-        { teamName: 'team3', teamLink: '' }
+        { teamName: 'team3', teamLink: '' },
       ],
       repoNameHref: '',
       starActionLink: '',
@@ -315,7 +315,7 @@ Primary.args = {
       forksHref: '',
       issuesHref: '',
       pullsHref: '',
-      onStarActionClick: () => {}
+      onStarActionClick: () => {},
     },
     {
       isMini: true,
@@ -339,41 +339,41 @@ Primary.args = {
           name: 'general',
           categoryShowExplore: false,
           categoryColorClass: 'general',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'task',
           categoryShowExplore: false,
           categoryColorClass: 'task',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'type',
           categoryShowExplore: false,
           categoryColorClass: 'type',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'integration',
           categoryShowExplore: false,
           categoryColorClass: 'integration',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'data domain',
           categoryShowExplore: false,
           categoryColorClass: 'data_domain',
-          categoryHref: ''
-        }
+          categoryHref: '',
+        },
       ],
       teams: [
         { teamName: 'team1', teamLink: '' },
         { teamName: 'team2', teamLink: '' },
-        { teamName: 'team3', teamLink: '' }
+        { teamName: 'team3', teamLink: '' },
       ],
       repoNameHref: '',
       starActionLink: '',
@@ -382,7 +382,7 @@ Primary.args = {
       forksHref: '',
       issuesHref: '',
       pullsHref: '',
-      onStarActionClick: () => {}
+      onStarActionClick: () => {},
     },
     {
       isMini: true,
@@ -406,41 +406,41 @@ Primary.args = {
           name: 'general',
           categoryShowExplore: false,
           categoryColorClass: 'general',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'task',
           categoryShowExplore: false,
           categoryColorClass: 'task',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'type',
           categoryShowExplore: false,
           categoryColorClass: 'type',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'integration',
           categoryShowExplore: false,
           categoryColorClass: 'integration',
-          categoryHref: ''
+          categoryHref: '',
         },
         {
           id: 1,
           name: 'data domain',
           categoryShowExplore: false,
           categoryColorClass: 'data_domain',
-          categoryHref: ''
-        }
+          categoryHref: '',
+        },
       ],
       teams: [
         { teamName: 'team1', teamLink: '' },
         { teamName: 'team2', teamLink: '' },
-        { teamName: 'team3', teamLink: '' }
+        { teamName: 'team3', teamLink: '' },
       ],
       repoNameHref: '',
       starActionLink: '',
@@ -449,7 +449,7 @@ Primary.args = {
       forksHref: '',
       issuesHref: '',
       pullsHref: '',
-      onStarActionClick: () => {}
-    }
-  ]
+      onStarActionClick: () => {},
+    },
+  ],
 };

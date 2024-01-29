@@ -26,8 +26,8 @@ export function SearchResultList({ users, onAdd = () => {} }: SearchResultListPr
           variant={ButtonVariant.Secondary}
           onClick={() => onAdd(user)}
           iconLeft={<Icon width={12} height={12} fill="#172D32" icon="outline-plus" />}
-        />
-      ]
+        />,
+      ],
     };
     rows.push(row);
   }

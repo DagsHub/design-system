@@ -16,7 +16,7 @@ export function HorizontalMenu(props: HorizontalMenuProps) {
       style={{
         maxWidth: props.full ? '100%' : '1216px',
         paddingRight: props.full ? '24px' : '0px',
-        paddingLeft: props.full ? '28px' : '0px'
+        paddingLeft: props.full ? '28px' : '0px',
       }}
     >
       {props.tabs?.map((tab, i) => (

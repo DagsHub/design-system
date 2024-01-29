@@ -6,7 +6,7 @@ import {
   useRowSelect,
   useResizeColumns,
   ColumnInstance,
-  HeaderGroup
+  HeaderGroup,
 } from 'react-table';
 import { FixedSizeList } from 'react-window';
 
@@ -40,14 +40,14 @@ export const BasicTable = ({
   rowHeight,
   cellWidth,
   onScroll,
-  listInnerRef
+  listInnerRef,
 }: BasicTableProps) => {
   const columns = useMemo<any>(() => tcolumns, []);
   const defaultColumn = React.useMemo(
     () => ({
       width: cellWidth,
       maxWidth: cellWidth,
-      height: rowHeight
+      height: rowHeight,
     }),
     []
   );
@@ -66,13 +66,13 @@ export const BasicTable = ({
     totalColumnsWidth,
     resetResizing,
     state,
-    toggleHideColumn
+    toggleHideColumn,
   } = useTable(
     {
       columns,
       data,
       defaultColumn,
-      autoResetSelectedRows: false
+      autoResetSelectedRows: false,
     },
     useColumnOrder,
     useResizeColumns,
@@ -90,9 +90,9 @@ export const BasicTable = ({
               Cell: ({ row }) => <Checkbox {...row.getToggleRowSelectedProps()} />,
               width: 52,
               minWidth: 30,
-              maxWidth: 400
+              maxWidth: 400,
             },
-            ...columns
+            ...columns,
           ];
         }
         return [...columns];
@@ -144,8 +144,8 @@ export const BasicTable = ({
                 {...cell.getCellProps({
                   style: {
                     minWidth: cell.column.minWidth,
-                    width: cell.column.width
-                  }
+                    width: cell.column.width,
+                  },
                 })}
               >
                 {cell.render('Cell')}
@@ -229,7 +229,7 @@ export const BasicTable = ({
               {headerGroup.headers.map((column) => (
                 <th
                   {...column.getHeaderProps({
-                    style: { minWidth: column.minWidth, width: column.width }
+                    style: { minWidth: column.minWidth, width: column.width },
                   })}
                 >
                   {column.render('Header')}
@@ -266,7 +266,7 @@ export const BasicTable = ({
           style={{
             // height: virtualizationTableHeight,
             // width: `auto`,
-            maxWidth: `${totalColumnsWidth}px`
+            maxWidth: `${totalColumnsWidth}px`,
           }}
           {...getTableBodyProps()}
         >

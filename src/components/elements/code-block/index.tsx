@@ -14,7 +14,7 @@ export const CodeBlock = ({
   value,
   onInfoButtonClick,
   onCopyButtonClick,
-  colabOnClick
+  colabOnClick,
 }: CodeBlockProps) => {
   const lineCount = useMemo(() => value.split('\n').length, [value]);
   const linesArr = Array.from({ length: Math.max(lineCount, 14) }, (_, i) => i + 1);

@@ -25,7 +25,7 @@ export function TeamsModal({ userName, teams, onClick }: TeamsModalProps) {
             id: member.id,
             userName: member.username,
             homeLink: member.homeLink,
-            relAvatarLink: member.userImage
+            relAvatarLink: member.userImage,
           }))}
         />
       ))}

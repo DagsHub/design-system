@@ -50,7 +50,7 @@ export function OrgAdminTable({
   handleCollapse,
   style,
   isActive,
-  numMembers
+  numMembers,
 }: OrgAdminTableProps) {
   const [users, setUsers] = useState<any[]>([]);
   const [inputText, setInputText] = useState<string>('');
@@ -77,7 +77,7 @@ export function OrgAdminTable({
     setUsers(
       rsp.data.map((user: any) => ({
         userName: user.username,
-        imageSource: user.avatar_url
+        imageSource: user.avatar_url,
       }))
     );
   }, [debouncedInputText]);
@@ -121,8 +121,8 @@ export function OrgAdminTable({
             copyInvitationAction={copyInvitationAction}
           />
         )}
-      </>
-    ]
+      </>,
+    ],
   };
 
   const createInitialMapState = (arr: any[], initialValue: boolean | string) =>
@@ -133,7 +133,7 @@ export function OrgAdminTable({
   const handleClick = (userId: number | string) => {
     setDisplayRemoveMemberFromTeamModal({
       ...displayRemoveMemberFromTeamModal,
-      [userId]: !displayRemoveMemberFromTeamModal[userId]
+      [userId]: !displayRemoveMemberFromTeamModal[userId],
     });
   };
 
@@ -189,9 +189,9 @@ export function OrgAdminTable({
               )}
             </>
           )}
-        </div>
+        </div>,
       ],
-      style: userIndex >= MAX_ROWS ? { display: style } : {}
+      style: userIndex >= MAX_ROWS ? { display: style } : {},
     };
     rows.push(row);
   });
@@ -205,10 +205,10 @@ export function OrgAdminTable({
           height={5}
           fill="#172D32"
           icon={`solid-cheveron-${isActive ? 'up' : 'down'}`}
-        />
+        />,
       ],
       rowClasses: 'table__collapse',
-      onClick: () => handleCollapse(!isActive)
+      onClick: () => handleCollapse(!isActive),
     };
     rows.push(row);
   }

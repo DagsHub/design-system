@@ -43,7 +43,7 @@ export interface User {
 
 export enum MembershipVisibility {
   Public = 'public',
-  Private = 'private'
+  Private = 'private',
 }
 
 const MAX_ROWS: number = 7;
@@ -52,21 +52,22 @@ const header: Row = {
   columns: [
     <div className="people-table__header people-table__header--left">Username</div>,
     <div className="people-table__header people-table__header--center">Teams they belong to</div>,
-    <div className="people-table__header people-table__header--right">Membership visibility</div>
-  ]
+    <div className="people-table__header people-table__header--right">Membership visibility</div>,
+  ],
 };
 
 const membershipVisibilityOptions: RadioButtonItemProps[] = [
   {
     id: 'public',
     label: 'Public',
-    description: "User's membership is visible to everyone and is displayed on their public profile"
+    description:
+      "User's membership is visible to everyone and is displayed on their public profile",
   },
   {
     id: 'private',
     label: 'Private',
-    description: "User's membership is only visible to other members of this organization"
-  }
+    description: "User's membership is only visible to other members of this organization",
+  },
 ];
 
 export function PeopleTable(props: PeopleTableProps) {
@@ -79,7 +80,7 @@ export function PeopleTable(props: PeopleTableProps) {
   const handleClick = (userId: number | string) => {
     setDisplayRemoveMemberFromTeamModal({
       ...displayRemoveMemberFromTeamModal,
-      [userId]: !displayRemoveMemberFromTeamModal[userId]
+      [userId]: !displayRemoveMemberFromTeamModal[userId],
     });
   };
 
@@ -165,9 +166,9 @@ export function PeopleTable(props: PeopleTableProps) {
             )}
           </>
         )}
-      </div>
+      </div>,
     ],
-    style: userIndex >= MAX_ROWS ? { display: props.style } : {}
+    style: userIndex >= MAX_ROWS ? { display: props.style } : {},
   }));
 
   if (props.numMembers > MAX_ROWS) {
@@ -179,10 +180,10 @@ export function PeopleTable(props: PeopleTableProps) {
           height={5}
           fill="#172D32"
           icon={`solid-cheveron-${props.isActive ? 'up' : 'down'}`}
-        />
+        />,
       ],
       rowClasses: 'table__collapse',
-      onClick: () => props.handleCollapse(!props.isActive)
+      onClick: () => props.handleCollapse(!props.isActive),
     };
     rows.push(row);
   }

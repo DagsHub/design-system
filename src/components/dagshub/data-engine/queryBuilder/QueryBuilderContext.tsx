@@ -4,7 +4,7 @@ import React, {
   useCallback,
   useContext,
   useEffect,
-  useState
+  useState,
 } from 'react';
 import _ from 'lodash';
 import { root } from 'postcss';
@@ -30,22 +30,22 @@ export const Operators: { label: string; id: Comparator; value?: string }[] = [
   { label: '<', id: 'LESS_THAN' },
   { label: '<=', id: 'LESS_EQUAL_THAN' },
   { label: 'contains', id: 'CONTAINS' },
-  { label: 'is null', id: 'IS_NULL' }
+  { label: 'is null', id: 'IS_NULL' },
 ];
 
 export const StringOperators: { label: string; id: Comparator; value?: string }[] = [
   { label: '==', id: 'EQUAL' },
   { label: 'contains', id: 'CONTAINS' },
-  { label: 'is null', id: 'IS_NULL' }
+  { label: 'is null', id: 'IS_NULL' },
 ];
 
 export const BooleanOperators: { label: string; id: Comparator }[] = [
   { label: '==', id: 'EQUAL' },
-  { label: 'is null', id: 'IS_NULL' }
+  { label: 'is null', id: 'IS_NULL' },
 ];
 
 export const BlobOperators: { label: string; id: Comparator }[] = [
-  { label: 'is null', id: 'IS_NULL' }
+  { label: 'is null', id: 'IS_NULL' },
 ];
 
 export const IntegerOperators: { label: string; id: Comparator }[] = [
@@ -54,7 +54,7 @@ export const IntegerOperators: { label: string; id: Comparator }[] = [
   { label: '>=', id: 'GREATER_EQUAL_THAN' },
   { label: '<', id: 'LESS_THAN' },
   { label: '<=', id: 'LESS_EQUAL_THAN' },
-  { label: 'is null', id: 'IS_NULL' }
+  { label: 'is null', id: 'IS_NULL' },
 ];
 
 export const FloatOperators: { label: string; id: Comparator }[] = [
@@ -66,7 +66,7 @@ export const FloatOperators: { label: string; id: Comparator }[] = [
   { label: 'is null', id: 'IS_NULL' },
   { label: 'is +Inf', id: 'IS_POSITIVE_INFINITY' },
   { label: 'is -Inf', id: 'IS_NEGATIVE_INFINITY' },
-  { label: 'is NaN', id: 'IS_NAN' }
+  { label: 'is NaN', id: 'IS_NAN' },
 ];
 
 export interface MetadataFieldProps {
@@ -131,7 +131,7 @@ export const QueryBuilderProvider = ({
   metadataFields,
   forceCompoundMode = false,
   validateValueByType,
-  onChange
+  onChange,
 }: {
   children: ReactNode;
   queryInput: QueryInput;
@@ -233,7 +233,7 @@ export const QueryBuilderProvider = ({
       query:
         removeRootAndBlockIfWasAddedAndNotNeeded(
           convertUiFormatToBackandFormat(removeIdFields(rootCondition ?? {}))
-        ) ?? undefined
+        ) ?? undefined,
     });
   }, [rootCondition]);
 
@@ -340,19 +340,19 @@ export const QueryBuilderProvider = ({
     if ((condition.filter?.comparator as string) === 'IS_POSITIVE_INFINITY') {
       return {
         ...condition,
-        filter: { ...condition.filter, comparator: 'EQUAL', value: 'inf' }
+        filter: { ...condition.filter, comparator: 'EQUAL', value: 'inf' },
       };
     }
     if ((condition.filter?.comparator as string) === 'IS_NEGATIVE_INFINITY') {
       return {
         ...condition,
-        filter: { ...condition.filter, comparator: 'EQUAL', value: '-inf' }
+        filter: { ...condition.filter, comparator: 'EQUAL', value: '-inf' },
       };
     }
     if ((condition.filter?.comparator as string) === 'IS_NAN') {
       return {
         ...condition,
-        filter: { ...condition.filter, comparator: 'EQUAL', value: 'nan' }
+        filter: { ...condition.filter, comparator: 'EQUAL', value: 'nan' },
       };
     }
     if (condition.filter?.comparator === 'IS_NULL') {
@@ -360,8 +360,8 @@ export const QueryBuilderProvider = ({
         ...condition,
         filter: {
           ...condition.filter,
-          value: getZeroValueByType(condition.filter.valueType)
-        }
+          value: getZeroValueByType(condition.filter.valueType),
+        },
       };
     }
     return condition;
@@ -387,19 +387,19 @@ export const QueryBuilderProvider = ({
       if (condition.filter.value === 'inf') {
         return {
           ...condition,
-          filter: { ...condition.filter, comparator: 'IS_POSITIVE_INFINITY', value: '' }
+          filter: { ...condition.filter, comparator: 'IS_POSITIVE_INFINITY', value: '' },
         };
       }
       if (condition.filter.value === '-inf') {
         return {
           ...condition,
-          filter: { ...condition.filter, comparator: 'IS_NEGATIVE_INFINITY', value: '' }
+          filter: { ...condition.filter, comparator: 'IS_NEGATIVE_INFINITY', value: '' },
         };
       }
       if (condition.filter.value === 'nan') {
         return {
           ...condition,
-          filter: { ...condition.filter, comparator: 'IS_NAN', value: '' }
+          filter: { ...condition.filter, comparator: 'IS_NAN', value: '' },
         };
       }
     }
@@ -408,8 +408,8 @@ export const QueryBuilderProvider = ({
         ...condition,
         filter: {
           ...condition.filter,
-          value: ''
-        }
+          value: '',
+        },
       };
     }
     return condition;
@@ -429,7 +429,7 @@ export const QueryBuilderProvider = ({
         checkIfOperatorRequiresValueField,
         validateValueByType,
         isDisplayableInSimpleMode,
-        onToggleQueryMode
+        onToggleQueryMode,
       }}
     >
       {children}

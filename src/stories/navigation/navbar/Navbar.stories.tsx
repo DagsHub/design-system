@@ -4,7 +4,7 @@ import React from 'react';
 
 const meta: Meta<typeof Navbar> = {
   title: 'DagsHub/Navbar',
-  component: Navbar
+  component: Navbar,
 };
 
 export default meta;

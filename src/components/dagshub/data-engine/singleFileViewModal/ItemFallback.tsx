@@ -7,7 +7,7 @@ export function ItemFallback({
   width,
   onClick,
   disableHoverMode,
-  isError
+  isError,
 }: {
   height: number | string;
   width: number | string;
@@ -31,8 +31,8 @@ export function ItemFallback({
         justifyContent: 'center',
         flexDirection: 'column',
         '&:hover': {
-          boxShadow: !disableHoverMode ? '0px 0px 0px 3px rgba(196, 181, 253, 0.50)' : undefined
-        }
+          boxShadow: !disableHoverMode ? '0px 0px 0px 3px rgba(196, 181, 253, 0.50)' : undefined,
+        },
       }}
     >
       {isError ? (

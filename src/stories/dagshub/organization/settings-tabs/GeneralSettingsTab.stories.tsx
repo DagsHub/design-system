@@ -2,12 +2,12 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   GeneralSettingsTab,
-  GeneralSettingsTabProps
+  GeneralSettingsTabProps,
 } from '../../../../components/dagshub/organization/settings-tabs/general-tab';
 
 const meta: Meta<GeneralSettingsTabProps> = {
   title: 'DagsHub/Org/SettingsTabs/GeneralSettingsTab',
-  component: GeneralSettingsTab
+  component: GeneralSettingsTab,
 };
 
 export default meta;
@@ -19,5 +19,5 @@ const imageLink =
 
 export const Primary = Template.bind({});
 Primary.args = {
-  orgImageSrc: imageLink
+  orgImageSrc: imageLink,
 };
