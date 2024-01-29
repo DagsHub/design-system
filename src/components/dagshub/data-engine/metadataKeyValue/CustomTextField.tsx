@@ -14,7 +14,7 @@ function CustomTextField({
   placeholder,
   helperText,
   shouldHighlightIfEmpty,
-  autoFocus
+  autoFocus,
 }: {
   readOnly: boolean;
   value?: string;
@@ -146,9 +146,9 @@ function CustomTextField({
             ) : null,
             sx: {
               input: {
-                width: isEditing || (isHovered && !readOnly) ? 'calc(100% - 45px)' : '100%'
-              }
-            }
+                width: isEditing || (isHovered && !readOnly) ? 'calc(100% - 45px)' : '100%',
+              },
+            },
           }}
           onChange={(e: any) => {
             setEditing(true);

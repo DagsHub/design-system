@@ -20,7 +20,7 @@ export default function TopButtonsSection({
   onAnnotatedClick,
   enableDatapointAnnotating,
   enableFileDownloading,
-  metadataButtonTooltip
+  metadataButtonTooltip,
 }: {
   height: string;
   isSmallScreen: boolean;
@@ -51,7 +51,7 @@ export default function TopButtonsSection({
           flexShrink: 0,
           flexWrap: isSmallScreen ? 'wrap' : 'nowrap',
           padding: '8px 0px',
-          boxSizing: 'border-box'
+          boxSizing: 'border-box',
         }}
       >
         <Box
@@ -77,7 +77,7 @@ export default function TopButtonsSection({
           <Typography
             variant={'large'}
             sx={{
-              width: '100%'
+              width: '100%',
             }}
           >
             {fileName}
@@ -110,7 +110,7 @@ export default function TopButtonsSection({
             flexDirection: 'row',
             alignItems: 'center',
             columnGap: '8px',
-            width: isSmallScreen ? '100%' : 'auto'
+            width: isSmallScreen ? '100%' : 'auto',
           }}
         >
           {isSmallScreen && (

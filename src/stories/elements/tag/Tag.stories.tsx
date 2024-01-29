@@ -6,7 +6,7 @@ import { Tag, TagCategory, TagSize, TagProps } from '../../../components/element
 
 const meta: Meta<TagProps> = {
   title: 'Elements/Tag',
-  component: Tag
+  component: Tag,
 };
 
 export default meta;
@@ -44,5 +44,5 @@ export const Interactive = Template.bind({});
 Interactive.args = {
   category: TagCategory.General,
   size: TagSize.Medium,
-  label: 'Change me!'
+  label: 'Change me!',
 };

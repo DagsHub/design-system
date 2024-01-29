@@ -15,21 +15,21 @@ const teamPermissionsOptions = [
     id: UserPermissionForTeam.ReadAccess,
     label: UserPermissionForTeam.ReadAccess,
     description: 'This team will be able to view and clone its repositories',
-    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
+    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />,
   },
   {
     id: UserPermissionForTeam.WriteAccess,
     label: UserPermissionForTeam.WriteAccess,
     description: 'This team will be able to read its repositories, as well as push to them.',
-    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
+    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />,
   },
   {
     id: UserPermissionForTeam.AdminAccess,
     label: UserPermissionForTeam.AdminAccess,
     description:
       'This team will be able to push/pull to its repositories, as well as add other collaborators to them.',
-    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />
-  }
+    icon: <Icon icon="outline-lock-closed" fill="#94A3B8" width={12} height={13} />,
+  },
 ];
 
 export interface TeamSettingsModalProps {
@@ -49,7 +49,7 @@ export function TeamSettingsModal({
   onEditTeam,
   onClose,
   existingTeamNames,
-  userPermissionForTeam = UserPermissionForTeam.ReadAccess
+  userPermissionForTeam = UserPermissionForTeam.ReadAccess,
 }: TeamSettingsModalProps) {
   const [displayDeleteBtns, setDisplayDeleteBtns] = useState<boolean>(false);
 
@@ -169,7 +169,7 @@ export function TeamSettingsModal({
                       ? 'read'
                       : permission === UserPermissionForTeam.WriteAccess
                       ? 'write'
-                      : 'admin'
+                      : 'admin',
                 });
                 onClose();
               }
@@ -197,7 +197,7 @@ export function TeamSettingsModal({
           />
         </div>
       )}
-    </>
+    </>,
   ];
   return <GenericModal title="Team settings" elements={elements} onClose={onClose} />;
 }

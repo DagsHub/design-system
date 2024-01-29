@@ -32,7 +32,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       bottom = 25,
       left = 'initial',
       right = 25,
-      onClose
+      onClose,
     },
     ref
   ) => {

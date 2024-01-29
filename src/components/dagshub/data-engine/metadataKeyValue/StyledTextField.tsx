@@ -40,18 +40,18 @@ function StyledTextField({
             ? 'inset 0px 0px 0px 3px rgba(196, 181, 253, 0.5)!important'
             : undefined,
           '.MuiOutlinedInput-notchedOutline': {
-            border: '0px!important'
-          }
+            border: '0px!important',
+          },
         },
         '.MuiInputBase-root': {
           width: '100%',
           backgroundColor: !disabled ? backgroundColor : undefined,
           borderRadius: borderRadius ?? 0,
           '&:hover': {
-            background: changeColorOnHover ? backgroundColorHover : undefined
+            background: changeColorOnHover ? backgroundColorHover : undefined,
           },
           position: 'relative',
-          paddingRight: '0px'
+          paddingRight: '0px',
         },
         '.MuiInputBase-input': {
           fontFamily: 'Inter',
@@ -60,7 +60,7 @@ function StyledTextField({
           lineHeight: '20px',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
-          padding: '8px'
+          padding: '8px',
         },
         '.MuiOutlinedInput-notchedOutline': {
           borderColor: isErrored
@@ -69,17 +69,17 @@ function StyledTextField({
           '&:hover': {
             borderColor: isErrored
               ? 'rgba(239, 68, 68, 1)!important'
-              : 'rgba(203, 213, 225, 1)!important'
+              : 'rgba(203, 213, 225, 1)!important',
           },
-          border: setBorder ? (isErrored ? '2px solid' : '1px solid') : '0px'
+          border: setBorder ? (isErrored ? '2px solid' : '1px solid') : '0px',
         },
         '.MuiSvgIcon-root ': {
-          fill: 'rgba(148, 163, 184, 1)'
+          fill: 'rgba(148, 163, 184, 1)',
         },
         '.MuiButtonBase-root': {
           padding: '6px',
           position: 'absolute',
-          right: '8px'
+          right: '8px',
         },
         '.MuiFormHelperText-root': {
           fontFamily: 'Inter',
@@ -92,8 +92,8 @@ function StyledTextField({
           margin: '0px',
           paddingLeft: helperTextPaddingLeft,
           paddingBottom: helperTextPaddingBottom,
-          boxShadow: 'none!important'
-        }
+          boxShadow: 'none!important',
+        },
       }}
     />
   );

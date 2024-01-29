@@ -16,7 +16,7 @@ export const FileTree = ({
   loading,
   getFilesCb,
   onSelect,
-  emptyMessage
+  emptyMessage,
 }: FileTreeInterface) => {
   const [selected, setSelected] = useState<string | null>(null);
 
@@ -37,7 +37,7 @@ export const FileTree = ({
           paddingBottom: 4,
           minHeight: '200px',
           maxHeight: '300px',
-          overflowY: 'auto'
+          overflowY: 'auto',
         }}
       >
         <FileList

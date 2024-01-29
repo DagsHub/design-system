@@ -4,7 +4,7 @@ import { Dropdown, DropdownProps } from '../../../components/elements/dropdown';
 
 const meta: Meta<DropdownProps> = {
   title: 'Elements/Dropdown',
-  component: Dropdown
+  component: Dropdown,
 };
 
 export default meta;
@@ -22,14 +22,14 @@ OpenedBasic.args = {
       label: 'Public',
       description:
         "User's membership is visible to everyone and is displayed on their public profile",
-      checked: true
+      checked: true,
     },
     {
       id: 2,
       label: 'Private',
-      description: "User's membership is only visible to other members of this organization"
-    }
-  ]
+      description: "User's membership is only visible to other members of this organization",
+    },
+  ],
 };
 
 export const CollapsedRadio = Template.bind({});
@@ -40,8 +40,8 @@ CollapsedRadio.args = {
   options: [
     { id: 1, label: 'Israel', description: 'State of Israel - Middle East - Asia', checked: true },
     { id: 2, label: 'Britain', description: 'Great British Empire - Europe' },
-    { id: 3, label: 'Colombia', description: 'La Tierra de Oro - South America' }
-  ]
+    { id: 3, label: 'Colombia', description: 'La Tierra de Oro - South America' },
+  ],
 };
 
 export const OpenedRadio = Template.bind({});
@@ -53,6 +53,6 @@ OpenedRadio.args = {
   options: [
     { id: 1, label: 'Israel', description: 'State of Israel - Middle East - Asia' },
     { id: 2, label: 'Britain', description: 'Great British Empire - Europe', checked: true },
-    { id: 3, label: 'Colombia', description: 'La Tierra de Oro - South America' }
-  ]
+    { id: 3, label: 'Colombia', description: 'La Tierra de Oro - South America' },
+  ],
 };

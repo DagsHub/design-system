@@ -2,13 +2,13 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   CardEmptyState,
-  CardEmptyStateProps
+  CardEmptyStateProps,
 } from '../../../../components/dagshub/organization/cards/card-empty-state';
 import { Button, ButtonStretch, ButtonVariant, Icon } from '../../../../components';
 
 const meta: Meta<CardEmptyStateProps> = {
   title: 'DagsHub/Org/Cards/CardEmptyState',
-  component: CardEmptyState
+  component: CardEmptyState,
 };
 
 export default meta;
@@ -20,7 +20,7 @@ Repo_card_overview.args = {
   text:
     'Create a new repo and provide one source of truth for your team with the code, data, models and experiments ' +
     'managed in one place',
-  buttonText: 'Create new repository'
+  buttonText: 'Create new repository',
 };
 export const Repo_card_full = Template.bind({});
 Repo_card_full.args = {
@@ -28,24 +28,24 @@ Repo_card_full.args = {
   text:
     'You haven’t created any repositories for Dagshub yet. \nCreate a new repo and provide one source of truth for ' +
     'your team with the code, data, models and experiments managed in one place',
-  buttonText: 'Create new repository'
+  buttonText: 'Create new repository',
 };
 
 export const Team_card_overview = Template.bind({});
 Team_card_overview.args = {
   width: 596,
   text: 'Create new team so that you can manage permissions and roles for different projects within your organization',
-  buttonText: 'Create new team'
+  buttonText: 'Create new team',
 };
 export const Team_card_full = Template.bind({});
 Team_card_full.args = {
   width: 1216,
   text: 'Create new team so that you can manage permissions and roles for different projects within your organization',
-  buttonText: 'Create new team in Dagshub'
+  buttonText: 'Create new team in Dagshub',
 };
 //the last card should get the org name as prop
 export const Empty_card = Template.bind({});
 Empty_card.args = {
   width: 596,
-  height: 120
+  height: 120,
 };

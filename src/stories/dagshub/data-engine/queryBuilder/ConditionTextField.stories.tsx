@@ -4,7 +4,7 @@ import ConditionTextField from '../../../../components/dagshub/data-engine/query
 
 const meta: Meta<typeof ConditionTextField> = {
   title: 'DagsHub/Data-Engine/QueryBuilder/Condition/Condition-Text-Field',
-  component: ConditionTextField
+  component: ConditionTextField,
 };
 
 export default meta;
@@ -16,10 +16,10 @@ export const conditionTextFieldStoriesReadOnly: StoryFn<typeof ConditionTextFiel
 );
 conditionTextFieldStoriesReadOnly.args = {
   disabled: true,
-  value: 'bla'
+  value: 'bla',
 };
 export const conditionTextFieldStories: StoryFn<typeof ConditionTextField> = Template.bind({});
 conditionTextFieldStories.args = {
   disabled: false,
-  placeholder: 'Enter value'
+  placeholder: 'Enter value',
 };

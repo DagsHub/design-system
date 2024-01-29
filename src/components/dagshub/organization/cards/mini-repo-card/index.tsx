@@ -72,7 +72,7 @@ export function MiniRepoCard({
   issuesHref,
   pullsHref,
   onStarActionClick,
-  isLogged
+  isLogged,
 }: MiniRepoCardProps) {
   const stars = IsGithubIntegrated ? githubStarCount + numStars : numStars;
   return (

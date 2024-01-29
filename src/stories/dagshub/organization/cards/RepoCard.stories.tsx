@@ -2,12 +2,12 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   RepoCard,
-  RepoCardProps
+  RepoCardProps,
 } from '../../../../components/dagshub/organization/cards/repo-card';
 
 const meta: Meta<RepoCardProps> = {
   title: 'DagsHub/Org/Cards/RepoCard',
-  component: RepoCard
+  component: RepoCard,
 };
 
 export default meta;
@@ -37,78 +37,78 @@ Primary.args = {
       name: 'general',
       categoryColorClass: 'general',
       categoryShowExplore: false,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 2,
       name: 'type',
       categoryColorClass: 'type',
       categoryShowExplore: true,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 3,
       name: 'task',
       categoryColorClass: 'task',
       categoryShowExplore: true,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 4,
       name: 'data domain',
       categoryColorClass: 'data_domain',
       categoryShowExplore: true,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 5,
       name: 'integration',
       categoryColorClass: 'integration',
       categoryShowExplore: true,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 6,
       name: 'framework',
       categoryColorClass: 'framework',
       categoryShowExplore: true,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 7,
       name: 'type',
       categoryColorClass: 'type',
       categoryShowExplore: true,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 8,
       name: 'task',
       categoryColorClass: 'task',
       categoryShowExplore: true,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 9,
       name: 'data domain',
       categoryColorClass: 'data_domain',
       categoryShowExplore: true,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 10,
       name: 'integration',
       categoryColorClass: 'integration',
       categoryShowExplore: true,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 11,
       name: 'framework',
       categoryColorClass: 'framework',
       categoryShowExplore: true,
-      categoryHref: ''
-    }
+      categoryHref: '',
+    },
   ],
   teams: [
     { teamName: 'team1', teamLink: '' },
@@ -120,8 +120,8 @@ Primary.args = {
     { teamName: 'team7', teamLink: '' },
     { teamName: 'team8', teamLink: '' },
     { teamName: 'team9', teamLink: '' },
-    { teamName: 'team10', teamLink: '' }
-  ]
+    { teamName: 'team10', teamLink: '' },
+  ],
 };
 
 export const Secondary = Template.bind({});
@@ -147,43 +147,43 @@ Secondary.args = {
       name: 'general',
       categoryColorClass: 'general',
       categoryShowExplore: false,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 2,
       name: 'type',
       categoryColorClass: 'type',
       categoryShowExplore: true,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 3,
       name: 'task',
       categoryColorClass: 'task',
       categoryShowExplore: true,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 4,
       name: 'data domain',
       categoryColorClass: 'data_domain',
       categoryShowExplore: true,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 5,
       name: 'integration',
       categoryColorClass: 'integration',
       categoryShowExplore: true,
-      categoryHref: ''
-    }
+      categoryHref: '',
+    },
   ],
   teams: [
     { teamName: 'team1', teamLink: '' },
     { teamName: 'team2', teamLink: '' },
     { teamName: 'team3', teamLink: '' },
-    { teamName: 'team4', teamLink: '' }
-  ]
+    { teamName: 'team4', teamLink: '' },
+  ],
 };
 
 export const Tertiary = Template.bind({});
@@ -209,22 +209,22 @@ Tertiary.args = {
       name: 'general',
       categoryColorClass: 'general',
       categoryShowExplore: false,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 4,
       name: 'data domain',
       categoryColorClass: 'data_domain',
       categoryShowExplore: true,
-      categoryHref: ''
+      categoryHref: '',
     },
     {
       id: 5,
       name: 'integration',
       categoryColorClass: 'integration',
       categoryShowExplore: true,
-      categoryHref: ''
-    }
+      categoryHref: '',
+    },
   ],
-  teams: []
+  teams: [],
 };

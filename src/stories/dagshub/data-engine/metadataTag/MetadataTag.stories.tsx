@@ -5,7 +5,7 @@ import { GalleryTagsGroup } from '../../../../components';
 
 const meta: Meta<{ itemMetadataTagsToDisplayDict: Record<string, { value: any }> }> = {
   title: 'DagsHub/Data-Engine/MetadataTags/Gallery tags group',
-  component: GalleryTagsGroup
+  component: GalleryTagsGroup,
 };
 
 export default meta;
@@ -18,7 +18,7 @@ const Template: StoryFn<typeof GalleryTagsGroup> = (args) => (
       width: '270px',
       display: 'flex',
       justifyContent: 'flex-start',
-      alignItems: 'center'
+      alignItems: 'center',
     }}
     display={'flex'}
     flexDirection={'column'}
@@ -34,7 +34,7 @@ const Template: StoryFn<typeof GalleryTagsGroup> = (args) => (
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'relative'
+        position: 'relative',
       }}
     >
       <img
@@ -44,7 +44,7 @@ const Template: StoryFn<typeof GalleryTagsGroup> = (args) => (
           maxWidth: '254px',
           borderRadius: '0px',
           cursor: 'pointer',
-          display: 'block'
+          display: 'block',
         }}
         src={'https://dagshub.com/Dean/COCO_1K/raw/main/data/images/train/000000000009.jpg'}
         alt=""
@@ -73,7 +73,7 @@ const Template: StoryFn<typeof GalleryTagsGroup> = (args) => (
         justifyContent: 'flex-start',
         height: '30px',
         fontFamily: 'Inter',
-        fontSize: '14px'
+        fontSize: '14px',
       }}
     >
       <a
@@ -82,7 +82,7 @@ const Template: StoryFn<typeof GalleryTagsGroup> = (args) => (
           cursor: 'pointer',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap'
+          whiteSpace: 'nowrap',
         }}
         target="_blank"
       >
@@ -102,47 +102,47 @@ const getNTags = (n: number) => {
 
 export const oneTag: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 oneTag.args = {
-  itemMetadataTagsToDisplayDict: getNTags(1)
+  itemMetadataTagsToDisplayDict: getNTags(1),
 };
 
 export const twoTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 twoTags.args = {
-  itemMetadataTagsToDisplayDict: getNTags(2)
+  itemMetadataTagsToDisplayDict: getNTags(2),
 };
 
 export const threeTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 threeTags.args = {
-  itemMetadataTagsToDisplayDict: getNTags(3)
+  itemMetadataTagsToDisplayDict: getNTags(3),
 };
 
 export const fourTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 fourTags.args = {
-  itemMetadataTagsToDisplayDict: getNTags(4)
+  itemMetadataTagsToDisplayDict: getNTags(4),
 };
 
 export const fiveTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 fiveTags.args = {
-  itemMetadataTagsToDisplayDict: getNTags(5)
+  itemMetadataTagsToDisplayDict: getNTags(5),
 };
 
 export const sixTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 sixTags.args = {
-  itemMetadataTagsToDisplayDict: getNTags(6)
+  itemMetadataTagsToDisplayDict: getNTags(6),
 };
 
 export const sevenTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 sevenTags.args = {
-  itemMetadataTagsToDisplayDict: getNTags(7)
+  itemMetadataTagsToDisplayDict: getNTags(7),
 };
 
 export const manyTags1: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 manyTags1.args = {
-  itemMetadataTagsToDisplayDict: getNTags(100)
+  itemMetadataTagsToDisplayDict: getNTags(100),
 };
 
 export const manyTags2: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 manyTags2.args = {
-  itemMetadataTagsToDisplayDict: getNTags(1000)
+  itemMetadataTagsToDisplayDict: getNTags(1000),
 };
 
 export const mixedTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
@@ -154,11 +154,11 @@ mixedTags.args = {
     float: { value: '12.3456789023457658768' }, //short key and long value
     'another key': { value: 'another value' },
     size: { value: '1234543' },
-    bla: { value: 'bla' }
-  }
+    bla: { value: 'bla' },
+  },
 };
 
 export const noTags: StoryFn<typeof GalleryTagsGroup> = Template.bind({});
 noTags.args = {
-  itemMetadataTagsToDisplayDict: {}
+  itemMetadataTagsToDisplayDict: {},
 };

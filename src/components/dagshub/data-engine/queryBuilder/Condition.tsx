@@ -10,7 +10,7 @@ export function Condition({
   level = 0,
   onRemove,
   onAdd,
-  isCollapsed = true
+  isCollapsed = true,
 }: {
   condition: AndOrMetadataInput;
   onChange: any;

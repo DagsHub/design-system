@@ -4,7 +4,7 @@ import { TeamCard, TeamCardProps } from '../../../../components';
 
 const meta: Meta<TeamCardProps> = {
   title: 'DagsHub/Org/Cards/TeamCard',
-  component: TeamCard
+  component: TeamCard,
 };
 
 export default meta;
@@ -26,7 +26,7 @@ primary.args = {
     { id: 4, userName: 'user4', homeLink: imageLink, relAvatarLink: imageLink },
     { id: 5, userName: 'user5', homeLink: imageLink, relAvatarLink: imageLink },
     { id: 6, userName: 'user6', homeLink: imageLink, relAvatarLink: imageLink },
-    { id: 7, userName: 'user7', homeLink: imageLink, relAvatarLink: imageLink }
+    { id: 7, userName: 'user7', homeLink: imageLink, relAvatarLink: imageLink },
   ],
-  teamLink: imageLink
+  teamLink: imageLink,
 };

@@ -20,7 +20,7 @@ const Introduction = () => (
 
 export default {
   title: 'Introduction',
-  component: Introduction
+  component: Introduction,
 } as Meta<typeof Introduction>;
 
 export const Intro = Introduction;

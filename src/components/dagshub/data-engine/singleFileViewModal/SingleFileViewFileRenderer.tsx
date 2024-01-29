@@ -69,7 +69,7 @@ export const SingleFileViewFileRenderer = ({ itemData }: VisualizerProps) => {
           style={{
             objectFit: 'contain',
             maxWidth: '100%',
-            maxHeight: '100%'
+            maxHeight: '100%',
           }}
           controls
           src={galleryFilePath}
@@ -88,7 +88,7 @@ export const SingleFileViewFileRenderer = ({ itemData }: VisualizerProps) => {
             overflow: 'hidden',
             overflowY: 'auto',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
           }}
         >
           <PDFViewer
@@ -113,7 +113,7 @@ export const SingleFileViewFileRenderer = ({ itemData }: VisualizerProps) => {
             fontWeight: 500,
             fontSize: '14px',
             lineHeight: '20px',
-            width: '100%'
+            width: '100%',
           }}
         >
           {textContent}
@@ -130,7 +130,7 @@ export const SingleFileViewFileRenderer = ({ itemData }: VisualizerProps) => {
             maxWidth: '100%',
             maxHeight: '100%',
             width: '80%',
-            alignSelf: 'center'
+            alignSelf: 'center',
           }}
           onError={() => {
             setIsError(true);

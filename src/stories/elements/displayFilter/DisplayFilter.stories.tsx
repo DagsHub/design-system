@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 
 const meta: Meta<DisplayFilterProps> = {
   title: 'Elements/Display filter',
-  component: DisplayFilter
+  component: DisplayFilter,
 };
 
 export default meta;
@@ -19,5 +19,5 @@ const Template: StoryFn<typeof DisplayFilter> = (args) => (
 export const DisplayFilterBasic: StoryFn<typeof DisplayFilter> = Template.bind({});
 DisplayFilterBasic.args = {
   label: 'test label',
-  onChange: () => console.log('changed')
+  onChange: () => console.log('changed'),
 };
