@@ -23,9 +23,13 @@ export function ControlledDisplayFiltersGroup({
   onChange
 }: ControlledDisplayFiltersGroupProps) {
   const [displayedFilters, setDisplayedFilters] = useState<Map<string, FilterType>>(
-      isToggleAll ? new Map<string, FilterType>(filters.map(filter => {
-        return [filter.value, filter];
-      }),) : new Map<string, FilterType>()
+    isToggleAll
+      ? new Map<string, FilterType>(
+          filters.map((filter) => {
+            return [filter.value, filter];
+          })
+        )
+      : new Map<string, FilterType>()
   );
   const [showAll, setShowAll] = useState<boolean>(isToggleAll ?? false);
   const [availableFiltersNames, setAvailableFiltersNames] = useState<Map<string, FilterType>>(
