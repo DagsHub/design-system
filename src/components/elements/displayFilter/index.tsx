@@ -8,13 +8,19 @@ import { FilterType } from '../controlledDisplayFiltersGroup';
 
 export interface DisplayFilterProps {
   filter: FilterType;
-  onChange: ({ alias, value }: FilterType) => void;
+  onChange: (filter: FilterType) => void;
+  addNewFilter: ({ alias, value, name }: { alias: string; value: number; name: string }) => void;
   value: boolean;
-  search: ({ alias, value }: FilterType) => Promise<FilterType[]>;
-    showCompareButton?: boolean
+  showCompareButton?: boolean;
 }
 
-export function DisplayFilter({ filter, onChange, value, search, showCompareButton }: DisplayFilterProps) {
+export function DisplayFilter({
+  filter,
+  onChange,
+  value,
+  addNewFilter,
+  showCompareButton,
+}: DisplayFilterProps) {
   const [show, setShow] = useState<boolean>(false);
 
   const filterClicked = () => {
@@ -26,6 +32,10 @@ export function DisplayFilter({ filter, onChange, value, search, showCompareButt
     setShow(value);
   }, [value]);
 
+  const addNewFilterHandler = ({ alias, value }: { alias: string; value: number }) => {
+    addNewFilter({ alias, value, name: filter.name });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Stack
@@ -35,12 +45,12 @@ export function DisplayFilter({ filter, onChange, value, search, showCompareButt
           background: '#F8FAFC',
           color: '#172D32',
           '&:hover': {
-            backgroundColor: '#F1F5F9'
+            backgroundColor: '#F1F5F9',
           },
           '&:hover #cancel': {
-            display: 'initial'
+            display: 'initial',
           },
-          borderLeft: '3px solid transparent'
+          borderLeft: '3px solid transparent',
         }}
         display={'flex'}
         justifyContent={'space-between'}
@@ -53,7 +63,7 @@ export function DisplayFilter({ filter, onChange, value, search, showCompareButt
               height: '24px',
               width: '24px',
               padding: 0,
-              '&:hover': { backgroundColor: 'transparent' }
+              '&:hover': { backgroundColor: 'transparent' },
             }}
             onClick={filterClicked}
           >
@@ -66,7 +76,7 @@ export function DisplayFilter({ filter, onChange, value, search, showCompareButt
                 whiteSpace: 'nowrap',
                 textOverflow: 'ellipsis',
                 width: '130px',
-                  cursor: 'unset'
+                cursor: 'unset',
               }}
               variant={'medium'}
               component={'div'}
@@ -76,7 +86,7 @@ export function DisplayFilter({ filter, onChange, value, search, showCompareButt
           </Tooltip>
         </Box>
 
-          {showCompareButton && <ComparePopover search={search}/>}
+        {showCompareButton && <ComparePopover addNewFilter={addNewFilterHandler} />}
       </Stack>
     </ThemeProvider>
   );

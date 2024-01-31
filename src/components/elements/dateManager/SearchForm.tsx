@@ -22,7 +22,7 @@ export const SearchForm = ({
   date,
   hour,
   setHour,
-  displayName
+  displayName,
 }: SearchFormProps) => {
   return (
     <Box width={'50%'} py={2} px={1} display={'inline-grid'} gap={2}>
@@ -35,10 +35,10 @@ export const SearchForm = ({
             day: {
               sx: {
                 '&.MuiPickersDay-root.Mui-selected': {
-                  backgroundColor: '#5467de'
-                }
-              }
-            }
+                  backgroundColor: '#5467de',
+                },
+              },
+            },
           }}
           format="YYYY-MM-DD"
           value={date}
@@ -67,7 +67,7 @@ export const SearchForm = ({
                 />
               </svg>,
               'calendar'
-            )
+            ),
           }}
         />
       </Box>

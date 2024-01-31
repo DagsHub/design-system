@@ -8,35 +8,39 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import theme from '../../../theme';
 import PresetsContent from './Presets';
 import { SearchForm } from './SearchForm';
-import { FilterType } from '../controlledDisplayFiltersGroup';
+import { PresetType } from '../displayFilter/ComparePopover';
 
 export interface DateManagerProps {
-  presets: FilterType[];
-  compare: ({ alias, value }: FilterType) => void;
+  presets: PresetType[];
+  compare: ({ alias, value }: { alias: string; value: number }) => void;
   close: () => void;
   loading: boolean;
 }
+
+const formattedDate = (
+  date: string | number | dayjs.Dayjs | Date | null | undefined,
+  hour: string | number | dayjs.Dayjs | Date | null | undefined
+) => {
+  return `${dayjs(date).format('YYYY-MM-DD')} ${dayjs(hour).format('HH:mm:ss')}`;
+};
 
 export const DateManager = ({ presets, compare, close, loading }: DateManagerProps) => {
   const defaultDisplayName = `as of ${dayjs().format('YYYY-MM-DD')} ${dayjs().format('HH:mm:ss')}`;
 
   const [date, setDate] = useState<null | Dayjs>(dayjs());
   const [hour, setHour] = useState<null | Dayjs>(dayjs());
-  const [value, setValue] = useState<string>(defaultDisplayName);
+  const [value, setValue] = useState<number>(dayjs(formattedDate(date, hour)).unix());
   const [displayName, setDisplayName] = useState(defaultDisplayName);
   const [displayNameTouched, setDisplayNameTouched] = useState(false);
   const [errorDate, setErrorDate] = useState(false);
 
-  const updateValue = (value: string) => setValue(value);
-
   // update the display name unless the display name area is touched.
   useEffect(() => {
-    const value = `${dayjs(date).format('YYYY-MM-DD')} ${dayjs(hour).format('HH:mm:ss')}`;
+    const value = formattedDate(date, hour);
     if (!displayNameTouched) {
       setDisplayName(`as of ${value}`);
     }
-
-    updateValue(value);
+    setValue(dayjs(value).unix());
   }, [hour, date]);
 
   return (
@@ -85,7 +89,10 @@ export const DateManager = ({ presets, compare, close, loading }: DateManagerPro
               <Button
                 stretch={ButtonStretch.Slim}
                 variant={ButtonVariant.Primary}
-                onClick={() => compare({ value, alias: displayName })}
+                onClick={() => {
+                  compare({ value, alias: displayName });
+                  close();
+                }}
                 disabled={!date || errorDate || loading}
                 label={loading ? 'loading...' : 'Search'}
               />

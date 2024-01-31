@@ -10,7 +10,7 @@ function deductDays(days: number) {
 
 const meta: Meta<DateManagerProps> = {
   title: 'Elements/Date Manager',
-  component: DateManager
+  component: DateManager,
 };
 
 export default meta;
@@ -22,15 +22,15 @@ DateManagerExample.args = {
   presets: [
     {
       name: '1 day ago',
-      value: deductDays(1)
+      value: deductDays(1),
     },
     {
       name: '1 week ago',
-      value: deductDays(7)
+      value: deductDays(7),
     },
     {
       name: '1 month ago',
-      value: deductDays(30)
-    }
-  ]
+      value: deductDays(30),
+    },
+  ],
 };

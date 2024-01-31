@@ -4,34 +4,33 @@ import { DateManager } from '../dateManager';
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { Icon } from '../../icons';
-import { FilterType } from '../controlledDisplayFiltersGroup';
 
-function deductDays(days: number) {
-  const date = new Date();
-  return dayjs(date.setDate(date.getDay() - days)).format('YYYY-MM-DD');
-}
+export type PresetType = {
+  name: string;
+  value: dayjs.Dayjs;
+};
 
-export const defaultPresets: FilterType[] = [
+export const defaultPresets: PresetType[] = [
   {
-    alias: '1 day ago',
-    value: deductDays(1)
+    name: '1 day ago',
+    value: dayjs().subtract(1, 'day'),
   },
   {
-    alias: '1 week ago',
-    value: deductDays(7)
+    name: '1 week ago',
+    value: dayjs().subtract(7, 'day'),
   },
   {
-    alias: '1 month ago',
-    value: deductDays(30)
-  }
+    name: '1 month ago',
+    value: dayjs().subtract(30, 'day'),
+  },
 ];
 
 const ComparePopover = ({
   presets,
-  search
+  addNewFilter,
 }: {
-  presets?: FilterType[];
-  search: ({ alias, value }: FilterType) => Promise<FilterType[]>;
+  presets?: PresetType[];
+  addNewFilter: ({ alias, value }: { alias: string; value: number }) => void;
 }) => {
   const [loading, setLoading] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
@@ -47,17 +46,6 @@ const ComparePopover = ({
   const open = Boolean(anchorEl);
   const id = open ? 'popover' : undefined;
 
-  const compare = async ({ value, alias }: FilterType) => {
-    setLoading(true);
-    try {
-      const res = await search({ alias, value });
-      handleClose();
-    } catch (e) {
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div>
       <Tooltip title="Compare to other version">
@@ -69,7 +57,7 @@ const ComparePopover = ({
             width: '32px',
             '&:hover': { backgroundColor: 'transparent' },
             borderRadius: '32px',
-            border: '1px solid #E2E8F0'
+            border: '1px solid #E2E8F0',
           }}
           onClick={handleClick}
         >
@@ -84,13 +72,13 @@ const ComparePopover = ({
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left'
+          horizontal: 'left',
         }}
       >
         <DateManager
           close={handleClose}
           loading={loading}
-          compare={compare}
+          compare={addNewFilter}
           presets={presets?.length ? presets : defaultPresets}
         />
       </Popover>
