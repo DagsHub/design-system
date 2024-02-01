@@ -2,12 +2,12 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   TeamSettingsModal,
-  TeamSettingsModalProps
+  TeamSettingsModalProps,
 } from '../../../../components/dagshub/organization/modals/team-settings-modal';
 
 const meta: Meta<TeamSettingsModalProps> = {
   title: 'DagsHub/Org/Modals/TeamSettingsModal',
-  component: TeamSettingsModal
+  component: TeamSettingsModal,
 };
 
 export default meta;
@@ -21,5 +21,5 @@ Primary.args = {
   teamDescription: 'this is description',
   onDeleteTeam: (args?: any) => {},
   onEditTeam: (args?: any) => {},
-  existingTeamNames: ['team-a', 'team-b']
+  existingTeamNames: ['team-a', 'team-b'],
 };

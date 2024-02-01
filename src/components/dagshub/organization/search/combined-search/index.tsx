@@ -26,7 +26,7 @@ export function CombinedSearch({
   resultUsers = [],
   onInputClick = () => {},
   onAdd = () => {},
-  onRemove = () => {}
+  onRemove = () => {},
 }: CombinedSearchProps) {
   const [inputFocused, setInputFocused] = useState<boolean>(false);
 

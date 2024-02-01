@@ -4,14 +4,14 @@ import { UserPermissionForTeam } from '../../../../types';
 import {
   PeopleTable,
   MembershipVisibility,
-  PeopleTableProps
+  PeopleTableProps,
 } from '../../../../components/dagshub/organization/tables/people-table';
 import { Member } from '../../../../components/dagshub/organization/tables/shared-classes';
 import { TeamCardProps } from '../../../../components';
 
 const meta: Meta<PeopleTableProps> = {
   title: 'DagsHub/Org/Tables/PeopleTable',
-  component: PeopleTable
+  component: PeopleTable,
 };
 
 export default meta;
@@ -39,24 +39,24 @@ Primary.args = {
           teamDescription: 'this is the devops team description',
           teamMembers: [],
           teamLink: '',
-          userPermissionForTeam: UserPermissionForTeam.AdminAccess
+          userPermissionForTeam: UserPermissionForTeam.AdminAccess,
         },
         {
           teamName: 'R&D team',
           teamDescription: 'this is the R&D team description',
           teamMembers: [],
           teamLink: '',
-          userPermissionForTeam: UserPermissionForTeam.WriteAccess
+          userPermissionForTeam: UserPermissionForTeam.WriteAccess,
         },
         {
           teamName: 'Product team',
           teamDescription: 'this is the product team description',
           teamMembers: [],
           teamLink: '',
-          userPermissionForTeam: UserPermissionForTeam.ReadAccess
-        }
+          userPermissionForTeam: UserPermissionForTeam.ReadAccess,
+        },
       ],
-      membershipVisibility: MembershipVisibility.Private
+      membershipVisibility: MembershipVisibility.Private,
     },
     {
       id: 2,
@@ -72,24 +72,24 @@ Primary.args = {
           teamDescription: 'this is the devops team description',
           teamMembers: [],
           teamLink: '',
-          userPermissionForTeam: UserPermissionForTeam.AdminAccess
+          userPermissionForTeam: UserPermissionForTeam.AdminAccess,
         },
         {
           teamName: 'R&D team',
           teamDescription: 'this is the R&D team description',
           teamMembers: [],
           teamLink: '',
-          userPermissionForTeam: UserPermissionForTeam.WriteAccess
+          userPermissionForTeam: UserPermissionForTeam.WriteAccess,
         },
         {
           teamName: 'Marketing team',
           teamDescription: 'this is the marketing team description',
           teamMembers: [],
           teamLink: '',
-          userPermissionForTeam: UserPermissionForTeam.ReadAccess
-        }
+          userPermissionForTeam: UserPermissionForTeam.ReadAccess,
+        },
       ],
-      membershipVisibility: MembershipVisibility.Private
+      membershipVisibility: MembershipVisibility.Private,
     },
     {
       id: 3,
@@ -105,24 +105,24 @@ Primary.args = {
           teamDescription: 'this is the devops team description',
           teamMembers: [],
           teamLink: '',
-          userPermissionForTeam: UserPermissionForTeam.AdminAccess
+          userPermissionForTeam: UserPermissionForTeam.AdminAccess,
         },
         {
           teamName: 'R&D team',
           teamDescription: 'this is the R&D team description',
           teamMembers: [],
           teamLink: '',
-          userPermissionForTeam: UserPermissionForTeam.WriteAccess
+          userPermissionForTeam: UserPermissionForTeam.WriteAccess,
         },
         {
           teamName: 'Product team',
           teamDescription: 'this is the product team description',
           teamMembers: [],
           teamLink: '',
-          userPermissionForTeam: UserPermissionForTeam.ReadAccess
-        }
+          userPermissionForTeam: UserPermissionForTeam.ReadAccess,
+        },
       ],
-      membershipVisibility: MembershipVisibility.Private
-    }
-  ]
+      membershipVisibility: MembershipVisibility.Private,
+    },
+  ],
 };

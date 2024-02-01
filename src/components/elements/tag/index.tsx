@@ -9,13 +9,13 @@ export enum TagCategory {
   DataDomain = 'data-domain',
   Framework = 'framework',
   Integration = 'integration',
-  Type = 'type'
+  Type = 'type',
 }
 
 export enum TagSize {
   Small = 'sm',
   Medium = 'md',
-  Large = 'lg'
+  Large = 'lg',
 }
 
 export interface TagProps {
@@ -38,7 +38,7 @@ export const Tag = React.forwardRef<
       selected = false,
       label,
       className = '',
-      onClick = () => {}
+      onClick = () => {},
     },
     ref
   ) => {

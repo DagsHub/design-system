@@ -23,7 +23,7 @@ export function ControlledDisplayFiltersGroup({
   onToggleShowAll,
   toggleAllLabel,
   isToggleAll,
-  toggledFilters
+  toggledFilters,
 }: ControlledDisplayFiltersGroupProps) {
   const [showAll, setShowAll] = useState<boolean>(isToggleAll ?? false);
   const [availableFiltersNames, setAvailableFiltersNames] = useState<Set<string>>(

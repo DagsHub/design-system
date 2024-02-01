@@ -16,14 +16,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'NHA7DvhBe1',
@@ -34,14 +34,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'wQhWPnDdI7',
@@ -52,14 +52,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'ZplqaoUjI-',
@@ -70,14 +70,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'vG5NMHd46n',
@@ -88,14 +88,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'dEyNqwOSBa',
@@ -106,14 +106,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '1JavoE1_Mm',
@@ -124,14 +124,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '6YVeuSZJWr',
@@ -142,14 +142,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'bFrux_Ican',
@@ -160,14 +160,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'IeqbwuA_6r',
@@ -178,14 +178,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'V5l_nTOCcG',
@@ -196,14 +196,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '30a9IBMHPQ',
@@ -214,14 +214,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'emRRq9uO0h',
@@ -232,14 +232,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'gPCWimQ-q_',
@@ -250,14 +250,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'XsYbmad47J',
@@ -268,14 +268,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'BvExTkIHym',
@@ -286,14 +286,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'yt-qmPu1Bm',
@@ -304,14 +304,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'zAioF6ClNR',
@@ -322,14 +322,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'g14WtodX5r',
@@ -340,14 +340,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'xznos0XLhP',
@@ -358,14 +358,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'bNBAS2iVZ5',
@@ -376,14 +376,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'LwmAahHLvk',
@@ -394,14 +394,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'v8ZDW0kGJd',
@@ -412,14 +412,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Ek4eA6qkRU',
@@ -430,14 +430,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'As6ekr1DqK',
@@ -448,14 +448,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'caaESsu-WA',
@@ -466,14 +466,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'jOiTcp1oNR',
@@ -484,14 +484,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '3MgAHKgRPf',
@@ -502,14 +502,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '-bWzHa1BQ5',
@@ -520,14 +520,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'D0rVYvLA9C',
@@ -538,14 +538,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'dNlNKL6FLJ',
@@ -556,14 +556,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '25sBIcXSr3',
@@ -574,14 +574,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'ZPnHVG6Uh9',
@@ -592,14 +592,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'LE3-cQlsVt',
@@ -610,14 +610,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Nxhu8ib6_l',
@@ -628,14 +628,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'd3uvy0uZwj',
@@ -646,14 +646,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'LbyyMWhEKv',
@@ -664,14 +664,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'sstIlHlbwU',
@@ -682,14 +682,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'PNusg6dFFY',
@@ -700,14 +700,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '4lfLYd016r',
@@ -718,14 +718,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '6R09BD8WSC',
@@ -736,14 +736,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '0rvh4oFG8v',
@@ -754,14 +754,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'pkd6o3Zlp-',
@@ -772,14 +772,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'bxEAPuvyp9',
@@ -790,14 +790,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '29leh3aTtN',
@@ -808,14 +808,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'uHHZiXoH8C',
@@ -826,14 +826,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'r9bUuPiqv9',
@@ -844,14 +844,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'E5RaxuU4Xj',
@@ -862,14 +862,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'cSKHZftM90',
@@ -880,14 +880,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'jfKxWEXvfh',
@@ -898,14 +898,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'cGDdK__jnl',
@@ -916,14 +916,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '7biPkOWxxR',
@@ -934,14 +934,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'YzKE7E3FGo',
@@ -952,14 +952,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '0ph8Zt-jrY',
@@ -970,14 +970,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '1Q3GPV7ihf',
@@ -988,14 +988,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Ne8gzGkWE8',
@@ -1006,14 +1006,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '3v6Xe15R2r',
@@ -1024,14 +1024,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'KwG1SfUis6',
@@ -1042,14 +1042,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Mhvtq--sKa',
@@ -1060,14 +1060,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'br4DDfYhkY',
@@ -1078,14 +1078,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '74cwuoEYfx',
@@ -1096,14 +1096,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'w7b1McOULX',
@@ -1114,14 +1114,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'eaJOc_6BnV',
@@ -1132,14 +1132,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'IAq73c6OKe',
@@ -1150,14 +1150,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Aa-UA8VmAW',
@@ -1168,14 +1168,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '3ut9FQkBHx',
@@ -1186,14 +1186,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '6vXNKX5Key',
@@ -1204,14 +1204,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'D9pxk8BvIt',
@@ -1222,14 +1222,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'UmLQ3VHX52',
@@ -1240,14 +1240,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'dw6qwH6ofd',
@@ -1258,14 +1258,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'gLkaagJsUZ',
@@ -1276,14 +1276,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'jQdNEGHIDG',
@@ -1294,14 +1294,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'NccCPVfk7u',
@@ -1312,14 +1312,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'XULodfTGmX',
@@ -1330,14 +1330,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'aI_kkkmiDQ',
@@ -1348,14 +1348,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'duVafmsaKp',
@@ -1366,14 +1366,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'ap1dAnscl8',
@@ -1384,14 +1384,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'OyOX8bp8Hj',
@@ -1402,14 +1402,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'OD0axo2CZM',
@@ -1420,14 +1420,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'ZrZb6wurlT',
@@ -1438,14 +1438,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '53y2yRG2g-',
@@ -1456,14 +1456,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'IeS8N1axu4',
@@ -1474,14 +1474,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'NhvTHjGjew',
@@ -1492,14 +1492,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'jHpDe6XGKz',
@@ -1510,14 +1510,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'lOLXMGt7Vj',
@@ -1528,14 +1528,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'MgFMhVkdUJ',
@@ -1546,14 +1546,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'yf_1iLvS01',
@@ -1564,14 +1564,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'EsPBlMxDPU',
@@ -1582,14 +1582,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '215qj5eruO',
@@ -1600,14 +1600,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'pT9WiQUaYL',
@@ -1618,14 +1618,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'zsPXTGh3u_',
@@ -1636,14 +1636,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '9ztG5F_gGo',
@@ -1654,14 +1654,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'swDPwG7cWa',
@@ -1672,14 +1672,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'pWDOQfZTTB',
@@ -1690,14 +1690,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '1yazDqGhKB',
@@ -1708,14 +1708,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'ymCNPxzlA1',
@@ -1726,14 +1726,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Gp04RNx7DY',
@@ -1744,14 +1744,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '_aQwaI_itm',
@@ -1762,14 +1762,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'vDU4Fn9tZO',
@@ -1780,14 +1780,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'jdtrayurjq',
@@ -1798,14 +1798,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '9iUBpcwnR1',
@@ -1816,14 +1816,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'k3wTphwpVn',
@@ -1834,14 +1834,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'anY6_8iZSY',
@@ -1852,14 +1852,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'HBeChJHRam',
@@ -1870,14 +1870,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'VLVEVkh34Z',
@@ -1888,14 +1888,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'f3-UMwwvFO',
@@ -1906,14 +1906,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'VKy-781a6Z',
@@ -1924,14 +1924,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'YRUahCEI91',
@@ -1942,14 +1942,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'EYux0yTasy',
@@ -1960,14 +1960,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Xy0C7masut',
@@ -1978,14 +1978,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'wzhx0VApvq',
@@ -1996,14 +1996,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '59mdAzhpg8',
@@ -2014,14 +2014,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'wzA6LPLRNq',
@@ -2032,14 +2032,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'c_ZpyXUqhp',
@@ -2050,14 +2050,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'wW3_SS9aT3',
@@ -2068,14 +2068,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'm6pFZ02ngF',
@@ -2086,14 +2086,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'PNla3vVs6Z',
@@ -2104,14 +2104,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'e6njmF4nu3',
@@ -2122,14 +2122,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'q-ty2rK7t9',
@@ -2140,14 +2140,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'seLTSc2Bz1',
@@ -2158,14 +2158,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Zdrhp_7Ffj',
@@ -2176,14 +2176,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '36Rzv3IVtM',
@@ -2194,14 +2194,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'RSLOgEmx0q',
@@ -2212,14 +2212,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'h2DQ7lgxdr',
@@ -2230,14 +2230,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Em2bdP3ION',
@@ -2248,14 +2248,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'tK4PdOFOiT',
@@ -2266,14 +2266,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'oXpEkIDpHk',
@@ -2284,14 +2284,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'tJCsffgTps',
@@ -2302,14 +2302,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'pJUO-FHcBE',
@@ -2320,14 +2320,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'CCcFEVoF5J',
@@ -2338,14 +2338,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'rWImVTsONf',
@@ -2356,14 +2356,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'LyR3h3ynoE',
@@ -2374,14 +2374,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'kGepjzeADx',
@@ -2392,14 +2392,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'KQLpbvqxkO',
@@ -2410,14 +2410,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'tlah_Pne6e',
@@ -2428,14 +2428,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'pPmN6GuFdD',
@@ -2446,14 +2446,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'eYqCyTxg39',
@@ -2464,14 +2464,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '5IoZcKETmh',
@@ -2482,14 +2482,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'N65fkLThuN',
@@ -2500,14 +2500,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '46pA_FdpUR',
@@ -2518,14 +2518,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '3cueUbe2mg',
@@ -2536,14 +2536,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '2HuIBd9h-z',
@@ -2554,14 +2554,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'baAmH5fLzN',
@@ -2572,14 +2572,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'RV5GYLCW9N',
@@ -2590,14 +2590,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'FJ81f02Cp_',
@@ -2608,14 +2608,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'LCeG_hf4xM',
@@ -2626,14 +2626,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'LeRCnMYZYV',
@@ -2644,14 +2644,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '-CvBrhxggg',
@@ -2662,14 +2662,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'aIe8C1D25S',
@@ -2680,14 +2680,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'EAL8pmCL1M',
@@ -2698,14 +2698,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'jAW7TcNu5i',
@@ -2716,14 +2716,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '8X6gI6ZUFO',
@@ -2734,14 +2734,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'iqvMd5Yu6B',
@@ -2752,14 +2752,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Bo0O8Jahb_',
@@ -2770,14 +2770,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'VAlTy9sSat',
@@ -2788,14 +2788,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Gn4TqSbQnw',
@@ -2806,14 +2806,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '1ST4lLHC98',
@@ -2824,14 +2824,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'A5kp-79K5d',
@@ -2842,14 +2842,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'acbjOM7lVg',
@@ -2860,14 +2860,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Wk2_uONQBp',
@@ -2878,14 +2878,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Ln-XgAqy9q',
@@ -2896,14 +2896,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'lx1jK_5yQG',
@@ -2914,14 +2914,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '_GlIKAoeTE',
@@ -2932,14 +2932,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'PgeY9PgWPM',
@@ -2950,14 +2950,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'wO-mfbmaez',
@@ -2968,14 +2968,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '2hbryknKoz',
@@ -2986,14 +2986,14 @@ export const ellipseTask: Task = {
             radiusX: 1.1456997628564474,
             radiusY: 1.4833651197287592,
             rotation: 0,
-            ellipselabels: ['Healthy']
+            ellipselabels: ['Healthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'N5VcYZj0ab',
@@ -3004,14 +3004,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'XHJW4jQZmh',
@@ -3022,14 +3022,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'HausO5vDA6',
@@ -3040,14 +3040,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'TG_hV99VfD',
@@ -3058,14 +3058,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'BDe5P2MisY',
@@ -3076,14 +3076,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'LeQmnvPEkq',
@@ -3094,14 +3094,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '1VpfPBBTDT',
@@ -3112,14 +3112,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Od4zz5-Aye',
@@ -3130,14 +3130,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'C_4q5bt2lg',
@@ -3148,14 +3148,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'yoNX3nyCfA',
@@ -3166,14 +3166,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Tztg6wQkuB',
@@ -3184,14 +3184,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'HlmQnT9CL_',
@@ -3202,14 +3202,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '6QCKa9aw7O',
@@ -3220,14 +3220,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'gQ386w8z8L',
@@ -3238,14 +3238,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'W3Ab5WVBXT',
@@ -3256,14 +3256,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'O0F2qRm8Jv',
@@ -3274,14 +3274,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'QUfYG4u--d',
@@ -3292,14 +3292,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'eyOdgqQhs0',
@@ -3310,14 +3310,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'yw2F11JZWg',
@@ -3328,14 +3328,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'QWj7hl6jUz',
@@ -3346,14 +3346,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'kixprssBfL',
@@ -3364,14 +3364,14 @@ export const ellipseTask: Task = {
             radiusX: 0.8012820512820582,
             radiusY: 1.1752136752136693,
             rotation: 0,
-            ellipselabels: ['Unsure']
+            ellipselabels: ['Unsure'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '26iy2ExTwU',
@@ -3382,14 +3382,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'jMucXwdvHA',
@@ -3400,14 +3400,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '8bns0ANqVk',
@@ -3418,14 +3418,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '69wkmTnE_x',
@@ -3436,14 +3436,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'YOxHhIJg4U',
@@ -3454,14 +3454,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '9mmYnH_Dg6',
@@ -3472,14 +3472,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Lw-vUH2Dza',
@@ -3490,14 +3490,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'vl-wTSoPON',
@@ -3508,14 +3508,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'ZWN3uRFhO8',
@@ -3526,14 +3526,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Fu38xd4V5w',
@@ -3544,14 +3544,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'iRgyjM_RoC',
@@ -3562,14 +3562,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'VWgghWhb6P',
@@ -3580,14 +3580,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '09zHxpa-tI',
@@ -3598,14 +3598,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'dyAE3cwUsq',
@@ -3616,14 +3616,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'GPlRP0MJnQ',
@@ -3634,14 +3634,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'SXjwkYE1KL',
@@ -3652,14 +3652,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Q3nDcDXPf9',
@@ -3670,14 +3670,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '-TjQDhZfKP',
@@ -3688,14 +3688,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'WUs2eb3-1m',
@@ -3706,14 +3706,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'mEk0yjatD-',
@@ -3724,14 +3724,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'r_xY548wtd',
@@ -3742,14 +3742,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'g6q1qMGBJm',
@@ -3760,14 +3760,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'vhmDzwieUS',
@@ -3778,14 +3778,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'Nvrsg4Dmmx',
@@ -3796,14 +3796,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: '6wgTRbjD-A',
@@ -3814,14 +3814,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'aJolnrI7yq',
@@ -3832,14 +3832,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'KY6vcHJv0S',
@@ -3850,14 +3850,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'CCiKGv8eH6',
@@ -3868,14 +3868,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'j3-zr6BJWm',
@@ -3886,14 +3886,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'BK1ZqUd8WT',
@@ -3904,14 +3904,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'dvLsgJPUAR',
@@ -3922,14 +3922,14 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
+          original_height: 480,
         },
         {
           id: 'BY7NWd6nGC',
@@ -3940,15 +3940,15 @@ export const ellipseTask: Task = {
             radiusX: 0.9615384615384723,
             radiusY: 1.2820512820512961,
             rotation: 0,
-            ellipselabels: ['Unhealthy']
+            ellipselabels: ['Unhealthy'],
           },
           origin: 'manual',
           to_name: 'image',
           from_name: 'labels',
           image_rotation: 0,
           original_width: 640,
-          original_height: 480
-        }
+          original_height: 480,
+        },
       ],
       was_cancelled: false,
       ground_truth: false,
@@ -3965,14 +3965,14 @@ export const ellipseTask: Task = {
       updated_by: 3,
       parent_prediction: null,
       parent_annotation: null,
-      last_created_by: null
-    }
+      last_created_by: null,
+    },
   ],
   drafts: [],
   predictions: [],
   data: {
     size: 160496,
-    image: 'https://test.dagshub.com/dean/COCO_1K/raw/main/data/images/train/000000000009.jpg'
+    image: 'https://test.dagshub.com/dean/COCO_1K/raw/main/data/images/train/000000000009.jpg',
   },
   meta: { datapoint_id: 49589008, datasource_id: 122 },
   created_at: '2024-01-09T09:38:11.472552Z',
@@ -3986,5 +3986,5 @@ export const ellipseTask: Task = {
   last_comment_updated_at: null,
   project: 11,
   updated_by: 3,
-  comment_authors: []
+  comment_authors: [],
 };

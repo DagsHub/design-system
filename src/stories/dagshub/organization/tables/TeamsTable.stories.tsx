@@ -5,7 +5,7 @@ import { UserPermissionForTeam } from '../../../../types';
 
 const meta: Meta<TeamTableProps> = {
   title: 'DagsHub/Org/Tables/TeamsTable',
-  component: TeamTable
+  component: TeamTable,
 };
 
 export default meta;
@@ -29,7 +29,7 @@ Primary.args = {
     { id: 6, userName: 'user6', homeLink: '', relAvatarLink: imageLink },
     { id: 7, userName: 'user7', homeLink: '', relAvatarLink: imageLink },
     { id: 8, userName: 'user8', homeLink: '', relAvatarLink: imageLink },
-    { id: 9, userName: 'user9', homeLink: '', relAvatarLink: imageLink }
+    { id: 9, userName: 'user9', homeLink: '', relAvatarLink: imageLink },
   ],
   teamRepos: [],
   handleCollapse: () => {},
@@ -40,5 +40,5 @@ Primary.args = {
   loggedUserId: 1,
   loggedUserIsOwner: true,
   isLogged: true,
-  onStarActionClick: () => {}
+  onStarActionClick: () => {},
 };

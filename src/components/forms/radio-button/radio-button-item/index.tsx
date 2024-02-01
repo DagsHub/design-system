@@ -23,7 +23,7 @@ export const RadioButtonItem = ({
   checked = false,
   icon,
   width,
-  sortDirection = 'none'
+  sortDirection = 'none',
 }: RadioButtonItemProps) => {
   const classes = classNames([`radio-button-item`, className]);
 

@@ -14,7 +14,7 @@ export interface ModalProps {
 export function GenericModal({ title, elements, onClose, height, maxHeight }: ModalProps) {
   const genericModalHeightStyle = {
     height: height ? height : 'auto',
-    maxHeight: maxHeight ? maxHeight : 'auto'
+    maxHeight: maxHeight ? maxHeight : 'auto',
   };
 
   const modalRef = useRef<HTMLDivElement | null>(null);

@@ -2,12 +2,12 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   BasicTable,
-  BasicTableProps
+  BasicTableProps,
 } from '../../../../components/dagshub/data-engine/react-table';
 
 const meta: Meta<BasicTableProps> = {
   title: 'DagsHub/Data-Engine/Tables/BasicTable',
-  component: BasicTable
+  component: BasicTable,
 };
 
 export default meta;
@@ -16,65 +16,65 @@ const Template: StoryFn<BasicTableProps> = (args) => <BasicTable {...args} />;
 const COLUMNS = [
   {
     Header: 'Id',
-    accessor: 'id'
+    accessor: 'id',
   },
   {
     Header: 'First Name',
-    accessor: 'first_name'
+    accessor: 'first_name',
   },
   {
     Header: 'Last Name',
-    accessor: 'last_name'
+    accessor: 'last_name',
   },
   {
     Header: 'Date Of Birth',
-    accessor: 'date_of_birth'
+    accessor: 'date_of_birth',
   },
   {
     Header: 'Country',
-    accessor: 'country'
+    accessor: 'country',
   },
   {
     Header: 'Phone',
-    accessor: 'phone'
-  }
+    accessor: 'phone',
+  },
 ];
 
 const GROUPED_COLUMNS = [
   {
     Header: 'Id',
-    accessor: 'id'
+    accessor: 'id',
   },
   {
     Header: 'Name',
     columns: [
       {
         Header: 'First Name',
-        accessor: 'first_name'
+        accessor: 'first_name',
       },
       {
         Header: 'Last Name',
-        accessor: 'last_name'
-      }
-    ]
+        accessor: 'last_name',
+      },
+    ],
   },
   {
     Header: 'Additional Info',
     columns: [
       {
         Header: 'Date Of Birth',
-        accessor: 'date_of_birth'
+        accessor: 'date_of_birth',
       },
       {
         Header: 'Country',
-        accessor: 'country'
+        accessor: 'country',
       },
       {
         Header: 'Phone',
-        accessor: 'phone'
-      }
-    ]
-  }
+        accessor: 'phone',
+      },
+    ],
+  },
 ];
 
 const MOCK_DATA = [
@@ -86,7 +86,7 @@ const MOCK_DATA = [
     date_of_birth: '4/10/1978',
     age: 15,
     country: 'United States',
-    phone: '7027426744'
+    phone: '7027426744',
   },
   {
     id: 2,
@@ -96,7 +96,7 @@ const MOCK_DATA = [
     date_of_birth: '5/26/1996',
     age: 20,
     country: 'East Timor',
-    phone: '5842196796'
+    phone: '5842196796',
   },
   {
     id: 3,
@@ -106,7 +106,7 @@ const MOCK_DATA = [
     date_of_birth: '3/17/2021',
     age: 25,
     country: 'Indonesia',
-    phone: '1156055612'
+    phone: '1156055612',
   },
   {
     id: 4,
@@ -116,7 +116,7 @@ const MOCK_DATA = [
     date_of_birth: '8/3/2022',
     age: 32,
     country: 'Japan',
-    phone: '7853735987'
+    phone: '7853735987',
   },
   {
     id: 5,
@@ -126,7 +126,7 @@ const MOCK_DATA = [
     date_of_birth: '10/17/1995',
     age: 7,
     country: 'Jamaica',
-    phone: '2297550779'
+    phone: '2297550779',
   },
   {
     id: 6,
@@ -136,7 +136,7 @@ const MOCK_DATA = [
     date_of_birth: '10/15/1973',
     age: 6,
     country: 'Indonesia',
-    phone: '6162887202'
+    phone: '6162887202',
   },
   {
     id: 7,
@@ -146,7 +146,7 @@ const MOCK_DATA = [
     date_of_birth: '1/27/2019',
     age: 84,
     country: 'Russia',
-    phone: '8397993668'
+    phone: '8397993668',
   },
   {
     id: 8,
@@ -156,7 +156,7 @@ const MOCK_DATA = [
     date_of_birth: '3/10/2005',
     age: 69,
     country: 'Zimbabwe',
-    phone: '3786286124'
+    phone: '3786286124',
   },
   {
     id: 9,
@@ -166,7 +166,7 @@ const MOCK_DATA = [
     date_of_birth: '2/15/2008',
     age: 28,
     country: 'Indonesia',
-    phone: '9948550346'
+    phone: '9948550346',
   },
   {
     id: 10,
@@ -176,7 +176,7 @@ const MOCK_DATA = [
     date_of_birth: '3/31/1999',
     age: 80,
     country: 'Sudan',
-    phone: '4284400754'
+    phone: '4284400754',
   },
   {
     id: 11,
@@ -186,7 +186,7 @@ const MOCK_DATA = [
     date_of_birth: '11/26/2006',
     age: 10,
     country: 'Colombia',
-    phone: '5949290993'
+    phone: '5949290993',
   },
   {
     id: 12,
@@ -196,7 +196,7 @@ const MOCK_DATA = [
     date_of_birth: '8/21/1970',
     age: 49,
     country: 'China',
-    phone: '9536509341'
+    phone: '9536509341',
   },
   {
     id: 13,
@@ -206,7 +206,7 @@ const MOCK_DATA = [
     date_of_birth: '5/9/2014',
     age: 85,
     country: 'Poland',
-    phone: '9574843146'
+    phone: '9574843146',
   },
   {
     id: 14,
@@ -216,7 +216,7 @@ const MOCK_DATA = [
     date_of_birth: '8/8/2016',
     age: 54,
     country: 'Russia',
-    phone: '1629697080'
+    phone: '1629697080',
   },
   {
     id: 15,
@@ -226,7 +226,7 @@ const MOCK_DATA = [
     date_of_birth: '10/18/1999',
     age: 20,
     country: 'Indonesia',
-    phone: '9921976800'
+    phone: '9921976800',
   },
   {
     id: 16,
@@ -236,7 +236,7 @@ const MOCK_DATA = [
     date_of_birth: '3/20/1973',
     age: 45,
     country: 'Indonesia',
-    phone: '2439411544'
+    phone: '2439411544',
   },
   {
     id: 17,
@@ -246,7 +246,7 @@ const MOCK_DATA = [
     date_of_birth: '1/16/2022',
     age: 64,
     country: 'Portugal',
-    phone: '4146730546'
+    phone: '4146730546',
   },
   {
     id: 18,
@@ -256,7 +256,7 @@ const MOCK_DATA = [
     date_of_birth: '7/10/1974',
     age: 34,
     country: 'Sweden',
-    phone: '1944080898'
+    phone: '1944080898',
   },
   {
     id: 19,
@@ -266,7 +266,7 @@ const MOCK_DATA = [
     date_of_birth: '3/19/1975',
     age: 47,
     country: 'China',
-    phone: '8563809998'
+    phone: '8563809998',
   },
   {
     id: 20,
@@ -276,8 +276,8 @@ const MOCK_DATA = [
     date_of_birth: '10/26/2017',
     age: 44,
     country: 'China',
-    phone: '5774709041'
-  }
+    phone: '5774709041',
+  },
 ];
 
 export const Primary = Template.bind({});
@@ -290,5 +290,5 @@ Primary.args = {
   enableColumnOrdering: true,
   enableVirtualization: true,
   virtualizationTableHeight: 250,
-  enableRowSelection: true
+  enableRowSelection: true,
 };

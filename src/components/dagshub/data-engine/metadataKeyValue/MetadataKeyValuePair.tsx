@@ -39,29 +39,29 @@ export function MetadataKeyValuePair({
   saveValueTypeLocally,
   deleteFieldPermanently,
   shouldHighlightEmptyFields,
-  autoFocusKey
+  autoFocusKey,
 }: MetadataKeyValuePairProps) {
   const valueTypes: { id: MetadataType; label: string }[] = [
     {
       id: 'INTEGER',
-      label: 'Int'
+      label: 'Int',
     },
     {
       id: 'FLOAT',
-      label: 'Float'
+      label: 'Float',
     },
     {
       id: 'BOOLEAN',
-      label: 'Boolean'
+      label: 'Boolean',
     },
     {
       id: 'STRING',
-      label: 'String'
+      label: 'String',
     },
     {
       id: 'BLOB',
-      label: 'Blob'
-    }
+      label: 'Blob',
+    },
   ];
 
   return (
@@ -74,7 +74,7 @@ export function MetadataKeyValuePair({
         backgroundColor: '#F8FAFC',
         borderBottom: '1px solid #E2E8F0',
         alignItems: 'center',
-        flexWrap: isNewlyCreated ? 'wrap' : 'nowrap'
+        flexWrap: isNewlyCreated ? 'wrap' : 'nowrap',
       }}
     >
       <Box
@@ -83,7 +83,7 @@ export function MetadataKeyValuePair({
           flexShrink: 1,
           flexGrow: 1,
           maxWidth: '100%',
-          minWidth: '35%'
+          minWidth: '35%',
         }}
       >
         {/*key name should not be editable unless its newly created*/}
@@ -108,7 +108,7 @@ export function MetadataKeyValuePair({
           maxWidth: '100%',
           gap: '8px',
           flexShrink: 1,
-          minWidth: '65%'
+          minWidth: '65%',
         }}
       >
         {isNewlyCreated && (

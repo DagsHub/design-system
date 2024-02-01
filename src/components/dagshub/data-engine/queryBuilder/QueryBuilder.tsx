@@ -3,7 +3,7 @@ import {
   Comparator,
   MetadataFieldProps,
   QueryBuilderProvider,
-  QueryInput
+  QueryInput,
 } from './QueryBuilderContext';
 import QueryWrapper from './QueryWrapper';
 import { MetadataType } from '../metadataKeyValue/MetadataKeyValueList';
@@ -14,7 +14,7 @@ export function QueryBuilder({
   forceCompoundMode = false,
   onChange,
   validateValueByType,
-  showConditionSummary = false
+  showConditionSummary = false,
 }: {
   queryInput: QueryInput;
   metadataFields: MetadataFieldProps[]; // need to take into consideration the select and the alias

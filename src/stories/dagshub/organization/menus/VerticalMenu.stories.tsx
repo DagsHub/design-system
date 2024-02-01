@@ -2,12 +2,12 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   VerticalMenu,
-  VerticalMenuProps
+  VerticalMenuProps,
 } from '../../../../components/dagshub/organization/menus/vertical-menu';
 
 const meta: Meta<VerticalMenuProps> = {
   title: 'DagsHub/Org/Menus/VerticalMenu',
-  component: VerticalMenu
+  component: VerticalMenu,
 };
 
 export default meta;
@@ -20,8 +20,8 @@ Primary1.args = {
     { text: 'General', href: '', checked: true },
     { text: 'Plan', href: '', checked: true },
     { text: 'Webhooks', href: '', checked: true },
-    { text: 'Delete organization', href: '', checked: true }
-  ]
+    { text: 'Delete organization', href: '', checked: true },
+  ],
 };
 export const Primary2 = Template.bind({});
 Primary2.args = {
@@ -29,6 +29,6 @@ Primary2.args = {
     { text: 'General', href: '', checked: true },
     { text: 'Plan', href: '', checked: true },
     { text: 'Webhooks', href: '', checked: true },
-    { text: 'Delete organization', href: '', checked: true }
-  ]
+    { text: 'Delete organization', href: '', checked: true },
+  ],
 };

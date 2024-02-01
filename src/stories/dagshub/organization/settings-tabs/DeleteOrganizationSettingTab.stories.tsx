@@ -2,12 +2,12 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import {
   DeleteOrganizationSettingsTab,
-  DeleteOrganizationSettingsTabProps
+  DeleteOrganizationSettingsTabProps,
 } from '../../../../components/dagshub/organization/settings-tabs/delete-organization-tab';
 
 const meta: Meta<DeleteOrganizationSettingsTabProps> = {
   title: 'DagsHub/Org/SettingsTabs/DeleteOrganizationSettingsTab',
-  component: DeleteOrganizationSettingsTab
+  component: DeleteOrganizationSettingsTab,
 };
 
 export default meta;

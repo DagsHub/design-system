@@ -4,7 +4,7 @@ import { OrgAdminTable, OrgAdminTableProps } from '../../../../components';
 
 const meta: Meta<OrgAdminTableProps> = {
   title: 'DagsHub/Org/Tables/OrgAdminTable',
-  component: OrgAdminTable
+  component: OrgAdminTable,
 };
 
 export default meta;
@@ -21,17 +21,17 @@ Primary.args = {
     {
       id: 1,
       userImage: imageLink,
-      username: 'tal'
+      username: 'tal',
     },
     {
       id: 2,
       userImage: imageLink,
-      username: 'shahar'
+      username: 'shahar',
     },
     {
       id: 3,
       userImage: imageLink,
-      username: 'itay'
-    }
-  ]
+      username: 'itay',
+    },
+  ],
 };

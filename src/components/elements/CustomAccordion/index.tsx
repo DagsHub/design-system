@@ -4,7 +4,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   ThemeProvider,
-  Typography
+  Typography,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';

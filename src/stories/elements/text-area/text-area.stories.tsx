@@ -5,7 +5,7 @@ import { CodeBlock, CodeBlockProps, TextAreaProps } from '../../../components';
 
 const meta: Meta<CodeBlockProps> = {
   title: 'Elements/Textarea',
-  component: CodeBlock
+  component: CodeBlock,
 };
 
 export default meta;
@@ -37,5 +37,5 @@ OpenedBasic.args = {
     '    render(<App />);\n' +
     '    const linkElement = screen.getByText(/learn react/i);\n' +
     '    expect(linkElement).toBeInTheDocument();\n' +
-    '  });  '
+    '  });  ',
 };

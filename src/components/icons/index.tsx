@@ -2120,7 +2120,7 @@ export const Icon = ({
       width,
       height,
       onClick,
-      ...props
+      ...props,
     });
   }
   return null;

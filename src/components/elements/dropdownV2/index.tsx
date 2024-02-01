@@ -35,7 +35,7 @@ export function DropdownV2({
   borderColorHover = '#cbd5e1',
   bgColor = '#f8fafc',
   bgColorHover = 'rgba(241, 245, 249, 1)',
-  autoFocus
+  autoFocus,
 }: {
   onChange: (event: SyntheticEvent<Element, Event>, value: RadioButtonItemProps | null) => void;
   initialChecked?: RadioButtonItemProps | undefined;
@@ -133,11 +133,11 @@ export function DropdownV2({
           '.MuiPaper-root': {
             borderRadius: '12px',
             marginTop: '2px',
-            width: menuWidth ? '200px' : undefined
+            width: menuWidth ? '200px' : undefined,
           },
           '.MuiAutocomplete-endAdornment': {
             display: removeEndAdornment ? 'none' : undefined,
-            right: makeWidthDynamic ? '4px!important' : undefined
+            right: makeWidthDynamic ? '4px!important' : undefined,
           },
           '.MuiAutocomplete-option': {
             fontFamily: 'Inter',
@@ -149,8 +149,8 @@ export function DropdownV2({
             padding: '8px!important',
             boxSizing: 'border-box!important',
             height: '36px!important',
-            minHeight: 'unset!important'
-          }
+            minHeight: 'unset!important',
+          },
         }}
       >
         <Typography
@@ -166,7 +166,7 @@ export function DropdownV2({
             width: 'max-content',
             boxSizing: 'border-box',
             height: '0px',
-            paddingRight: removeEndAdornment ? '10px' : `${END_ADORNMENT_WIDTH + 10}px`
+            paddingRight: removeEndAdornment ? '10px' : `${END_ADORNMENT_WIDTH + 10}px`,
           }}
         >
           {inputValue ? inputValue : label}
@@ -181,7 +181,7 @@ export function DropdownV2({
                 fontSize: '14px',
                 lineHeight: '20px',
                 overflow: 'hidden',
-                textOverflow: 'ellipsis'
+                textOverflow: 'ellipsis',
               }}
             >
               No matching options
@@ -192,8 +192,8 @@ export function DropdownV2({
             style: {
               maxHeight: unsetMenuMaxHeight ? 'unset' : undefined,
               padding: '8px',
-              left: '0px'
-            }
+              left: '0px',
+            },
           }}
           open={open}
           onOpen={() => setOpen(true)}
@@ -222,8 +222,8 @@ export function DropdownV2({
               background: `${backgroundColorFocus}!important`,
               boxShadow: 'inset 0px 0px 0px 3px rgba(196, 181, 253, 0.5)!important',
               '.MuiOutlinedInput-notchedOutline': {
-                border: '0px!important'
-              }
+                border: '0px!important',
+              },
             },
             '.MuiInputBase-root': {
               boxSizing: 'border-box',
@@ -231,12 +231,12 @@ export function DropdownV2({
               backgroundColor: bgColor,
               '&:hover': {
                 background: bgColorHover,
-                borderColor: `${borderColorHover}!important`
+                borderColor: `${borderColorHover}!important`,
               },
               borderColor: errored ? '#ef4444!important' : `${borderColor}!important`,
               borderRadius: isSquareCorners ? '0px' : inputBorderRadius,
               border: !withoutBorder ? '1px solid' : '0px',
-              padding: '0px 8px!important'
+              padding: '0px 8px!important',
             },
             '.MuiInputBase-input': {
               display: 'flex',
@@ -256,15 +256,15 @@ export function DropdownV2({
               textAlign: alignInputTextToCenter ? 'center' : undefined,
               '&::placeholder': {
                 color: placeholderColor ? placeholderColor : undefined,
-                opacity: placeholderColor ? 1 : undefined
-              }
+                opacity: placeholderColor ? 1 : undefined,
+              },
             },
             '.MuiOutlinedInput-notchedOutline': {
-              border: '0px'
+              border: '0px',
             },
             '.MuiSvgIcon-root ': {
-              fill: 'rgba(148, 163, 184, 1)'
-            }
+              fill: 'rgba(148, 163, 184, 1)',
+            },
           }}
           renderInput={({ inputProps, ...rest }) => (
             <TextField
@@ -272,7 +272,7 @@ export function DropdownV2({
               {...rest}
               inputProps={{
                 ...inputProps,
-                readOnly: isReadOnly
+                readOnly: isReadOnly,
               }}
               placeholder={label}
               autoFocus={autoFocus}
@@ -283,7 +283,7 @@ export function DropdownV2({
           <Typography
             variant={'small'}
             sx={{
-              color: errored ? '#ef4444' : '#64748b'
+              color: errored ? '#ef4444' : '#64748b',
             }}
           >
             {helperText}
