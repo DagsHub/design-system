@@ -1,13 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/system';
-import {
-  MetadataKeyValueList,
-  MetadataType,
-  NewMetadataField,
-} from '../metadataKeyValue/MetadataKeyValueList';
-import { Button, ButtonVariant, CustomAccordion } from '../../../elements';
+import { Button, ButtonVariant } from '../../../elements';
 import { Icon } from '../../../icons';
-import { ItemData, SidebarProps, VisualizerProps } from './SingleFileViewModal';
+import { ItemData, VisualizerProps } from './SingleFileViewModal';
 import { ThemeProvider, Tooltip } from '@mui/material';
 import theme from '../../../../theme';
 
@@ -17,24 +12,16 @@ export function SingleFileViewDataSection({
   onGetNextItemClickHandler,
   onGetPreviousItemClickHandler,
   showMetadataOverlay,
-  metadataOnChangeHandler,
-  enableMetadataEditing,
-  enableMetadataDeletion,
   visualizerRenderer,
   sidebarRenderers,
-  validateValueByType,
 }: {
   isSmallScreen: boolean;
   itemData: ItemData;
   onGetNextItemClickHandler: () => void;
   onGetPreviousItemClickHandler: () => void;
   showMetadataOverlay: boolean;
-  metadataOnChangeHandler?: (metadataList: NewMetadataField[]) => void;
-  enableMetadataEditing?: boolean;
-  enableMetadataDeletion?: boolean;
   visualizerRenderer: (props: VisualizerProps) => React.ReactNode;
   sidebarRenderers?: React.ReactNode;
-  validateValueByType?: (valueType: MetadataType, value: string) => boolean;
 }) {
   const SIDEBAR_WIDTH = 350; //I decided on this number
   const ARROWS_SECTION_HEIGHT = 52;
@@ -71,15 +58,7 @@ export function SingleFileViewDataSection({
                 height: `calc(100% - ${ARROWS_SECTION_HEIGHT}px)`,
               }}
             >
-              <CustomAccordion label={'Metadata'}>
-                <MetadataKeyValueList
-                  metadataList={itemData.metadataList}
-                  editingEnabled={!!enableMetadataEditing}
-                  deletionEnabled={!!enableMetadataDeletion}
-                  onSaveHandler={metadataOnChangeHandler}
-                  validateValueByType={validateValueByType}
-                />
-              </CustomAccordion>
+              {sidebarRenderers}
             </Box>
           ) : (
             <Box
@@ -226,18 +205,7 @@ export function SingleFileViewDataSection({
                 height: '100%',
               }}
             >
-              <>
-                <CustomAccordion label={'Metadata'}>
-                  <MetadataKeyValueList
-                    metadataList={itemData.metadataList}
-                    editingEnabled={!!enableMetadataEditing}
-                    deletionEnabled={!!enableMetadataDeletion}
-                    onSaveHandler={metadataOnChangeHandler}
-                    validateValueByType={validateValueByType}
-                  />
-                </CustomAccordion>
-                {sidebarRenderers}
-              </>
+              {sidebarRenderers}
             </Box>
           </Box>
         )}

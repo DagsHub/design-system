@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import CancelIcon from '@mui/icons-material/Cancel';
 import StyledTextField from './StyledTextField';
 import './style.scss';
-import { ErroredTooltip, TooltipVariant } from '../../../elements/tooltipV2/ErroredTooltip';
 
 function CustomTextField({
   readOnly,
@@ -116,68 +115,60 @@ function CustomTextField({
   }, [currentValue, shouldHighlightIfEmpty]);
 
   return (
-    <ErroredTooltip
-      title={isErrored ? 'Value is not valid' : ''}
-      placement={'top'}
-      disableInteractive={true}
-      open={isErrored || isHovered}
-      tooltipVariant={TooltipVariant.Error}
+    <Box
+      sx={{ width: '100%', height: '100%' }}
+      onMouseEnter={() => {
+        if (currentValue) {
+          setHovered(true);
+        }
+      }} //have the pencil logic only if a value already exists
+      onMouseLeave={() => {
+        if (currentValue) {
+          setHovered(false);
+        }
+      }} //have the pencil logic only if a value already exists
+      onMouseDown={(e) => {
+        if (currentValue) {
+          e.preventDefault();
+        } //When there is value, make text field not focused on a regular click, but only when clicking on the edit button
+      }}
+      ref={textFieldWrapperContainerRef}
     >
-      <Box
-        sx={{ width: '100%', height: '100%' }}
-        onMouseEnter={() => {
-          if (currentValue) {
-            setHovered(true);
-          }
-        }} //have the pencil logic only if a value already exists
-        onMouseLeave={() => {
-          if (currentValue) {
-            setHovered(false);
-          }
-        }} //have the pencil logic only if a value already exists
-        onMouseDown={(e) => {
-          if (currentValue) {
-            e.preventDefault();
-          } //When there is value, make text field not focused on a regular click, but only when clicking on the edit button
-        }}
-        ref={textFieldWrapperContainerRef}
-      >
-        <StyledTextField
-          changeColorOnHover={!readOnly || isEditing}
-          inputRef={textFieldRef}
-          helperText={helperText}
-          autoFocus={autoFocus}
-          InputProps={{
-            autoComplete: 'off',
-            readOnly: readOnly && !isEditing,
-            endAdornment: isEditing ? (
-              <IconButton sx={{ zIndex: 1 }} onClick={handleCancelClick}>
-                <CancelIcon fontSize={'small'} />
-              </IconButton>
-            ) : isHovered && !readOnly ? (
-              <IconButton sx={{ zIndex: 1 }} onClick={handleEditClick}>
-                <EditIcon fontSize={'small'} />
-              </IconButton>
-            ) : null,
-            sx: {
-              input: {
-                width: isEditing || (isHovered && !readOnly) ? 'calc(100% - 45px)' : '100%',
-              },
+      <StyledTextField
+        changeColorOnHover={!readOnly || isEditing}
+        inputRef={textFieldRef}
+        helperText={helperText}
+        autoFocus={autoFocus}
+        InputProps={{
+          autoComplete: 'off',
+          readOnly: readOnly && !isEditing,
+          endAdornment: isEditing ? (
+            <IconButton sx={{ zIndex: 1 }} onClick={handleCancelClick}>
+              <CancelIcon fontSize={'small'} />
+            </IconButton>
+          ) : isHovered && !readOnly ? (
+            <IconButton sx={{ zIndex: 1 }} onClick={handleEditClick}>
+              <EditIcon fontSize={'small'} />
+            </IconButton>
+          ) : null,
+          sx: {
+            input: {
+              width: isEditing || (isHovered && !readOnly) ? 'calc(100% - 45px)' : '100%',
             },
-          }}
-          onChange={(e: any) => {
-            setEditing(true);
-            setEditedValue(e.target.value);
-            !!onInputChange && onInputChange(e.target.value);
-          }}
-          onKeyDown={handleKeyDown}
-          value={getValue()}
-          placeholder={placeholder}
-          isErrored={isErrored}
-          errorColor={'rgba(252, 165, 165, 1)'}
-        />
-      </Box>
-    </ErroredTooltip>
+          },
+        }}
+        onChange={(e: any) => {
+          setEditing(true);
+          setEditedValue(e.target.value);
+          !!onInputChange && onInputChange(e.target.value);
+        }}
+        onKeyDown={handleKeyDown}
+        value={getValue()}
+        placeholder={placeholder}
+        isErrored={isErrored}
+        errorColor={'rgba(252, 165, 165, 1)'}
+      />
+    </Box>
   );
 }
 

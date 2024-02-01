@@ -4,7 +4,6 @@ import SingleFileViewModal, {
   ItemData,
   singleFileViewModalProps,
 } from '../../../../components/dagshub/data-engine/singleFileViewModal/SingleFileViewModal';
-import { MetadataType, NewMetadataField } from '../../../../components';
 import { Button } from '@mui/material';
 import React from 'react';
 import { SingleFileViewFileRenderer } from '../../../../components/dagshub/data-engine/singleFileViewModal/SingleFileViewFileRenderer';
@@ -204,38 +203,7 @@ const Template: StoryFn<typeof SingleFileViewModal> = (args) => {
 export const singlefileViewModalWithEditingEnabled: StoryFn<typeof SingleFileViewModal> =
   Template.bind({});
 
-singlefileViewModalWithEditingEnabled.args = {
-  enableMetadataEditing: true,
-  enableMetadataDeletion: true,
-  metadataOnChangeHandler: (metadataList: NewMetadataField[]) => {
-    // console.log(metadataList)
-  },
-  validateValueByType: (valueType: MetadataType, value: string): boolean => {
-    if (!value) {
-      return true; //Accept empty value, it will be handled separately
-    }
-    try {
-      switch (valueType) {
-        case 'BOOLEAN':
-          return value === 'true' || value === 'false';
-        case 'INTEGER':
-          const integerRegex = /^([-+]?(0|[1-9][0-9]*))$/;
-          return !isNaN(parseInt(value)) && integerRegex.test(value);
-        case 'FLOAT':
-          const floatRegex = /^([-+]?(0\.[0-9]+|0|[1-9][0-9]*(\.[0-9]+)?))$/;
-          return !isNaN(parseFloat(value)) && floatRegex.test(value);
-        case 'STRING':
-          return true;
-        case 'BLOB':
-          return true;
-        default:
-          return false;
-      }
-    } catch (e) {
-      return false;
-    }
-  },
-};
+singlefileViewModalWithEditingEnabled.args = {};
 
 export const singlefileViewModalWithSelectAllEnabled: StoryFn<typeof SingleFileViewModal> =
   Template.bind({});

@@ -1,7 +1,7 @@
 import { Box } from '@mui/system';
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
-import { GenericModal, MetadataField, MetadataType, NewMetadataField, RGB } from '../../index';
+import { GenericModal, MetadataField } from '../../index';
 import './style.scss';
 import TopButtonsSection from './TopButtonsSection';
 import { SingleFileViewDataSection } from './SingleFileViewDataSection';
@@ -38,9 +38,6 @@ export interface singleFileViewModalProps {
   itemData: ItemData;
   onGetNextItemClickHandler: () => void;
   onGetPreviousItemClickHandler: () => void;
-  metadataOnChangeHandler?: (metadataList: NewMetadataField[]) => void;
-  enableMetadataEditing?: boolean;
-  enableMetadataDeletion?: boolean;
   onSelectItemToggle?: (e?: any) => void;
   areAllSelected?: boolean;
   onAnnotatedClick?: () => void;
@@ -48,7 +45,6 @@ export interface singleFileViewModalProps {
   enableFileDownloading?: boolean;
   visualizerRenderer: (props: VisualizerProps) => React.ReactNode;
   sidebarRenderers?: React.ReactNode;
-  validateValueByType?: (valueType: MetadataType, value: string) => boolean;
 }
 
 export function SingleFileViewModal({
@@ -56,9 +52,6 @@ export function SingleFileViewModal({
   itemData,
   onGetNextItemClickHandler,
   onGetPreviousItemClickHandler,
-  metadataOnChangeHandler,
-  enableMetadataEditing,
-  enableMetadataDeletion,
   onSelectItemToggle,
   areAllSelected,
   onAnnotatedClick,
@@ -66,7 +59,6 @@ export function SingleFileViewModal({
   enableFileDownloading,
   visualizerRenderer,
   sidebarRenderers,
-  validateValueByType,
 }: singleFileViewModalProps) {
   const [showMetadataOverlay, setShowMetadataOverlay] = useState<boolean>(false);
   const breakpoint = useMediaQuery('(max-width: 800px)');
@@ -142,12 +134,8 @@ export function SingleFileViewModal({
                 onGetNextItemClickHandler={onGetNextItemClickHandler}
                 onGetPreviousItemClickHandler={onGetPreviousItemClickHandler}
                 showMetadataOverlay={showMetadataOverlay}
-                metadataOnChangeHandler={metadataOnChangeHandler}
-                enableMetadataEditing={enableMetadataEditing}
-                enableMetadataDeletion={enableMetadataDeletion}
                 visualizerRenderer={visualizerRenderer}
                 sidebarRenderers={sidebarRenderers}
-                validateValueByType={validateValueByType}
               />
             </Box>
           </Box>,
