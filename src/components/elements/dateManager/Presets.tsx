@@ -1,23 +1,19 @@
+import React from 'react';
 import { List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import dayjs, { Dayjs } from 'dayjs';
 
-interface ListItemType {
+export type PresetType = {
   name: string;
-  value: Date;
-}
-
-type PresetType = {
-  name: string;
-  value: Date;
+  value: dayjs.Dayjs;
 };
 
 const PresetsList = ({
   list,
-  onPresetClick
+  onPresetClick,
 }: {
-  list: ListItemType[];
-  onPresetClick: (value: Date) => void;
+  list: PresetType[];
+  onPresetClick: (value: Dayjs) => void;
 }) => {
   return (
     <List>
@@ -29,10 +25,9 @@ const PresetsList = ({
               '&:hover': {
                 background: '#F1F5F9',
                 padding: '8px',
-                borderRadius: '6px'
-              }
+                borderRadius: '6px',
+              },
             }}
-            href="#simple-list"
             onClick={(e) => {
               e.stopPropagation();
               onPresetClick(item.value);
@@ -42,7 +37,7 @@ const PresetsList = ({
               primaryTypographyProps={{
                 fontSize: '14px',
                 fontWeight: '500',
-                lineHeight: '20px'
+                lineHeight: '20px',
               }}
               primary={item.name}
             />
@@ -55,9 +50,9 @@ const PresetsList = ({
 
 const Presets = ({
   onPresetClick,
-  presets
+  presets,
 }: {
-  onPresetClick: (date: Date) => void;
+  onPresetClick: (date: Dayjs) => void;
   presets: PresetType[];
 }) => {
   return (
