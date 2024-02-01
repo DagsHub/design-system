@@ -1,28 +1,32 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import Box from '@mui/material/Box';
 import CancelIcon from '@mui/icons-material/Cancel';
 import StyledTextField from './StyledTextField';
 import './style.scss';
-import { Tooltip } from '@mui/material';
+import {ErroredTooltip, TooltipVariant} from "../../../elements/tooltipV2/ErroredTooltip";
 
 function CustomTextField({
   readOnly,
   value,
-  onSaveHandler,
   placeholder,
   helperText,
   shouldHighlightIfEmpty,
   autoFocus,
+  isErrored,
+  onInputChange,
+  onInputSave,
 }: {
   readOnly: boolean;
   value?: string;
-  onSaveHandler: (newVal?: string) => void;
   placeholder?: string;
   helperText?: string;
   shouldHighlightIfEmpty?: boolean;
   autoFocus?: boolean;
+  isErrored?: boolean;
+  onInputChange?: (newVal?: string) => void;
+  onInputSave?: (newVal?: string) => void;
 }) {
   const [currentValue, setCurrentValue] = useState(value);
   const [isEditing, setEditing] = useState(false);
@@ -67,17 +71,22 @@ function CustomTextField({
 
   const saveChangesHandler = () => {
     setCurrentValue(editedValue);
-    onSaveHandler(editedValue);
+    !!onInputSave && onInputSave(editedValue);
     setHovered(false);
     setEditing(false);
     textFieldRef.current?.blur();
   };
 
   const handleKeyDown = (event: any) => {
+    if(event.key === 'ArrowRight' || event.key === 'ArrowLeft'){
+      event.stopPropagation();
+    }
     if (isEditing && event.key === 'Enter') {
+      event.stopPropagation();
       saveChangesHandler();
     }
     if (isEditing && event.key === 'Escape') {
+      event.stopPropagation();
       handleCancelClick();
     }
   };
@@ -107,7 +116,7 @@ function CustomTextField({
   }, [currentValue, shouldHighlightIfEmpty]);
 
   return (
-    <Tooltip title={getValue()} placement={'top'} disableInteractive={true} arrow>
+    <ErroredTooltip title={isErrored?"Value is not valid":''} placement={'top'} disableInteractive={true} open={isErrored || isHovered} tooltipVariant={TooltipVariant.Error}>
       <Box
         sx={{ width: '100%', height: '100%' }}
         onMouseEnter={() => {
@@ -153,13 +162,16 @@ function CustomTextField({
           onChange={(e: any) => {
             setEditing(true);
             setEditedValue(e.target.value);
+            !!onInputChange && onInputChange(e.target.value);
           }}
           onKeyDown={handleKeyDown}
           value={getValue()}
           placeholder={placeholder}
+          isErrored={isErrored}
+          errorColor={"rgba(252, 165, 165, 1)"}
         />
       </Box>
-    </Tooltip>
+    </ErroredTooltip>
   );
 }
 

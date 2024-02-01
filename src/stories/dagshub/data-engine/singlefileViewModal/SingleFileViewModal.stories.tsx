@@ -4,7 +4,7 @@ import SingleFileViewModal, {
   ItemData,
   singleFileViewModalProps,
 } from '../../../../components/dagshub/data-engine/singleFileViewModal/SingleFileViewModal';
-import { NewMetadataField } from '../../../../components';
+import {MetadataType, NewMetadataField} from '../../../../components';
 import { Button } from '@mui/material';
 import React from 'react';
 import { SingleFileViewFileRenderer } from '../../../../components/dagshub/data-engine/singleFileViewModal/SingleFileViewFileRenderer';
@@ -45,7 +45,7 @@ const itemDataMockList: ItemData[] = [
       { key: 'is_video', value: 'true', valueType: 'BOOLEAN' },
       { key: 'length', value: '16 seconds', valueType: 'STRING' },
       { key: 'description', value: 'this is a video about earth space', valueType: 'STRING' },
-      { key: 'categories', value: 'earth, space, live, human', valueType: 'INTEGER' },
+      { key: 'categories', value: 'earth, space, live, human', valueType: 'STRING' },
     ],
     hasPrevious: true,
     hasNext: true,
@@ -66,7 +66,7 @@ const itemDataMockList: ItemData[] = [
       { key: 'is_video', value: 'true', valueType: 'BOOLEAN' },
       { key: 'length', value: '16 seconds', valueType: 'STRING' },
       { key: 'description', value: 'this is a video about earth space', valueType: 'STRING' },
-      { key: 'categories', value: 'earth, space, live, human', valueType: 'INTEGER' },
+      { key: 'categories', value: 'earth, space, live, human', valueType: 'STRING' },
     ],
     hasPrevious: true,
     hasNext: true,
@@ -146,7 +146,7 @@ const itemDataMockList: ItemData[] = [
       { key: 'is_video', value: 'true', valueType: 'BOOLEAN' },
       { key: 'length', value: '16 seconds', valueType: 'STRING' },
       { key: 'description', value: 'this is a video about earth space', valueType: 'STRING' },
-      { key: 'categories', value: 'earth, space, live, human', valueType: 'INTEGER' },
+      { key: 'categories', value: 'earth, space, live, human', valueType: 'STRING' },
     ],
     hasPrevious: true,
     hasNext: false,
@@ -210,6 +210,34 @@ singlefileViewModalWithEditingEnabled.args = {
   metadataOnChangeHandler: (metadataList: NewMetadataField[]) => {
     // console.log(metadataList)
   },
+  validateValueByType: (
+    valueType: MetadataType,
+    value: string,
+  ): boolean => {
+    if(!value){
+      return true; //Accept empty value, it will be handled separately
+    }
+    try {
+      switch (valueType) {
+        case 'BOOLEAN':
+          return value === 'true' || value === 'false';
+        case 'INTEGER':
+          const integerRegex = /^([-+]?(0|[1-9][0-9]*))$/;
+          return !isNaN(parseInt(value)) && integerRegex.test(value);
+        case 'FLOAT':
+          const floatRegex = /^([-+]?(0\.[0-9]+|0|[1-9][0-9]*(\.[0-9]+)?))$/;
+          return !isNaN(parseFloat(value)) && floatRegex.test(value);
+        case 'STRING':
+          return true;
+        case 'BLOB':
+          return true;
+        default:
+          return false;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
 };
 
 export const singlefileViewModalWithSelectAllEnabled: StoryFn<typeof SingleFileViewModal> =

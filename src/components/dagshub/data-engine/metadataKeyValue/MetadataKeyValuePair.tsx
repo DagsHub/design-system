@@ -12,7 +12,7 @@ export interface MetadataKeyValuePairProps {
   index: number;
   keyName?: string;
   value?: string;
-  valueType?: string;
+  valueType?: MetadataType;
   isEditable: boolean;
   description?: string;
   isNewlyCreated?: boolean;
@@ -23,6 +23,7 @@ export interface MetadataKeyValuePairProps {
   deleteFieldPermanently?: (index: number) => void;
   shouldHighlightEmptyFields?: boolean;
   autoFocusKey?: boolean;
+  validateValueByType?: (valueType: MetadataType, value: string) => boolean;
 }
 
 export function MetadataKeyValuePair({
@@ -40,7 +41,17 @@ export function MetadataKeyValuePair({
   deleteFieldPermanently,
   shouldHighlightEmptyFields,
   autoFocusKey,
+  validateValueByType,
 }: MetadataKeyValuePairProps) {
+
+  const [isErrored, setIsErrored] = React.useState(false);
+
+  useEffect(()=>{
+    if(!!validateValueByType && !!valueType){
+      setIsErrored(!validateValueByType(valueType, value as string))
+    }
+  },[valueType])
+
   const valueTypes: { id: MetadataType; label: string }[] = [
     {
       id: 'INTEGER',
@@ -90,7 +101,7 @@ export function MetadataKeyValuePair({
         <CustomTextField
           readOnly={!isNewlyCreated}
           value={keyName}
-          onSaveHandler={(newVal) => {
+          onInputSave={(newVal) => {
             if (saveKeyNameLocally) {
               saveKeyNameLocally(index, newVal);
             }
@@ -109,10 +120,11 @@ export function MetadataKeyValuePair({
           gap: '8px',
           flexShrink: 1,
           minWidth: '65%',
+          height:"100%",
         }}
       >
         {isNewlyCreated && (
-          <Box flexShrink={0}>
+          <div style={{width:"100%", maxWidth:"130px"}}>
             <DropdownV2
               onChange={(event, value) => {
                 if (saveValueTypeLocally) {
@@ -131,18 +143,26 @@ export function MetadataKeyValuePair({
               disableClearable
               shouldHighlightIfEmpty={shouldHighlightEmptyFields}
             />
-          </Box>
+          </div>
         )}
         <CustomTextField
           readOnly={!isEditable}
           value={value}
-          onSaveHandler={(newVal) => {
+          onInputSave={(newVal) => {
+            if (!!validateValueByType && !!valueType){
+              setIsErrored(!validateValueByType(valueType, newVal as string))
+            }
             if (saveValueLocally) {
               saveValueLocally(index, newVal);
             }
           }}
+          onInputChange={(newVal) => {
+            if (!!validateValueByType && !!valueType){
+              setIsErrored(!validateValueByType(valueType, newVal as string))
+            }}}
           placeholder={isNewlyCreated || !value ? 'Add value' : 'Typing...'}
           shouldHighlightIfEmpty={shouldHighlightEmptyFields}
+          isErrored={isErrored}//TODO: add validation
         />
         {isEditable && isRemovable && (
           <IconButton

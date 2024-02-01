@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Box } from '@mui/system';
-import { MetadataKeyValueList, NewMetadataField } from '../metadataKeyValue/MetadataKeyValueList';
+import {MetadataKeyValueList, MetadataType, NewMetadataField} from '../metadataKeyValue/MetadataKeyValueList';
 import { Button, ButtonVariant, CustomAccordion } from '../../../elements';
 import { Icon } from '../../../icons';
 import { ItemData, SidebarProps, VisualizerProps } from './SingleFileViewModal';
@@ -18,6 +18,7 @@ export function SingleFileViewDataSection({
   enableMetadataDeletion,
   visualizerRenderer,
   sidebarRenderers,
+  validateValueByType,
 }: {
   isSmallScreen: boolean;
   itemData: ItemData;
@@ -29,7 +30,9 @@ export function SingleFileViewDataSection({
   enableMetadataDeletion?: boolean;
   visualizerRenderer: (props: VisualizerProps) => React.ReactNode;
   sidebarRenderers?: React.ReactNode;
+  validateValueByType?: (valueType: MetadataType, value: string) => boolean;
 }) {
+
   const SIDEBAR_WIDTH = 350; //I decided on this number
   const ARROWS_SECTION_HEIGHT = 52;
 
@@ -70,7 +73,8 @@ export function SingleFileViewDataSection({
                   metadataList={itemData.metadataList}
                   editingEnabled={!!enableMetadataEditing}
                   deletionEnabled={!!enableMetadataDeletion}
-                  onChangeHandler={metadataOnChangeHandler}
+                  onSaveHandler={metadataOnChangeHandler}
+                  validateValueByType={validateValueByType}
                 />
               </CustomAccordion>
             </Box>
@@ -225,7 +229,8 @@ export function SingleFileViewDataSection({
                     metadataList={itemData.metadataList}
                     editingEnabled={!!enableMetadataEditing}
                     deletionEnabled={!!enableMetadataDeletion}
-                    onChangeHandler={metadataOnChangeHandler}
+                    onSaveHandler={metadataOnChangeHandler}
+                    validateValueByType={validateValueByType}
                   />
                 </CustomAccordion>
                 {sidebarRenderers}

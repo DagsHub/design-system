@@ -14,6 +14,7 @@ function StyledTextField({
   backgroundColorFocus = 'rgba(255, 255, 255, 1)',
   helperTextPaddingLeft = '8px',
   helperTextPaddingBottom = '8px',
+  errorColor = 'rgba(239, 68, 68, 1)',
   ...restProps
 }: {
   changeColorOnHover?: boolean;
@@ -28,6 +29,7 @@ function StyledTextField({
   backgroundColorFocus?: string;
   helperTextPaddingLeft?: string;
   helperTextPaddingBottom?: string;
+  errorColor?: string;
 } & TextFieldProps) {
   return (
     <TextField
@@ -36,11 +38,11 @@ function StyledTextField({
         width: width ?? '100%',
         '.Mui-focused': {
           background: !focusModeDisabled ? `${backgroundColorFocus}!important` : undefined,
-          boxShadow: !focusModeDisabled
+          boxShadow: !focusModeDisabled && !isErrored
             ? 'inset 0px 0px 0px 3px rgba(196, 181, 253, 0.5)!important'
             : undefined,
           '.MuiOutlinedInput-notchedOutline': {
-            border: '0px!important',
+            border: isErrored? `2px solid ${errorColor}!important`: '0px!important',
           },
         },
         '.MuiInputBase-root': {
@@ -64,14 +66,14 @@ function StyledTextField({
         },
         '.MuiOutlinedInput-notchedOutline': {
           borderColor: isErrored
-            ? 'rgba(239, 68, 68, 1)!important'
+            ? `${errorColor}!important`
             : 'rgba(226, 232, 240, 1)!important',
           '&:hover': {
             borderColor: isErrored
-              ? 'rgba(239, 68, 68, 1)!important'
+              ? `${errorColor}!important`
               : 'rgba(203, 213, 225, 1)!important',
           },
-          border: setBorder ? (isErrored ? '2px solid' : '1px solid') : '0px',
+          border: isErrored? '2px solid' : setBorder ? '1px solid' : '0px',
         },
         '.MuiSvgIcon-root ': {
           fill: 'rgba(148, 163, 184, 1)',
@@ -88,7 +90,7 @@ function StyledTextField({
           lineHeight: '16.8px',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
-          color: isErrored ? 'rgba(239, 68, 68, 1)' : 'rgba(71, 85, 105, 1)',
+          color: isErrored ? errorColor : 'rgba(71, 85, 105, 1)',
           margin: '0px',
           paddingLeft: helperTextPaddingLeft,
           paddingBottom: helperTextPaddingBottom,
