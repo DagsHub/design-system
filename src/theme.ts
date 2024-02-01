@@ -121,15 +121,15 @@ const lightTheme = createTheme({
           style: {
             fontWeight: 700,
             fontSize: '16px',
-            lineHeight: '24px'
-          }
-        }
-      ]
+            lineHeight: '24px',
+          },
+        },
+      ],
     },
     MuiButtonBase: {
       defaultProps: {
-        disableRipple: true
-      }
+        disableRipple: true,
+      },
     },
     MuiInputBase: {
       styleOverrides: {
@@ -144,10 +144,10 @@ const lightTheme = createTheme({
           outline: '0',
           '& fieldset': { border: 'none' },
           '&:focus-within': {
-            boxShadow: '0px 0px 0px 3px rgba(196, 181, 253, 0.5)'
-          }
-        }
-      }
+            boxShadow: '0px 0px 0px 3px rgba(196, 181, 253, 0.5)',
+          },
+        },
+      },
     },
     MuiOutlinedInput: {
       styleOverrides: {
@@ -158,12 +158,12 @@ const lightTheme = createTheme({
           border: '2px solid #cbd5e1',
           '& fieldset': { border: 'none' },
           '&:focus': {
-            boxShadow: '0px 0px 0px 3px rgba(196, 181, 253, 0.5)'
-          }
-        }
-      }
-    }
-  }
+            boxShadow: '0px 0px 0px 3px rgba(196, 181, 253, 0.5)',
+          },
+        },
+      },
+    },
+  },
 });
 
 export default lightTheme;

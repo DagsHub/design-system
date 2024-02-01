@@ -2093,7 +2093,7 @@ export const icons = {
         fill="#64748B"
       />
     </svg>
-  )
+  ),
 };
 
 export type IconType = keyof typeof icons;
