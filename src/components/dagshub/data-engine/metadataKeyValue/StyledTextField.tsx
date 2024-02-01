@@ -38,11 +38,12 @@ function StyledTextField({
         width: width ?? '100%',
         '.Mui-focused': {
           background: !focusModeDisabled ? `${backgroundColorFocus}!important` : undefined,
-          boxShadow: !focusModeDisabled && !isErrored
-            ? 'inset 0px 0px 0px 3px rgba(196, 181, 253, 0.5)!important'
-            : undefined,
+          boxShadow:
+            !focusModeDisabled && !isErrored
+              ? 'inset 0px 0px 0px 3px rgba(196, 181, 253, 0.5)!important'
+              : undefined,
           '.MuiOutlinedInput-notchedOutline': {
-            border: isErrored? `2px solid ${errorColor}!important`: '0px!important',
+            border: isErrored ? `2px solid ${errorColor}!important` : '0px!important',
           },
         },
         '.MuiInputBase-root': {
@@ -65,15 +66,11 @@ function StyledTextField({
           padding: '8px',
         },
         '.MuiOutlinedInput-notchedOutline': {
-          borderColor: isErrored
-            ? `${errorColor}!important`
-            : 'rgba(226, 232, 240, 1)!important',
+          borderColor: isErrored ? `${errorColor}!important` : 'rgba(226, 232, 240, 1)!important',
           '&:hover': {
-            borderColor: isErrored
-              ? `${errorColor}!important`
-              : 'rgba(203, 213, 225, 1)!important',
+            borderColor: isErrored ? `${errorColor}!important` : 'rgba(203, 213, 225, 1)!important',
           },
-          border: isErrored? '2px solid' : setBorder ? '1px solid' : '0px',
+          border: isErrored ? '2px solid' : setBorder ? '1px solid' : '0px',
         },
         '.MuiSvgIcon-root ': {
           fill: 'rgba(148, 163, 184, 1)',

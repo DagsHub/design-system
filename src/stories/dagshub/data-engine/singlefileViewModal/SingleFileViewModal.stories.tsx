@@ -4,7 +4,7 @@ import SingleFileViewModal, {
   ItemData,
   singleFileViewModalProps,
 } from '../../../../components/dagshub/data-engine/singleFileViewModal/SingleFileViewModal';
-import {MetadataType, NewMetadataField} from '../../../../components';
+import { MetadataType, NewMetadataField } from '../../../../components';
 import { Button } from '@mui/material';
 import React from 'react';
 import { SingleFileViewFileRenderer } from '../../../../components/dagshub/data-engine/singleFileViewModal/SingleFileViewFileRenderer';
@@ -210,11 +210,8 @@ singlefileViewModalWithEditingEnabled.args = {
   metadataOnChangeHandler: (metadataList: NewMetadataField[]) => {
     // console.log(metadataList)
   },
-  validateValueByType: (
-    valueType: MetadataType,
-    value: string,
-  ): boolean => {
-    if(!value){
+  validateValueByType: (valueType: MetadataType, value: string): boolean => {
+    if (!value) {
       return true; //Accept empty value, it will be handled separately
     }
     try {
@@ -237,7 +234,7 @@ singlefileViewModalWithEditingEnabled.args = {
     } catch (e) {
       return false;
     }
-  }
+  },
 };
 
 export const singlefileViewModalWithSelectAllEnabled: StoryFn<typeof SingleFileViewModal> =

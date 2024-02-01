@@ -1,11 +1,11 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import Box from '@mui/material/Box';
 import CancelIcon from '@mui/icons-material/Cancel';
 import StyledTextField from './StyledTextField';
 import './style.scss';
-import {ErroredTooltip, TooltipVariant} from "../../../elements/tooltipV2/ErroredTooltip";
+import { ErroredTooltip, TooltipVariant } from '../../../elements/tooltipV2/ErroredTooltip';
 
 function CustomTextField({
   readOnly,
@@ -78,7 +78,7 @@ function CustomTextField({
   };
 
   const handleKeyDown = (event: any) => {
-    if(event.key === 'ArrowRight' || event.key === 'ArrowLeft'){
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
       event.stopPropagation();
     }
     if (isEditing && event.key === 'Enter') {
@@ -116,7 +116,13 @@ function CustomTextField({
   }, [currentValue, shouldHighlightIfEmpty]);
 
   return (
-    <ErroredTooltip title={isErrored?"Value is not valid":''} placement={'top'} disableInteractive={true} open={isErrored || isHovered} tooltipVariant={TooltipVariant.Error}>
+    <ErroredTooltip
+      title={isErrored ? 'Value is not valid' : ''}
+      placement={'top'}
+      disableInteractive={true}
+      open={isErrored || isHovered}
+      tooltipVariant={TooltipVariant.Error}
+    >
       <Box
         sx={{ width: '100%', height: '100%' }}
         onMouseEnter={() => {
@@ -168,7 +174,7 @@ function CustomTextField({
           value={getValue()}
           placeholder={placeholder}
           isErrored={isErrored}
-          errorColor={"rgba(252, 165, 165, 1)"}
+          errorColor={'rgba(252, 165, 165, 1)'}
         />
       </Box>
     </ErroredTooltip>

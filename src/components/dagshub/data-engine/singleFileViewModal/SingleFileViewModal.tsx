@@ -1,7 +1,7 @@
 import { Box } from '@mui/system';
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
-import {GenericModal, MetadataField, MetadataType, NewMetadataField, RGB} from '../../index';
+import { GenericModal, MetadataField, MetadataType, NewMetadataField, RGB } from '../../index';
 import './style.scss';
 import TopButtonsSection from './TopButtonsSection';
 import { SingleFileViewDataSection } from './SingleFileViewDataSection';

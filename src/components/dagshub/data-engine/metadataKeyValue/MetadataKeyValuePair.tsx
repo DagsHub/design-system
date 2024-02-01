@@ -43,14 +43,13 @@ export function MetadataKeyValuePair({
   autoFocusKey,
   validateValueByType,
 }: MetadataKeyValuePairProps) {
-
   const [isErrored, setIsErrored] = React.useState(false);
 
-  useEffect(()=>{
-    if(!!validateValueByType && !!valueType){
-      setIsErrored(!validateValueByType(valueType, value as string))
+  useEffect(() => {
+    if (!!validateValueByType && !!valueType) {
+      setIsErrored(!validateValueByType(valueType, value as string));
     }
-  },[valueType])
+  }, [valueType]);
 
   const valueTypes: { id: MetadataType; label: string }[] = [
     {
@@ -120,11 +119,11 @@ export function MetadataKeyValuePair({
           gap: '8px',
           flexShrink: 1,
           minWidth: '65%',
-          height:"100%",
+          height: '100%',
         }}
       >
         {isNewlyCreated && (
-          <div style={{width:"100%", maxWidth:"130px"}}>
+          <div style={{ width: '100%', maxWidth: '130px' }}>
             <DropdownV2
               onChange={(event, value) => {
                 if (saveValueTypeLocally) {
@@ -149,20 +148,21 @@ export function MetadataKeyValuePair({
           readOnly={!isEditable}
           value={value}
           onInputSave={(newVal) => {
-            if (!!validateValueByType && !!valueType){
-              setIsErrored(!validateValueByType(valueType, newVal as string))
+            if (!!validateValueByType && !!valueType) {
+              setIsErrored(!validateValueByType(valueType, newVal as string));
             }
             if (saveValueLocally) {
               saveValueLocally(index, newVal);
             }
           }}
           onInputChange={(newVal) => {
-            if (!!validateValueByType && !!valueType){
-              setIsErrored(!validateValueByType(valueType, newVal as string))
-            }}}
+            if (!!validateValueByType && !!valueType) {
+              setIsErrored(!validateValueByType(valueType, newVal as string));
+            }
+          }}
           placeholder={isNewlyCreated || !value ? 'Add value' : 'Typing...'}
           shouldHighlightIfEmpty={shouldHighlightEmptyFields}
-          isErrored={isErrored}//TODO: add validation
+          isErrored={isErrored} //TODO: add validation
         />
         {isEditable && isRemovable && (
           <IconButton

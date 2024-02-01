@@ -35,7 +35,7 @@ export function CSVViewer({ headers, values }: { headers: string[]; values: stri
 
   const autoSizeStrategy: SizeColumnsToFitGridStrategy = {
     type: 'fitGridWidth',
-    defaultMinWidth: 100
+    defaultMinWidth: 100,
   };
 
   return (

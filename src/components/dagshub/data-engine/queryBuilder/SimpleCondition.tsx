@@ -209,7 +209,7 @@ export function SimpleCondition({
                 ...condition.filter,
                 key: value?.id,
                 valueType: metadataFields.find((field) => field.name === value?.label)?.valueType,
-              }
+              },
             });
           }}
           options={metadataFields?.map((field) => ({ id: field.name, label: field.name }))}

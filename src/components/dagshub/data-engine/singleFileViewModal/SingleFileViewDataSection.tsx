@@ -1,6 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { Box } from '@mui/system';
-import {MetadataKeyValueList, MetadataType, NewMetadataField} from '../metadataKeyValue/MetadataKeyValueList';
+import {
+  MetadataKeyValueList,
+  MetadataType,
+  NewMetadataField,
+} from '../metadataKeyValue/MetadataKeyValueList';
 import { Button, ButtonVariant, CustomAccordion } from '../../../elements';
 import { Icon } from '../../../icons';
 import { ItemData, SidebarProps, VisualizerProps } from './SingleFileViewModal';
@@ -32,7 +36,6 @@ export function SingleFileViewDataSection({
   sidebarRenderers?: React.ReactNode;
   validateValueByType?: (valueType: MetadataType, value: string) => boolean;
 }) {
-
   const SIDEBAR_WIDTH = 350; //I decided on this number
   const ARROWS_SECTION_HEIGHT = 52;
 
