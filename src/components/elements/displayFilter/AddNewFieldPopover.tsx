@@ -25,13 +25,16 @@ export const defaultPresets: PresetType[] = [
   },
 ];
 
-const ComparePopover = ({
+const AddNewFieldPopover = ({
   presets,
   addNewFilter,
+  oldReferenceName,
 }: {
   presets?: PresetType[];
   addNewFilter: ({ alias, value }: { alias: string; value: number }) => void;
+  oldReferenceName: string;
 }) => {
+  console.log('oldReferenceName ', oldReferenceName);
   const [loading, setLoading] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -76,9 +79,10 @@ const ComparePopover = ({
         }}
       >
         <DateManager
+          oldReferenceName={oldReferenceName}
           close={handleClose}
           loading={loading}
-          compare={addNewFilter}
+          addClickedHandler={addNewFilter}
           presets={presets?.length ? presets : defaultPresets}
         />
       </Popover>
@@ -86,4 +90,4 @@ const ComparePopover = ({
   );
 };
 
-export default ComparePopover;
+export default AddNewFieldPopover;

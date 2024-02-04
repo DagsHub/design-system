@@ -1,8 +1,12 @@
 import React from 'react';
 import { List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { PresetType } from '../displayFilter/ComparePopover';
 import { Dayjs } from 'dayjs';
+
+export type PresetType = {
+  name: string;
+  value: Dayjs;
+};
 
 const PresetsList = ({
   list,

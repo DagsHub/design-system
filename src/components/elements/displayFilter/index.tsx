@@ -2,7 +2,7 @@ import { IconButton, Stack, ThemeProvider, Tooltip, Typography } from '@mui/mate
 import React, { useEffect, useState } from 'react';
 import { Icon } from '../../icons';
 import theme from '../../../theme';
-import ComparePopover from './ComparePopover';
+import AddNewFieldPopover from './AddNewFieldPopover';
 import { Box } from '@mui/system';
 import { FilterType } from '../controlledDisplayFiltersGroup';
 
@@ -86,7 +86,9 @@ export function DisplayFilter({
           </Tooltip>
         </Box>
 
-        {showCompareButton && <ComparePopover addNewFilter={addNewFilterHandler} />}
+        {showCompareButton && (
+          <AddNewFieldPopover oldReferenceName={filter.name} addNewFilter={addNewFilterHandler} />
+        )}
       </Stack>
     </ThemeProvider>
   );

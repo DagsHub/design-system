@@ -4,7 +4,7 @@ import { DatePicker, TimeField } from '@mui/x-date-pickers';
 import React, { Dispatch, SetStateAction } from 'react';
 import { Dayjs } from 'dayjs';
 
-interface SearchFormProps {
+interface AddNewDisplayFilterFormProps {
   setDisplayName: Dispatch<SetStateAction<string>>;
   setDisplayNameTouched: (value: boolean) => void;
   setDate: Dispatch<SetStateAction<Dayjs | null>>;
@@ -14,7 +14,7 @@ interface SearchFormProps {
   displayName: string;
   setHour: Dispatch<SetStateAction<Dayjs | null>>;
 }
-export const SearchForm = ({
+export const AddNewDisplayFilterForm = ({
   setDisplayName,
   setDisplayNameTouched,
   setDate,
@@ -23,7 +23,7 @@ export const SearchForm = ({
   hour,
   setHour,
   displayName,
-}: SearchFormProps) => {
+}: AddNewDisplayFilterFormProps) => {
   return (
     <Box width={'50%'} py={2} px={1} display={'inline-grid'} gap={2}>
       <Box display={'inline-grid'} gap={1}>

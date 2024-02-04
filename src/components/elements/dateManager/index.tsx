@@ -7,14 +7,15 @@ import { Button, ButtonStretch, ButtonVariant } from '../button';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import theme from '../../../theme';
 import PresetsContent from './Presets';
-import { SearchForm } from './SearchForm';
-import { PresetType } from '../displayFilter/ComparePopover';
+import { PresetType } from '../displayFilter/AddNewFieldPopover';
+import { AddNewDisplayFilterForm } from './AddNewDisplayFilterForm';
 
 export interface DateManagerProps {
   presets: PresetType[];
-  compare: ({ alias, value }: { alias: string; value: number }) => void;
+  addClickedHandler: ({ alias, value }: { alias: string; value: number }) => void;
   close: () => void;
   loading: boolean;
+  oldReferenceName: string;
 }
 
 const formattedDate = (
@@ -24,7 +25,13 @@ const formattedDate = (
   return `${dayjs(date).format('YYYY-MM-DD')} ${dayjs(hour).format('HH:mm:ss')}`;
 };
 
-export const DateManager = ({ presets, compare, close, loading }: DateManagerProps) => {
+export const DateManager = ({
+  presets,
+  addClickedHandler,
+  close,
+  loading,
+  oldReferenceName,
+}: DateManagerProps) => {
   const defaultDisplayName = `as of ${dayjs().format('YYYY-MM-DD')} ${dayjs().format('HH:mm:ss')}`;
 
   const [date, setDate] = useState<null | Dayjs>(dayjs());
@@ -38,7 +45,7 @@ export const DateManager = ({ presets, compare, close, loading }: DateManagerPro
   useEffect(() => {
     const value = formattedDate(date, hour);
     if (!displayNameTouched) {
-      setDisplayName(`as of ${value}`);
+      setDisplayName(`copy of ${oldReferenceName}`);
     }
     setValue(dayjs(value).unix());
   }, [hour, date]);
@@ -48,12 +55,12 @@ export const DateManager = ({ presets, compare, close, loading }: DateManagerPro
       <ThemeProvider theme={theme}>
         <Box width={'530px'} height={'100%'} color={'#172D32'} px={1}>
           <Typography component={'div'} p={1} variant={'mediumBold'}>
-            Compare to previous version
+            Add new field
           </Typography>
           <Divider sx={{ backgroundColor: '#F8FAFC' }} />
 
           <Box display={'flex'}>
-            <SearchForm
+            <AddNewDisplayFilterForm
               setErrorDate={setErrorDate}
               setDisplayName={setDisplayName}
               setDisplayNameTouched={setDisplayNameTouched}
@@ -90,11 +97,11 @@ export const DateManager = ({ presets, compare, close, loading }: DateManagerPro
                 stretch={ButtonStretch.Slim}
                 variant={ButtonVariant.Primary}
                 onClick={() => {
-                  compare({ value, alias: displayName });
+                  addClickedHandler({ alias: displayName, value });
                   close();
                 }}
                 disabled={!date || errorDate || loading}
-                label={loading ? 'loading...' : 'Search'}
+                label={loading ? 'loading...' : 'Add Field'}
               />
             </Box>
           </Box>
