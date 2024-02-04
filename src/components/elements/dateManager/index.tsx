@@ -7,7 +7,7 @@ import { Button, ButtonStretch, ButtonVariant } from '../button';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import theme from '../../../theme';
 import PresetsContent, { PresetType } from './Presets';
-import { SearchForm } from './SearchForm';
+import { AddNewDisplayFilterForm } from './AddNewDisplayFilterForm';
 
 export interface DateManagerProps {
   presets: PresetType[];
@@ -52,7 +52,7 @@ export const DateManager = ({ presets, addClickedHandler, close, loading }: Date
           <Divider sx={{ backgroundColor: '#F8FAFC' }} />
 
           <Box display={'flex'}>
-            <SearchForm
+            <AddNewDisplayFilterForm
               setErrorDate={setErrorDate}
               setDisplayName={setDisplayName}
               setDisplayNameTouched={setDisplayNameTouched}
