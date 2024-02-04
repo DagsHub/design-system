@@ -27,7 +27,7 @@ customAccordion.args = {
       ]}
       editingEnabled={true}
       deletionEnabled={false}
-      onSaveHandler={() => {}}
+      onChangeHandler={() => {}}
     />
   ),
 };

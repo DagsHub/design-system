@@ -118,19 +118,22 @@ function CustomTextField({
     <Box
       sx={{ width: '100%', height: '100%' }}
       onMouseEnter={() => {
+        //have the pencil logic only if a value already exists
         if (currentValue) {
           setHovered(true);
         }
-      }} //have the pencil logic only if a value already exists
+      }}
       onMouseLeave={() => {
+        //have the pencil logic only if a value already exists
         if (currentValue) {
           setHovered(false);
         }
-      }} //have the pencil logic only if a value already exists
+      }}
       onMouseDown={(e) => {
-        if (currentValue) {
+        //When there is value, make text field not focused on a regular click, but only when clicking on the edit button, unless you are editing the value
+        if (!isEditing && currentValue) {
           e.preventDefault();
-        } //When there is value, make text field not focused on a regular click, but only when clicking on the edit button
+        }
       }}
       ref={textFieldWrapperContainerRef}
     >
