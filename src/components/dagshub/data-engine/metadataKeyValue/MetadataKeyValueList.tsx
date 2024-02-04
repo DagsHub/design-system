@@ -145,6 +145,7 @@ export function MetadataKeyValueList({
     }
     setTemporaryMetadataList((prevList) => {
       const newList = [...prevList];
+      debugger;
       newList[index] = { ...newList[index], key: newKey };
       return newList;
     });

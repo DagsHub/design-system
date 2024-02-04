@@ -69,10 +69,10 @@ export function MetadataKeyValuePair({
       id: 'STRING',
       label: 'String',
     },
-    {
-      id: 'BLOB',
-      label: 'Blob',
-    },
+    // {
+    //   id: 'BLOB',
+    //   label: 'Blob',
+    // },
   ];
 
   return (
@@ -136,6 +136,7 @@ export function MetadataKeyValuePair({
                     saveValueTypeLocally(index, value?.id);
                   }
                 }}
+                initialChecked={valueTypes.find((type) => type.id === valueType)}
                 options={valueTypes}
                 isReadOnly={true}
                 label={'Value type'}
