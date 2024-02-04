@@ -1,103 +1,57 @@
-import { useEffect, useState } from 'react';
-import { Box, Divider } from '@mui/material';
+import { Box, Divider, ThemeProvider } from '@mui/material';
 import { DisplayFilter } from '../displayFilter';
 import React from 'react';
 import { LabeledSwitch } from '../../forms';
-import _ from 'lodash';
+import theme from '../../../theme';
 
-export interface DisplayFilterPartialProps {
-  label: string;
-  onChange?: (name: string) => void;
-}
+export type FilterType = {
+  alias: string;
+  value?: number; // unix
+  name: string;
+};
 
 export interface ControlledDisplayFiltersGroupProps {
-  filters: DisplayFilterPartialProps[];
+  filters: FilterType[];
   toggleAllLabel?: string;
-  onToggleShowAll: (show: boolean) => void;
-  isToggleAll?: boolean;
-  toggledFilters?: Set<string>;
+  showAll: boolean;
+  toggleShowAll: () => void;
+  displayedFilters?: Map<string, FilterType>;
+  onChange: (activeFilters: FilterType) => void;
+  addNewFilter: ({ alias, value, name }: { alias: string; value: number; name: string }) => void;
+  showCompareButton?: boolean;
 }
 
 export function ControlledDisplayFiltersGroup({
   filters,
-  onToggleShowAll,
   toggleAllLabel,
-  isToggleAll,
-  toggledFilters,
+  showAll,
+  toggleShowAll,
+  displayedFilters,
+  addNewFilter,
+  onChange,
+  showCompareButton,
 }: ControlledDisplayFiltersGroupProps) {
-  const [showAll, setShowAll] = useState<boolean>(isToggleAll ?? false);
-  const [availableFiltersNames, setAvailableFiltersNames] = useState<Set<string>>(
-    new Set(filters.map((filter) => filter.label))
-  );
-
-  useEffect(() => {
-    setAvailableFiltersNames(new Set(filters.map((filter) => filter.label)));
-  }, [filters]);
-
-  function getInitialState() {
-    if (isToggleAll) {
-      return availableFiltersNames;
-    } else if (toggledFilters) {
-      return toggledFilters;
-    }
-    return new Set<string>();
-  }
-
-  const [displayedFilters, setDisplayedFilters] = useState<Set<string>>(getInitialState());
-
-  useEffect(() => {
-    setShowAll(isToggleAll ?? false);
-  }, [isToggleAll]);
-
-  useEffect(() => {
-    setDisplayedFilters(getInitialState());
-  }, [toggledFilters, availableFiltersNames]);
-
-  const toggleAll = () => {
-    if (!showAll) {
-      setDisplayedFilters(availableFiltersNames);
-    } else {
-      setDisplayedFilters(new Set());
-    }
-    setShowAll(!showAll);
-    onToggleShowAll(!showAll);
-  };
-
-  useEffect(() => {
-    // When metadataToDisplay changes, check if it's equal to availableFiltersNames
-    if (_.isEqual(displayedFilters, availableFiltersNames)) {
-      setShowAll(true);
-    } else {
-      setShowAll(false);
-    }
-  }, [displayedFilters, availableFiltersNames]);
-
   return (
-    <Box sx={{ backgroundColor: 'rgba(248, 250, 252, 1)' }}>
-      <Box>
-        <LabeledSwitch label={toggleAllLabel} onChange={toggleAll} checked={showAll} />
+    <ThemeProvider theme={theme}>
+      <Box sx={{ backgroundColor: 'rgba(248, 250, 252, 1)' }}>
+        <Box>
+          <LabeledSwitch label={toggleAllLabel} onChange={toggleShowAll} checked={showAll} />
+        </Box>
+        {filters.map((item) => {
+          return (
+            <>
+              <DisplayFilter
+                showCompareButton={showCompareButton}
+                addNewFilter={addNewFilter}
+                value={showAll || !!displayedFilters?.has(item.alias)}
+                filter={item}
+                onChange={onChange}
+              />
+              <Divider sx={{ backgroundColor: '#F8FAFC' }} />
+            </>
+          );
+        })}
       </Box>
-      {filters.map((item) => {
-        return (
-          <>
-            <DisplayFilter
-              value={showAll || displayedFilters.has(item.label)}
-              label={item.label}
-              onChange={() => {
-                const updatedFilters = new Set(displayedFilters);
-                if (updatedFilters.has(item.label)) {
-                  updatedFilters.delete(item.label);
-                } else {
-                  updatedFilters.add(item.label);
-                }
-                setDisplayedFilters(updatedFilters);
-                if (item.onChange) item.onChange(item.label);
-              }}
-            />
-            <Divider sx={{ backgroundColor: '#F8FAFC' }} />
-          </>
-        );
-      })}
-    </Box>
+    </ThemeProvider>
   );
 }
