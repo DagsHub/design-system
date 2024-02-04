@@ -180,7 +180,7 @@ export function MetadataKeyValuePair({
               />
             </div>
           </ErroredTooltip>
-          {isEditable && isRemovable && (
+          {!!isRemovable && (
             <IconButton
               style={{ marginRight: '8px', height: '100%', padding: '6px' }}
               onClick={() => {
