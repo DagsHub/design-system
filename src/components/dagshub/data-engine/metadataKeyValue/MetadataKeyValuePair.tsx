@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import Box from '@mui/material/Box';
 import CustomTextField from './CustomTextField';
-import { DropdownV2 } from '../../../elements/dropdownV2';
+import {DropdownV2} from '../../../elements/dropdownV2';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import IconButton from '@mui/material/IconButton';
-import { ThemeProvider, Tooltip } from '@mui/material';
-import { MetadataType } from './MetadataKeyValueList';
-import { ErroredTooltip, TooltipVariant } from '../../../elements/tooltipV2/ErroredTooltip';
+import {ThemeProvider, Tooltip} from '@mui/material';
+import {MetadataType} from './MetadataKeyValueList';
+import {ErroredTooltip, TooltipVariant} from '../../../elements/tooltipV2/ErroredTooltip';
 import theme from '../../../../theme';
+import {capitalize} from "lodash";
 
 export interface MetadataKeyValuePairProps {
   index: number;
@@ -25,25 +26,27 @@ export interface MetadataKeyValuePairProps {
   shouldHighlightEmptyFields?: boolean;
   autoFocusKey?: boolean;
   validateValueByType?: (valueType: MetadataType, value: string) => boolean;
+  markFieldStatusAsEditInProgress: (index: number) => void;
 }
 
 export function MetadataKeyValuePair({
-  index,
-  keyName,
-  value,
-  valueType,
-  isEditable,
-  description,
-  isNewlyCreated,
-  isRemovable,
-  saveKeyNameLocally,
-  saveValueLocally,
-  saveValueTypeLocally,
-  deleteFieldPermanently,
-  shouldHighlightEmptyFields,
-  autoFocusKey,
-  validateValueByType,
-}: MetadataKeyValuePairProps) {
+                                       index,
+                                       keyName,
+                                       value,
+                                       valueType,
+                                       isEditable,
+                                       description,
+                                       isNewlyCreated,
+                                       isRemovable,
+                                       saveKeyNameLocally,
+                                       saveValueLocally,
+                                       saveValueTypeLocally,
+                                       deleteFieldPermanently,
+                                       shouldHighlightEmptyFields,
+                                       autoFocusKey,
+                                       validateValueByType,
+                                       markFieldStatusAsEditInProgress
+                                     }: MetadataKeyValuePairProps) {
   const [isErrored, setIsErrored] = React.useState(false);
 
   useEffect(() => {
@@ -75,6 +78,22 @@ export function MetadataKeyValuePair({
     // },
   ];
 
+  const getShortenedStringOfTheValueType = () => {
+    if (valueType === 'INTEGER') {
+      return 'int';
+    } else if (valueType === 'FLOAT') {
+      return 'float';
+    } else if (valueType === 'BOOLEAN') {
+      return 'bool';
+    } else if (valueType === 'STRING') {
+      return 'str';
+    } else if (valueType === 'BLOB') {
+      return 'blob';
+    } else {
+      return valueType;
+    }
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -100,7 +119,7 @@ export function MetadataKeyValuePair({
         >
           {/*key name should not be editable unless its newly created*/}
           <Tooltip title={keyName} disableInteractive={true} arrow={true} placement={'top'}>
-            <div style={{ width: '100%' }}>
+            <div style={{width: '100%'}}>
               <CustomTextField
                 readOnly={!isNewlyCreated}
                 value={keyName}
@@ -109,6 +128,12 @@ export function MetadataKeyValuePair({
                     saveKeyNameLocally(index, newVal);
                   }
                 }}
+                onInputChange={(newVal) => {
+                  if (newVal !== keyName) {
+                    markFieldStatusAsEditInProgress(index);
+                  }
+                }
+                }
                 helperText={description}
                 placeholder={isNewlyCreated || !value ? 'Enter field name' : 'Typing...'}
                 shouldHighlightIfEmpty={shouldHighlightEmptyFields}
@@ -128,29 +153,30 @@ export function MetadataKeyValuePair({
             height: '100%',
           }}
         >
-          {isNewlyCreated && (
-            <div style={{ width: '100%', maxWidth: '130px' }}>
-              <DropdownV2
-                onChange={(event, value) => {
-                  if (saveValueTypeLocally) {
-                    saveValueTypeLocally(index, value?.id);
-                  }
-                }}
-                initialChecked={valueTypes.find((type) => type.id === valueType)}
-                options={valueTypes}
-                isReadOnly={true}
-                label={'Value type'}
-                errored={false}
-                maxWidth={'130px'}
-                height={'100%'}
-                isSquareCorners={true}
-                withoutBorder={true}
-                backgroundColorFocus={'white'}
-                disableClearable
-                shouldHighlightIfEmpty={shouldHighlightEmptyFields}
-              />
-            </div>
-          )}
+
+          <div style={{width: '100%', maxWidth: '130px', flexShrink:1}}>
+            <DropdownV2
+              onChange={(event, value) => {
+                if (saveValueTypeLocally) {
+                  saveValueTypeLocally(index, value?.id);
+                }
+              }}
+              initialChecked={valueTypes.find((type) => type.id === valueType)}
+              options={valueTypes}
+              isReadOnly={true}
+              disabled={!isNewlyCreated}
+              label={'Value type'}
+              errored={false}
+              maxWidth={'130px'}
+              height={'100%'}
+              isSquareCorners={true}
+              withoutBorder={true}
+              backgroundColorFocus={'white'}
+              disableClearable
+              shouldHighlightIfEmpty={shouldHighlightEmptyFields}
+            />
+          </div>
+
           <ErroredTooltip
             title={isErrored ? 'Value is not valid' : ''}
             placement={'top'}
@@ -158,7 +184,7 @@ export function MetadataKeyValuePair({
             open={isErrored}
             tooltipVariant={TooltipVariant.Error}
           >
-            <div style={{ width: '100%' }}>
+            <div style={{width: '100%', minWidth:"160px"}}>
               <CustomTextField
                 readOnly={!isEditable}
                 value={value}
@@ -171,26 +197,29 @@ export function MetadataKeyValuePair({
                   }
                 }}
                 onInputChange={(newVal) => {
+                  if (newVal !== value) {
+                    markFieldStatusAsEditInProgress(index);
+                  }
                   if (!!validateValueByType && !!valueType) {
                     setIsErrored(!validateValueByType(valueType, newVal as string));
                   }
                 }}
                 placeholder={isNewlyCreated || !value ? 'Add value' : 'Typing...'}
-                shouldHighlightIfEmpty={shouldHighlightEmptyFields}
-                isErrored={isErrored} //TODO: add validation
+                shouldHighlightIfEmpty={(valueType != "STRING") && shouldHighlightEmptyFields}
+                isErrored={isErrored}
               />
             </div>
           </ErroredTooltip>
           {!!isRemovable && (
             <IconButton
-              style={{ marginRight: '8px', height: '100%', padding: '6px' }}
+              style={{marginRight: '8px', height: '100%', padding: '6px'}}
               onClick={() => {
                 if (deleteFieldPermanently) {
                   deleteFieldPermanently(index);
                 }
               }}
             >
-              <DeleteOutlinedIcon style={{ color: 'rgba(148, 163, 184, 1)' }} fontSize={'medium'} />
+              <DeleteOutlinedIcon style={{color: 'rgba(148, 163, 184, 1)'}} fontSize={'medium'}/>
             </IconButton>
           )}
         </Box>

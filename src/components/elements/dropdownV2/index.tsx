@@ -36,6 +36,7 @@ export function DropdownV2({
   bgColor = '#f8fafc',
   bgColorHover = 'rgba(241, 245, 249, 1)',
   autoFocus,
+  disabled,
 }: {
   onChange: (event: SyntheticEvent<Element, Event>, value: RadioButtonItemProps | null) => void;
   initialChecked?: RadioButtonItemProps | undefined;
@@ -64,6 +65,7 @@ export function DropdownV2({
   placeholderColor?: string;
   alignInputTextToCenter?: boolean;
   autoFocus?: boolean;
+  disabled?: boolean;
 }) {
   const [inputValue, setInputValue] = React.useState(initialChecked?.label ?? '');
   const [open, setOpen] = useState(false);
@@ -205,6 +207,7 @@ export function DropdownV2({
           popupIcon={<ExpandMoreIcon />}
           clearIcon={<CancelIcon fontSize={'small'} />}
           disablePortal
+          disabled={disabled}
           id="auto-complete-select"
           options={options ?? []}
           value={initialChecked}

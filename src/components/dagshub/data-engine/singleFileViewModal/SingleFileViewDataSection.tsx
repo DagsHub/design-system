@@ -23,7 +23,7 @@ export function SingleFileViewDataSection({
   visualizerRenderer: (props: VisualizerProps) => React.ReactNode;
   sidebarRenderers?: React.ReactNode;
 }) {
-  const SIDEBAR_WIDTH = 350; //I decided on this number
+  const SIDEBAR_WIDTH = 450;
   const ARROWS_SECTION_HEIGHT = 52;
 
   const [showMetadataSidebar, setShowMetadataSidebar] = useState<boolean>(true);
