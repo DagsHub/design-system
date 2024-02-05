@@ -22,11 +22,12 @@ metadataKeyValueListReadOnly.args = {
     { key: 'key3', value: false, valueType: 'BOOLEAN', multiple: false },
     { key: 'key4', value: true, valueType: 'BOOLEAN', multiple: false },
   ],
-  onSaveHandler:undefined,
+  onSaveHandler: undefined,
   onDeleteHandler: undefined,
 };
 
-export const metadataKeyValueListEditingEnabled: StoryFn<typeof MetadataKeyValueList> = Template.bind({});
+export const metadataKeyValueListEditingEnabled: StoryFn<typeof MetadataKeyValueList> =
+  Template.bind({});
 metadataKeyValueListEditingEnabled.args = {
   metadataList: [
     { key: 'key1', value: 'mockValue1', valueType: 'STRING', multiple: false },
@@ -34,11 +35,14 @@ metadataKeyValueListEditingEnabled.args = {
     { key: 'key3', value: false, valueType: 'BOOLEAN', multiple: false },
     { key: 'key4', value: true, valueType: 'BOOLEAN', multiple: false },
   ],
-  onSaveHandler: (metadataList)=>{console.log("onSaveHandler")},
+  onSaveHandler: (metadataList) => {
+    console.log('onSaveHandler');
+  },
   onDeleteHandler: undefined,
 };
 
-export const metadataKeyValueListDeletionEnabled: StoryFn<typeof MetadataKeyValueList> = Template.bind({});
+export const metadataKeyValueListDeletionEnabled: StoryFn<typeof MetadataKeyValueList> =
+  Template.bind({});
 metadataKeyValueListDeletionEnabled.args = {
   metadataList: [
     { key: 'key1', value: 'mockValue1', valueType: 'STRING', multiple: false },
@@ -46,7 +50,7 @@ metadataKeyValueListDeletionEnabled.args = {
     { key: 'key3', value: false, valueType: 'BOOLEAN', multiple: false },
     { key: 'key4', value: true, valueType: 'BOOLEAN', multiple: false },
   ],
-  onSaveHandler:undefined,
+  onSaveHandler: undefined,
   onDeleteHandler: (keyName: string) => {
     console.log(`Metadata field with key name ${keyName} was deleted`);
   },
